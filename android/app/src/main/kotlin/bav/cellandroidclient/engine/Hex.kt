@@ -4,6 +4,8 @@ import kotlin.math.abs
 import kotlin.math.cos
 import kotlin.math.PI
 import kotlin.math.sin
+import kotlin.math.roundToInt
+import kotlin.math.max
 
 data class Hex(val q: Int, val r: Int, val s: Int) {
 
@@ -72,6 +74,43 @@ data class Hex(val q: Int, val r: Int, val s: Int) {
               corners[i] = Point(center.x + offset.x, center.y + offset.y)
           }
           return corners
+      }
+
+      fun hexRound(h: FractionalHex): Hex {
+          var q: Int = h.q.roundToInt()
+          var r: Int = h.r.roundToInt()
+          var s: Int = h.s.roundToInt()
+          val qDiff: Double = abs(q - h.q)
+          val rDiff: Double = abs(r - h.r)
+          val sDiff: Double = abs(s - h.s)
+          if (qDiff > rDiff && qDiff > sDiff) {
+              q = -r - s
+          } else if (rDiff > sDiff) {
+              r = -q - s
+          } else {
+              s = -q - r
+          }
+          return Hex(q, r, s)
+      }
+
+      fun lerp(a: Double, b: Double, t: Double): Double {
+          return a * (1 - t) + b * t
+      }
+
+      fun hexLerp(a: FractionalHex, b: FractionalHex, t: Double): FractionalHex {
+          return FractionalHex(lerp(a.q, b.q, t), lerp(a.r, b.r, t), lerp(a.s, b.s, t))
+      }
+
+      fun hexLineDraw(a: Hex, b: Hex): Array<Hex> {
+          val n: Int = hexDistance(a, b)
+          val aNudge = FractionalHex(a.q + 1e-6, a.r + 1e-6, a.s - 2e-6)
+          val bNudge = FractionalHex(b.q + 1e-6, b.r + 1e-6, b.s - 2e-6)
+          val results: Array<Hex> = emptyArray()
+          val step: Double = 1.0 / max(n, 1)
+          for (i in 0..n) {
+              results[i] = hexRound(hexLerp(aNudge, bNudge, step * i))
+          }
+          return results
       }
   }
 
