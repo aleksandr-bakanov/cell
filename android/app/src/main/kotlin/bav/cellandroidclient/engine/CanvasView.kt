@@ -27,7 +27,7 @@ class CanvasView(context: Context, private val hexes: MutableSet<Hex>) : View(co
 
         filledPaint.style = Paint.Style.FILL
         filledPaint.color = Color.RED
-        filledPaint.strokeWidth = 5.0f
+        filledPaint.strokeWidth = 10.0f
 
         setOnTouchListener(
             {view: View?, event: MotionEvent? ->
@@ -35,7 +35,6 @@ class CanvasView(context: Context, private val hexes: MutableSet<Hex>) : View(co
                     val x: Double = event.x.toDouble()
                     val y: Double = event.y.toDouble()
                     val point = Point(x, y)
-                    Log.d(TAG, "point = $point")
                     val fHex = Hex.pixelToHex(layout, point)
                     val hex = Hex.hexRound(fHex)
                     if (hexes.contains(hex)) {
@@ -43,6 +42,8 @@ class CanvasView(context: Context, private val hexes: MutableSet<Hex>) : View(co
                     } else {
                         touchedHex = null
                     }
+                    Log.d(TAG, "point = $point; touchedHex = $touchedHex")
+                    invalidate()
                 }
                 true
             }
@@ -57,6 +58,8 @@ class CanvasView(context: Context, private val hexes: MutableSet<Hex>) : View(co
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
 
+        Log.d(TAG, "onDraw")
+
         if (!isInitialized) {
             layout.origin = Point(canvas!!.width.toDouble() / 2.0, canvas.height.toDouble() / 2.0)
             isInitialized = true
@@ -65,11 +68,13 @@ class CanvasView(context: Context, private val hexes: MutableSet<Hex>) : View(co
         canvas?.drawColor(Color.WHITE)
 
         var paint = defaultPaint
-        if (touchedHex != null) {
-            paint = filledPaint
-        }
 
         for (hex in hexes) {
+            if (touchedHex != null && hex == touchedHex) {
+                paint = filledPaint
+            } else {
+                paint = defaultPaint
+            }
             val hexCorners: ArrayList<Point> = Hex.poligonCorners(layout, hex)
             val points: ArrayList<Float> = arrayListOf()
             for (p in hexCorners) {
