@@ -66,12 +66,12 @@ data class Hex(val q: Int, val r: Int, val s: Int) {
           return Point(size.x * cos(angle), size.y * sin(angle))
       }
 
-      fun poligonCorners(layout: Layout, h: Hex): Array<Point> {
-          val corners: Array<Point> = emptyArray()
+      fun poligonCorners(layout: Layout, h: Hex): ArrayList<Point> {
+          val corners: ArrayList<Point> = arrayListOf()
           val center: Point = hexToPixel(layout, h)
           for (i in 0..5) {
               val offset: Point = hexCornerOffset(layout, i)
-              corners[i] = Point(center.x + offset.x, center.y + offset.y)
+              corners.add(Point(center.x + offset.x, center.y + offset.y))
           }
           return corners
       }
@@ -101,14 +101,14 @@ data class Hex(val q: Int, val r: Int, val s: Int) {
           return FractionalHex(lerp(a.q, b.q, t), lerp(a.r, b.r, t), lerp(a.s, b.s, t))
       }
 
-      fun hexLineDraw(a: Hex, b: Hex): Array<Hex> {
+      fun hexLineDraw(a: Hex, b: Hex): ArrayList<Hex> {
           val n: Int = hexDistance(a, b)
           val aNudge = FractionalHex(a.q + 1e-6, a.r + 1e-6, a.s - 2e-6)
           val bNudge = FractionalHex(b.q + 1e-6, b.r + 1e-6, b.s - 2e-6)
-          val results: Array<Hex> = emptyArray()
+          val results: ArrayList<Hex> = arrayListOf()
           val step: Double = 1.0 / max(n, 1)
           for (i in 0..n) {
-              results[i] = hexRound(hexLerp(aNudge, bNudge, step * i))
+              results.add(hexRound(hexLerp(aNudge, bNudge, step * i)))
           }
           return results
       }
