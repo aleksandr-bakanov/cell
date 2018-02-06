@@ -67,8 +67,7 @@ class CanvasView(context: Context, private val hexes: MutableSet<Hex>) : View(co
 
         canvas?.drawColor(Color.WHITE)
 
-        var paint = defaultPaint
-
+        var paint: Paint
         for (hex in hexes) {
             if (touchedHex != null && hex == touchedHex) {
                 paint = filledPaint
