@@ -1,4 +1,4 @@
-package bav.cellandroidclient
+package bav.onecell
 
 import org.junit.Test
 

@@ -1,4 +1,4 @@
-package bav.cellandroidclient.engine
+package bav.onecell.model.hexes
 
 import kotlin.math.abs
 import kotlin.math.cos
@@ -11,8 +11,10 @@ data class Hex(val q: Int, val r: Int, val s: Int) {
 
   companion object {
       private val HEX_DIRECTIONS: Array<Hex> = arrayOf(
-          Hex(1, 0, -1), Hex(1, -1, 0), Hex(0, -1, 1),
-          Hex(-1, 0, 1), Hex(-1, 1, 0), Hex(0, 1, -1)
+          Hex(1, 0, -1), Hex(1, -1, 0),
+          Hex(0, -1, 1),
+          Hex(-1, 0, 1), Hex(-1, 1, 0),
+          Hex(0, 1, -1)
       )
 
       fun hexDirection(direction: Int /* 0 to 5 */): Hex {
@@ -21,7 +23,8 @@ data class Hex(val q: Int, val r: Int, val s: Int) {
       }
 
       fun hexNeighbor(hex: Hex, direction: Int): Hex {
-          return hexAdd(hex, hexDirection(direction))
+          return hexAdd(hex,
+              hexDirection(direction))
       }
 
       fun hexAdd(a: Hex, b: Hex): Hex {
@@ -41,7 +44,8 @@ data class Hex(val q: Int, val r: Int, val s: Int) {
       }
 
       fun hexDistance(a: Hex, b: Hex): Int {
-          return hexLength(hexSubstract(a, b))
+          return hexLength(
+              hexSubstract(a, b))
       }
 
       fun hexToPixel(layout: Layout, h: Hex): Point {
@@ -53,8 +57,9 @@ data class Hex(val q: Int, val r: Int, val s: Int) {
 
       fun pixelToHex(layout: Layout, p: Point): FractionalHex {
           val m: Orientation = layout.orientation
-          val pt: Point = Point((p.x - layout.origin.x) / layout.size.x,
-                  (p.y - layout.origin.y) / layout.size.y)
+          val pt: Point = Point(
+              (p.x - layout.origin.x) / layout.size.x,
+              (p.y - layout.origin.y) / layout.size.y)
           val q: Double = m.b0 * pt.x + m.b1 * pt.y
           val r: Double = m.b2 * pt.x + m.b3 * pt.y
           return FractionalHex(q, r, -q - r)
@@ -68,9 +73,11 @@ data class Hex(val q: Int, val r: Int, val s: Int) {
 
       fun poligonCorners(layout: Layout, h: Hex): ArrayList<Point> {
           val corners: ArrayList<Point> = arrayListOf()
-          val center: Point = hexToPixel(layout, h)
+          val center: Point = hexToPixel(
+              layout, h)
           for (i in 0..5) {
-              val offset: Point = hexCornerOffset(layout, i)
+              val offset: Point = hexCornerOffset(
+                  layout, i)
               corners.add(Point(center.x + offset.x, center.y + offset.y))
           }
           return corners
@@ -98,7 +105,10 @@ data class Hex(val q: Int, val r: Int, val s: Int) {
       }
 
       fun hexLerp(a: FractionalHex, b: FractionalHex, t: Double): FractionalHex {
-          return FractionalHex(lerp(a.q, b.q, t), lerp(a.r, b.r, t), lerp(a.s, b.s, t))
+          return FractionalHex(
+              lerp(a.q, b.q, t),
+              lerp(a.r, b.r, t),
+              lerp(a.s, b.s, t))
       }
 
       fun hexLineDraw(a: Hex, b: Hex): ArrayList<Hex> {
@@ -108,7 +118,8 @@ data class Hex(val q: Int, val r: Int, val s: Int) {
           val results: ArrayList<Hex> = arrayListOf()
           val step: Double = 1.0 / max(n, 1)
           for (i in 0..n) {
-              results.add(hexRound(hexLerp(aNudge, bNudge, step * i)))
+              results.add(hexRound(
+                  hexLerp(aNudge, bNudge, step * i)))
           }
           return results
       }

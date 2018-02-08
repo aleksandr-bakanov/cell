@@ -1,14 +1,14 @@
-package bav.cellandroidclient.main
+package bav.onecell.main
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
-import bav.cellandroidclient.engine.CanvasView
-import bav.cellandroidclient.engine.Hex
+import android.app.Activity
+import bav.onecell.model.CanvasView
+import bav.onecell.model.hexes.Hex
 
 import kotlin.math.max
 import kotlin.math.min
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

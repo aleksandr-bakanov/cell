@@ -1,4 +1,4 @@
-package bav.cellandroidclient.engine
+package bav.onecell.model
 
 import android.content.Context
 import android.content.res.Configuration
@@ -8,6 +8,10 @@ import android.graphics.Paint
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
+import bav.onecell.model.hexes.Hex
+import bav.onecell.model.hexes.Layout
+import bav.onecell.model.hexes.Orientation
+import bav.onecell.model.hexes.Point
 
 class CanvasView(context: Context, private val hexes: MutableSet<Hex>) : View(context) {
 
@@ -15,7 +19,9 @@ class CanvasView(context: Context, private val hexes: MutableSet<Hex>) : View(co
         private val TAG = "CanvasView"
     }
 
-    private val layout = Layout(Orientation.LAYOUT_POINTY, Point(100.0, 100.0), Point(100.0, 100.0))
+    private val layout = Layout(
+        Orientation.LAYOUT_POINTY,
+        Point(100.0, 100.0), Point(100.0, 100.0))
     private val defaultPaint: Paint = Paint()
     private val filledPaint: Paint = Paint()
     private var isInitialized = false
@@ -61,7 +67,8 @@ class CanvasView(context: Context, private val hexes: MutableSet<Hex>) : View(co
         Log.d(TAG, "onDraw")
 
         if (!isInitialized) {
-            layout.origin = Point(canvas!!.width.toDouble() / 2.0, canvas.height.toDouble() / 2.0)
+            layout.origin = Point(canvas!!.width.toDouble() / 2.0,
+                canvas.height.toDouble() / 2.0)
             isInitialized = true
         }
 

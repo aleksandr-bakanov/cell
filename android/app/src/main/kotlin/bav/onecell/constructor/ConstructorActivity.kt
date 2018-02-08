@@ -1,4 +1,4 @@
-package bav.cellandroidclient.constructor
+package bav.onecell.constructor
 
 import android.support.v7.app.AppCompatActivity
 
