@@ -1,4 +1,4 @@
 package bav.onecell.model
 
-class CellRepository(private val cells: ArrayList<Cell> = arrayListOf()) {
+data class CellRepository(val cells: ArrayList<Cell> = arrayListOf()) {
 }

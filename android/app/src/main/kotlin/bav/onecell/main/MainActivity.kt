@@ -2,15 +2,24 @@ package bav.onecell.main
 
 import android.os.Bundle
 import android.app.Activity
+import bav.onecell.OneCellApplication
 import bav.onecell.model.CanvasView
 import bav.onecell.model.hexes.Hex
+import javax.inject.Inject
 
 import kotlin.math.max
 import kotlin.math.min
 
-class MainActivity : Activity() {
+class MainActivity : Activity(), Main.View {
+
+    @Inject
+    lateinit var presenter: Main.Presenter
+
+    //region Overriden methods
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        inject()
 
         val hexes: MutableSet<Hex> = mutableSetOf()
         val mapRadius = 4
@@ -25,4 +34,13 @@ class MainActivity : Activity() {
         val canvasView = CanvasView(this, hexes)
         setContentView(canvasView)
     }
+    //endregion
+
+    //region Private methods
+    private fun inject() {
+        (application as OneCellApplication).applicationComponent
+                .plus(MainModule(this))
+                .inject(this)
+    }
+    //endregion
 }
