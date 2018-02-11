@@ -1,6 +1,6 @@
 package bav.onecell.constructor
 
-import android.support.v7.app.AppCompatActivity
+import android.app.Activity
 
-class ConstructorActivity: AppCompatActivity() {
+class ConstructorActivity: Activity() {
 }

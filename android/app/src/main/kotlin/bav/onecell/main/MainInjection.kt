@@ -1,6 +1,7 @@
 package bav.onecell.main
 
 import bav.onecell.di.scopes.ActivityScope
+import bav.onecell.model.CellRepository
 import dagger.Module
 import dagger.Provides
 import dagger.Subcomponent
@@ -16,8 +17,8 @@ class MainModule(val view: Main.View) {
 
     @Provides
     @ActivityScope
-    fun providesMainPresenter(): Main.Presenter {
-        return MainPresenter(view)
+    fun provideMainPresenter(cellRepository: CellRepository): Main.Presenter {
+        return MainPresenter(view, cellRepository)
     }
 
 }
