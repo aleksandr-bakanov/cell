@@ -6,7 +6,6 @@ import javax.inject.Singleton
 
 @Module
 class ModelModule {
-
     @Provides
     @Singleton
     fun provideCellRepository(): CellRepository {

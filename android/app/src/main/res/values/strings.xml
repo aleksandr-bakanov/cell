@@ -2,4 +2,5 @@
   <string name="app_name">One Cell</string>
     <string name="button_start_battle_title">Start battle</string>
   <string name="button_create_new_cell_title">Create new cell</string>
+    <string name="button_edit_cell_title">Edit</string>
 </resources>

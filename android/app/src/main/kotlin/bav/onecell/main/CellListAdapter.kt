@@ -22,6 +22,13 @@ class CellListAdapter(private val cellRepository: CellRepository): RecyclerView.
     }
 
     class CellViewHolder(private val view: View): RecyclerView.ViewHolder(view) {
+
+
+
+        init {
+            view.buttonEditCell.setOnClickListener {  }
+        }
+
         fun setCellTitle(title: String) {
             view.title.text = title
         }

@@ -1,4 +1,4 @@
 package bav.onecell.constructor
 
-class ConstructorPresenter {
+class ConstructorPresenter: Constructor.Presenter {
 }

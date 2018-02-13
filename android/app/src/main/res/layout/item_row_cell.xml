@@ -10,4 +10,11 @@
         android:layout_height="wrap_content"
         android:textSize="36sp"/>
 
+    <Button
+        android:id="@+id/buttonEditCell"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/button_edit_cell_title"/>
+
 </LinearLayout>
