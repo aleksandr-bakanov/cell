@@ -8,13 +8,13 @@ data class Orientation(val f0: Double, val f1: Double, val f2: Double, val f3: D
 
     companion object {
         val LAYOUT_POINTY: Orientation = Orientation(
-            sqrt(3.0), sqrt(3.0) / 2.0, 0.0, 3.0 / 2.0,
-            sqrt(3.0) / 3.0, -1.0 / 3.0, 0.0, 2.0 / 3.0,
-            0.5)
+                sqrt(3.0), sqrt(3.0) / 2.0, 0.0, 3.0 / 2.0,
+                sqrt(3.0) / 3.0, -1.0 / 3.0, 0.0, 2.0 / 3.0,
+                0.5)
         val LAYOUT_FLAT: Orientation = Orientation(
-            3.0 / 2.0, 0.0, sqrt(3.0) / 2.0, sqrt(3.0),
-            2.0 / 3.0, 0.0, -1.0 / 3.0, sqrt(3.0) / 3.0,
-            0.0)
+                3.0 / 2.0, 0.0, sqrt(3.0) / 2.0, sqrt(3.0),
+                2.0 / 3.0, 0.0, -1.0 / 3.0, sqrt(3.0) / 3.0,
+                0.0)
     }
 
 }

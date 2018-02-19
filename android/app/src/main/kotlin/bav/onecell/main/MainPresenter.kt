@@ -1,13 +1,13 @@
 package bav.onecell.main
 
+import bav.onecell.common.router.Router
 import bav.onecell.model.Cell
 import bav.onecell.model.CellRepository
 
 class MainPresenter(
         private val view: Main.View,
-        private val cellRepository: CellRepository) : Main.Presenter {
-
-    private val cellListAdapter = CellListAdapter(cellRepository)
+        private val cellRepository: CellRepository,
+        private val router: Router) : Main.Presenter {
 
     companion object {
         private const val TAG = "MainPresenter"
@@ -17,11 +17,13 @@ class MainPresenter(
     override fun createNewCell() {
         val cell = Cell()
         cellRepository.cells.add(cell)
-        cellListAdapter.notifyItemInserted(cellRepository.cells.size - 1)
+        view.notifyCellRepoListUpdated()
     }
 
-    override fun provideCellListAdapter(): CellListAdapter {
-        return cellListAdapter
+    override fun cellsCount(): Int = cellRepository.cells.size
+
+    override fun openCellConstructor(cellIndex: Int) {
+        router.goToCellConstructor(cellIndex)
     }
     //endregion
 }

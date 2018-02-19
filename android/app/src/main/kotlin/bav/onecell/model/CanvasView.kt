@@ -20,8 +20,8 @@ class CanvasView(context: Context, private val hexes: MutableSet<Hex>) : View(co
     }
 
     private val layout = Layout(
-        Orientation.LAYOUT_POINTY,
-        Point(100.0, 100.0), Point(100.0, 100.0))
+            Orientation.LAYOUT_POINTY,
+            Point(100.0, 100.0), Point(100.0, 100.0))
     private val defaultPaint: Paint = Paint()
     private val filledPaint: Paint = Paint()
     private var isInitialized = false
@@ -36,23 +36,23 @@ class CanvasView(context: Context, private val hexes: MutableSet<Hex>) : View(co
         filledPaint.strokeWidth = 10.0f
 
         setOnTouchListener(
-            {view: View?, event: MotionEvent? ->
-                if (event?.action == MotionEvent.ACTION_UP) {
-                    val x: Double = event.x.toDouble()
-                    val y: Double = event.y.toDouble()
-                    val point = Point(x, y)
-                    val fHex = Hex.pixelToHex(layout, point)
-                    val hex = Hex.hexRound(fHex)
-                    if (hexes.contains(hex)) {
-                        touchedHex = hex
-                    } else {
-                        touchedHex = null
+                { view: View?, event: MotionEvent? ->
+                    if (event?.action == MotionEvent.ACTION_UP) {
+                        val x: Double = event.x.toDouble()
+                        val y: Double = event.y.toDouble()
+                        val point = Point(x, y)
+                        val fHex = Hex.pixelToHex(layout, point)
+                        val hex = Hex.hexRound(fHex)
+                        if (hexes.contains(hex)) {
+                            touchedHex = hex
+                        } else {
+                            touchedHex = null
+                        }
+                        Log.d(TAG, "point = $point; touchedHex = $touchedHex")
+                        invalidate()
                     }
-                    Log.d(TAG, "point = $point; touchedHex = $touchedHex")
-                    invalidate()
+                    true
                 }
-                true
-            }
         )
     }
 
@@ -68,7 +68,7 @@ class CanvasView(context: Context, private val hexes: MutableSet<Hex>) : View(co
 
         if (!isInitialized) {
             layout.origin = Point(canvas!!.width.toDouble() / 2.0,
-                canvas.height.toDouble() / 2.0)
+                    canvas.height.toDouble() / 2.0)
             isInitialized = true
         }
 

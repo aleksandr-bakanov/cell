@@ -1,15 +1,18 @@
 package bav.onecell
 
 import android.app.Application
-import bav.onecell.di.ApplicationComponent
-import bav.onecell.di.DaggerApplicationComponent
+import bav.onecell.di.AppComponent
+import bav.onecell.di.AppModule
+import bav.onecell.di.DaggerAppComponent
 
 class OneCellApplication : Application() {
 
-    lateinit var applicationComponent: ApplicationComponent
+    lateinit var appComponent: AppComponent
 
     override fun onCreate() {
         super.onCreate()
-        applicationComponent = DaggerApplicationComponent.create()
+        appComponent = DaggerAppComponent.builder()
+                .appModule(AppModule(applicationContext))
+                .build()
     }
 }

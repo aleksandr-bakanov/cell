@@ -5,7 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 
-class ConstructorActivity: Activity(), Constructor.View {
+class ConstructorActivity : Activity(), Constructor.View {
     companion object {
         private val EXTRA_CELL_INDEX = "extra_cell_index"
 

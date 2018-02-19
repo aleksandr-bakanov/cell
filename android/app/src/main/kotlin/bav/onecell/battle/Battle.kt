@@ -2,11 +2,11 @@ package bav.onecell.battle
 
 interface Battle {
 
-  interface View {
+    interface View {
 
-  }
+    }
 
-  interface Presenter {
+    interface Presenter {
 
-  }
+    }
 }

@@ -3,22 +3,22 @@ package bav.onecell.main
 import android.os.Bundle
 import android.app.Activity
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import bav.onecell.OneCellApplication
 import bav.onecell.R
-import bav.onecell.model.CanvasView
-import bav.onecell.model.hexes.Hex
 import javax.inject.Inject
 import kotlinx.android.synthetic.main.activity_main.*
-
-import kotlin.math.max
-import kotlin.math.min
+import kotlinx.android.synthetic.main.item_row_cell.view.*
 
 class MainActivity : Activity(), Main.View {
 
     @Inject
     lateinit var presenter: Main.Presenter
 
-    //region Overriden methods
+    //region Lifecycle methods
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -27,7 +27,7 @@ class MainActivity : Activity(), Main.View {
         buttonCreateNewCell.setOnClickListener { presenter.createNewCell() }
 
         recyclerViewCellList.layoutManager = LinearLayoutManager(this)
-        recyclerViewCellList.adapter = presenter.provideCellListAdapter()
+        recyclerViewCellList.adapter = CellListAdapter(presenter)
 
         /*val hexes: MutableSet<Hex> = mutableSetOf()
         val mapRadius = 4
@@ -46,9 +46,46 @@ class MainActivity : Activity(), Main.View {
 
     //region Private methods
     private fun inject() {
-        (application as OneCellApplication).applicationComponent
+        (application as OneCellApplication).appComponent
                 .plus(MainModule(this))
                 .inject(this)
     }
     //endregion
+
+    //region Overridden methods
+    override fun notifyCellRepoListUpdated() {
+        recyclerViewCellList.adapter.notifyDataSetChanged()
+    }
+    //endregion
+
+    class CellListAdapter(private val presenter: Main.Presenter) :
+            RecyclerView.Adapter<CellListAdapter.CellViewHolder>() {
+
+        override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): CellViewHolder {
+            val view = LayoutInflater.from(parent?.context)
+                    .inflate(R.layout.item_row_cell, parent, false)
+            return CellViewHolder(view, presenter)
+        }
+
+        override fun getItemCount() = presenter.cellsCount()
+
+        override fun onBindViewHolder(holder: CellViewHolder?, position: Int) {
+            holder?.setCellTitle("Cell #$position")
+            holder?.index = position
+        }
+
+        class CellViewHolder(private val view: View, private val presenter: Main.Presenter) :
+                RecyclerView.ViewHolder(view) {
+
+            var index: Int = 0
+
+            init {
+                view.buttonEditCell.setOnClickListener { presenter.openCellConstructor(index) }
+            }
+
+            fun setCellTitle(title: String) {
+                view.title.text = title
+            }
+        }
+    }
 }
