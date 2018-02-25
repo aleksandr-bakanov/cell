@@ -7,6 +7,11 @@ interface Constructor {
     }
 
     interface Presenter {
-
+        /**
+         * Presenter initializer
+         *
+         * @param cellIndex Index of cell to be working with
+         */
+        fun initialize(cellIndex: Int)
     }
 }

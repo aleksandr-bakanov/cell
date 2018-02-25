@@ -2,6 +2,8 @@ package bav.onecell.di
 
 import android.content.Context
 import bav.onecell.common.CommonModule
+import bav.onecell.constructor.ConstructorModule
+import bav.onecell.constructor.ConstructorSubcomponent
 import bav.onecell.main.MainModule
 import bav.onecell.main.MainSubcomponent
 import bav.onecell.model.ModelModule
@@ -15,6 +17,7 @@ import javax.inject.Singleton
 @Component(modules = [AppModule::class, ModelModule::class, CommonModule::class])
 interface AppComponent {
     fun plus(mainModule: MainModule): MainSubcomponent
+    fun plus(constructorModule: ConstructorModule): ConstructorSubcomponent
 }
 
 @Module
