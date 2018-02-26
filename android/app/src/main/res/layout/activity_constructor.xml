@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+        <RadioButton
+            android:id="@+id/radioButtonLifeCell"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/radio_button_life_cell_title"
+            android:onClick="onCellTypeRadioButtonClicked"/>
+        <RadioButton
+            android:id="@+id/radioButtonEnergyCell"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/radio_button_energy_cell_title"
+            android:onClick="onCellTypeRadioButtonClicked"/>
+        <RadioButton
+            android:id="@+id/radioButtonAttackCell"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/radio_button_attack_cell_title"
+            android:onClick="onCellTypeRadioButtonClicked"/>
+        <RadioButton
+            android:id="@+id/radioButtonRemoveCell"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/radio_button_remove_cell_title"
+            android:onClick="onCellTypeRadioButtonClicked"/>
+    </RadioGroup>
+
+</LinearLayout>

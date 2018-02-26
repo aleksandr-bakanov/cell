@@ -9,7 +9,12 @@ import kotlin.math.max
 
 data class Hex(val q: Int, val r: Int, val s: Int) {
 
+    enum class Type {
+        LIFE, ENERGY, ATTACK, REMOVE
+    }
+
     companion object {
+
         private val HEX_DIRECTIONS: Array<Hex> = arrayOf(
                 Hex(1, 0, -1), Hex(1, -1, 0),
                 Hex(0, -1, 1),
