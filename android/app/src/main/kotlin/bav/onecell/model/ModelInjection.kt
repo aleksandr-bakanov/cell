@@ -8,7 +8,7 @@ import javax.inject.Singleton
 class ModelModule {
     @Provides
     @Singleton
-    fun provideCellRepository(): CellRepository {
+    fun provideCellRepository(): RepositoryContract.CellRepo {
         return CellRepository()
     }
 }

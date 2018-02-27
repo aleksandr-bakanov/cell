@@ -35,4 +35,9 @@
             android:onClick="onCellTypeRadioButtonClicked"/>
     </RadioGroup>
 
+    <bav.onecell.constructor.CanvasView
+        android:id="@+id/constructorCanvasView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
 </LinearLayout>

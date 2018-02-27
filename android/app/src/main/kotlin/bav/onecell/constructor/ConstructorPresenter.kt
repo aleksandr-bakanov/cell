@@ -2,17 +2,18 @@ package bav.onecell.constructor
 
 import bav.onecell.common.router.Router
 import bav.onecell.model.Cell
-import bav.onecell.model.CellRepository
+import bav.onecell.model.RepositoryContract
 
 class ConstructorPresenter(
         private val view: Constructor.View,
-        private val cellRepository: CellRepository,
+        private val cellRepository: RepositoryContract.CellRepo,
         private val router: Router) : Constructor.Presenter {
 
-    private lateinit var cell: Cell
-
+    private var cell: Cell? = null
 
     override fun initialize(cellIndex: Int) {
-        cell = cellRepository.cells[cellIndex]
+        cell = cellRepository.getCell(cellIndex)
+        view.setBackgroundFieldRadius(3)
+        view.setCell(cell)
     }
 }

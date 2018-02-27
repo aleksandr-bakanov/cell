@@ -8,7 +8,9 @@ import android.view.View
 import android.widget.RadioButton
 import bav.onecell.OneCellApplication
 import bav.onecell.R
+import bav.onecell.model.Cell
 import bav.onecell.model.hexes.Hex
+import kotlinx.android.synthetic.main.activity_constructor.*
 import javax.inject.Inject
 
 class ConstructorActivity : Activity(), Constructor.View {
@@ -32,6 +34,7 @@ class ConstructorActivity : Activity(), Constructor.View {
     //region Lifecycle methods
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_constructor)
         inject()
         presenter.initialize(intent.getIntExtra(EXTRA_CELL_INDEX, -1))
     }
@@ -54,6 +57,16 @@ class ConstructorActivity : Activity(), Constructor.View {
         (application as OneCellApplication).appComponent
                 .plus(ConstructorModule(this))
                 .inject(this)
+    }
+    //endregion
+
+    //region Overriden methods
+    override fun setBackgroundFieldRadius(radius: Int) {
+        constructorCanvasView.backgroundFieldRadius = radius
+    }
+
+    override fun setCell(cell: Cell?) {
+        constructorCanvasView.cell = cell
     }
     //endregion
 }

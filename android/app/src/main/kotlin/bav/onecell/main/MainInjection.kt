@@ -3,6 +3,7 @@ package bav.onecell.main
 import bav.onecell.common.router.Router
 import bav.onecell.di.scopes.ActivityScope
 import bav.onecell.model.CellRepository
+import bav.onecell.model.RepositoryContract
 import dagger.Module
 import dagger.Provides
 import dagger.Subcomponent
@@ -17,7 +18,7 @@ interface MainSubcomponent {
 class MainModule(val view: Main.View) {
     @Provides
     @ActivityScope
-    fun provideMainPresenter(cellRepository: CellRepository, router: Router): Main.Presenter {
+    fun provideMainPresenter(cellRepository: RepositoryContract.CellRepo, router: Router): Main.Presenter {
         return MainPresenter(view, cellRepository, router)
     }
 }

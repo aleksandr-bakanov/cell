@@ -1,4 +1,4 @@
-package bav.onecell.model
+package bav.onecell.constructor
 
 import android.content.Context
 import android.content.res.Configuration
@@ -8,16 +8,25 @@ import android.graphics.Paint
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
+import bav.onecell.model.Cell
 import bav.onecell.model.hexes.Hex
 import bav.onecell.model.hexes.Layout
 import bav.onecell.model.hexes.Orientation
 import bav.onecell.model.hexes.Point
+import java.lang.Math.max
+import java.lang.Math.min
+import android.util.AttributeSet
 
-class CanvasView(context: Context, private val hexes: MutableSet<Hex>) : View(context) {
+class CanvasView(context: Context/*, private val hexes: MutableSet<Hex>*/) : View(context) {
+
+    constructor(context: Context, attributeSet: AttributeSet) : this(context)
 
     companion object {
         private val TAG = "CanvasView"
     }
+
+    var backgroundFieldRadius: Int = 1
+    var cell: Cell? = null
 
     private val layout = Layout(
             Orientation.LAYOUT_POINTY,
@@ -31,6 +40,7 @@ class CanvasView(context: Context, private val hexes: MutableSet<Hex>) : View(co
         defaultPaint.color = Color.BLACK
         defaultPaint.strokeWidth = 5.0f
 
+        /*
         filledPaint.style = Paint.Style.FILL
         filledPaint.color = Color.RED
         filledPaint.strokeWidth = 10.0f
@@ -53,7 +63,7 @@ class CanvasView(context: Context, private val hexes: MutableSet<Hex>) : View(co
                     }
                     true
                 }
-        )
+        )*/
     }
 
     override fun onConfigurationChanged(newConfig: Configuration?) {
@@ -64,15 +74,12 @@ class CanvasView(context: Context, private val hexes: MutableSet<Hex>) : View(co
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
 
-        Log.d(TAG, "onDraw")
-
-        if (!isInitialized) {
-            layout.origin = Point(canvas!!.width.toDouble() / 2.0,
-                    canvas.height.toDouble() / 2.0)
-            isInitialized = true
-        }
-
         canvas?.drawColor(Color.WHITE)
+
+        initializeLayoutOrigin(canvas)
+        drawBackgroundField(canvas)
+
+        /*Log.d(TAG, "onDraw")
 
         var paint: Paint
         for (hex in hexes) {
@@ -94,6 +101,43 @@ class CanvasView(context: Context, private val hexes: MutableSet<Hex>) : View(co
                     canvas?.drawLine(points[k * 2], points[k * 2 + 1], points[(k + 1) * 2], points[(k + 1) * 2 + 1], paint)
                 }
             }
+        }*/
+    }
+
+    private fun initializeLayoutOrigin(canvas: Canvas?) {
+        if (!isInitialized) {
+            layout.origin = Point(canvas!!.width.toDouble() / 2.0,
+                    canvas.height.toDouble() / 2.0)
+            isInitialized = true
         }
     }
+
+    private fun drawBackgroundField(canvas: Canvas?) {
+        val hexes: MutableSet<Hex> = mutableSetOf()
+        for (q in -backgroundFieldRadius..backgroundFieldRadius) {
+            val r1 = max(-backgroundFieldRadius, -q - backgroundFieldRadius)
+            val r2 = min(backgroundFieldRadius, -q + backgroundFieldRadius)
+            for (r in r1..r2) {
+                hexes.add(Hex(q, r, -q - r))
+            }
+        }
+
+        for (hex in hexes) {
+            val hexCorners: ArrayList<Point> = Hex.poligonCorners(layout, hex)
+            val points: ArrayList<Float> = arrayListOf()
+            for (p in hexCorners) {
+                points.add(p.x.toFloat())
+                points.add(p.y.toFloat())
+            }
+            for (k in 0..(points.size / 2 - 1)) {
+                if (k == (points.size / 2 - 1)) {
+                    canvas?.drawLine(points[k * 2], points[k * 2 + 1], points[0], points[1], defaultPaint)
+                } else {
+                    canvas?.drawLine(points[k * 2], points[k * 2 + 1], points[(k + 1) * 2], points[(k + 1) * 2 + 1], defaultPaint)
+                }
+            }
+        }
+    }
+
+
 }
