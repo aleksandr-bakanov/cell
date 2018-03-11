@@ -17,9 +17,7 @@ import java.lang.Math.max
 import java.lang.Math.min
 import android.util.AttributeSet
 
-class CanvasView(context: Context/*, private val hexes: MutableSet<Hex>*/) : View(context) {
-
-    constructor(context: Context, attributeSet: AttributeSet) : this(context)
+class CanvasView(context: Context, attributeSet: AttributeSet) : View(context, attributeSet) {
 
     companion object {
         private val TAG = "CanvasView"
