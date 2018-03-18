@@ -1,6 +1,7 @@
 package bav.onecell.constructor
 
 import bav.onecell.model.Cell
+import bav.onecell.model.hexes.Hex
 
 interface Constructor {
 
@@ -16,5 +17,19 @@ interface Constructor {
          * @param cellIndex Index of cell to be working with
          */
         fun initialize(cellIndex: Int)
+
+        /**
+         * Add new hex to cell
+         *
+         * @param hex Hex to add
+         */
+        fun addHexToCell(hex: Hex)
+
+        /**
+         * Remove hex from cell
+         *
+         * @param hex Hex to remove
+         */
+        fun removeHexFromCell(hex: Hex)
     }
 }

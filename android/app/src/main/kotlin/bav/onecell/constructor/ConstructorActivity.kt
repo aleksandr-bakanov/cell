@@ -29,6 +29,7 @@ class ConstructorActivity : Activity(), Constructor.View {
     @Inject
     lateinit var presenter: Constructor.Presenter
 
+    // TODO: same variable exists in CanvasView, it is unnecessary duplicate
     private var selectedCellType: Hex.Type = Hex.Type.LIFE
 
     //region Lifecycle methods
@@ -36,6 +37,7 @@ class ConstructorActivity : Activity(), Constructor.View {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_constructor)
         inject()
+        constructorCanvasView.presenter = presenter
         presenter.initialize(intent.getIntExtra(EXTRA_CELL_INDEX, -1))
     }
     //endregion
@@ -49,6 +51,7 @@ class ConstructorActivity : Activity(), Constructor.View {
             R.id.radioButtonAttackCell -> Hex.Type.ATTACK
             else -> Hex.Type.REMOVE
         }
+        constructorCanvasView.selectedCellType = selectedCellType
     }
     //endregion
 

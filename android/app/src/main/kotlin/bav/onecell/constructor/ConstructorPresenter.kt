@@ -3,6 +3,7 @@ package bav.onecell.constructor
 import bav.onecell.common.router.Router
 import bav.onecell.model.Cell
 import bav.onecell.model.RepositoryContract
+import bav.onecell.model.hexes.Hex
 
 class ConstructorPresenter(
         private val view: Constructor.View,
@@ -15,5 +16,13 @@ class ConstructorPresenter(
         cell = cellRepository.getCell(cellIndex)
         view.setBackgroundFieldRadius(3)
         view.setCell(cell)
+    }
+
+    override fun addHexToCell(hex: Hex) {
+        cell?.hexes?.add(hex)
+    }
+
+    override fun removeHexFromCell(hex: Hex) {
+        cell?.hexes?.remove(hex)
     }
 }

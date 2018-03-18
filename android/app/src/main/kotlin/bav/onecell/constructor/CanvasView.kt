@@ -5,6 +5,7 @@ import android.content.res.Configuration
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
+import android.graphics.Path
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
@@ -24,44 +25,68 @@ class CanvasView(context: Context, attributeSet: AttributeSet) : View(context, a
     }
 
     var backgroundFieldRadius: Int = 1
+        set(value) {
+            backgroundHexes.clear()
+            for (q in -value..value) {
+                val r1 = max(-value, -q - value)
+                val r2 = min(value, -q + value)
+                for (r in r1..r2) {
+                    backgroundHexes.add(Hex(q, r, -q - r))
+                }
+            }
+            invalidate()
+        }
     var cell: Cell? = null
+    lateinit var presenter: Constructor.Presenter
+    var selectedCellType: Hex.Type = Hex.Type.LIFE
 
     private val layout = Layout(
             Orientation.LAYOUT_POINTY,
             Point(100.0, 100.0), Point(100.0, 100.0))
-    private val defaultPaint: Paint = Paint()
-    private val filledPaint: Paint = Paint()
+
+    private val backgroundPaint: Paint = Paint()
+    private val lifePaint: Paint = Paint()
+    private val energyPaint: Paint = Paint()
+    private val attackPaint: Paint = Paint()
+
     private var isInitialized = false
     private var touchedHex: Hex? = null
+    private val backgroundHexes: MutableSet<Hex> = mutableSetOf()
 
     init {
-        defaultPaint.color = Color.BLACK
-        defaultPaint.strokeWidth = 5.0f
+        backgroundPaint.style = Paint.Style.STROKE
+        backgroundPaint.color = Color.GRAY
+        backgroundPaint.strokeWidth = 5.0f
 
-        /*
-        filledPaint.style = Paint.Style.FILL
-        filledPaint.color = Color.RED
-        filledPaint.strokeWidth = 10.0f
+        lifePaint.style = Paint.Style.FILL
+        lifePaint.color = Color.GREEN
+
+        energyPaint.style = Paint.Style.FILL
+        energyPaint.color = Color.YELLOW
+
+        attackPaint.style = Paint.Style.FILL
+        attackPaint.color = Color.RED
 
         setOnTouchListener(
-                { view: View?, event: MotionEvent? ->
+                { _: View?, event: MotionEvent? ->
                     if (event?.action == MotionEvent.ACTION_UP) {
                         val x: Double = event.x.toDouble()
                         val y: Double = event.y.toDouble()
                         val point = Point(x, y)
                         val fHex = Hex.pixelToHex(layout, point)
                         val hex = Hex.hexRound(fHex)
-                        if (hexes.contains(hex)) {
-                            touchedHex = hex
-                        } else {
-                            touchedHex = null
+                        if (selectedCellType == Hex.Type.REMOVE) {
+                            presenter.removeHexFromCell(hex)
                         }
-                        Log.d(TAG, "point = $point; touchedHex = $touchedHex")
+                        else {
+                            hex.type = selectedCellType
+                            presenter.addHexToCell(hex)
+                        }
                         invalidate()
                     }
                     true
                 }
-        )*/
+        )
     }
 
     override fun onConfigurationChanged(newConfig: Configuration?) {
@@ -76,30 +101,25 @@ class CanvasView(context: Context, attributeSet: AttributeSet) : View(context, a
 
         initializeLayoutOrigin(canvas)
         drawBackgroundField(canvas)
+        drawCell(canvas)
+    }
 
-        /*Log.d(TAG, "onDraw")
-
-        var paint: Paint
-        for (hex in hexes) {
-            if (touchedHex != null && hex == touchedHex) {
-                paint = filledPaint
-            } else {
-                paint = defaultPaint
-            }
-            val hexCorners: ArrayList<Point> = Hex.poligonCorners(layout, hex)
-            val points: ArrayList<Float> = arrayListOf()
-            for (p in hexCorners) {
-                points.add(p.x.toFloat())
-                points.add(p.y.toFloat())
-            }
-            for (k in 0..(points.size / 2 - 1)) {
-                if (k == (points.size / 2 - 1)) {
-                    canvas?.drawLine(points[k * 2], points[k * 2 + 1], points[0], points[1], paint)
-                } else {
-                    canvas?.drawLine(points[k * 2], points[k * 2 + 1], points[(k + 1) * 2], points[(k + 1) * 2 + 1], paint)
+    private fun drawCell(canvas: Canvas?) {
+        cell?.let {
+            var paint: Paint
+            for (hex in it.hexes) {
+                paint = when(hex.type) {
+                    Hex.Type.LIFE -> lifePaint
+                    Hex.Type.ENERGY -> energyPaint
+                    Hex.Type.ATTACK -> attackPaint
+                    else -> backgroundPaint
                 }
+                val path: Path = getHexPath(hex)
+                path.fillType = Path.FillType.EVEN_ODD
+                canvas?.drawPath(path, paint)
             }
-        }*/
+        }
+
     }
 
     private fun initializeLayoutOrigin(canvas: Canvas?) {
@@ -111,30 +131,20 @@ class CanvasView(context: Context, attributeSet: AttributeSet) : View(context, a
     }
 
     private fun drawBackgroundField(canvas: Canvas?) {
-        val hexes: MutableSet<Hex> = mutableSetOf()
-        for (q in -backgroundFieldRadius..backgroundFieldRadius) {
-            val r1 = max(-backgroundFieldRadius, -q - backgroundFieldRadius)
-            val r2 = min(backgroundFieldRadius, -q + backgroundFieldRadius)
-            for (r in r1..r2) {
-                hexes.add(Hex(q, r, -q - r))
-            }
+        for (hex in backgroundHexes) {
+            canvas?.drawPath(getHexPath(hex), backgroundPaint)
         }
+    }
 
-        for (hex in hexes) {
-            val hexCorners: ArrayList<Point> = Hex.poligonCorners(layout, hex)
-            val points: ArrayList<Float> = arrayListOf()
-            for (p in hexCorners) {
-                points.add(p.x.toFloat())
-                points.add(p.y.toFloat())
-            }
-            for (k in 0..(points.size / 2 - 1)) {
-                if (k == (points.size / 2 - 1)) {
-                    canvas?.drawLine(points[k * 2], points[k * 2 + 1], points[0], points[1], defaultPaint)
-                } else {
-                    canvas?.drawLine(points[k * 2], points[k * 2 + 1], points[(k + 1) * 2], points[(k + 1) * 2 + 1], defaultPaint)
-                }
-            }
+    private fun getHexPath(hex: Hex): Path {
+        val hexCorners: ArrayList<Point> = Hex.poligonCorners(layout, hex)
+        val path = Path()
+        path.moveTo(hexCorners[0].x.toFloat(), hexCorners[0].y.toFloat())
+        for (i in 1..(hexCorners.size - 1)) {
+            path.lineTo(hexCorners[i].x.toFloat(), hexCorners[i].y.toFloat())
         }
+        path.lineTo(hexCorners[0].x.toFloat(), hexCorners[0].y.toFloat())
+        return path
     }
 
 

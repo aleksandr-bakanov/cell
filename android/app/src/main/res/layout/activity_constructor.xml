@@ -14,7 +14,8 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="@string/radio_button_life_cell_title"
-            android:onClick="onCellTypeRadioButtonClicked"/>
+            android:onClick="onCellTypeRadioButtonClicked"
+            android:checked="true"/>
         <RadioButton
             android:id="@+id/radioButtonEnergyCell"
             android:layout_width="wrap_content"

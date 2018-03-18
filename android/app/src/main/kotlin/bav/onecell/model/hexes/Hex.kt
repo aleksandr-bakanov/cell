@@ -130,6 +130,8 @@ data class Hex(val q: Int, val r: Int, val s: Int) {
         }
     }
 
+    var type: Type = Type.REMOVE
+
     init {
         assert(q + r + s == 0)
     }
