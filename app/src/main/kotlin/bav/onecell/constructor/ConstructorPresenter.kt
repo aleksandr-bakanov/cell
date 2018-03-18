@@ -3,6 +3,7 @@ package bav.onecell.constructor
 import bav.onecell.common.router.Router
 import bav.onecell.model.Cell
 import bav.onecell.model.RepositoryContract
+import bav.onecell.model.Rules
 import bav.onecell.model.hexes.Hex
 
 class ConstructorPresenter(
@@ -19,7 +20,7 @@ class ConstructorPresenter(
     }
 
     override fun addHexToCell(hex: Hex) {
-        cell?.hexes?.add(hex)
+        if (Rules.isAllowedToAddHexIntoCell(cell!!, hex)) cell?.hexes?.add(hex)
     }
 
     override fun removeHexFromCell(hex: Hex) {

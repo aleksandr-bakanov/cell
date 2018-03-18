@@ -32,6 +32,13 @@ data class Hex(val q: Int, val r: Int, val s: Int) {
                     hexDirection(direction))
         }
 
+        fun hexNeighbors(hex: Hex): MutableSet<Hex> {
+            return mutableSetOf(
+                    hexNeighbor(hex, 0), hexNeighbor(hex, 1),
+                    hexNeighbor(hex, 2), hexNeighbor(hex, 3),
+                    hexNeighbor(hex, 4), hexNeighbor(hex, 5))
+        }
+
         fun hexAdd(a: Hex, b: Hex): Hex {
             return Hex(a.q + b.q, a.r + b.r, a.s + b.s)
         }
