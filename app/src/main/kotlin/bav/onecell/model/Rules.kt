@@ -7,7 +7,6 @@ import bav.onecell.model.hexes.Hex
  */
 class Rules {
     companion object {
-        private const val TAG = "Rules"
         val instance: Rules = Rules()
     }
 
@@ -42,9 +41,7 @@ class Rules {
     private fun checkLifeCell(hexes: MutableSet<Hex>, hex: Hex): Boolean {
         // First of all we need to check whether this hex is a first one in cell,
         // then it will be allowed only if it is life hex.
-        if (hexes.size == 0) {
-            return true
-        }
+        if (hexes.size == 0) return true
         // Life hex should be linked with others life hexes directly or through energy cell.
         // Also life hex can adjoin with no more than one energy hex.
         val neighbors = getNeighborCountByType(hexes, hex)
@@ -56,9 +53,7 @@ class Rules {
     }
 
     private fun checkEnergyCell(hexes: MutableSet<Hex>, hex: Hex): Boolean {
-        if (hexes.size == 0) {
-            return false
-        }
+        if (hexes.size == 0) return false
         // Energy hex can't adjoin with other energy hex
         val neighborsCount = getNeighborCountByType(hexes, hex)
         if (hexHasNoNeighbors(neighborsCount)) return false
@@ -74,9 +69,7 @@ class Rules {
     }
 
     private fun checkAttackCell(hexes: MutableSet<Hex>, hex: Hex): Boolean {
-        if (hexes.size == 0) {
-            return false
-        }
+        if (hexes.size == 0) return false
         // Energy hex can't adjoin with other energy hex
         val neighbors = getNeighborCountByType(hexes, hex)
         if (hexHasNoNeighbors(neighbors)) return false
