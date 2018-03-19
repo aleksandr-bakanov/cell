@@ -24,7 +24,6 @@ class ConstructorPresenter(
     }
 
     override fun removeHexFromCell(hex: Hex) {
-        val hexesWithoutHex = cell?.hexes?.filter { it != hex }
-        if (Rules.isHexesConnected(hexesWithoutHex!!)) cell?.hexes?.remove(hex)
+        if (Rules.isAllowedToRemoveHexFromCell(cell!!, hex)) cell?.hexes?.remove(hex)
     }
 }
