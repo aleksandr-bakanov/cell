@@ -47,8 +47,13 @@ class Rules {
             if (hexHasNoNeighbors(neighborsCount)) return false
             if (neighborsCount[1] > 0) return false
             if (neighborsCount[0] == 0) return false
+            // Check all life neighbors's energy neighbors
+            val lifeNeighbors = getNeighborsByType(hexes, hex, Hex.Type.LIFE)
+            lifeNeighbors.forEach {
+                if (getNeighborCountByType(hexes, it)[1] > 0)
+                    return false
+            }
             return true
-            // TODO: Check all life neighbors's energy neighbors
         }
 
         private fun checkAttackCell(hexes: MutableSet<Hex>, hex: Hex): Boolean {
