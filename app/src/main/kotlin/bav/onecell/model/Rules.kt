@@ -19,6 +19,12 @@ class Rules {
             }
         }
 
+        fun isHexesConnected(hexes: List<Hex>): Boolean {
+            return checkHexesConnectivity(
+                hexes.filter { it.type == Hex.Type.LIFE || it.type == Hex.Type.ENERGY }
+            )
+        }
+
         private fun checkLifeCell(hexes: MutableSet<Hex>, hex: Hex): Boolean {
             // First of all we need to check whether this hex is a first one in cell,
             // then it will be allowed only if it is life hex.
@@ -94,6 +100,19 @@ class Rules {
 
         private fun getNeighborsByType(hexes: MutableSet<Hex>, hex: Hex, type: Hex.Type): List<Hex> {
             return hexes.intersect(Hex.hexNeighbors(hex)).filter { it.type == type }
+        }
+
+        private fun checkHexesConnectivity(allHexes: List<Hex>): Boolean {
+            val connectedHexes = mutableListOf<Hex>()
+            checkConnectivityRecursively(allHexes, allHexes[0], connectedHexes)
+            return allHexes == connectedHexes
+        }
+
+        private fun checkConnectivityRecursively(allHexes: List<Hex>, hex: Hex, connectedHexes: MutableList<Hex>) {
+            if (connectedHexes.contains(hex)) return
+            connectedHexes.add(hex)
+            val notCheckedNeighbors = allHexes.intersect(Hex.hexNeighbors(hex)).subtract(connectedHexes)
+            notCheckedNeighbors.forEach { checkConnectivityRecursively(allHexes, it, connectedHexes) }
         }
     }
 }
