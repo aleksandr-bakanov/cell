@@ -143,4 +143,9 @@ data class Hex(val q: Int, val r: Int, val s: Int) {
         assert(q + r + s == 0)
     }
 
+    fun withType(type: Type): Hex {
+        this.type = type
+        return this
+    }
+
 }

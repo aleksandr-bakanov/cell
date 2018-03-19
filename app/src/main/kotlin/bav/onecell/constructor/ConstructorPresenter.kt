@@ -20,10 +20,10 @@ class ConstructorPresenter(
     }
 
     override fun addHexToCell(hex: Hex) {
-        if (Rules.isAllowedToAddHexIntoCell(cell!!, hex)) cell?.hexes?.add(hex)
+        if (Rules.instance.isAllowedToAddHexIntoCell(cell!!, hex)) cell?.hexes?.add(hex)
     }
 
     override fun removeHexFromCell(hex: Hex) {
-        if (Rules.isAllowedToRemoveHexFromCell(cell!!, hex)) cell?.hexes?.remove(hex)
+        if (Rules.instance.isAllowedToRemoveHexFromCell(cell!!, hex)) cell?.hexes?.remove(hex)
     }
 }

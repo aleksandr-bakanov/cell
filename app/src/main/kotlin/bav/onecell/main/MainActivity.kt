@@ -2,6 +2,7 @@ package bav.onecell.main
 
 import android.os.Bundle
 import android.app.Activity
+import android.support.annotation.NonNull
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -61,17 +62,17 @@ class MainActivity : Activity(), Main.View {
     class CellListAdapter(private val presenter: Main.Presenter) :
             RecyclerView.Adapter<CellListAdapter.CellViewHolder>() {
 
-        override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): CellViewHolder {
-            val view = LayoutInflater.from(parent?.context)
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CellViewHolder {
+            val view = LayoutInflater.from(parent.context)
                     .inflate(R.layout.item_row_cell, parent, false)
             return CellViewHolder(view, presenter)
         }
 
         override fun getItemCount() = presenter.cellsCount()
 
-        override fun onBindViewHolder(holder: CellViewHolder?, position: Int) {
-            holder?.setCellTitle("Cell #$position")
-            holder?.index = position
+        override fun onBindViewHolder(holder: CellViewHolder, position: Int) {
+            holder.setCellTitle("Cell #$position")
+            holder.index = position
         }
 
         class CellViewHolder(private val view: View, private val presenter: Main.Presenter) :
