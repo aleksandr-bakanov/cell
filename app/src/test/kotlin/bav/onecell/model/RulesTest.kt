@@ -45,4 +45,10 @@ class RulesTest {
         cell.hexes.add(hex)
         assertFalse(rules.isAllowedToAddHexIntoCell(cell, hex))
     }
+
+    @Test
+    fun addHexSeparatedFromCellShouldReturnFalse() {
+        cell.hexes.add(Hex(0, 0, 0).withType(Hex.Type.LIFE))
+        assertFalse(rules.isAllowedToAddHexIntoCell(cell, Hex(2, 2, 2).withType(Hex.Type.LIFE)))
+    }
 }

@@ -16,6 +16,7 @@ import bav.onecell.model.hexes.Point
 import java.lang.Math.max
 import java.lang.Math.min
 import android.util.AttributeSet
+import android.util.Log
 
 class CanvasView(context: Context, attributeSet: AttributeSet) : View(context, attributeSet) {
 
@@ -39,9 +40,11 @@ class CanvasView(context: Context, attributeSet: AttributeSet) : View(context, a
     lateinit var presenter: Constructor.Presenter
     var selectedCellType: Hex.Type = Hex.Type.LIFE
 
+    private val layoutHexSize = Point(100.0, 100.0)
+    private var lastTouchX = 0f
+    private var lastTouchY = 0f
     private val layout = Layout(
-            Orientation.LAYOUT_POINTY,
-            Point(100.0, 100.0), Point(100.0, 100.0))
+            Orientation.LAYOUT_POINTY, layoutHexSize, Point(100.0, 100.0))
 
     private val backgroundColor: Int = Color.LTGRAY
     private val gridPaint: Paint = Paint()
@@ -51,6 +54,8 @@ class CanvasView(context: Context, attributeSet: AttributeSet) : View(context, a
     private val strokePaint: Paint = Paint()
     private val darkStrokePaint: Paint = Paint()
     private val lightStrokePaint: Paint = Paint()
+    private val coordinateTextPaint: Paint = Paint()
+    private val coordinateTextVerticalOffset = (layoutHexSize.x / 10).toFloat()
 
     private var isInitialized = false
     private val backgroundHexes: MutableSet<Hex> = mutableSetOf()
@@ -81,22 +86,43 @@ class CanvasView(context: Context, attributeSet: AttributeSet) : View(context, a
         lightStrokePaint.color = Color.WHITE
         lightStrokePaint.strokeWidth = 5.0f
 
+        coordinateTextPaint.color = Color.BLACK
+        coordinateTextPaint.textSize = 48f
+        coordinateTextPaint.textAlign = Paint.Align.CENTER
+
         setOnTouchListener(
                 { _: View?, event: MotionEvent? ->
                     if (event?.action == MotionEvent.ACTION_UP) {
-                        val x: Double = event.x.toDouble()
-                        val y: Double = event.y.toDouble()
-                        val point = Point(x, y)
-                        val fHex = Hex.pixelToHex(layout, point)
-                        val hex = Hex.hexRound(fHex)
-                        if (selectedCellType == Hex.Type.REMOVE) {
-                            presenter.removeHexFromCell(hex)
+                        if (event.pointerCount == 1) {
+                            val x: Double = event.x.toDouble()
+                            val y: Double = event.y.toDouble()
+                            val point = Point(x, y)
+                            val fHex = Hex.pixelToHex(layout, point)
+                            val hex = Hex.hexRound(fHex)
+                            if (selectedCellType == Hex.Type.REMOVE) {
+                                presenter.removeHexFromCell(hex)
+                            } else {
+                                hex.type = selectedCellType
+                                presenter.addHexToCell(hex)
+                            }
+                            invalidate()
                         }
-                        else {
-                            hex.type = selectedCellType
-                            presenter.addHexToCell(hex)
+                    }
+                    else if (event?.action == MotionEvent.ACTION_DOWN) {
+                        lastTouchX = event.getX(event.getPointerId(0))
+                        lastTouchY = event.getY(event.getPointerId(0))
+                    }
+                    else if (event?.action == MotionEvent.ACTION_MOVE) {
+                        if (event.pointerCount > 1) {
+                            val curX = event.getX(event.getPointerId(0))
+                            val curY = event.getY(event.getPointerId(0))
+                            val dx = curX - lastTouchX
+                            val dy = curY - lastTouchY
+                            lastTouchX = curX
+                            lastTouchY = curY
+                            layout.origin = Point(layout.origin.x + dx, layout.origin.y + dy)
+                            invalidate()
                         }
-                        invalidate()
                     }
                     true
                 }
@@ -114,8 +140,9 @@ class CanvasView(context: Context, attributeSet: AttributeSet) : View(context, a
         canvas?.drawColor(backgroundColor)
 
         initializeLayoutOrigin(canvas)
-        drawBackgroundField(canvas)
+        drawBackgroundGrid(canvas)
         drawCell(canvas)
+        drawCoordinates(canvas)
     }
 
     private fun drawCell(canvas: Canvas?) {
@@ -145,10 +172,30 @@ class CanvasView(context: Context, attributeSet: AttributeSet) : View(context, a
         }
     }
 
-    private fun drawBackgroundField(canvas: Canvas?) {
+    private fun drawBackgroundGrid(canvas: Canvas?) {
         for (hex in backgroundHexes) {
             canvas?.drawPath(getHexPath(hex), gridPaint)
         }
+    }
+
+    private fun drawCoordinates(canvas: Canvas?) {
+        for (hex in backgroundHexes) {
+            drawCoordinatesOnHex(canvas, hex)
+        }
+    }
+
+    private fun drawCoordinatesOnHex(canvas: Canvas?, hex: Hex) {
+        val hexCorners: ArrayList<Point> = Hex.poligonCorners(layout, hex)
+        val center = Point(
+            hexCorners.sumByDouble { it.x } / hexCorners.size.toDouble(),
+            hexCorners.sumByDouble { it.y } / hexCorners.size.toDouble())
+        val coef = 2.0
+        val xOrigin = Point((hexCorners[5].x + center.x) / coef, (hexCorners[5].y + center.y) / coef + coordinateTextVerticalOffset)
+        val yOrigin = Point((hexCorners[3].x + center.x) / coef, (hexCorners[3].y + center.y) / coef + coordinateTextVerticalOffset)
+        val zOrigin = Point((hexCorners[1].x + center.x) / coef, (hexCorners[1].y + center.y) / coef + coordinateTextVerticalOffset)
+        canvas?.drawText(hex.q.toString() + "x", xOrigin.x.toFloat(), xOrigin.y.toFloat(), coordinateTextPaint)
+        canvas?.drawText(hex.r.toString() + "y", yOrigin.x.toFloat(), yOrigin.y.toFloat(), coordinateTextPaint)
+        canvas?.drawText(hex.s.toString() + "z", zOrigin.x.toFloat(), zOrigin.y.toFloat(), coordinateTextPaint)
     }
 
     private fun getHexPath(hex: Hex): Path {
