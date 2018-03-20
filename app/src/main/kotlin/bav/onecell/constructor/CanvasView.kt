@@ -6,7 +6,6 @@ import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Path
-import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import bav.onecell.model.Cell
@@ -44,19 +43,22 @@ class CanvasView(context: Context, attributeSet: AttributeSet) : View(context, a
             Orientation.LAYOUT_POINTY,
             Point(100.0, 100.0), Point(100.0, 100.0))
 
-    private val backgroundPaint: Paint = Paint()
+    private val backgroundColor: Int = Color.LTGRAY
+    private val gridPaint: Paint = Paint()
     private val lifePaint: Paint = Paint()
     private val energyPaint: Paint = Paint()
     private val attackPaint: Paint = Paint()
+    private val strokePaint: Paint = Paint()
+    private val darkStrokePaint: Paint = Paint()
+    private val lightStrokePaint: Paint = Paint()
 
     private var isInitialized = false
-    private var touchedHex: Hex? = null
     private val backgroundHexes: MutableSet<Hex> = mutableSetOf()
 
     init {
-        backgroundPaint.style = Paint.Style.STROKE
-        backgroundPaint.color = Color.GRAY
-        backgroundPaint.strokeWidth = 5.0f
+        gridPaint.style = Paint.Style.STROKE
+        gridPaint.color = Color.GRAY
+        gridPaint.strokeWidth = 5.0f
 
         lifePaint.style = Paint.Style.FILL
         lifePaint.color = Color.GREEN
@@ -66,6 +68,18 @@ class CanvasView(context: Context, attributeSet: AttributeSet) : View(context, a
 
         attackPaint.style = Paint.Style.FILL
         attackPaint.color = Color.RED
+
+        strokePaint.style = Paint.Style.STROKE
+        strokePaint.color = Color.BLACK
+        strokePaint.strokeWidth = 5.0f
+
+        darkStrokePaint.style = Paint.Style.STROKE
+        darkStrokePaint.color = Color.BLACK
+        darkStrokePaint.strokeWidth = 5.0f
+
+        lightStrokePaint.style = Paint.Style.STROKE
+        lightStrokePaint.color = Color.WHITE
+        lightStrokePaint.strokeWidth = 5.0f
 
         setOnTouchListener(
                 { _: View?, event: MotionEvent? ->
@@ -97,7 +111,7 @@ class CanvasView(context: Context, attributeSet: AttributeSet) : View(context, a
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
 
-        canvas?.drawColor(Color.WHITE)
+        canvas?.drawColor(backgroundColor)
 
         initializeLayoutOrigin(canvas)
         drawBackgroundField(canvas)
@@ -112,11 +126,12 @@ class CanvasView(context: Context, attributeSet: AttributeSet) : View(context, a
                     Hex.Type.LIFE -> lifePaint
                     Hex.Type.ENERGY -> energyPaint
                     Hex.Type.ATTACK -> attackPaint
-                    else -> backgroundPaint
+                    else -> gridPaint
                 }
                 val path: Path = getHexPath(hex)
                 path.fillType = Path.FillType.EVEN_ODD
                 canvas?.drawPath(path, paint)
+                canvas?.drawPath(path, strokePaint)
             }
         }
 
@@ -132,7 +147,7 @@ class CanvasView(context: Context, attributeSet: AttributeSet) : View(context, a
 
     private fun drawBackgroundField(canvas: Canvas?) {
         for (hex in backgroundHexes) {
-            canvas?.drawPath(getHexPath(hex), backgroundPaint)
+            canvas?.drawPath(getHexPath(hex), gridPaint)
         }
     }
 
@@ -147,5 +162,23 @@ class CanvasView(context: Context, attributeSet: AttributeSet) : View(context, a
         return path
     }
 
+    private fun getLightHexPath(hex: Hex): Path {
+        return getPartialHexPath(hex, 0, 3)
+    }
+
+    private fun getDarkHexPath(hex: Hex): Path {
+        return getPartialHexPath(hex, 3, 5, true)
+    }
+
+    private fun getPartialHexPath(hex: Hex, startCorner: Int, endCorner: Int, endInFirstCorner: Boolean = false): Path {
+        val hexCorners: ArrayList<Point> = Hex.poligonCorners(layout, hex)
+        val path = Path()
+        path.moveTo(hexCorners[startCorner].x.toFloat(), hexCorners[startCorner].y.toFloat())
+        for (i in (startCorner + 1)..endCorner) {
+            path.lineTo(hexCorners[i].x.toFloat(), hexCorners[i].y.toFloat())
+        }
+        if (endInFirstCorner) path.lineTo(hexCorners[0].x.toFloat(), hexCorners[0].y.toFloat())
+        return path
+    }
 
 }
