@@ -51,4 +51,14 @@ class RulesTest {
         cell.hexes.add(Hex(0, 0, 0).withType(Hex.Type.LIFE))
         assertFalse(rules.isAllowedToAddHexIntoCell(cell, Hex(2, 2, 2).withType(Hex.Type.LIFE)))
     }
+
+    @Test
+    fun addLifeHexBetweenTwoEnergyHexesShouldReturnFalse() {
+        cell.hexes.add(Hex(-1, 1, 0).withType(Hex.Type.LIFE))
+        cell.hexes.add(Hex(-1, 0, 1).withType(Hex.Type.LIFE))
+        cell.hexes.add(Hex(0, 1, -1).withType(Hex.Type.LIFE))
+        cell.hexes.add(Hex(0, -1, 1).withType(Hex.Type.ENERGY))
+        cell.hexes.add(Hex(1, 0, -1).withType(Hex.Type.ENERGY))
+        assertFalse(rules.isAllowedToAddHexIntoCell(cell, Hex(1, -1, 0).withType(Hex.Type.LIFE)))
+    }
 }
