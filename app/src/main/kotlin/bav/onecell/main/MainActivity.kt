@@ -1,8 +1,7 @@
 package bav.onecell.main
 
-import android.os.Bundle
 import android.app.Activity
-import android.support.annotation.NonNull
+import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -10,9 +9,11 @@ import android.view.View
 import android.view.ViewGroup
 import bav.onecell.OneCellApplication
 import bav.onecell.R
+import kotlinx.android.synthetic.main.activity_main.buttonCreateNewCell
+import kotlinx.android.synthetic.main.activity_main.recyclerViewCellList
+import kotlinx.android.synthetic.main.item_row_cell.view.buttonEditCell
+import kotlinx.android.synthetic.main.item_row_cell.view.title
 import javax.inject.Inject
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.item_row_cell.view.*
 
 class MainActivity : Activity(), Main.View {
 

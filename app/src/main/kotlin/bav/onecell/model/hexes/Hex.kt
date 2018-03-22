@@ -1,11 +1,11 @@
 package bav.onecell.model.hexes
 
+import kotlin.math.PI
 import kotlin.math.abs
 import kotlin.math.cos
-import kotlin.math.PI
-import kotlin.math.sin
-import kotlin.math.roundToInt
 import kotlin.math.max
+import kotlin.math.roundToInt
+import kotlin.math.sin
 
 data class Hex(val q: Int, val r: Int, val s: Int) {
 
@@ -28,8 +28,7 @@ data class Hex(val q: Int, val r: Int, val s: Int) {
         }
 
         fun hexNeighbor(hex: Hex, direction: Int): Hex {
-            return hexAdd(hex,
-                    hexDirection(direction))
+            return hexAdd(hex, hexDirection(direction))
         }
 
         fun hexNeighbors(hex: Hex): MutableSet<Hex> {

@@ -7,8 +7,10 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Path
 import android.support.v4.content.ContextCompat
+import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
+import bav.onecell.R
 import bav.onecell.model.Cell
 import bav.onecell.model.hexes.Hex
 import bav.onecell.model.hexes.Layout
@@ -16,9 +18,6 @@ import bav.onecell.model.hexes.Orientation
 import bav.onecell.model.hexes.Point
 import java.lang.Math.max
 import java.lang.Math.min
-import android.util.AttributeSet
-import android.util.Log
-import bav.onecell.R
 
 class CanvasView(context: Context, attributeSet: AttributeSet) : View(context, attributeSet) {
 
@@ -108,12 +107,10 @@ class CanvasView(context: Context, attributeSet: AttributeSet) : View(context, a
                             }
                             invalidate()
                         }
-                    }
-                    else if (event?.action == MotionEvent.ACTION_DOWN) {
+                    } else if (event?.action == MotionEvent.ACTION_DOWN) {
                         lastTouchX = event.getX(event.getPointerId(0))
                         lastTouchY = event.getY(event.getPointerId(0))
-                    }
-                    else if (event?.action == MotionEvent.ACTION_MOVE) {
+                    } else if (event?.action == MotionEvent.ACTION_MOVE) {
                         if (event.pointerCount > 1) {
                             val curX = event.getX(event.getPointerId(0))
                             val curY = event.getY(event.getPointerId(0))
@@ -150,7 +147,7 @@ class CanvasView(context: Context, attributeSet: AttributeSet) : View(context, a
         cell?.let {
             var paint: Paint
             for (hex in it.hexes) {
-                paint = when(hex.type) {
+                paint = when (hex.type) {
                     Hex.Type.LIFE -> lifePaint
                     Hex.Type.ENERGY -> energyPaint
                     Hex.Type.ATTACK -> attackPaint
@@ -188,8 +185,8 @@ class CanvasView(context: Context, attributeSet: AttributeSet) : View(context, a
     private fun drawCoordinatesOnHex(canvas: Canvas?, hex: Hex) {
         val hexCorners: ArrayList<Point> = Hex.poligonCorners(layout, hex)
         val center = Point(
-            hexCorners.sumByDouble { it.x } / hexCorners.size.toDouble(),
-            hexCorners.sumByDouble { it.y } / hexCorners.size.toDouble())
+                hexCorners.sumByDouble { it.x } / hexCorners.size.toDouble(),
+                hexCorners.sumByDouble { it.y } / hexCorners.size.toDouble())
         val coef = 2.0
         val xOrigin = Point((hexCorners[5].x + center.x) / coef, (hexCorners[5].y + center.y) / coef + coordinateTextVerticalOffset)
         val yOrigin = Point((hexCorners[3].x + center.x) / coef, (hexCorners[3].y + center.y) / coef + coordinateTextVerticalOffset)

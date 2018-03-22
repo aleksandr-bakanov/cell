@@ -1,7 +1,7 @@
 package bav.onecell.model
 
 data class CellRepository(private val cells: ArrayList<Cell> = arrayListOf()) :
-    RepositoryContract.CellRepo {
+        RepositoryContract.CellRepo {
 
     override fun cellsCount(): Int = cells.size
 

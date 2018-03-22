@@ -10,7 +10,7 @@ import bav.onecell.OneCellApplication
 import bav.onecell.R
 import bav.onecell.model.Cell
 import bav.onecell.model.hexes.Hex
-import kotlinx.android.synthetic.main.activity_constructor.*
+import kotlinx.android.synthetic.main.activity_constructor.constructorCanvasView
 import javax.inject.Inject
 
 class ConstructorActivity : Activity(), Constructor.View {
