@@ -6,6 +6,7 @@ import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Path
+import android.support.v4.content.ContextCompat
 import android.view.MotionEvent
 import android.view.View
 import bav.onecell.model.Cell
@@ -17,6 +18,7 @@ import java.lang.Math.max
 import java.lang.Math.min
 import android.util.AttributeSet
 import android.util.Log
+import bav.onecell.R
 
 class CanvasView(context: Context, attributeSet: AttributeSet) : View(context, attributeSet) {
 
@@ -46,7 +48,6 @@ class CanvasView(context: Context, attributeSet: AttributeSet) : View(context, a
     private val layout = Layout(
             Orientation.LAYOUT_POINTY, layoutHexSize, Point(100.0, 100.0))
 
-    private val backgroundColor: Int = Color.LTGRAY
     private val gridPaint: Paint = Paint()
     private val lifePaint: Paint = Paint()
     private val energyPaint: Paint = Paint()
@@ -62,20 +63,20 @@ class CanvasView(context: Context, attributeSet: AttributeSet) : View(context, a
 
     init {
         gridPaint.style = Paint.Style.STROKE
-        gridPaint.color = Color.GRAY
+        gridPaint.color = ContextCompat.getColor(context, R.color.cellConstructorGrid)
         gridPaint.strokeWidth = 5.0f
 
         lifePaint.style = Paint.Style.FILL
-        lifePaint.color = Color.GREEN
+        lifePaint.color = ContextCompat.getColor(context, R.color.cellConstructorLife)
 
         energyPaint.style = Paint.Style.FILL
-        energyPaint.color = Color.YELLOW
+        energyPaint.color = ContextCompat.getColor(context, R.color.cellConstructorEnergy)
 
         attackPaint.style = Paint.Style.FILL
-        attackPaint.color = Color.RED
+        attackPaint.color = ContextCompat.getColor(context, R.color.cellConstructorAttack)
 
         strokePaint.style = Paint.Style.STROKE
-        strokePaint.color = Color.BLACK
+        strokePaint.color = ContextCompat.getColor(context, R.color.cellConstructorStroke)
         strokePaint.strokeWidth = 5.0f
 
         darkStrokePaint.style = Paint.Style.STROKE
@@ -137,7 +138,7 @@ class CanvasView(context: Context, attributeSet: AttributeSet) : View(context, a
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
 
-        canvas?.drawColor(backgroundColor)
+        canvas?.drawColor(ContextCompat.getColor(context, R.color.cellConstructorBackground))
 
         initializeLayoutOrigin(canvas)
         drawBackgroundGrid(canvas)

@@ -3,4 +3,12 @@
   <color name="colorPrimary">#3F51B5</color>
   <color name="colorPrimaryDark">#303F9F</color>
   <color name="colorAccent">#FF4081</color>
+
+  <!-- Cell constructor view -->
+  <color name="cellConstructorBackground">#cccccc</color>
+  <color name="cellConstructorGrid">#888888</color>
+  <color name="cellConstructorLife">#38a907</color>
+  <color name="cellConstructorEnergy">#d1df0f</color>
+  <color name="cellConstructorAttack">#df120f</color>
+  <color name="cellConstructorStroke">#000000</color>
 </resources>
