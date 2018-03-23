@@ -7,11 +7,14 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import bav.onecell.OneCellApplication
 import bav.onecell.R
 import kotlinx.android.synthetic.main.activity_main.buttonCreateNewCell
+import kotlinx.android.synthetic.main.activity_main.buttonStartBattle
 import kotlinx.android.synthetic.main.activity_main.recyclerViewCellList
 import kotlinx.android.synthetic.main.item_row_cell.view.buttonEditCell
+import kotlinx.android.synthetic.main.item_row_cell.view.checkboxSelect
 import kotlinx.android.synthetic.main.item_row_cell.view.title
 import javax.inject.Inject
 
@@ -27,22 +30,10 @@ class MainActivity : Activity(), Main.View {
         inject()
 
         buttonCreateNewCell.setOnClickListener { presenter.createNewCell() }
+        buttonStartBattle.setOnClickListener { openBattleView() }
 
         recyclerViewCellList.layoutManager = LinearLayoutManager(this)
         recyclerViewCellList.adapter = CellListAdapter(presenter)
-
-        /*val hexes: MutableSet<Hex> = mutableSetOf()
-        val mapRadius = 4
-        for (q in -mapRadius..mapRadius) {
-            val r1: Int = max(-mapRadius, -q - mapRadius)
-            val r2: Int = min(mapRadius, -q + mapRadius)
-            for (r in r1..r2) {
-                hexes.add(Hex(q, r, -q - r))
-            }
-        }
-
-        val canvasView = CanvasView(this, hexes)
-        setContentView(canvasView)*/
     }
     //endregion
 
@@ -51,6 +42,18 @@ class MainActivity : Activity(), Main.View {
         (application as OneCellApplication).appComponent
                 .plus(MainModule(this))
                 .inject(this)
+    }
+
+    private fun openBattleView() {
+        val indexes = mutableListOf<Int>()
+        for (i in 0..(recyclerViewCellList.childCount - 1)) {
+            if ((recyclerViewCellList.findViewHolderForAdapterPosition(i) as CellListAdapter.CellViewHolder)
+                    .view.checkboxSelect.isChecked) {
+                indexes.add(i)
+            }
+        }
+        if (indexes.size >= 2) presenter.openBattleView(indexes)
+        else Toast.makeText(this, "Select at least two cells", Toast.LENGTH_LONG).show()
     }
     //endregion
 
@@ -76,7 +79,7 @@ class MainActivity : Activity(), Main.View {
             holder.index = position
         }
 
-        class CellViewHolder(private val view: View, private val presenter: Main.Presenter) :
+        class CellViewHolder(val view: View, private val presenter: Main.Presenter) :
                 RecyclerView.ViewHolder(view) {
 
             var index: Int = 0

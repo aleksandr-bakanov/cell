@@ -18,15 +18,22 @@ interface Main {
         /**
          * Return cells count in repository
          *
-         * @return cells count
+         * @return Cells count
          */
         fun cellsCount(): Int
 
         /**
          * Opens cell constructor view for defined cell
          *
-         * @param cellIndex cell index in repository
+         * @param cellIndex Cell index in repository
          */
         fun openCellConstructor(cellIndex: Int)
+
+        /**
+         * Opens battle window, passing list of cell indexes within repository to it.
+         *
+         * @param cellIndexes Cell indexes in repository
+         */
+        fun openBattleView(cellIndexes: List<Int>)
     }
 }

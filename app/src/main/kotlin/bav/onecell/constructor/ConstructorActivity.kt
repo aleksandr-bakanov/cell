@@ -63,7 +63,7 @@ class ConstructorActivity : Activity(), Constructor.View {
     }
     //endregion
 
-    //region Overriden methods
+    //region Overridden methods
     override fun setBackgroundFieldRadius(radius: Int) {
         constructorCanvasView.backgroundFieldRadius = radius
     }

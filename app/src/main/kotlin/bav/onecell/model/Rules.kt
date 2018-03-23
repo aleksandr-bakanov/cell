@@ -3,7 +3,7 @@ package bav.onecell.model
 import bav.onecell.model.hexes.Hex
 
 /**
- * This class contains functions to check possibility to add hexes into cell
+ * This class contains functions to check possibility to add/remove hexes in cell
  */
 class Rules {
     companion object {
