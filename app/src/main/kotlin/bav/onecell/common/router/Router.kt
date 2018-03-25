@@ -4,7 +4,14 @@ interface Router {
     /**
      * Go to cell editor view.
      *
-     * @param cellIndex index of cell within cell repository
+     * @param cellIndex Index of cell within cell repository
      */
     fun goToCellConstructor(cellIndex: Int)
+
+    /**
+     * Go to battle view.
+     *
+     * @param cellIndexes Indexes of cells within cell repository
+     */
+    fun goToBattleView(cellIndexes: List<Int>)
 }

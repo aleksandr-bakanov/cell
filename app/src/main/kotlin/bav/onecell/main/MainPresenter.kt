@@ -28,7 +28,7 @@ class MainPresenter(
     }
 
     override fun openBattleView(cellIndexes: List<Int>) {
-        Log.d(TAG, "openBattleView cellIndexes = $cellIndexes")
+        router.goToBattleView(cellIndexes)
     }
     //endregion
 }
