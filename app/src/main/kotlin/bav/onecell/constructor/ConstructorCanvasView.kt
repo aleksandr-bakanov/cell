@@ -19,10 +19,10 @@ import bav.onecell.model.hexes.Point
 import java.lang.Math.max
 import java.lang.Math.min
 
-class CanvasView(context: Context, attributeSet: AttributeSet) : View(context, attributeSet) {
+class ConstructorCanvasView(context: Context, attributeSet: AttributeSet) : View(context, attributeSet) {
 
     companion object {
-        private val TAG = "CanvasView"
+        private val TAG = "ConstructorCanvasView"
     }
 
     var backgroundFieldRadius: Int = 1

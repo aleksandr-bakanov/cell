@@ -4,6 +4,21 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
+        <Button
+            android:id="@+id/buttonNextStep"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_next_step_title"
+            android:onClick="onNextStepButtonClicked"/>
+    </LinearLayout>
+
+    <bav.onecell.battle.BattleCanvasView
+        android:id="@+id/battleCanvasView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </LinearLayout>

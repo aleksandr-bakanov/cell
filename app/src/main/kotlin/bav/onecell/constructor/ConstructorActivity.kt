@@ -29,7 +29,7 @@ class ConstructorActivity : Activity(), Constructor.View {
     @Inject
     lateinit var presenter: Constructor.Presenter
 
-    // TODO: same variable exists in CanvasView, it is unnecessary duplicate
+    // TODO: same variable exists in ConstructorCanvasView, it is unnecessary duplicate
     private var selectedCellType: Hex.Type = Hex.Type.LIFE
 
     //region Lifecycle methods
@@ -44,7 +44,6 @@ class ConstructorActivity : Activity(), Constructor.View {
 
     //region View listeners
     fun onCellTypeRadioButtonClicked(view: View) {
-        val checked = (view as RadioButton).isChecked
         selectedCellType = when (view.id) {
             R.id.radioButtonLifeCell -> Hex.Type.LIFE
             R.id.radioButtonEnergyCell -> Hex.Type.ENERGY

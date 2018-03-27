@@ -6,6 +6,7 @@ import android.content.Intent
 import android.os.Bundle
 import bav.onecell.OneCellApplication
 import bav.onecell.R
+import kotlinx.android.synthetic.main.activity_battle.battleCanvasView
 import javax.inject.Inject
 
 class BattleActivity : Activity(), Battle.View {
@@ -29,14 +30,31 @@ class BattleActivity : Activity(), Battle.View {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_battle)
         inject()
+        battleCanvasView.presenter = presenter
+        presenter.initialize(intent.getIntegerArrayListExtra(EXTRA_CELL_INDEXES))
     }
     //endregion
+
+    //region View listeners
+    fun onNextStepButtonClicked() {
+        presenter.doNextStep()
+    }
 
     //region Private methods
     private fun inject() {
         (application as OneCellApplication).appComponent
                 .plus(BattleModule(this))
                 .inject(this)
+    }
+    //endregion
+
+    //region Overridden methods
+    override fun setBackgroundFieldRadius(radius: Int) {
+        battleCanvasView.backgroundFieldRadius = radius
+    }
+
+    override fun updateBattleView() {
+        battleCanvasView.invalidate()
     }
     //endregion
 }

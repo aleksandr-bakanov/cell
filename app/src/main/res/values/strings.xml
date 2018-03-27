@@ -7,4 +7,5 @@
     <string name="radio_button_energy_cell_title">Energy</string>
     <string name="radio_button_attack_cell_title">Attack</string>
     <string name="radio_button_remove_cell_title">Remove</string>
+    <string name="button_next_step_title">Next step</string>
 </resources>
