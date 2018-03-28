@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import bav.onecell.OneCellApplication
 import bav.onecell.R
 import kotlinx.android.synthetic.main.activity_battle.battleCanvasView
@@ -36,7 +37,7 @@ class BattleActivity : Activity(), Battle.View {
     //endregion
 
     //region View listeners
-    fun onNextStepButtonClicked() {
+    fun onNextStepButtonClicked(view: View) {
         presenter.doNextStep()
     }
 
