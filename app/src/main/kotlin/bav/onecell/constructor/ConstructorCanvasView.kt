@@ -49,24 +49,6 @@ class ConstructorCanvasView(context: Context, attributeSet: AttributeSet) : Canv
 
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
-        drawCell(canvas)
-    }
-
-    private fun drawCell(canvas: Canvas?) {
-        cell?.let {
-            var paint: Paint
-            for (hex in it.hexes) {
-                paint = when (hex.type) {
-                    Hex.Type.LIFE -> lifePaint
-                    Hex.Type.ENERGY -> energyPaint
-                    Hex.Type.ATTACK -> attackPaint
-                    else -> gridPaint
-                }
-                val path: Path = getHexPath(Hex.hexAdd(hex, it.center))
-                path.fillType = Path.FillType.EVEN_ODD
-                canvas?.drawPath(path, paint)
-                canvas?.drawPath(path, strokePaint)
-            }
-        }
+        drawCell(canvas, cell)
     }
 }

@@ -11,6 +11,7 @@ import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
 import bav.onecell.R
+import bav.onecell.model.Cell
 import bav.onecell.model.hexes.Hex
 import bav.onecell.model.hexes.Layout
 import bav.onecell.model.hexes.Orientation
@@ -37,11 +38,11 @@ open class CanvasView(context: Context, attributeSet: AttributeSet) : View(conte
     protected val layout = Layout(
             Orientation.LAYOUT_POINTY, layoutHexSize, Point())
 
-    protected val gridPaint: Paint = Paint()
-    protected val lifePaint: Paint = Paint()
-    protected val energyPaint: Paint = Paint()
-    protected val attackPaint: Paint = Paint()
-    protected val strokePaint: Paint = Paint()
+    private val gridPaint: Paint = Paint()
+    private val lifePaint: Paint = Paint()
+    private val energyPaint: Paint = Paint()
+    private val attackPaint: Paint = Paint()
+    private val strokePaint: Paint = Paint()
     private val darkStrokePaint: Paint = Paint()
     private val lightStrokePaint: Paint = Paint()
     private val coordinateTextPaint: Paint = Paint()
@@ -132,7 +133,31 @@ open class CanvasView(context: Context, attributeSet: AttributeSet) : View(conte
         }
     }
 
-    protected fun drawCoordinatesOnHex(canvas: Canvas?, hex: Hex) {
+    protected fun drawCell(canvas: Canvas?, cell: Cell?) {
+        cell?.let {
+            var paint: Paint
+            for (hex in it.hexes) {
+                paint = when (hex.type) {
+                    Hex.Type.LIFE -> lifePaint
+                    Hex.Type.ENERGY -> energyPaint
+                    Hex.Type.ATTACK -> attackPaint
+                    else -> gridPaint
+                }
+                val path: Path = getHexPath(Hex.hexAdd(hex, it.origin))
+                path.fillType = Path.FillType.EVEN_ODD
+                canvas?.drawPath(path, paint)
+                canvas?.drawPath(path, strokePaint)
+            }
+        }
+    }
+
+    private fun getCellOutline(cell: Cell): List<Pair<Point, Point>> {
+        val lines = mutableListOf<Pair<Point, Point>>()
+        
+        return lines
+    }
+
+    private fun drawCoordinatesOnHex(canvas: Canvas?, hex: Hex) {
         val hexCorners: ArrayList<Point> = Hex.poligonCorners(layout, hex)
         val center = Point(
                 hexCorners.sumByDouble { it.x } / hexCorners.size.toDouble(),
@@ -149,7 +174,7 @@ open class CanvasView(context: Context, attributeSet: AttributeSet) : View(conte
         canvas?.drawText(hex.s.toString() + "z", zOrigin.x.toFloat(), zOrigin.y.toFloat(), coordinateTextPaint)
     }
 
-    protected fun getHexPath(hex: Hex): Path {
+    private fun getHexPath(hex: Hex): Path {
         val hexCorners: ArrayList<Point> = Hex.poligonCorners(layout, hex)
         val path = Path()
         path.moveTo(hexCorners[0].x.toFloat(), hexCorners[0].y.toFloat())

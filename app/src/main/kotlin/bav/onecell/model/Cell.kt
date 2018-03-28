@@ -3,7 +3,7 @@ package bav.onecell.model
 import bav.onecell.model.hexes.Hex
 import kotlin.math.abs
 
-class Cell(val hexes: MutableSet<Hex> = mutableSetOf(), var center: Hex = Hex(0, 0, 0)) {
+class Cell(val hexes: MutableSet<Hex> = mutableSetOf(), var origin: Hex = Hex(0, 0, 0)) {
 
     fun clone() = Cell(hexes.toMutableSet())
 
