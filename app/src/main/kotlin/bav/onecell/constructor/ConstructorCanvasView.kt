@@ -62,7 +62,7 @@ class ConstructorCanvasView(context: Context, attributeSet: AttributeSet) : Canv
                     Hex.Type.ATTACK -> attackPaint
                     else -> gridPaint
                 }
-                val path: Path = getHexPath(hex)
+                val path: Path = getHexPath(Hex.hexAdd(hex, it.center))
                 path.fillType = Path.FillType.EVEN_ODD
                 canvas?.drawPath(path, paint)
                 canvas?.drawPath(path, strokePaint)

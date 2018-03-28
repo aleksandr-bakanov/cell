@@ -10,7 +10,7 @@ import bav.onecell.common.view.CanvasView
 class BattleCanvasView(context: Context, attributeSet: AttributeSet) : CanvasView(context, attributeSet) {
 
     companion object {
-        private val TAG = "BattleCanvasView"
+        private const val TAG = "BattleCanvasView"
     }
 
     lateinit var presenter: Battle.Presenter

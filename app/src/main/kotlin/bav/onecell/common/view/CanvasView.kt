@@ -31,11 +31,11 @@ open class CanvasView(context: Context, attributeSet: AttributeSet) : View(conte
             invalidate()
         }
 
-    private val layoutHexSize = Point(100.0, 100.0)
-    protected var lastTouchX = 0f
-    protected var lastTouchY = 0f
+    private val layoutHexSize = Point(75.0, 75.0)
+    private var lastTouchX = 0f
+    private var lastTouchY = 0f
     protected val layout = Layout(
-            Orientation.LAYOUT_POINTY, layoutHexSize, Point(100.0, 100.0))
+            Orientation.LAYOUT_POINTY, layoutHexSize, Point())
 
     protected val gridPaint: Paint = Paint()
     protected val lifePaint: Paint = Paint()

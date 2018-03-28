@@ -84,11 +84,9 @@ data class Hex(val q: Int, val r: Int, val s: Int) {
 
         fun poligonCorners(layout: Layout, h: Hex): ArrayList<Point> {
             val corners: ArrayList<Point> = arrayListOf()
-            val center: Point = hexToPixel(
-                    layout, h)
+            val center: Point = hexToPixel(layout, h)
             for (i in 0..5) {
-                val offset: Point = hexCornerOffset(
-                        layout, i)
+                val offset: Point = hexCornerOffset(layout, i)
                 corners.add(Point(center.x + offset.x, center.y + offset.y))
             }
             return corners
