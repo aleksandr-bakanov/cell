@@ -144,6 +144,14 @@ data class Hex(val q: Int, val r: Int, val s: Int) {
             }
             return results
         }
+
+        fun rotateRight(h: Hex): Hex {
+            return Hex(-h.r, -h.s, -h.q)
+        }
+
+        fun rotateLeft(h: Hex): Hex {
+            return Hex(-h.s, -h.r, -h.q)
+        }
     }
 
     var type: Type = Type.REMOVE
