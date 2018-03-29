@@ -1,10 +1,15 @@
 package bav.onecell.battle
 
+import bav.onecell.model.Cell
+import bav.onecell.model.hexes.Hex
+
 interface Battle {
 
     interface View {
         fun setBackgroundFieldRadius(radius: Int)
+        fun setCells(cells: List<Cell>)
         fun updateBattleView()
+        fun setRing(ring: List<Hex>)
     }
 
     interface Presenter {

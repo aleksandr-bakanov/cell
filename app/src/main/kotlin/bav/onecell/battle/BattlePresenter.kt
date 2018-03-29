@@ -4,6 +4,8 @@ import android.util.Log
 import bav.onecell.common.router.Router
 import bav.onecell.model.Cell
 import bav.onecell.model.RepositoryContract
+import bav.onecell.model.hexes.Hex
+import kotlin.math.round
 
 class BattlePresenter(
         private val view: Battle.View,
@@ -21,19 +23,29 @@ class BattlePresenter(
         // Make copy of cells
         for (i in cellIndexes) cellRepository.getCell(i)?.let { cells.add(it.clone()) }
 
-        for (c in cells) {
-            Log.d(TAG, "cell.size = ${c.size()}")
-        }
+        battleFieldSize = round(cells.map { it.size() }.sum() * 1.0).toInt()
 
-        battleFieldSize = cells.map { it.size() }.sum() * 2
-        Log.d(TAG, "battleFieldSize = $battleFieldSize")
         view.setBackgroundFieldRadius(battleFieldSize)
+        view.setCells(cells)
 
         moveCellsToTheirInitialPosition()
+
+        view.updateBattleView()
     }
 
     private fun moveCellsToTheirInitialPosition() {
-
+        val ringRadius = battleFieldSize - (cells.map { it.size() }.max() ?: 0)
+        val ring = mutableListOf<Hex>()
+        var hex = Hex.hexMultiply(Hex.hexDirection(4), ringRadius)
+        for (i in 0..5) {
+            for (j in 0..(ringRadius - 1)) {
+                ring.add(hex)
+                hex = Hex.hexNeighbor(hex, i)
+            }
+        }
+        view.setRing(ring)
+        val step = ring.size / cells.size
+        cells.forEachIndexed { index, cell -> cell.origin = ring[index * step] }
     }
 
     override fun doNextStep() {

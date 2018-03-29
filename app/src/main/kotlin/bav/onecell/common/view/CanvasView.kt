@@ -8,7 +8,6 @@ import android.graphics.Paint
 import android.graphics.Path
 import android.support.v4.content.ContextCompat
 import android.util.AttributeSet
-import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import bav.onecell.R
@@ -33,7 +32,7 @@ open class CanvasView(context: Context, attributeSet: AttributeSet) : View(conte
             invalidate()
         }
 
-    private val layoutHexSize = Point(100.0, 100.0)
+    private val layoutHexSize = Point(50.0, 50.0)
     private var lastTouchX = 0f
     private var lastTouchY = 0f
     protected val layout = Layout(
@@ -162,6 +161,10 @@ open class CanvasView(context: Context, attributeSet: AttributeSet) : View(conte
                 canvas?.drawPath(path, paint)
                 canvas?.drawPath(path, strokePaint)
             }
+            // Draw origin marker
+            val originPoint = Hex.hexToPixel(layout, it.origin)
+            canvas?.drawCircle(originPoint.x.toFloat(), originPoint.y.toFloat(), layoutHexSize.x.toFloat() / 3, cellOutlinePaint)
+            // Draw outline
             drawCellOutline(canvas, cell)
         }
     }
@@ -176,7 +179,7 @@ open class CanvasView(context: Context, attributeSet: AttributeSet) : View(conte
     private fun getCellOutline(cell: Cell): List<Pair<Point, Point>> {
         val lines = mutableListOf<Pair<Point, Point>>()
         cell.hexes.forEach {
-            val hexCorners: ArrayList<Point> = Hex.poligonCorners(layout, it)
+            val hexCorners: ArrayList<Point> = Hex.poligonCorners(layout, Hex.hexAdd(it, cell.origin))
             for (direction in 0..5) {
                 val neighbor = Hex.hexNeighbor(it, direction)
                 if (!cell.hexes.contains(neighbor)) {
@@ -223,7 +226,7 @@ open class CanvasView(context: Context, attributeSet: AttributeSet) : View(conte
         canvas?.drawText(hex.s.toString() + "z", zOrigin.x.toFloat(), zOrigin.y.toFloat(), coordinateTextPaint)
     }
 
-    private fun getHexPath(hex: Hex): Path {
+    protected fun getHexPath(hex: Hex): Path {
         val hexCorners: ArrayList<Point> = Hex.poligonCorners(layout, hex)
         val path = Path()
         path.moveTo(hexCorners[0].x.toFloat(), hexCorners[0].y.toFloat())

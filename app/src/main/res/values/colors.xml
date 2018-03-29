@@ -11,4 +11,5 @@
   <color name="cellConstructorEnergy">#d1df0f</color>
   <color name="cellConstructorAttack">#df120f</color>
   <color name="cellConstructorStroke">#000000</color>
+  <color name="battleViewRing">#40b4d7</color>
 </resources>

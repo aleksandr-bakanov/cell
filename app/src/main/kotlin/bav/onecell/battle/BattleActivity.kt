@@ -7,6 +7,8 @@ import android.os.Bundle
 import android.view.View
 import bav.onecell.OneCellApplication
 import bav.onecell.R
+import bav.onecell.model.Cell
+import bav.onecell.model.hexes.Hex
 import kotlinx.android.synthetic.main.activity_battle.battleCanvasView
 import javax.inject.Inject
 
@@ -56,6 +58,14 @@ class BattleActivity : Activity(), Battle.View {
 
     override fun updateBattleView() {
         battleCanvasView.invalidate()
+    }
+
+    override fun setRing(ring: List<Hex>) {
+        battleCanvasView.ring = ring
+    }
+
+    override fun setCells(cells: List<Cell>) {
+        battleCanvasView.cells = cells
     }
     //endregion
 }
