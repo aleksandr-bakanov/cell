@@ -15,7 +15,7 @@ class ConstructorPresenter(
 
     override fun initialize(cellIndex: Int) {
         cell = cellRepository.getCell(cellIndex)
-        view.setBackgroundFieldRadius(3)
+        view.setBackgroundFieldRadius(1)
         view.setCell(cell)
     }
 

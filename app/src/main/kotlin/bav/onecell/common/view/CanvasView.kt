@@ -8,6 +8,7 @@ import android.graphics.Paint
 import android.graphics.Path
 import android.support.v4.content.ContextCompat
 import android.util.AttributeSet
+import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import bav.onecell.R
@@ -32,20 +33,21 @@ open class CanvasView(context: Context, attributeSet: AttributeSet) : View(conte
             invalidate()
         }
 
-    private val layoutHexSize = Point(75.0, 75.0)
+    private val layoutHexSize = Point(100.0, 100.0)
     private var lastTouchX = 0f
     private var lastTouchY = 0f
     protected val layout = Layout(
             Orientation.LAYOUT_POINTY, layoutHexSize, Point())
 
-    private val gridPaint: Paint = Paint()
-    private val lifePaint: Paint = Paint()
-    private val energyPaint: Paint = Paint()
-    private val attackPaint: Paint = Paint()
-    private val strokePaint: Paint = Paint()
-    private val darkStrokePaint: Paint = Paint()
-    private val lightStrokePaint: Paint = Paint()
-    private val coordinateTextPaint: Paint = Paint()
+    private val gridPaint = Paint()
+    private val lifePaint = Paint()
+    private val energyPaint = Paint()
+    private val attackPaint = Paint()
+    private val strokePaint = Paint()
+    private val cellOutlinePaint = Paint()
+    private val darkStrokePaint = Paint()
+    private val lightStrokePaint = Paint()
+    private val coordinateTextPaint = Paint()
     private val coordinateTextVerticalOffset = (layoutHexSize.x / 10).toFloat()
 
     private var isInitialized = false
@@ -72,6 +74,12 @@ open class CanvasView(context: Context, attributeSet: AttributeSet) : View(conte
         darkStrokePaint.style = Paint.Style.STROKE
         darkStrokePaint.color = Color.BLACK
         darkStrokePaint.strokeWidth = 5.0f
+
+        cellOutlinePaint.style = Paint.Style.STROKE
+        cellOutlinePaint.color = Color.BLACK
+        cellOutlinePaint.strokeWidth = 16.0f
+        cellOutlinePaint.strokeJoin = Paint.Join.ROUND
+        cellOutlinePaint.strokeCap = Paint.Cap.ROUND
 
         lightStrokePaint.style = Paint.Style.STROKE
         lightStrokePaint.color = Color.WHITE
@@ -133,6 +141,12 @@ open class CanvasView(context: Context, attributeSet: AttributeSet) : View(conte
         }
     }
 
+    protected fun drawCornersIndexes(canvas: Canvas?) {
+        for (hex in backgroundHexes) {
+            drawHexCornerIndexes(canvas, hex)
+        }
+    }
+
     protected fun drawCell(canvas: Canvas?, cell: Cell?) {
         cell?.let {
             var paint: Paint
@@ -148,13 +162,48 @@ open class CanvasView(context: Context, attributeSet: AttributeSet) : View(conte
                 canvas?.drawPath(path, paint)
                 canvas?.drawPath(path, strokePaint)
             }
+            drawCellOutline(canvas, cell)
+        }
+    }
+
+    private fun drawCellOutline(canvas: Canvas?, cell: Cell) {
+        val outline = getCellOutline(cell)
+        outline.forEach {
+            canvas?.drawLine(it.first.x.toFloat(), it.first.y.toFloat(), it.second.x.toFloat(), it.second.y.toFloat(), cellOutlinePaint)
         }
     }
 
     private fun getCellOutline(cell: Cell): List<Pair<Point, Point>> {
         val lines = mutableListOf<Pair<Point, Point>>()
-        
+        cell.hexes.forEach {
+            val hexCorners: ArrayList<Point> = Hex.poligonCorners(layout, it)
+            for (direction in 0..5) {
+                val neighbor = Hex.hexNeighbor(it, direction)
+                if (!cell.hexes.contains(neighbor)) {
+                    lines.add(getHexSideByNeighborDirection(hexCorners, direction))
+                }
+            }
+        }
         return lines
+    }
+
+    private fun getHexSideByNeighborDirection(corners: List<Point>, direction: Int): Pair<Point, Point> {
+        return when (direction) {
+            0 -> Pair(corners[4], corners[5])
+            1 -> Pair(corners[5], corners[0])
+            2 -> Pair(corners[0], corners[1])
+            3 -> Pair(corners[1], corners[2])
+            4 -> Pair(corners[2], corners[3])
+            5 -> Pair(corners[3], corners[4])
+            else -> Pair(corners[0], corners[0])
+        }
+    }
+
+    private fun drawHexCornerIndexes(canvas: Canvas?, hex: Hex) {
+        val hexCorners: ArrayList<Point> = Hex.poligonCorners(layout, hex)
+        for (i in 0..(hexCorners.size - 1)) {
+            canvas?.drawText(i.toString(), hexCorners[i].x.toFloat(), hexCorners[i].y.toFloat(), coordinateTextPaint)
+        }
     }
 
     private fun drawCoordinatesOnHex(canvas: Canvas?, hex: Hex) {

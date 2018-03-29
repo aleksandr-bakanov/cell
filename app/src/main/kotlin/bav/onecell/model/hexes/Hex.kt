@@ -16,10 +16,12 @@ data class Hex(val q: Int, val r: Int, val s: Int) {
     companion object {
 
         private val HEX_DIRECTIONS: Array<Hex> = arrayOf(
-                Hex(1, 0, -1), Hex(1, -1, 0),
-                Hex(0, -1, 1),
-                Hex(-1, 0, 1), Hex(-1, 1, 0),
-                Hex(0, 1, -1)
+                Hex(1, -1, 0), // 0
+                Hex(1, 0, -1), // 1
+                Hex(0, 1, -1), // 2
+                Hex(-1, 1, 0), // 3
+                Hex(-1, 0, 1), // 4
+                Hex(0, -1, 1)  // 5
         )
 
         fun hexDirection(direction: Int /* 0 to 5 */): Hex {
@@ -31,6 +33,11 @@ data class Hex(val q: Int, val r: Int, val s: Int) {
             return hexAdd(hex, hexDirection(direction))
         }
 
+        //  5    0
+        //    /\
+        // 4 |  | 1
+        //    \/
+        //  3    2
         fun hexNeighbors(hex: Hex): MutableSet<Hex> {
             return mutableSetOf(
                     hexNeighbor(hex, 0), hexNeighbor(hex, 1),
@@ -82,6 +89,11 @@ data class Hex(val q: Int, val r: Int, val s: Int) {
             return Point(size.x * cos(angle), size.y * sin(angle))
         }
 
+        //   4
+        // 3 /\ 5
+        //  |  |
+        // 2 \/ 0
+        //   1
         fun poligonCorners(layout: Layout, h: Hex): ArrayList<Point> {
             val corners: ArrayList<Point> = arrayListOf()
             val center: Point = hexToPixel(layout, h)
