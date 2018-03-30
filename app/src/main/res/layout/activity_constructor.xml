@@ -36,6 +36,25 @@
             android:onClick="onCellTypeRadioButtonClicked"/>
     </RadioGroup>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/buttonRotateCellLeft"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_rotate_cell_left_title"
+            android:layout_gravity="left"
+            android:onClick="onCellRotateButtonClicked"/>
+        <Button
+            android:id="@+id/buttonRotateCellRight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_rotate_cell_right_title"
+            android:layout_gravity="right"
+            android:onClick="onCellRotateButtonClicked"/>
+    </LinearLayout>
+
     <bav.onecell.constructor.ConstructorCanvasView
         android:id="@+id/constructorCanvasView"
         android:layout_width="match_parent"

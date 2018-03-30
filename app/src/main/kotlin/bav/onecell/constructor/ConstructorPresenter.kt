@@ -26,4 +26,12 @@ class ConstructorPresenter(
     override fun removeHexFromCell(hex: Hex) {
         if (Rules.instance.isAllowedToRemoveHexFromCell(cell!!, hex)) cell?.hexes?.remove(hex)
     }
+
+    override fun rotateCellLeft() {
+        cell?.rotateLeft()
+    }
+
+    override fun rotateCellRight() {
+        cell?.rotateRight()
+    }
 }

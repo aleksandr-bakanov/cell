@@ -31,5 +31,9 @@ interface Constructor {
          * @param hex Hex to remove
          */
         fun removeHexFromCell(hex: Hex)
+
+        fun rotateCellLeft()
+
+        fun rotateCellRight()
     }
 }

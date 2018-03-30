@@ -52,6 +52,14 @@ class ConstructorActivity : Activity(), Constructor.View {
         }
         constructorCanvasView.selectedCellType = selectedCellType
     }
+
+    fun onCellRotateButtonClicked(view: View) {
+        when (view.id) {
+            R.id.buttonRotateCellLeft -> presenter.rotateCellLeft()
+            R.id.buttonRotateCellRight -> presenter.rotateCellRight()
+        }
+        constructorCanvasView.invalidate()
+    }
     //endregion
 
     //region Private methods

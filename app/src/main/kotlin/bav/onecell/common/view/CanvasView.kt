@@ -16,6 +16,9 @@ import bav.onecell.model.hexes.Hex
 import bav.onecell.model.hexes.Layout
 import bav.onecell.model.hexes.Orientation
 import bav.onecell.model.hexes.Point
+import kotlin.math.PI
+import kotlin.math.cos
+import kotlin.math.sin
 
 open class CanvasView(context: Context, attributeSet: AttributeSet) : View(context, attributeSet) {
 
@@ -162,11 +165,39 @@ open class CanvasView(context: Context, attributeSet: AttributeSet) : View(conte
                 canvas?.drawPath(path, strokePaint)
             }
             // Draw origin marker
-            val originPoint = Hex.hexToPixel(layout, it.origin)
-            canvas?.drawCircle(originPoint.x.toFloat(), originPoint.y.toFloat(), layoutHexSize.x.toFloat() / 3, cellOutlinePaint)
+            drawOriginMarker(canvas, cell)
             // Draw outline
             drawCellOutline(canvas, cell)
         }
+    }
+
+    private fun drawOriginMarker(canvas: Canvas?, cell: Cell) {
+        // Origin point
+        val o = Hex.hexToPixel(layout, cell.origin)
+
+        val angle = (-PI / 2) + (PI / 3) * cell.direction.ordinal
+        // tail point
+        var tp = Point(-layoutHexSize.x * 2 / 3, 0.0)
+        // head point
+        var hp = Point(layoutHexSize.x * 2 / 3, 0.0)
+        // left point
+        var lp = Point(layoutHexSize.x / 3, -layoutHexSize.x / 3)
+        // right point
+        var rp = Point(layoutHexSize.x / 3, layoutHexSize.x / 3)
+
+        // Rotate arrow points
+        tp = Point(tp.x * cos(angle) - tp.y * sin(angle), tp.x * sin(angle) + tp.y * cos(angle))
+        hp = Point(hp.x * cos(angle) - hp.y * sin(angle), hp.x * sin(angle) + hp.y * cos(angle))
+        lp = Point(lp.x * cos(angle) - lp.y * sin(angle), lp.x * sin(angle) + lp.y * cos(angle))
+        rp = Point(rp.x * cos(angle) - rp.y * sin(angle), rp.x * sin(angle) + rp.y * cos(angle))
+
+        // Draw lines
+        canvas?.drawLine(tp.x.toFloat() + o.x.toFloat(), tp.y.toFloat() + o.y.toFloat(),
+                         hp.x.toFloat() + o.x.toFloat(), hp.y.toFloat() + o.y.toFloat(), strokePaint)
+        canvas?.drawLine(lp.x.toFloat() + o.x.toFloat(), lp.y.toFloat() + o.y.toFloat(),
+                         hp.x.toFloat() + o.x.toFloat(), hp.y.toFloat() + o.y.toFloat(), strokePaint)
+        canvas?.drawLine(rp.x.toFloat() + o.x.toFloat(), rp.y.toFloat() + o.y.toFloat(),
+                         hp.x.toFloat() + o.x.toFloat(), hp.y.toFloat() + o.y.toFloat(), strokePaint)
     }
 
     private fun drawCellOutline(canvas: Canvas?, cell: Cell) {

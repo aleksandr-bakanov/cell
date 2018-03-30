@@ -145,12 +145,39 @@ data class Hex(val q: Int, val r: Int, val s: Int) {
             return results
         }
 
+        /**
+         * Rotate hex to 60 degrees CW relative to (0, 0, 0)
+         */
         fun rotateRight(h: Hex): Hex {
             return Hex(-h.r, -h.s, -h.q)
         }
 
+        /**
+         * Rotate hex to 60 degrees CCW relative to (0, 0, 0)
+         */
         fun rotateLeft(h: Hex): Hex {
-            return Hex(-h.s, -h.r, -h.q)
+            return Hex(-h.s, -h.q, -h.r)
+        }
+
+        /**
+         * Rotate hex to 120 degrees CW relative to (0, 0, 0)
+         */
+        fun rotateRightTwice(h: Hex): Hex {
+            return Hex(h.s, h.q, h.r)
+        }
+
+        /**
+         * Rotate hex to 120 degrees CCW relative to (0, 0, 0)
+         */
+        fun rotateLeftTwice(h: Hex): Hex {
+            return Hex(h.r, h.s, h.q)
+        }
+
+        /**
+         * Rotate hex to 180 degrees relative to (0, 0, 0)
+         */
+        fun rotateFlip(h: Hex): Hex {
+            return Hex(-h.q, -h.r, -h.s)
         }
     }
 
