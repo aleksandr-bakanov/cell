@@ -62,8 +62,7 @@ data class Hex(val q: Int, val r: Int, val s: Int) {
         }
 
         fun hexDistance(a: Hex, b: Hex): Int {
-            return hexLength(
-                    hexSubstract(a, b))
+            return (abs(a.q - b.q) + abs(a.r - b.r) + abs(a.s - b.s) / 2)
         }
 
         fun hexToPixel(layout: Layout, h: Hex): Point {

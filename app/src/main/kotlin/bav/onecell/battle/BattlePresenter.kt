@@ -5,6 +5,8 @@ import bav.onecell.common.router.Router
 import bav.onecell.model.Cell
 import bav.onecell.model.RepositoryContract
 import bav.onecell.model.hexes.Hex
+import bav.onecell.model.hexes.Layout
+import kotlin.math.max
 import kotlin.math.round
 
 class BattlePresenter(
@@ -23,7 +25,7 @@ class BattlePresenter(
         // Make copy of cells
         for (i in cellIndexes) cellRepository.getCell(i)?.let { cells.add(it.clone()) }
 
-        battleFieldSize = round(cells.map { it.size() }.sum() * 1.0).toInt()
+        battleFieldSize = round(cells.map { it.size() }.sum() * 1.5).toInt()
 
         view.setBackgroundFieldRadius(battleFieldSize)
         view.setCells(cells)
@@ -58,6 +60,32 @@ class BattlePresenter(
     }
 
     private fun moveCells() {
+        // Each cell will move to the nearest hex within all enemies
+        cells.forEachIndexed { i, cell ->
+            var nearest: Hex = cell.origin
+            var maxDistance = 0
+            // Search for nearest enemy hex
+            cells.forEachIndexed { j, enemy ->
+                if (j != i) {
+                    enemy.hexes.forEach {
+                        val distance = Hex.hexDistance(cell.origin, Hex.hexAdd(it, enemy.origin))
+                        if (distance > maxDistance) {
+                            maxDistance = distance
+                            nearest = it
+                        }
+                    }
+                }
+            }
+            // Find direction to move
+            // Origin point
+            val op = Hex.hexToPixel(Layout.DUMMY, cell.origin)
+            // Nearest hex point
+            val hp = Hex.hexToPixel(Layout.DUMMY, nearest)
+
+        }
+    }
+
+    private fun checkIntersection() {
 
     }
 }
