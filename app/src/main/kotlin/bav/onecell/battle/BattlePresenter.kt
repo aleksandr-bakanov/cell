@@ -6,6 +6,8 @@ import bav.onecell.model.Cell
 import bav.onecell.model.RepositoryContract
 import bav.onecell.model.hexes.Hex
 import bav.onecell.model.hexes.Layout
+import kotlin.math.PI
+import kotlin.math.atan2
 import kotlin.math.max
 import kotlin.math.round
 
@@ -53,6 +55,7 @@ class BattlePresenter(
     override fun doNextStep() {
         cells.forEach { applyCellLogic(it) }
         moveCells()
+        view.updateBattleView()
     }
 
     private fun applyCellLogic(cell: Cell) {
@@ -61,17 +64,19 @@ class BattlePresenter(
 
     private fun moveCells() {
         // Each cell will move to the nearest hex within all enemies
+        val directions = mutableListOf<Int>()
         cells.forEachIndexed { i, cell ->
             var nearest: Hex = cell.origin
-            var maxDistance = 0
+            var minDistance = Int.MAX_VALUE
             // Search for nearest enemy hex
             cells.forEachIndexed { j, enemy ->
                 if (j != i) {
                     enemy.hexes.forEach {
-                        val distance = Hex.hexDistance(cell.origin, Hex.hexAdd(it, enemy.origin))
-                        if (distance > maxDistance) {
-                            maxDistance = distance
-                            nearest = it
+                        val candidate = Hex.hexAdd(it, enemy.origin)
+                        val distance = Hex.hexDistance(cell.origin, candidate)
+                        if (distance < minDistance) {
+                            minDistance = distance
+                            nearest = candidate
                         }
                     }
                 }
@@ -81,7 +86,14 @@ class BattlePresenter(
             val op = Hex.hexToPixel(Layout.DUMMY, cell.origin)
             // Nearest hex point
             val hp = Hex.hexToPixel(Layout.DUMMY, nearest)
-
+            // Angle direction to enemy hex
+            val angle = atan2(hp.y.toFloat() - op.y.toFloat(), hp.x.toFloat() - op.x.toFloat())
+            // Determine direction based on angle
+            directions.add(Hex.radToDir(angle))
+        }
+        // Move cells
+        directions.forEachIndexed { index, direction ->
+            cells[index].origin = Hex.hexAdd(cells[index].origin, Hex.hexDirection(direction))
         }
     }
 

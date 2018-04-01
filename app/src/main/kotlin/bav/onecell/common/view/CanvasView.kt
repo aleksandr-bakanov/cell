@@ -50,6 +50,7 @@ open class CanvasView(context: Context, attributeSet: AttributeSet) : View(conte
     private val darkStrokePaint = Paint()
     private val lightStrokePaint = Paint()
     private val coordinateTextPaint = Paint()
+    private val indexTextPaint = Paint()
     private val coordinateTextVerticalOffset = (layoutHexSize.x / 10).toFloat()
 
     private var isInitialized = false
@@ -90,6 +91,10 @@ open class CanvasView(context: Context, attributeSet: AttributeSet) : View(conte
         coordinateTextPaint.color = Color.BLACK
         coordinateTextPaint.textSize = 48f
         coordinateTextPaint.textAlign = Paint.Align.CENTER
+
+        indexTextPaint.color = Color.RED
+        indexTextPaint.textSize = 48f
+        indexTextPaint.textAlign = Paint.Align.CENTER
     }
 
     protected fun onTouchListener(view: View?, event: MotionEvent?): Boolean {
@@ -149,7 +154,7 @@ open class CanvasView(context: Context, attributeSet: AttributeSet) : View(conte
         }
     }
 
-    protected fun drawCell(canvas: Canvas?, cell: Cell?) {
+    protected fun drawCell(canvas: Canvas?, cell: Cell?, index: Int = 0) {
         cell?.let {
             var paint: Paint
             for (hex in it.hexes) {
@@ -168,7 +173,14 @@ open class CanvasView(context: Context, attributeSet: AttributeSet) : View(conte
             drawOriginMarker(canvas, cell)
             // Draw outline
             drawCellOutline(canvas, cell)
+            // Draw index
+            drawCellIndex(canvas, cell, index)
         }
+    }
+
+    private fun drawCellIndex(canvas: Canvas?, cell: Cell, index: Int = 0) {
+        val origin = Hex.hexToPixel(layout, cell.origin)
+        canvas?.drawText(index.toString(), origin.x.toFloat(), origin.y.toFloat(), indexTextPaint)
     }
 
     private fun drawOriginMarker(canvas: Canvas?, cell: Cell) {

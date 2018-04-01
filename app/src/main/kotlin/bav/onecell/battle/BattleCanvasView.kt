@@ -38,7 +38,7 @@ class BattleCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
         drawRing(canvas)
-        cells.forEach { drawCell(canvas, it) }
+        cells.forEachIndexed { index, cell -> drawCell(canvas, cell, index) }
     }
 
     private fun drawRing(canvas: Canvas?) {

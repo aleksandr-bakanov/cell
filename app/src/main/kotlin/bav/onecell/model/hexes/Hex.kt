@@ -29,6 +29,22 @@ data class Hex(val q: Int, val r: Int, val s: Int) {
             return HEX_DIRECTIONS[direction]
         }
 
+        /**
+         * Convert angle in radians to direction
+         * TODO: make it formula
+         *
+         * @param angle Angle in radians, should be between -PI and PI
+         * @return Corresponding direction
+         */
+        fun radToDir(angle: Float): Int {
+            return if (angle >= (-PI * 5 / 6) && angle < (-PI / 2)) 5
+            else if (angle >= (-PI / 2) && angle < (-PI / 6)) 0
+            else if (angle >= (-PI / 6) && angle < (PI / 6)) 1
+            else if (angle >= (PI / 6) && angle < (PI / 2)) 2
+            else if (angle >= (PI / 2) && angle < (PI * 5 / 6)) 3
+            else 4
+        }
+
         fun hexNeighbor(hex: Hex, direction: Int): Hex {
             return hexAdd(hex, hexDirection(direction))
         }
