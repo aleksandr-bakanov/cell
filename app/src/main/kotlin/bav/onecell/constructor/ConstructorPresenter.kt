@@ -15,16 +15,16 @@ class ConstructorPresenter(
 
     override fun initialize(cellIndex: Int) {
         cell = cellRepository.getCell(cellIndex)
-        view.setBackgroundFieldRadius(1)
+        view.setBackgroundFieldRadius(2)
         view.setCell(cell)
     }
 
     override fun addHexToCell(hex: Hex) {
-        if (Rules.instance.isAllowedToAddHexIntoCell(cell!!, hex)) cell?.hexes?.add(hex)
+        if (Rules.instance.isAllowedToAddHexIntoCell(cell!!, hex)) cell?.addHex(hex)
     }
 
     override fun removeHexFromCell(hex: Hex) {
-        if (Rules.instance.isAllowedToRemoveHexFromCell(cell!!, hex)) cell?.hexes?.remove(hex)
+        if (Rules.instance.isAllowedToRemoveHexFromCell(cell!!, hex)) cell?.removeHex(hex)
     }
 
     override fun rotateCellLeft() {

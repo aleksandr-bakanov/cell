@@ -53,9 +53,19 @@ class BattlePresenter(
     }
 
     override fun doNextStep() {
+        // Each cell applies its logic. TODO pass battle field state to cell's logic mechanism
         cells.forEach { applyCellLogic(it) }
+        // Move cells according to rules
         moveCells()
+        // Calculate damages
+        calculateDamages()
+        // Update view
         view.updateBattleView()
+    }
+
+    private fun calculateDamages() {
+        checkIntersections()
+        checkNeighboring()
     }
 
     private fun applyCellLogic(cell: Cell) {
@@ -97,7 +107,11 @@ class BattlePresenter(
         }
     }
 
-    private fun checkIntersection() {
+    private fun checkIntersections() {
+
+    }
+
+    private fun checkNeighboring() {
 
     }
 }

@@ -6,6 +6,7 @@ import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Path
+import android.graphics.Typeface
 import android.support.v4.content.ContextCompat
 import android.util.AttributeSet
 import android.view.MotionEvent
@@ -24,14 +25,7 @@ open class CanvasView(context: Context, attributeSet: AttributeSet) : View(conte
 
     var backgroundFieldRadius: Int = 1
         set(value) {
-            backgroundHexes.clear()
-            for (q in -value..value) {
-                val r1 = Math.max(-value, -q - value)
-                val r2 = Math.min(value, -q + value)
-                for (r in r1..r2) {
-                    backgroundHexes.add(Hex(q, r, -q - r))
-                }
-            }
+            backgroundHexes = Hex.getNeighborsWithinRadius(Hex.ZERO_HEX, value)
             invalidate()
         }
 
@@ -51,10 +45,11 @@ open class CanvasView(context: Context, attributeSet: AttributeSet) : View(conte
     private val lightStrokePaint = Paint()
     private val coordinateTextPaint = Paint()
     private val indexTextPaint = Paint()
+    private val powerTextPaint = Paint()
     private val coordinateTextVerticalOffset = (layoutHexSize.x / 10).toFloat()
 
     private var isInitialized = false
-    private val backgroundHexes: MutableSet<Hex> = mutableSetOf()
+    private lateinit var backgroundHexes: Set<Hex>
 
     init {
         gridPaint.style = Paint.Style.STROKE
@@ -95,6 +90,11 @@ open class CanvasView(context: Context, attributeSet: AttributeSet) : View(conte
         indexTextPaint.color = Color.RED
         indexTextPaint.textSize = 48f
         indexTextPaint.textAlign = Paint.Align.CENTER
+
+        powerTextPaint.color = Color.BLACK
+        powerTextPaint.typeface = Typeface.DEFAULT_BOLD
+        powerTextPaint.textSize = 72f
+        powerTextPaint.textAlign = Paint.Align.CENTER
     }
 
     protected fun onTouchListener(view: View?, event: MotionEvent?): Boolean {
@@ -174,13 +174,26 @@ open class CanvasView(context: Context, attributeSet: AttributeSet) : View(conte
             // Draw outline
             drawCellOutline(canvas, cell)
             // Draw index
-            drawCellIndex(canvas, cell, index)
+//            drawCellIndex(canvas, cell, index)
+            // Draw powers
+            drawCellPower(canvas, cell)
         }
     }
 
     private fun drawCellIndex(canvas: Canvas?, cell: Cell, index: Int = 0) {
         val origin = Hex.hexToPixel(layout, cell.origin)
         canvas?.drawText(index.toString(), origin.x.toFloat(), origin.y.toFloat(), indexTextPaint)
+    }
+
+    private fun drawCellPower(canvas: Canvas?, cell: Cell) {
+        cell.hexes.forEach {
+            drawHexPower(canvas, Hex.hexAdd(cell.origin, it), it.power)
+        }
+    }
+
+    private fun drawHexPower(canvas: Canvas?, hex: Hex, power: Int) {
+        val origin = Hex.hexToPixel(layout, hex)
+        canvas?.drawText(power.toString(), origin.x.toFloat(), origin.y.toFloat() + (layoutHexSize.x / 2).toFloat(), powerTextPaint)
     }
 
     private fun drawOriginMarker(canvas: Canvas?, cell: Cell) {

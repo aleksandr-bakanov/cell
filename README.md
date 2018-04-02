@@ -1,2 +1,6 @@
-Game 'Cell'. Let's write multiplayer game for learning next technologies:
-Vim, UDP, Java (client), C++ (server on Linux).
+# Purpose
+Learn Android deeply while having fun.
+
+# Future features
+* Multiplayer
+* Downloadable skins

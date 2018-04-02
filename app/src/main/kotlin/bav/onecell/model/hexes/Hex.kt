@@ -13,7 +13,14 @@ data class Hex(val q: Int, val r: Int, val s: Int) {
         LIFE, ENERGY, ATTACK, REMOVE
     }
 
+    enum class Power(value: Int) {
+        LIFE_SELF(2), ENERGY_SELF(1), LIFE_TO_NEIGHBOR(1),
+        ENERGY_TO_NEIGHBOR(2), ENERGY_TO_FAR_NEIGHBOR(1)
+    }
+
     companion object {
+
+        val ZERO_HEX = Hex(0, 0, 0)
 
         private val HEX_DIRECTIONS: Array<Hex> = arrayOf(
                 Hex(1, -1, 0), // 0
@@ -27,6 +34,19 @@ data class Hex(val q: Int, val r: Int, val s: Int) {
         fun hexDirection(direction: Int /* 0 to 5 */): Hex {
             assert(direction in 0..5)
             return HEX_DIRECTIONS[direction]
+        }
+
+        fun getNeighborsWithinRadius(origin: Hex, radius: Int): Set<Hex> {
+            val hexes = mutableSetOf<Hex>()
+            for (q in -radius..radius) {
+                val r1 = Math.max(-radius, -q - radius)
+                val r2 = Math.min(radius, -q + radius)
+                for (r in r1..r2) {
+                    hexes.add(hexAdd(origin, Hex(q, r, -q - r)))
+                }
+            }
+            hexes.remove(origin)
+            return hexes
         }
 
         /**
@@ -197,6 +217,7 @@ data class Hex(val q: Int, val r: Int, val s: Int) {
     }
 
     var type: Type = Type.REMOVE
+    var power: Int = 0
 
     init {
         assert(q + r + s == 0)
