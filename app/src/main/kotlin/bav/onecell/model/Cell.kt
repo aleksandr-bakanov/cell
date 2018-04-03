@@ -38,15 +38,20 @@ class Cell(var hexes: MutableSet<Hex> = mutableSetOf(),
     fun evaluateCellHexesPower() {
         hexes.forEach { hex ->
             hex.power = 0
-            Log.d(TAG, "evaluateCellHexesPower $hex, power = ${hex.power}")
             when (hex.type) {
-                Hex.Type.LIFE -> hex.power = Hex.Power.LIFE_SELF.ordinal
-                Hex.Type.ENERGY -> hex.power = Hex.Power.ENERGY_SELF.ordinal
+                Hex.Type.LIFE -> {
+                    hex.power = Hex.Power.LIFE_SELF.value
+                }
+                Hex.Type.ENERGY -> {
+                    hex.power = Hex.Power.ENERGY_SELF.value
+                }
                 Hex.Type.ATTACK -> {
                     hexes.intersect(Hex.getNeighborsWithinRadius(hex, 2)).forEach { neighbor ->
                         val distance = Hex.hexDistance(hex, neighbor)
                         when (neighbor.type) {
-                            Hex.Type.LIFE -> if (distance == 1) hex.power += 1
+                            Hex.Type.LIFE -> {
+                                if (distance == 1) hex.power += 1
+                            }
                             Hex.Type.ENERGY -> {
                                 hex.power += when (distance) {
                                     1 -> 2
@@ -142,6 +147,7 @@ class Cell(var hexes: MutableSet<Hex> = mutableSetOf(),
             }
         }
         direction = newDirection
+        evaluateCellHexesPower()
     }
 
     private fun rotateHexesFlip() {
