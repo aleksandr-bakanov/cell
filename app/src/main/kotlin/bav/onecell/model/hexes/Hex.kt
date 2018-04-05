@@ -228,4 +228,9 @@ data class Hex(val q: Int, val r: Int, val s: Int) {
         return this
     }
 
+    fun withPower(power: Int): Hex {
+        this.power = power
+        return this
+    }
+
 }

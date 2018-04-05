@@ -82,7 +82,7 @@ class BattlePresenter(
             cells.forEachIndexed { j, enemy ->
                 if (j != i) {
                     enemy.hexes.forEach {
-                        val candidate = Hex.hexAdd(it, enemy.origin)
+                        val candidate = Hex.hexAdd(it.value, enemy.origin)
                         val distance = Hex.hexDistance(cell.origin, candidate)
                         if (distance < minDistance) {
                             minDistance = distance
@@ -108,7 +108,16 @@ class BattlePresenter(
     }
 
     private fun checkIntersections() {
-
+        // Get intersection of all cells
+        val allHexes = mutableSetOf<Hex>()
+        val intersectedHexes = mutableSetOf<Hex>()
+        cells.forEach { cell ->
+            cell.hexes.forEach { hex ->
+                val hexInGlobalCoords = Hex.hexAdd(cell.origin, hex.value)
+                if (!allHexes.add(hexInGlobalCoords)) intersectedHexes.add(hexInGlobalCoords)
+            }
+        }
+        //
     }
 
     private fun checkNeighboring() {

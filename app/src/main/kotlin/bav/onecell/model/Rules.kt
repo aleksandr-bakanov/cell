@@ -11,37 +11,37 @@ class Rules {
     }
 
     fun isAllowedToAddHexIntoCell(cell: Cell, hex: Hex): Boolean {
-        if (cell.hexes.contains(hex)) return false
+        if (cell.hexes.values.contains(hex)) return false
         return when (hex.type) {
-            Hex.Type.LIFE -> checkLifeCell(cell.hexes, hex)
-            Hex.Type.ENERGY -> checkEnergyCell(cell.hexes, hex)
-            Hex.Type.ATTACK -> checkAttackCell(cell.hexes, hex)
+            Hex.Type.LIFE -> checkLifeCell(cell.hexes.values, hex)
+            Hex.Type.ENERGY -> checkEnergyCell(cell.hexes.values, hex)
+            Hex.Type.ATTACK -> checkAttackCell(cell.hexes.values, hex)
             else -> false
         }
     }
 
     fun isAllowedToRemoveHexFromCell(cell: Cell, hex: Hex): Boolean {
-        if (cell.hexes.size == 0) return false
+        if (cell.hexes.isEmpty()) return false
         // The only one life hex left in cell is allowed to be removed
         if (cell.hexes.size == 1) return true
         // Cell can't exist without life hexes
-        val allHexesButOne = cell.hexes.filter { it != hex }.toSet()
+        val allHexesButOne = cell.hexes.filter { it.value != hex }.values
         if (allHexesButOne.count { it.type == Hex.Type.LIFE } == 0) return false
         // If we got here that means cell contain at least 2 hexes and removing desired hex
         // will not remove last life hex. So we may check remain hexes connectivity.
         // First let's check connectivity of life and energy hexes only
         if (!checkHexesConnectivity(allHexesButOne.filter {
                     it.type == Hex.Type.LIFE || it.type == Hex.Type.ENERGY
-                }.toSet())) return false
+                })) return false
         // After that we may check connectivity of the whole cell
         if (!checkHexesConnectivity(allHexesButOne)) return false
         return true
     }
 
-    private fun checkLifeCell(hexes: MutableSet<Hex>, hex: Hex): Boolean {
+    private fun checkLifeCell(hexes: Collection<Hex>, hex: Hex): Boolean {
         // First of all we need to check whether this hex is a first one in cell,
         // then it will be allowed only if it is life hex.
-        if (hexes.size == 0) return true
+        if (hexes.isEmpty()) return true
         // Life hex should be linked with others life hexes directly or through energy cell.
         // Also life hex can adjoin with no more than one energy hex.
         val neighbors = getNeighborCountByType(hexes, hex)
@@ -52,8 +52,8 @@ class Rules {
         return true
     }
 
-    private fun checkEnergyCell(hexes: MutableSet<Hex>, hex: Hex): Boolean {
-        if (hexes.size == 0) return false
+    private fun checkEnergyCell(hexes: Collection<Hex>, hex: Hex): Boolean {
+        if (hexes.isEmpty()) return false
         // Energy hex can't adjoin with other energy hex
         val neighborsCount = getNeighborCountByType(hexes, hex)
         if (hexHasNoNeighbors(neighborsCount)) return false
@@ -68,8 +68,8 @@ class Rules {
         return true
     }
 
-    private fun checkAttackCell(hexes: MutableSet<Hex>, hex: Hex): Boolean {
-        if (hexes.size == 0) return false
+    private fun checkAttackCell(hexes: Collection<Hex>, hex: Hex): Boolean {
+        if (hexes.isEmpty()) return false
         // Energy hex can't adjoin with other energy hex
         val neighbors = getNeighborCountByType(hexes, hex)
         if (hexHasNoNeighbors(neighbors)) return false
@@ -81,7 +81,7 @@ class Rules {
      *
      * @return [0] - count of life hexes; [1] - energy hexes; [2] - attack hexes
      */
-    private fun getNeighborCountByType(hexes: MutableSet<Hex>, hex: Hex): Array<Int> {
+    private fun getNeighborCountByType(hexes: Collection<Hex>, hex: Hex): Array<Int> {
         val neighbors = hexes.intersect(Hex.hexNeighbors(hex))
         var life = 0
         var energy = 0
@@ -101,17 +101,17 @@ class Rules {
         return n[0] == 0 && n[1] == 0 && n[2] == 0
     }
 
-    private fun getNeighborsByType(hexes: MutableSet<Hex>, hex: Hex, type: Hex.Type): List<Hex> {
+    private fun getNeighborsByType(hexes: Collection<Hex>, hex: Hex, type: Hex.Type): List<Hex> {
         return hexes.intersect(Hex.hexNeighbors(hex)).filter { it.type == type }
     }
 
-    private fun checkHexesConnectivity(allHexes: Set<Hex>): Boolean {
+    private fun checkHexesConnectivity(allHexes: Collection<Hex>): Boolean {
         val connectedHexes = mutableSetOf<Hex>()
         checkConnectivityRecursively(allHexes, allHexes.first(), connectedHexes)
         return allHexes == connectedHexes
     }
 
-    private fun checkConnectivityRecursively(allHexes: Set<Hex>, hex: Hex, connectedHexes: MutableSet<Hex>) {
+    private fun checkConnectivityRecursively(allHexes: Collection<Hex>, hex: Hex, connectedHexes: MutableSet<Hex>) {
         if (connectedHexes.contains(hex)) return
         connectedHexes.add(hex)
         val notCheckedNeighbors = allHexes.intersect(Hex.hexNeighbors(hex)).subtract(connectedHexes)

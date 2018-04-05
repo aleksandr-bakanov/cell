@@ -158,13 +158,13 @@ open class CanvasView(context: Context, attributeSet: AttributeSet) : View(conte
         cell?.let {
             var paint: Paint
             for (hex in it.hexes) {
-                paint = when (hex.type) {
+                paint = when (hex.value.type) {
                     Hex.Type.LIFE -> lifePaint
                     Hex.Type.ENERGY -> energyPaint
                     Hex.Type.ATTACK -> attackPaint
                     else -> gridPaint
                 }
-                val path: Path = getHexPath(Hex.hexAdd(hex, it.origin))
+                val path: Path = getHexPath(Hex.hexAdd(hex.value, it.origin))
                 path.fillType = Path.FillType.EVEN_ODD
                 canvas?.drawPath(path, paint)
                 canvas?.drawPath(path, strokePaint)
@@ -187,7 +187,7 @@ open class CanvasView(context: Context, attributeSet: AttributeSet) : View(conte
 
     private fun drawCellPower(canvas: Canvas?, cell: Cell) {
         cell.hexes.forEach {
-            drawHexPower(canvas, Hex.hexAdd(cell.origin, it), it.power)
+            drawHexPower(canvas, Hex.hexAdd(cell.origin, it.value), it.value.power)
         }
     }
 
@@ -235,10 +235,10 @@ open class CanvasView(context: Context, attributeSet: AttributeSet) : View(conte
     private fun getCellOutline(cell: Cell): List<Pair<Point, Point>> {
         val lines = mutableListOf<Pair<Point, Point>>()
         cell.hexes.forEach {
-            val hexCorners: ArrayList<Point> = Hex.poligonCorners(layout, Hex.hexAdd(it, cell.origin))
+            val hexCorners: ArrayList<Point> = Hex.poligonCorners(layout, Hex.hexAdd(it.value, cell.origin))
             for (direction in 0..5) {
-                val neighbor = Hex.hexNeighbor(it, direction)
-                if (!cell.hexes.contains(neighbor)) {
+                val neighbor = Hex.hexNeighbor(it.value, direction)
+                if (!cell.hexes.values.contains(neighbor)) {
                     lines.add(getHexSideByNeighborDirection(hexCorners, direction))
                 }
             }
