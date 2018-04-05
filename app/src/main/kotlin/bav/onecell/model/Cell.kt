@@ -21,18 +21,20 @@ class Cell(var hexes: MutableMap<Int, Hex> = mutableMapOf(),
         const val TAG = "Cell"
     }
 
-    fun clone() = Cell(hexes.toMutableMap(), origin, direction)
+    fun clone(): Cell {
+        val cell = Cell(origin = origin, direction = direction)
+        hexes.forEach { k, v -> cell.hexes[k] = v.clone() }
+        return cell
+    }
 
     fun size(): Int = hexes.values.map { maxOf(maxOf(abs(it.q), abs(it.r)), abs(it.s)) }.max()?.let { it + 1 } ?: 0
 
     fun addHex(hex: Hex) {
         hexes[hex.hashCode()] = hex
-        evaluateCellHexesPower()
     }
 
     fun removeHex(hex: Hex) {
         hexes.remove(hex.hashCode())
-        evaluateCellHexesPower()
     }
 
     fun evaluateCellHexesPower() {
@@ -147,7 +149,6 @@ class Cell(var hexes: MutableMap<Int, Hex> = mutableMapOf(),
             }
         }
         direction = newDirection
-        evaluateCellHexesPower()
     }
 
     private fun rotateHexesFlip() {

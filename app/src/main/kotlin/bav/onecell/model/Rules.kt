@@ -105,10 +105,10 @@ class Rules {
         return hexes.intersect(Hex.hexNeighbors(hex)).filter { it.type == type }
     }
 
-    private fun checkHexesConnectivity(allHexes: Collection<Hex>): Boolean {
+    fun checkHexesConnectivity(allHexes: Collection<Hex>): Boolean {
         val connectedHexes = mutableSetOf<Hex>()
         checkConnectivityRecursively(allHexes, allHexes.first(), connectedHexes)
-        return allHexes == connectedHexes
+        return allHexes.toSet() == connectedHexes
     }
 
     private fun checkConnectivityRecursively(allHexes: Collection<Hex>, hex: Hex, connectedHexes: MutableSet<Hex>) {

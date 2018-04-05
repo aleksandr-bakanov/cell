@@ -1,14 +1,12 @@
 package bav.onecell.battle
 
-import android.util.Log
 import bav.onecell.common.router.Router
 import bav.onecell.model.Cell
 import bav.onecell.model.RepositoryContract
+import bav.onecell.model.Rules
 import bav.onecell.model.hexes.Hex
 import bav.onecell.model.hexes.Layout
-import kotlin.math.PI
 import kotlin.math.atan2
-import kotlin.math.max
 import kotlin.math.round
 
 class BattlePresenter(
@@ -112,15 +110,62 @@ class BattlePresenter(
         val allHexes = mutableSetOf<Hex>()
         val intersectedHexes = mutableSetOf<Hex>()
         cells.forEach { cell ->
-            cell.hexes.forEach { hex ->
-                val hexInGlobalCoords = Hex.hexAdd(cell.origin, hex.value)
-                if (!allHexes.add(hexInGlobalCoords)) intersectedHexes.add(hexInGlobalCoords)
+            cell.hexes.forEach { entry ->
+                val hexInGlobalCoords = Hex.hexAdd(cell.origin, entry.value)
+                if (!allHexes.add(hexInGlobalCoords)) {
+                    intersectedHexes.add(hexInGlobalCoords)
+                }
             }
         }
-        //
+        // Deal damage to each intersected hex
+        intersectedHexes.forEach { intersected ->
+            // Calculate second in strength of power value for each intersected hex
+            var damage = 0
+            var maxPower = 0
+            cells.forEach { cell ->
+                // intersected are in global coordinates, we should revert them to local ones
+                cell.hexes[Hex.hexSubstract(intersected, cell.origin).hashCode()]?.let {
+                    if (it.power >= maxPower) {
+                        damage = maxPower
+                        maxPower = it.power
+                    } else if (it.power > damage) {
+                        damage = it.power
+                    }
+                }
+            }
+            // Deal damage
+            cells.forEach { cell ->
+                cell.hexes[Hex.hexSubstract(intersected, cell.origin).hashCode()]?.let {
+                    it.power -= damage
+                }
+            }
+        }
+        // After dealing damage we have to check cells for vitality
+        checkCellsVitality()
     }
 
     private fun checkNeighboring() {
 
+    }
+
+    private fun checkCellsVitality() {
+        val cellsToRemove = mutableListOf<Int>()
+        cells.forEachIndexed { index, cell ->
+            // Remove powerless hexes
+            val hexesToRemove = mutableListOf<Int>()
+            cell.hexes.forEach { key, hex ->
+                // If power becomes less or equal then zero, hex should be removed from cell
+                if (hex.power <= 0) {
+                    hexesToRemove.add(key)
+                }
+            }
+            hexesToRemove.forEach { cell.hexes.remove(it) }
+            // If connectivity of life and energy hexes has been broken then cell dies
+            if (!Rules.instance.checkHexesConnectivity(cell.hexes.values.filter {
+                        it.type == Hex.Type.LIFE || it.type == Hex.Type.ENERGY
+                    })) cellsToRemove.add(index)
+        }
+        cellsToRemove.sortDescending()
+        cellsToRemove.forEach { cells.removeAt(it) }
     }
 }

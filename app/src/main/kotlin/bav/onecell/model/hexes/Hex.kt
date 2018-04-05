@@ -233,4 +233,6 @@ data class Hex(val q: Int, val r: Int, val s: Int) {
         return this
     }
 
+    fun clone() = Hex(q, r, s).withType(type).withPower(power)
+
 }
