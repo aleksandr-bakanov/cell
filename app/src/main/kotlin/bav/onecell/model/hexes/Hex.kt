@@ -74,7 +74,7 @@ data class Hex(val q: Int, val r: Int, val s: Int) {
         // 4 |  | 1
         //    \/
         //  3    2
-        fun hexNeighbors(hex: Hex): MutableSet<Hex> {
+        fun hexNeighbors(hex: Hex): Collection<Hex> {
             return mutableSetOf(
                     hexNeighbor(hex, 0), hexNeighbor(hex, 1),
                     hexNeighbor(hex, 2), hexNeighbor(hex, 3),

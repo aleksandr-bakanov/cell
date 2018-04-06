@@ -70,6 +70,29 @@ class Cell(var hexes: MutableMap<Int, Hex> = mutableMapOf(),
         }
     }
 
+    /**
+     * Returns outline border of cell in local coordinates
+     *
+     * @return Set of hexes which forms outline of cell
+     */
+    fun getOutlineHexes(): Collection<Hex> {
+        val outline = mutableSetOf<Hex>()
+        hexes.forEach { entry ->
+            outline.addAll(Hex.hexNeighbors(entry.value).subtract(hexes.values))
+        }
+        return outline
+    }
+
+    /**
+     * Returns hexes which forms border of cell
+     *
+     * @return Set of hexes which forms border of cell
+     */
+    fun getBorderHexes(): Collection<Hex> {
+        // TODO: implement this
+        return setOf()
+    }
+
     fun rotateLeft() {
         val newDir = when (direction) {
             Direction.N -> Direction.NW
