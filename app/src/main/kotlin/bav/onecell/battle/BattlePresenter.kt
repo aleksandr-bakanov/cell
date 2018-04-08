@@ -145,7 +145,15 @@ class BattlePresenter(
     }
 
     private fun checkNeighboring() {
+        cells.forEach { cell ->
+            // Get cell outline
+            val cellOutline = cell.getOutlineHexes()
+            // Get all enemy hexes
+            val enemyHexes = mutableSetOf<Hex>()
+            cells.filter { it != cell }.forEach { enemy -> enemyHexes.addAll(enemy.hexes.values) }
+            // Get all enemy hexes which are neighbors to us
 
+        }
     }
 
     private fun checkCellsVitality() {
