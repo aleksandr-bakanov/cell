@@ -218,6 +218,7 @@ data class Hex(val q: Int, val r: Int, val s: Int) {
 
     var type: Type = Type.REMOVE
     var power: Int = 0
+    var receivedDamage: Int = 0
 
     init {
         assert(q + r + s == 0)

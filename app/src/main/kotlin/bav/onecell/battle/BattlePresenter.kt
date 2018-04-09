@@ -147,12 +147,14 @@ class BattlePresenter(
     private fun checkNeighboring() {
         cells.forEach { cell ->
             // Get cell outline
-            val cellOutline = cell.getOutlineHexes()
+            val cellOutline = cell.getOutlineHexes().map { Hex.hexAdd(cell.origin, it) }
             // Get all enemy hexes
             val enemyHexes = mutableSetOf<Hex>()
-            cells.filter { it != cell }.forEach { enemy -> enemyHexes.addAll(enemy.hexes.values) }
+            cells.filter { it != cell }.forEach { enemy ->
+                enemyHexes.addAll(enemy.hexes.values.map { Hex.hexAdd(enemy.origin, it) })
+            }
             // Get all enemy hexes which are neighbors to us
-
+            val neighboringHexes = cellOutline.intersect(enemyHexes)
         }
     }
 
