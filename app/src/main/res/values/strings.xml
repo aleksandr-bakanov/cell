@@ -1,13 +1,19 @@
 <resources>
     <string name="app_name">One Cell</string>
+
+    <!-- Main view -->
     <string name="button_start_battle_title">Start battle</string>
     <string name="button_create_new_cell_title">Create new cell</string>
     <string name="button_edit_cell_title">Edit</string>
+
+    <!-- Constructor view -->
     <string name="radio_button_life_cell_title">Life</string>
     <string name="radio_button_energy_cell_title">Energy</string>
     <string name="radio_button_attack_cell_title">Attack</string>
     <string name="radio_button_remove_cell_title">Remove</string>
-    <string name="button_next_step_title">Next step</string>
     <string name="button_rotate_cell_left_title"><![CDATA[<<]]></string>
     <string name="button_rotate_cell_right_title"><![CDATA[>>]]></string>
+
+    <!-- Battle view -->
+    <string name="button_next_step_title">Full step</string>
 </resources>

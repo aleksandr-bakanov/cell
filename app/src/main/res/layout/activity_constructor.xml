@@ -1,63 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
     <RadioGroup
+        android:id="@+id/radioGroupInConstructor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:orientation="horizontal"
-        android:gravity="center">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
         <RadioButton
             android:id="@+id/radioButtonLifeCell"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="@string/radio_button_life_cell_title"
+            android:layout_height="wrap_content"
+            android:checked="true"
             android:onClick="onCellTypeRadioButtonClicked"
-            android:checked="true"/>
+            android:text="@string/radio_button_life_cell_title"/>
+
         <RadioButton
             android:id="@+id/radioButtonEnergyCell"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="@string/radio_button_energy_cell_title"
-            android:onClick="onCellTypeRadioButtonClicked"/>
+            android:layout_height="wrap_content"
+            android:onClick="onCellTypeRadioButtonClicked"
+            android:text="@string/radio_button_energy_cell_title"/>
+
         <RadioButton
             android:id="@+id/radioButtonAttackCell"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="@string/radio_button_attack_cell_title"
-            android:onClick="onCellTypeRadioButtonClicked"/>
+            android:layout_height="wrap_content"
+            android:onClick="onCellTypeRadioButtonClicked"
+            android:text="@string/radio_button_attack_cell_title"/>
+
         <RadioButton
             android:id="@+id/radioButtonRemoveCell"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="@string/radio_button_remove_cell_title"
-            android:onClick="onCellTypeRadioButtonClicked"/>
+            android:layout_height="wrap_content"
+            android:onClick="onCellTypeRadioButtonClicked"
+            android:text="@string/radio_button_remove_cell_title"/>
     </RadioGroup>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <Button
-            android:id="@+id/buttonRotateCellLeft"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/button_rotate_cell_left_title"
-            android:layout_gravity="left"
-            android:onClick="onCellRotateButtonClicked"/>
-        <Button
-            android:id="@+id/buttonRotateCellRight"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/button_rotate_cell_right_title"
-            android:layout_gravity="right"
-            android:onClick="onCellRotateButtonClicked"/>
-    </LinearLayout>
+    <Button
+        android:id="@+id/buttonRotateCellLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onCellRotateButtonClicked"
+        android:text="@string/button_rotate_cell_left_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/radioGroupInConstructor" />
+
+    <Button
+        android:id="@+id/buttonRotateCellRight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onCellRotateButtonClicked"
+        android:text="@string/button_rotate_cell_right_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroupInConstructor" />
 
     <bav.onecell.constructor.ConstructorCanvasView
         android:id="@+id/constructorCanvasView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonRotateCellLeft" />
 
-</LinearLayout>
+</android.support.constraint.ConstraintLayout>
