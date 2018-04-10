@@ -151,10 +151,20 @@ class BattlePresenter(
             // Get all enemy hexes
             val enemyHexes = mutableSetOf<Hex>()
             cells.filter { it != cell }.forEach { enemy ->
-                enemyHexes.addAll(enemy.hexes.values.map { Hex.hexAdd(enemy.origin, it) })
+                enemyHexes.addAll(enemy.hexes.values.map { Hex.hexAdd(enemy.origin, it).withPower(it.power) })
             }
             // Get all enemy hexes which are neighbors to us
-            val neighboringHexes = cellOutline.intersect(enemyHexes)
+            val neighboringHexes = enemyHexes.intersect(cellOutline)
+            // Come through all our hexes
+            cell.hexes.values.forEach { hex ->
+                val hexInGlobal = Hex.hexAdd(hex, cell.origin)
+                val neighbors = neighboringHexes.intersect(Hex.hexNeighbors(hexInGlobal))
+                // Saving damage to our hex
+                neighbors.forEach { hex.receivedDamage += it.power }
+            }
+        }
+        cells.forEach { cell ->
+
         }
     }
 
