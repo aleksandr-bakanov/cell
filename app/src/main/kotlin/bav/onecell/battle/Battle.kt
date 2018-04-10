@@ -10,6 +10,7 @@ interface Battle {
         fun setCells(cells: List<Cell>)
         fun updateBattleView()
         fun setRing(ring: List<Hex>)
+        fun reportBattleEnd()
     }
 
     interface Presenter {

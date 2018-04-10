@@ -106,6 +106,7 @@ class Rules {
     }
 
     fun checkHexesConnectivity(allHexes: Collection<Hex>): Boolean {
+        if (allHexes.isEmpty()) return false
         val connectedHexes = mutableSetOf<Hex>()
         checkConnectivityRecursively(allHexes, allHexes.first(), connectedHexes)
         return allHexes.toSet() == connectedHexes

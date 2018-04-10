@@ -59,6 +59,8 @@ class BattlePresenter(
         calculateDamages()
         // Update view
         view.updateBattleView()
+        // Check whether battle is ended
+        checkWhetherBattleEnds()
     }
 
     private fun calculateDamages() {
@@ -163,9 +165,14 @@ class BattlePresenter(
                 neighbors.forEach { hex.receivedDamage += it.power }
             }
         }
+        // Deal real damage
         cells.forEach { cell ->
-
+            cell.hexes.values.forEach { hex ->
+                hex.power -= hex.receivedDamage
+                hex.receivedDamage = 0
+            }
         }
+        checkCellsVitality()
     }
 
     private fun checkCellsVitality() {
@@ -187,5 +194,11 @@ class BattlePresenter(
         }
         cellsToRemove.sortDescending()
         cellsToRemove.forEach { cells.removeAt(it) }
+    }
+
+    private fun checkWhetherBattleEnds() {
+        if (cells.size <= 1) {
+            view.reportBattleEnd()
+        }
     }
 }

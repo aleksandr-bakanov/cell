@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import bav.onecell.OneCellApplication
 import bav.onecell.R
 import bav.onecell.model.Cell
@@ -67,5 +68,11 @@ class BattleActivity : Activity(), Battle.View {
     override fun setCells(cells: List<Cell>) {
         battleCanvasView.cells = cells
     }
+
+    override fun reportBattleEnd() {
+        Toast.makeText(this, "Battle is over", Toast.LENGTH_SHORT).show()
+        finish()
+    }
+
     //endregion
 }
