@@ -10,6 +10,7 @@ import bav.onecell.OneCellApplication
 import bav.onecell.R
 import bav.onecell.model.Cell
 import bav.onecell.model.hexes.Hex
+import bav.onecell.model.hexes.HexMath
 import kotlinx.android.synthetic.main.activity_battle.battleCanvasView
 import javax.inject.Inject
 
@@ -26,14 +27,15 @@ class BattleActivity : Activity(), Battle.View {
         }
     }
 
-    @Inject
-    lateinit var presenter: Battle.Presenter
+    @Inject lateinit var hexMath: HexMath
+    @Inject lateinit var presenter: Battle.Presenter
 
     //region Lifecycle methods
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_battle)
         inject()
+        battleCanvasView.hexMath = hexMath
         battleCanvasView.presenter = presenter
         presenter.initialize(intent.getIntegerArrayListExtra(EXTRA_CELL_INDEXES))
     }

@@ -1,10 +1,11 @@
 package bav.onecell.model
 
-import android.util.Log
 import bav.onecell.model.hexes.Hex
+import bav.onecell.model.hexes.HexMath
 import kotlin.math.abs
 
-class Cell(var hexes: MutableMap<Int, Hex> = mutableMapOf(),
+class Cell(private val hexMath: HexMath,
+           var hexes: MutableMap<Int, Hex> = mutableMapOf(),
            var origin: Hex = Hex(0, 0, 0),
            var direction: Direction = Direction.N) {
 
@@ -22,7 +23,7 @@ class Cell(var hexes: MutableMap<Int, Hex> = mutableMapOf(),
     }
 
     fun clone(): Cell {
-        val cell = Cell(origin = origin, direction = direction)
+        val cell = Cell(hexMath, origin = origin, direction = direction)
         hexes.forEach { k, v -> cell.hexes[k] = v.clone() }
         return cell
     }
@@ -48,8 +49,8 @@ class Cell(var hexes: MutableMap<Int, Hex> = mutableMapOf(),
                     hex.power = Hex.Power.ENERGY_SELF.value
                 }
                 Hex.Type.ATTACK -> {
-                    hexes.values.intersect(Hex.getNeighborsWithinRadius(hex, 2)).forEach { neighbor ->
-                        val distance = Hex.hexDistance(hex, neighbor)
+                    hexes.values.intersect(hexMath.getNeighborsWithinRadius(hex, 2)).forEach { neighbor ->
+                        val distance = hexMath.distance(hex, neighbor)
                         when (neighbor.type) {
                             Hex.Type.LIFE -> {
                                 if (distance == 1) hex.power += Hex.Power.LIFE_TO_NEIGHBOR.value
@@ -78,7 +79,7 @@ class Cell(var hexes: MutableMap<Int, Hex> = mutableMapOf(),
     fun getOutlineHexes(): Collection<Hex> {
         val outline = mutableSetOf<Hex>()
         hexes.forEach { entry ->
-            outline.addAll(Hex.hexNeighbors(entry.value).subtract(hexes.values))
+            outline.addAll(hexMath.hexNeighbors(entry.value).subtract(hexes.values))
         }
         return outline
     }
@@ -177,7 +178,7 @@ class Cell(var hexes: MutableMap<Int, Hex> = mutableMapOf(),
     private fun rotateHexesFlip() {
         val newHexes = mutableMapOf<Int, Hex>()
         hexes.forEach {
-            val newHex = Hex.rotateFlip(it.value).withType(it.value.type).withPower(it.value.power)
+            val newHex = hexMath.rotateFlip(it.value).withType(it.value.type).withPower(it.value.power)
             newHexes[newHex.hashCode()] = newHex
         }
         hexes = newHexes
@@ -186,7 +187,7 @@ class Cell(var hexes: MutableMap<Int, Hex> = mutableMapOf(),
     private fun rotateHexesRight() {
         val newHexes = mutableMapOf<Int, Hex>()
         hexes.forEach {
-            val newHex = Hex.rotateRight(it.value).withType(it.value.type).withPower(it.value.power)
+            val newHex = hexMath.rotateRight(it.value).withType(it.value.type).withPower(it.value.power)
             newHexes[newHex.hashCode()] = newHex
         }
         hexes = newHexes
@@ -195,7 +196,7 @@ class Cell(var hexes: MutableMap<Int, Hex> = mutableMapOf(),
     private fun rotateHexesRightTwice() {
         val newHexes = mutableMapOf<Int, Hex>()
         hexes.forEach {
-            val newHex = Hex.rotateRightTwice(it.value).withType(it.value.type).withPower(it.value.power)
+            val newHex = hexMath.rotateRightTwice(it.value).withType(it.value.type).withPower(it.value.power)
             newHexes[newHex.hashCode()] = newHex
         }
         hexes = newHexes
@@ -204,7 +205,7 @@ class Cell(var hexes: MutableMap<Int, Hex> = mutableMapOf(),
     private fun rotateHexesLeft() {
         val newHexes = mutableMapOf<Int, Hex>()
         hexes.forEach {
-            val newHex = Hex.rotateLeft(it.value).withType(it.value.type).withPower(it.value.power)
+            val newHex = hexMath.rotateLeft(it.value).withType(it.value.type).withPower(it.value.power)
             newHexes[newHex.hashCode()] = newHex
         }
         hexes = newHexes
@@ -213,7 +214,7 @@ class Cell(var hexes: MutableMap<Int, Hex> = mutableMapOf(),
     private fun rotateHexesLeftTwice() {
         val newHexes = mutableMapOf<Int, Hex>()
         hexes.forEach {
-            val newHex = Hex.rotateLeftTwice(it.value).withType(it.value.type).withPower(it.value.power)
+            val newHex = hexMath.rotateLeftTwice(it.value).withType(it.value.type).withPower(it.value.power)
             newHexes[newHex.hashCode()] = newHex
         }
         hexes = newHexes

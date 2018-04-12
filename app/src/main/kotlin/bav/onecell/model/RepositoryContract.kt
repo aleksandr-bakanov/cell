@@ -8,6 +8,8 @@ interface RepositoryContract {
 
         fun addCell(cell: Cell)
 
+        fun createNewCell()
+
         fun getCell(index: Int): Cell?
     }
 }

@@ -29,8 +29,8 @@ class ConstructorCanvasView(context: Context, attributeSet: AttributeSet) : Canv
                             val x: Double = event.x.toDouble()
                             val y: Double = event.y.toDouble()
                             val point = Point(x, y)
-                            val fHex = Hex.pixelToHex(layout, point)
-                            val hex = Hex.hexRound(fHex)
+                            val fHex = hexMath.pixelToHex(layout, point)
+                            val hex = hexMath.round(fHex)
                             if (selectedCellType == Hex.Type.REMOVE) {
                                 presenter.removeHexFromCell(hex)
                             } else {

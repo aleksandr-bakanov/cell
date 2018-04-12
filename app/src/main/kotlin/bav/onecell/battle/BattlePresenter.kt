@@ -5,12 +5,15 @@ import bav.onecell.model.Cell
 import bav.onecell.model.RepositoryContract
 import bav.onecell.model.Rules
 import bav.onecell.model.hexes.Hex
+import bav.onecell.model.hexes.HexMath
 import bav.onecell.model.hexes.Layout
 import kotlin.math.atan2
 import kotlin.math.round
 
 class BattlePresenter(
         private val view: Battle.View,
+        private val hexMath: HexMath,
+        private val rules: Rules,
         private val cellRepository: RepositoryContract.CellRepo,
         private val router: Router) : Battle.Presenter {
 
@@ -38,11 +41,11 @@ class BattlePresenter(
     private fun moveCellsToTheirInitialPosition() {
         val ringRadius = battleFieldSize - (cells.map { it.size() }.max() ?: 0)
         val ring = mutableListOf<Hex>()
-        var hex = Hex.hexMultiply(Hex.hexDirection(4), ringRadius)
+        var hex = hexMath.multiply(hexMath.getHexByDirection(4), ringRadius)
         for (i in 0..5) {
             for (j in 0..(ringRadius - 1)) {
                 ring.add(hex)
-                hex = Hex.hexNeighbor(hex, i)
+                hex = hexMath.getHexNeighbor(hex, i)
             }
         }
         view.setRing(ring)
@@ -82,8 +85,8 @@ class BattlePresenter(
             cells.forEachIndexed { j, enemy ->
                 if (j != i) {
                     enemy.hexes.forEach {
-                        val candidate = Hex.hexAdd(it.value, enemy.origin)
-                        val distance = Hex.hexDistance(cell.origin, candidate)
+                        val candidate = hexMath.add(it.value, enemy.origin)
+                        val distance = hexMath.distance(cell.origin, candidate)
                         if (distance < minDistance) {
                             minDistance = distance
                             nearest = candidate
@@ -93,17 +96,17 @@ class BattlePresenter(
             }
             // Find direction to move
             // Origin point
-            val op = Hex.hexToPixel(Layout.DUMMY, cell.origin)
+            val op = hexMath.hexToPixel(Layout.DUMMY, cell.origin)
             // Nearest hex point
-            val hp = Hex.hexToPixel(Layout.DUMMY, nearest)
+            val hp = hexMath.hexToPixel(Layout.DUMMY, nearest)
             // Angle direction to enemy hex
             val angle = atan2(hp.y.toFloat() - op.y.toFloat(), hp.x.toFloat() - op.x.toFloat())
             // Determine direction based on angle
-            directions.add(Hex.radToDir(angle))
+            directions.add(hexMath.radToDir(angle))
         }
         // Move cells
         directions.forEachIndexed { index, direction ->
-            cells[index].origin = Hex.hexAdd(cells[index].origin, Hex.hexDirection(direction))
+            cells[index].origin = hexMath.add(cells[index].origin, hexMath.getHexByDirection(direction))
         }
     }
 
@@ -113,7 +116,7 @@ class BattlePresenter(
         val intersectedHexes = mutableSetOf<Hex>()
         cells.forEach { cell ->
             cell.hexes.forEach { entry ->
-                val hexInGlobalCoords = Hex.hexAdd(cell.origin, entry.value)
+                val hexInGlobalCoords = hexMath.add(cell.origin, entry.value)
                 if (!allHexes.add(hexInGlobalCoords)) {
                     intersectedHexes.add(hexInGlobalCoords)
                 }
@@ -126,7 +129,7 @@ class BattlePresenter(
             var maxPower = 0
             cells.forEach { cell ->
                 // intersected are in global coordinates, we should revert them to local ones
-                cell.hexes[Hex.hexSubstract(intersected, cell.origin).hashCode()]?.let {
+                cell.hexes[hexMath.subtract(intersected, cell.origin).hashCode()]?.let {
                     if (it.power >= maxPower) {
                         damage = maxPower
                         maxPower = it.power
@@ -137,7 +140,7 @@ class BattlePresenter(
             }
             // Deal damage
             cells.forEach { cell ->
-                cell.hexes[Hex.hexSubstract(intersected, cell.origin).hashCode()]?.let {
+                cell.hexes[hexMath.subtract(intersected, cell.origin).hashCode()]?.let {
                     it.power -= damage
                 }
             }
@@ -149,18 +152,18 @@ class BattlePresenter(
     private fun checkNeighboring() {
         cells.forEach { cell ->
             // Get cell outline
-            val cellOutline = cell.getOutlineHexes().map { Hex.hexAdd(cell.origin, it) }
+            val cellOutline = cell.getOutlineHexes().map { hexMath.add(cell.origin, it) }
             // Get all enemy hexes
             val enemyHexes = mutableSetOf<Hex>()
             cells.filter { it != cell }.forEach { enemy ->
-                enemyHexes.addAll(enemy.hexes.values.map { Hex.hexAdd(enemy.origin, it).withPower(it.power) })
+                enemyHexes.addAll(enemy.hexes.values.map { hexMath.add(enemy.origin, it).withPower(it.power) })
             }
             // Get all enemy hexes which are neighbors to us
             val neighboringHexes = enemyHexes.intersect(cellOutline)
             // Come through all our hexes
             cell.hexes.values.forEach { hex ->
-                val hexInGlobal = Hex.hexAdd(hex, cell.origin)
-                val neighbors = neighboringHexes.intersect(Hex.hexNeighbors(hexInGlobal))
+                val hexInGlobal = hexMath.add(hex, cell.origin)
+                val neighbors = neighboringHexes.intersect(hexMath.hexNeighbors(hexInGlobal))
                 // Saving damage to our hex
                 neighbors.forEach { hex.receivedDamage += it.power }
             }
@@ -188,7 +191,7 @@ class BattlePresenter(
             }
             hexesToRemove.forEach { cell.hexes.remove(it) }
             // If connectivity of life and energy hexes has been broken then cell dies
-            if (!Rules.instance.checkHexesConnectivity(cell.hexes.values.filter {
+            if (!rules.checkHexesConnectivity(cell.hexes.values.filter {
                         it.type == Hex.Type.LIFE || it.type == Hex.Type.ENERGY
                     })) cellsToRemove.add(index)
         }

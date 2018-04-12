@@ -1,8 +1,6 @@
 package bav.onecell.main
 
-import android.util.Log
 import bav.onecell.common.router.Router
-import bav.onecell.model.Cell
 import bav.onecell.model.RepositoryContract
 
 class MainPresenter(
@@ -16,8 +14,7 @@ class MainPresenter(
 
     //region Overridden methods
     override fun createNewCell() {
-        val cell = Cell()
-        cellRepository.addCell(cell)
+        cellRepository.createNewCell()
         view.notifyCellRepoListUpdated()
     }
 

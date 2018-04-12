@@ -5,11 +5,11 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.RadioButton
 import bav.onecell.OneCellApplication
 import bav.onecell.R
 import bav.onecell.model.Cell
 import bav.onecell.model.hexes.Hex
+import bav.onecell.model.hexes.HexMath
 import kotlinx.android.synthetic.main.activity_constructor.constructorCanvasView
 import javax.inject.Inject
 
@@ -26,8 +26,8 @@ class ConstructorActivity : Activity(), Constructor.View {
         }
     }
 
-    @Inject
-    lateinit var presenter: Constructor.Presenter
+    @Inject lateinit var presenter: Constructor.Presenter
+    @Inject lateinit var hexMath: HexMath
 
     // TODO: same variable exists in ConstructorCanvasView, it is unnecessary duplicate
     private var selectedCellType: Hex.Type = Hex.Type.LIFE
@@ -37,6 +37,7 @@ class ConstructorActivity : Activity(), Constructor.View {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_constructor)
         inject()
+        constructorCanvasView.hexMath = hexMath
         constructorCanvasView.presenter = presenter
         presenter.initialize(intent.getIntExtra(EXTRA_CELL_INDEX, -1))
     }

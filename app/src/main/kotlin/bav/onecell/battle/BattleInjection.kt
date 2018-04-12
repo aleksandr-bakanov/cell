@@ -3,6 +3,8 @@ package bav.onecell.battle
 import bav.onecell.common.router.Router
 import bav.onecell.di.scopes.ActivityScope
 import bav.onecell.model.RepositoryContract
+import bav.onecell.model.Rules
+import bav.onecell.model.hexes.HexMath
 import dagger.Module
 import dagger.Provides
 import dagger.Subcomponent
@@ -17,8 +19,8 @@ interface BattleSubcomponent {
 class BattleModule(val view: Battle.View) {
     @Provides
     @ActivityScope
-    fun provideConstructorPresenter(cellRepository: RepositoryContract.CellRepo, router: Router):
+    fun provideConstructorPresenter(hexMath: HexMath, rules: Rules, cellRepository: RepositoryContract.CellRepo, router: Router):
             Battle.Presenter {
-        return BattlePresenter(view, cellRepository, router)
+        return BattlePresenter(view, hexMath, rules, cellRepository, router)
     }
 }

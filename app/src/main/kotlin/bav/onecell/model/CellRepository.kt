@@ -1,12 +1,20 @@
 package bav.onecell.model
 
-data class CellRepository(private val cells: ArrayList<Cell> = arrayListOf()) :
-        RepositoryContract.CellRepo {
+import bav.onecell.model.hexes.HexMath
+
+class CellRepository(
+        private val hexMath: HexMath,
+        private val cells: ArrayList<Cell> = arrayListOf()) : RepositoryContract.CellRepo {
 
     override fun cellsCount(): Int = cells.size
 
     override fun addCell(cell: Cell) {
         cells.add(cell)
+    }
+
+    override fun createNewCell() {
+        val cell = Cell(hexMath)
+        addCell(cell)
     }
 
     override fun getCell(index: Int): Cell? {

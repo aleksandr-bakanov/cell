@@ -14,6 +14,7 @@ import android.view.View
 import bav.onecell.R
 import bav.onecell.model.Cell
 import bav.onecell.model.hexes.Hex
+import bav.onecell.model.hexes.HexMath
 import bav.onecell.model.hexes.Layout
 import bav.onecell.model.hexes.Orientation
 import bav.onecell.model.hexes.Point
@@ -25,9 +26,11 @@ open class CanvasView(context: Context, attributeSet: AttributeSet) : View(conte
 
     var backgroundFieldRadius: Int = 1
         set(value) {
-            backgroundHexes = Hex.getNeighborsWithinRadius(Hex.ZERO_HEX, value)
+            backgroundHexes = hexMath.getNeighborsWithinRadius(hexMath.ZERO_HEX, value)
             invalidate()
         }
+
+    lateinit var hexMath: HexMath
 
     private val layoutHexSize = Point(50.0, 50.0)
     private var lastTouchX = 0f
@@ -165,7 +168,7 @@ open class CanvasView(context: Context, attributeSet: AttributeSet) : View(conte
                     Hex.Type.ATTACK -> attackPaint
                     else -> gridPaint
                 }
-                val path: Path = getHexPath(Hex.hexAdd(hex.value, it.origin))
+                val path: Path = getHexPath(hexMath.add(hex.value, it.origin))
                 path.fillType = Path.FillType.EVEN_ODD
                 canvas?.drawPath(path, paint)
                 canvas?.drawPath(path, strokePaint)
@@ -182,24 +185,24 @@ open class CanvasView(context: Context, attributeSet: AttributeSet) : View(conte
     }
 
     private fun drawCellIndex(canvas: Canvas?, cell: Cell, index: Int = 0) {
-        val origin = Hex.hexToPixel(layout, cell.origin)
+        val origin = hexMath.hexToPixel(layout, cell.origin)
         canvas?.drawText(index.toString(), origin.x.toFloat(), origin.y.toFloat(), indexTextPaint)
     }
 
     private fun drawCellPower(canvas: Canvas?, cell: Cell) {
         cell.hexes.forEach {
-            drawHexPower(canvas, Hex.hexAdd(cell.origin, it.value), it.value.power)
+            drawHexPower(canvas, hexMath.add(cell.origin, it.value), it.value.power)
         }
     }
 
     private fun drawHexPower(canvas: Canvas?, hex: Hex, power: Int) {
-        val origin = Hex.hexToPixel(layout, hex)
+        val origin = hexMath.hexToPixel(layout, hex)
         canvas?.drawText(power.toString(), origin.x.toFloat(), origin.y.toFloat() + (layoutHexSize.x / 2).toFloat(), powerTextPaint)
     }
 
     private fun drawOriginMarker(canvas: Canvas?, cell: Cell) {
         // Origin point
-        val o = Hex.hexToPixel(layout, cell.origin)
+        val o = hexMath.hexToPixel(layout, cell.origin)
 
         val angle = (-PI / 2) + (PI / 3) * cell.direction.ordinal
         // tail point
@@ -236,9 +239,9 @@ open class CanvasView(context: Context, attributeSet: AttributeSet) : View(conte
     private fun getCellOutline(cell: Cell): List<Pair<Point, Point>> {
         val lines = mutableListOf<Pair<Point, Point>>()
         cell.hexes.forEach {
-            val hexCorners: ArrayList<Point> = Hex.poligonCorners(layout, Hex.hexAdd(it.value, cell.origin))
+            val hexCorners: ArrayList<Point> = hexMath.poligonCorners(layout, hexMath.add(it.value, cell.origin))
             for (direction in 0..5) {
-                val neighbor = Hex.hexNeighbor(it.value, direction)
+                val neighbor = hexMath.getHexNeighbor(it.value, direction)
                 if (!cell.hexes.values.contains(neighbor)) {
                     lines.add(getHexSideByNeighborDirection(hexCorners, direction))
                 }
@@ -260,14 +263,14 @@ open class CanvasView(context: Context, attributeSet: AttributeSet) : View(conte
     }
 
     private fun drawHexCornerIndexes(canvas: Canvas?, hex: Hex) {
-        val hexCorners: ArrayList<Point> = Hex.poligonCorners(layout, hex)
+        val hexCorners: ArrayList<Point> = hexMath.poligonCorners(layout, hex)
         for (i in 0..(hexCorners.size - 1)) {
             canvas?.drawText(i.toString(), hexCorners[i].x.toFloat(), hexCorners[i].y.toFloat(), coordinateTextPaint)
         }
     }
 
     private fun drawCoordinatesOnHex(canvas: Canvas?, hex: Hex) {
-        val hexCorners: ArrayList<Point> = Hex.poligonCorners(layout, hex)
+        val hexCorners: ArrayList<Point> = hexMath.poligonCorners(layout, hex)
         val center = Point(
                 hexCorners.sumByDouble { it.x } / hexCorners.size.toDouble(),
                 hexCorners.sumByDouble { it.y } / hexCorners.size.toDouble())
@@ -284,7 +287,7 @@ open class CanvasView(context: Context, attributeSet: AttributeSet) : View(conte
     }
 
     protected fun getHexPath(hex: Hex): Path {
-        val hexCorners: ArrayList<Point> = Hex.poligonCorners(layout, hex)
+        val hexCorners: ArrayList<Point> = hexMath.poligonCorners(layout, hex)
         val path = Path()
         path.moveTo(hexCorners[0].x.toFloat(), hexCorners[0].y.toFloat())
         for (i in 1..(hexCorners.size - 1)) {
@@ -304,7 +307,7 @@ open class CanvasView(context: Context, attributeSet: AttributeSet) : View(conte
 
     protected fun getPartialHexPath(hex: Hex, startCorner: Int, endCorner: Int,
                                     endInFirstCorner: Boolean = false): Path {
-        val hexCorners: ArrayList<Point> = Hex.poligonCorners(layout, hex)
+        val hexCorners: ArrayList<Point> = hexMath.poligonCorners(layout, hex)
         val path = Path()
         path.moveTo(hexCorners[startCorner].x.toFloat(), hexCorners[startCorner].y.toFloat())
         for (i in (startCorner + 1)..endCorner) {

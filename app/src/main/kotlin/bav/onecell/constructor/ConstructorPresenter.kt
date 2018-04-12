@@ -9,6 +9,7 @@ import bav.onecell.model.hexes.Hex
 
 class ConstructorPresenter(
         private val view: Constructor.View,
+        private val rules: Rules,
         private val cellRepository: RepositoryContract.CellRepo,
         private val router: Router) : Constructor.Presenter {
 
@@ -26,7 +27,7 @@ class ConstructorPresenter(
 
     override fun addHexToCell(hex: Hex) {
         cell?.let {
-            if (Rules.instance.isAllowedToAddHexIntoCell(it, hex)) {
+            if (rules.isAllowedToAddHexIntoCell(it, hex)) {
                 it.addHex(hex)
                 it.evaluateCellHexesPower()
             }
@@ -36,7 +37,7 @@ class ConstructorPresenter(
     override fun removeHexFromCell(hex: Hex) {
         Log.d(TAG, "removeHexFromCell $hex")
         cell?.let {
-            if (Rules.instance.isAllowedToRemoveHexFromCell(it, hex)) {
+            if (rules.isAllowedToRemoveHexFromCell(it, hex)) {
                 it.removeHex(hex)
                 it.evaluateCellHexesPower()
             }

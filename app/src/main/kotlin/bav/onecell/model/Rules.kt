@@ -1,14 +1,12 @@
 package bav.onecell.model
 
 import bav.onecell.model.hexes.Hex
+import bav.onecell.model.hexes.HexMath
 
 /**
  * This class contains functions to check possibility to add/remove hexes in cell
  */
-class Rules {
-    companion object {
-        val instance: Rules = Rules()
-    }
+class Rules(private val hexMath: HexMath) {
 
     fun isAllowedToAddHexIntoCell(cell: Cell, hex: Hex): Boolean {
         if (cell.hexes.values.contains(hex)) return false
@@ -87,7 +85,7 @@ class Rules {
      * @return [0] - count of life hexes; [1] - energy hexes; [2] - attack hexes
      */
     private fun getNeighborCountByType(hexes: Collection<Hex>, hex: Hex): Array<Int> {
-        val neighbors = hexes.intersect(Hex.hexNeighbors(hex))
+        val neighbors = hexes.intersect(hexMath.hexNeighbors(hex))
         var life = 0
         var energy = 0
         var attack = 0
@@ -107,7 +105,7 @@ class Rules {
     }
 
     private fun getNeighborsByType(hexes: Collection<Hex>, hex: Hex, type: Hex.Type): List<Hex> {
-        return hexes.intersect(Hex.hexNeighbors(hex)).filter { it.type == type }
+        return hexes.intersect(hexMath.hexNeighbors(hex)).filter { it.type == type }
     }
 
     fun checkHexesConnectivity(allHexes: Collection<Hex>): Boolean {
@@ -120,7 +118,7 @@ class Rules {
     private fun checkConnectivityRecursively(allHexes: Collection<Hex>, hex: Hex, connectedHexes: MutableSet<Hex>) {
         if (connectedHexes.contains(hex)) return
         connectedHexes.add(hex)
-        val notCheckedNeighbors = allHexes.intersect(Hex.hexNeighbors(hex)).subtract(connectedHexes)
+        val notCheckedNeighbors = allHexes.intersect(hexMath.hexNeighbors(hex)).subtract(connectedHexes)
         notCheckedNeighbors.forEach { checkConnectivityRecursively(allHexes, it, connectedHexes) }
     }
 }

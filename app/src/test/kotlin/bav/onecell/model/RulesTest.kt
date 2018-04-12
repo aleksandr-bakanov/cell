@@ -1,14 +1,16 @@
 package bav.onecell.model
 
 import bav.onecell.model.hexes.Hex
+import bav.onecell.model.hexes.HexMath
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
 
 class RulesTest {
-    private val cell = Cell()
-    private val rules = Rules()
+    private val hexMath = HexMath()
+    private val cell = Cell(hexMath)
+    private val rules = Rules(hexMath)
 
     @Before
     fun setup() {
