@@ -83,4 +83,119 @@ class RulesTest {
         ) cell.hexes[hex.hashCode()] = hex
         assertFalse(rules.isAllowedToAddHexIntoCell(cell, Hex(3, -3, 0).withType(Hex.Type.LIFE)))
     }
+
+    @Test
+    fun addLifeHexNearAnotherLifeHexShouldReturnTrue() {
+        for (hex in arrayOf(
+                Hex(0, 0, 0).withType(Hex.Type.LIFE))
+        ) cell.hexes[hex.hashCode()] = hex
+        assertTrue(rules.isAllowedToAddHexIntoCell(cell, Hex(1, -1, 0).withType(Hex.Type.LIFE)))
+    }
+
+    @Test
+    fun addEnergyHexWithoutNeighborsShouldReturnFalse() {
+        for (hex in arrayOf(
+                Hex(0, 0, 0).withType(Hex.Type.LIFE))
+        ) cell.hexes[hex.hashCode()] = hex
+        assertFalse(rules.isAllowedToAddHexIntoCell(cell, Hex(2, -2, 0).withType(Hex.Type.ENERGY)))
+    }
+
+    @Test
+    fun addEnergyHexNearAnotherEnergyHexShouldReturnFalse() {
+        for (hex in arrayOf(
+                Hex(0, 0, 0).withType(Hex.Type.LIFE),
+                Hex(1, -1, 0).withType(Hex.Type.ENERGY))
+        ) cell.hexes[hex.hashCode()] = hex
+        assertFalse(rules.isAllowedToAddHexIntoCell(cell, Hex(2, -2, 0).withType(Hex.Type.ENERGY)))
+    }
+
+    @Test
+    fun addEnergyHexWithoutLifeNeighborsShouldReturnFalse() {
+        for (hex in arrayOf(
+                Hex(0, 0, 0).withType(Hex.Type.LIFE),
+                Hex(1, -1, 0).withType(Hex.Type.ATTACK))
+        ) cell.hexes[hex.hashCode()] = hex
+        assertFalse(rules.isAllowedToAddHexIntoCell(cell, Hex(2, -2, 0).withType(Hex.Type.ENERGY)))
+    }
+
+    @Test
+    fun addEnergyHexNearLifeHexWithExistingEnergyNeighborShouldReturnFalse() {
+        for (hex in arrayOf(
+                Hex(0, 0, 0).withType(Hex.Type.LIFE),
+                Hex(-1, 1, 0).withType(Hex.Type.ENERGY))
+        ) cell.hexes[hex.hashCode()] = hex
+        assertFalse(rules.isAllowedToAddHexIntoCell(cell, Hex(1, -1, 0).withType(Hex.Type.ENERGY)))
+    }
+
+    @Test
+    fun addEnergyHexNearLifeHexShouldReturnTrue() {
+        for (hex in arrayOf(
+                Hex(0, 0, 0).withType(Hex.Type.LIFE))
+        ) cell.hexes[hex.hashCode()] = hex
+        assertTrue(rules.isAllowedToAddHexIntoCell(cell, Hex(1, -1, 0).withType(Hex.Type.ENERGY)))
+    }
+
+    @Test
+    fun addAttackHexWithoutNeighborsShouldReturnFalse() {
+        for (hex in arrayOf(
+                Hex(0, 0, 0).withType(Hex.Type.LIFE))
+        ) cell.hexes[hex.hashCode()] = hex
+        assertFalse(rules.isAllowedToAddHexIntoCell(cell, Hex(2, -2, 0).withType(Hex.Type.ATTACK)))
+    }
+
+    @Test
+    fun addAttackHexNearLifeHexShouldReturnTrue() {
+        for (hex in arrayOf(
+                Hex(0, 0, 0).withType(Hex.Type.LIFE))
+        ) cell.hexes[hex.hashCode()] = hex
+        assertTrue(rules.isAllowedToAddHexIntoCell(cell, Hex(1, -1, 0).withType(Hex.Type.ATTACK)))
+    }
+
+    @Test
+    fun removeAnyHexFromEmptyCellShouldNotBeAllowed() {
+        assertFalse(rules.isAllowedToRemoveHexFromCell(cell, Hex(0, 0, 0).withType(Hex.Type.LIFE)))
+        assertFalse(rules.isAllowedToRemoveHexFromCell(cell, Hex(0, 0, 0).withType(Hex.Type.ENERGY)))
+        assertFalse(rules.isAllowedToRemoveHexFromCell(cell, Hex(0, 0, 0).withType(Hex.Type.ATTACK)))
+    }
+
+    @Test
+    fun removeLastHexFromCellShouldBeAllowed() {
+        for (hex in arrayOf(
+                Hex(0, 0, 0))
+        ) cell.hexes[hex.hashCode()] = hex
+        assertTrue(rules.isAllowedToRemoveHexFromCell(cell, Hex(0, 0, 0)))
+    }
+
+    @Test
+    fun removeHexLeadingToBreakOfLifeAndEnergyHexesConnectivityShouldNotBeAllowed() {
+        for (hex in arrayOf(
+                Hex(0, 0, 0).withType(Hex.Type.LIFE),
+                Hex(-1, 1, 0).withType(Hex.Type.LIFE),
+                Hex(1, -1, 0).withType(Hex.Type.ENERGY))
+        ) cell.hexes[hex.hashCode()] = hex
+        assertFalse(rules.isAllowedToRemoveHexFromCell(cell, Hex(0, 0, 0)))
+    }
+
+    @Test
+    fun removeHexLeadingToBreakOfHexesConnectivityShouldNotBeAllowed() {
+        for (hex in arrayOf(
+                Hex(0, 0, 0).withType(Hex.Type.LIFE),
+                Hex(-1, 1, 0).withType(Hex.Type.LIFE),
+                Hex(1, -1, 0).withType(Hex.Type.ENERGY),
+                Hex(2, -2, 0).withType(Hex.Type.ATTACK))
+        ) cell.hexes[hex.hashCode()] = hex
+        assertFalse(rules.isAllowedToRemoveHexFromCell(cell, Hex(1, -1, 0)))
+    }
+
+    @Test
+    fun removeHexNotLeadingToBreakOfHexesConnectivityShouldBeAllowed() {
+        for (hex in arrayOf(
+                Hex(0, 0, 0).withType(Hex.Type.LIFE),
+                Hex(-1, 1, 0).withType(Hex.Type.LIFE),
+                Hex(1, -1, 0).withType(Hex.Type.ENERGY),
+                Hex(2, -2, 0).withType(Hex.Type.ATTACK))
+        ) cell.hexes[hex.hashCode()] = hex
+        assertTrue(rules.isAllowedToRemoveHexFromCell(cell, Hex(2, -2, 0)))
+        assertTrue(rules.isAllowedToRemoveHexFromCell(cell, Hex(-1, 1, 0)))
+    }
 }

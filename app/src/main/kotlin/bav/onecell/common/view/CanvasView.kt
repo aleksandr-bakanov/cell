@@ -84,7 +84,7 @@ open class CanvasView(context: Context, attributeSet: AttributeSet) : View(conte
         lightStrokePaint.strokeWidth = 5.0f
 
         coordinateTextPaint.color = Color.BLACK
-        coordinateTextPaint.textSize = 48f
+        coordinateTextPaint.textSize = 32f
         coordinateTextPaint.textAlign = Paint.Align.CENTER
 
         indexTextPaint.color = Color.RED
@@ -126,6 +126,7 @@ open class CanvasView(context: Context, attributeSet: AttributeSet) : View(conte
         canvas?.drawColor(ContextCompat.getColor(context, R.color.cellConstructorBackground))
         initializeLayoutOrigin(canvas)
         drawBackgroundGrid(canvas)
+        drawCoordinates(canvas)
     }
 
     private fun initializeLayoutOrigin(canvas: Canvas?) {
@@ -271,15 +272,15 @@ open class CanvasView(context: Context, attributeSet: AttributeSet) : View(conte
                 hexCorners.sumByDouble { it.x } / hexCorners.size.toDouble(),
                 hexCorners.sumByDouble { it.y } / hexCorners.size.toDouble())
         val coef = 2.0
-        val xOrigin = Point((hexCorners[5].x + center.x) / coef,
+        val qOrigin = Point((hexCorners[5].x + center.x) / coef,
                             (hexCorners[5].y + center.y) / coef + coordinateTextVerticalOffset)
-        val yOrigin = Point((hexCorners[3].x + center.x) / coef,
-                            (hexCorners[3].y + center.y) / coef + coordinateTextVerticalOffset)
-        val zOrigin = Point((hexCorners[1].x + center.x) / coef,
+        val rOrigin = Point((hexCorners[1].x + center.x) / coef,
                             (hexCorners[1].y + center.y) / coef + coordinateTextVerticalOffset)
-        canvas?.drawText(hex.q.toString() + "x", xOrigin.x.toFloat(), xOrigin.y.toFloat(), coordinateTextPaint)
-        canvas?.drawText(hex.r.toString() + "y", yOrigin.x.toFloat(), yOrigin.y.toFloat(), coordinateTextPaint)
-        canvas?.drawText(hex.s.toString() + "z", zOrigin.x.toFloat(), zOrigin.y.toFloat(), coordinateTextPaint)
+        val sOrigin = Point((hexCorners[3].x + center.x) / coef,
+                            (hexCorners[3].y + center.y) / coef + coordinateTextVerticalOffset)
+        canvas?.drawText(hex.q.toString() + "q", qOrigin.x.toFloat(), qOrigin.y.toFloat(), coordinateTextPaint)
+        canvas?.drawText(hex.r.toString() + "r", rOrigin.x.toFloat(), rOrigin.y.toFloat(), coordinateTextPaint)
+        canvas?.drawText(hex.s.toString() + "s", sOrigin.x.toFloat(), sOrigin.y.toFloat(), coordinateTextPaint)
     }
 
     protected fun getHexPath(hex: Hex): Path {

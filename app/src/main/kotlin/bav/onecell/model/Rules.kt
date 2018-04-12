@@ -46,9 +46,13 @@ class Rules {
         // Also life hex can adjoin with no more than one energy hex.
         val neighbors = getNeighborCountByType(hexes, hex)
         if (hexHasNoNeighbors(neighbors)) return false
+        // There are more than one energy neighbor
         if (neighbors[1] > 1) return false
+        // One energy neighbor, zero life neighbors
         if (neighbors[0] == 0 && neighbors[1] == 1) return true
+        // No life neighbors
         if (neighbors[0] == 0) return false
+        // All other cases are valid
         return true
     }
 
@@ -57,7 +61,9 @@ class Rules {
         // Energy hex can't adjoin with other energy hex
         val neighborsCount = getNeighborCountByType(hexes, hex)
         if (hexHasNoNeighbors(neighborsCount)) return false
+        // There is at least one energy neighbor
         if (neighborsCount[1] > 0) return false
+        // There is no life neighbors
         if (neighborsCount[0] == 0) return false
         // Check all life neighbors's energy neighbors
         val lifeNeighbors = getNeighborsByType(hexes, hex, Hex.Type.LIFE)
@@ -70,7 +76,6 @@ class Rules {
 
     private fun checkAttackCell(hexes: Collection<Hex>, hex: Hex): Boolean {
         if (hexes.isEmpty()) return false
-        // Energy hex can't adjoin with other energy hex
         val neighbors = getNeighborCountByType(hexes, hex)
         if (hexHasNoNeighbors(neighbors)) return false
         return true
