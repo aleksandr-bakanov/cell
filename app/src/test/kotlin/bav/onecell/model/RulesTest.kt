@@ -52,7 +52,7 @@ class RulesTest {
     fun addHexSeparatedFromCellShouldReturnFalse() {
         val hex = Hex(0, 0, 0).withType(Hex.Type.LIFE)
         cell.hexes[hex.hashCode()] = hex
-        assertFalse(rules.isAllowedToAddHexIntoCell(cell, Hex(2, 2, 2).withType(Hex.Type.LIFE)))
+        assertFalse(rules.isAllowedToAddHexIntoCell(cell, Hex(2, -2, 0).withType(Hex.Type.LIFE)))
     }
 
     @Test

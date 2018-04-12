@@ -16,7 +16,7 @@ data class Hex(val q: Int, val r: Int, val s: Int) {
     var receivedDamage: Int = 0
 
     init {
-        assert(q + r + s == 0)
+        if (q + r + s != 0) throw IllegalArgumentException("q + r + s should be equal to 0")
     }
 
     fun withType(type: Type): Hex {

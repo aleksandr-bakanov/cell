@@ -21,11 +21,12 @@ class HexMath {
     )
 
     fun getHexByDirection(direction: Int /* 0 to 5 */): Hex {
-        assert(direction in 0..5)
+        if (direction < 0 || direction > 5) throw IllegalArgumentException("Direction should be in range [0..5]")
         return DIRECTIONS[direction]
     }
 
     fun getNeighborsWithinRadius(origin: Hex, radius: Int): Set<Hex> {
+        if (radius <= 0) throw IllegalArgumentException("Radius should be more than zero")
         val hexes = mutableSetOf<Hex>()
         for (q in -radius..radius) {
             val r1 = Math.max(-radius, -q - radius)
@@ -46,6 +47,7 @@ class HexMath {
      * @return Corresponding direction
      */
     fun radToDir(angle: Float): Int {
+        if (angle < -PI.toFloat() || angle > PI.toFloat()) throw IllegalArgumentException("Angle should be in range [-PI..PI]")
         return if (angle >= (-PI * 5 / 6) && angle < (-PI / 2)) 5
         else if (angle >= (-PI / 2) && angle < (-PI / 6)) 0
         else if (angle >= (-PI / 6) && angle < (PI / 6)) 1
