@@ -9,11 +9,11 @@ class Cell(private val hexMath: HexMath,
            var origin: Hex = Hex(0, 0, 0),
            var direction: Direction = Direction.N) {
 
-    enum class Direction(value: Int) {
+    enum class Direction(val value: Int) {
         N(0), NE(1), SE(2), S(3), SW(4), NW(5);
 
         companion object {
-            private val map = Direction.values().associateBy { it.ordinal }
+            private val map = Direction.values().associateBy { it.value }
             fun fromInt(type: Int): Direction = map[type] ?: N
         }
     }
@@ -37,6 +37,8 @@ class Cell(private val hexMath: HexMath,
     fun removeHex(hex: Hex) {
         hexes.remove(hex.hashCode())
     }
+
+    fun contains(hex: Hex): Boolean = hexes[hex.hashCode()] != null
 
     fun evaluateCellHexesPower() {
         hexes.values.forEach { hex ->
@@ -97,7 +99,7 @@ class Cell(private val hexMath: HexMath,
     fun rotateLeft() {
         val newDir = when (direction) {
             Direction.N -> Direction.NW
-            else -> Direction.fromInt(direction.ordinal - 1)
+            else -> Direction.fromInt(direction.value - 1)
         }
         rotate(newDir)
     }
@@ -105,7 +107,7 @@ class Cell(private val hexMath: HexMath,
     fun rotateRight() {
         val newDir = when (direction) {
             Direction.NW -> Direction.N
-            else -> Direction.fromInt(direction.ordinal + 1)
+            else -> Direction.fromInt(direction.value + 1)
         }
         rotate(newDir)
     }
@@ -113,7 +115,7 @@ class Cell(private val hexMath: HexMath,
     // TODO: make it formula
     fun rotate(newDirection: Direction) {
         if (direction == newDirection) return
-        else if (abs(direction.ordinal - newDirection.ordinal) == 3) rotateHexesFlip()
+        else if (abs(direction.value - newDirection.value) == 3) rotateHexesFlip()
         else {
             when (direction) {
                 Direction.N -> {

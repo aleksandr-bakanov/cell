@@ -7,12 +7,12 @@ class HexTest {
 
     @Test(expected = IllegalArgumentException::class)
     fun constructorWithBrokenInvariantShouldThrow() {
-        val hex = Hex(1, 2, 3)
+        Hex(1, 2, 3)
     }
 
     @Test
     fun constructorWithValidInvariantShouldNotThrow() {
-        val hex = Hex(-1, -2, 3)
+        Hex(-1, -2, 3)
     }
 
     @Test

@@ -44,14 +44,13 @@ class RulesTest {
     @Test
     fun addExistingHexShouldReturnFalse() {
         val hex = Hex(0, 0, 0).withType(Hex.Type.LIFE)
-        cell.hexes[hex.hashCode()] = hex
+        cell.addHex(hex)
         assertFalse(rules.isAllowedToAddHexIntoCell(cell, hex))
     }
 
     @Test
     fun addHexSeparatedFromCellShouldReturnFalse() {
-        val hex = Hex(0, 0, 0).withType(Hex.Type.LIFE)
-        cell.hexes[hex.hashCode()] = hex
+        cell.addHex(Hex(0, 0, 0).withType(Hex.Type.LIFE))
         assertFalse(rules.isAllowedToAddHexIntoCell(cell, Hex(2, -2, 0).withType(Hex.Type.LIFE)))
     }
 
@@ -63,7 +62,7 @@ class RulesTest {
                 Hex(0, 1, -1).withType(Hex.Type.LIFE),
                 Hex(0, -1, 1).withType(Hex.Type.ENERGY),
                 Hex(1, 0, -1).withType(Hex.Type.ENERGY))
-        ) cell.hexes[hex.hashCode()] = hex
+        ) cell.addHex(hex)
         assertFalse(rules.isAllowedToAddHexIntoCell(cell, Hex(1, -1, 0).withType(Hex.Type.LIFE)))
     }
 
@@ -72,7 +71,7 @@ class RulesTest {
         for (hex in arrayOf(
                 Hex(0, 0, 0).withType(Hex.Type.LIFE),
                 Hex(1, -1, 0).withType(Hex.Type.ENERGY))
-        ) cell.hexes[hex.hashCode()] = hex
+        ) cell.addHex(hex)
         assertTrue(rules.isAllowedToAddHexIntoCell(cell, Hex(2, -2, 0).withType(Hex.Type.LIFE)))
     }
 
@@ -82,7 +81,7 @@ class RulesTest {
                 Hex(0, 0, 0).withType(Hex.Type.LIFE),
                 Hex(1, -1, 0).withType(Hex.Type.ENERGY),
                 Hex(2, -2, 0).withType(Hex.Type.ATTACK))
-        ) cell.hexes[hex.hashCode()] = hex
+        ) cell.addHex(hex)
         assertFalse(rules.isAllowedToAddHexIntoCell(cell, Hex(3, -3, 0).withType(Hex.Type.LIFE)))
     }
 
@@ -90,7 +89,7 @@ class RulesTest {
     fun addLifeHexNearAnotherLifeHexShouldReturnTrue() {
         for (hex in arrayOf(
                 Hex(0, 0, 0).withType(Hex.Type.LIFE))
-        ) cell.hexes[hex.hashCode()] = hex
+        ) cell.addHex(hex)
         assertTrue(rules.isAllowedToAddHexIntoCell(cell, Hex(1, -1, 0).withType(Hex.Type.LIFE)))
     }
 
@@ -98,7 +97,7 @@ class RulesTest {
     fun addEnergyHexWithoutNeighborsShouldReturnFalse() {
         for (hex in arrayOf(
                 Hex(0, 0, 0).withType(Hex.Type.LIFE))
-        ) cell.hexes[hex.hashCode()] = hex
+        ) cell.addHex(hex)
         assertFalse(rules.isAllowedToAddHexIntoCell(cell, Hex(2, -2, 0).withType(Hex.Type.ENERGY)))
     }
 
@@ -107,7 +106,7 @@ class RulesTest {
         for (hex in arrayOf(
                 Hex(0, 0, 0).withType(Hex.Type.LIFE),
                 Hex(1, -1, 0).withType(Hex.Type.ENERGY))
-        ) cell.hexes[hex.hashCode()] = hex
+        ) cell.addHex(hex)
         assertFalse(rules.isAllowedToAddHexIntoCell(cell, Hex(2, -2, 0).withType(Hex.Type.ENERGY)))
     }
 
@@ -116,7 +115,7 @@ class RulesTest {
         for (hex in arrayOf(
                 Hex(0, 0, 0).withType(Hex.Type.LIFE),
                 Hex(1, -1, 0).withType(Hex.Type.ATTACK))
-        ) cell.hexes[hex.hashCode()] = hex
+        ) cell.addHex(hex)
         assertFalse(rules.isAllowedToAddHexIntoCell(cell, Hex(2, -2, 0).withType(Hex.Type.ENERGY)))
     }
 
@@ -125,7 +124,7 @@ class RulesTest {
         for (hex in arrayOf(
                 Hex(0, 0, 0).withType(Hex.Type.LIFE),
                 Hex(-1, 1, 0).withType(Hex.Type.ENERGY))
-        ) cell.hexes[hex.hashCode()] = hex
+        ) cell.addHex(hex)
         assertFalse(rules.isAllowedToAddHexIntoCell(cell, Hex(1, -1, 0).withType(Hex.Type.ENERGY)))
     }
 
@@ -133,7 +132,7 @@ class RulesTest {
     fun addEnergyHexNearLifeHexShouldReturnTrue() {
         for (hex in arrayOf(
                 Hex(0, 0, 0).withType(Hex.Type.LIFE))
-        ) cell.hexes[hex.hashCode()] = hex
+        ) cell.addHex(hex)
         assertTrue(rules.isAllowedToAddHexIntoCell(cell, Hex(1, -1, 0).withType(Hex.Type.ENERGY)))
     }
 
@@ -141,7 +140,7 @@ class RulesTest {
     fun addAttackHexWithoutNeighborsShouldReturnFalse() {
         for (hex in arrayOf(
                 Hex(0, 0, 0).withType(Hex.Type.LIFE))
-        ) cell.hexes[hex.hashCode()] = hex
+        ) cell.addHex(hex)
         assertFalse(rules.isAllowedToAddHexIntoCell(cell, Hex(2, -2, 0).withType(Hex.Type.ATTACK)))
     }
 
@@ -149,7 +148,7 @@ class RulesTest {
     fun addAttackHexNearLifeHexShouldReturnTrue() {
         for (hex in arrayOf(
                 Hex(0, 0, 0).withType(Hex.Type.LIFE))
-        ) cell.hexes[hex.hashCode()] = hex
+        ) cell.addHex(hex)
         assertTrue(rules.isAllowedToAddHexIntoCell(cell, Hex(1, -1, 0).withType(Hex.Type.ATTACK)))
     }
 
@@ -164,7 +163,7 @@ class RulesTest {
     fun removeLastHexFromCellShouldBeAllowed() {
         for (hex in arrayOf(
                 Hex(0, 0, 0))
-        ) cell.hexes[hex.hashCode()] = hex
+        ) cell.addHex(hex)
         assertTrue(rules.isAllowedToRemoveHexFromCell(cell, Hex(0, 0, 0)))
     }
 
@@ -174,7 +173,7 @@ class RulesTest {
                 Hex(0, 0, 0).withType(Hex.Type.LIFE),
                 Hex(-1, 1, 0).withType(Hex.Type.LIFE),
                 Hex(1, -1, 0).withType(Hex.Type.ENERGY))
-        ) cell.hexes[hex.hashCode()] = hex
+        ) cell.addHex(hex)
         assertFalse(rules.isAllowedToRemoveHexFromCell(cell, Hex(0, 0, 0)))
     }
 
@@ -185,7 +184,7 @@ class RulesTest {
                 Hex(-1, 1, 0).withType(Hex.Type.LIFE),
                 Hex(1, -1, 0).withType(Hex.Type.ENERGY),
                 Hex(2, -2, 0).withType(Hex.Type.ATTACK))
-        ) cell.hexes[hex.hashCode()] = hex
+        ) cell.addHex(hex)
         assertFalse(rules.isAllowedToRemoveHexFromCell(cell, Hex(1, -1, 0)))
     }
 
@@ -196,7 +195,7 @@ class RulesTest {
                 Hex(-1, 1, 0).withType(Hex.Type.LIFE),
                 Hex(1, -1, 0).withType(Hex.Type.ENERGY),
                 Hex(2, -2, 0).withType(Hex.Type.ATTACK))
-        ) cell.hexes[hex.hashCode()] = hex
+        ) cell.addHex(hex)
         assertTrue(rules.isAllowedToRemoveHexFromCell(cell, Hex(2, -2, 0)))
         assertTrue(rules.isAllowedToRemoveHexFromCell(cell, Hex(-1, 1, 0)))
     }
