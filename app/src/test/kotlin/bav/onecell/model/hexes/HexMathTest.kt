@@ -106,4 +106,54 @@ class HexMathTest {
             assertTrue(real.contains(hex))
         }
     }
+
+    @Test
+    fun addShouldReturnValidHex() {
+        assertEquals(Hex(-1, 0, 1), hexMath.add(Hex(0, 1, -1), Hex(-1, -1, 2)))
+    }
+
+    @Test
+    fun subtractShouldReturnValidHex() {
+        assertEquals(Hex(-1, -4, 5), hexMath.subtract(Hex(0, -1, 1), Hex(1, 3, -4)))
+    }
+
+    @Test
+    fun multiplyShouldReturnValidHex() {
+        assertEquals(Hex(-3, -6, 9), hexMath.multiply(Hex(-1, -2, 3), 3))
+    }
+
+    @Test
+    fun lengthShouldReturnValidValue() {
+        assertEquals(3, hexMath.length(Hex(-1, -2, 3)))
+    }
+
+    @Test
+    fun distanceShouldReturnValidValue() {
+        assertEquals(5, hexMath.distance(Hex(0, -1, 1), Hex(1, 3, -4)))
+    }
+
+    @Test
+    fun rotateRightShouldReturnValidHex() {
+        assertEquals(Hex(2, -3, 1), hexMath.rotateRight(Hex(-1, -2, 3)))
+    }
+
+    @Test
+    fun rotateRightTwiceShouldReturnValidHex() {
+        assertEquals(Hex(3, -1, -2), hexMath.rotateRightTwice(Hex(-1, -2, 3)))
+    }
+
+    @Test
+    fun rotateLeftShouldReturnValidHex() {
+        assertEquals(Hex(-3, 1, 2), hexMath.rotateLeft(Hex(-1, -2, 3)))
+    }
+
+    @Test
+    fun rotateLeftTwiceShouldReturnValidHex() {
+        assertEquals(Hex(-2, 3, -1), hexMath.rotateLeftTwice(Hex(-1, -2, 3)))
+    }
+
+    @Test
+    fun rotateFlipShouldReturnValidHex() {
+        assertEquals(Hex(1, 2, -3), hexMath.rotateFlip(Hex(-1, -2, 3)))
+    }
 }

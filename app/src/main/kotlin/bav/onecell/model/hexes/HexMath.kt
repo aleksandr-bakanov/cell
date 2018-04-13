@@ -85,7 +85,7 @@ class HexMath {
     }
 
     fun length(hex: Hex): Int {
-        return (abs(hex.q) + abs(hex.r) + abs(hex.s) / 2)
+        return (abs(hex.q) + abs(hex.r) + abs(hex.s)) / 2
     }
 
     fun distance(a: Hex, b: Hex): Int {
@@ -101,7 +101,7 @@ class HexMath {
 
     fun pixelToHex(layout: Layout, p: Point): FractionalHex {
         val m: Orientation = layout.orientation
-        val pt: Point = Point(
+        val pt = Point(
                 (p.x - layout.origin.x) / layout.size.x,
                 (p.y - layout.origin.y) / layout.size.y)
         val q: Double = m.b0 * pt.x + m.b1 * pt.y
