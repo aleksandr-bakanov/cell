@@ -62,6 +62,7 @@ class BattleActivity : Activity(), Battle.View {
     //region Overridden methods
     override fun setBackgroundFieldRadius(radius: Int) {
         battleCanvasView.backgroundFieldRadius = radius
+        battleCanvasView.invalidate()
     }
 
     override fun updateBattleView() {
@@ -74,6 +75,10 @@ class BattleActivity : Activity(), Battle.View {
 
     override fun setCells(cells: List<Cell>) {
         battleCanvasView.cells = cells
+    }
+
+    override fun setCorpses(cells: List<Cell>) {
+        battleCanvasView.corpses = cells
     }
 
     override fun reportBattleEnd() {

@@ -22,11 +22,16 @@ class BattleCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
     lateinit var presenter: Battle.Presenter
     var ring = listOf<Hex>()
     private val ringPaint = Paint()
+    private val corpsePaint = Paint()
     lateinit var cells: List<Cell>
+    lateinit var corpses: List<Cell>
 
     init {
         ringPaint.style = Paint.Style.FILL
         ringPaint.color = ContextCompat.getColor(context, R.color.battleViewRing)
+
+        corpsePaint.style = Paint.Style.FILL
+        corpsePaint.color = ContextCompat.getColor(context, R.color.battleViewCorpse)
 
         setOnTouchListener(
                 { view: View?, event: MotionEvent? ->
@@ -38,7 +43,8 @@ class BattleCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
         drawRing(canvas)
-        cells.forEachIndexed { index, cell -> drawCell(canvas, cell, index) }
+        corpses.forEach { corpse -> drawCell(canvas, corpse, corpsePaint, corpsePaint, corpsePaint) }
+        cells.forEach { cell -> drawCell(canvas, cell) }
     }
 
     private fun drawRing(canvas: Canvas?) {

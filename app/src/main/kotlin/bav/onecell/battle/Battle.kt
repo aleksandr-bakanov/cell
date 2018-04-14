@@ -8,6 +8,7 @@ interface Battle {
     interface View {
         fun setBackgroundFieldRadius(radius: Int)
         fun setCells(cells: List<Cell>)
+        fun setCorpses(cells: List<Cell>)
         fun updateBattleView()
         fun setRing(ring: List<Hex>)
         fun reportBattleEnd()

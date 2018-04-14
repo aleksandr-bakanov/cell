@@ -9,6 +9,7 @@ import android.graphics.Path
 import android.graphics.Typeface
 import android.support.v4.content.ContextCompat
 import android.util.AttributeSet
+import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import bav.onecell.R
@@ -20,23 +21,35 @@ import bav.onecell.model.hexes.Orientation
 import bav.onecell.model.hexes.Point
 import kotlin.math.PI
 import kotlin.math.cos
+import kotlin.math.max
+import kotlin.math.min
 import kotlin.math.sin
 
 open class CanvasView(context: Context, attributeSet: AttributeSet) : View(context, attributeSet) {
 
+    companion object {
+        private const val TAG = "CanvasView"
+    }
+
     var backgroundFieldRadius: Int = 1
         set(value) {
+            field = value
             backgroundHexes = hexMath.getNeighborsWithinRadius(hexMath.ZERO_HEX, value)
-            invalidate()
+            isInitialized = false
         }
 
     lateinit var hexMath: HexMath
 
-    private val layoutHexSize = Point(50.0, 50.0)
+    private var layoutHexSize = Point(50.0, 50.0)
+        set(value) {
+            field = value
+            layout = Layout(Orientation.LAYOUT_POINTY, layoutHexSize, Point())
+            coordinateTextVerticalOffset = (layoutHexSize.x / 10).toFloat()
+        }
+
     private var lastTouchX = 0f
     private var lastTouchY = 0f
-    protected val layout = Layout(
-            Orientation.LAYOUT_POINTY, layoutHexSize, Point())
+    protected var layout = Layout(Orientation.LAYOUT_POINTY, layoutHexSize, Point())
 
     private val gridPaint = Paint()
     private val lifePaint = Paint()
@@ -49,7 +62,7 @@ open class CanvasView(context: Context, attributeSet: AttributeSet) : View(conte
     private val coordinateTextPaint = Paint()
     private val indexTextPaint = Paint()
     private val powerTextPaint = Paint()
-    private val coordinateTextVerticalOffset = (layoutHexSize.x / 10).toFloat()
+    private var coordinateTextVerticalOffset = (layoutHexSize.x / 10).toFloat()
 
     private var isInitialized = false
     private lateinit var backgroundHexes: Set<Hex>
@@ -57,7 +70,7 @@ open class CanvasView(context: Context, attributeSet: AttributeSet) : View(conte
     init {
         gridPaint.style = Paint.Style.STROKE
         gridPaint.color = ContextCompat.getColor(context, R.color.cellConstructorGrid)
-        gridPaint.strokeWidth = 5.0f
+        gridPaint.strokeWidth = 1.0f
 
         lifePaint.style = Paint.Style.FILL
         lifePaint.color = ContextCompat.getColor(context, R.color.cellConstructorLife)
@@ -70,21 +83,21 @@ open class CanvasView(context: Context, attributeSet: AttributeSet) : View(conte
 
         strokePaint.style = Paint.Style.STROKE
         strokePaint.color = ContextCompat.getColor(context, R.color.cellConstructorStroke)
-        strokePaint.strokeWidth = 5.0f
+        strokePaint.strokeWidth = 1.0f
 
         darkStrokePaint.style = Paint.Style.STROKE
         darkStrokePaint.color = Color.BLACK
-        darkStrokePaint.strokeWidth = 5.0f
+        darkStrokePaint.strokeWidth = 1.0f
 
         cellOutlinePaint.style = Paint.Style.STROKE
         cellOutlinePaint.color = Color.BLACK
-        cellOutlinePaint.strokeWidth = 16.0f
+        cellOutlinePaint.strokeWidth = 3.0f
         cellOutlinePaint.strokeJoin = Paint.Join.ROUND
         cellOutlinePaint.strokeCap = Paint.Cap.ROUND
 
         lightStrokePaint.style = Paint.Style.STROKE
         lightStrokePaint.color = Color.WHITE
-        lightStrokePaint.strokeWidth = 5.0f
+        lightStrokePaint.strokeWidth = 1.0f
 
         coordinateTextPaint.color = Color.BLACK
         coordinateTextPaint.textSize = 32f
@@ -127,16 +140,21 @@ open class CanvasView(context: Context, attributeSet: AttributeSet) : View(conte
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
         canvas?.drawColor(ContextCompat.getColor(context, R.color.cellConstructorBackground))
-        initializeLayoutOrigin(canvas)
+        if (!isInitialized) {
+            initializeLayout(canvas)
+            isInitialized = true
+        }
         drawBackgroundGrid(canvas)
-        drawCoordinates(canvas)
     }
 
-    private fun initializeLayoutOrigin(canvas: Canvas?) {
-        if (!isInitialized) {
-            layout.origin = Point(canvas!!.width.toDouble() / 2.0,
-                                  canvas.height.toDouble() / 2.0)
-            isInitialized = true
+    private fun initializeLayout(canvas: Canvas?) {
+        canvas?.let {
+            val canvasSize = min(it.width, it.height)
+            val hexesOnField = backgroundFieldRadius * 2 + 1
+            val hexSize = (canvasSize / hexesOnField) / 2
+            layoutHexSize = Point(hexSize.toDouble(), hexSize.toDouble())
+            layout.origin = Point(it.width.toDouble() / 2.0,
+                                  it.height.toDouble() / 2.0)
         }
     }
 
@@ -158,14 +176,18 @@ open class CanvasView(context: Context, attributeSet: AttributeSet) : View(conte
         }
     }
 
-    protected fun drawCell(canvas: Canvas?, cell: Cell?, index: Int = 0) {
+    protected fun drawCell(canvas: Canvas?,
+                           cell: Cell?,
+                           lPaint: Paint = lifePaint,
+                           ePaint: Paint = energyPaint,
+                           aPaint: Paint = attackPaint) {
         cell?.let {
             var paint: Paint
             for (hex in it.hexes) {
                 paint = when (hex.value.type) {
-                    Hex.Type.LIFE -> lifePaint
-                    Hex.Type.ENERGY -> energyPaint
-                    Hex.Type.ATTACK -> attackPaint
+                    Hex.Type.LIFE -> lPaint
+                    Hex.Type.ENERGY -> ePaint
+                    Hex.Type.ATTACK -> aPaint
                     else -> gridPaint
                 }
                 val path: Path = getHexPath(hexMath.add(hex.value, it.origin))
@@ -177,10 +199,8 @@ open class CanvasView(context: Context, attributeSet: AttributeSet) : View(conte
             drawOriginMarker(canvas, cell)
             // Draw outline
             drawCellOutline(canvas, cell)
-            // Draw index
-//            drawCellIndex(canvas, cell, index)
             // Draw powers
-            drawCellPower(canvas, cell)
+//            drawCellPower(canvas, cell)
         }
     }
 

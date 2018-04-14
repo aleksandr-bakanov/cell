@@ -25,9 +25,10 @@ class BattlePresenter(
 
     private val battleRoundSteps: Queue<()->Unit> = LinkedList<()->Unit>()
     private val cells = mutableListOf<Cell>()
+    private val corpses = mutableListOf<Cell>()
     private var battleFieldSize: Int = 0
 
-    private fun initBattleSteps() {
+    private fun initializeBattleSteps() {
         firstStep = applyCellsLogic
         for (action in arrayOf(
                 applyCellsLogic,
@@ -38,7 +39,7 @@ class BattlePresenter(
     }
 
     override fun initialize(cellIndexes: List<Int>) {
-        initBattleSteps()
+        initializeBattleSteps()
 
         // Make copy of cells
         for (i in cellIndexes) cellRepository.getCell(i)?.let { cells.add(it.clone()) }
@@ -47,6 +48,7 @@ class BattlePresenter(
 
         view.setBackgroundFieldRadius(battleFieldSize)
         view.setCells(cells)
+        view.setCorpses(corpses)
 
         moveCellsToTheirInitialPosition()
 
@@ -81,11 +83,6 @@ class BattlePresenter(
         action.invoke()
         battleRoundSteps.add(action)
         view.updateBattleView()
-    }
-
-    private fun calculateDamages() {
-        checkIntersections()
-        checkNeighboring()
     }
 
     private fun applyCellLogic(cell: Cell) {
@@ -213,33 +210,37 @@ class BattlePresenter(
                     })) cellsToRemove.add(index)
         }
         cellsToRemove.sortDescending()
-        cellsToRemove.forEach { cells.removeAt(it) }
-    }
-
-    private fun checkWhetherBattleEnds() {
-        if (cells.size <= 1) {
-            view.reportBattleEnd()
+        cellsToRemove.forEach {
+            corpses.add(cells[it])
+            cells.removeAt(it)
         }
     }
 
     //region Partial round steps
     private lateinit var firstStep: () -> Unit
 
-    private val applyCellsLogic: () -> Unit = {
+    private val applyCellsLogic = {
         // TODO pass battle field state to cell's logic mechanism
         cells.forEach { applyCellLogic(it) }
     }
 
-    private val moveCells: () -> Unit = {
+    private val chooseMovingDirections = {
+
+    }
+
+    private val moveCells = {
         moveCells()
     }
 
-    private val calculateDamages: () -> Unit = {
-        calculateDamages()
+    private val calculateDamages = {
+        checkIntersections()
+        checkNeighboring()
     }
 
-    private val checkWhetherBattleEnds: () -> Unit = {
-        checkWhetherBattleEnds()
+    private val checkWhetherBattleEnds = {
+        if (cells.size <= 1) {
+            view.reportBattleEnd()
+        }
     }
     //endregion
 }
