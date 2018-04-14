@@ -7,6 +7,8 @@ import bav.onecell.model.Rules
 import bav.onecell.model.hexes.Hex
 import bav.onecell.model.hexes.HexMath
 import bav.onecell.model.hexes.Layout
+import java.util.LinkedList
+import java.util.Queue
 import kotlin.math.atan2
 import kotlin.math.round
 
@@ -21,10 +23,23 @@ class BattlePresenter(
         private const val TAG = "BattlePresenter"
     }
 
+    private val battleRoundSteps: Queue<()->Unit> = LinkedList<()->Unit>()
     private val cells = mutableListOf<Cell>()
     private var battleFieldSize: Int = 0
 
+    private fun initBattleSteps() {
+        firstStep = applyCellsLogic
+        for (action in arrayOf(
+                applyCellsLogic,
+                moveCells,
+                calculateDamages,
+                checkWhetherBattleEnds)
+        ) battleRoundSteps.add(action)
+    }
+
     override fun initialize(cellIndexes: List<Int>) {
+        initBattleSteps()
+
         // Make copy of cells
         for (i in cellIndexes) cellRepository.getCell(i)?.let { cells.add(it.clone()) }
 
@@ -53,17 +68,19 @@ class BattlePresenter(
         cells.forEachIndexed { index, cell -> cell.origin = ring[index * step] }
     }
 
-    override fun doNextStep() {
-        // Each cell applies its logic. TODO pass battle field state to cell's logic mechanism
-        cells.forEach { applyCellLogic(it) }
-        // Move cells according to rules
-        moveCells()
-        // Calculate damages
-        calculateDamages()
-        // Update view
+    override fun doFullStep() {
+        do {
+            doPartialStep()
+        }
+        while (battleRoundSteps.peek() != firstStep)
+    }
+
+    override fun doPartialStep() {
+        // Get next action
+        val action = battleRoundSteps.poll()
+        action.invoke()
+        battleRoundSteps.add(action)
         view.updateBattleView()
-        // Check whether battle is ended
-        checkWhetherBattleEnds()
     }
 
     private fun calculateDamages() {
@@ -204,4 +221,25 @@ class BattlePresenter(
             view.reportBattleEnd()
         }
     }
+
+    //region Partial round steps
+    private lateinit var firstStep: () -> Unit
+
+    private val applyCellsLogic: () -> Unit = {
+        // TODO pass battle field state to cell's logic mechanism
+        cells.forEach { applyCellLogic(it) }
+    }
+
+    private val moveCells: () -> Unit = {
+        moveCells()
+    }
+
+    private val calculateDamages: () -> Unit = {
+        calculateDamages()
+    }
+
+    private val checkWhetherBattleEnds: () -> Unit = {
+        checkWhetherBattleEnds()
+    }
+    //endregion
 }

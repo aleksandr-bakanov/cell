@@ -42,9 +42,14 @@ class BattleActivity : Activity(), Battle.View {
     //endregion
 
     //region View listeners
-    fun onNextStepButtonClicked(view: View) {
-        presenter.doNextStep()
+    fun onFullStepButtonClicked(view: View) {
+        presenter.doFullStep()
     }
+
+    fun onPartialStepButtonClicked(view: View) {
+        presenter.doPartialStep()
+    }
+    //endregion
 
     //region Private methods
     private fun inject() {

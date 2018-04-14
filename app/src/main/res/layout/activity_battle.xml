@@ -5,12 +5,21 @@
     android:layout_height="match_parent">
 
     <Button
-        android:id="@+id/buttonNextStep"
+        android:id="@+id/buttonFullStep"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="onNextStepButtonClicked"
+        android:onClick="onFullStepButtonClicked"
         android:text="@string/button_next_step_title"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/buttonPartialStep"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onPartialStepButtonClicked"
+        android:text="@string/button_partial_step_title"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <bav.onecell.battle.BattleCanvasView
@@ -19,6 +28,6 @@
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonNextStep" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonFullStep" />
 
 </android.support.constraint.ConstraintLayout>

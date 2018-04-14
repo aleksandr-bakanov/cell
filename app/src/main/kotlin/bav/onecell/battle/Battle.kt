@@ -24,6 +24,8 @@ interface Battle {
         /**
          * Initialize next battle step calculation
          */
-        fun doNextStep()
+        fun doFullStep()
+
+        fun doPartialStep()
     }
 }

@@ -16,4 +16,5 @@
 
     <!-- Battle view -->
     <string name="button_next_step_title">Full step</string>
+    <string name="button_partial_step_title">Partial step</string>
 </resources>
