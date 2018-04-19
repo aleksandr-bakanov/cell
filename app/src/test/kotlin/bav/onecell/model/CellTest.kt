@@ -14,17 +14,17 @@ class CellTest {
 
     @Before
     fun setup() {
-        cell.hexes.clear()
-        cell.direction = Cell.Direction.N
+        cell.data.hexes.clear()
+        cell.data.direction = Cell.Direction.N
     }
 
     @Test
     fun defaultConstructorShouldSaveOriginAndDirection() {
         val origin = Hex(1, 2, -3)
         val direction = Cell.Direction.SW
-        val cell = Cell(hexMath, mutableMapOf(), origin, direction)
-        assertEquals(origin, cell.origin)
-        assertEquals(direction, cell.direction)
+        val cell = Cell(hexMath, Cell.Data(mutableMapOf(), origin, direction))
+        assertEquals(origin, cell.data.origin)
+        assertEquals(direction, cell.data.direction)
     }
 
     @Test
@@ -34,12 +34,12 @@ class CellTest {
         val hexes = arrayOf(Hex(1, 2, -3), Hex(0, 5, -5))
         val map = mutableMapOf<Int, Hex>()
         hexes.forEach { map[it.hashCode()] = it }
-        val cell = Cell(hexMath, map, origin, direction)
+        val cell = Cell(hexMath, Cell.Data(map, origin, direction))
 
         val copy = cell.clone()
-        assertEquals(cell.origin, copy.origin)
-        assertEquals(cell.direction, copy.direction)
-        assertEquals(cell.hexes, copy.hexes)
+        assertEquals(cell.data.origin, copy.data.origin)
+        assertEquals(cell.data.direction, copy.data.direction)
+        assertEquals(cell.data.hexes, copy.data.hexes)
     }
 
     @Test
@@ -58,25 +58,25 @@ class CellTest {
         val hex = Hex(0, 0, 0)
         cell.addHex(hex)
         cell.addHex(hex)
-        assertEquals(1, cell.hexes.size)
+        assertEquals(1, cell.data.hexes.size)
     }
 
     @Test
     fun removeHexShouldRemoveExistingHex() {
         val hex = Hex(0, 0, 0)
         cell.addHex(hex)
-        assertEquals(1, cell.hexes.size)
+        assertEquals(1, cell.data.hexes.size)
         cell.removeHex(hex)
-        assertEquals(0, cell.hexes.size)
+        assertEquals(0, cell.data.hexes.size)
     }
 
     @Test
     fun removeHexShouldNotRemoveNonExistingHex() {
         val hex = Hex(0, 0, 0)
         cell.addHex(hex)
-        assertEquals(1, cell.hexes.size)
+        assertEquals(1, cell.data.hexes.size)
         cell.removeHex(Hex(1, 0, -1))
-        assertEquals(1, cell.hexes.size)
+        assertEquals(1, cell.data.hexes.size)
     }
 
     @Test
@@ -99,12 +99,12 @@ class CellTest {
         val mostFarAttackHex = Hex(-2, 2, 0).withType(Hex.Type.ATTACK)
         for (hex in arrayOf(lifeHex, energyHex, nearAttackHex, farAttackHex, veryFarAttackHex, mostFarAttackHex)) cell.addHex(hex)
         cell.evaluateCellHexesPower()
-        assertEquals(Hex.Power.LIFE_SELF.value, cell.hexes[lifeHex.hashCode()]?.power)
-        assertEquals(Hex.Power.ENERGY_SELF.value, cell.hexes[energyHex.hashCode()]?.power)
-        assertEquals(Hex.Power.LIFE_TO_NEIGHBOR.value + Hex.Power.ENERGY_TO_NEIGHBOR.value, cell.hexes[nearAttackHex.hashCode()]?.power)
-        assertEquals(Hex.Power.LIFE_TO_NEIGHBOR.value + Hex.Power.ENERGY_TO_FAR_NEIGHBOR.value, cell.hexes[farAttackHex.hashCode()]?.power)
-        assertEquals(Hex.Power.ENERGY_TO_FAR_NEIGHBOR.value, cell.hexes[veryFarAttackHex.hashCode()]?.power)
-        assertEquals(0, cell.hexes[mostFarAttackHex.hashCode()]?.power)
+        assertEquals(Hex.Power.LIFE_SELF.value, cell.data.hexes[lifeHex.hashCode()]?.power)
+        assertEquals(Hex.Power.ENERGY_SELF.value, cell.data.hexes[energyHex.hashCode()]?.power)
+        assertEquals(Hex.Power.LIFE_TO_NEIGHBOR.value + Hex.Power.ENERGY_TO_NEIGHBOR.value, cell.data.hexes[nearAttackHex.hashCode()]?.power)
+        assertEquals(Hex.Power.LIFE_TO_NEIGHBOR.value + Hex.Power.ENERGY_TO_FAR_NEIGHBOR.value, cell.data.hexes[farAttackHex.hashCode()]?.power)
+        assertEquals(Hex.Power.ENERGY_TO_FAR_NEIGHBOR.value, cell.data.hexes[veryFarAttackHex.hashCode()]?.power)
+        assertEquals(0, cell.data.hexes[mostFarAttackHex.hashCode()]?.power)
     }
 
     @Test
@@ -137,22 +137,22 @@ class CellTest {
         cell.addHex(Hex(1, -1, 0))
         cell.rotateLeft()
         assertTrue(cell.contains(Hex(0, -1, 1)))
-        assertEquals(1, cell.hexes.size)
+        assertEquals(1, cell.data.hexes.size)
         cell.rotateLeft()
         assertTrue(cell.contains(Hex(-1, 0, 1)))
-        assertEquals(1, cell.hexes.size)
+        assertEquals(1, cell.data.hexes.size)
         cell.rotateLeft()
         assertTrue(cell.contains(Hex(-1, 1, 0)))
-        assertEquals(1, cell.hexes.size)
+        assertEquals(1, cell.data.hexes.size)
         cell.rotateLeft()
         assertTrue(cell.contains(Hex(0, 1, -1)))
-        assertEquals(1, cell.hexes.size)
+        assertEquals(1, cell.data.hexes.size)
         cell.rotateLeft()
         assertTrue(cell.contains(Hex(1, 0, -1)))
-        assertEquals(1, cell.hexes.size)
+        assertEquals(1, cell.data.hexes.size)
         cell.rotateLeft()
         assertTrue(cell.contains(Hex(1, -1, 0)))
-        assertEquals(1, cell.hexes.size)
+        assertEquals(1, cell.data.hexes.size)
     }
 
     @Test
@@ -160,22 +160,22 @@ class CellTest {
         cell.addHex(Hex(1, -1, 0))
         cell.rotateRight()
         assertTrue(cell.contains(Hex(1, 0, -1)))
-        assertEquals(1, cell.hexes.size)
+        assertEquals(1, cell.data.hexes.size)
         cell.rotateRight()
         assertTrue(cell.contains(Hex(0, 1, -1)))
-        assertEquals(1, cell.hexes.size)
+        assertEquals(1, cell.data.hexes.size)
         cell.rotateRight()
         assertTrue(cell.contains(Hex(-1, 1, 0)))
-        assertEquals(1, cell.hexes.size)
+        assertEquals(1, cell.data.hexes.size)
         cell.rotateRight()
         assertTrue(cell.contains(Hex(-1, 0, 1)))
-        assertEquals(1, cell.hexes.size)
+        assertEquals(1, cell.data.hexes.size)
         cell.rotateRight()
         assertTrue(cell.contains(Hex(0, -1, 1)))
-        assertEquals(1, cell.hexes.size)
+        assertEquals(1, cell.data.hexes.size)
         cell.rotateRight()
         assertTrue(cell.contains(Hex(1, -1, 0)))
-        assertEquals(1, cell.hexes.size)
+        assertEquals(1, cell.data.hexes.size)
     }
 
     @Test

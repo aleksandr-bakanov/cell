@@ -1,6 +1,14 @@
 package bav.onecell.model.hexes
 
-data class Hex(val q: Int, val r: Int, val s: Int) {
+import com.google.gson.Gson
+
+data class Hex(var q: Int = 0, var r: Int = 0, var s: Int = 0) {
+
+    companion object {
+        fun fromJson(json: String): Hex {
+            return Gson().fromJson(json, Hex::class.java)
+        }
+    }
 
     enum class Type {
         LIFE, ENERGY, ATTACK, REMOVE
@@ -30,4 +38,9 @@ data class Hex(val q: Int, val r: Int, val s: Int) {
     }
 
     fun clone() = Hex(q, r, s).withType(type).withPower(power)
+
+    fun toJson(): String {
+        val gson = Gson()
+        return gson.toJson(this)
+    }
 }

@@ -67,7 +67,7 @@ class BattlePresenter(
         }
         view.setRing(ring)
         val step = ring.size / cells.size
-        cells.forEachIndexed { index, cell -> cell.origin = ring[index * step] }
+        cells.forEachIndexed { index, cell -> cell.data.origin = ring[index * step] }
     }
 
     override fun doFullStep() {
@@ -93,14 +93,14 @@ class BattlePresenter(
         // Each cell will move to the nearest hex within all enemies
         val directions = mutableListOf<Int>()
         cells.forEachIndexed { i, cell ->
-            var nearest: Hex = cell.origin
+            var nearest: Hex = cell.data.origin
             var minDistance = Int.MAX_VALUE
             // Search for nearest enemy hex
             cells.forEachIndexed { j, enemy ->
                 if (j != i) {
-                    enemy.hexes.forEach {
-                        val candidate = hexMath.add(it.value, enemy.origin)
-                        val distance = hexMath.distance(cell.origin, candidate)
+                    enemy.data.hexes.forEach {
+                        val candidate = hexMath.add(it.value, enemy.data.origin)
+                        val distance = hexMath.distance(cell.data.origin, candidate)
                         if (distance < minDistance) {
                             minDistance = distance
                             nearest = candidate
@@ -110,7 +110,7 @@ class BattlePresenter(
             }
             // Find direction to move
             // Origin point
-            val op = hexMath.hexToPixel(Layout.DUMMY, cell.origin)
+            val op = hexMath.hexToPixel(Layout.DUMMY, cell.data.origin)
             // Nearest hex point
             val hp = hexMath.hexToPixel(Layout.DUMMY, nearest)
             // Angle direction to enemy hex
@@ -120,7 +120,7 @@ class BattlePresenter(
         }
         // Move cells
         directions.forEachIndexed { index, direction ->
-            cells[index].origin = hexMath.add(cells[index].origin, hexMath.getHexByDirection(direction))
+            cells[index].data.origin = hexMath.add(cells[index].data.origin, hexMath.getHexByDirection(direction))
         }
     }
 
@@ -129,8 +129,8 @@ class BattlePresenter(
         val allHexes = mutableSetOf<Hex>()
         val intersectedHexes = mutableSetOf<Hex>()
         cells.forEach { cell ->
-            cell.hexes.forEach { entry ->
-                val hexInGlobalCoords = hexMath.add(cell.origin, entry.value)
+            cell.data.hexes.forEach { entry ->
+                val hexInGlobalCoords = hexMath.add(cell.data.origin, entry.value)
                 if (!allHexes.add(hexInGlobalCoords)) {
                     intersectedHexes.add(hexInGlobalCoords)
                 }
@@ -143,7 +143,7 @@ class BattlePresenter(
             var maxPower = 0
             cells.forEach { cell ->
                 // intersected are in global coordinates, we should revert them to local ones
-                cell.hexes[hexMath.subtract(intersected, cell.origin).hashCode()]?.let {
+                cell.data.hexes[hexMath.subtract(intersected, cell.data.origin).hashCode()]?.let {
                     if (it.power >= maxPower) {
                         damage = maxPower
                         maxPower = it.power
@@ -154,7 +154,7 @@ class BattlePresenter(
             }
             // Deal damage
             cells.forEach { cell ->
-                cell.hexes[hexMath.subtract(intersected, cell.origin).hashCode()]?.let {
+                cell.data.hexes[hexMath.subtract(intersected, cell.data.origin).hashCode()]?.let {
                     it.power -= damage
                 }
             }
@@ -166,17 +166,17 @@ class BattlePresenter(
     private fun checkNeighboring() {
         cells.forEach { cell ->
             // Get cell outline
-            val cellOutline = cell.getOutlineHexes().map { hexMath.add(cell.origin, it) }
+            val cellOutline = cell.getOutlineHexes().map { hexMath.add(cell.data.origin, it) }
             // Get all enemy hexes
             val enemyHexes = mutableSetOf<Hex>()
             cells.filter { it != cell }.forEach { enemy ->
-                enemyHexes.addAll(enemy.hexes.values.map { hexMath.add(enemy.origin, it).withPower(it.power) })
+                enemyHexes.addAll(enemy.data.hexes.values.map { hexMath.add(enemy.data.origin, it).withPower(it.power) })
             }
             // Get all enemy hexes which are neighbors to us
             val neighboringHexes = enemyHexes.intersect(cellOutline)
             // Come through all our hexes
-            cell.hexes.values.forEach { hex ->
-                val hexInGlobal = hexMath.add(hex, cell.origin)
+            cell.data.hexes.values.forEach { hex ->
+                val hexInGlobal = hexMath.add(hex, cell.data.origin)
                 val neighbors = neighboringHexes.intersect(hexMath.hexNeighbors(hexInGlobal))
                 // Saving damage to our hex
                 neighbors.forEach { hex.receivedDamage += it.power }
@@ -184,7 +184,7 @@ class BattlePresenter(
         }
         // Deal real damage
         cells.forEach { cell ->
-            cell.hexes.values.forEach { hex ->
+            cell.data.hexes.values.forEach { hex ->
                 hex.power -= hex.receivedDamage
                 hex.receivedDamage = 0
             }
@@ -197,15 +197,15 @@ class BattlePresenter(
         cells.forEachIndexed { index, cell ->
             // Remove powerless hexes
             val hexesToRemove = mutableListOf<Int>()
-            cell.hexes.forEach { key, hex ->
+            cell.data.hexes.forEach { key, hex ->
                 // If power becomes less or equal then zero, hex should be removed from cell
                 if (hex.power <= 0) {
                     hexesToRemove.add(key)
                 }
             }
-            hexesToRemove.forEach { cell.hexes.remove(it) }
+            hexesToRemove.forEach { cell.data.hexes.remove(it) }
             // If connectivity of life and energy hexes has been broken then cell dies
-            if (!rules.checkHexesConnectivity(cell.hexes.values.filter {
+            if (!rules.checkHexesConnectivity(cell.data.hexes.values.filter {
                         it.type == Hex.Type.LIFE || it.type == Hex.Type.ENERGY
                     })) cellsToRemove.add(index)
         }

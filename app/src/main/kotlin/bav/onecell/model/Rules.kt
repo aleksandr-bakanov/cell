@@ -9,21 +9,21 @@ import bav.onecell.model.hexes.HexMath
 class Rules(private val hexMath: HexMath) {
 
     fun isAllowedToAddHexIntoCell(cell: Cell, hex: Hex): Boolean {
-        if (cell.hexes.values.contains(hex)) return false
+        if (cell.data.hexes.values.contains(hex)) return false
         return when (hex.type) {
-            Hex.Type.LIFE -> checkLifeCell(cell.hexes.values, hex)
-            Hex.Type.ENERGY -> checkEnergyCell(cell.hexes.values, hex)
-            Hex.Type.ATTACK -> checkAttackCell(cell.hexes.values, hex)
+            Hex.Type.LIFE -> checkLifeCell(cell.data.hexes.values, hex)
+            Hex.Type.ENERGY -> checkEnergyCell(cell.data.hexes.values, hex)
+            Hex.Type.ATTACK -> checkAttackCell(cell.data.hexes.values, hex)
             else -> false
         }
     }
 
     fun isAllowedToRemoveHexFromCell(cell: Cell, hex: Hex): Boolean {
-        if (cell.hexes.isEmpty()) return false
+        if (cell.data.hexes.isEmpty()) return false
         // The only one life hex left in cell is allowed to be removed
-        if (cell.hexes.size == 1) return true
+        if (cell.data.hexes.size == 1) return true
         // Cell can't exist without life hexes
-        val allHexesButOne = cell.hexes.filter { it.value != hex }.values
+        val allHexesButOne = cell.data.hexes.filter { it.value != hex }.values
         if (allHexesButOne.count { it.type == Hex.Type.LIFE } == 0) return false
         // If we got here that means cell contain at least 2 hexes and removing desired hex
         // will not remove last life hex. So we may check remain hexes connectivity.

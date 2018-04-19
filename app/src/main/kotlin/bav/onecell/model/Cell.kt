@@ -2,12 +2,32 @@ package bav.onecell.model
 
 import bav.onecell.model.hexes.Hex
 import bav.onecell.model.hexes.HexMath
+import com.google.gson.Gson
 import kotlin.math.abs
 
 class Cell(private val hexMath: HexMath,
-           var hexes: MutableMap<Int, Hex> = mutableMapOf(),
-           var origin: Hex = Hex(0, 0, 0),
-           var direction: Direction = Direction.N) {
+           val data: Data = Data()) {
+
+    class Data(var hexes: MutableMap<Int, Hex> = mutableMapOf(),
+               var origin: Hex = Hex(0, 0, 0),
+               var direction: Direction = Direction.N) {
+
+        companion object {
+            fun fromJson(json: String): Data {
+                return Gson().fromJson(json, Data::class.java)
+            }
+        }
+
+        fun clone(): Data {
+            val data = Data(origin = origin, direction = direction)
+            hexes.forEach { k, v -> data.hexes[k] = v.clone() }
+            return data
+        }
+
+        fun toJson(): String {
+            return Gson().toJson(this)
+        }
+    }
 
     enum class Direction(val value: Int) {
         N(0), NE(1), SE(2), S(3), SW(4), NW(5);
@@ -22,26 +42,22 @@ class Cell(private val hexMath: HexMath,
         const val TAG = "Cell"
     }
 
-    fun clone(): Cell {
-        val cell = Cell(hexMath, origin = origin, direction = direction)
-        hexes.forEach { k, v -> cell.hexes[k] = v.clone() }
-        return cell
-    }
+    fun clone(): Cell = Cell(hexMath, data.clone())
 
-    fun size(): Int = hexes.values.map { maxOf(maxOf(abs(it.q), abs(it.r)), abs(it.s)) }.max()?.let { it + 1 } ?: 0
+    fun size(): Int = data.hexes.values.map { maxOf(maxOf(abs(it.q), abs(it.r)), abs(it.s)) }.max()?.let { it + 1 } ?: 0
 
     fun addHex(hex: Hex) {
-        hexes[hex.hashCode()] = hex
+        data.hexes[hex.hashCode()] = hex
     }
 
     fun removeHex(hex: Hex) {
-        hexes.remove(hex.hashCode())
+        data.hexes.remove(hex.hashCode())
     }
 
-    fun contains(hex: Hex): Boolean = hexes[hex.hashCode()] != null
+    fun contains(hex: Hex): Boolean = data.hexes[hex.hashCode()] != null
 
     fun evaluateCellHexesPower() {
-        hexes.values.forEach { hex ->
+        data.hexes.values.forEach { hex ->
             hex.power = 0
             when (hex.type) {
                 Hex.Type.LIFE -> {
@@ -51,7 +67,7 @@ class Cell(private val hexMath: HexMath,
                     hex.power = Hex.Power.ENERGY_SELF.value
                 }
                 Hex.Type.ATTACK -> {
-                    hexes.values.intersect(hexMath.getNeighborsWithinRadius(hex, 2)).forEach { neighbor ->
+                    data.hexes.values.intersect(hexMath.getNeighborsWithinRadius(hex, 2)).forEach { neighbor ->
                         val distance = hexMath.distance(hex, neighbor)
                         when (neighbor.type) {
                             Hex.Type.LIFE -> {
@@ -80,8 +96,8 @@ class Cell(private val hexMath: HexMath,
      */
     fun getOutlineHexes(): Collection<Hex> {
         val outline = mutableSetOf<Hex>()
-        hexes.forEach { entry ->
-            outline.addAll(hexMath.hexNeighbors(entry.value).subtract(hexes.values))
+        data.hexes.forEach { entry ->
+            outline.addAll(hexMath.hexNeighbors(entry.value).subtract(data.hexes.values))
         }
         return outline
     }
@@ -97,27 +113,27 @@ class Cell(private val hexMath: HexMath,
     }
 
     fun rotateLeft() {
-        val newDir = when (direction) {
+        val newDir = when (data.direction) {
             Direction.N -> Direction.NW
-            else -> Direction.fromInt(direction.value - 1)
+            else -> Direction.fromInt(data.direction.value - 1)
         }
         rotate(newDir)
     }
 
     fun rotateRight() {
-        val newDir = when (direction) {
+        val newDir = when (data.direction) {
             Direction.NW -> Direction.N
-            else -> Direction.fromInt(direction.value + 1)
+            else -> Direction.fromInt(data.direction.value + 1)
         }
         rotate(newDir)
     }
 
     // TODO: make it formula
     fun rotate(newDirection: Direction) {
-        if (direction == newDirection) return
-        else if (abs(direction.value - newDirection.value) == 3) rotateHexesFlip()
+        if (data.direction == newDirection) return
+        else if (abs(data.direction.value - newDirection.value) == 3) rotateHexesFlip()
         else {
-            when (direction) {
+            when (data.direction) {
                 Direction.N -> {
                     when (newDirection) {
                         Direction.NE -> rotateHexesRight()
@@ -174,51 +190,51 @@ class Cell(private val hexMath: HexMath,
                 }
             }
         }
-        direction = newDirection
+        data.direction = newDirection
     }
 
     private fun rotateHexesFlip() {
         val newHexes = mutableMapOf<Int, Hex>()
-        hexes.forEach {
+        data.hexes.forEach {
             val newHex = hexMath.rotateFlip(it.value).withType(it.value.type).withPower(it.value.power)
             newHexes[newHex.hashCode()] = newHex
         }
-        hexes = newHexes
+        data.hexes = newHexes
     }
 
     private fun rotateHexesRight() {
         val newHexes = mutableMapOf<Int, Hex>()
-        hexes.forEach {
+        data.hexes.forEach {
             val newHex = hexMath.rotateRight(it.value).withType(it.value.type).withPower(it.value.power)
             newHexes[newHex.hashCode()] = newHex
         }
-        hexes = newHexes
+        data.hexes = newHexes
     }
 
     private fun rotateHexesRightTwice() {
         val newHexes = mutableMapOf<Int, Hex>()
-        hexes.forEach {
+        data.hexes.forEach {
             val newHex = hexMath.rotateRightTwice(it.value).withType(it.value.type).withPower(it.value.power)
             newHexes[newHex.hashCode()] = newHex
         }
-        hexes = newHexes
+        data.hexes = newHexes
     }
 
     private fun rotateHexesLeft() {
         val newHexes = mutableMapOf<Int, Hex>()
-        hexes.forEach {
+        data.hexes.forEach {
             val newHex = hexMath.rotateLeft(it.value).withType(it.value.type).withPower(it.value.power)
             newHexes[newHex.hashCode()] = newHex
         }
-        hexes = newHexes
+        data.hexes = newHexes
     }
 
     private fun rotateHexesLeftTwice() {
         val newHexes = mutableMapOf<Int, Hex>()
-        hexes.forEach {
+        data.hexes.forEach {
             val newHex = hexMath.rotateLeftTwice(it.value).withType(it.value.type).withPower(it.value.power)
             newHexes[newHex.hashCode()] = newHex
         }
-        hexes = newHexes
+        data.hexes = newHexes
     }
 }

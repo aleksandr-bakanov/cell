@@ -14,7 +14,7 @@ class RulesTest {
 
     @Before
     fun setup() {
-        cell.hexes.clear()
+        cell.data.hexes.clear()
     }
 
     @Test

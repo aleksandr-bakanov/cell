@@ -183,14 +183,14 @@ open class CanvasView(context: Context, attributeSet: AttributeSet) : View(conte
                            aPaint: Paint = attackPaint) {
         cell?.let {
             var paint: Paint
-            for (hex in it.hexes) {
+            for (hex in it.data.hexes) {
                 paint = when (hex.value.type) {
                     Hex.Type.LIFE -> lPaint
                     Hex.Type.ENERGY -> ePaint
                     Hex.Type.ATTACK -> aPaint
                     else -> gridPaint
                 }
-                val path: Path = getHexPath(hexMath.add(hex.value, it.origin))
+                val path: Path = getHexPath(hexMath.add(hex.value, it.data.origin))
                 path.fillType = Path.FillType.EVEN_ODD
                 canvas?.drawPath(path, paint)
                 canvas?.drawPath(path, strokePaint)
@@ -205,13 +205,13 @@ open class CanvasView(context: Context, attributeSet: AttributeSet) : View(conte
     }
 
     private fun drawCellIndex(canvas: Canvas?, cell: Cell, index: Int = 0) {
-        val origin = hexMath.hexToPixel(layout, cell.origin)
+        val origin = hexMath.hexToPixel(layout, cell.data.origin)
         canvas?.drawText(index.toString(), origin.x.toFloat(), origin.y.toFloat(), indexTextPaint)
     }
 
     private fun drawCellPower(canvas: Canvas?, cell: Cell) {
-        cell.hexes.forEach {
-            drawHexPower(canvas, hexMath.add(cell.origin, it.value), it.value.power)
+        cell.data.hexes.forEach {
+            drawHexPower(canvas, hexMath.add(cell.data.origin, it.value), it.value.power)
         }
     }
 
@@ -222,9 +222,9 @@ open class CanvasView(context: Context, attributeSet: AttributeSet) : View(conte
 
     private fun drawOriginMarker(canvas: Canvas?, cell: Cell) {
         // Origin point
-        val o = hexMath.hexToPixel(layout, cell.origin)
+        val o = hexMath.hexToPixel(layout, cell.data.origin)
 
-        val angle = (-PI / 2) + (PI / 3) * cell.direction.ordinal
+        val angle = (-PI / 2) + (PI / 3) * cell.data.direction.ordinal
         // tail point
         var tp = Point(-layoutHexSize.x * 2 / 3, 0.0)
         // head point
@@ -258,11 +258,11 @@ open class CanvasView(context: Context, attributeSet: AttributeSet) : View(conte
 
     private fun getCellOutline(cell: Cell): List<Pair<Point, Point>> {
         val lines = mutableListOf<Pair<Point, Point>>()
-        cell.hexes.forEach {
-            val hexCorners: ArrayList<Point> = hexMath.poligonCorners(layout, hexMath.add(it.value, cell.origin))
+        cell.data.hexes.forEach {
+            val hexCorners: ArrayList<Point> = hexMath.poligonCorners(layout, hexMath.add(it.value, cell.data.origin))
             for (direction in 0..5) {
                 val neighbor = hexMath.getHexNeighbor(it.value, direction)
-                if (!cell.hexes.values.contains(neighbor)) {
+                if (!cell.data.hexes.values.contains(neighbor)) {
                     lines.add(getHexSideByNeighborDirection(hexCorners, direction))
                 }
             }
