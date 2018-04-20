@@ -20,8 +20,8 @@ data class Hex(var q: Int = 0, var r: Int = 0, var s: Int = 0) {
     }
 
     var type: Type = Type.REMOVE
-    var power: Int = 0
-    var receivedDamage: Int = 0
+    @Transient var power: Int = 0
+    @Transient var receivedDamage: Int = 0
 
     init {
         if (q + r + s != 0) throw IllegalArgumentException("q + r + s should be equal to 0")
