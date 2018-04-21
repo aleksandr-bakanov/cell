@@ -1,6 +1,6 @@
 package bav.onecell.battle
 
-import bav.onecell.model.Cell
+import bav.onecell.model.cell.Cell
 import bav.onecell.model.hexes.Hex
 
 interface Battle {

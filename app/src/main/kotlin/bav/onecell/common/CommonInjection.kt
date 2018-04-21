@@ -31,10 +31,4 @@ class CommonModule {
     fun provideRules(hexMath: HexMath): Rules {
         return Rules(hexMath)
     }
-
-    @Provides
-    @Singleton
-    fun provideStorage(@Named("app_context") context: Context): Storage {
-        return StorageImpl(context)
-    }
 }

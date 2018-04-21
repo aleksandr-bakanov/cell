@@ -9,11 +9,10 @@ import android.graphics.Path
 import android.graphics.Typeface
 import android.support.v4.content.ContextCompat
 import android.util.AttributeSet
-import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import bav.onecell.R
-import bav.onecell.model.Cell
+import bav.onecell.model.cell.Cell
 import bav.onecell.model.hexes.Hex
 import bav.onecell.model.hexes.HexMath
 import bav.onecell.model.hexes.Layout
@@ -21,7 +20,6 @@ import bav.onecell.model.hexes.Orientation
 import bav.onecell.model.hexes.Point
 import kotlin.math.PI
 import kotlin.math.cos
-import kotlin.math.max
 import kotlin.math.min
 import kotlin.math.sin
 

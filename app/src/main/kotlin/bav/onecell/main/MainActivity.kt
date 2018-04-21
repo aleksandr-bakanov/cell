@@ -35,6 +35,12 @@ class MainActivity : Activity(), Main.View {
         recyclerViewCellList.layoutManager = LinearLayoutManager(this)
         recyclerViewCellList.adapter = CellListAdapter(presenter)
     }
+
+    override fun onPause() {
+        presenter.onPause()
+        super.onPause()
+    }
+
     //endregion
 
     //region Private methods

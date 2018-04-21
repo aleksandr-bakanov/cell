@@ -1,7 +1,7 @@
 package bav.onecell.battle
 
 import bav.onecell.common.router.Router
-import bav.onecell.model.Cell
+import bav.onecell.model.cell.Cell
 import bav.onecell.model.RepositoryContract
 import bav.onecell.model.Rules
 import bav.onecell.model.hexes.Hex

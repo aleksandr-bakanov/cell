@@ -8,7 +8,7 @@ import android.view.View
 import android.widget.Toast
 import bav.onecell.OneCellApplication
 import bav.onecell.R
-import bav.onecell.model.Cell
+import bav.onecell.model.cell.Cell
 import bav.onecell.model.hexes.Hex
 import bav.onecell.model.hexes.HexMath
 import kotlinx.android.synthetic.main.activity_battle.battleCanvasView

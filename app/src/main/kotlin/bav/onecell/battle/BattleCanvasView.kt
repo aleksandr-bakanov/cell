@@ -10,7 +10,7 @@ import android.view.MotionEvent
 import android.view.View
 import bav.onecell.R
 import bav.onecell.common.view.CanvasView
-import bav.onecell.model.Cell
+import bav.onecell.model.cell.Cell
 import bav.onecell.model.hexes.Hex
 
 class BattleCanvasView(context: Context, attributeSet: AttributeSet) : CanvasView(context, attributeSet) {

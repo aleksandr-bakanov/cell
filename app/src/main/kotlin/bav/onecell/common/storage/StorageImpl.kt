@@ -1,24 +1,26 @@
 package bav.onecell.common.storage
 
-import android.content.Context
-import bav.onecell.R
-import bav.onecell.model.Cell
+import bav.onecell.model.cell.Cell
 import bav.onecell.model.RepositoryContract
+import bav.onecell.model.hexes.HexMath
+import kotlinx.coroutines.experimental.launch
 
-class StorageImpl(private val context: Context): Storage {
+class StorageImpl(private val dataBase: CellDataBase,
+                  private val hexMath: HexMath): Storage {
     override fun storeCellRepository(repo: RepositoryContract.CellRepo) {
-        val prefs = context.getSharedPreferences(
-                context.getString(R.string.shared_preference_file_key), Context.MODE_PRIVATE)
-        with (prefs.edit()) {
-            val count = repo.cellsCount()
-            for (i in 0..(count - 1)) {
-
+        launch {
+            val dao = dataBase.cellDataDao()
+            for (i in 0..(repo.cellsCount() - 1)) {
+                repo.getCell(i)?.let { dao.insert(it.data) }
             }
-            apply()
         }
     }
 
     override fun loadCellsForRepository(): List<Cell> {
-        return listOf()
+        val cells = mutableListOf<Cell>()
+        for (d in dataBase.cellDataDao().getAll()) {
+            cells.add(Cell(hexMath, d))
+        }
+        return cells
     }
 }

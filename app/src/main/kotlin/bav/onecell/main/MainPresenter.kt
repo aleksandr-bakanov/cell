@@ -28,4 +28,10 @@ class MainPresenter(
         router.goToBattleView(cellIndexes)
     }
     //endregion
+
+    //region Lifecycle events
+    override fun onPause() {
+        cellRepository.storeCells()
+    }
+    //endregion
 }

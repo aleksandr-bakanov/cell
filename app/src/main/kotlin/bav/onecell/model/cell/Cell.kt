@@ -1,33 +1,11 @@
-package bav.onecell.model
+package bav.onecell.model.cell
 
 import bav.onecell.model.hexes.Hex
 import bav.onecell.model.hexes.HexMath
-import com.google.gson.Gson
 import kotlin.math.abs
 
 class Cell(private val hexMath: HexMath,
            val data: Data = Data()) {
-
-    class Data(var hexes: MutableMap<Int, Hex> = mutableMapOf(),
-               var origin: Hex = Hex(0, 0, 0),
-               var direction: Direction = Direction.N) {
-
-        companion object {
-            fun fromJson(json: String): Data {
-                return Gson().fromJson(json, Data::class.java)
-            }
-        }
-
-        fun clone(): Data {
-            val data = Data(origin = origin, direction = direction)
-            hexes.forEach { k, v -> data.hexes[k] = v.clone() }
-            return data
-        }
-
-        fun toJson(): String {
-            return Gson().toJson(this)
-        }
-    }
 
     enum class Direction(val value: Int) {
         N(0), NE(1), SE(2), S(3), SW(4), NW(5);

@@ -1,5 +1,6 @@
 package bav.onecell.model
 
+import bav.onecell.model.cell.Cell
 import bav.onecell.model.hexes.Hex
 import bav.onecell.model.hexes.HexMath
 import org.junit.Assert.assertEquals
@@ -22,7 +23,8 @@ class CellTest {
     fun defaultConstructorShouldSaveOriginAndDirection() {
         val origin = Hex(1, 2, -3)
         val direction = Cell.Direction.SW
-        val cell = Cell(hexMath, Cell.Data(mutableMapOf(), origin, direction))
+        val cell = Cell(hexMath,
+                                               Cell.Data(mutableMapOf(), origin, direction))
         assertEquals(origin, cell.data.origin)
         assertEquals(direction, cell.data.direction)
     }

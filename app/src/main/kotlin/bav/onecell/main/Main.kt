@@ -35,5 +35,7 @@ interface Main {
          * @param cellIndexes Cell indexes in repository
          */
         fun openBattleView(cellIndexes: List<Int>)
+
+        fun onPause()
     }
 }

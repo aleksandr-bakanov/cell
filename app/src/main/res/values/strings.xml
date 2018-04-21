@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">One Cell</string>
-    <string name="shared_preference_file_key">bav.onecell.PREFERENCE_FILE_KEY</string>
 
     <!-- Main view -->
     <string name="button_start_battle_title">Start battle</string>

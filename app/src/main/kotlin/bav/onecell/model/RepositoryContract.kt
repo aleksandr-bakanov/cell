@@ -1,5 +1,7 @@
 package bav.onecell.model
 
+import bav.onecell.model.cell.Cell
+
 interface RepositoryContract {
 
     interface CellRepo {
@@ -11,5 +13,7 @@ interface RepositoryContract {
         fun createNewCell()
 
         fun getCell(index: Int): Cell?
+
+        fun storeCells()
     }
 }

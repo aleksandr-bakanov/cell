@@ -1,10 +1,24 @@
 package bav.onecell.model
 
+import bav.onecell.common.storage.Storage
+import bav.onecell.model.cell.Cell
 import bav.onecell.model.hexes.HexMath
+import kotlinx.coroutines.experimental.async
+import kotlinx.coroutines.experimental.launch
 
 class CellRepository(
         private val hexMath: HexMath,
+        private val storage: Storage,
         private val cells: ArrayList<Cell> = arrayListOf()) : RepositoryContract.CellRepo {
+
+    init {
+        launch {
+            val cellsFromStorage = async { storage.loadCellsForRepository() }.await()
+            for (cell in cellsFromStorage) {
+                cells.add(cell)
+            }
+        }
+    }
 
     override fun cellsCount(): Int = cells.size
 
@@ -19,5 +33,9 @@ class CellRepository(
 
     override fun getCell(index: Int): Cell? {
         return if (index in 0..(cells.size - 1)) cells[index] else null
+    }
+
+    override fun storeCells() {
+        storage.storeCellRepository(this)
     }
 }

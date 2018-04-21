@@ -1,5 +1,6 @@
 package bav.onecell.model
 
+import bav.onecell.model.cell.Cell
 import bav.onecell.model.hexes.Hex
 import bav.onecell.model.hexes.HexMath
 

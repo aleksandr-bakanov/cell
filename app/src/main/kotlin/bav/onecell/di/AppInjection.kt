@@ -4,6 +4,7 @@ import android.content.Context
 import bav.onecell.battle.BattleModule
 import bav.onecell.battle.BattleSubcomponent
 import bav.onecell.common.CommonModule
+import bav.onecell.common.storage.StorageModule
 import bav.onecell.constructor.ConstructorModule
 import bav.onecell.constructor.ConstructorSubcomponent
 import bav.onecell.main.MainModule
@@ -16,7 +17,7 @@ import javax.inject.Named
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [AppModule::class, ModelModule::class, CommonModule::class])
+@Component(modules = [AppModule::class, ModelModule::class, CommonModule::class, StorageModule::class])
 interface AppComponent {
     fun plus(mainModule: MainModule): MainSubcomponent
     fun plus(constructorModule: ConstructorModule): ConstructorSubcomponent
