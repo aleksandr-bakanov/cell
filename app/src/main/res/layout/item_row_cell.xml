@@ -19,10 +19,17 @@
         app:layout_constraintStart_toEndOf="@id/title"
         android:text="@string/button_edit_cell_title" />
 
+    <Button
+        android:id="@+id/buttonRemoveCell"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/buttonEditCell"
+        android:text="@string/button_remove_cell_title" />
+
     <CheckBox
         android:id="@+id/checkboxSelect"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@id/buttonEditCell" />
+        app:layout_constraintStart_toEndOf="@id/buttonRemoveCell" />
 
 </android.support.constraint.ConstraintLayout>

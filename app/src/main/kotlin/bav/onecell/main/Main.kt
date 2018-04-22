@@ -36,6 +36,8 @@ interface Main {
          */
         fun openBattleView(cellIndexes: List<Int>)
 
+        fun removeCell(cellIndex: Int)
+
         fun onPause()
     }
 }

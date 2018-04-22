@@ -26,6 +26,10 @@ class CellRepository(
         cells.add(cell)
     }
 
+    override fun removeCell(index: Int) {
+        if (index in 0..(cells.size - 1)) cells.removeAt(index)
+    }
+
     override fun createNewCell() {
         val cell = Cell(hexMath)
         addCell(cell)

@@ -10,6 +10,8 @@ interface RepositoryContract {
 
         fun addCell(cell: Cell)
 
+        fun removeCell(index: Int)
+
         fun createNewCell()
 
         fun getCell(index: Int): Cell?

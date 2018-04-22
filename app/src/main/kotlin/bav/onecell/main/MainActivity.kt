@@ -14,6 +14,7 @@ import kotlinx.android.synthetic.main.activity_main.buttonCreateNewCell
 import kotlinx.android.synthetic.main.activity_main.buttonStartBattle
 import kotlinx.android.synthetic.main.activity_main.recyclerViewCellList
 import kotlinx.android.synthetic.main.item_row_cell.view.buttonEditCell
+import kotlinx.android.synthetic.main.item_row_cell.view.buttonRemoveCell
 import kotlinx.android.synthetic.main.item_row_cell.view.checkboxSelect
 import kotlinx.android.synthetic.main.item_row_cell.view.title
 import javax.inject.Inject
@@ -92,6 +93,7 @@ class MainActivity : Activity(), Main.View {
 
             init {
                 view.buttonEditCell.setOnClickListener { presenter.openCellConstructor(index) }
+                view.buttonRemoveCell.setOnClickListener { presenter.removeCell(index) }
             }
 
             fun setCellTitle(title: String) {

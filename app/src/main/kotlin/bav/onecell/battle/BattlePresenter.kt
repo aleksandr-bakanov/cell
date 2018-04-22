@@ -1,5 +1,6 @@
 package bav.onecell.battle
 
+import android.util.Log
 import bav.onecell.common.router.Router
 import bav.onecell.model.cell.Cell
 import bav.onecell.model.RepositoryContract
@@ -42,7 +43,11 @@ class BattlePresenter(
         initializeBattleSteps()
 
         // Make copy of cells
-        for (i in cellIndexes) cellRepository.getCell(i)?.let { cells.add(it.clone()) }
+        for (i in cellIndexes) cellRepository.getCell(i)?.let {
+            val clone = it.clone()
+            clone.evaluateCellHexesPower()
+            cells.add(clone)
+        }
 
         battleFieldSize = round(cells.map { it.size() }.sum() * 1.5).toInt()
 

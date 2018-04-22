@@ -27,6 +27,12 @@ class MainPresenter(
     override fun openBattleView(cellIndexes: List<Int>) {
         router.goToBattleView(cellIndexes)
     }
+
+    override fun removeCell(cellIndex: Int) {
+        cellRepository.removeCell(cellIndex)
+        view.notifyCellRepoListUpdated()
+    }
+
     //endregion
 
     //region Lifecycle events
