@@ -12,6 +12,9 @@ import bav.onecell.model.cell.Cell
 import bav.onecell.model.hexes.Hex
 import bav.onecell.model.hexes.HexMath
 import kotlinx.android.synthetic.main.activity_battle.battleCanvasView
+import kotlinx.android.synthetic.main.activity_battle.buttonFinishBattle
+import kotlinx.android.synthetic.main.activity_battle.buttonFullStep
+import kotlinx.android.synthetic.main.activity_battle.buttonPartialStep
 import javax.inject.Inject
 
 class BattleActivity : Activity(), Battle.View {
@@ -35,6 +38,10 @@ class BattleActivity : Activity(), Battle.View {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_battle)
         inject()
+
+        buttonFullStep.isEnabled = true
+        buttonPartialStep.isEnabled = true
+
         battleCanvasView.hexMath = hexMath
         battleCanvasView.presenter = presenter
         presenter.initialize(intent.getIntegerArrayListExtra(EXTRA_CELL_INDEXES))
@@ -48,6 +55,10 @@ class BattleActivity : Activity(), Battle.View {
 
     fun onPartialStepButtonClicked(view: View) {
         presenter.doPartialStep()
+    }
+
+    fun onFinishBattleButtonClicked(view: View) {
+        finish()
     }
     //endregion
 
@@ -83,8 +94,9 @@ class BattleActivity : Activity(), Battle.View {
 
     override fun reportBattleEnd() {
         Toast.makeText(this, "Battle is over", Toast.LENGTH_SHORT).show()
-        finish()
+        buttonFullStep.isEnabled = false
+        buttonPartialStep.isEnabled = false
+        buttonFinishBattle.visibility = View.VISIBLE
     }
-
     //endregion
 }

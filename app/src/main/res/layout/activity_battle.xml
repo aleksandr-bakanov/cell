@@ -14,6 +14,17 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
+        android:id="@+id/buttonFinishBattle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onFinishBattleButtonClicked"
+        android:text="@string/button_finish_battle_title"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toStartOf="@+id/buttonPartialStep"
+        app:layout_constraintStart_toEndOf="@+id/buttonFullStep"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
         android:id="@+id/buttonPartialStep"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

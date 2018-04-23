@@ -137,12 +137,10 @@ open class CanvasView(context: Context, attributeSet: AttributeSet) : View(conte
 
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
-        canvas?.drawColor(ContextCompat.getColor(context, R.color.cellConstructorBackground))
         if (!isInitialized) {
             initializeLayout(canvas)
             isInitialized = true
         }
-        drawBackgroundGrid(canvas)
     }
 
     private fun initializeLayout(canvas: Canvas?) {

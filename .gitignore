@@ -60,6 +60,7 @@ obj/
 *.iml
 *.iws
 /out/
+.idea/copyright/
 
 # User-specific configurations
 .idea/libraries/

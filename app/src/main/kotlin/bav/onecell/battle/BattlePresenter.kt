@@ -202,7 +202,7 @@ class BattlePresenter(
         cells.forEachIndexed { index, cell ->
             // Remove powerless hexes
             val hexesToRemove = mutableListOf<Int>()
-            cell.data.hexes.forEach { key, hex ->
+            cell.data.hexes.forEach { (key, hex) ->
                 // If power becomes less or equal then zero, hex should be removed from cell
                 if (hex.power <= 0) {
                     hexesToRemove.add(key)

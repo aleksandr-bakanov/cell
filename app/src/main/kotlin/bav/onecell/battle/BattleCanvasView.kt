@@ -42,7 +42,6 @@ class BattleCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
 
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
-        drawRing(canvas)
         corpses.forEach { corpse -> drawCell(canvas, corpse, corpsePaint, corpsePaint, corpsePaint) }
         cells.forEach { cell -> drawCell(canvas, cell) }
     }
