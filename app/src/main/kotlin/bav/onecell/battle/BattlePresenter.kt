@@ -12,6 +12,9 @@ import java.util.LinkedList
 import java.util.Queue
 import kotlin.math.atan2
 import kotlin.math.round
+import kotlinx.coroutines.experimental.android.UI
+import kotlinx.coroutines.experimental.async
+import kotlinx.coroutines.experimental.launch
 
 class BattlePresenter(
         private val view: Battle.View,
@@ -211,8 +214,10 @@ class BattlePresenter(
             hexesToRemove.forEach { cell.data.hexes.remove(it) }
             // If connectivity of life and energy hexes has been broken then cell dies
             if (!rules.checkHexesConnectivity(cell.data.hexes.values.filter {
-                        it.type == Hex.Type.LIFE || it.type == Hex.Type.ENERGY
-                    })) cellsToRemove.add(index)
+                        it.type == Hex.Type.LIFE || it.type == Hex.Type.ENERGY }) ||
+                // Cells also dies if it doesn't contain any life hexes
+                cell.data.hexes.values.filter { it.type == Hex.Type.LIFE }.isEmpty()
+            ) cellsToRemove.add(index)
         }
         cellsToRemove.sortDescending()
         cellsToRemove.forEach {
