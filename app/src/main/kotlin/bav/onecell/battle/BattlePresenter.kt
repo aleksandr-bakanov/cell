@@ -18,6 +18,7 @@ import kotlinx.coroutines.experimental.launch
 
 /// TODO: move calculations to background thread
 /// TODO: produce sequence of battle steps and provide them via RX
+/// TODO: add visible representation of count of calculated steps with cursor, showing current step
 
 class BattlePresenter(
         private val view: Battle.View,

@@ -43,7 +43,6 @@ class MainPresenter(
                     view.notifyCellRepoListUpdated()
                 })
     }
-
     //endregion
 
     //region Lifecycle events

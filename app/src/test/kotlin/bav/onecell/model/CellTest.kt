@@ -1,6 +1,7 @@
 package bav.onecell.model
 
 import bav.onecell.model.cell.Cell
+import bav.onecell.model.cell.Data
 import bav.onecell.model.hexes.Hex
 import bav.onecell.model.hexes.HexMath
 import org.junit.Assert.assertEquals
@@ -23,8 +24,7 @@ class CellTest {
     fun defaultConstructorShouldSaveOriginAndDirection() {
         val origin = Hex(1, 2, -3)
         val direction = Cell.Direction.SW
-        val cell = Cell(hexMath,
-                                               Cell.Data(mutableMapOf(), origin, direction))
+        val cell = Cell(hexMath, Data(origin = origin, direction = direction))
         assertEquals(origin, cell.data.origin)
         assertEquals(direction, cell.data.direction)
     }
@@ -36,7 +36,7 @@ class CellTest {
         val hexes = arrayOf(Hex(1, 2, -3), Hex(0, 5, -5))
         val map = mutableMapOf<Int, Hex>()
         hexes.forEach { map[it.hashCode()] = it }
-        val cell = Cell(hexMath, Cell.Data(map, origin, direction))
+        val cell = Cell(hexMath, Data(hexes = map, origin = origin, direction = direction))
 
         val copy = cell.clone()
         assertEquals(cell.data.origin, copy.data.origin)
@@ -120,6 +120,7 @@ class CellTest {
                 Hex(0, 0, 0),
                 Hex(1, -1, 0))
         ) cell.addHex(hex)
+        cell.updateOutlineHexes()
         val outline = cell.getOutlineHexes()
         val expected = arrayListOf(
                 Hex(2, -2, 0),

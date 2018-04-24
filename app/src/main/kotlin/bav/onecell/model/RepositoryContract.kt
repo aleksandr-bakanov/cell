@@ -1,13 +1,13 @@
 package bav.onecell.model
 
 import bav.onecell.model.cell.Cell
-import io.reactivex.subjects.ReplaySubject
+import io.reactivex.subjects.BehaviorSubject
 
 interface RepositoryContract {
 
     interface CellRepo {
 
-        fun loadFromStore(): ReplaySubject<Boolean>
+        fun loadFromStore(): BehaviorSubject<Unit>
 
         fun cellsCount(): Int
 
