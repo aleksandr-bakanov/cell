@@ -7,12 +7,14 @@
     <!-- Cell constructor view -->
     <color name="cellConstructorBackground">#cccccc</color>
     <color name="cellConstructorGrid">#888888</color>
-    <color name="cellConstructorLife">#38a907</color>
-    <color name="cellConstructorEnergy">#d1df0f</color>
-    <color name="cellConstructorAttack">#df120f</color>
+    <color name="cellConstructorLife">#5aba17</color>
+    <color name="cellConstructorEnergy">#c1d214</color>
+    <color name="cellConstructorAttack">#d41313</color>
     <color name="cellConstructorStroke">#000000</color>
     
     <!-- Battle view -->
     <color name="battleViewRing">#40b4d7</color>
-    <color name="battleViewCorpse">#35321d</color>
+    <color name="battleViewCorpseLife">#08500e</color>
+    <color name="battleViewCorpseEnergy">#645b09</color>
+    <color name="battleViewCorpseAttack">#69190b</color>
 </resources>

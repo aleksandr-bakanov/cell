@@ -16,6 +16,9 @@ import kotlinx.coroutines.experimental.android.UI
 import kotlinx.coroutines.experimental.async
 import kotlinx.coroutines.experimental.launch
 
+/// TODO: move calculations to background thread
+/// TODO: produce sequence of battle steps and provide them via RX
+
 class BattlePresenter(
         private val view: Battle.View,
         private val hexMath: HexMath,

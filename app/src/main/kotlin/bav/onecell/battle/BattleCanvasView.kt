@@ -22,7 +22,9 @@ class BattleCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
     lateinit var presenter: Battle.Presenter
     var ring = listOf<Hex>()
     private val ringPaint = Paint()
-    private val corpsePaint = Paint()
+    private val corpseLifePaint = Paint()
+    private val corpseEnergyPaint = Paint()
+    private val corpseAttackPaint = Paint()
     lateinit var cells: List<Cell>
     lateinit var corpses: List<Cell>
 
@@ -30,8 +32,14 @@ class BattleCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
         ringPaint.style = Paint.Style.FILL
         ringPaint.color = ContextCompat.getColor(context, R.color.battleViewRing)
 
-        corpsePaint.style = Paint.Style.FILL
-        corpsePaint.color = ContextCompat.getColor(context, R.color.battleViewCorpse)
+        corpseLifePaint.style = Paint.Style.FILL
+        corpseLifePaint.color = ContextCompat.getColor(context, R.color.battleViewCorpseLife)
+
+        corpseEnergyPaint.style = Paint.Style.FILL
+        corpseEnergyPaint.color = ContextCompat.getColor(context, R.color.battleViewCorpseEnergy)
+
+        corpseAttackPaint.style = Paint.Style.FILL
+        corpseAttackPaint.color = ContextCompat.getColor(context, R.color.battleViewCorpseAttack)
 
         setOnTouchListener(
                 { view: View?, event: MotionEvent? ->
@@ -42,7 +50,7 @@ class BattleCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
 
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
-        corpses.forEach { corpse -> drawCell(canvas, corpse, corpsePaint, corpsePaint, corpsePaint) }
+        corpses.forEach { corpse -> drawCell(canvas, corpse, corpseLifePaint, corpseEnergyPaint, corpseAttackPaint) }
         cells.forEach { cell -> drawCell(canvas, cell) }
     }
 

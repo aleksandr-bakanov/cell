@@ -55,9 +55,9 @@ class MainActivity : Activity(), Main.View {
     private fun openBattleView() {
         val indexes = mutableListOf<Int>()
         for (i in 0..(recyclerViewCellList.childCount - 1)) {
-            if ((recyclerViewCellList.findViewHolderForAdapterPosition(i) as CellListAdapter.CellViewHolder)
-                    .view.checkboxSelect.isChecked) {
-                indexes.add(i)
+            val viewHolder = recyclerViewCellList.findViewHolderForAdapterPosition(i) as? CellListAdapter.CellViewHolder
+            viewHolder?.let {
+                if (it.view.checkboxSelect.isChecked) indexes.add(i)
             }
         }
         if (indexes.size >= 2) presenter.openBattleView(indexes)
