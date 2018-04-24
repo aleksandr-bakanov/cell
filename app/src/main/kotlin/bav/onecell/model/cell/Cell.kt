@@ -19,6 +19,8 @@ class Cell(private val hexMath: HexMath,
         const val TAG = "Cell"
     }
 
+    private val outlineHexes: MutableSet<Hex> = mutableSetOf()
+
     fun clone(): Cell = Cell(hexMath, data.clone())
 
     fun size(): Int = data.hexes.values.map { maxOf(maxOf(abs(it.q), abs(it.r)), abs(it.s)) }.max()?.let { it + 1 } ?: 0
@@ -68,15 +70,17 @@ class Cell(private val hexMath: HexMath,
 
     /**
      * Returns outline border of cell in local coordinates
+     * TODO: make it faster, probably using some convex hull algorithm
      *
      * @return Set of hexes which forms outline of cell
      */
-    fun getOutlineHexes(): Collection<Hex> {
-        val outline = mutableSetOf<Hex>()
+    fun getOutlineHexes(): Collection<Hex> = outlineHexes
+
+    fun updateOutlineHexes() {
+        outlineHexes.clear()
         data.hexes.forEach { entry ->
-            outline.addAll(hexMath.hexNeighbors(entry.value).subtract(data.hexes.values))
+            outlineHexes.addAll(hexMath.hexNeighbors(entry.value).subtract(data.hexes.values))
         }
-        return outline
     }
 
     /**

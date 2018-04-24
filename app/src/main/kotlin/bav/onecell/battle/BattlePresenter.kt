@@ -49,6 +49,7 @@ class BattlePresenter(
         for (i in cellIndexes) cellRepository.getCell(i)?.let {
             val clone = it.clone()
             clone.evaluateCellHexesPower()
+            clone.updateOutlineHexes()
             cells.add(clone)
         }
 
@@ -201,6 +202,7 @@ class BattlePresenter(
     }
 
     private fun checkCellsVitality() {
+        val cellsToUpdateOutline = mutableListOf<Int>()
         val cellsToRemove = mutableListOf<Int>()
         cells.forEachIndexed { index, cell ->
             // Remove powerless hexes
@@ -211,13 +213,24 @@ class BattlePresenter(
                     hexesToRemove.add(key)
                 }
             }
-            hexesToRemove.forEach { cell.data.hexes.remove(it) }
-            // If connectivity of life and energy hexes has been broken then cell dies
-            if (!rules.checkHexesConnectivity(cell.data.hexes.values.filter {
-                        it.type == Hex.Type.LIFE || it.type == Hex.Type.ENERGY }) ||
-                // Cells also dies if it doesn't contain any life hexes
-                cell.data.hexes.values.filter { it.type == Hex.Type.LIFE }.isEmpty()
-            ) cellsToRemove.add(index)
+            if (hexesToRemove.isNotEmpty()) {
+                hexesToRemove.forEach { cell.data.hexes.remove(it) }
+                // If connectivity of life and energy hexes has been broken then cell dies
+                if (!rules.checkHexesConnectivity(cell.data.hexes.values.filter {
+                            it.type == Hex.Type.LIFE || it.type == Hex.Type.ENERGY
+                        }) ||
+                        // Cells also dies if it doesn't contain any life hexes
+                        cell.data.hexes.values.filter { it.type == Hex.Type.LIFE }.isEmpty()) {
+                    cellsToRemove.add(index)
+                }
+                else {
+                    cellsToUpdateOutline.add(index)
+                }
+            }
+        }
+        cellsToUpdateOutline.sortDescending()
+        cellsToUpdateOutline.forEach {
+            cells[it].updateOutlineHexes()
         }
         cellsToRemove.sortDescending()
         cellsToRemove.forEach {
