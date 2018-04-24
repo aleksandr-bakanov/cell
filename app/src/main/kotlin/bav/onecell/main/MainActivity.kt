@@ -35,6 +35,7 @@ class MainActivity : Activity(), Main.View {
 
         recyclerViewCellList.layoutManager = LinearLayoutManager(this)
         recyclerViewCellList.adapter = CellListAdapter(presenter)
+        presenter.initialize()
     }
 
     override fun onPause() {

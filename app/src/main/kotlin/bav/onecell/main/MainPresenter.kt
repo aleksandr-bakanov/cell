@@ -2,6 +2,8 @@ package bav.onecell.main
 
 import bav.onecell.common.router.Router
 import bav.onecell.model.RepositoryContract
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 
 class MainPresenter(
         private val view: Main.View,
@@ -31,6 +33,15 @@ class MainPresenter(
     override fun removeCell(cellIndex: Int) {
         cellRepository.removeCell(cellIndex)
         view.notifyCellRepoListUpdated()
+    }
+
+    override fun initialize() {
+        cellRepository.loadFromStore()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({}, {}, {
+                    view.notifyCellRepoListUpdated()
+                })
     }
 
     //endregion

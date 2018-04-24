@@ -39,5 +39,7 @@ interface Main {
         fun removeCell(cellIndex: Int)
 
         fun onPause()
+
+        fun initialize()
     }
 }
