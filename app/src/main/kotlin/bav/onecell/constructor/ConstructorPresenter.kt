@@ -1,6 +1,5 @@
 package bav.onecell.constructor
 
-import android.util.Log
 import bav.onecell.common.router.Router
 import bav.onecell.model.cell.Cell
 import bav.onecell.model.RepositoryContract
@@ -35,14 +34,12 @@ class ConstructorPresenter(
     }
 
     override fun removeHexFromCell(hex: Hex) {
-        Log.d(TAG, "removeHexFromCell $hex")
         cell?.let {
             if (rules.isAllowedToRemoveHexFromCell(it, hex)) {
                 it.removeHex(hex)
                 it.evaluateCellHexesPower()
             }
         }
-
     }
 
     override fun rotateCellLeft() {

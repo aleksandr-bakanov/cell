@@ -122,14 +122,23 @@ class BattlePresenter(
                 }
             }
             // Find direction to move
-            // Origin point
-            val op = hexMath.hexToPixel(Layout.DUMMY, cell.data.origin)
-            // Nearest hex point
-            val hp = hexMath.hexToPixel(Layout.DUMMY, nearest)
-            // Angle direction to enemy hex
-            val angle = atan2(hp.y.toFloat() - op.y.toFloat(), hp.x.toFloat() - op.x.toFloat())
-            // Determine direction based on angle
-            directions.add(hexMath.radToDir(angle))
+            // There is a case when origin has same position as nearest enemy hex (origin is empty).
+            // In such case current cell will choose east as moving direction. If both cells will choose
+            // same direction they will move eternally. We should avoid such case, therefore we will choose random
+            // direction for cell in such case.
+            if (minDistance == 0) {
+                directions.add((0..5).shuffled().last())
+            }
+            else {
+                // Origin point
+                val op = hexMath.hexToPixel(Layout.DUMMY, cell.data.origin)
+                // Nearest hex point
+                val hp = hexMath.hexToPixel(Layout.DUMMY, nearest)
+                // Angle direction to enemy hex
+                val angle = atan2(hp.y.toFloat() - op.y.toFloat(), hp.x.toFloat() - op.x.toFloat())
+                // Determine direction based on angle
+                directions.add(hexMath.radToDir(angle))
+            }
         }
         // Move cells
         directions.forEachIndexed { index, direction ->

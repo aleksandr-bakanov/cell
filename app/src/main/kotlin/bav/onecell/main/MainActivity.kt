@@ -42,7 +42,6 @@ class MainActivity : Activity(), Main.View {
         presenter.onPause()
         super.onPause()
     }
-
     //endregion
 
     //region Private methods
