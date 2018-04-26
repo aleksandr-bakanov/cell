@@ -1,5 +1,6 @@
 package bav.onecell.main
 
+import android.content.Context
 import bav.onecell.common.router.Router
 import bav.onecell.model.RepositoryContract
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -23,11 +24,11 @@ class MainPresenter(
     override fun cellsCount(): Int = cellRepository.cellsCount()
 
     override fun openCellConstructor(cellIndex: Int) {
-        router.goToCellConstructor(cellIndex)
+        router.goToCellConstructor((view as Context), cellIndex)
     }
 
     override fun openBattleView(cellIndexes: List<Int>) {
-        router.goToBattleView(cellIndexes)
+        router.goToBattleView((view as Context), cellIndexes)
     }
 
     override fun removeCell(cellIndex: Int) {

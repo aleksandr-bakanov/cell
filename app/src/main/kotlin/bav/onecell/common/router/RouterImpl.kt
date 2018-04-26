@@ -1,20 +1,17 @@
 package bav.onecell.common.router
 
 import android.content.Context
-import android.content.Intent
 import bav.onecell.battle.BattleActivity
 import bav.onecell.constructor.ConstructorActivity
 
-class RouterImpl(private val context: Context) : Router {
-    override fun goToCellConstructor(cellIndex: Int) {
+class RouterImpl(private val appContext: Context) : Router {
+    override fun goToCellConstructor(context: Context, cellIndex: Int) {
         val intent = ConstructorActivity.newIntent(context, cellIndex)
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         context.startActivity(intent)
     }
 
-    override fun goToBattleView(cellIndexes: List<Int>) {
+    override fun goToBattleView(context: Context, cellIndexes: List<Int>) {
         val intent = BattleActivity.newIntent(context, cellIndexes)
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         context.startActivity(intent)
     }
 }

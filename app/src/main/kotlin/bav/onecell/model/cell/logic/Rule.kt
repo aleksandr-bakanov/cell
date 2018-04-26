@@ -6,4 +6,8 @@ package bav.onecell.model.cell.logic
  */
 class Rule(private val conditions: MutableList<Condition> = mutableListOf(),
            private val action: Action) {
+
+    fun check(state: BattleState): Boolean {
+        return conditions.map { it.check(state) }.all { it }
+    }
 }
