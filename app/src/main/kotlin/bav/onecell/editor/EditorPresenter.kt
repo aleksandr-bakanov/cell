@@ -1,4 +1,4 @@
-package bav.onecell.constructor
+package bav.onecell.editor
 
 import bav.onecell.common.router.Router
 import bav.onecell.model.cell.Cell
@@ -6,14 +6,14 @@ import bav.onecell.model.RepositoryContract
 import bav.onecell.model.Rules
 import bav.onecell.model.hexes.Hex
 
-class ConstructorPresenter(
-        private val view: Constructor.View,
+class EditorPresenter(
+        private val view: Editor.View,
         private val rules: Rules,
         private val cellRepository: RepositoryContract.CellRepo,
-        private val router: Router) : Constructor.Presenter {
+        private val router: Router) : Editor.Presenter {
 
     companion object {
-        private const val TAG = "ConstructorPresenter"
+        private const val TAG = "EditorPresenter"
     }
 
     private var cell: Cell? = null

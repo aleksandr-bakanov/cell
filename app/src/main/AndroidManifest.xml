@@ -17,7 +17,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="bav.onecell.constructor.ConstructorActivity" />
+        <activity android:name="bav.onecell.editor.EditorActivity" />
         <activity android:name="bav.onecell.battle.BattleActivity" />
 
     </application>

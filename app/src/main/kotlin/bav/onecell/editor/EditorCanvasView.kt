@@ -1,4 +1,4 @@
-package bav.onecell.constructor
+package bav.onecell.editor
 
 import android.content.Context
 import android.graphics.Canvas
@@ -10,14 +10,14 @@ import bav.onecell.model.cell.Cell
 import bav.onecell.model.hexes.Hex
 import bav.onecell.model.hexes.Point
 
-class ConstructorCanvasView(context: Context, attributeSet: AttributeSet) : CanvasView(context, attributeSet) {
+class EditorCanvasView(context: Context, attributeSet: AttributeSet) : CanvasView(context, attributeSet) {
 
     companion object {
-        private val TAG = "ConstructorCanvasView"
+        private val TAG = "EditorCanvasView"
     }
 
     var cell: Cell? = null
-    lateinit var presenter: Constructor.Presenter
+    lateinit var mPresenter: Editor.Presenter
     var selectedCellType: Hex.Type = Hex.Type.LIFE
 
     init {
@@ -32,10 +32,10 @@ class ConstructorCanvasView(context: Context, attributeSet: AttributeSet) : Canv
                             val fHex = hexMath.pixelToHex(layout, point)
                             val hex = hexMath.round(fHex)
                             if (selectedCellType == Hex.Type.REMOVE) {
-                                presenter.removeHexFromCell(hex)
+                                mPresenter.removeHexFromCell(hex)
                             } else {
                                 hex.type = selectedCellType
-                                presenter.addHexToCell(hex)
+                                mPresenter.addHexToCell(hex)
                             }
                             invalidate()
                         }

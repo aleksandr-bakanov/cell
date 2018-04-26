@@ -62,7 +62,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/radioGroupInConstructor" />
 
-    <bav.onecell.constructor.ConstructorCanvasView
+    <bav.onecell.editor.EditorCanvasView
         android:id="@+id/constructorCanvasView"
         android:layout_width="wrap_content"
         android:layout_height="0dp"

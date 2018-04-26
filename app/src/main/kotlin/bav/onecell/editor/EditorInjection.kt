@@ -1,4 +1,4 @@
-package bav.onecell.constructor
+package bav.onecell.editor
 
 import bav.onecell.common.router.Router
 import bav.onecell.di.scopes.ActivityScope
@@ -11,15 +11,15 @@ import dagger.Subcomponent
 @ActivityScope
 @Subcomponent(modules = [ConstructorModule::class])
 interface ConstructorSubcomponent {
-    fun inject(view: ConstructorActivity)
+    fun inject(view: EditorActivity)
 }
 
 @Module
-class ConstructorModule(val view: Constructor.View) {
+class ConstructorModule(val view: Editor.View) {
     @Provides
     @ActivityScope
     fun provideConstructorPresenter(rules: Rules, cellRepository: RepositoryContract.CellRepo, router: Router):
-            Constructor.Presenter {
-        return ConstructorPresenter(view, rules, cellRepository, router)
+            Editor.Presenter {
+        return EditorPresenter(view, rules, cellRepository, router)
     }
 }

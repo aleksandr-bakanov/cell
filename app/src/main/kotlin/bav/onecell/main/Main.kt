@@ -23,7 +23,7 @@ interface Main {
         fun cellsCount(): Int
 
         /**
-         * Opens cell constructor view for defined cell
+         * Opens cell editor view for defined cell
          *
          * @param cellIndex Cell index in repository
          */

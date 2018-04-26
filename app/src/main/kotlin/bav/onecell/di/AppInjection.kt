@@ -5,8 +5,8 @@ import bav.onecell.battle.BattleModule
 import bav.onecell.battle.BattleSubcomponent
 import bav.onecell.common.CommonModule
 import bav.onecell.common.storage.StorageModule
-import bav.onecell.constructor.ConstructorModule
-import bav.onecell.constructor.ConstructorSubcomponent
+import bav.onecell.editor.ConstructorModule
+import bav.onecell.editor.ConstructorSubcomponent
 import bav.onecell.main.MainModule
 import bav.onecell.main.MainSubcomponent
 import bav.onecell.model.ModelModule

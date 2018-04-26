@@ -1,4 +1,4 @@
-package bav.onecell.constructor
+package bav.onecell.editor
 
 import android.app.Activity
 import android.content.Context
@@ -13,23 +13,23 @@ import bav.onecell.model.hexes.HexMath
 import kotlinx.android.synthetic.main.activity_constructor.constructorCanvasView
 import javax.inject.Inject
 
-class ConstructorActivity : Activity(), Constructor.View {
+class EditorActivity : Activity(), Editor.View {
     companion object {
         private const val EXTRA_CELL_INDEX = "bav.onecell.extra_cell_index"
 
         fun newIntent(context: Context, cellIndex: Int): Intent {
             val extras = Bundle()
             extras.putInt(EXTRA_CELL_INDEX, cellIndex)
-            val intent = Intent(context, ConstructorActivity::class.java)
+            val intent = Intent(context, EditorActivity::class.java)
             intent.putExtras(extras)
             return intent
         }
     }
 
-    @Inject lateinit var presenter: Constructor.Presenter
+    @Inject lateinit var mPresenter: Editor.Presenter
     @Inject lateinit var hexMath: HexMath
 
-    // TODO: same variable exists in ConstructorCanvasView, it is unnecessary duplicate
+    // TODO: same variable exists in EditorCanvasView, it is unnecessary duplicate
     private var selectedCellType: Hex.Type = Hex.Type.LIFE
 
     //region Lifecycle methods
@@ -38,8 +38,8 @@ class ConstructorActivity : Activity(), Constructor.View {
         setContentView(R.layout.activity_constructor)
         inject()
         constructorCanvasView.hexMath = hexMath
-        constructorCanvasView.presenter = presenter
-        presenter.initialize(intent.getIntExtra(EXTRA_CELL_INDEX, -1))
+        constructorCanvasView.mPresenter = mPresenter
+        mPresenter.initialize(intent.getIntExtra(EXTRA_CELL_INDEX, -1))
     }
     //endregion
 
@@ -56,8 +56,8 @@ class ConstructorActivity : Activity(), Constructor.View {
 
     fun onCellRotateButtonClicked(view: View) {
         when (view.id) {
-            R.id.buttonRotateCellLeft -> presenter.rotateCellLeft()
-            R.id.buttonRotateCellRight -> presenter.rotateCellRight()
+            R.id.buttonRotateCellLeft -> mPresenter.rotateCellLeft()
+            R.id.buttonRotateCellRight -> mPresenter.rotateCellRight()
         }
         constructorCanvasView.invalidate()
     }

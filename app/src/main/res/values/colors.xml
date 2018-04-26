@@ -4,7 +4,7 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
-    <!-- Cell constructor view -->
+    <!-- Cell editor view -->
     <color name="cellConstructorBackground">#cccccc</color>
     <color name="cellConstructorGrid">#888888</color>
     <color name="cellConstructorLife">#5aba17</color>

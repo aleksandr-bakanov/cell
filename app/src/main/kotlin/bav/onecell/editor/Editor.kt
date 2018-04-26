@@ -1,9 +1,9 @@
-package bav.onecell.constructor
+package bav.onecell.editor
 
 import bav.onecell.model.cell.Cell
 import bav.onecell.model.hexes.Hex
 
-interface Constructor {
+interface Editor {
 
     interface View {
         fun setBackgroundFieldRadius(radius: Int)
