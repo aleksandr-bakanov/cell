@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import bav.onecell.R
 import bav.onecell.model.hexes.Hex
 import bav.onecell.model.hexes.HexMath
+import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_editor.buttonRotateCellLeft
 import kotlinx.android.synthetic.main.fragment_editor.buttonRotateCellRight
 import kotlinx.android.synthetic.main.fragment_editor.editorCanvasView
@@ -22,6 +23,7 @@ class EditorFragment : Fragment() {
     private lateinit var listener: OnEditorFragmentInteractionListener
     // TODO: same variable exists in EditorCanvasView, it is unnecessary duplicate
     private var selectedCellType: Hex.Type = Hex.Type.LIFE
+    private val disposables = CompositeDisposable()
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)
@@ -40,7 +42,7 @@ class EditorFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         
         editorCanvasView.hexMath = listener.provideHexMath()
-        editorCanvasView.mPresenter = listener.providePresenter()
+        editorCanvasView.mPresenter = listener.provideEditorPresenter()
         
         radioButtonLifeCell.setOnClickListener { onCellTypeRadioButtonClicked(it) }
         radioButtonAttackCell.setOnClickListener { onCellTypeRadioButtonClicked(it) }
@@ -51,15 +53,20 @@ class EditorFragment : Fragment() {
         buttonRotateCellRight.setOnClickListener { onCellRotateButtonClicked(it) }
 
         // TODO: manage disposable
-        with (listener.providePresenter()) {
-            getCellProvider().subscribe {
+        with (listener.provideEditorPresenter()) {
+            disposables.add(getCellProvider().subscribe {
                 editorCanvasView.cell = it
-            }
-            getBackgroundCellRadiusProvider().subscribe {
+            })
+            disposables.add(getBackgroundCellRadiusProvider().subscribe {
                 editorCanvasView.backgroundFieldRadius = it
                 editorCanvasView.invalidate()
-            }
+            })
         }
+    }
+
+    override fun onDestroyView() {
+        disposables.dispose()
+        super.onDestroyView()
     }
 
     //region View listeners
@@ -75,15 +82,15 @@ class EditorFragment : Fragment() {
 
     private fun onCellRotateButtonClicked(view: View) {
         when (view.id) {
-            R.id.buttonRotateCellLeft -> listener.providePresenter().rotateCellLeft()
-            R.id.buttonRotateCellRight -> listener.providePresenter().rotateCellRight()
+            R.id.buttonRotateCellLeft -> listener.provideEditorPresenter().rotateCellLeft()
+            R.id.buttonRotateCellRight -> listener.provideEditorPresenter().rotateCellRight()
         }
         editorCanvasView.invalidate()
     }
     //endregion
 
     interface OnEditorFragmentInteractionListener {
-        fun providePresenter(): Editor.Presenter
+        fun provideEditorPresenter(): Editor.Presenter
         fun provideHexMath(): HexMath
     }
 }

@@ -5,7 +5,7 @@ import bav.onecell.battle.BattleActivity
 import bav.onecell.editor.EditorActivity
 
 class RouterImpl(private val appContext: Context) : Router {
-    override fun goToCellConstructor(context: Context, cellIndex: Int) {
+    override fun goToCellEditor(context: Context, cellIndex: Int) {
         val intent = EditorActivity.newIntent(context, cellIndex)
         context.startActivity(intent)
     }

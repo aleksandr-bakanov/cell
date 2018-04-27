@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import bav.onecell.R
+import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_cell_list.buttonCreateNewCell
 import kotlinx.android.synthetic.main.fragment_cell_list.buttonStartBattle
 import kotlinx.android.synthetic.main.fragment_cell_list.recyclerViewCellList
@@ -17,6 +18,7 @@ import kotlinx.android.synthetic.main.item_row_cell.view.checkboxSelect
 class CellListFragment : Fragment() {
 
     private lateinit var listener: OnCellListFragmentInteractionListener
+    private val disposables = CompositeDisposable()
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -36,11 +38,20 @@ class CellListFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         // TODO: remove listener when they aren't needed anymore
-        buttonCreateNewCell.setOnClickListener { listener.providePresenter().createNewCell() }
+        buttonCreateNewCell.setOnClickListener { listener.provideMainPresenter().createNewCell() }
         buttonStartBattle.setOnClickListener { openBattleView() }
 
         recyclerViewCellList.layoutManager = LinearLayoutManager(context)
-        recyclerViewCellList.adapter = CellRecyclerViewAdapter(listener.providePresenter())
+        recyclerViewCellList.adapter = CellRecyclerViewAdapter(listener.provideMainPresenter())
+
+        disposables.add(listener.provideMainPresenter().cellRepoUpdateNotifier().subscribe {
+            recyclerViewCellList.adapter.notifyDataSetChanged()
+        })
+    }
+
+    override fun onDestroyView() {
+        disposables.dispose()
+        super.onDestroyView()
     }
 
     private fun openBattleView() {
@@ -51,7 +62,7 @@ class CellListFragment : Fragment() {
                 if (it.view.checkboxSelect.isChecked) indexes.add(i)
             }
         }
-        if (indexes.size >= 2) listener.providePresenter().openBattleView(indexes)
+        if (indexes.size >= 2) listener.provideMainPresenter().openBattleView(indexes)
         else Toast.makeText(context, "Select at least two cells", Toast.LENGTH_LONG).show()
     }
 
@@ -67,7 +78,7 @@ class CellListFragment : Fragment() {
      * for more information.
      */
     interface OnCellListFragmentInteractionListener {
-        fun providePresenter(): Main.Presenter
+        fun provideMainPresenter(): Main.Presenter
     }
 
     companion object {

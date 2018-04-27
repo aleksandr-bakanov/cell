@@ -8,7 +8,7 @@ interface Router {
      *
      * @param cellIndex Index of cell within cell repository
      */
-    fun goToCellConstructor(context: Context, cellIndex: Int)
+    fun goToCellEditor(context: Context, cellIndex: Int)
 
     /**
      * Go to battle view.

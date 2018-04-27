@@ -13,11 +13,6 @@ import kotlinx.android.synthetic.main.item_row_cell.view.title
 class CellRecyclerViewAdapter(private val presenter: Main.Presenter) :
         RecyclerView.Adapter<CellRecyclerViewAdapter.CellViewHolder>() {
 
-    init {
-        // TODO: manage disposable
-        presenter.cellRepoUpdateNotifier().subscribe { notifyDataSetChanged() }
-    }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CellViewHolder {
         val view = LayoutInflater.from(parent.context)
                 .inflate(R.layout.item_row_cell, parent, false)
@@ -37,7 +32,7 @@ class CellRecyclerViewAdapter(private val presenter: Main.Presenter) :
         var index: Int = 0
 
         init {
-            view.buttonEditCell.setOnClickListener { presenter.openCellConstructor(index) }
+            view.buttonEditCell.setOnClickListener { presenter.openCellEditor(index) }
             view.buttonRemoveCell.setOnClickListener { presenter.removeCell(index) }
         }
 

@@ -9,7 +9,6 @@ import io.reactivex.Observable
 import io.reactivex.subjects.BehaviorSubject
 
 class EditorPresenter(
-        private val view: Editor.View,
         private val rules: Rules,
         private val cellRepository: RepositoryContract.CellRepo,
         private val router: Router) : Editor.Presenter {

@@ -27,8 +27,12 @@ class MainPresenter(
 
     override fun cellsCount(): Int = cellRepository.cellsCount()
 
-    override fun openCellConstructor(cellIndex: Int) {
-        router.goToCellConstructor((view as Context), cellIndex)
+    override fun openCellEditor(cellIndex: Int) {
+        if (view.isDualPane()) {
+            view.openEditorFragment(cellIndex)
+        } else {
+            router.goToCellEditor((view as Context), cellIndex)
+        }
     }
 
     override fun openBattleView(cellIndexes: List<Int>) {

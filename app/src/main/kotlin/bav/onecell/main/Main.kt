@@ -5,7 +5,8 @@ import io.reactivex.Observable
 interface Main {
 
     interface View {
-
+        fun isDualPane(): Boolean
+        fun openEditorFragment(cellIndex: Int)
     }
 
     interface Presenter {
@@ -26,7 +27,7 @@ interface Main {
          *
          * @param cellIndex Cell index in repository
          */
-        fun openCellConstructor(cellIndex: Int)
+        fun openCellEditor(cellIndex: Int)
 
         /**
          * Opens battle window, passing list of cell indexes within repository to it.
