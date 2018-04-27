@@ -9,16 +9,16 @@ import dagger.Provides
 import dagger.Subcomponent
 
 @ActivityScope
-@Subcomponent(modules = [ConstructorModule::class])
-interface ConstructorSubcomponent {
+@Subcomponent(modules = [EditorModule::class])
+interface EditorSubcomponent {
     fun inject(view: EditorActivity)
 }
 
 @Module
-class ConstructorModule(val view: Editor.View) {
+class EditorModule(val view: Editor.View) {
     @Provides
     @ActivityScope
-    fun provideConstructorPresenter(rules: Rules, cellRepository: RepositoryContract.CellRepo, router: Router):
+    fun provideEditorPresenter(rules: Rules, cellRepository: RepositoryContract.CellRepo, router: Router):
             Editor.Presenter {
         return EditorPresenter(view, rules, cellRepository, router)
     }

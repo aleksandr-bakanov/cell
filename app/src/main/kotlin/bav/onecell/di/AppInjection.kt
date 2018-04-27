@@ -5,8 +5,8 @@ import bav.onecell.battle.BattleModule
 import bav.onecell.battle.BattleSubcomponent
 import bav.onecell.common.CommonModule
 import bav.onecell.common.storage.StorageModule
-import bav.onecell.editor.ConstructorModule
-import bav.onecell.editor.ConstructorSubcomponent
+import bav.onecell.editor.EditorModule
+import bav.onecell.editor.EditorSubcomponent
 import bav.onecell.main.MainModule
 import bav.onecell.main.MainSubcomponent
 import bav.onecell.model.ModelModule
@@ -20,7 +20,7 @@ import javax.inject.Singleton
 @Component(modules = [AppModule::class, ModelModule::class, CommonModule::class, StorageModule::class])
 interface AppComponent {
     fun plus(mainModule: MainModule): MainSubcomponent
-    fun plus(constructorModule: ConstructorModule): ConstructorSubcomponent
+    fun plus(constructorModule: EditorModule): EditorSubcomponent
     fun plus(battleModule: BattleModule): BattleSubcomponent
 }
 

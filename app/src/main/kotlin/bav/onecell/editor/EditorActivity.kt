@@ -37,7 +37,7 @@ class EditorActivity : FragmentActivity(), Editor.View, EditorFragment.OnEditorF
     //region Private methods
     private fun inject() {
         (application as OneCellApplication).appComponent
-                .plus(ConstructorModule(this))
+                .plus(EditorModule(this))
                 .inject(this)
     }
     //endregion
