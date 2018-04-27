@@ -1,12 +1,11 @@
 package bav.onecell.main
 
+import io.reactivex.Observable
+
 interface Main {
 
     interface View {
-        /**
-         * Update cell repository list view
-         */
-        fun notifyCellRepoListUpdated()
+
     }
 
     interface Presenter {
@@ -41,5 +40,7 @@ interface Main {
         fun onPause()
 
         fun initialize()
+
+        fun cellRepoUpdateNotifier(): Observable<Unit>
     }
 }

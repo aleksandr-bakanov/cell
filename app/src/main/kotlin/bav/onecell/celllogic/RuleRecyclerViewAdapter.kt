@@ -11,7 +11,7 @@ import bav.onecell.R
 import bav.onecell.celllogic.RuleListFragment.OnListFragmentInteractionListener
 import bav.onecell.celllogic.dummy.DummyContent.DummyItem
 
-import kotlinx.android.synthetic.main.fragment_rule.view.*
+import kotlinx.android.synthetic.main.fragment_rule_item.view.*
 
 /**
  * [RecyclerView.Adapter] that can display a [DummyItem] and makes a call to the
@@ -36,7 +36,7 @@ class RuleRecyclerViewAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
-                .inflate(R.layout.fragment_rule, parent, false)
+                .inflate(R.layout.fragment_rule_item, parent, false)
         return ViewHolder(view)
     }
 

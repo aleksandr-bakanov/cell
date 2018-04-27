@@ -3,8 +3,12 @@ package bav.onecell.main
 import android.content.Context
 import bav.onecell.common.router.Router
 import bav.onecell.model.RepositoryContract
+import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import io.reactivex.subjects.PublishSubject
+import io.reactivex.subjects.Subject
+import org.reactivestreams.Publisher
 
 class MainPresenter(
         private val view: Main.View,
@@ -15,10 +19,12 @@ class MainPresenter(
         private const val TAG = "MainPresenter"
     }
 
+    private val cellRepoNotifier = PublishSubject.create<Unit>()
+
     //region Overridden methods
     override fun createNewCell() {
         cellRepository.createNewCell()
-        view.notifyCellRepoListUpdated()
+        cellRepoNotifier.onNext(Unit)
     }
 
     override fun cellsCount(): Int = cellRepository.cellsCount()
@@ -33,7 +39,7 @@ class MainPresenter(
 
     override fun removeCell(cellIndex: Int) {
         cellRepository.removeCell(cellIndex)
-        view.notifyCellRepoListUpdated()
+        cellRepoNotifier.onNext(Unit)
     }
 
     override fun initialize() {
@@ -41,9 +47,11 @@ class MainPresenter(
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({}, {}, {
-                    view.notifyCellRepoListUpdated()
+                    cellRepoNotifier.onNext(Unit)
                 })
     }
+
+    override fun cellRepoUpdateNotifier(): Observable<Unit> = cellRepoNotifier
     //endregion
 
     //region Lifecycle events
