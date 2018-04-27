@@ -7,8 +7,6 @@ import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.PublishSubject
-import io.reactivex.subjects.Subject
-import org.reactivestreams.Publisher
 
 class MainPresenter(
         private val view: Main.View,

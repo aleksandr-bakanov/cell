@@ -19,28 +19,24 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="true"
-            android:onClick="onCellTypeRadioButtonClicked"
             android:text="@string/radio_button_life_cell_title"/>
 
         <RadioButton
             android:id="@+id/radioButtonEnergyCell"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="onCellTypeRadioButtonClicked"
             android:text="@string/radio_button_energy_cell_title"/>
 
         <RadioButton
             android:id="@+id/radioButtonAttackCell"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="onCellTypeRadioButtonClicked"
             android:text="@string/radio_button_attack_cell_title"/>
 
         <RadioButton
             android:id="@+id/radioButtonRemoveCell"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="onCellTypeRadioButtonClicked"
             android:text="@string/radio_button_remove_cell_title"/>
     </RadioGroup>
 
@@ -48,7 +44,6 @@
         android:id="@+id/buttonRotateCellLeft"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="onCellRotateButtonClicked"
         android:text="@string/button_rotate_cell_left_title"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/radioGroupInConstructor" />
@@ -57,13 +52,12 @@
         android:id="@+id/buttonRotateCellRight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="onCellRotateButtonClicked"
         android:text="@string/button_rotate_cell_right_title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/radioGroupInConstructor" />
 
     <bav.onecell.editor.EditorCanvasView
-        android:id="@+id/constructorCanvasView"
+        android:id="@+id/editorCanvasView"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"

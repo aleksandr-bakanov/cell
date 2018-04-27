@@ -1,19 +1,15 @@
 package bav.onecell.editor
 
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
+import android.support.v4.app.FragmentActivity
 import bav.onecell.OneCellApplication
 import bav.onecell.R
-import bav.onecell.model.cell.Cell
-import bav.onecell.model.hexes.Hex
 import bav.onecell.model.hexes.HexMath
-import kotlinx.android.synthetic.main.activity_constructor.constructorCanvasView
 import javax.inject.Inject
 
-class EditorActivity : Activity(), Editor.View {
+class EditorActivity : FragmentActivity(), Editor.View, EditorFragment.OnEditorFragmentInteractionListener {
     companion object {
         private const val EXTRA_CELL_INDEX = "bav.onecell.extra_cell_index"
 
@@ -26,40 +22,15 @@ class EditorActivity : Activity(), Editor.View {
         }
     }
 
-    @Inject lateinit var mPresenter: Editor.Presenter
+    @Inject lateinit var presenter: Editor.Presenter
     @Inject lateinit var hexMath: HexMath
-
-    // TODO: same variable exists in EditorCanvasView, it is unnecessary duplicate
-    private var selectedCellType: Hex.Type = Hex.Type.LIFE
 
     //region Lifecycle methods
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_constructor)
+        setContentView(R.layout.activity_editor)
         inject()
-        constructorCanvasView.hexMath = hexMath
-        constructorCanvasView.mPresenter = mPresenter
-        mPresenter.initialize(intent.getIntExtra(EXTRA_CELL_INDEX, -1))
-    }
-    //endregion
-
-    //region View listeners
-    fun onCellTypeRadioButtonClicked(view: View) {
-        selectedCellType = when (view.id) {
-            R.id.radioButtonLifeCell -> Hex.Type.LIFE
-            R.id.radioButtonEnergyCell -> Hex.Type.ENERGY
-            R.id.radioButtonAttackCell -> Hex.Type.ATTACK
-            else -> Hex.Type.REMOVE
-        }
-        constructorCanvasView.selectedCellType = selectedCellType
-    }
-
-    fun onCellRotateButtonClicked(view: View) {
-        when (view.id) {
-            R.id.buttonRotateCellLeft -> mPresenter.rotateCellLeft()
-            R.id.buttonRotateCellRight -> mPresenter.rotateCellRight()
-        }
-        constructorCanvasView.invalidate()
+        presenter.initialize(intent.getIntExtra(EXTRA_CELL_INDEX, -1))
     }
     //endregion
 
@@ -72,13 +43,7 @@ class EditorActivity : Activity(), Editor.View {
     //endregion
 
     //region Overridden methods
-    override fun setBackgroundFieldRadius(radius: Int) {
-        constructorCanvasView.backgroundFieldRadius = radius
-        constructorCanvasView.invalidate()
-    }
-
-    override fun setCell(cell: Cell?) {
-        constructorCanvasView.cell = cell
-    }
+    override fun providePresenter(): Editor.Presenter = presenter
+    override fun provideHexMath(): HexMath = hexMath
     //endregion
 }

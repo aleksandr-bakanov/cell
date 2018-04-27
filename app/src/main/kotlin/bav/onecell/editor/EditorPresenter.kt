@@ -5,6 +5,8 @@ import bav.onecell.model.cell.Cell
 import bav.onecell.model.RepositoryContract
 import bav.onecell.model.Rules
 import bav.onecell.model.hexes.Hex
+import io.reactivex.Observable
+import io.reactivex.subjects.BehaviorSubject
 
 class EditorPresenter(
         private val view: Editor.View,
@@ -17,11 +19,13 @@ class EditorPresenter(
     }
 
     private var cell: Cell? = null
+    private val cellProvider = BehaviorSubject.create<Cell>()
+    private val backgroundFieldRadiusProvider = BehaviorSubject.create<Int>()
 
     override fun initialize(cellIndex: Int) {
         cell = cellRepository.getCell(cellIndex)
-        view.setBackgroundFieldRadius(5)
-        view.setCell(cell)
+        backgroundFieldRadiusProvider.onNext(5)
+        cellProvider.onNext(cell!!)
     }
 
     override fun addHexToCell(hex: Hex) {
@@ -55,4 +59,7 @@ class EditorPresenter(
             it.evaluateCellHexesPower()
         }
     }
+
+    override fun getCellProvider(): Observable<Cell> = cellProvider
+    override fun getBackgroundCellRadiusProvider(): Observable<Int> = backgroundFieldRadiusProvider
 }

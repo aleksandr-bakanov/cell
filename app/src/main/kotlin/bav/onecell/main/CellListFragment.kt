@@ -16,31 +16,31 @@ import kotlinx.android.synthetic.main.item_row_cell.view.checkboxSelect
 
 class CellListFragment : Fragment() {
 
-    private lateinit var listener: OnListFragmentInteractionListener
+    private lateinit var listener: OnCellListFragmentInteractionListener
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        if (context is OnListFragmentInteractionListener) {
+        if (context is OnCellListFragmentInteractionListener) {
             listener = context
         } else {
-            throw RuntimeException(context.toString() + " must implement OnListFragmentInteractionListener")
+            throw RuntimeException(context.toString() + " must implement OnCellListFragmentInteractionListener")
         }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.fragment_cell_list, container, false)
-        return view
+        return inflater.inflate(R.layout.fragment_cell_list, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        // TODO: remove listener when they aren't needed anymore
         buttonCreateNewCell.setOnClickListener { listener.providePresenter().createNewCell() }
         buttonStartBattle.setOnClickListener { openBattleView() }
 
         recyclerViewCellList.layoutManager = LinearLayoutManager(context)
-        recyclerViewCellList.adapter = CellRecyclerViewAdapter(listener.providePresenter(), listener)
+        recyclerViewCellList.adapter = CellRecyclerViewAdapter(listener.providePresenter())
     }
 
     private fun openBattleView() {
@@ -66,7 +66,7 @@ class CellListFragment : Fragment() {
      * [Communicating with Other Fragments](http://developer.android.com/training/basics/fragments/communicating.html)
      * for more information.
      */
-    interface OnListFragmentInteractionListener {
+    interface OnCellListFragmentInteractionListener {
         fun providePresenter(): Main.Presenter
     }
 

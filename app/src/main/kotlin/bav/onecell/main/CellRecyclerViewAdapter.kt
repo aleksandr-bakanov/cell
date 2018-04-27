@@ -10,8 +10,7 @@ import kotlinx.android.synthetic.main.item_row_cell.view.buttonEditCell
 import kotlinx.android.synthetic.main.item_row_cell.view.buttonRemoveCell
 import kotlinx.android.synthetic.main.item_row_cell.view.title
 
-class CellRecyclerViewAdapter(private val presenter: Main.Presenter,
-                              private val listener: CellListFragment.OnListFragmentInteractionListener?) :
+class CellRecyclerViewAdapter(private val presenter: Main.Presenter) :
         RecyclerView.Adapter<CellRecyclerViewAdapter.CellViewHolder>() {
 
     init {

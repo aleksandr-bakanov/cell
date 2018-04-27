@@ -6,7 +6,7 @@ import bav.onecell.OneCellApplication
 import bav.onecell.R
 import javax.inject.Inject
 
-class MainActivity : FragmentActivity(), Main.View, CellListFragment.OnListFragmentInteractionListener {
+class MainActivity : FragmentActivity(), Main.View, CellListFragment.OnCellListFragmentInteractionListener {
 
     @Inject
     lateinit var presenter: Main.Presenter

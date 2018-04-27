@@ -2,12 +2,11 @@ package bav.onecell.editor
 
 import bav.onecell.model.cell.Cell
 import bav.onecell.model.hexes.Hex
+import io.reactivex.Observable
 
 interface Editor {
 
     interface View {
-        fun setBackgroundFieldRadius(radius: Int)
-        fun setCell(cell: Cell?)
     }
 
     interface Presenter {
@@ -35,5 +34,9 @@ interface Editor {
         fun rotateCellLeft()
 
         fun rotateCellRight()
+
+        fun getCellProvider(): Observable<Cell>
+
+        fun getBackgroundCellRadiusProvider(): Observable<Int>
     }
 }
