@@ -1,7 +1,5 @@
-package bav.onecell.model
+package bav.onecell.model.cell
 
-import bav.onecell.model.cell.Cell
-import bav.onecell.model.cell.Data
 import bav.onecell.model.hexes.Hex
 import bav.onecell.model.hexes.HexMath
 import org.junit.Assert.assertEquals
