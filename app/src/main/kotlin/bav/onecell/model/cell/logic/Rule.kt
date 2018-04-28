@@ -5,9 +5,17 @@ package bav.onecell.model.cell.logic
  * if all conditions are true.
  */
 class Rule(private val conditions: MutableList<Condition> = mutableListOf(),
-           private val action: Action) {
+           var action: Action = Action()) {
 
     fun check(state: BattleState): Boolean {
         return conditions.map { it.check(state) }.all { it }
+    }
+
+    fun addCondition(condition: Condition) {
+        conditions.add(condition)
+    }
+
+    fun removeConditionAt(index: Int) {
+        if (index >= 0 && index < conditions.size) conditions.removeAt(index)
     }
 }
