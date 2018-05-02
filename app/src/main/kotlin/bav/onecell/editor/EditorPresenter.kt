@@ -8,6 +8,7 @@ import bav.onecell.model.hexes.Hex
 import io.reactivex.Observable
 import io.reactivex.subjects.BehaviorSubject
 
+// TODO: persist cell on exit from editor
 class EditorPresenter(
         private val rules: Rules,
         private val cellRepository: RepositoryContract.CellRepo,
