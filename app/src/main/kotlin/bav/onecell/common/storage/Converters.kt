@@ -3,6 +3,7 @@ package bav.onecell.common.storage
 import android.arch.persistence.room.TypeConverter
 import bav.onecell.model.cell.Cell
 import bav.onecell.model.cell.Data
+import bav.onecell.model.cell.logic.Rule
 import bav.onecell.model.hexes.Hex
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -10,6 +11,7 @@ import java.lang.reflect.Type
 
 class Converters {
     private val mapOfHexesType: Type = object : TypeToken<Map<Int, Hex>>(){}.type
+    private val listOfRulesType: Type = object : TypeToken<List<Rule>>(){}.type
 
     @TypeConverter
     fun cellDataToString(data: Data?): String? {
@@ -52,6 +54,20 @@ class Converters {
     fun stringToMapOfHexes(str: String?): Map<Int, Hex>? {
         return str?.let {
             Gson().fromJson(it, mapOfHexesType)
+        }
+    }
+
+    @TypeConverter
+    fun listOfRulesToString(rules: List<Rule>?): String? {
+        return rules?.let {
+            Gson().toJson(it)
+        }
+    }
+
+    @TypeConverter
+    fun stringToListOfRules(str: String?): List<Rule>? {
+        return str?.let {
+            Gson().fromJson(it, listOfRulesType)
         }
     }
 }

@@ -3,6 +3,7 @@ package bav.onecell.model.cell
 import android.arch.persistence.room.ColumnInfo
 import android.arch.persistence.room.Entity
 import android.arch.persistence.room.PrimaryKey
+import bav.onecell.model.cell.logic.Rule
 import bav.onecell.model.hexes.Hex
 import com.google.gson.Gson
 
@@ -11,7 +12,8 @@ data class Data(
         @PrimaryKey(autoGenerate = true) var id: Long? = null,
         @ColumnInfo(name = "hexes") var hexes: MutableMap<Int, Hex> = mutableMapOf(),
         @ColumnInfo(name = "origin") var origin: Hex = Hex(0, 0, 0),
-        @ColumnInfo(name = "direction") var direction: Cell.Direction = Cell.Direction.N) {
+        @ColumnInfo(name = "direction") var direction: Cell.Direction = Cell.Direction.N,
+        @ColumnInfo(name = "rules") var rules: MutableList<Rule> = arrayListOf()) {
 
     companion object {
         fun fromJson(json: String): Data {

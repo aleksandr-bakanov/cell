@@ -1,5 +1,7 @@
 package bav.onecell.model.cell.logic
 
+import com.google.gson.Gson
+
 /**
  * This class represents a set of conditions and appropriate action which should be performed
  * if all conditions are true.
@@ -17,5 +19,9 @@ class Rule(private val conditions: MutableList<Condition> = mutableListOf(),
 
     fun removeConditionAt(index: Int) {
         if (index >= 0 && index < conditions.size) conditions.removeAt(index)
+    }
+
+    fun toJson(): String {
+        return Gson().toJson(this)
     }
 }
