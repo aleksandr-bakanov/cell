@@ -30,6 +30,13 @@ interface Main {
         fun openCellEditor(cellIndex: Int)
 
         /**
+         * Opens cell rules editor view for defined cell
+         *
+         * @param cellIndex Cell index in repository
+         */
+        fun openCellRulesEditor(cellIndex: Int)
+
+        /**
          * Opens battle window, passing list of cell indexes within repository to it.
          *
          * @param cellIndexes Cell indexes in repository

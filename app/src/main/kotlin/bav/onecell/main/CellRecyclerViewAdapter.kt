@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import bav.onecell.R
 
 import kotlinx.android.synthetic.main.item_row_cell.view.buttonEditCell
+import kotlinx.android.synthetic.main.item_row_cell.view.buttonEditCellRules
 import kotlinx.android.synthetic.main.item_row_cell.view.buttonRemoveCell
 import kotlinx.android.synthetic.main.item_row_cell.view.title
 
@@ -33,6 +34,7 @@ class CellRecyclerViewAdapter(private val presenter: Main.Presenter) :
 
         init {
             view.buttonEditCell.setOnClickListener { presenter.openCellEditor(index) }
+            view.buttonEditCellRules.setOnClickListener { presenter.openCellRulesEditor(index) }
             view.buttonRemoveCell.setOnClickListener { presenter.removeCell(index) }
         }
 

@@ -35,6 +35,14 @@ class MainPresenter(
         }
     }
 
+    override fun openCellRulesEditor(cellIndex: Int) {
+        if (view.isDualPane()) {
+            view.openEditorFragment(cellIndex)
+        } else {
+            router.goToCellEditor((view as Context), cellIndex)
+        }
+    }
+
     override fun openBattleView(cellIndexes: List<Int>) {
         router.goToBattleView((view as Context), cellIndexes)
     }

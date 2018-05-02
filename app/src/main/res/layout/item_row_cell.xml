@@ -19,11 +19,18 @@
         app:srcCompat="@drawable/ic_edit_black_24dp"
         app:layout_constraintStart_toEndOf="@id/title" />
 
+    <android.support.v7.widget.AppCompatImageButton
+        android:id="@+id/buttonEditCellRules"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ic_memory_black_24dp"
+        app:layout_constraintStart_toEndOf="@id/buttonEditCell" />
+
     <CheckBox
         android:id="@+id/checkboxSelect"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@id/buttonEditCell" />
+        app:layout_constraintStart_toEndOf="@id/buttonEditCellRules" />
 
     <android.support.v7.widget.AppCompatImageButton
         android:id="@+id/buttonRemoveCell"
