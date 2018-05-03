@@ -40,19 +40,19 @@
             android:text="@string/radio_button_remove_cell_title"/>
     </RadioGroup>
 
-    <Button
+    <android.support.v7.widget.AppCompatImageButton
         android:id="@+id/buttonRotateCellLeft"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/button_rotate_cell_left_title"
+        app:srcCompat="@drawable/ic_rotate_left_black_24dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/radioGroupInConstructor" />
 
-    <Button
+    <android.support.v7.widget.AppCompatImageButton
         android:id="@+id/buttonRotateCellRight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/button_rotate_cell_right_title"
+        app:srcCompat="@drawable/ic_rotate_right_black_24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/radioGroupInConstructor" />
 
