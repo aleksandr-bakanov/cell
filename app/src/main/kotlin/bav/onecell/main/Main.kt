@@ -7,6 +7,7 @@ interface Main {
     interface View {
         fun isDualPane(): Boolean
         fun openEditorFragment(cellIndex: Int)
+        fun openCellLogicFragment(cellIndex: Int)
     }
 
     interface Presenter {

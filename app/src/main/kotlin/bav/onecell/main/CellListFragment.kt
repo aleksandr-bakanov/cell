@@ -17,13 +17,13 @@ import kotlinx.android.synthetic.main.item_row_cell.view.checkboxSelect
 
 class CellListFragment : Fragment() {
 
-    private lateinit var listener: OnCellListFragmentInteractionListener
+    private lateinit var host: OnCellListFragmentInteractionListener
     private val disposables = CompositeDisposable()
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
         if (context is OnCellListFragmentInteractionListener) {
-            listener = context
+            host = context
         } else {
             throw RuntimeException(context.toString() + " must implement OnCellListFragmentInteractionListener")
         }
@@ -37,14 +37,14 @@ class CellListFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        // TODO: remove listener when they aren't needed anymore
-        buttonCreateNewCell.setOnClickListener { listener.provideMainPresenter().createNewCell() }
+        // TODO: remove host when they aren't needed anymore
+        buttonCreateNewCell.setOnClickListener { host.provideMainPresenter().createNewCell() }
         buttonStartBattle.setOnClickListener { openBattleView() }
 
         recyclerViewCellList.layoutManager = LinearLayoutManager(context)
-        recyclerViewCellList.adapter = CellRecyclerViewAdapter(listener.provideMainPresenter())
+        recyclerViewCellList.adapter = CellRecyclerViewAdapter(host.provideMainPresenter())
 
-        disposables.add(listener.provideMainPresenter().cellRepoUpdateNotifier().subscribe {
+        disposables.add(host.provideMainPresenter().cellRepoUpdateNotifier().subscribe {
             recyclerViewCellList.adapter.notifyDataSetChanged()
         })
     }
@@ -57,12 +57,12 @@ class CellListFragment : Fragment() {
     private fun openBattleView() {
         val indexes = mutableListOf<Int>()
         for (i in 0 until recyclerViewCellList.childCount) {
-            val viewHolder = recyclerViewCellList.findViewHolderForAdapterPosition(i) as? CellRecyclerViewAdapter.CellViewHolder
+            val viewHolder = recyclerViewCellList.findViewHolderForAdapterPosition(i) as? CellRecyclerViewAdapter.ViewHolder
             viewHolder?.let {
                 if (it.view.checkboxSelect.isChecked) indexes.add(i)
             }
         }
-        if (indexes.size >= 2) listener.provideMainPresenter().openBattleView(indexes)
+        if (indexes.size >= 2) host.provideMainPresenter().openBattleView(indexes)
         else Toast.makeText(context, "Select at least two cells", Toast.LENGTH_LONG).show()
     }
 

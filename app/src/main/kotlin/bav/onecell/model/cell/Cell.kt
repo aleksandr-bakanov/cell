@@ -4,6 +4,7 @@ import bav.onecell.model.hexes.Hex
 import bav.onecell.model.hexes.HexMath
 import kotlin.math.abs
 
+// TODO: add cell visibility radius - cell may observe battlefield within limited radius from cell's center
 class Cell(private val hexMath: HexMath,
            val data: Data = Data()) {
 

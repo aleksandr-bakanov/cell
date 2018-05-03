@@ -1,5 +1,7 @@
 package bav.onecell.main
 
+import bav.onecell.celllogic.CellLogic
+import bav.onecell.celllogic.CellLogicPresenter
 import bav.onecell.common.router.Router
 import bav.onecell.di.scopes.ActivityScope
 import bav.onecell.editor.Editor
@@ -31,6 +33,12 @@ class MainModule(val view: Main.View?) {
     fun provideEditorPresenter(rules: Rules, cellRepository: RepositoryContract.CellRepo, router: Router):
             Editor.Presenter {
         return EditorPresenter(rules, cellRepository, router)
+    }
+
+    @Provides
+    @ActivityScope
+    fun provideCellLogicPresenter(cellRepository: RepositoryContract.CellRepo): CellLogic.Presenter {
+        return CellLogicPresenter(cellRepository)
     }
 }
 

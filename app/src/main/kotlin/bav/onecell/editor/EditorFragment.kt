@@ -20,7 +20,7 @@ import kotlinx.android.synthetic.main.fragment_editor.radioButtonRemoveCell
 
 class EditorFragment : Fragment() {
 
-    private lateinit var listener: OnEditorFragmentInteractionListener
+    private lateinit var host: OnEditorFragmentInteractionListener
     // TODO: same variable exists in EditorCanvasView, it is unnecessary duplicate
     private var selectedCellType: Hex.Type = Hex.Type.LIFE
     private val disposables = CompositeDisposable()
@@ -28,7 +28,7 @@ class EditorFragment : Fragment() {
     override fun onAttach(context: Context?) {
         super.onAttach(context)
         if (context is OnEditorFragmentInteractionListener) {
-            listener = context
+            host = context
         } else {
             throw RuntimeException(context.toString() + " must implement OnEditorFragmentInteractionListener")
         }
@@ -41,8 +41,8 @@ class EditorFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         
-        editorCanvasView.hexMath = listener.provideHexMath()
-        editorCanvasView.mPresenter = listener.provideEditorPresenter()
+        editorCanvasView.hexMath = host.provideHexMath()
+        editorCanvasView.mPresenter = host.provideEditorPresenter()
         
         radioButtonLifeCell.setOnClickListener { onCellTypeRadioButtonClicked(it) }
         radioButtonAttackCell.setOnClickListener { onCellTypeRadioButtonClicked(it) }
@@ -53,7 +53,7 @@ class EditorFragment : Fragment() {
         buttonRotateCellRight.setOnClickListener { onCellRotateButtonClicked(it) }
 
         // TODO: manage disposable
-        with (listener.provideEditorPresenter()) {
+        with (host.provideEditorPresenter()) {
             disposables.add(getCellProvider().subscribe {
                 editorCanvasView.cell = it
             })
@@ -82,8 +82,8 @@ class EditorFragment : Fragment() {
 
     private fun onCellRotateButtonClicked(view: View) {
         when (view.id) {
-            R.id.buttonRotateCellLeft -> listener.provideEditorPresenter().rotateCellLeft()
-            R.id.buttonRotateCellRight -> listener.provideEditorPresenter().rotateCellRight()
+            R.id.buttonRotateCellLeft -> host.provideEditorPresenter().rotateCellLeft()
+            R.id.buttonRotateCellRight -> host.provideEditorPresenter().rotateCellRight()
         }
         editorCanvasView.invalidate()
     }

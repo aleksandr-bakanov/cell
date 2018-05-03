@@ -12,24 +12,22 @@ import kotlinx.android.synthetic.main.item_row_cell.view.buttonRemoveCell
 import kotlinx.android.synthetic.main.item_row_cell.view.title
 
 class CellRecyclerViewAdapter(private val presenter: Main.Presenter) :
-        RecyclerView.Adapter<CellRecyclerViewAdapter.CellViewHolder>() {
+        RecyclerView.Adapter<CellRecyclerViewAdapter.ViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CellViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
                 .inflate(R.layout.item_row_cell, parent, false)
-        return CellViewHolder(view, presenter)
+        return ViewHolder(view, presenter)
     }
 
     override fun getItemCount() = presenter.cellsCount()
 
-    override fun onBindViewHolder(holder: CellViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.setCellTitle("Cell #$position")
         holder.index = position
     }
 
-    class CellViewHolder(val view: View, private val presenter: Main.Presenter) :
-            RecyclerView.ViewHolder(view) {
-
+    class ViewHolder(val view: View, private val presenter: Main.Presenter) : RecyclerView.ViewHolder(view) {
         var index: Int = 0
 
         init {

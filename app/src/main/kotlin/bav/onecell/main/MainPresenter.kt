@@ -37,9 +37,9 @@ class MainPresenter(
 
     override fun openCellRulesEditor(cellIndex: Int) {
         if (view.isDualPane()) {
-            view.openEditorFragment(cellIndex)
+            view.openCellLogicFragment(cellIndex)
         } else {
-            router.goToCellEditor((view as Context), cellIndex)
+            //router.goToCellEditor((view as Context), cellIndex)
         }
     }
 

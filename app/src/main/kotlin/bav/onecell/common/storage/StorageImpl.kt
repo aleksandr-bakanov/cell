@@ -10,6 +10,7 @@ class StorageImpl(private val dataBase: CellDataBase,
     override fun storeCellRepository(repo: RepositoryContract.CellRepo) {
         launch {
             val dao = dataBase.cellDataDao()
+            // TODO: optimise persistence
             dao.deleteAll()
             for (i in 0..(repo.cellsCount() - 1)) {
                 repo.getCell(i)?.let { dao.insert(it.data) }

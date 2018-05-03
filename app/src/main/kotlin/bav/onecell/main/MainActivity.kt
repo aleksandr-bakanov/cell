@@ -3,21 +3,24 @@ package bav.onecell.main
 import android.content.res.Configuration
 import android.os.Bundle
 import android.support.v4.app.FragmentActivity
-import android.support.v4.app.FragmentTransaction
 import bav.onecell.OneCellApplication
 import bav.onecell.R
+import bav.onecell.celllogic.CellLogic
+import bav.onecell.celllogic.RulesFragment
 import bav.onecell.editor.Editor
 import bav.onecell.editor.EditorFragment
 import bav.onecell.model.hexes.HexMath
 import javax.inject.Inject
 
 class MainActivity : FragmentActivity(), Main.View, CellListFragment.OnCellListFragmentInteractionListener,
-    EditorFragment.OnEditorFragmentInteractionListener {
+    EditorFragment.OnEditorFragmentInteractionListener, RulesFragment.OnRulesFragmentInteractionListener {
 
     @Inject lateinit var mainPresenter: Main.Presenter
 
     @Inject lateinit var editorPresenter: Editor.Presenter
     @Inject lateinit var hexMath: HexMath
+
+    @Inject lateinit var cellLogicPresenter: CellLogic.Presenter
 
     //region Lifecycle methods
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,12 +51,23 @@ class MainActivity : FragmentActivity(), Main.View, CellListFragment.OnCellListF
     override fun provideEditorPresenter(): Editor.Presenter = editorPresenter
     override fun provideHexMath(): HexMath = hexMath
 
+    override fun provideCellLogicPresenter(): CellLogic.Presenter = cellLogicPresenter
+
     override fun openEditorFragment(cellIndex: Int) {
         editorPresenter.initialize(cellIndex)
         // TODO: add check that cellIndex is currently shown, therefore no need to create new fragment
         val editorFragment = EditorFragment()
         val ft = supportFragmentManager.beginTransaction()
         ft.replace(R.id.editor, editorFragment)
+        ft.commit()
+    }
+
+    override fun openCellLogicFragment(cellIndex: Int) {
+        cellLogicPresenter.initialize(cellIndex)
+        // TODO: add check that cellIndex is currently shown, therefore no need to create new fragment
+        val rulesFragment = RulesFragment()
+        val ft = supportFragmentManager.beginTransaction()
+        ft.replace(R.id.editor, rulesFragment)
         ft.commit()
     }
     //endregion

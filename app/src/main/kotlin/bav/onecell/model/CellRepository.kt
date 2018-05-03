@@ -33,7 +33,7 @@ class CellRepository(
     }
 
     override fun removeCell(index: Int) {
-        if (index in 0..(cells.size - 1)) cells.removeAt(index)
+        if (index in 0 until cells.size) cells.removeAt(index)
     }
 
     override fun createNewCell() {
