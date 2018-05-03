@@ -31,5 +31,15 @@ interface CellLogic {
         fun removeRule(index: Int)
 
         fun rulesUpdateNotifier(): Observable<Unit>
+
+        fun openConditionsEditor(ruleIndex: Int)
+
+        fun conditionsNotifier(): Observable<Unit>
+
+        fun conditionsCount(): Int
+
+        fun createNewCondition()
+
+        fun removeCondition(index: Int)
     }
 }

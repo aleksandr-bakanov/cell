@@ -18,6 +18,7 @@
         </activity>
 
         <activity android:name="bav.onecell.editor.EditorActivity" />
+        <activity android:name="bav.onecell.celllogic.CellLogicActivity" />
         <activity android:name="bav.onecell.battle.BattleActivity" />
 
     </application>

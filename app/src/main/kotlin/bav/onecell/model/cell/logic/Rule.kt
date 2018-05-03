@@ -21,6 +21,8 @@ class Rule(private val conditions: MutableList<Condition> = mutableListOf(),
         if (index >= 0 && index < conditions.size) conditions.removeAt(index)
     }
 
+    fun size(): Int = conditions.size
+
     fun toJson(): String {
         return Gson().toJson(this)
     }

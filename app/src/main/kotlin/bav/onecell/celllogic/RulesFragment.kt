@@ -9,8 +9,10 @@ import android.view.View
 import android.view.ViewGroup
 import bav.onecell.R
 import io.reactivex.disposables.CompositeDisposable
+import kotlinx.android.synthetic.main.fragment_rules.buttonAddNewCondition
 
 import kotlinx.android.synthetic.main.fragment_rules.buttonAddNewRule
+import kotlinx.android.synthetic.main.fragment_rules.recyclerViewConditionsList
 import kotlinx.android.synthetic.main.fragment_rules.recyclerViewRulesList
 
 class RulesFragment : Fragment() {
@@ -37,15 +39,26 @@ class RulesFragment : Fragment() {
 
         buttonAddNewRule.setOnClickListener { host.provideCellLogicPresenter().createNewRule() }
 
+        buttonAddNewCondition.setOnClickListener { host.provideCellLogicPresenter().createNewCondition() }
+        buttonAddNewCondition.visibility = View.INVISIBLE
+
         recyclerViewRulesList.layoutManager = LinearLayoutManager(context)
         recyclerViewRulesList.adapter = RulesRecyclerViewAdapter(host.provideCellLogicPresenter())
+
+        recyclerViewConditionsList.layoutManager = LinearLayoutManager(context)
+        recyclerViewConditionsList.adapter = ConditionsRecyclerViewAdapter(host.provideCellLogicPresenter())
 
         disposables.add(host.provideCellLogicPresenter().rulesUpdateNotifier().subscribe {
             recyclerViewRulesList.adapter.notifyDataSetChanged()
         })
+        disposables.add(host.provideCellLogicPresenter().conditionsNotifier().subscribe {
+            buttonAddNewCondition.visibility = View.VISIBLE
+            recyclerViewConditionsList.adapter.notifyDataSetChanged()
+        })
     }
 
     override fun onDestroyView() {
+        host.provideCellLogicPresenter().openConditionsEditor(-1)
         disposables.dispose()
         super.onDestroyView()
     }

@@ -1,6 +1,7 @@
 package bav.onecell.main
 
 import bav.onecell.celllogic.CellLogic
+import bav.onecell.celllogic.CellLogicActivity
 import bav.onecell.celllogic.CellLogicPresenter
 import bav.onecell.common.router.Router
 import bav.onecell.di.scopes.ActivityScope
@@ -18,6 +19,7 @@ import dagger.Subcomponent
 interface MainSubcomponent {
     fun inject(view: MainActivity)
     fun inject(view: EditorActivity)
+    fun inject(view: CellLogicActivity)
 }
 
 @Module

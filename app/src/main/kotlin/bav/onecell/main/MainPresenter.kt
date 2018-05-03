@@ -39,7 +39,7 @@ class MainPresenter(
         if (view.isDualPane()) {
             view.openCellLogicFragment(cellIndex)
         } else {
-            //router.goToCellEditor((view as Context), cellIndex)
+            router.goToCellLogicEditor((view as Context), cellIndex)
         }
     }
 

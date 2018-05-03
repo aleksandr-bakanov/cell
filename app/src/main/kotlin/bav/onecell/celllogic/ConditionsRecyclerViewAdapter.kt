@@ -7,20 +7,22 @@ import android.view.ViewGroup
 import bav.onecell.R
 
 import kotlinx.android.synthetic.main.item_row_rule.view.*
+import kotlinx.android.synthetic.main.item_row_rule_condition.view.buttonEditCondition
+import kotlinx.android.synthetic.main.item_row_rule_condition.view.buttonRemoveCondition
 
-class RulesRecyclerViewAdapter(private val presenter: CellLogic.Presenter) :
-        RecyclerView.Adapter<RulesRecyclerViewAdapter.ViewHolder>() {
+class ConditionsRecyclerViewAdapter(private val presenter: CellLogic.Presenter) :
+        RecyclerView.Adapter<ConditionsRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
-                .inflate(R.layout.item_row_rule, parent, false)
+                .inflate(R.layout.item_row_rule_condition, parent, false)
         return ViewHolder(view, presenter)
     }
 
-    override fun getItemCount(): Int = presenter.rulesCount()
+    override fun getItemCount(): Int = presenter.conditionsCount()
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.setRuleTitle("Rule #$position")
+        holder.setRuleTitle("Condition #$position")
         holder.index = position
     }
 
@@ -28,8 +30,8 @@ class RulesRecyclerViewAdapter(private val presenter: CellLogic.Presenter) :
         var index: Int = 0
 
         init {
-            view.buttonRemoveRule.setOnClickListener { presenter.removeRule(index) }
-            view.buttonEditRule.setOnClickListener { presenter.openConditionsEditor(index) }
+            view.buttonRemoveCondition.setOnClickListener { presenter.removeCondition(index) }
+//            view.buttonEditCondition.setOnClickListener { presenter.openConditionsEditor(index) }
         }
 
         fun setRuleTitle(title: String) {

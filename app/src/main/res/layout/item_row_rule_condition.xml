@@ -13,14 +13,14 @@
         android:textSize="36sp" />
 
     <android.support.v7.widget.AppCompatImageButton
-        android:id="@+id/buttonEditRule"
+        android:id="@+id/buttonEditCondition"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/ic_edit_black_24dp"
-        app:layout_constraintEnd_toStartOf="@id/buttonRemoveRule" />
+        app:layout_constraintEnd_toStartOf="@id/buttonRemoveCondition" />
 
     <android.support.v7.widget.AppCompatImageButton
-        android:id="@+id/buttonRemoveRule"
+        android:id="@+id/buttonRemoveCondition"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/ic_delete_black_24dp"
