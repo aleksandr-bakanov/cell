@@ -31,7 +31,7 @@ class ConditionsRecyclerViewAdapter(private val presenter: CellLogic.Presenter) 
 
         init {
             view.buttonRemoveCondition.setOnClickListener { presenter.removeCondition(index) }
-//            view.buttonEditCondition.setOnClickListener { presenter.openConditionsEditor(index) }
+            view.buttonEditCondition.setOnClickListener { presenter.openConditionEditor(index) }
         }
 
         fun setRuleTitle(title: String) {

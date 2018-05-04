@@ -15,17 +15,17 @@ import kotlinx.android.synthetic.main.fragment_rules.buttonAddNewRule
 import kotlinx.android.synthetic.main.fragment_rules.recyclerViewConditionsList
 import kotlinx.android.synthetic.main.fragment_rules.recyclerViewRulesList
 
-class RulesFragment : Fragment() {
+class RulesFragment : Fragment(), CellLogic.PresenterProvider {
 
-    private lateinit var host: OnRulesFragmentInteractionListener
+    private lateinit var host: CellLogic.PresenterProvider
     private val disposables = CompositeDisposable()
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        if (context is OnRulesFragmentInteractionListener) {
+        if (context is CellLogic.PresenterProvider) {
             host = context
         } else {
-            throw RuntimeException(context.toString() + " must implement OnRulesFragmentInteractionListener")
+            throw RuntimeException(context.toString() + " must implement CellLogic.PresenterProvider")
         }
     }
 
@@ -48,26 +48,33 @@ class RulesFragment : Fragment() {
         recyclerViewConditionsList.layoutManager = LinearLayoutManager(context)
         recyclerViewConditionsList.adapter = ConditionsRecyclerViewAdapter(host.provideCellLogicPresenter())
 
-        disposables.add(host.provideCellLogicPresenter().rulesUpdateNotifier().subscribe {
-            recyclerViewRulesList.adapter.notifyDataSetChanged()
-        })
-        disposables.add(host.provideCellLogicPresenter().conditionsNotifier().subscribe {
-            buttonAddNewCondition.visibility = View.VISIBLE
-            recyclerViewConditionsList.adapter.notifyDataSetChanged()
-        })
+        disposables.addAll(
+                host.provideCellLogicPresenter().rulesUpdateNotifier().subscribe {
+                    recyclerViewRulesList.adapter.notifyDataSetChanged()
+                },
+                host.provideCellLogicPresenter().conditionsUpdateNotifier().subscribe {
+                    buttonAddNewCondition.visibility = View.VISIBLE
+                    recyclerViewConditionsList.adapter.notifyDataSetChanged()
+                },
+                host.provideCellLogicPresenter().conditionsEditNotifier().subscribe {
+                    val conditionEditorDialogFragment = ConditionEditorDialogFragment()
+                    // TODO: check we attached to activity
+                    conditionEditorDialogFragment.show(requireActivity().fragmentManager, CONDITION_EDITOR_DIALOG_TAG)
+                }
+        )
     }
 
     override fun onDestroyView() {
-        host.provideCellLogicPresenter().openConditionsEditor(-1)
+        host.provideCellLogicPresenter().openConditionsList(-1)
         disposables.dispose()
         super.onDestroyView()
     }
 
-    interface OnRulesFragmentInteractionListener {
-        fun provideCellLogicPresenter(): CellLogic.Presenter
-    }
+    override fun provideCellLogicPresenter(): CellLogic.Presenter = host.provideCellLogicPresenter()
 
     companion object {
+        private const val CONDITION_EDITOR_DIALOG_TAG = "condition_editor_dialog"
+
         @JvmStatic
         fun newInstance() = RulesFragment()
     }

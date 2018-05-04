@@ -16,8 +16,13 @@ class CellLogicPresenter(
     private var rules: MutableList<Rule>? = null
     private val rulesNotifier = PublishSubject.create<Unit>()
     private val conditionsNotifier = PublishSubject.create<Unit>()
-    private var currentlyEditedRuleIndex: Int = 0
+    private val conditionEditNotifier = PublishSubject.create<Condition>()
+
+    private var currentlyEditedRuleIndex: Int = -1
     private var currentlyEditedRule: Rule? = null
+
+    private var currentlyEditedConditionIndex: Int = -1
+    private var currentlyEditedCondition: Condition? = null
 
     override fun initialize(cellIndex: Int) {
         rules = cellRepository.getCell(cellIndex)?.data?.rules
@@ -42,11 +47,16 @@ class CellLogicPresenter(
 
     override fun rulesUpdateNotifier(): Observable<Unit> = rulesNotifier
 
-    override fun conditionsNotifier(): Observable<Unit> = conditionsNotifier
+    override fun conditionsUpdateNotifier(): Observable<Unit> = conditionsNotifier
 
-    override fun openConditionsEditor(ruleIndex: Int) {
+    override fun conditionsEditNotifier(): Observable<Condition> = conditionEditNotifier
+
+    override fun openConditionsList(ruleIndex: Int) {
         currentlyEditedRule = rules?.let {
-            if (ruleIndex >= 0 && ruleIndex < it.size) it[ruleIndex]
+            if (ruleIndex >= 0 && ruleIndex < it.size) {
+                currentlyEditedRuleIndex = ruleIndex
+                it[ruleIndex]
+            }
             else null
         }
         conditionsNotifier.onNext(Unit)
@@ -62,5 +72,17 @@ class CellLogicPresenter(
     override fun removeCondition(index: Int) {
         currentlyEditedRule?.removeConditionAt(index)
         conditionsNotifier.onNext(Unit)
+    }
+
+    override fun openConditionEditor(conditionIndex: Int) {
+        currentlyEditedCondition = currentlyEditedRule?.getCondition(conditionIndex)
+        currentlyEditedCondition?.let {
+            currentlyEditedConditionIndex = conditionIndex
+            conditionEditNotifier.onNext(it)
+        }
+    }
+
+    override fun saveCondition() {
+
     }
 }

@@ -11,7 +11,7 @@ import bav.onecell.main.MainModule
 import bav.onecell.model.hexes.HexMath
 import javax.inject.Inject
 
-class CellLogicActivity : FragmentActivity(), CellLogic.View, RulesFragment.OnRulesFragmentInteractionListener {
+class CellLogicActivity : FragmentActivity(), CellLogic.View, CellLogic.PresenterProvider {
     companion object {
         private const val EXTRA_CELL_INDEX = "bav.onecell.extra_cell_index"
 

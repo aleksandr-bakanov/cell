@@ -13,7 +13,7 @@ import bav.onecell.model.hexes.HexMath
 import javax.inject.Inject
 
 class MainActivity : FragmentActivity(), Main.View, CellListFragment.OnCellListFragmentInteractionListener,
-    EditorFragment.OnEditorFragmentInteractionListener, RulesFragment.OnRulesFragmentInteractionListener {
+    EditorFragment.OnEditorFragmentInteractionListener, CellLogic.PresenterProvider {
 
     @Inject lateinit var mainPresenter: Main.Presenter
 

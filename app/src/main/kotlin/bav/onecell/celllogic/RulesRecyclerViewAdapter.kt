@@ -29,7 +29,7 @@ class RulesRecyclerViewAdapter(private val presenter: CellLogic.Presenter) :
 
         init {
             view.buttonRemoveRule.setOnClickListener { presenter.removeRule(index) }
-            view.buttonEditRule.setOnClickListener { presenter.openConditionsEditor(index) }
+            view.buttonEditRule.setOnClickListener { presenter.openConditionsList(index) }
         }
 
         fun setRuleTitle(title: String) {
