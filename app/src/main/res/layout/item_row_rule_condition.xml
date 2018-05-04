@@ -13,11 +13,25 @@
         android:textSize="36sp" />
 
     <android.support.v7.widget.AppCompatImageButton
-        android:id="@+id/buttonEditCondition"
+        android:id="@+id/buttonFieldToCheck"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/ic_edit_black_24dp"
-        app:layout_constraintEnd_toStartOf="@id/buttonRemoveCondition" />
+        app:srcCompat="@drawable/ic_settings_black_24dp"
+        app:layout_constraintStart_toEndOf="@id/title" />
+
+    <android.support.v7.widget.AppCompatImageButton
+        android:id="@+id/buttonOperation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ic_live_help_black_24dp"
+        app:layout_constraintStart_toEndOf="@id/buttonFieldToCheck" />
+
+    <android.support.v7.widget.AppCompatImageButton
+        android:id="@+id/buttonExpectedValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ic_priority_high_black_24dp"
+        app:layout_constraintStart_toEndOf="@id/buttonOperation" />
 
     <android.support.v7.widget.AppCompatImageButton
         android:id="@+id/buttonRemoveCondition"

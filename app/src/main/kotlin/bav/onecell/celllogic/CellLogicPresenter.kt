@@ -13,6 +13,10 @@ class CellLogicPresenter(
         private const val TAG = "CellLogicPresenter"
     }
 
+    enum class ConditionPartToEdit(val value: Int) {
+        FIELD(0), OPERATION(1), EXPECTED(2)
+    }
+
     private var rules: MutableList<Rule>? = null
     private val rulesNotifier = PublishSubject.create<Unit>()
     private val conditionsNotifier = PublishSubject.create<Unit>()
@@ -23,6 +27,7 @@ class CellLogicPresenter(
 
     private var currentlyEditedConditionIndex: Int = -1
     private var currentlyEditedCondition: Condition? = null
+    private var currentlyWhatToEdit: Int = -1
 
     override fun initialize(cellIndex: Int) {
         rules = cellRepository.getCell(cellIndex)?.data?.rules
@@ -74,15 +79,30 @@ class CellLogicPresenter(
         conditionsNotifier.onNext(Unit)
     }
 
-    override fun openConditionEditor(conditionIndex: Int) {
+    override fun openConditionEditor(conditionIndex: Int, whatToEdit: Int) {
         currentlyEditedCondition = currentlyEditedRule?.getCondition(conditionIndex)
         currentlyEditedCondition?.let {
             currentlyEditedConditionIndex = conditionIndex
+            currentlyWhatToEdit = whatToEdit
             conditionEditNotifier.onNext(it)
         }
     }
 
     override fun saveCondition() {
 
+    }
+
+    private val emptyValues: Array<String> = arrayOf()
+    private val fieldToCheckValues: Array<String> = arrayOf("Direction to nearest enemy")
+    private val operationsValues: Array<String> = arrayOf("Equals")
+    private val directionValues: Array<String> = arrayOf("North", "North-East", "South-East", "South", "South-West", "North-West")
+
+    override fun provideConditionDialogValues(): Array<String> {
+        return when(currentlyWhatToEdit) {
+            ConditionPartToEdit.FIELD.value -> fieldToCheckValues
+            ConditionPartToEdit.OPERATION.value -> operationsValues
+            ConditionPartToEdit.EXPECTED.value -> directionValues // TODO: should depend on fieldToCheck
+            else -> emptyValues
+        }
     }
 }

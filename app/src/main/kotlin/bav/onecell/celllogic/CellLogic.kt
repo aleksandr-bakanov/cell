@@ -45,7 +45,9 @@ interface CellLogic {
 
         fun removeCondition(index: Int)
 
-        fun openConditionEditor(conditionIndex: Int)
+        fun openConditionEditor(conditionIndex: Int, whatToEdit: Int)
+
+        fun provideConditionDialogValues(): Array<String>
 
         fun saveCondition()
     }

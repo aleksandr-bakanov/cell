@@ -7,7 +7,9 @@ import android.view.ViewGroup
 import bav.onecell.R
 
 import kotlinx.android.synthetic.main.item_row_rule.view.*
-import kotlinx.android.synthetic.main.item_row_rule_condition.view.buttonEditCondition
+import kotlinx.android.synthetic.main.item_row_rule_condition.view.buttonExpectedValue
+import kotlinx.android.synthetic.main.item_row_rule_condition.view.buttonFieldToCheck
+import kotlinx.android.synthetic.main.item_row_rule_condition.view.buttonOperation
 import kotlinx.android.synthetic.main.item_row_rule_condition.view.buttonRemoveCondition
 
 class ConditionsRecyclerViewAdapter(private val presenter: CellLogic.Presenter) :
@@ -22,7 +24,7 @@ class ConditionsRecyclerViewAdapter(private val presenter: CellLogic.Presenter) 
     override fun getItemCount(): Int = presenter.conditionsCount()
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.setRuleTitle("Condition #$position")
+        holder.setRuleTitle("#$position")
         holder.index = position
     }
 
@@ -31,7 +33,9 @@ class ConditionsRecyclerViewAdapter(private val presenter: CellLogic.Presenter) 
 
         init {
             view.buttonRemoveCondition.setOnClickListener { presenter.removeCondition(index) }
-            view.buttonEditCondition.setOnClickListener { presenter.openConditionEditor(index) }
+            view.buttonFieldToCheck.setOnClickListener { presenter.openConditionEditor(index, CellLogicPresenter.ConditionPartToEdit.FIELD.value) }
+            view.buttonOperation.setOnClickListener { presenter.openConditionEditor(index, CellLogicPresenter.ConditionPartToEdit.OPERATION.value) }
+            view.buttonExpectedValue.setOnClickListener { presenter.openConditionEditor(index, CellLogicPresenter.ConditionPartToEdit.EXPECTED.value) }
         }
 
         fun setRuleTitle(title: String) {

@@ -5,9 +5,9 @@ import bav.onecell.model.cell.Cell
 /**
  * This class represents condition which form rules.
  */
-class Condition(private val operation: Operation = Operation.EQUALS,
-                private val fieldToCheck: FieldToCheck = FieldToCheck.DIRECTION_TO_NEAREST_ENEMY,
-                private val expected: Any = Cell.Direction.N) {
+class Condition(var operation: Operation = Operation.EQUALS,
+                var fieldToCheck: FieldToCheck = FieldToCheck.DIRECTION_TO_NEAREST_ENEMY,
+                var expected: Any = Cell.Direction.N) {
 
     enum class Operation(value: String) {
         EQUALS("eq")

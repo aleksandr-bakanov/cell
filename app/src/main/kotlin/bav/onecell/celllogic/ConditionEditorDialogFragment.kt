@@ -34,9 +34,12 @@ class ConditionEditorDialogFragment : DialogFragment() {
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        Log.d("ConditionEditorDialog", "onCreateDialog")
         val builder = AlertDialog.Builder(activity)
         builder
-            .setView(activity.layoutInflater.inflate(R.layout.fragment_condition_editor, null))
+            .setItems(host.provideCellLogicPresenter().provideConditionDialogValues(), { dialog, which ->
+
+            })
             .setPositiveButton(R.string.button_ok, { dialog, which ->
                 host.provideCellLogicPresenter().saveCondition()
             })
@@ -44,5 +47,10 @@ class ConditionEditorDialogFragment : DialogFragment() {
 
             })
         return builder.create()
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        Log.d("ConditionEditorDialog", "onActivityCreated")
     }
 }

@@ -56,7 +56,8 @@ class RulesFragment : Fragment(), CellLogic.PresenterProvider {
                     buttonAddNewCondition.visibility = View.VISIBLE
                     recyclerViewConditionsList.adapter.notifyDataSetChanged()
                 },
-                host.provideCellLogicPresenter().conditionsEditNotifier().subscribe {
+                host.provideCellLogicPresenter().conditionsEditNotifier().subscribe { condition ->
+
                     val conditionEditorDialogFragment = ConditionEditorDialogFragment()
                     // TODO: check we attached to activity
                     conditionEditorDialogFragment.show(requireActivity().fragmentManager, CONDITION_EDITOR_DIALOG_TAG)
