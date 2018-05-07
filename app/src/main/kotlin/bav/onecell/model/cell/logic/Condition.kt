@@ -9,12 +9,22 @@ class Condition(var operation: Operation = Operation.EQUALS,
                 var fieldToCheck: FieldToCheck = FieldToCheck.DIRECTION_TO_NEAREST_ENEMY,
                 var expected: Any = Cell.Direction.N) {
 
-    enum class Operation(value: String) {
-        EQUALS("eq")
+    enum class Operation(val value: String) {
+        EQUALS("eq");
+
+        companion object {
+            private val map = Operation.values().associateBy { it.value }
+            fun fromString(type: String): Operation = map[type] ?: EQUALS
+        }
     }
 
-    enum class FieldToCheck(value: String) {
-        DIRECTION_TO_NEAREST_ENEMY("dirToNearEnemy")
+    enum class FieldToCheck(val value: String) {
+        DIRECTION_TO_NEAREST_ENEMY("dirToNearEnemy");
+
+        companion object {
+            private val map = FieldToCheck.values().associateBy { it.value }
+            fun fromString(type: String): FieldToCheck = map[type] ?: DIRECTION_TO_NEAREST_ENEMY
+        }
     }
 
     fun check(state: BattleState): Boolean {

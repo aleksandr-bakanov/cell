@@ -1,6 +1,7 @@
 package bav.onecell.celllogic
 
 import bav.onecell.model.RepositoryContract
+import bav.onecell.model.cell.Cell
 import bav.onecell.model.cell.logic.Condition
 import bav.onecell.model.cell.logic.Rule
 import io.reactivex.Observable
@@ -61,8 +62,7 @@ class CellLogicPresenter(
             if (ruleIndex >= 0 && ruleIndex < it.size) {
                 currentlyEditedRuleIndex = ruleIndex
                 it[ruleIndex]
-            }
-            else null
+            } else null
         }
         conditionsNotifier.onNext(Unit)
     }
@@ -93,16 +93,37 @@ class CellLogicPresenter(
     }
 
     private val emptyValues: Array<String> = arrayOf()
-    private val fieldToCheckValues: Array<String> = arrayOf("Direction to nearest enemy")
-    private val operationsValues: Array<String> = arrayOf("Equals")
-    private val directionValues: Array<String> = arrayOf("North", "North-East", "South-East", "South", "South-West", "North-West")
+    private val fieldToCheckValues: Array<String> = arrayOf(Condition.FieldToCheck.DIRECTION_TO_NEAREST_ENEMY.value)
+    private val operationsValues: Array<String> = arrayOf(Condition.Operation.EQUALS.value)
+    private val directionValues: Array<String> = arrayOf(
+            Cell.Direction.N.toString(),
+            Cell.Direction.NE.toString(),
+            Cell.Direction.SE.toString(),
+            Cell.Direction.S.toString(),
+            Cell.Direction.SW.toString(),
+            Cell.Direction.NW.toString()
+    )
 
     override fun provideConditionDialogValues(): Array<String> {
-        return when(currentlyWhatToEdit) {
+        return when (currentlyWhatToEdit) {
             ConditionPartToEdit.FIELD.value -> fieldToCheckValues
             ConditionPartToEdit.OPERATION.value -> operationsValues
             ConditionPartToEdit.EXPECTED.value -> directionValues // TODO: should depend on fieldToCheck
             else -> emptyValues
+        }
+    }
+
+    override fun saveConditionValue(which: Int) {
+        currentlyEditedCondition?.let {
+            when (currentlyWhatToEdit) {
+                ConditionPartToEdit.FIELD.value -> it.fieldToCheck = Condition.FieldToCheck.fromString(
+                        fieldToCheckValues[which])
+                ConditionPartToEdit.OPERATION.value -> it.operation = Condition.Operation.fromString(
+                        operationsValues[which])
+                ConditionPartToEdit.EXPECTED.value -> it.expected = Cell.Direction.fromString(
+                        directionValues[which]) // TODO: should depend on fieldToCheck
+                else -> Unit
+            }
         }
     }
 }

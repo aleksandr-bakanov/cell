@@ -10,9 +10,19 @@ class Cell(private val hexMath: HexMath,
 
     enum class Direction(val value: Int) {
         N(0), NE(1), SE(2), S(3), SW(4), NW(5);
+
         companion object {
             private val map = Direction.values().associateBy { it.value }
             fun fromInt(type: Int): Direction = map[type] ?: N
+            fun fromString(type: String) = when (type) {
+                "N" -> N
+                "NE" -> NE
+                "SE" -> SE
+                "S" -> S
+                "SW" -> SW
+                "NW" -> NW
+                else -> N
+            }
         }
     }
 

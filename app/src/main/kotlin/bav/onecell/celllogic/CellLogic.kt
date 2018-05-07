@@ -49,6 +49,8 @@ interface CellLogic {
 
         fun provideConditionDialogValues(): Array<String>
 
+        fun saveConditionValue(which: Int)
+
         fun saveCondition()
     }
 

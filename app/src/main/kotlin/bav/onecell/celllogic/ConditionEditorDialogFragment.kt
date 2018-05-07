@@ -37,15 +37,15 @@ class ConditionEditorDialogFragment : DialogFragment() {
         Log.d("ConditionEditorDialog", "onCreateDialog")
         val builder = AlertDialog.Builder(activity)
         builder
-            .setItems(host.provideCellLogicPresenter().provideConditionDialogValues(), { dialog, which ->
+                .setItems(host.provideCellLogicPresenter().provideConditionDialogValues(), { dialog, which ->
+                    host.provideCellLogicPresenter().saveConditionValue(which)
+                })
+                .setPositiveButton(R.string.button_ok, { dialog, which ->
+                    host.provideCellLogicPresenter().saveCondition()
+                })
+                .setNegativeButton(R.string.button_cancel, { dialog, which ->
 
-            })
-            .setPositiveButton(R.string.button_ok, { dialog, which ->
-                host.provideCellLogicPresenter().saveCondition()
-            })
-            .setNegativeButton(R.string.button_cancel, { dialog, which ->
-
-            })
+                })
         return builder.create()
     }
 
