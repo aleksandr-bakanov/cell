@@ -13,11 +13,18 @@
         android:textSize="36sp" />
 
     <android.support.v7.widget.AppCompatImageButton
-        android:id="@+id/buttonEditRule"
+        android:id="@+id/buttonOpenRuleConditions"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/ic_edit_black_24dp"
-        app:layout_constraintEnd_toStartOf="@id/buttonRemoveRule" />
+        app:srcCompat="@drawable/ic_format_list_bulleted_black_24dp"
+        app:layout_constraintStart_toEndOf="@id/title" />
+
+    <android.support.v7.widget.AppCompatImageButton
+        android:id="@+id/buttonChooseRuleAction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ic_priority_high_black_24dp"
+        app:layout_constraintStart_toEndOf="@id/buttonOpenRuleConditions" />
 
     <android.support.v7.widget.AppCompatImageButton
         android:id="@+id/buttonRemoveRule"
