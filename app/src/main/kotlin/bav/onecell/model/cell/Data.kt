@@ -24,6 +24,7 @@ data class Data(
     fun clone(): Data {
         val data = Data(origin = origin, direction = direction)
         hexes.forEach { (k, v) -> data.hexes[k] = v.clone() }
+        rules.forEach { data.rules.add(it) }
         return data
     }
 

@@ -32,7 +32,10 @@ class Condition(var operation: Operation = Operation.EQUALS,
             FieldToCheck.DIRECTION_TO_NEAREST_ENEMY -> state.directionToNearestEnemy
         }
         return when (operation) {
-            Operation.EQUALS -> fieldToCheckValue == expected
+            Operation.EQUALS ->
+                (fieldToCheckValue as Cell.Direction) ==
+                        Cell.Direction.fromString(
+                                expected as String)
         }
     }
 }

@@ -14,7 +14,7 @@ class Action(var act: Act = Act.CHANGE_DIRECTION,
 
     fun perform(cell: Cell) {
         when (act) {
-            Act.CHANGE_DIRECTION -> cell.rotate((value as? Cell.Direction) ?: Cell.Direction.N)
+            Act.CHANGE_DIRECTION -> cell.rotate(Cell.Direction.fromString(value as String))
         }
     }
 }
