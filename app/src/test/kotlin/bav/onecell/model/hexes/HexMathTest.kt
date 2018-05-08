@@ -60,22 +60,22 @@ class HexMathTest {
 
     @Test(expected = IllegalArgumentException::class)
     fun radToDirShouldThrowInCaseOfAngleLessThanMinusPi() {
-        hexMath.radToDir((-2 * PI).toFloat())
+        hexMath.radToNeighborDirection((-2 * PI).toFloat())
     }
 
     @Test(expected = IllegalArgumentException::class)
     fun radToDirShouldThrowInCaseOfAngleMoreThanPi() {
-        hexMath.radToDir((2 * PI).toFloat())
+        hexMath.radToNeighborDirection((2 * PI).toFloat())
     }
 
     @Test
     fun radToDirShouldReturnValidDirections() {
-        assertEquals(5, hexMath.radToDir((-PI * 2 / 3).toFloat()))
-        assertEquals(0, hexMath.radToDir((-PI * 1 / 3).toFloat()))
-        assertEquals(1, hexMath.radToDir(0f))
-        assertEquals(2, hexMath.radToDir((PI * 1 / 3).toFloat()))
-        assertEquals(3, hexMath.radToDir((PI * 2 / 3).toFloat()))
-        assertEquals(4, hexMath.radToDir(PI.toFloat()))
+        assertEquals(5, hexMath.radToNeighborDirection((-PI * 2 / 3).toFloat()))
+        assertEquals(0, hexMath.radToNeighborDirection((-PI * 1 / 3).toFloat()))
+        assertEquals(1, hexMath.radToNeighborDirection(0f))
+        assertEquals(2, hexMath.radToNeighborDirection((PI * 1 / 3).toFloat()))
+        assertEquals(3, hexMath.radToNeighborDirection((PI * 2 / 3).toFloat()))
+        assertEquals(4, hexMath.radToNeighborDirection(PI.toFloat()))
     }
 
     @Test

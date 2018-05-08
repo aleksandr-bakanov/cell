@@ -13,4 +13,8 @@ class BattleState {
     var directionToNearestEnemy: Cell.Direction = Cell.Direction.N
 
     // Common properties
+
+    // Private properties
+    val directions = mutableListOf<Int>()
+    val rads = mutableListOf<Float>()
 }

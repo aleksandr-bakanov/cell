@@ -7,7 +7,7 @@ import com.google.gson.Gson
  * if all conditions are true.
  */
 class Rule(private val conditions: MutableList<Condition> = mutableListOf(),
-           var action: Action = Action()) {
+           val action: Action = Action()) {
 
     fun check(state: BattleState): Boolean {
         return conditions.map { it.check(state) }.all { it }

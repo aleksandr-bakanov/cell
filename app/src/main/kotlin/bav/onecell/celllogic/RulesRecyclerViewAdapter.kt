@@ -5,8 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import bav.onecell.R
-
-import kotlinx.android.synthetic.main.item_row_rule.view.*
+import kotlinx.android.synthetic.main.item_row_rule.view.buttonChooseRuleAction
+import kotlinx.android.synthetic.main.item_row_rule.view.buttonOpenRuleConditions
+import kotlinx.android.synthetic.main.item_row_rule.view.buttonRemoveRule
+import kotlinx.android.synthetic.main.item_row_rule.view.title
 
 class RulesRecyclerViewAdapter(private val presenter: CellLogic.Presenter) :
         RecyclerView.Adapter<RulesRecyclerViewAdapter.ViewHolder>() {
@@ -30,6 +32,7 @@ class RulesRecyclerViewAdapter(private val presenter: CellLogic.Presenter) :
         init {
             view.buttonRemoveRule.setOnClickListener { presenter.removeRule(index) }
             view.buttonOpenRuleConditions.setOnClickListener { presenter.openConditionsList(index) }
+            view.buttonChooseRuleAction.setOnClickListener { presenter.openActionEditor(index) }
         }
 
         fun setRuleTitle(title: String) {

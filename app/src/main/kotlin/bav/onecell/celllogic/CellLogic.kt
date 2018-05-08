@@ -33,7 +33,11 @@ interface CellLogic {
 
         fun rulesUpdateNotifier(): Observable<Unit>
 
+        fun actionEditNotifier(): Observable<Unit>
+
         fun openConditionsList(ruleIndex: Int)
+
+        fun openActionEditor(ruleIndex: Int)
 
         fun conditionsUpdateNotifier(): Observable<Unit>
 
@@ -49,7 +53,11 @@ interface CellLogic {
 
         fun provideConditionDialogValues(): Array<String>
 
+        fun provideActionDialogValues(): Array<String>
+
         fun saveConditionValue(which: Int)
+
+        fun saveActionValue(which: Int)
 
         fun saveCondition()
     }

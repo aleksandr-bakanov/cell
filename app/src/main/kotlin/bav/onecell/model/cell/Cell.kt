@@ -1,5 +1,6 @@
 package bav.onecell.model.cell
 
+import bav.onecell.model.cell.logic.BattleState
 import bav.onecell.model.hexes.Hex
 import bav.onecell.model.hexes.HexMath
 import kotlin.math.abs
@@ -228,5 +229,15 @@ class Cell(private val hexMath: HexMath,
             newHexes[newHex.hashCode()] = newHex
         }
         data.hexes = newHexes
+    }
+
+    fun applyCellLogic(battleState: BattleState) {
+        for (index in 0 until data.rules.size) {
+            val rule = data.rules[index]
+            if (rule.check(battleState)) {
+                rule.action.perform(this)
+                break
+            }
+        }
     }
 }

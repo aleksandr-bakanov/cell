@@ -1,20 +1,18 @@
 package bav.onecell.battle
 
-import android.util.Log
 import bav.onecell.common.router.Router
 import bav.onecell.model.cell.Cell
 import bav.onecell.model.RepositoryContract
 import bav.onecell.model.Rules
+import bav.onecell.model.cell.logic.BattleState
 import bav.onecell.model.hexes.Hex
 import bav.onecell.model.hexes.HexMath
 import bav.onecell.model.hexes.Layout
 import java.util.LinkedList
 import java.util.Queue
+import kotlin.math.PI
 import kotlin.math.atan2
 import kotlin.math.round
-import kotlinx.coroutines.experimental.android.UI
-import kotlinx.coroutines.experimental.async
-import kotlinx.coroutines.experimental.launch
 
 /// TODO: move calculations to background thread
 /// TODO: produce sequence of battle steps and provide them via RX
@@ -35,10 +33,12 @@ class BattlePresenter(
     private val cells = mutableListOf<Cell>()
     private val corpses = mutableListOf<Cell>()
     private var battleFieldSize: Int = 0
+    private val battleState = BattleState()
 
     private fun initializeBattleSteps() {
-        firstStep = applyCellsLogic
+        firstStep = calculateBattleState
         for (action in arrayOf(
+                calculateBattleState,
                 applyCellsLogic,
                 moveCells,
                 calculateDamages,
@@ -98,13 +98,11 @@ class BattlePresenter(
         view.updateBattleView()
     }
 
-    private fun applyCellLogic(cell: Cell) {
+    private fun calculateBattleState() {
+        battleState.directions.clear()
+        battleState.rads.clear()
 
-    }
-
-    private fun moveCells() {
         // Each cell will move to the nearest hex within all enemies
-        val directions = mutableListOf<Int>()
         cells.forEachIndexed { i, cell ->
             var nearest: Hex = cell.data.origin
             var minDistance = Int.MAX_VALUE
@@ -127,7 +125,8 @@ class BattlePresenter(
             // same direction they will move eternally. We should avoid such case, therefore we will choose random
             // direction for cell in such case.
             if (minDistance == 0) {
-                directions.add((0..5).shuffled().last())
+                battleState.directions.add((0..5).shuffled().last())
+                battleState.rads.add(0f)
             }
             else {
                 // Origin point
@@ -136,12 +135,40 @@ class BattlePresenter(
                 val hp = hexMath.hexToPixel(Layout.DUMMY, nearest)
                 // Angle direction to enemy hex
                 val angle = atan2(hp.y.toFloat() - op.y.toFloat(), hp.x.toFloat() - op.x.toFloat())
+                battleState.rads.add(angle)
                 // Determine direction based on angle
-                directions.add(hexMath.radToDir(angle))
+                battleState.directions.add(hexMath.radToNeighborDirection(angle))
             }
         }
+    }
+
+    private fun applyCellLogic(index: Int, cell: Cell) {
+        correctBattleStateForCell(index, cell)
+        cell.applyCellLogic(battleState)
+    }
+
+    private fun correctBattleStateForCell(index: Int, providedCell: Cell) {
+        battleState.directionToNearestEnemy = radToCellDirection(battleState.rads[index])
+    }
+
+    //    N
+    // NW /\ NE
+    //   |  |
+    // SW \/ SE
+    //    S
+    private fun radToCellDirection(angle: Float): Cell.Direction {
+        if (angle < -PI.toFloat() || angle > PI.toFloat()) throw IllegalArgumentException("Angle should be in range [-PI..PI]")
+        return if (angle >= (-PI * 2) && angle < (-PI * 2 / 3)) Cell.Direction.NW
+        else if   (angle >= (-PI * 2 / 3) && angle < (-PI / 3)) Cell.Direction.N
+        else if   (angle >= (-PI / 3) && angle < 0) Cell.Direction.NE
+        else if   (angle >= 0 && angle < (PI / 3)) Cell.Direction.SE
+        else if   (angle >= (PI / 3) && angle < (PI * 2 / 3)) Cell.Direction.S
+        else Cell.Direction.SW
+    }
+
+    private fun moveCells() {
         // Move cells
-        directions.forEachIndexed { index, direction ->
+        battleState.directions.forEachIndexed { index, direction ->
             cells[index].data.origin = hexMath.add(cells[index].data.origin, hexMath.getHexByDirection(direction))
         }
     }
@@ -255,9 +282,13 @@ class BattlePresenter(
     //region Partial round steps
     private lateinit var firstStep: () -> Unit
 
+    private val calculateBattleState = {
+        calculateBattleState()
+    }
+
     private val applyCellsLogic = {
         // TODO pass battle field state to cell's logic mechanism
-        cells.forEach { applyCellLogic(it) }
+        cells.forEachIndexed { index, cell ->  applyCellLogic(index, cell) }
     }
 
     private val chooseMovingDirections = {

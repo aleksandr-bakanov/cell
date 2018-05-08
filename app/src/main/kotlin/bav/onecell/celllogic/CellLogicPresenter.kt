@@ -20,6 +20,7 @@ class CellLogicPresenter(
 
     private var rules: MutableList<Rule>? = null
     private val rulesNotifier = PublishSubject.create<Unit>()
+    private val actionNotifier = PublishSubject.create<Unit>()
     private val conditionsNotifier = PublishSubject.create<Unit>()
     private val conditionEditNotifier = PublishSubject.create<Condition>()
 
@@ -53,6 +54,8 @@ class CellLogicPresenter(
 
     override fun rulesUpdateNotifier(): Observable<Unit> = rulesNotifier
 
+    override fun actionEditNotifier(): Observable<Unit> = actionNotifier
+
     override fun conditionsUpdateNotifier(): Observable<Unit> = conditionsNotifier
 
     override fun conditionsEditNotifier(): Observable<Condition> = conditionEditNotifier
@@ -65,6 +68,16 @@ class CellLogicPresenter(
             } else null
         }
         conditionsNotifier.onNext(Unit)
+    }
+
+    override fun openActionEditor(ruleIndex: Int) {
+        currentlyEditedRule = rules?.let {
+            if (ruleIndex >= 0 && ruleIndex < it.size) {
+                currentlyEditedRuleIndex = ruleIndex
+                it[ruleIndex]
+            } else null
+        }
+        actionNotifier.onNext(Unit)
     }
 
     override fun conditionsCount(): Int = currentlyEditedRule?.size() ?: 0
@@ -113,6 +126,10 @@ class CellLogicPresenter(
         }
     }
 
+    override fun provideActionDialogValues(): Array<String> {
+        return directionValues
+    }
+
     override fun saveConditionValue(which: Int) {
         currentlyEditedCondition?.let {
             when (currentlyWhatToEdit) {
@@ -125,5 +142,9 @@ class CellLogicPresenter(
                 else -> Unit
             }
         }
+    }
+
+    override fun saveActionValue(which: Int) {
+        currentlyEditedRule?.action?.value = directionValues[which]
     }
 }

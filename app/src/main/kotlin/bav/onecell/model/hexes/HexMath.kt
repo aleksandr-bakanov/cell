@@ -46,7 +46,7 @@ class HexMath {
      * @param angle Angle in radians, should be between -PI and PI
      * @return Corresponding direction
      */
-    fun radToDir(angle: Float): Int {
+    fun radToNeighborDirection(angle: Float): Int {
         if (angle < -PI.toFloat() || angle > PI.toFloat()) throw IllegalArgumentException("Angle should be in range [-PI..PI]")
         return if (angle >= (-PI * 5 / 6) && angle < (-PI / 2)) 5
         else if (angle >= (-PI / 2) && angle < (-PI / 6)) 0

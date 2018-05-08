@@ -57,10 +57,13 @@ class RulesFragment : Fragment(), CellLogic.PresenterProvider {
                     recyclerViewConditionsList.adapter.notifyDataSetChanged()
                 },
                 host.provideCellLogicPresenter().conditionsEditNotifier().subscribe { condition ->
-
                     val conditionEditorDialogFragment = ConditionEditorDialogFragment()
                     // TODO: check we attached to activity
                     conditionEditorDialogFragment.show(requireActivity().fragmentManager, CONDITION_EDITOR_DIALOG_TAG)
+                },
+                host.provideCellLogicPresenter().actionEditNotifier().subscribe {
+                    val actionEditorDialogFragment = ActionEditorDialogFragment()
+                    actionEditorDialogFragment.show(requireActivity().fragmentManager, ACTION_EDITOR_DIALOG_TAG)
                 }
         )
     }
@@ -75,6 +78,7 @@ class RulesFragment : Fragment(), CellLogic.PresenterProvider {
 
     companion object {
         private const val CONDITION_EDITOR_DIALOG_TAG = "condition_editor_dialog"
+        private const val ACTION_EDITOR_DIALOG_TAG = "action_editor_dialog"
 
         @JvmStatic
         fun newInstance() = RulesFragment()

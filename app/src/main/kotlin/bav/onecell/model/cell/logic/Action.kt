@@ -5,8 +5,8 @@ import bav.onecell.model.cell.Cell
 /**
  * This class represents action to be performed on cell.
  */
-class Action(private val act: Act = Act.CHANGE_DIRECTION,
-             private val value: Any = Cell.Direction.N) {
+class Action(var act: Act = Act.CHANGE_DIRECTION,
+             var value: Any = Cell.Direction.N) {
 
     enum class Act(value: String) {
         CHANGE_DIRECTION("change_direction")
@@ -14,7 +14,7 @@ class Action(private val act: Act = Act.CHANGE_DIRECTION,
 
     fun perform(cell: Cell) {
         when (act) {
-            Act.CHANGE_DIRECTION -> cell.data.direction = (value as? Cell.Direction) ?: Cell.Direction.N
+            Act.CHANGE_DIRECTION -> cell.rotate((value as? Cell.Direction) ?: Cell.Direction.N)
         }
     }
 }
