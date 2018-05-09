@@ -53,7 +53,7 @@ class MainActivity : FragmentActivity(), Main.View, CellListFragment.OnCellListF
 
     override fun provideCellLogicPresenter(): CellLogic.Presenter = cellLogicPresenter
 
-    override fun openEditorFragment(cellIndex: Int) {
+    override fun openCellEditorView(cellIndex: Int) {
         editorPresenter.initialize(cellIndex)
         // TODO: add check that cellIndex is currently shown, therefore no need to create new fragment
         val editorFragment = EditorFragment()
@@ -62,7 +62,7 @@ class MainActivity : FragmentActivity(), Main.View, CellListFragment.OnCellListF
         ft.commit()
     }
 
-    override fun openCellLogicFragment(cellIndex: Int) {
+    override fun openCellLogicEditorView(cellIndex: Int) {
         cellLogicPresenter.initialize(cellIndex)
         // TODO: add check that cellIndex is currently shown, therefore no need to create new fragment
         val rulesFragment = RulesFragment()

@@ -6,7 +6,6 @@ import android.app.Dialog
 import android.app.DialogFragment
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import bav.onecell.R
 
 class ConditionEditorDialogFragment : DialogFragment() {
@@ -15,7 +14,6 @@ class ConditionEditorDialogFragment : DialogFragment() {
 
     override fun onAttach(activity: Activity?) {
         super.onAttach(activity)
-        Log.d("ConditionEditorDialog", "onAttach $activity")
         if (activity is CellLogic.PresenterProvider) {
             host = activity
         } else {
@@ -25,7 +23,6 @@ class ConditionEditorDialogFragment : DialogFragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        Log.d("ConditionEditorDialog", "onAttach $context")
         if (context is CellLogic.PresenterProvider) {
             host = context
         } else {
@@ -34,7 +31,6 @@ class ConditionEditorDialogFragment : DialogFragment() {
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        Log.d("ConditionEditorDialog", "onCreateDialog")
         val builder = AlertDialog.Builder(activity)
         builder
                 .setItems(host.provideCellLogicPresenter().provideConditionDialogValues(), { dialog, which ->
@@ -47,10 +43,5 @@ class ConditionEditorDialogFragment : DialogFragment() {
 
                 })
         return builder.create()
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        Log.d("ConditionEditorDialog", "onActivityCreated")
     }
 }

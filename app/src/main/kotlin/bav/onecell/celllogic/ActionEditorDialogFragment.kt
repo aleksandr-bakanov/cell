@@ -16,7 +16,6 @@ import android.app.Dialog
 import android.app.DialogFragment
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import bav.onecell.R
 
 class ActionEditorDialogFragment : DialogFragment() {
@@ -25,7 +24,6 @@ class ActionEditorDialogFragment : DialogFragment() {
 
     override fun onAttach(activity: Activity?) {
         super.onAttach(activity)
-        Log.d("ActionEditorDialog", "onAttach $activity")
         if (activity is CellLogic.PresenterProvider) {
             host = activity
         } else {
@@ -35,7 +33,6 @@ class ActionEditorDialogFragment : DialogFragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        Log.d("ActionEditorDialog", "onAttach $context")
         if (context is CellLogic.PresenterProvider) {
             host = context
         } else {
@@ -44,7 +41,6 @@ class ActionEditorDialogFragment : DialogFragment() {
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        Log.d("ActionEditorDialog", "onCreateDialog")
         val builder = AlertDialog.Builder(activity)
         builder
                 .setItems(host.provideCellLogicPresenter().provideActionDialogValues(), { dialog, which ->
@@ -57,10 +53,5 @@ class ActionEditorDialogFragment : DialogFragment() {
 
                 })
         return builder.create()
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        Log.d("ActionEditorDialog", "onActivityCreated")
     }
 }

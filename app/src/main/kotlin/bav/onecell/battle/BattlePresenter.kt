@@ -143,11 +143,11 @@ class BattlePresenter(
     }
 
     private fun applyCellLogic(index: Int, cell: Cell) {
-        correctBattleStateForCell(index, cell)
+        correctBattleStateForCell(index)
         cell.applyCellLogic(battleState)
     }
 
-    private fun correctBattleStateForCell(index: Int, providedCell: Cell) {
+    private fun correctBattleStateForCell(index: Int) {
         battleState.directionToNearestEnemy = radToCellDirection(battleState.rads[index])
     }
 
@@ -287,7 +287,6 @@ class BattlePresenter(
     }
 
     private val applyCellsLogic = {
-        // TODO pass battle field state to cell's logic mechanism
         cells.forEachIndexed { index, cell ->  applyCellLogic(index, cell) }
     }
 
