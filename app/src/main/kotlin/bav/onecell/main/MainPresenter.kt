@@ -28,7 +28,7 @@ class MainPresenter(
     override fun cellsCount(): Int = cellRepository.cellsCount()
 
     override fun openCellEditor(cellIndex: Int) {
-        if (view.isDualPane()) {
+        if (view.isLandscape()) {
             view.openCellEditorView(cellIndex)
         } else {
             router.goToCellEditor((view as Context), cellIndex)
@@ -36,7 +36,7 @@ class MainPresenter(
     }
 
     override fun openCellRulesEditor(cellIndex: Int) {
-        if (view.isDualPane()) {
+        if (view.isLandscape()) {
             view.openCellLogicEditorView(cellIndex)
         } else {
             router.goToCellLogicEditor((view as Context), cellIndex)

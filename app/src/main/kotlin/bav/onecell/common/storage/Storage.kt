@@ -4,6 +4,11 @@ import bav.onecell.model.cell.Cell
 import bav.onecell.model.RepositoryContract
 
 interface Storage {
+    /**
+     * Stores cells in database
+     *
+     * @param repo
+     */
     fun storeCellRepository(repo: RepositoryContract.CellRepo)
-    fun loadCellsForRepository(): List<Cell>
+    fun restoreCellRepository(): List<Cell>
 }

@@ -5,8 +5,25 @@ import io.reactivex.Observable
 interface Main {
 
     interface View {
-        fun isDualPane(): Boolean
+        /**
+         * Provide information about screen orientation
+         *
+         * @return True if orientation is landscape, false if portrait
+         */
+        fun isLandscape(): Boolean
+
+        /**
+         * Opens cell editor view
+         *
+         * @param cellIndex Index of cell in repository
+         */
         fun openCellEditorView(cellIndex: Int)
+
+        /**
+         * Opens cell logic editor view
+         *
+         * @param cellIndex Index of cell in repository
+         */
         fun openCellLogicEditorView(cellIndex: Int)
     }
 
@@ -44,12 +61,27 @@ interface Main {
          */
         fun openBattleView(cellIndexes: List<Int>)
 
+        /**
+         * Removes cell from repository
+         *
+         * @param cellIndex Index of cell in repository
+         */
         fun removeCell(cellIndex: Int)
 
-        fun onPause()
-
+        /**
+         * Presenter initializer
+         */
         fun initialize()
 
+        /**
+         * Provides cell repository updates notifier. It will emit Unit on each cell's addition/removing.
+         *
+         * @return Observable to notify about cell repository content changes
+         */
         fun cellRepoUpdateNotifier(): Observable<Unit>
+
+        //region Lifecycle events
+        fun onPause()
+        //endregion
     }
 }

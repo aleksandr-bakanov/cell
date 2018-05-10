@@ -16,7 +16,7 @@ class CellRepository(
 
     init {
         launch {
-            val cellsFromStorage = async { storage.loadCellsForRepository() }.await()
+            val cellsFromStorage = async { storage.restoreCellRepository() }.await()
             for (cell in cellsFromStorage) {
                 cells.add(cell)
             }

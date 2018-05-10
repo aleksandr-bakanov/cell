@@ -31,12 +31,28 @@ interface Editor {
          */
         fun removeHexFromCell(hex: Hex)
 
+        /**
+         * Rotates edited cell left (CCW) by 60 degrees
+         */
         fun rotateCellLeft()
 
+        /**
+         * Rotates edited cell right (CW) by 60 degrees
+         */
         fun rotateCellRight()
 
+        /**
+         * Provides source of cell to edit
+         *
+         * @return Observable which emit cells to edit
+         */
         fun getCellProvider(): Observable<Cell>
 
+        /**
+         * Provides source of background field radius to be drawn in editor view
+         *
+         * @return Observable which emit background field radius
+         */
         fun getBackgroundCellRadiusProvider(): Observable<Int>
     }
 }

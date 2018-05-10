@@ -46,7 +46,7 @@ class MainActivity : FragmentActivity(), Main.View, CellListFragment.OnCellListF
 
     //region Overridden methods
     override fun provideMainPresenter(): Main.Presenter = mainPresenter
-    override fun isDualPane(): Boolean = resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
+    override fun isLandscape(): Boolean = resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
 
     override fun provideEditorPresenter(): Editor.Presenter = editorPresenter
     override fun provideHexMath(): HexMath = hexMath

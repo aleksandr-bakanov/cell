@@ -18,7 +18,7 @@ class StorageImpl(private val dataBase: CellDataBase,
         }
     }
 
-    override fun loadCellsForRepository(): List<Cell> {
+    override fun restoreCellRepository(): List<Cell> {
         val cells = mutableListOf<Cell>()
         for (d in dataBase.cellDataDao().getAll()) {
             cells.add(Cell(hexMath, d))
