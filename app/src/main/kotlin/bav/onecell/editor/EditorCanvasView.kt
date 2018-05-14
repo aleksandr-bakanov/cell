@@ -17,7 +17,7 @@ class EditorCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
     }
 
     var cell: Cell? = null
-    lateinit var mPresenter: Editor.Presenter
+    lateinit var presenter: Editor.Presenter
     var selectedCellType: Hex.Type = Hex.Type.LIFE
 
     init {
@@ -32,10 +32,10 @@ class EditorCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
                             val fHex = hexMath.pixelToHex(layout, point)
                             val hex = hexMath.round(fHex)
                             if (selectedCellType == Hex.Type.REMOVE) {
-                                mPresenter.removeHexFromCell(hex)
+                                presenter.removeHexFromCell(hex)
                             } else {
                                 hex.type = selectedCellType
-                                mPresenter.addHexToCell(hex)
+                                presenter.addHexToCell(hex)
                             }
                             invalidate()
                         }

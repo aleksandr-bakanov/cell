@@ -8,15 +8,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import bav.onecell.OneCellApplication
 import bav.onecell.R
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_cell_list.buttonCreateNewCell
 import kotlinx.android.synthetic.main.fragment_cell_list.buttonStartBattle
 import kotlinx.android.synthetic.main.fragment_cell_list.recyclerViewCellList
 import kotlinx.android.synthetic.main.item_row_cell.view.checkboxSelect
+import javax.inject.Inject
 
 class CellListFragment : Fragment() {
 
+    @Inject
+    lateinit var presenter: Main.Presenter
     private lateinit var host: OnCellListFragmentInteractionListener
     private val disposables = CompositeDisposable()
 
@@ -79,6 +83,12 @@ class CellListFragment : Fragment() {
      */
     interface OnCellListFragmentInteractionListener {
         fun provideMainPresenter(): Main.Presenter
+    }
+
+    private fun inject() {
+        (requireActivity().application as OneCellApplication).appComponent
+                .plus(MainModule(this))
+                .inject(this)
     }
 
     companion object {

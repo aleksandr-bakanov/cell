@@ -4,13 +4,6 @@ import android.content.Context
 
 interface Router {
     /**
-     * Go to cell editor view.
-     *
-     * @param cellIndex Index of cell within cell repository
-     */
-    fun goToCellEditor(context: Context, cellIndex: Int)
-
-    /**
      * Go to cell logic editor view.
      *
      * @param cellIndex Index of cell within cell repository

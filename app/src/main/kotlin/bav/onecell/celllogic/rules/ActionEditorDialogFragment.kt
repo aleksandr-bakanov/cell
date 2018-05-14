@@ -8,7 +8,7 @@
  * Date:   May 08, 2018
  */
 
-package bav.onecell.celllogic
+package bav.onecell.celllogic.rules
 
 import android.app.Activity
 import android.app.AlertDialog
@@ -17,6 +17,7 @@ import android.app.DialogFragment
 import android.content.Context
 import android.os.Bundle
 import bav.onecell.R
+import bav.onecell.celllogic.CellLogic
 
 class ActionEditorDialogFragment : DialogFragment() {
 

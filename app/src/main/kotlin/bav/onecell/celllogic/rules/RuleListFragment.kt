@@ -1,4 +1,4 @@
-package bav.onecell.celllogic
+package bav.onecell.celllogic.rules
 
 import android.content.Context
 import android.os.Bundle
@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import bav.onecell.R
+import bav.onecell.celllogic.CellLogic
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_rule_list.buttonAddNewRule
 import kotlinx.android.synthetic.main.fragment_rule_list.recyclerViewRulesList
@@ -37,7 +38,8 @@ class RuleListFragment : Fragment(), CellLogic.PresenterProvider {
         buttonAddNewRule.setOnClickListener { host.provideCellLogicPresenter().createNewRule() }
 
         recyclerViewRulesList.layoutManager = LinearLayoutManager(context)
-        recyclerViewRulesList.adapter = RulesRecyclerViewAdapter(host.provideCellLogicPresenter())
+        recyclerViewRulesList.adapter = RulesRecyclerViewAdapter(
+                host.provideCellLogicPresenter())
 
         disposables.addAll(
                 host.provideCellLogicPresenter().rulesUpdateNotifier().subscribe {

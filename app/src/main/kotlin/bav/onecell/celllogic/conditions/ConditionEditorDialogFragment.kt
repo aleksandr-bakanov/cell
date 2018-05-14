@@ -1,4 +1,4 @@
-package bav.onecell.celllogic
+package bav.onecell.celllogic.conditions
 
 import android.app.Activity
 import android.app.AlertDialog
@@ -7,6 +7,7 @@ import android.app.DialogFragment
 import android.content.Context
 import android.os.Bundle
 import bav.onecell.R
+import bav.onecell.celllogic.CellLogic
 
 class ConditionEditorDialogFragment : DialogFragment() {
 

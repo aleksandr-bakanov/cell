@@ -28,11 +28,7 @@ class MainPresenter(
     override fun cellsCount(): Int = cellRepository.cellsCount()
 
     override fun openCellEditor(cellIndex: Int) {
-        if (view.isLandscape()) {
-            view.openCellEditorView(cellIndex)
-        } else {
-            router.goToCellEditor((view as Context), cellIndex)
-        }
+        view.openCellEditorView(cellIndex)
     }
 
     override fun openCellRulesEditor(cellIndex: Int) {

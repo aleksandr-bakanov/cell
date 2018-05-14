@@ -4,9 +4,7 @@
     android:baselineAligned="false"
     android:layout_width="match_parent" android:layout_height="match_parent">
 
-    <fragment class="bav.onecell.main.CellListFragment"
-        android:id="@+id/cells"
-        android:layout_weight="1"
+    <FrameLayout android:id="@+id/cells" android:layout_weight="1"
         android:layout_width="0px" android:layout_height="match_parent" />
 
     <FrameLayout android:id="@+id/editor" android:layout_weight="1"

@@ -1,10 +1,11 @@
-package bav.onecell.celllogic
+package bav.onecell.celllogic.rules
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import bav.onecell.R
+import bav.onecell.celllogic.CellLogic
 import kotlinx.android.synthetic.main.item_row_rule.view.buttonChooseRuleAction
 import kotlinx.android.synthetic.main.item_row_rule.view.buttonOpenRuleConditions
 import kotlinx.android.synthetic.main.item_row_rule.view.buttonRemoveRule

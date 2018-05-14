@@ -1,4 +1,4 @@
-package bav.onecell.celllogic
+package bav.onecell.celllogic.conditions
 
 import android.content.Context
 import android.os.Bundle
@@ -8,6 +8,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import bav.onecell.R
+import bav.onecell.celllogic.rules.ActionEditorDialogFragment
+import bav.onecell.celllogic.CellLogic
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_condition_list.buttonAddNewCondition
 import kotlinx.android.synthetic.main.fragment_condition_list.recyclerViewConditionsList
@@ -38,7 +40,8 @@ class ConditionListFragment : Fragment(), CellLogic.PresenterProvider {
         buttonAddNewCondition.visibility = View.INVISIBLE
 
         recyclerViewConditionsList.layoutManager = LinearLayoutManager(context)
-        recyclerViewConditionsList.adapter = ConditionsRecyclerViewAdapter(host.provideCellLogicPresenter())
+        recyclerViewConditionsList.adapter = ConditionsRecyclerViewAdapter(
+                host.provideCellLogicPresenter())
 
         disposables.addAll(
                 host.provideCellLogicPresenter().conditionsUpdateNotifier().subscribe {
@@ -48,11 +51,13 @@ class ConditionListFragment : Fragment(), CellLogic.PresenterProvider {
                 host.provideCellLogicPresenter().conditionsEditNotifier().subscribe { condition ->
                     val conditionEditorDialogFragment = ConditionEditorDialogFragment()
                     // TODO: check we attached to activity
-                    conditionEditorDialogFragment.show(requireActivity().fragmentManager, CONDITION_EDITOR_DIALOG_TAG)
+                    conditionEditorDialogFragment.show(requireActivity().fragmentManager,
+                                                       CONDITION_EDITOR_DIALOG_TAG)
                 },
                 host.provideCellLogicPresenter().actionEditNotifier().subscribe {
                     val actionEditorDialogFragment = ActionEditorDialogFragment()
-                    actionEditorDialogFragment.show(requireActivity().fragmentManager, ACTION_EDITOR_DIALOG_TAG)
+                    actionEditorDialogFragment.show(requireActivity().fragmentManager,
+                                                    ACTION_EDITOR_DIALOG_TAG)
                 }
         )
     }
