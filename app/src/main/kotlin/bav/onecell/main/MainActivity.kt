@@ -6,7 +6,7 @@ import android.support.v4.app.FragmentActivity
 import bav.onecell.OneCellApplication
 import bav.onecell.R
 import bav.onecell.celllogic.CellLogic
-import bav.onecell.celllogic.RulesFragment
+import bav.onecell.celllogic.RuleListFragment
 import bav.onecell.editor.Editor
 import bav.onecell.editor.EditorFragment
 import bav.onecell.model.hexes.HexMath
@@ -65,7 +65,7 @@ class MainActivity : FragmentActivity(), Main.View, CellListFragment.OnCellListF
     override fun openCellLogicEditorView(cellIndex: Int) {
         cellLogicPresenter.initialize(cellIndex)
         // TODO: add check that cellIndex is currently shown, therefore no need to create new fragment
-        val rulesFragment = RulesFragment()
+        val rulesFragment = RuleListFragment.newInstance()
         val ft = supportFragmentManager.beginTransaction()
         ft.replace(R.id.editor, rulesFragment)
         ft.commit()

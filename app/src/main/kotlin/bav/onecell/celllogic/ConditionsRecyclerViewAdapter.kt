@@ -24,22 +24,19 @@ class ConditionsRecyclerViewAdapter(private val presenter: CellLogic.Presenter) 
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.setRuleTitle("#$position")
-        holder.index = position
     }
 
     class ViewHolder(val view: View, private val presenter: CellLogic.Presenter) : RecyclerView.ViewHolder(view) {
-        var index: Int = 0
-
         init {
-            view.buttonRemoveCondition.setOnClickListener { presenter.removeCondition(index) }
+            view.buttonRemoveCondition.setOnClickListener { presenter.removeCondition(adapterPosition) }
             view.buttonFieldToCheck.setOnClickListener {
-                presenter.openConditionEditor(index, CellLogicPresenter.ConditionPartToEdit.FIELD.value)
+                presenter.openConditionEditor(adapterPosition, CellLogicPresenter.ConditionPartToEdit.FIELD.value)
             }
             view.buttonOperation.setOnClickListener {
-                presenter.openConditionEditor(index, CellLogicPresenter.ConditionPartToEdit.OPERATION.value)
+                presenter.openConditionEditor(adapterPosition, CellLogicPresenter.ConditionPartToEdit.OPERATION.value)
             }
             view.buttonExpectedValue.setOnClickListener {
-                presenter.openConditionEditor(index, CellLogicPresenter.ConditionPartToEdit.EXPECTED.value)
+                presenter.openConditionEditor(adapterPosition, CellLogicPresenter.ConditionPartToEdit.EXPECTED.value)
             }
         }
 

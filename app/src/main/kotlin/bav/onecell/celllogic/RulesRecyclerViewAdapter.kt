@@ -23,16 +23,13 @@ class RulesRecyclerViewAdapter(private val presenter: CellLogic.Presenter) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.setRuleTitle("Rule #$position")
-        holder.index = position
     }
 
     class ViewHolder(val view: View, private val presenter: CellLogic.Presenter) : RecyclerView.ViewHolder(view) {
-        var index: Int = 0
-
         init {
-            view.buttonRemoveRule.setOnClickListener { presenter.removeRule(index) }
-            view.buttonOpenRuleConditions.setOnClickListener { presenter.openConditionsList(index) }
-            view.buttonChooseRuleAction.setOnClickListener { presenter.openActionEditor(index) }
+            view.buttonRemoveRule.setOnClickListener { presenter.removeRule(adapterPosition) }
+            view.buttonOpenRuleConditions.setOnClickListener { presenter.openConditionsList(adapterPosition) }
+            view.buttonChooseRuleAction.setOnClickListener { presenter.openActionEditor(adapterPosition) }
         }
 
         fun setRuleTitle(title: String) {

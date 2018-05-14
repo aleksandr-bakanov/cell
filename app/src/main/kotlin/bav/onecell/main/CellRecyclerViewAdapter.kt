@@ -35,26 +35,22 @@ class CellRecyclerViewAdapter(private val presenter: Main.Presenter) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.setCellTitle("Cell #$position")
-        holder.index = position
         holder.view.setBackgroundColor(if (selectedItemPosition == position) Color.GREEN else Color.TRANSPARENT)
     }
 
     class ViewHolder(val view: View, private val presenter: Main.Presenter,
                      private val notifyItemChanged: (Int, ViewHolder) -> Unit) : RecyclerView.ViewHolder(view) {
-        // TODO: looks like index and adapterPosition are the same
-        var index: Int = 0
-
         init {
             view.buttonEditCell.setOnClickListener {
-                presenter.openCellEditor(index)
+                presenter.openCellEditor(adapterPosition)
                 notifyItemChanged(adapterPosition, this)
             }
             view.buttonEditCellRules.setOnClickListener {
-                presenter.openCellRulesEditor(index)
+                presenter.openCellRulesEditor(adapterPosition)
                 notifyItemChanged(adapterPosition, this)
             }
             view.buttonRemoveCell.setOnClickListener {
-                presenter.removeCell(index)
+                presenter.removeCell(adapterPosition)
                 notifyItemChanged(adapterPosition, this)
             }
         }

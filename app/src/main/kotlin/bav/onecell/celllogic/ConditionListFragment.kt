@@ -9,13 +9,10 @@ import android.view.View
 import android.view.ViewGroup
 import bav.onecell.R
 import io.reactivex.disposables.CompositeDisposable
-import kotlinx.android.synthetic.main.fragment_rules.buttonAddNewCondition
+import kotlinx.android.synthetic.main.fragment_condition_list.buttonAddNewCondition
+import kotlinx.android.synthetic.main.fragment_condition_list.recyclerViewConditionsList
 
-import kotlinx.android.synthetic.main.fragment_rules.buttonAddNewRule
-import kotlinx.android.synthetic.main.fragment_rules.recyclerViewConditionsList
-import kotlinx.android.synthetic.main.fragment_rules.recyclerViewRulesList
-
-class RulesFragment : Fragment(), CellLogic.PresenterProvider {
+class ConditionListFragment : Fragment(), CellLogic.PresenterProvider {
 
     private lateinit var host: CellLogic.PresenterProvider
     private val disposables = CompositeDisposable()
@@ -31,27 +28,19 @@ class RulesFragment : Fragment(), CellLogic.PresenterProvider {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_rules, container, false)
+        return inflater.inflate(R.layout.fragment_condition_list, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        buttonAddNewRule.setOnClickListener { host.provideCellLogicPresenter().createNewRule() }
-
         buttonAddNewCondition.setOnClickListener { host.provideCellLogicPresenter().createNewCondition() }
         buttonAddNewCondition.visibility = View.INVISIBLE
-
-        recyclerViewRulesList.layoutManager = LinearLayoutManager(context)
-        recyclerViewRulesList.adapter = RulesRecyclerViewAdapter(host.provideCellLogicPresenter())
 
         recyclerViewConditionsList.layoutManager = LinearLayoutManager(context)
         recyclerViewConditionsList.adapter = ConditionsRecyclerViewAdapter(host.provideCellLogicPresenter())
 
         disposables.addAll(
-                host.provideCellLogicPresenter().rulesUpdateNotifier().subscribe {
-                    recyclerViewRulesList.adapter.notifyDataSetChanged()
-                },
                 host.provideCellLogicPresenter().conditionsUpdateNotifier().subscribe {
                     buttonAddNewCondition.visibility = View.VISIBLE
                     recyclerViewConditionsList.adapter.notifyDataSetChanged()
@@ -81,6 +70,6 @@ class RulesFragment : Fragment(), CellLogic.PresenterProvider {
         private const val ACTION_EDITOR_DIALOG_TAG = "action_editor_dialog"
 
         @JvmStatic
-        fun newInstance() = RulesFragment()
+        fun newInstance() = ConditionListFragment()
     }
 }

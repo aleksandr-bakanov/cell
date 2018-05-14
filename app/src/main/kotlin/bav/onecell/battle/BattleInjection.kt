@@ -19,8 +19,8 @@ interface BattleSubcomponent {
 class BattleModule(val view: Battle.View) {
     @Provides
     @ActivityScope
-    fun provideConstructorPresenter(hexMath: HexMath, rules: Rules, cellRepository: RepositoryContract.CellRepo, router: Router):
+    fun provideBattlePresenter(hexMath: HexMath, rules: Rules, cellRepository: RepositoryContract.CellRepo):
             Battle.Presenter {
-        return BattlePresenter(view, hexMath, rules, cellRepository, router)
+        return BattlePresenter(view, hexMath, rules, cellRepository)
     }
 }

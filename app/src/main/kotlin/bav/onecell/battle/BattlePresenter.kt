@@ -1,9 +1,8 @@
 package bav.onecell.battle
 
-import bav.onecell.common.router.Router
-import bav.onecell.model.cell.Cell
 import bav.onecell.model.RepositoryContract
 import bav.onecell.model.Rules
+import bav.onecell.model.cell.Cell
 import bav.onecell.model.cell.logic.BattleState
 import bav.onecell.model.hexes.Hex
 import bav.onecell.model.hexes.HexMath
@@ -22,14 +21,13 @@ class BattlePresenter(
         private val view: Battle.View,
         private val hexMath: HexMath,
         private val rules: Rules,
-        private val cellRepository: RepositoryContract.CellRepo,
-        private val router: Router) : Battle.Presenter {
+        private val cellRepository: RepositoryContract.CellRepo) : Battle.Presenter {
 
     companion object {
         private const val TAG = "BattlePresenter"
     }
 
-    private val battleRoundSteps: Queue<()->Unit> = LinkedList<()->Unit>()
+    private val battleRoundSteps: Queue<() -> Unit> = LinkedList<() -> Unit>()
     private val cells = mutableListOf<Cell>()
     private val corpses = mutableListOf<Cell>()
     private var battleFieldSize: Int = 0
@@ -86,8 +84,7 @@ class BattlePresenter(
     override fun doFullStep() {
         do {
             doPartialStep()
-        }
-        while (battleRoundSteps.peek() != firstStep)
+        } while (battleRoundSteps.peek() != firstStep)
     }
 
     override fun doPartialStep() {
@@ -127,8 +124,7 @@ class BattlePresenter(
             if (minDistance == 0) {
                 battleState.directions.add((0..5).shuffled().last())
                 battleState.rads.add(0f)
-            }
-            else {
+            } else {
                 // Origin point
                 val op = hexMath.hexToPixel(Layout.DUMMY, cell.data.origin)
                 // Nearest hex point
@@ -157,12 +153,13 @@ class BattlePresenter(
     // SW \/ SE
     //    S
     private fun radToCellDirection(angle: Float): Cell.Direction {
-        if (angle < -PI.toFloat() || angle > PI.toFloat()) throw IllegalArgumentException("Angle should be in range [-PI..PI]")
+        if (angle < -PI.toFloat() || angle > PI.toFloat()) throw IllegalArgumentException(
+                "Angle should be in range [-PI..PI]")
         return if (angle >= (-PI * 2) && angle < (-PI * 2 / 3)) Cell.Direction.NW
-        else if   (angle >= (-PI * 2 / 3) && angle < (-PI / 3)) Cell.Direction.N
-        else if   (angle >= (-PI / 3) && angle < 0) Cell.Direction.NE
-        else if   (angle >= 0 && angle < (PI / 3)) Cell.Direction.SE
-        else if   (angle >= (PI / 3) && angle < (PI * 2 / 3)) Cell.Direction.S
+        else if (angle >= (-PI * 2 / 3) && angle < (-PI / 3)) Cell.Direction.N
+        else if (angle >= (-PI / 3) && angle < 0) Cell.Direction.NE
+        else if (angle >= 0 && angle < (PI / 3)) Cell.Direction.SE
+        else if (angle >= (PI / 3) && angle < (PI * 2 / 3)) Cell.Direction.S
         else Cell.Direction.SW
     }
 
@@ -219,7 +216,8 @@ class BattlePresenter(
             // Get all enemy hexes
             val enemyHexes = mutableSetOf<Hex>()
             cells.filter { it != cell }.forEach { enemy ->
-                enemyHexes.addAll(enemy.data.hexes.values.map { hexMath.add(enemy.data.origin, it).withPower(it.power) })
+                enemyHexes.addAll(
+                        enemy.data.hexes.values.map { hexMath.add(enemy.data.origin, it).withPower(it.power) })
             }
             // Get all enemy hexes which are neighbors to us
             val neighboringHexes = enemyHexes.intersect(cellOutline)
@@ -262,8 +260,7 @@ class BattlePresenter(
                         // Cells also dies if it doesn't contain any life hexes
                         cell.data.hexes.values.filter { it.type == Hex.Type.LIFE }.isEmpty()) {
                     cellsToRemove.add(index)
-                }
-                else {
+                } else {
                     cellsToUpdateOutline.add(index)
                 }
             }
@@ -287,11 +284,7 @@ class BattlePresenter(
     }
 
     private val applyCellsLogic = {
-        cells.forEachIndexed { index, cell ->  applyCellLogic(index, cell) }
-    }
-
-    private val chooseMovingDirections = {
-
+        cells.forEachIndexed { index, cell -> applyCellLogic(index, cell) }
     }
 
     private val moveCells = {
