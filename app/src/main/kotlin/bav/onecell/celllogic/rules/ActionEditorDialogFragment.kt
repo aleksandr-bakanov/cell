@@ -1,13 +1,3 @@
-/*
- * Copyright (c) 2018 Disney ABC Television Group
- *
- * cell
- * ActionEditorDialogFragment.kt
- *
- * Author: Aleksandr Bakanov <aleksandr_bakanov@epam.com>
- * Date:   May 08, 2018
- */
-
 package bav.onecell.celllogic.rules
 
 import android.app.Activity
