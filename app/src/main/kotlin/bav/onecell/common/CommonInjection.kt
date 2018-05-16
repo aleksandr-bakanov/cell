@@ -1,27 +1,19 @@
 package bav.onecell.common
 
-import android.content.Context
 import bav.onecell.common.router.Router
 import bav.onecell.common.router.RouterImpl
-import bav.onecell.common.storage.Storage
-import bav.onecell.common.storage.StorageImpl
-import bav.onecell.di.scopes.ActivityScope
-import bav.onecell.editor.Editor
-import bav.onecell.editor.EditorPresenter
-import bav.onecell.model.RepositoryContract
 import bav.onecell.model.Rules
 import bav.onecell.model.hexes.HexMath
 import dagger.Module
 import dagger.Provides
-import javax.inject.Named
 import javax.inject.Singleton
 
 @Module
 class CommonModule {
     @Provides
     @Singleton
-    fun provideRouter(@Named("app_context") context: Context): Router {
-        return RouterImpl(context)
+    fun provideRouter(): Router {
+        return RouterImpl()
     }
 
     @Provides

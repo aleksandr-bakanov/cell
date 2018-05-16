@@ -1,17 +1,23 @@
 package bav.onecell.common.router
 
-import android.content.Context
-import bav.onecell.battle.BattleActivity
-import bav.onecell.celllogic.CellLogicActivity
+import io.reactivex.Observable
+import io.reactivex.subjects.BehaviorSubject
 
-class RouterImpl(private val appContext: Context) : Router {
-    override fun goToCellLogicEditor(context: Context, cellIndex: Int) {
-        val intent = CellLogicActivity.newIntent(context, cellIndex)
-        context.startActivity(intent)
+class RouterImpl : Router {
+
+    private val windowChanger = BehaviorSubject.create<Router.Window>()
+
+    override fun windowChange(): Observable<Router.Window> = windowChanger
+
+    override fun goToMain() {
+        windowChanger.onNext(Router.Window.MAIN)
     }
 
-    override fun goToBattleView(context: Context, cellIndexes: List<Int>) {
-        val intent = BattleActivity.newIntent(context, cellIndexes)
-        context.startActivity(intent)
+    override fun goToBattle() {
+
+    }
+
+    override fun goToCellsList() {
+        windowChanger.onNext(Router.Window.CELLS_LIST)
     }
 }

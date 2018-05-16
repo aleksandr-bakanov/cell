@@ -1,68 +1,51 @@
 package bav.onecell.main
 
-import android.content.res.Configuration
 import android.os.Bundle
 import android.support.v4.app.FragmentActivity
 import bav.onecell.OneCellApplication
 import bav.onecell.R
-import bav.onecell.celllogic.CellLogic
-import bav.onecell.celllogic.rules.RuleListFragment
-import bav.onecell.editor.EditorFragment
+import bav.onecell.cellslist.CellsListFragment
+import bav.onecell.common.router.Router
+import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
 
-class MainActivity : FragmentActivity(), Main.View, CellLogic.PresenterProvider {
+class MainActivity : FragmentActivity() {
 
     @Inject
-    lateinit var mainPresenter: Main.Presenter
-    @Inject
-    lateinit var cellLogicPresenter: CellLogic.Presenter
+    lateinit var router: Router
+    private val disposables: CompositeDisposable = CompositeDisposable()
 
     //region Lifecycle methods
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
         inject()
-        mainPresenter.initialize()
+
+        setContentView(R.layout.activity_main)
+        changeWindow(Router.Window.MAIN)
+
+        disposables.add(router.windowChange().subscribe { changeWindow(it) })
     }
 
-    override fun onPause() {
-        mainPresenter.onPause()
-        super.onPause()
+    override fun onDestroy() {
+        disposables.dispose()
+        super.onDestroy()
     }
     //endregion
 
     //region Private methods
     private fun inject() {
         (application as OneCellApplication).appComponent
-                .plus(MainModule(this))
+                .plus(MainModule())
                 .inject(this)
     }
 
-    private fun setupFragments() {
-
-    }
-    //endregion
-
-    //region Overridden methods
-    override fun isLandscape(): Boolean = resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
-
-    override fun provideCellLogicPresenter(): CellLogic.Presenter = cellLogicPresenter
-
-    override fun openCellEditorView(cellIndex: Int) {
-        // TODO: add check that cellIndex is currently shown, therefore no need to create new fragment
-        val editorFragment = EditorFragment.newInstance(cellIndex)
+    private fun changeWindow(window: Router.Window) {
+        val fragment = when (window) {
+            Router.Window.MAIN -> MainFragment.newInstance()
+            Router.Window.CELLS_LIST -> CellsListFragment.newInstance()
+        }
         val ft = supportFragmentManager.beginTransaction()
-        val fragmentToReplace = if (isLandscape()) R.id.editor else R.id.cells
-        ft.replace(fragmentToReplace, editorFragment)
-        ft.commit()
-    }
-
-    override fun openCellLogicEditorView(cellIndex: Int) {
-        cellLogicPresenter.initialize(cellIndex)
-        // TODO: add check that cellIndex is currently shown, therefore no need to create new fragment
-        val rulesFragment = RuleListFragment.newInstance()
-        val ft = supportFragmentManager.beginTransaction()
-        ft.replace(R.id.editor, rulesFragment)
+        ft.replace(R.id.holder, fragment)
         ft.commit()
     }
     //endregion

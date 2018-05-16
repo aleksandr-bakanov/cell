@@ -1,4 +1,4 @@
-package bav.onecell.main
+package bav.onecell.cellslist
 
 import android.graphics.Color
 import android.support.v7.widget.RecyclerView
@@ -11,7 +11,7 @@ import kotlinx.android.synthetic.main.item_row_cell.view.buttonEditCellRules
 import kotlinx.android.synthetic.main.item_row_cell.view.buttonRemoveCell
 import kotlinx.android.synthetic.main.item_row_cell.view.title
 
-class CellRecyclerViewAdapter(private val presenter: Main.Presenter) :
+class CellRecyclerViewAdapter(private val presenter: CellsList.Presenter) :
         RecyclerView.Adapter<CellRecyclerViewAdapter.ViewHolder>() {
 
     private var selectedItemPosition = RecyclerView.NO_POSITION
@@ -38,7 +38,7 @@ class CellRecyclerViewAdapter(private val presenter: Main.Presenter) :
         holder.view.setBackgroundColor(if (selectedItemPosition == position) Color.GREEN else Color.TRANSPARENT)
     }
 
-    class ViewHolder(val view: View, private val presenter: Main.Presenter,
+    class ViewHolder(val view: View, private val presenter: CellsList.Presenter,
                      private val notifyItemChanged: (Int, ViewHolder) -> Unit) : RecyclerView.ViewHolder(view) {
         init {
             view.buttonEditCell.setOnClickListener {

@@ -44,7 +44,7 @@ class CellLogicActivity : FragmentActivity(), CellLogic.View, CellLogic.Presente
     //region Private methods
     private fun inject() {
         (application as OneCellApplication).appComponent
-                .plus(MainModule(null))
+                .plus(MainModule())
                 .inject(this)
     }
     //endregion

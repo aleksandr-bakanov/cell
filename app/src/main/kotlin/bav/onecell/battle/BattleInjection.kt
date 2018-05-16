@@ -1,6 +1,5 @@
 package bav.onecell.battle
 
-import bav.onecell.common.router.Router
 import bav.onecell.di.scopes.ActivityScope
 import bav.onecell.model.RepositoryContract
 import bav.onecell.model.Rules
