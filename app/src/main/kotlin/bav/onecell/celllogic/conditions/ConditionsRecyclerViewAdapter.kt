@@ -5,15 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import bav.onecell.R
-import bav.onecell.celllogic.CellLogic
-import bav.onecell.celllogic.CellLogicPresenter
 import kotlinx.android.synthetic.main.item_row_rule.view.title
 import kotlinx.android.synthetic.main.item_row_rule_condition.view.buttonExpectedValue
 import kotlinx.android.synthetic.main.item_row_rule_condition.view.buttonFieldToCheck
 import kotlinx.android.synthetic.main.item_row_rule_condition.view.buttonOperation
 import kotlinx.android.synthetic.main.item_row_rule_condition.view.buttonRemoveCondition
 
-class ConditionsRecyclerViewAdapter(private val presenter: CellLogic.Presenter) :
+class ConditionsRecyclerViewAdapter(private val presenter: Conditions.Presenter) :
         RecyclerView.Adapter<ConditionsRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -28,17 +26,17 @@ class ConditionsRecyclerViewAdapter(private val presenter: CellLogic.Presenter) 
         holder.setRuleTitle("#$position")
     }
 
-    class ViewHolder(val view: View, private val presenter: CellLogic.Presenter) : RecyclerView.ViewHolder(view) {
+    class ViewHolder(val view: View, private val presenter: Conditions.Presenter) : RecyclerView.ViewHolder(view) {
         init {
             view.buttonRemoveCondition.setOnClickListener { presenter.removeCondition(adapterPosition) }
             view.buttonFieldToCheck.setOnClickListener {
-                presenter.openConditionEditor(adapterPosition, CellLogicPresenter.ConditionPartToEdit.FIELD.value)
+                presenter.openConditionEditor(adapterPosition, ConditionsPresenter.ConditionPartToEdit.FIELD.value)
             }
             view.buttonOperation.setOnClickListener {
-                presenter.openConditionEditor(adapterPosition, CellLogicPresenter.ConditionPartToEdit.OPERATION.value)
+                presenter.openConditionEditor(adapterPosition, ConditionsPresenter.ConditionPartToEdit.OPERATION.value)
             }
             view.buttonExpectedValue.setOnClickListener {
-                presenter.openConditionEditor(adapterPosition, CellLogicPresenter.ConditionPartToEdit.EXPECTED.value)
+                presenter.openConditionEditor(adapterPosition, ConditionsPresenter.ConditionPartToEdit.EXPECTED.value)
             }
         }
 

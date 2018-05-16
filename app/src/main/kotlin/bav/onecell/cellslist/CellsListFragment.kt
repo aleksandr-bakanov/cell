@@ -45,14 +45,6 @@ class CellsListFragment : Fragment(), CellsList.View {
         super.onPause()
     }
 
-    override fun openCellEditorView(cellIndex: Int) {
-
-    }
-
-    override fun openCellLogicEditorView(cellIndex: Int) {
-
-    }
-
     override fun onDestroyView() {
         disposables.dispose()
         super.onDestroyView()
@@ -60,7 +52,7 @@ class CellsListFragment : Fragment(), CellsList.View {
 
     private fun inject() {
         (requireActivity().application as OneCellApplication).appComponent
-                .plus(CellsListModule(this))
+                .plus(CellsListModule())
                 .inject(this)
     }
 

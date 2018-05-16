@@ -1,7 +1,7 @@
 package bav.onecell.battle
 
 import bav.onecell.model.RepositoryContract
-import bav.onecell.model.Rules
+import bav.onecell.model.GameRules
 import bav.onecell.model.cell.Cell
 import bav.onecell.model.cell.logic.BattleState
 import bav.onecell.model.hexes.Hex
@@ -20,7 +20,7 @@ import kotlin.math.round
 class BattlePresenter(
         private val view: Battle.View,
         private val hexMath: HexMath,
-        private val rules: Rules,
+        private val gameRules: GameRules,
         private val cellRepository: RepositoryContract.CellRepo) : Battle.Presenter {
 
     companion object {
@@ -254,7 +254,7 @@ class BattlePresenter(
             if (hexesToRemove.isNotEmpty()) {
                 hexesToRemove.forEach { cell.data.hexes.remove(it) }
                 // If connectivity of life and energy hexes has been broken then cell dies
-                if (!rules.checkHexesConnectivity(cell.data.hexes.values.filter {
+                if (!gameRules.checkHexesConnectivity(cell.data.hexes.values.filter {
                             it.type == Hex.Type.LIFE || it.type == Hex.Type.ENERGY
                         }) ||
                         // Cells also dies if it doesn't contain any life hexes

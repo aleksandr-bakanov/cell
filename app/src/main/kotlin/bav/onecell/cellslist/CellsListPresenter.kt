@@ -1,5 +1,6 @@
 package bav.onecell.cellslist
 
+import bav.onecell.common.router.Router
 import bav.onecell.model.RepositoryContract
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -7,8 +8,8 @@ import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.PublishSubject
 
 class CellsListPresenter(
-        private val view: CellsList.View,
-        private val cellRepository: RepositoryContract.CellRepo) : CellsList.Presenter {
+        private val cellRepository: RepositoryContract.CellRepo,
+        private val router: Router) : CellsList.Presenter {
 
     companion object {
         private const val TAG = "CellsListPresenter"
@@ -25,7 +26,7 @@ class CellsListPresenter(
     override fun cellsCount(): Int = cellRepository.cellsCount()
 
     override fun openCellEditor(cellIndex: Int) {
-        view.openCellEditorView(cellIndex)
+        router.goToCellEditor(cellIndex)
     }
 
     override fun openCellRulesEditor(cellIndex: Int) {

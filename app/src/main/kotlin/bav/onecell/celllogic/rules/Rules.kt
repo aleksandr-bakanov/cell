@@ -1,9 +1,8 @@
-package bav.onecell.celllogic
+package bav.onecell.celllogic.rules
 
-import bav.onecell.model.cell.logic.Condition
 import io.reactivex.Observable
 
-interface CellLogic {
+interface Rules {
 
     interface View {
 
@@ -39,30 +38,8 @@ interface CellLogic {
 
         fun openActionEditor(ruleIndex: Int)
 
-        fun conditionsUpdateNotifier(): Observable<Unit>
-
-        fun conditionsEditNotifier(): Observable<Condition>
-
-        fun conditionsCount(): Int
-
-        fun createNewCondition()
-
-        fun removeCondition(index: Int)
-
-        fun openConditionEditor(conditionIndex: Int, whatToEdit: Int)
-
-        fun provideConditionDialogValues(): Array<String>
-
         fun provideActionDialogValues(): Array<String>
 
-        fun saveConditionValue(which: Int)
-
         fun saveActionValue(which: Int)
-
-        fun saveCondition()
-    }
-
-    interface PresenterProvider {
-        fun provideCellLogicPresenter(): CellLogic.Presenter
     }
 }

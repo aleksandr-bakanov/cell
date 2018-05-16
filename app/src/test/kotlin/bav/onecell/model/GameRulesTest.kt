@@ -8,10 +8,10 @@ import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
 
-class RulesTest {
+class GameRulesTest {
     private val hexMath = HexMath()
     private val cell = Cell(hexMath)
-    private val rules = Rules(hexMath)
+    private val rules = GameRules(hexMath)
 
     @Before
     fun setup() {

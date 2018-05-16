@@ -1,11 +1,14 @@
 package bav.onecell.common.router
 
+import android.os.Bundle
 import io.reactivex.Observable
 
 interface Router {
 
-    enum class Window {
-        MAIN, CELLS_LIST
+    data class Window(val type: WindowType, val args: Bundle? = null)
+
+    enum class WindowType {
+        MAIN, CELLS_LIST, BATTLE_CELLS_SELECTION, BATTLE, CELL_EDITOR, RULES_EDITOR, CONDITIONS_EDITOR
     }
 
     fun windowChange(): Observable<Window>
@@ -15,4 +18,6 @@ interface Router {
     fun goToBattle()
 
     fun goToCellsList()
+
+    fun goToCellEditor(index: Int)
 }

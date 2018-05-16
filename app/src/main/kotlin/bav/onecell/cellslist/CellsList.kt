@@ -4,19 +4,6 @@ import io.reactivex.Observable
 
 interface CellsList {
     interface View {
-        /**
-         * Opens cell editor view
-         *
-         * @param cellIndex Index of cell in repository
-         */
-        fun openCellEditorView(cellIndex: Int)
-
-        /**
-         * Opens cell logic editor view
-         *
-         * @param cellIndex Index of cell in repository
-         */
-        fun openCellLogicEditorView(cellIndex: Int)
     }
 
     interface Presenter {

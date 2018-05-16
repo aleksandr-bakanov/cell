@@ -3,6 +3,8 @@ package bav.onecell.di
 import android.content.Context
 import bav.onecell.battle.BattleModule
 import bav.onecell.battle.BattleSubcomponent
+import bav.onecell.celllogic.CellLogicModule
+import bav.onecell.celllogic.CellLogicSubcomponent
 import bav.onecell.cellslist.CellsListModule
 import bav.onecell.cellslist.CellsListSubcomponent
 import bav.onecell.common.CommonModule
@@ -25,6 +27,7 @@ interface AppComponent {
     fun plus(editorModule: EditorModule): EditorSubcomponent
     fun plus(battleModule: BattleModule): BattleSubcomponent
     fun plus(cellsListModule: CellsListModule): CellsListSubcomponent
+    fun plus(cellLogicModule: CellLogicModule): CellLogicSubcomponent
 }
 
 @Module

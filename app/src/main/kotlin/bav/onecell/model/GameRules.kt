@@ -7,7 +7,7 @@ import bav.onecell.model.hexes.HexMath
 /**
  * This class contains functions to check possibility to add/remove hexes in cell
  */
-class Rules(private val hexMath: HexMath) {
+class GameRules(private val hexMath: HexMath) {
 
     fun isAllowedToAddHexIntoCell(cell: Cell, hex: Hex): Boolean {
         if (cell.data.hexes.values.contains(hex)) return false

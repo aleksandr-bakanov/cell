@@ -6,6 +6,8 @@ import bav.onecell.OneCellApplication
 import bav.onecell.R
 import bav.onecell.cellslist.CellsListFragment
 import bav.onecell.common.router.Router
+import bav.onecell.common.router.Router.WindowType.*
+import bav.onecell.editor.EditorFragment
 import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
 
@@ -21,7 +23,7 @@ class MainActivity : FragmentActivity() {
         inject()
 
         setContentView(R.layout.activity_main)
-        changeWindow(Router.Window.MAIN)
+        changeWindow(Router.Window(MAIN))
 
         disposables.add(router.windowChange().subscribe { changeWindow(it) })
     }
@@ -40,12 +42,17 @@ class MainActivity : FragmentActivity() {
     }
 
     private fun changeWindow(window: Router.Window) {
-        val fragment = when (window) {
-            Router.Window.MAIN -> MainFragment.newInstance()
-            Router.Window.CELLS_LIST -> CellsListFragment.newInstance()
+        val fragment = when (window.type) {
+            MAIN -> MainFragment.newInstance()
+            CELLS_LIST -> CellsListFragment.newInstance()
+            BATTLE_CELLS_SELECTION -> TODO()
+            BATTLE -> TODO()
+            CELL_EDITOR -> EditorFragment.newInstance(window.args)
+            RULES_EDITOR -> TODO()
+            CONDITIONS_EDITOR -> TODO()
         }
         val ft = supportFragmentManager.beginTransaction()
-        ft.replace(R.id.holder, fragment)
+        ft.replace(R.id.holder, fragment).addToBackStack(window.toString())
         ft.commit()
     }
     //endregion

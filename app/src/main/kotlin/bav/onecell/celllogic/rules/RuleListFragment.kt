@@ -1,31 +1,24 @@
 package bav.onecell.celllogic.rules
 
-import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import bav.onecell.OneCellApplication
 import bav.onecell.R
-import bav.onecell.celllogic.CellLogic
+import bav.onecell.celllogic.CellLogicModule
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_rule_list.buttonAddNewRule
 import kotlinx.android.synthetic.main.fragment_rule_list.recyclerViewRulesList
+import javax.inject.Inject
 
-class RuleListFragment : Fragment(), CellLogic.PresenterProvider {
+class RuleListFragment : Fragment() {
 
-    private lateinit var host: CellLogic.PresenterProvider
+    @Inject
+    lateinit var presenter: Rules.Presenter
     private val disposables = CompositeDisposable()
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        if (context is CellLogic.PresenterProvider) {
-            host = context
-        } else {
-            throw RuntimeException(context.toString() + " must implement CellLogic.PresenterProvider")
-        }
-    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -34,15 +27,16 @@ class RuleListFragment : Fragment(), CellLogic.PresenterProvider {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        inject()
+        presenter.initialize(arguments?.getInt(CELL_INDEX) ?: -1)
 
-        buttonAddNewRule.setOnClickListener { host.provideCellLogicPresenter().createNewRule() }
+        buttonAddNewRule.setOnClickListener { presenter.createNewRule() }
 
         recyclerViewRulesList.layoutManager = LinearLayoutManager(context)
-        recyclerViewRulesList.adapter = RulesRecyclerViewAdapter(
-                host.provideCellLogicPresenter())
+        recyclerViewRulesList.adapter = RulesRecyclerViewAdapter(presenter)
 
         disposables.addAll(
-                host.provideCellLogicPresenter().rulesUpdateNotifier().subscribe {
+                presenter.rulesUpdateNotifier().subscribe {
                     recyclerViewRulesList.adapter.notifyDataSetChanged()
                 }
         )
@@ -53,10 +47,22 @@ class RuleListFragment : Fragment(), CellLogic.PresenterProvider {
         super.onDestroyView()
     }
 
-    override fun provideCellLogicPresenter(): CellLogic.Presenter = host.provideCellLogicPresenter()
+    private fun inject() {
+        (requireActivity().application as OneCellApplication).appComponent
+                .plus(CellLogicModule())
+                .inject(this)
+    }
 
     companion object {
+        private const val CELL_INDEX = "cell_index"
+
         @JvmStatic
-        fun newInstance() = RuleListFragment()
+        fun newInstance(index: Int): RuleListFragment {
+            val bundle = Bundle()
+            bundle.putInt(CELL_INDEX, index)
+            val fragment = RuleListFragment()
+            fragment.arguments = bundle
+            return fragment
+        }
     }
 }

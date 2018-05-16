@@ -5,13 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import bav.onecell.R
-import bav.onecell.celllogic.CellLogic
 import kotlinx.android.synthetic.main.item_row_rule.view.buttonChooseRuleAction
 import kotlinx.android.synthetic.main.item_row_rule.view.buttonOpenRuleConditions
 import kotlinx.android.synthetic.main.item_row_rule.view.buttonRemoveRule
 import kotlinx.android.synthetic.main.item_row_rule.view.title
 
-class RulesRecyclerViewAdapter(private val presenter: CellLogic.Presenter) :
+class RulesRecyclerViewAdapter(private val presenter: Rules.Presenter) :
         RecyclerView.Adapter<RulesRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -26,7 +25,7 @@ class RulesRecyclerViewAdapter(private val presenter: CellLogic.Presenter) :
         holder.setRuleTitle("Rule #$position")
     }
 
-    class ViewHolder(val view: View, private val presenter: CellLogic.Presenter) : RecyclerView.ViewHolder(view) {
+    class ViewHolder(val view: View, private val presenter: Rules.Presenter) : RecyclerView.ViewHolder(view) {
         init {
             view.buttonRemoveRule.setOnClickListener { presenter.removeRule(adapterPosition) }
             view.buttonOpenRuleConditions.setOnClickListener { presenter.openConditionsList(adapterPosition) }

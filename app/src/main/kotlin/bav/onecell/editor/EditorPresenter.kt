@@ -3,14 +3,14 @@ package bav.onecell.editor
 import bav.onecell.common.router.Router
 import bav.onecell.model.cell.Cell
 import bav.onecell.model.RepositoryContract
-import bav.onecell.model.Rules
+import bav.onecell.model.GameRules
 import bav.onecell.model.hexes.Hex
 import io.reactivex.Observable
 import io.reactivex.subjects.BehaviorSubject
 
 // TODO: persist cell on exit from editor
 class EditorPresenter(
-        private val rules: Rules,
+        private val gameRules: GameRules,
         private val cellRepository: RepositoryContract.CellRepo,
         private val router: Router) : Editor.Presenter {
 
@@ -30,7 +30,7 @@ class EditorPresenter(
 
     override fun addHexToCell(hex: Hex) {
         cell?.let {
-            if (rules.isAllowedToAddHexIntoCell(it, hex)) {
+            if (gameRules.isAllowedToAddHexIntoCell(it, hex)) {
                 it.addHex(hex)
                 it.evaluateCellHexesPower()
             }
@@ -39,7 +39,7 @@ class EditorPresenter(
 
     override fun removeHexFromCell(hex: Hex) {
         cell?.let {
-            if (rules.isAllowedToRemoveHexFromCell(it, hex)) {
+            if (gameRules.isAllowedToRemoveHexFromCell(it, hex)) {
                 it.removeHex(hex)
                 it.evaluateCellHexesPower()
             }

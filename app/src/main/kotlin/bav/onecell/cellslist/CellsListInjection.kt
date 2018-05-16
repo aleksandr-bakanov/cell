@@ -1,5 +1,6 @@
 package bav.onecell.cellslist
 
+import bav.onecell.common.router.Router
 import bav.onecell.di.scopes.FragmentScope
 import bav.onecell.model.RepositoryContract
 import dagger.Module
@@ -13,11 +14,11 @@ interface CellsListSubcomponent {
 }
 
 @Module
-class CellsListModule(val view: CellsList.View) {
+class CellsListModule() {
     @Provides
     @FragmentScope
-    fun provideCellsListPresenter(cellRepository: RepositoryContract.CellRepo):
+    fun provideCellsListPresenter(router: Router, cellRepository: RepositoryContract.CellRepo):
             CellsList.Presenter {
-        return CellsListPresenter(view, cellRepository)
+        return CellsListPresenter(cellRepository, router)
     }
 }

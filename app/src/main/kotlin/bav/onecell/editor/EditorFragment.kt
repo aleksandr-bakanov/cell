@@ -98,7 +98,7 @@ class EditorFragment : Fragment(), Editor.View {
     //endregion
 
     companion object {
-        private const val CELL_INDEX = "cell_index"
+        const val CELL_INDEX = "cell_index"
 
         /**
          * Creates new instance of fragment
@@ -106,11 +106,9 @@ class EditorFragment : Fragment(), Editor.View {
          * @param index Index of cell to be edited
          */
         @JvmStatic
-        fun newInstance(index: Int): EditorFragment {
-            val bundle = Bundle()
-            bundle.putInt(CELL_INDEX, index)
+        fun newInstance(bundle: Bundle?): EditorFragment {
             val fragment = EditorFragment()
-            fragment.arguments = bundle
+            bundle?.let { fragment.arguments = it }
             return fragment
         }
     }

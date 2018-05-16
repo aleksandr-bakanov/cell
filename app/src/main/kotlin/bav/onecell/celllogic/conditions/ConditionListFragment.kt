@@ -1,32 +1,24 @@
 package bav.onecell.celllogic.conditions
 
-import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import bav.onecell.OneCellApplication
 import bav.onecell.R
-import bav.onecell.celllogic.rules.ActionEditorDialogFragment
-import bav.onecell.celllogic.CellLogic
+import bav.onecell.celllogic.CellLogicModule
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_condition_list.buttonAddNewCondition
 import kotlinx.android.synthetic.main.fragment_condition_list.recyclerViewConditionsList
+import javax.inject.Inject
 
-class ConditionListFragment : Fragment(), CellLogic.PresenterProvider {
+class ConditionListFragment : Fragment() {
 
-    private lateinit var host: CellLogic.PresenterProvider
+    @Inject
+    lateinit var presenter: Conditions.Presenter
     private val disposables = CompositeDisposable()
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        if (context is CellLogic.PresenterProvider) {
-            host = context
-        } else {
-            throw RuntimeException(context.toString() + " must implement CellLogic.PresenterProvider")
-        }
-    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -35,46 +27,50 @@ class ConditionListFragment : Fragment(), CellLogic.PresenterProvider {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        inject()
 
-        buttonAddNewCondition.setOnClickListener { host.provideCellLogicPresenter().createNewCondition() }
-        buttonAddNewCondition.visibility = View.INVISIBLE
+        buttonAddNewCondition.setOnClickListener { presenter.createNewCondition() }
 
         recyclerViewConditionsList.layoutManager = LinearLayoutManager(context)
-        recyclerViewConditionsList.adapter = ConditionsRecyclerViewAdapter(
-                host.provideCellLogicPresenter())
+        recyclerViewConditionsList.adapter = ConditionsRecyclerViewAdapter(presenter)
 
         disposables.addAll(
-                host.provideCellLogicPresenter().conditionsUpdateNotifier().subscribe {
-                    buttonAddNewCondition.visibility = View.VISIBLE
+                presenter.conditionsUpdateNotifier().subscribe {
                     recyclerViewConditionsList.adapter.notifyDataSetChanged()
                 },
-                host.provideCellLogicPresenter().conditionsEditNotifier().subscribe { condition ->
+                presenter.conditionsEditNotifier().subscribe { condition ->
                     val conditionEditorDialogFragment = ConditionEditorDialogFragment()
                     // TODO: check we attached to activity
                     conditionEditorDialogFragment.show(requireActivity().fragmentManager,
                                                        CONDITION_EDITOR_DIALOG_TAG)
-                },
-                host.provideCellLogicPresenter().actionEditNotifier().subscribe {
-                    val actionEditorDialogFragment = ActionEditorDialogFragment()
-                    actionEditorDialogFragment.show(requireActivity().fragmentManager,
-                                                    ACTION_EDITOR_DIALOG_TAG)
                 }
         )
     }
 
     override fun onDestroyView() {
-        host.provideCellLogicPresenter().openConditionsList(-1)
         disposables.dispose()
         super.onDestroyView()
     }
 
-    override fun provideCellLogicPresenter(): CellLogic.Presenter = host.provideCellLogicPresenter()
+    private fun inject() {
+        (requireActivity().application as OneCellApplication).appComponent.plus(CellLogicModule()).inject(this)
+    }
 
     companion object {
         private const val CONDITION_EDITOR_DIALOG_TAG = "condition_editor_dialog"
         private const val ACTION_EDITOR_DIALOG_TAG = "action_editor_dialog"
 
+        private const val CELL_INDEX = "cell_index"
+        private const val RULE_INDEX = "rule_index"
+
         @JvmStatic
-        fun newInstance() = ConditionListFragment()
+        fun newInstance(cellIndex: Int, ruleIndex: Int): ConditionListFragment {
+            val bundle = Bundle()
+            bundle.putInt(CELL_INDEX, cellIndex)
+            bundle.putInt(RULE_INDEX, ruleIndex)
+            val fragment = ConditionListFragment()
+            fragment.arguments = bundle
+            return fragment
+        }
     }
 }
