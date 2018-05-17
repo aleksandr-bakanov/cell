@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.support.v4.app.FragmentActivity
 import bav.onecell.celllogic.conditions.ConditionEditorDialogFragment
 import bav.onecell.celllogic.conditions.ConditionListFragment
+import bav.onecell.celllogic.rules.ActionEditorDialogFragment
 import bav.onecell.celllogic.rules.RuleListFragment
 import bav.onecell.editor.EditorFragment
 import bav.onecell.model.cell.logic.Condition
@@ -53,7 +54,12 @@ class RouterImpl : Router {
     }
 
     override fun goToConditionEditor(condition: Condition, whatToEdit: Int) {
-        val conditionEditorDialogFragment = ConditionEditorDialogFragment.newInstance(condition, whatToEdit)
-        conditionEditorDialogFragment.show(host.fragmentManager, ConditionListFragment.CONDITION_EDITOR_DIALOG_TAG)
+        val fragment = ConditionEditorDialogFragment.newInstance(condition, whatToEdit)
+        fragment.show(host.fragmentManager, ConditionEditorDialogFragment.CONDITION_EDITOR_DIALOG_TAG)
+    }
+
+    override fun goToActionEditor(cellIndex: Int, ruleIndex: Int) {
+        val fragment = ActionEditorDialogFragment.newInstance(cellIndex, ruleIndex)
+        fragment.show(host.fragmentManager, ActionEditorDialogFragment.ACTION_EDITOR_DIALOG_TAG)
     }
 }

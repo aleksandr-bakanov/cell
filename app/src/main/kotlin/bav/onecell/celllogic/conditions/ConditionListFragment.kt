@@ -54,9 +54,6 @@ class ConditionListFragment : Fragment() {
     }
 
     companion object {
-        const val CONDITION_EDITOR_DIALOG_TAG = "condition_editor_dialog"
-        private const val ACTION_EDITOR_DIALOG_TAG = "action_editor_dialog"
-
         const val CELL_INDEX = "cell_index"
         const val RULE_INDEX = "rule_index"
 

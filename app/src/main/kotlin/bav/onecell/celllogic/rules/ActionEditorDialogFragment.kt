@@ -12,12 +12,12 @@ import javax.inject.Inject
 class ActionEditorDialogFragment : DialogFragment() {
 
     @Inject
-    lateinit var presenter: Rules.Presenter
+    lateinit var presenter: ActionEditor.Presenter
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         super.onCreateDialog(savedInstanceState)
         inject()
-        presenter.initialize(arguments.getInt(CELL_INDEX))
+        presenter.initialize(arguments.getInt(CELL_INDEX), arguments.getInt(RULE_INDEX))
 
         val builder = AlertDialog.Builder(activity)
         builder
@@ -38,12 +38,15 @@ class ActionEditorDialogFragment : DialogFragment() {
     }
 
     companion object {
-        private const val CELL_INDEX = "cell_index"
+        const val ACTION_EDITOR_DIALOG_TAG = "action_editor_dialog"
+        const val CELL_INDEX = "cell_index"
+        const val RULE_INDEX = "rule_index"
 
         @JvmStatic
-        fun newInstance(index: Int): ActionEditorDialogFragment {
+        fun newInstance(cellIndex: Int, ruleIndex: Int): ActionEditorDialogFragment {
             val bundle = Bundle()
-            bundle.putInt(CELL_INDEX, index)
+            bundle.putInt(CELL_INDEX, cellIndex)
+            bundle.putInt(RULE_INDEX, ruleIndex)
             val fragment = ActionEditorDialogFragment()
             fragment.arguments = bundle
             return fragment

@@ -6,7 +6,9 @@ import bav.onecell.celllogic.conditions.ConditionEditorPresenter
 import bav.onecell.celllogic.conditions.ConditionListFragment
 import bav.onecell.celllogic.conditions.Conditions
 import bav.onecell.celllogic.conditions.ConditionsPresenter
+import bav.onecell.celllogic.rules.ActionEditor
 import bav.onecell.celllogic.rules.ActionEditorDialogFragment
+import bav.onecell.celllogic.rules.ActionEditorPresenter
 import bav.onecell.celllogic.rules.RuleListFragment
 import bav.onecell.celllogic.rules.Rules
 import bav.onecell.celllogic.rules.RulesPresenter
@@ -44,5 +46,11 @@ class CellLogicModule {
     @FragmentScope
     fun provideConditionEditorPresenter(): ConditionEditor.Presenter {
         return ConditionEditorPresenter()
+    }
+
+    @Provides
+    @FragmentScope
+    fun provideActionEditorPresenter(cellRepository: RepositoryContract.CellRepo): ActionEditor.Presenter {
+        return ActionEditorPresenter(cellRepository)
     }
 }

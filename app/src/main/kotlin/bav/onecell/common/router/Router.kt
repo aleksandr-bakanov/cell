@@ -27,6 +27,8 @@ interface Router {
 
     fun goToConditionList(cellIndex: Int, ruleIndex: Int)
 
+    fun goToActionEditor(cellIndex: Int, ruleIndex: Int)
+
     fun setHostActivity(activity: FragmentActivity)
 
     fun goToConditionEditor(condition: Condition, whatToEdit: Int)

@@ -32,14 +32,8 @@ interface Rules {
 
         fun rulesUpdateNotifier(): Observable<Unit>
 
-        fun actionEditNotifier(): Observable<Unit>
-
         fun openConditionsList(ruleIndex: Int)
 
         fun openActionEditor(ruleIndex: Int)
-
-        fun provideActionDialogValues(): Array<String>
-
-        fun saveActionValue(which: Int)
     }
 }

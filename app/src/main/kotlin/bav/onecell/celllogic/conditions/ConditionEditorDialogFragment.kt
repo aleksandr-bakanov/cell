@@ -46,6 +46,7 @@ class ConditionEditorDialogFragment : DialogFragment(), ConditionEditor.View {
     }
 
     companion object {
+        const val CONDITION_EDITOR_DIALOG_TAG = "condition_editor_dialog"
         private const val WHAT_TO_EDIT = "what_to_edit"
 
         @JvmStatic
