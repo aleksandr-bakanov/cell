@@ -28,5 +28,7 @@ interface Battle {
         fun doFullStep()
 
         fun doPartialStep()
+
+        fun finishBattle()
     }
 }

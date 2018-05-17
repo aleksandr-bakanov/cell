@@ -3,7 +3,7 @@ package bav.onecell.model
 import bav.onecell.common.storage.Storage
 import bav.onecell.model.cell.Cell
 import bav.onecell.model.hexes.HexMath
-import io.reactivex.subjects.BehaviorSubject
+import io.reactivex.subjects.ReplaySubject
 import kotlinx.coroutines.experimental.async
 import kotlinx.coroutines.experimental.launch
 
@@ -12,7 +12,7 @@ class CellRepository(
         private val storage: Storage,
         private val cells: ArrayList<Cell> = arrayListOf()) : RepositoryContract.CellRepo {
 
-    private val loadFromStoreStatus: BehaviorSubject<Unit> = BehaviorSubject.create()
+    private val loadFromStoreStatus: ReplaySubject<Unit> = ReplaySubject.create()
 
     init {
         launch {
@@ -20,11 +20,11 @@ class CellRepository(
             for (cell in cellsFromStorage) {
                 cells.add(cell)
             }
-            loadFromStoreStatus.onComplete()
+            loadFromStoreStatus.onNext(Unit)
         }
     }
 
-    override fun loadFromStore(): BehaviorSubject<Unit> = loadFromStoreStatus
+    override fun loadFromStore(): ReplaySubject<Unit> = loadFromStoreStatus
 
     override fun cellsCount(): Int = cells.size
 

@@ -2,6 +2,7 @@ package bav.onecell.common.router
 
 import android.os.Bundle
 import android.support.v4.app.FragmentActivity
+import bav.onecell.battle.BattleFragment
 import bav.onecell.celllogic.conditions.ConditionEditorDialogFragment
 import bav.onecell.celllogic.conditions.ConditionListFragment
 import bav.onecell.celllogic.rules.ActionEditorDialogFragment
@@ -22,8 +23,14 @@ class RouterImpl : Router {
         windowChanger.onNext(Router.Window(Router.WindowType.MAIN))
     }
 
-    override fun goToBattle() {
+    override fun goToCellsForBattleSelection() {
+        windowChanger.onNext(Router.Window(Router.WindowType.BATTLE_CELLS_SELECTION))
+    }
 
+    override fun goToBattle(cellIndexes: List<Int>) {
+        val bundle = Bundle()
+        bundle.putIntegerArrayList(BattleFragment.EXTRA_CELL_INDEXES, ArrayList(cellIndexes))
+        windowChanger.onNext(Router.Window(Router.WindowType.BATTLE, bundle))
     }
 
     override fun goToCellsList() {

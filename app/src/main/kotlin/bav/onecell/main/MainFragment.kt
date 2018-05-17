@@ -2,16 +2,12 @@ package bav.onecell.main
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import bav.onecell.OneCellApplication
 import bav.onecell.R
-import bav.onecell.common.router.Router
 import io.reactivex.disposables.CompositeDisposable
-import kotlinx.android.synthetic.main.fragment_cell_list.buttonCreateNewCell
-import kotlinx.android.synthetic.main.fragment_cell_list.recyclerViewCellList
 import kotlinx.android.synthetic.main.fragment_main.buttonGoToBattle
 import kotlinx.android.synthetic.main.fragment_main.buttonShowCells
 import javax.inject.Inject
@@ -31,7 +27,7 @@ class MainFragment : Fragment(), Main.View {
         super.onActivityCreated(savedInstanceState)
         inject()
 
-        buttonGoToBattle.setOnClickListener { presenter.openBattleView() }
+        buttonGoToBattle.setOnClickListener { presenter.openPreBattleView() }
         buttonShowCells.setOnClickListener { presenter.openCellsListView() }
     }
 

@@ -9,8 +9,8 @@ class MainPresenter(
         private const val TAG = "MainPresenter"
     }
 
-    override fun openBattleView() {
-        router.goToBattle()
+    override fun openPreBattleView() {
+        router.goToCellsForBattleSelection()
     }
 
     override fun openCellsListView() {

@@ -10,7 +10,7 @@ interface Main {
         /**
          * Opens battle window.
          */
-        fun openBattleView()
+        fun openPreBattleView()
 
         /**
          * Opens cells list window.

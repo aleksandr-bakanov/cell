@@ -1,5 +1,6 @@
 package bav.onecell.battle
 
+import bav.onecell.common.router.Router
 import bav.onecell.model.RepositoryContract
 import bav.onecell.model.GameRules
 import bav.onecell.model.cell.Cell
@@ -21,7 +22,8 @@ class BattlePresenter(
         private val view: Battle.View,
         private val hexMath: HexMath,
         private val gameRules: GameRules,
-        private val cellRepository: RepositoryContract.CellRepo) : Battle.Presenter {
+        private val cellRepository: RepositoryContract.CellRepo,
+        private val router: Router) : Battle.Presenter {
 
     companion object {
         private const val TAG = "BattlePresenter"
@@ -93,6 +95,10 @@ class BattlePresenter(
         action.invoke()
         battleRoundSteps.add(action)
         view.updateBattleView()
+    }
+
+    override fun finishBattle() {
+        router.goToMain()
     }
 
     private fun calculateBattleState() {

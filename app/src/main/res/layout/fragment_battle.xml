@@ -8,7 +8,6 @@
         android:id="@+id/buttonFullStep"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="onFullStepButtonClicked"
         android:text="@string/button_next_step_title"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -17,7 +16,6 @@
         android:id="@+id/buttonFinishBattle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="onFinishBattleButtonClicked"
         android:text="@string/button_finish_battle_title"
         android:visibility="invisible"
         app:layout_constraintEnd_toStartOf="@+id/buttonPartialStep"
@@ -28,7 +26,6 @@
         android:id="@+id/buttonPartialStep"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="onPartialStepButtonClicked"
         android:text="@string/button_partial_step_title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

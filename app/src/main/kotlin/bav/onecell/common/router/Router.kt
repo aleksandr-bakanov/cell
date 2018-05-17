@@ -17,7 +17,9 @@ interface Router {
 
     fun goToMain()
 
-    fun goToBattle()
+    fun goToCellsForBattleSelection()
+
+    fun goToBattle(cellIndexes: List<Int>)
 
     fun goToCellsList()
 

@@ -1,5 +1,8 @@
 package bav.onecell.cellslist
 
+import bav.onecell.cellslist.cellselection.CellsForBattle
+import bav.onecell.cellslist.cellselection.CellsForBattleFragment
+import bav.onecell.cellslist.cellselection.CellsForBattlePresenter
 import bav.onecell.common.router.Router
 import bav.onecell.di.scopes.FragmentScope
 import bav.onecell.model.RepositoryContract
@@ -11,14 +14,22 @@ import dagger.Subcomponent
 @Subcomponent(modules = [CellsListModule::class])
 interface CellsListSubcomponent {
     fun inject(view: CellsListFragment)
+    fun inject(view: CellsForBattleFragment)
 }
 
 @Module
-class CellsListModule() {
+class CellsListModule {
     @Provides
     @FragmentScope
     fun provideCellsListPresenter(router: Router, cellRepository: RepositoryContract.CellRepo):
             CellsList.Presenter {
         return CellsListPresenter(cellRepository, router)
+    }
+
+    @Provides
+    @FragmentScope
+    fun provideCellsForBattlePresenter(router: Router, cellRepository: RepositoryContract.CellRepo):
+            CellsForBattle.Presenter {
+        return CellsForBattlePresenter(cellRepository, router)
     }
 }
