@@ -108,7 +108,7 @@ class EditorFragment : Fragment(), Editor.View {
         @JvmStatic
         fun newInstance(bundle: Bundle?): EditorFragment {
             val fragment = EditorFragment()
-            bundle?.let { fragment.arguments = it }
+            fragment.arguments = bundle
             return fragment
         }
     }

@@ -6,7 +6,6 @@ import io.reactivex.Observable
 interface Conditions {
 
     interface View {
-
     }
 
     interface Presenter {
@@ -19,8 +18,6 @@ interface Conditions {
 
         fun conditionsUpdateNotifier(): Observable<Unit>
 
-        fun conditionsEditNotifier(): Observable<Condition>
-
         fun conditionsCount(): Int
 
         fun createNewCondition()
@@ -29,10 +26,6 @@ interface Conditions {
 
         fun openConditionEditor(conditionIndex: Int, whatToEdit: Int)
 
-        fun provideConditionDialogValues(): Array<String>
-
         fun provideActionDialogValues(): Array<String>
-
-        fun saveConditionValue(which: Int)
     }
 }

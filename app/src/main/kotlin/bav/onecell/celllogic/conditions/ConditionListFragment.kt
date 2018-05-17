@@ -28,6 +28,8 @@ class ConditionListFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         inject()
+        presenter.initialize(arguments?.getInt(CELL_INDEX) ?: -1,
+                             arguments?.getInt(RULE_INDEX) ?: -1)
 
         buttonAddNewCondition.setOnClickListener { presenter.createNewCondition() }
 
@@ -37,12 +39,6 @@ class ConditionListFragment : Fragment() {
         disposables.addAll(
                 presenter.conditionsUpdateNotifier().subscribe {
                     recyclerViewConditionsList.adapter.notifyDataSetChanged()
-                },
-                presenter.conditionsEditNotifier().subscribe { condition ->
-                    val conditionEditorDialogFragment = ConditionEditorDialogFragment()
-                    // TODO: check we attached to activity
-                    conditionEditorDialogFragment.show(requireActivity().fragmentManager,
-                                                       CONDITION_EDITOR_DIALOG_TAG)
                 }
         )
     }
@@ -53,21 +49,19 @@ class ConditionListFragment : Fragment() {
     }
 
     private fun inject() {
-        (requireActivity().application as OneCellApplication).appComponent.plus(CellLogicModule()).inject(this)
+        (requireActivity().application as OneCellApplication).appComponent.plus(
+                CellLogicModule()).inject(this)
     }
 
     companion object {
-        private const val CONDITION_EDITOR_DIALOG_TAG = "condition_editor_dialog"
+        const val CONDITION_EDITOR_DIALOG_TAG = "condition_editor_dialog"
         private const val ACTION_EDITOR_DIALOG_TAG = "action_editor_dialog"
 
-        private const val CELL_INDEX = "cell_index"
-        private const val RULE_INDEX = "rule_index"
+        const val CELL_INDEX = "cell_index"
+        const val RULE_INDEX = "rule_index"
 
         @JvmStatic
-        fun newInstance(cellIndex: Int, ruleIndex: Int): ConditionListFragment {
-            val bundle = Bundle()
-            bundle.putInt(CELL_INDEX, cellIndex)
-            bundle.putInt(RULE_INDEX, ruleIndex)
+        fun newInstance(bundle: Bundle?): ConditionListFragment {
             val fragment = ConditionListFragment()
             fragment.arguments = bundle
             return fragment

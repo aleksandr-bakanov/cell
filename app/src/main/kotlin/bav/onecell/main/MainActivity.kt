@@ -4,9 +4,17 @@ import android.os.Bundle
 import android.support.v4.app.FragmentActivity
 import bav.onecell.OneCellApplication
 import bav.onecell.R
+import bav.onecell.celllogic.conditions.ConditionListFragment
+import bav.onecell.celllogic.rules.RuleListFragment
 import bav.onecell.cellslist.CellsListFragment
 import bav.onecell.common.router.Router
-import bav.onecell.common.router.Router.WindowType.*
+import bav.onecell.common.router.Router.WindowType.BATTLE
+import bav.onecell.common.router.Router.WindowType.BATTLE_CELLS_SELECTION
+import bav.onecell.common.router.Router.WindowType.CELLS_LIST
+import bav.onecell.common.router.Router.WindowType.CELL_EDITOR
+import bav.onecell.common.router.Router.WindowType.CONDITIONS_EDITOR
+import bav.onecell.common.router.Router.WindowType.MAIN
+import bav.onecell.common.router.Router.WindowType.RULES_EDITOR
 import bav.onecell.editor.EditorFragment
 import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
@@ -21,6 +29,7 @@ class MainActivity : FragmentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         inject()
+        router.setHostActivity(this)
 
         setContentView(R.layout.activity_main)
         changeWindow(Router.Window(MAIN))
@@ -48,8 +57,8 @@ class MainActivity : FragmentActivity() {
             BATTLE_CELLS_SELECTION -> TODO()
             BATTLE -> TODO()
             CELL_EDITOR -> EditorFragment.newInstance(window.args)
-            RULES_EDITOR -> TODO()
-            CONDITIONS_EDITOR -> TODO()
+            RULES_EDITOR -> RuleListFragment.newInstance(window.args)
+            CONDITIONS_EDITOR -> ConditionListFragment.newInstance(window.args)
         }
         val ft = supportFragmentManager.beginTransaction()
         ft.replace(R.id.holder, fragment).addToBackStack(window.toString())

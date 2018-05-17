@@ -30,7 +30,7 @@ class CellsListPresenter(
     }
 
     override fun openCellRulesEditor(cellIndex: Int) {
-
+        router.goToRulesList(cellIndex)
     }
 
     override fun removeCell(cellIndex: Int) {

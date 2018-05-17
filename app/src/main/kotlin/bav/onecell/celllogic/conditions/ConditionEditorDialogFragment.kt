@@ -7,17 +7,19 @@ import android.os.Bundle
 import bav.onecell.OneCellApplication
 import bav.onecell.R
 import bav.onecell.celllogic.CellLogicModule
+import bav.onecell.model.cell.logic.Condition
 import javax.inject.Inject
 
-class ConditionEditorDialogFragment : DialogFragment() {
+class ConditionEditorDialogFragment : DialogFragment(), ConditionEditor.View {
 
     @Inject
-    lateinit var presenter: Conditions.Presenter
+    lateinit var presenter: ConditionEditor.Presenter
+    lateinit var condition: Condition
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         super.onCreateDialog(savedInstanceState)
         inject()
-        presenter.initialize(arguments.getInt(CELL_INDEX), arguments.getInt(RULE_INDEX))
+        presenter.initialize(condition, arguments.getInt(WHAT_TO_EDIT))
 
         val builder = AlertDialog.Builder(activity)
         builder
@@ -33,19 +35,24 @@ class ConditionEditorDialogFragment : DialogFragment() {
     }
 
     private fun inject() {
-        (activity.application as OneCellApplication).appComponent.plus(CellLogicModule()).inject(this)
+        (activity.application as OneCellApplication).appComponent
+                .plus(CellLogicModule())
+                .inject(this)
+    }
+
+    fun with(c: Condition): ConditionEditorDialogFragment {
+        condition = c
+        return this
     }
 
     companion object {
-        private const val CELL_INDEX = "cell_index"
-        private const val RULE_INDEX = "rule_index"
+        private const val WHAT_TO_EDIT = "what_to_edit"
 
         @JvmStatic
-        fun newInstance(cellIndex: Int, ruleIndex: Int): ConditionEditorDialogFragment {
+        fun newInstance(condition: Condition, whatToEdit: Int): ConditionEditorDialogFragment {
+            val fragment = ConditionEditorDialogFragment().with(condition)
             val bundle = Bundle()
-            bundle.putInt(CELL_INDEX, cellIndex)
-            bundle.putInt(RULE_INDEX, ruleIndex)
-            val fragment = ConditionEditorDialogFragment()
+            bundle.putInt(WHAT_TO_EDIT, whatToEdit)
             fragment.arguments = bundle
             return fragment
         }

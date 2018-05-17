@@ -1,12 +1,14 @@
 package bav.onecell.celllogic.rules
 
+import bav.onecell.common.router.Router
 import bav.onecell.model.RepositoryContract
 import bav.onecell.model.cell.Cell
 import bav.onecell.model.cell.logic.Rule
 import io.reactivex.Observable
 import io.reactivex.subjects.PublishSubject
 
-class RulesPresenter(private val cellRepository: RepositoryContract.CellRepo) : Rules.Presenter {
+class RulesPresenter(private val cellRepository: RepositoryContract.CellRepo,
+                     private val router: Router) : Rules.Presenter {
 
     companion object {
         private const val TAG = "RulesPresenter"
@@ -16,11 +18,13 @@ class RulesPresenter(private val cellRepository: RepositoryContract.CellRepo) : 
     private val rulesNotifier = PublishSubject.create<Unit>()
     private val actionNotifier = PublishSubject.create<Unit>()
 
+    private var currentlyEditedCellIndex: Int = -1
     private var currentlyEditedRuleIndex: Int = -1
     private var currentlyEditedRule: Rule? = null
 
     override fun initialize(cellIndex: Int) {
         rules = cellRepository.getCell(cellIndex)?.data?.rules
+        rules?.let { currentlyEditedCellIndex = cellIndex }
     }
 
     override fun rulesCount(): Int = rules?.size ?: 0
@@ -51,6 +55,7 @@ class RulesPresenter(private val cellRepository: RepositoryContract.CellRepo) : 
                 it[ruleIndex]
             } else null
         }
+        currentlyEditedRule?.let { router.goToConditionList(currentlyEditedCellIndex, ruleIndex) }
     }
 
     override fun openActionEditor(ruleIndex: Int) {

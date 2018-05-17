@@ -54,12 +54,10 @@ class RuleListFragment : Fragment() {
     }
 
     companion object {
-        private const val CELL_INDEX = "cell_index"
+        const val CELL_INDEX = "cell_index"
 
         @JvmStatic
-        fun newInstance(index: Int): RuleListFragment {
-            val bundle = Bundle()
-            bundle.putInt(CELL_INDEX, index)
+        fun newInstance(bundle: Bundle?): RuleListFragment {
             val fragment = RuleListFragment()
             fragment.arguments = bundle
             return fragment
