@@ -98,7 +98,7 @@ class BattlePresenter(
     }
 
     override fun finishBattle() {
-        router.goToMain()
+        router.goBack()
     }
 
     private fun calculateBattleState() {

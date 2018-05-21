@@ -15,6 +15,8 @@ interface Router {
 
     fun windowChange(): Observable<Window>
 
+    fun goBack()
+
     fun goToMain()
 
     fun goToCellsForBattleSelection()

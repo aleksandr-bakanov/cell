@@ -19,6 +19,10 @@ class RouterImpl : Router {
 
     override fun windowChange(): Observable<Router.Window> = windowChanger
 
+    override fun goBack() {
+        host.supportFragmentManager.popBackStack()
+    }
+
     override fun goToMain() {
         windowChanger.onNext(Router.Window(Router.WindowType.MAIN))
     }
