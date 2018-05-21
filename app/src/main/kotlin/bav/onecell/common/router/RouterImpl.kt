@@ -10,12 +10,12 @@ import bav.onecell.celllogic.rules.RuleListFragment
 import bav.onecell.editor.EditorFragment
 import bav.onecell.model.cell.logic.Condition
 import io.reactivex.Observable
-import io.reactivex.subjects.BehaviorSubject
+import io.reactivex.subjects.PublishSubject
 
 class RouterImpl : Router {
 
     private lateinit var host: FragmentActivity
-    private val windowChanger = BehaviorSubject.create<Router.Window>()
+    private val windowChanger = PublishSubject.create<Router.Window>()
 
     override fun windowChange(): Observable<Router.Window> = windowChanger
 
