@@ -10,6 +10,7 @@ import android.view.MotionEvent
 import android.view.View
 import bav.onecell.R
 import bav.onecell.common.view.CanvasView
+import bav.onecell.model.BattleFieldSnapshot
 import bav.onecell.model.cell.Cell
 import bav.onecell.model.hexes.Hex
 
@@ -27,6 +28,7 @@ class BattleCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
     private val corpseAttackPaint = Paint()
     lateinit var cells: List<Cell>
     lateinit var corpses: List<Cell>
+    lateinit var snapshots: List<BattleFieldSnapshot>
 
     init {
         ringPaint.style = Paint.Style.FILL

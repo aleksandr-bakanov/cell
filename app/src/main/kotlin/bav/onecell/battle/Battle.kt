@@ -1,5 +1,6 @@
 package bav.onecell.battle
 
+import bav.onecell.model.BattleFieldSnapshot
 import bav.onecell.model.cell.Cell
 import bav.onecell.model.hexes.Hex
 
@@ -12,6 +13,7 @@ interface Battle {
         fun updateBattleView()
         fun setRing(ring: List<Hex>)
         fun reportBattleEnd()
+        fun setSnapshots(snapshots: List<BattleFieldSnapshot>)
     }
 
     interface Presenter {

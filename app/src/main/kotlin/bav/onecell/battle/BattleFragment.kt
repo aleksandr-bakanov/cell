@@ -5,9 +5,11 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SeekBar
 import android.widget.Toast
 import bav.onecell.OneCellApplication
 import bav.onecell.R
+import bav.onecell.model.BattleFieldSnapshot
 import bav.onecell.model.cell.Cell
 import bav.onecell.model.hexes.Hex
 import bav.onecell.model.hexes.HexMath
@@ -15,6 +17,7 @@ import kotlinx.android.synthetic.main.fragment_battle.battleCanvasView
 import kotlinx.android.synthetic.main.fragment_battle.buttonFinishBattle
 import kotlinx.android.synthetic.main.fragment_battle.buttonFullStep
 import kotlinx.android.synthetic.main.fragment_battle.buttonPartialStep
+import kotlinx.android.synthetic.main.fragment_battle.seekBar
 import javax.inject.Inject
 
 class BattleFragment : Fragment(), Battle.View {
@@ -23,6 +26,20 @@ class BattleFragment : Fragment(), Battle.View {
     lateinit var hexMath: HexMath
     @Inject
     lateinit var presenter: Battle.Presenter
+
+    private val seekBarListener = object : SeekBar.OnSeekBarChangeListener {
+        override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+
+        }
+
+        override fun onStartTrackingTouch(seekBar: SeekBar?) {
+
+        }
+
+        override fun onStopTrackingTouch(seekBar: SeekBar?) {
+
+        }
+    }
 
     //region Lifecycle methods
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -36,6 +53,8 @@ class BattleFragment : Fragment(), Battle.View {
         buttonFullStep.setOnClickListener { presenter.doFullStep() }
         buttonFinishBattle.setOnClickListener { presenter.finishBattle() }
         buttonPartialStep.setOnClickListener { presenter.doPartialStep() }
+
+        seekBar.setOnSeekBarChangeListener(seekBarListener)
 
         buttonFullStep.isEnabled = true
         buttonPartialStep.isEnabled = true
@@ -81,6 +100,10 @@ class BattleFragment : Fragment(), Battle.View {
         buttonFullStep.isEnabled = false
         buttonPartialStep.isEnabled = false
         buttonFinishBattle.visibility = View.VISIBLE
+    }
+
+    override fun setSnapshots(snapshots: List<BattleFieldSnapshot>) {
+        battleCanvasView.snapshots = snapshots
     }
     //endregion
 

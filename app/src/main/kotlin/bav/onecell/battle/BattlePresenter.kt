@@ -1,6 +1,7 @@
 package bav.onecell.battle
 
 import bav.onecell.common.router.Router
+import bav.onecell.model.BattleFieldSnapshot
 import bav.onecell.model.RepositoryContract
 import bav.onecell.model.GameRules
 import bav.onecell.model.cell.Cell
@@ -34,6 +35,7 @@ class BattlePresenter(
     private val corpses = mutableListOf<Cell>()
     private var battleFieldSize: Int = 0
     private val battleState = BattleState()
+    private val battleFieldSnapshots = mutableListOf<BattleFieldSnapshot>()
 
     private fun initializeBattleSteps() {
         firstStep = calculateBattleState
@@ -60,12 +62,23 @@ class BattlePresenter(
         battleFieldSize = round(cells.map { it.size() }.sum() * 1.5).toInt()
 
         view.setBackgroundFieldRadius(battleFieldSize)
+        view.setSnapshots(battleFieldSnapshots)
         view.setCells(cells)
         view.setCorpses(corpses)
 
         moveCellsToTheirInitialPosition()
 
+        saveSnapshot()
+
         view.updateBattleView()
+    }
+
+    private fun saveSnapshot() {
+        val snapshot = BattleFieldSnapshot()
+        // TODO: save only viewable data (i.e. rules doesn't need to be cloned)
+        for (c in cells) { snapshot.cells.add(c.clone()) }
+        for (c in corpses) { snapshot.corpses.add(c.clone()) }
+        battleFieldSnapshots.add(snapshot)
     }
 
     private fun moveCellsToTheirInitialPosition() {
@@ -87,6 +100,7 @@ class BattlePresenter(
         do {
             doPartialStep()
         } while (battleRoundSteps.peek() != firstStep)
+        saveSnapshot()
     }
 
     override fun doPartialStep() {
