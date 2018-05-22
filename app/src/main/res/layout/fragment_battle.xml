@@ -4,11 +4,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/buttonFullStep"
+    <android.support.v7.widget.AppCompatImageButton
+        android:id="@+id/buttonPreviousStep"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/button_next_step_title"
+        app:srcCompat="@drawable/ic_skip_previous_black_24dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -18,15 +18,15 @@
         android:layout_height="wrap_content"
         android:text="@string/button_finish_battle_title"
         android:visibility="invisible"
-        app:layout_constraintEnd_toStartOf="@+id/buttonPartialStep"
-        app:layout_constraintStart_toEndOf="@+id/buttonFullStep"
+        app:layout_constraintEnd_toStartOf="@+id/buttonNextStep"
+        app:layout_constraintStart_toEndOf="@+id/buttonPreviousStep"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/buttonPartialStep"
+    <android.support.v7.widget.AppCompatImageButton
+        android:id="@+id/buttonNextStep"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/button_partial_step_title"
+        app:srcCompat="@drawable/ic_skip_next_black_24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

@@ -18,8 +18,6 @@ import kotlin.math.PI
 import kotlin.math.atan2
 import kotlin.math.round
 
-/// TODO: move calculations to background thread
-/// TODO: produce sequence of battle steps and provide them via RX
 /// TODO: add visible representation of count of calculated steps with cursor, showing current step
 
 class BattlePresenter(
@@ -66,20 +64,6 @@ class BattlePresenter(
         evaluateBattle()
     }
 
-    override fun doFullStep() {
-        do {
-            doPartialStep()
-        } while (battleRoundSteps.peek() != firstStep)
-        saveSnapshot()
-    }
-
-    override fun doPartialStep() {
-        // Get next action
-        val action = battleRoundSteps.poll()
-        action.invoke()
-        battleRoundSteps.add(action)
-    }
-
     override fun finishBattle() {
         router.goBack()
     }
@@ -105,6 +89,20 @@ class BattlePresenter(
                 doFullStep()
             }
         }
+    }
+
+    private fun doFullStep() {
+        do {
+            doPartialStep()
+        } while (battleRoundSteps.peek() != firstStep)
+        saveSnapshot()
+    }
+
+    private fun doPartialStep() {
+        // Get next action
+        val action = battleRoundSteps.poll()
+        action.invoke()
+        battleRoundSteps.add(action)
     }
 
     private fun saveSnapshot() {

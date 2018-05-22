@@ -22,13 +22,6 @@ interface Battle {
          */
         fun initialize(cellIndexes: List<Int>)
 
-        /**
-         * Initialize next battle step calculation
-         */
-        fun doFullStep()
-
-        fun doPartialStep()
-
         fun finishBattle()
 
         fun snapshotsCounter(): Observable<Int>

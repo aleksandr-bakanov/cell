@@ -18,10 +18,9 @@ import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.PublishSubject
 import kotlinx.android.synthetic.main.fragment_battle.battleCanvasView
 import kotlinx.android.synthetic.main.fragment_battle.buttonFinishBattle
-import kotlinx.android.synthetic.main.fragment_battle.buttonFullStep
-import kotlinx.android.synthetic.main.fragment_battle.buttonPartialStep
+import kotlinx.android.synthetic.main.fragment_battle.buttonNextStep
+import kotlinx.android.synthetic.main.fragment_battle.buttonPreviousStep
 import kotlinx.android.synthetic.main.fragment_battle.seekBar
-import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 class BattleFragment : Fragment(), Battle.View {
@@ -39,6 +38,7 @@ class BattleFragment : Fragment(), Battle.View {
                 updateBattleView(progress)
             }
         }
+
         override fun onStartTrackingTouch(seekBar: SeekBar?) {}
         override fun onStopTrackingTouch(seekBar: SeekBar?) {}
     }
@@ -52,25 +52,34 @@ class BattleFragment : Fragment(), Battle.View {
         super.onActivityCreated(savedInstanceState)
         inject()
 
-        buttonFullStep.setOnClickListener { presenter.doFullStep() }
         buttonFinishBattle.setOnClickListener { presenter.finishBattle() }
-        buttonPartialStep.setOnClickListener { presenter.doPartialStep() }
+        buttonNextStep.setOnClickListener {
+            val next = battleCanvasView.currentSnapshotIndex + 1
+            if (next < battleCanvasView.snapshots.size) {
+                seekBar.progress = next
+                updateBattleView(next)
+            }
+        }
+        buttonPreviousStep.setOnClickListener {
+            val next = battleCanvasView.currentSnapshotIndex - 1
+            if (next >= 0) {
+                seekBar.progress = next
+                updateBattleView(next)
+            }
+        }
 
         seekBar.setOnSeekBarChangeListener(seekBarListener)
-
-        buttonFullStep.isEnabled = false
-        buttonPartialStep.isEnabled = false
 
         battleCanvasView.hexMath = hexMath
         battleCanvasView.presenter = presenter
 
         seekBar.max = 0
         disposables.addAll(presenter.snapshotsCounter()
-                                .subscribeOn(Schedulers.io())
-                                .observeOn(AndroidSchedulers.mainThread())
-                                .subscribe {
-                                    seekBar.max = it - 1
-                                })
+                                   .subscribeOn(Schedulers.io())
+                                   .observeOn(AndroidSchedulers.mainThread())
+                                   .subscribe {
+                                       seekBar.max = it - 1
+                                   })
 
         presenter.initialize(arguments?.getIntegerArrayList(EXTRA_CELL_INDEXES) ?: arrayListOf())
     }
@@ -108,8 +117,6 @@ class BattleFragment : Fragment(), Battle.View {
     override fun reportBattleEnd() {
         activity?.runOnUiThread {
             Toast.makeText(activity, "Battle is over", Toast.LENGTH_SHORT).show()
-            buttonFullStep.isEnabled = false
-            buttonPartialStep.isEnabled = false
             buttonFinishBattle.visibility = View.VISIBLE
         }
     }
