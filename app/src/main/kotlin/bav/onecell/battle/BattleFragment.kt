@@ -2,6 +2,7 @@ package bav.onecell.battle
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -51,6 +52,8 @@ class BattleFragment : Fragment(), Battle.View {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         inject()
+
+        Log.d(TAG, "onActivityCreated: presenter = $presenter")
 
         buttonFinishBattle.setOnClickListener { presenter.finishBattle() }
         buttonNextStep.setOnClickListener {

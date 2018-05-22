@@ -2,6 +2,7 @@ package bav.onecell.main
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -26,6 +27,7 @@ class MainFragment : Fragment(), Main.View {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         inject()
+        Log.d(TAG, "onActivityCreated: presenter = $presenter")
 
         buttonGoToBattle.setOnClickListener { presenter.openPreBattleView() }
         buttonShowCells.setOnClickListener { presenter.openCellsListView() }
