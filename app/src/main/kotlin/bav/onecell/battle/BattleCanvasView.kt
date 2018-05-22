@@ -26,9 +26,8 @@ class BattleCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
     private val corpseLifePaint = Paint()
     private val corpseEnergyPaint = Paint()
     private val corpseAttackPaint = Paint()
-    lateinit var cells: List<Cell>
-    lateinit var corpses: List<Cell>
     lateinit var snapshots: List<BattleFieldSnapshot>
+    var currentSnapshotIndex: Int = 0
 
     init {
         ringPaint.style = Paint.Style.FILL
@@ -52,8 +51,13 @@ class BattleCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
 
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
-        corpses.forEach { corpse -> drawCell(canvas, corpse, corpseLifePaint, corpseEnergyPaint, corpseAttackPaint) }
-        cells.forEach { cell -> drawCell(canvas, cell) }
+        if (currentSnapshotIndex >= 0 && currentSnapshotIndex < snapshots.size) {
+            val snapshot = snapshots[currentSnapshotIndex]
+            snapshot.corpses.forEach { corpse ->
+                drawCell(canvas, corpse, corpseLifePaint, corpseEnergyPaint, corpseAttackPaint)
+            }
+            snapshot.cells.forEach { cell -> drawCell(canvas, cell) }
+        }
     }
 
     private fun drawRing(canvas: Canvas?) {

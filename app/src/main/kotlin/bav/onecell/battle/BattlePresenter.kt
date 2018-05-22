@@ -2,13 +2,16 @@ package bav.onecell.battle
 
 import bav.onecell.common.router.Router
 import bav.onecell.model.BattleFieldSnapshot
-import bav.onecell.model.RepositoryContract
 import bav.onecell.model.GameRules
+import bav.onecell.model.RepositoryContract
 import bav.onecell.model.cell.Cell
 import bav.onecell.model.cell.logic.BattleState
 import bav.onecell.model.hexes.Hex
 import bav.onecell.model.hexes.HexMath
 import bav.onecell.model.hexes.Layout
+import io.reactivex.Observable
+import io.reactivex.subjects.PublishSubject
+import kotlinx.coroutines.experimental.launch
 import java.util.LinkedList
 import java.util.Queue
 import kotlin.math.PI
@@ -36,18 +39,9 @@ class BattlePresenter(
     private var battleFieldSize: Int = 0
     private val battleState = BattleState()
     private val battleFieldSnapshots = mutableListOf<BattleFieldSnapshot>()
+    private val snapshotCount = PublishSubject.create<Int>()
 
-    private fun initializeBattleSteps() {
-        firstStep = calculateBattleState
-        for (action in arrayOf(
-                calculateBattleState,
-                applyCellsLogic,
-                moveCells,
-                calculateDamages,
-                checkWhetherBattleEnds)
-        ) battleRoundSteps.add(action)
-    }
-
+    //region Overridden methods
     override fun initialize(cellIndexes: List<Int>) {
         initializeBattleSteps()
 
@@ -63,22 +57,67 @@ class BattlePresenter(
 
         view.setBackgroundFieldRadius(battleFieldSize)
         view.setSnapshots(battleFieldSnapshots)
-        view.setCells(cells)
-        view.setCorpses(corpses)
 
         moveCellsToTheirInitialPosition()
 
         saveSnapshot()
-
         view.updateBattleView()
+
+        evaluateBattle()
+    }
+
+    override fun doFullStep() {
+        do {
+            doPartialStep()
+        } while (battleRoundSteps.peek() != firstStep)
+        saveSnapshot()
+    }
+
+    override fun doPartialStep() {
+        // Get next action
+        val action = battleRoundSteps.poll()
+        action.invoke()
+        battleRoundSteps.add(action)
+    }
+
+    override fun finishBattle() {
+        router.goBack()
+    }
+
+    override fun snapshotsCounter(): Observable<Int> = snapshotCount
+    //endregion
+
+    //region Private methods
+    private fun initializeBattleSteps() {
+        firstStep = calculateBattleState
+        for (action in arrayOf(
+                calculateBattleState,
+                applyCellsLogic,
+                moveCells,
+                calculateDamages,
+                checkWhetherBattleEnds)
+        ) battleRoundSteps.add(action)
+    }
+
+    private fun evaluateBattle() {
+        launch {
+            while (!isBattleOver()) {
+                doFullStep()
+            }
+        }
     }
 
     private fun saveSnapshot() {
         val snapshot = BattleFieldSnapshot()
         // TODO: save only viewable data (i.e. rules doesn't need to be cloned)
-        for (c in cells) { snapshot.cells.add(c.clone()) }
-        for (c in corpses) { snapshot.corpses.add(c.clone()) }
+        for (c in cells) {
+            snapshot.cells.add(c.clone())
+        }
+        for (c in corpses) {
+            snapshot.corpses.add(c.clone())
+        }
         battleFieldSnapshots.add(snapshot)
+        snapshotCount.onNext(battleFieldSnapshots.size)
     }
 
     private fun moveCellsToTheirInitialPosition() {
@@ -94,25 +133,6 @@ class BattlePresenter(
         view.setRing(ring)
         val step = ring.size / cells.size
         cells.forEachIndexed { index, cell -> cell.data.origin = ring[index * step] }
-    }
-
-    override fun doFullStep() {
-        do {
-            doPartialStep()
-        } while (battleRoundSteps.peek() != firstStep)
-        saveSnapshot()
-    }
-
-    override fun doPartialStep() {
-        // Get next action
-        val action = battleRoundSteps.poll()
-        action.invoke()
-        battleRoundSteps.add(action)
-        view.updateBattleView()
-    }
-
-    override fun finishBattle() {
-        router.goBack()
     }
 
     private fun calculateBattleState() {
@@ -296,6 +316,9 @@ class BattlePresenter(
         }
     }
 
+    private fun isBattleOver(): Boolean = cells.size <= 1
+    //endregion
+
     //region Partial round steps
     private lateinit var firstStep: () -> Unit
 
@@ -317,7 +340,7 @@ class BattlePresenter(
     }
 
     private val checkWhetherBattleEnds = {
-        if (cells.size <= 1) {
+        if (isBattleOver()) {
             view.reportBattleEnd()
         }
     }

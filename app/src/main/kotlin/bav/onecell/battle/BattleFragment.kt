@@ -10,14 +10,18 @@ import android.widget.Toast
 import bav.onecell.OneCellApplication
 import bav.onecell.R
 import bav.onecell.model.BattleFieldSnapshot
-import bav.onecell.model.cell.Cell
 import bav.onecell.model.hexes.Hex
 import bav.onecell.model.hexes.HexMath
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.schedulers.Schedulers
+import io.reactivex.subjects.PublishSubject
 import kotlinx.android.synthetic.main.fragment_battle.battleCanvasView
 import kotlinx.android.synthetic.main.fragment_battle.buttonFinishBattle
 import kotlinx.android.synthetic.main.fragment_battle.buttonFullStep
 import kotlinx.android.synthetic.main.fragment_battle.buttonPartialStep
 import kotlinx.android.synthetic.main.fragment_battle.seekBar
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 class BattleFragment : Fragment(), Battle.View {
@@ -26,19 +30,17 @@ class BattleFragment : Fragment(), Battle.View {
     lateinit var hexMath: HexMath
     @Inject
     lateinit var presenter: Battle.Presenter
+    private val disposables = CompositeDisposable()
+    private val seekBarProgress = PublishSubject.create<Int>()
 
     private val seekBarListener = object : SeekBar.OnSeekBarChangeListener {
         override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-
+            if (fromUser) {
+                updateBattleView(progress)
+            }
         }
-
-        override fun onStartTrackingTouch(seekBar: SeekBar?) {
-
-        }
-
-        override fun onStopTrackingTouch(seekBar: SeekBar?) {
-
-        }
+        override fun onStartTrackingTouch(seekBar: SeekBar?) {}
+        override fun onStopTrackingTouch(seekBar: SeekBar?) {}
     }
 
     //region Lifecycle methods
@@ -56,13 +58,28 @@ class BattleFragment : Fragment(), Battle.View {
 
         seekBar.setOnSeekBarChangeListener(seekBarListener)
 
-        buttonFullStep.isEnabled = true
-        buttonPartialStep.isEnabled = true
+        buttonFullStep.isEnabled = false
+        buttonPartialStep.isEnabled = false
 
         battleCanvasView.hexMath = hexMath
         battleCanvasView.presenter = presenter
+
+        seekBar.max = 0
+        disposables.addAll(presenter.snapshotsCounter()
+                                .subscribeOn(Schedulers.io())
+                                .observeOn(AndroidSchedulers.mainThread())
+                                .subscribe {
+                                    seekBar.max = it - 1
+                                })
+
         presenter.initialize(arguments?.getIntegerArrayList(EXTRA_CELL_INDEXES) ?: arrayListOf())
     }
+
+    override fun onDestroyView() {
+        disposables.dispose()
+        super.onDestroyView()
+    }
+
     //endregion
 
     //region Private methods
@@ -79,7 +96,8 @@ class BattleFragment : Fragment(), Battle.View {
         battleCanvasView.invalidate()
     }
 
-    override fun updateBattleView() {
+    override fun updateBattleView(snapshotIndex: Int) {
+        battleCanvasView.currentSnapshotIndex = snapshotIndex
         battleCanvasView.invalidate()
     }
 
@@ -87,19 +105,13 @@ class BattleFragment : Fragment(), Battle.View {
         battleCanvasView.ring = ring
     }
 
-    override fun setCells(cells: List<Cell>) {
-        battleCanvasView.cells = cells
-    }
-
-    override fun setCorpses(cells: List<Cell>) {
-        battleCanvasView.corpses = cells
-    }
-
     override fun reportBattleEnd() {
-        Toast.makeText(activity, "Battle is over", Toast.LENGTH_SHORT).show()
-        buttonFullStep.isEnabled = false
-        buttonPartialStep.isEnabled = false
-        buttonFinishBattle.visibility = View.VISIBLE
+        activity?.runOnUiThread {
+            Toast.makeText(activity, "Battle is over", Toast.LENGTH_SHORT).show()
+            buttonFullStep.isEnabled = false
+            buttonPartialStep.isEnabled = false
+            buttonFinishBattle.visibility = View.VISIBLE
+        }
     }
 
     override fun setSnapshots(snapshots: List<BattleFieldSnapshot>) {
