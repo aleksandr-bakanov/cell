@@ -15,8 +15,8 @@ class ConditionsPresenter(private val cellRepository: RepositoryContract.CellRep
         private const val TAG = "CellLogicPresenter"
     }
 
-    enum class ConditionPartToEdit(val value: Int) {
-        FIELD(0), OPERATION(1), EXPECTED(2)
+    enum class ConditionPartToEdit {
+        FIELD, OPERATION, EXPECTED
     }
 
     private val conditionsNotifier = PublishSubject.create<Unit>()

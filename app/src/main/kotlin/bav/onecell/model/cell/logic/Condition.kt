@@ -7,35 +7,32 @@ import bav.onecell.model.cell.Cell
  */
 class Condition(var operation: Operation = Operation.EQUALS,
                 var fieldToCheck: FieldToCheck = FieldToCheck.DIRECTION_TO_NEAREST_ENEMY,
-                var expected: Any = Cell.Direction.N) {
+                var expected: Int = Cell.Direction.N.ordinal) {
 
-    enum class Operation(val value: String) {
-        EQUALS("eq");
+    enum class Operation {
+        EQUALS;
 
         companion object {
-            private val map = Operation.values().associateBy { it.value }
-            fun fromString(type: String): Operation = map[type] ?: EQUALS
+            private val map = Operation.values().associateBy { it.ordinal }
+            fun fromInt(type: Int): Operation = map[type] ?: EQUALS
         }
     }
 
-    enum class FieldToCheck(val value: String) {
-        DIRECTION_TO_NEAREST_ENEMY("dirToNearEnemy");
+    enum class FieldToCheck {
+        DIRECTION_TO_NEAREST_ENEMY;
 
         companion object {
-            private val map = FieldToCheck.values().associateBy { it.value }
-            fun fromString(type: String): FieldToCheck = map[type] ?: DIRECTION_TO_NEAREST_ENEMY
+            private val map = FieldToCheck.values().associateBy { it.ordinal }
+            fun fromInt(type: Int): FieldToCheck = map[type] ?: DIRECTION_TO_NEAREST_ENEMY
         }
     }
 
     fun check(state: BattleState): Boolean {
-        val fieldToCheckValue: Any = when (fieldToCheck) {
-            FieldToCheck.DIRECTION_TO_NEAREST_ENEMY -> state.directionToNearestEnemy
+        val fieldToCheckValue: Int = when (fieldToCheck) {
+            FieldToCheck.DIRECTION_TO_NEAREST_ENEMY -> state.directionToNearestEnemy.ordinal
         }
         return when (operation) {
-            Operation.EQUALS ->
-                (fieldToCheckValue as Cell.Direction) ==
-                        Cell.Direction.fromString(
-                                expected as String)
+            Operation.EQUALS -> fieldToCheckValue == expected
         }
     }
 }

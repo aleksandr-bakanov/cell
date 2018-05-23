@@ -9,11 +9,11 @@ import kotlin.math.abs
 class Cell(private val hexMath: HexMath,
            val data: Data = Data()) {
 
-    enum class Direction(val value: Int) {
-        N(0), NE(1), SE(2), S(3), SW(4), NW(5);
+    enum class Direction {
+        N, NE, SE, S, SW, NW;
 
         companion object {
-            private val map = Direction.values().associateBy { it.value }
+            private val map = Direction.values().associateBy { it.ordinal }
             fun fromInt(type: Int): Direction = map[type] ?: N
             fun fromString(type: String) = when (type) {
                 "N" -> N
@@ -108,7 +108,7 @@ class Cell(private val hexMath: HexMath,
     fun rotateLeft() {
         val newDir = when (data.direction) {
             Direction.N -> Direction.NW
-            else -> Direction.fromInt(data.direction.value - 1)
+            else -> Direction.fromInt(data.direction.ordinal - 1)
         }
         rotate(newDir)
     }
@@ -116,7 +116,7 @@ class Cell(private val hexMath: HexMath,
     fun rotateRight() {
         val newDir = when (data.direction) {
             Direction.NW -> Direction.N
-            else -> Direction.fromInt(data.direction.value + 1)
+            else -> Direction.fromInt(data.direction.ordinal + 1)
         }
         rotate(newDir)
     }
@@ -124,7 +124,7 @@ class Cell(private val hexMath: HexMath,
     // TODO: make it formula
     fun rotate(newDirection: Direction) {
         if (data.direction == newDirection) return
-        else if (abs(data.direction.value - newDirection.value) == 3) rotateHexesFlip()
+        else if (abs(data.direction.ordinal - newDirection.ordinal) == 3) rotateHexesFlip()
         else {
             when (data.direction) {
                 Direction.N -> {

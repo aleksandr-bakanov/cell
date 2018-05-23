@@ -26,6 +26,6 @@ class ActionEditorPresenter(private val cellRepository: RepositoryContract.CellR
     }
 
     override fun saveActionValue(which: Int) {
-        rule?.action?.value = directionValues[which]
+        rule?.action?.value = which
     }
 }

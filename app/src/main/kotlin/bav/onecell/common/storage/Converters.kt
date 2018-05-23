@@ -35,7 +35,7 @@ class Converters {
 
     @TypeConverter
     fun cellDirectionToInt(direction: Cell.Direction?): Int? {
-        return direction?.value
+        return direction?.ordinal
     }
 
     @TypeConverter

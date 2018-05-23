@@ -2,8 +2,6 @@ package bav.onecell.main
 
 import android.os.Bundle
 import android.support.v4.app.FragmentActivity
-import android.support.v4.app.FragmentManager
-import android.util.Log
 import bav.onecell.OneCellApplication
 import bav.onecell.R
 import bav.onecell.battle.BattleFragment
@@ -36,9 +34,7 @@ class MainActivity : FragmentActivity() {
     //region Lifecycle methods
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.d(TAG, "onCreate $savedInstanceState")
         inject()
-        FragmentManager.enableDebugLogging(true)
         router.setHostActivity(this)
 
         setContentView(R.layout.activity_main)
@@ -54,7 +50,6 @@ class MainActivity : FragmentActivity() {
 
     override fun onDestroy() {
         disposables.dispose()
-        Log.d(TAG, "onDestroy")
         super.onDestroy()
     }
     //endregion

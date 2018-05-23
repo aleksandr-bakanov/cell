@@ -30,13 +30,13 @@ class ConditionsRecyclerViewAdapter(private val presenter: Conditions.Presenter)
         init {
             view.buttonRemoveCondition.setOnClickListener { presenter.removeCondition(adapterPosition) }
             view.buttonFieldToCheck.setOnClickListener {
-                presenter.openConditionEditor(adapterPosition, ConditionsPresenter.ConditionPartToEdit.FIELD.value)
+                presenter.openConditionEditor(adapterPosition, ConditionsPresenter.ConditionPartToEdit.FIELD.ordinal)
             }
             view.buttonOperation.setOnClickListener {
-                presenter.openConditionEditor(adapterPosition, ConditionsPresenter.ConditionPartToEdit.OPERATION.value)
+                presenter.openConditionEditor(adapterPosition, ConditionsPresenter.ConditionPartToEdit.OPERATION.ordinal)
             }
             view.buttonExpectedValue.setOnClickListener {
-                presenter.openConditionEditor(adapterPosition, ConditionsPresenter.ConditionPartToEdit.EXPECTED.value)
+                presenter.openConditionEditor(adapterPosition, ConditionsPresenter.ConditionPartToEdit.EXPECTED.ordinal)
             }
         }
 
