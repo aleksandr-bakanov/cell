@@ -15,15 +15,6 @@ class Cell(private val hexMath: HexMath,
         companion object {
             private val map = Direction.values().associateBy { it.ordinal }
             fun fromInt(type: Int): Direction = map[type] ?: N
-            fun fromString(type: String) = when (type) {
-                "N" -> N
-                "NE" -> NE
-                "SE" -> SE
-                "S" -> S
-                "SW" -> SW
-                "NW" -> NW
-                else -> N
-            }
         }
     }
 

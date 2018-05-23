@@ -59,7 +59,4 @@ class ConditionsPresenter(private val cellRepository: RepositoryContract.CellRep
     override fun provideActionDialogValues(): Array<String> {
         return directionValues
     }
-
-
-
 }
