@@ -1,36 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <TextView
+    <android.support.v7.widget.AppCompatEditText
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        android:textSize="36sp" />
+        android:textAlignment="center"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="@+id/preview"
+        app:layout_constraintStart_toStartOf="@+id/preview"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/preview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/title"
+        app:srcCompat="@drawable/cell200x200" />
 
     <android.support.v7.widget.AppCompatImageButton
         android:id="@+id/buttonEditCell"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/ic_edit_black_24dp"
-        app:layout_constraintStart_toEndOf="@id/title" />
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="@id/preview"
+        app:layout_constraintEnd_toStartOf="@+id/buttonEditCellRules"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/preview"
+        app:srcCompat="@drawable/ic_edit_black_24dp" />
 
     <android.support.v7.widget.AppCompatImageButton
         android:id="@+id/buttonEditCellRules"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/ic_memory_black_24dp"
-        app:layout_constraintStart_toEndOf="@id/buttonEditCell" />
+        app:layout_constraintBottom_toBottomOf="@id/preview"
+        app:layout_constraintEnd_toStartOf="@+id/buttonRemoveCell"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/buttonEditCell"
+        app:srcCompat="@drawable/ic_memory_black_24dp" />
 
     <android.support.v7.widget.AppCompatImageButton
         android:id="@+id/buttonRemoveCell"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/ic_delete_black_24dp"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toBottomOf="@id/preview"
+        app:layout_constraintEnd_toEndOf="@+id/preview"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/buttonEditCellRules"
+        app:srcCompat="@drawable/ic_delete_black_24dp" />
 
 </android.support.constraint.ConstraintLayout>

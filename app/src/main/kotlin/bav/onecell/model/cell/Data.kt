@@ -13,7 +13,8 @@ data class Data(
         @ColumnInfo(name = "hexes") var hexes: MutableMap<Int, Hex> = mutableMapOf(),
         @ColumnInfo(name = "origin") var origin: Hex = Hex(0, 0, 0),
         @ColumnInfo(name = "direction") var direction: Cell.Direction = Cell.Direction.N,
-        @ColumnInfo(name = "rules") var rules: MutableList<Rule> = arrayListOf()) {
+        @ColumnInfo(name = "rules") var rules: MutableList<Rule> = arrayListOf(),
+        @ColumnInfo(name = "name") var name: String = "") {
 
     companion object {
         fun fromJson(json: String): Data {

@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import bav.onecell.R
-import kotlinx.android.synthetic.main.item_row_cell.view.title
+import kotlinx.android.synthetic.main.item_row_cell_for_selection.view.title
 
 class CellForBattleRecyclerViewAdapter(private val presenter: CellsForBattle.Presenter) :
         RecyclerView.Adapter<CellForBattleRecyclerViewAdapter.ViewHolder>() {

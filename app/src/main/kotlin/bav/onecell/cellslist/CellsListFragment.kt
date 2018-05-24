@@ -2,7 +2,7 @@ package bav.onecell.cellslist
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.GridLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -31,7 +31,7 @@ class CellsListFragment : Fragment(), CellsList.View {
         // TODO: remove listeners when they aren't needed anymore
         buttonCreateNewCell.setOnClickListener { presenter.createNewCell() }
 
-        recyclerViewCellList.layoutManager = LinearLayoutManager(context)
+        recyclerViewCellList.layoutManager = GridLayoutManager(context, 2)
         recyclerViewCellList.adapter = CellRecyclerViewAdapter(presenter)
 
         disposables.add(presenter.cellRepoUpdateNotifier().subscribe {

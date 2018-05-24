@@ -34,6 +34,15 @@ interface CellsList {
         fun openCellRulesEditor(cellIndex: Int)
 
         /**
+         * Provides name of cell
+         *
+         * @param index Cell index in repository
+         */
+        fun getCellName(index: Int): String
+
+        fun setCellName(index: Int, newName: String)
+
+        /**
          * Removes cell from repository
          *
          * @param cellIndex Index of cell in repository

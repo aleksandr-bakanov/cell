@@ -33,6 +33,8 @@ class CellsListPresenter(
         router.goToRulesList(cellIndex)
     }
 
+    override fun getCellName(index: Int): String = cellRepository.getCell(index)?.data?.name ?: ""
+
     override fun removeCell(cellIndex: Int) {
         cellRepository.removeCell(cellIndex)
         cellRepoNotifier.onNext(Unit)
