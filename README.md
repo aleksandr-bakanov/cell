@@ -5,7 +5,6 @@ Learn Android deeply while having fun.
 * Cells collection view
 * Rules and conditions edition views
 * Breadcrumbs
-* Cell name edition
 * Editor tips for placing hexes
 * RenderScript (hashes arrays, binary search)
 * Save battle state between configuration changes

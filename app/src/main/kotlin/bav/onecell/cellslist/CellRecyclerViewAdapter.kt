@@ -26,13 +26,6 @@ class CellRecyclerViewAdapter(private val presenter: CellsList.Presenter) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.setCellTitle(presenter.getCellName(position))
-        holder.view.title.addTextChangedListener(object : TextWatcher {
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                s?.let { if (it.isNotEmpty()) presenter.setCellName(position) }
-            }
-            override fun afterTextChanged(s: Editable?) {}
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-        })
     }
 
     class ViewHolder(val view: View, private val presenter: CellsList.Presenter) : RecyclerView.ViewHolder(view) {
@@ -46,6 +39,13 @@ class CellRecyclerViewAdapter(private val presenter: CellsList.Presenter) :
             view.buttonRemoveCell.setOnClickListener {
                 presenter.removeCell(adapterPosition)
             }
+            view.title.addTextChangedListener(object : TextWatcher {
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                    s?.let { presenter.setCellName(adapterPosition, s.toString()) }
+                }
+                override fun afterTextChanged(s: Editable?) {}
+                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            })
         }
 
         fun setCellTitle(title: String) {

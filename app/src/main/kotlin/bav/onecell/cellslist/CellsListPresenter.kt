@@ -35,6 +35,10 @@ class CellsListPresenter(
 
     override fun getCellName(index: Int): String = cellRepository.getCell(index)?.data?.name ?: ""
 
+    override fun setCellName(index: Int, name: String) {
+        cellRepository.getCell(index)?.data?.let { it.name = name }
+    }
+
     override fun removeCell(cellIndex: Int) {
         cellRepository.removeCell(cellIndex)
         cellRepoNotifier.onNext(Unit)

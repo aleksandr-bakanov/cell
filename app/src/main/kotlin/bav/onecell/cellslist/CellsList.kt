@@ -40,7 +40,7 @@ interface CellsList {
          */
         fun getCellName(index: Int): String
 
-        fun setCellName(index: Int, newName: String)
+        fun setCellName(index: Int, name: String)
 
         /**
          * Removes cell from repository
