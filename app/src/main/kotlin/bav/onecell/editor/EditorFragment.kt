@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import bav.onecell.OneCellApplication
 import bav.onecell.R
+import bav.onecell.common.view.DrawUtils
 import bav.onecell.model.hexes.Hex
 import bav.onecell.model.hexes.HexMath
 import io.reactivex.disposables.CompositeDisposable
@@ -25,6 +26,8 @@ class EditorFragment : Fragment(), Editor.View {
     lateinit var presenter: Editor.Presenter
     @Inject
     lateinit var hexMath: HexMath
+    @Inject
+    lateinit var drawUtils: DrawUtils
 
     // TODO: same variable exists in EditorCanvasView, it is unnecessary duplicate
     private var selectedCellType: Hex.Type = Hex.Type.LIFE
@@ -40,6 +43,7 @@ class EditorFragment : Fragment(), Editor.View {
         inject()
 
         editorCanvasView.hexMath = hexMath
+        editorCanvasView.drawUtils = drawUtils
         editorCanvasView.presenter = presenter
 
         radioButtonLifeCell.setOnClickListener { onCellTypeRadioButtonClicked(it) }

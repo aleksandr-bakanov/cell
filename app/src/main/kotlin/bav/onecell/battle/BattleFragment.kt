@@ -10,6 +10,7 @@ import android.widget.SeekBar
 import android.widget.Toast
 import bav.onecell.OneCellApplication
 import bav.onecell.R
+import bav.onecell.common.view.DrawUtils
 import bav.onecell.model.BattleFieldSnapshot
 import bav.onecell.model.hexes.Hex
 import bav.onecell.model.hexes.HexMath
@@ -30,6 +31,8 @@ class BattleFragment : Fragment(), Battle.View {
     lateinit var hexMath: HexMath
     @Inject
     lateinit var presenter: Battle.Presenter
+    @Inject
+    lateinit var drawUtils: DrawUtils
     private val disposables = CompositeDisposable()
     private val seekBarProgress = PublishSubject.create<Int>()
 
@@ -74,6 +77,7 @@ class BattleFragment : Fragment(), Battle.View {
         seekBar.setOnSeekBarChangeListener(seekBarListener)
 
         battleCanvasView.hexMath = hexMath
+        battleCanvasView.drawUtils = drawUtils
         battleCanvasView.presenter = presenter
 
         seekBar.max = 0

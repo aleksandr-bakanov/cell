@@ -54,9 +54,9 @@ class BattleCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
         if (currentSnapshotIndex >= 0 && currentSnapshotIndex < snapshots.size) {
             val snapshot = snapshots[currentSnapshotIndex]
             snapshot.corpses.forEach { corpse ->
-                drawCell(canvas, corpse, corpseLifePaint, corpseEnergyPaint, corpseAttackPaint)
+                drawUtils.drawCell(canvas, corpse, corpseLifePaint, corpseEnergyPaint, corpseAttackPaint, layout)
             }
-            snapshot.cells.forEach { cell -> drawCell(canvas, cell) }
+            snapshot.cells.forEach { cell -> drawUtils.drawCell(canvas, cell, layout = layout) }
         }
     }
 

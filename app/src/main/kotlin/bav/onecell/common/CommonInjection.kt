@@ -1,11 +1,14 @@
 package bav.onecell.common
 
+import android.content.Context
 import bav.onecell.common.router.Router
 import bav.onecell.common.router.RouterImpl
+import bav.onecell.common.view.DrawUtils
 import bav.onecell.model.GameRules
 import bav.onecell.model.hexes.HexMath
 import dagger.Module
 import dagger.Provides
+import javax.inject.Named
 import javax.inject.Singleton
 
 @Module
@@ -28,5 +31,9 @@ class CommonModule {
         return GameRules(hexMath)
     }
 
-
+    @Provides
+    @Singleton
+    fun provideDrawUtils(@Named("app_context") context: Context, hexMath: HexMath): DrawUtils {
+        return DrawUtils(context, hexMath)
+    }
 }

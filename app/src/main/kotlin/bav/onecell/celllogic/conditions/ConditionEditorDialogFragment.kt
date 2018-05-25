@@ -23,14 +23,11 @@ class ConditionEditorDialogFragment : DialogFragment(), ConditionEditor.View {
 
         val builder = AlertDialog.Builder(activity)
         builder
-                .setItems(presenter.provideConditionDialogValues(), { dialog, which ->
+                .setItems(presenter.provideConditionDialogValues(), { _, which ->
                     presenter.saveConditionValue(which)
                 })
-                .setPositiveButton(R.string.button_ok, { dialog, which ->
-                })
-                .setNegativeButton(R.string.button_cancel, { dialog, which ->
-
-                })
+                .setPositiveButton(R.string.button_ok, { _, _ -> })
+                .setNegativeButton(R.string.button_cancel, { _, _ -> })
         return builder.create()
     }
 

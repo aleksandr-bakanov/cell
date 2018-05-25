@@ -41,7 +41,7 @@ class CellRecyclerViewAdapter(private val presenter: CellsList.Presenter) :
             }
             view.title.addTextChangedListener(object : TextWatcher {
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                    s?.let { presenter.setCellName(adapterPosition, s.toString()) }
+                    s?.let { presenter.setCellName(adapterPosition, it.toString()) }
                 }
                 override fun afterTextChanged(s: Editable?) {}
                 override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}

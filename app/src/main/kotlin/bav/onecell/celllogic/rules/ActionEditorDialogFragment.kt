@@ -21,15 +21,11 @@ class ActionEditorDialogFragment : DialogFragment() {
 
         val builder = AlertDialog.Builder(activity)
         builder
-                .setItems(presenter.provideActionDialogValues(), { dialog, which ->
+                .setItems(presenter.provideActionDialogValues(), { _, which ->
                     presenter.saveActionValue(which)
                 })
-                .setPositiveButton(R.string.button_ok, { dialog, which ->
-
-                })
-                .setNegativeButton(R.string.button_cancel, { dialog, which ->
-
-                })
+                .setPositiveButton(R.string.button_ok, { _, _ -> })
+                .setNegativeButton(R.string.button_cancel, { _, _ -> })
         return builder.create()
     }
 

@@ -47,6 +47,6 @@ class EditorCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
 
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
-        drawCell(canvas, cell)
+        drawUtils.drawCell(canvas, cell, layout = layout)
     }
 }
