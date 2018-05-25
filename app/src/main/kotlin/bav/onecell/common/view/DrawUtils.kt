@@ -5,7 +5,6 @@ import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Path
-import android.graphics.Typeface
 import android.support.v4.content.ContextCompat
 import bav.onecell.R
 import bav.onecell.model.cell.Cell
@@ -16,12 +15,11 @@ import bav.onecell.model.hexes.Orientation
 import bav.onecell.model.hexes.Point
 import kotlin.math.PI
 import kotlin.math.cos
+import kotlin.math.max
 import kotlin.math.min
 import kotlin.math.sin
 
-class DrawUtils(private val context: Context, private val hexMath: HexMath) {
-
-    private var layout = Layout(Orientation.LAYOUT_POINTY, Point(50.0, 50.0), Point())
+class DrawUtils(private val hexMath: HexMath, context: Context) {
 
     private val gridPaint = Paint()
     private val lifePaint = Paint()
@@ -29,11 +27,6 @@ class DrawUtils(private val context: Context, private val hexMath: HexMath) {
     private val attackPaint = Paint()
     private val strokePaint = Paint()
     private val cellOutlinePaint = Paint()
-    private val darkStrokePaint = Paint()
-    private val lightStrokePaint = Paint()
-    private val coordinateTextPaint = Paint()
-    private val indexTextPaint = Paint()
-    private val powerTextPaint = Paint()
 
     init {
         gridPaint.style = Paint.Style.STROKE
@@ -53,42 +46,23 @@ class DrawUtils(private val context: Context, private val hexMath: HexMath) {
         strokePaint.color = ContextCompat.getColor(context, R.color.cellConstructorStroke)
         strokePaint.strokeWidth = 1.0f
 
-        darkStrokePaint.style = Paint.Style.STROKE
-        darkStrokePaint.color = Color.BLACK
-        darkStrokePaint.strokeWidth = 1.0f
-
         cellOutlinePaint.style = Paint.Style.STROKE
         cellOutlinePaint.color = Color.BLACK
         cellOutlinePaint.strokeWidth = 3.0f
         cellOutlinePaint.strokeJoin = Paint.Join.ROUND
         cellOutlinePaint.strokeCap = Paint.Cap.ROUND
-
-        lightStrokePaint.style = Paint.Style.STROKE
-        lightStrokePaint.color = Color.WHITE
-        lightStrokePaint.strokeWidth = 1.0f
-
-        coordinateTextPaint.color = Color.BLACK
-        coordinateTextPaint.textSize = 32f
-        coordinateTextPaint.textAlign = Paint.Align.CENTER
-
-        indexTextPaint.color = Color.RED
-        indexTextPaint.textSize = 48f
-        indexTextPaint.textAlign = Paint.Align.CENTER
-
-        powerTextPaint.color = Color.BLACK
-        powerTextPaint.typeface = Typeface.DEFAULT_BOLD
-        powerTextPaint.textSize = 72f
-        powerTextPaint.textAlign = Paint.Align.CENTER
     }
 
-    fun initializeLayout(canvas: Canvas?, cellSize: Int) {
+    fun provideLayout(canvas: Canvas?, cellSize: Int): Layout {
+        val layout = Layout(Orientation.LAYOUT_POINTY, Point(), Point())
         canvas?.let {
             val canvasSize = min(it.width, it.height)
-            val hexSize = (canvasSize / cellSize) / 2
+            val hexSize = (canvasSize / max(cellSize, 1)) / 2
             layout.size = Point(hexSize.toDouble(), hexSize.toDouble())
             layout.origin = Point(it.width.toDouble() / 2.0,
                                   it.height.toDouble() / 2.0)
         }
+        return layout
     }
 
     fun drawCell(canvas: Canvas?, cell: Cell?, lPaint: Paint = lifePaint, ePaint: Paint = energyPaint,
@@ -157,7 +131,8 @@ class DrawUtils(private val context: Context, private val hexMath: HexMath) {
     private fun drawCellOutline(canvas: Canvas?, cell: Cell, layout: Layout) {
         val outline = getCellOutline(cell, layout)
         outline.forEach {
-            canvas?.drawLine(it.first.x.toFloat(), it.first.y.toFloat(), it.second.x.toFloat(), it.second.y.toFloat(), cellOutlinePaint)
+            canvas?.drawLine(it.first.x.toFloat(), it.first.y.toFloat(), it.second.x.toFloat(), it.second.y.toFloat(),
+                             cellOutlinePaint)
         }
     }
 

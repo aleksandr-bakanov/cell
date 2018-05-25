@@ -2,6 +2,7 @@ package bav.onecell.cellslist
 
 import bav.onecell.common.router.Router
 import bav.onecell.model.RepositoryContract
+import bav.onecell.model.cell.Cell
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -34,6 +35,8 @@ class CellsListPresenter(
     }
 
     override fun getCellName(index: Int): String = cellRepository.getCell(index)?.data?.name ?: ""
+
+    override fun getCell(index: Int): Cell? = cellRepository.getCell(index)
 
     override fun setCellName(index: Int, name: String) {
         cellRepository.getCell(index)?.data?.let { it.name = name }

@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import bav.onecell.OneCellApplication
 import bav.onecell.R
+import bav.onecell.common.view.DrawUtils
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_cell_list.buttonCreateNewCell
 import kotlinx.android.synthetic.main.fragment_cell_list.recyclerViewCellList
@@ -17,6 +18,8 @@ class CellsListFragment : Fragment(), CellsList.View {
 
     @Inject
     lateinit var presenter: CellsList.Presenter
+    @Inject
+    lateinit var drawUtils: DrawUtils
     private val disposables = CompositeDisposable()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -32,7 +35,7 @@ class CellsListFragment : Fragment(), CellsList.View {
         buttonCreateNewCell.setOnClickListener { presenter.createNewCell() }
 
         recyclerViewCellList.layoutManager = GridLayoutManager(context, 2)
-        recyclerViewCellList.adapter = CellRecyclerViewAdapter(presenter)
+        recyclerViewCellList.adapter = CellRecyclerViewAdapter(presenter, drawUtils)
 
         disposables.add(presenter.cellRepoUpdateNotifier().subscribe {
             recyclerViewCellList.adapter.notifyDataSetChanged()

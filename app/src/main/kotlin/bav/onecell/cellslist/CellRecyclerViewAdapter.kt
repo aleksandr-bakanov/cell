@@ -1,5 +1,8 @@
 package bav.onecell.cellslist
 
+import android.graphics.Bitmap
+import android.graphics.Canvas
+import android.graphics.drawable.BitmapDrawable
 import android.support.v7.widget.RecyclerView
 import android.text.Editable
 import android.text.TextWatcher
@@ -8,12 +11,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import bav.onecell.R
+import bav.onecell.common.view.DrawUtils
 import kotlinx.android.synthetic.main.item_row_cell.view.buttonEditCell
 import kotlinx.android.synthetic.main.item_row_cell.view.buttonEditCellRules
 import kotlinx.android.synthetic.main.item_row_cell.view.buttonRemoveCell
+import kotlinx.android.synthetic.main.item_row_cell.view.preview
 import kotlinx.android.synthetic.main.item_row_cell.view.title
 
-class CellRecyclerViewAdapter(private val presenter: CellsList.Presenter) :
+class CellRecyclerViewAdapter(private val presenter: CellsList.Presenter, private val drawUtils: DrawUtils) :
         RecyclerView.Adapter<CellRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -26,6 +31,17 @@ class CellRecyclerViewAdapter(private val presenter: CellsList.Presenter) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.setCellTitle(presenter.getCellName(position))
+
+        presenter.getCell(position)?.let {
+            val srcBitmap = (holder.view.preview.drawable as BitmapDrawable).bitmap
+            val bitmap = Bitmap.createBitmap(srcBitmap.width, srcBitmap.height, Bitmap.Config.ARGB_8888)
+            val canvas = Canvas(bitmap)
+            val layout = drawUtils.provideLayout(canvas, it.size() * 2)
+            drawUtils.drawCell(canvas, it, layout = layout)
+            srcBitmap.recycle()
+            holder.view.preview.setImageBitmap(bitmap)
+            holder.view.preview.invalidate()
+        }
     }
 
     class ViewHolder(val view: View, private val presenter: CellsList.Presenter) : RecyclerView.ViewHolder(view) {

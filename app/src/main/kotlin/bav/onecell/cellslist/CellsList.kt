@@ -1,5 +1,6 @@
 package bav.onecell.cellslist
 
+import bav.onecell.model.cell.Cell
 import io.reactivex.Observable
 
 interface CellsList {
@@ -41,6 +42,13 @@ interface CellsList {
         fun getCellName(index: Int): String
 
         fun setCellName(index: Int, name: String)
+
+        /**
+         * Provides cell
+         *
+         * @param index Cell index in repository
+         */
+        fun getCell(index: Int): Cell?
 
         /**
          * Removes cell from repository

@@ -33,7 +33,7 @@ class CommonModule {
 
     @Provides
     @Singleton
-    fun provideDrawUtils(@Named("app_context") context: Context, hexMath: HexMath): DrawUtils {
-        return DrawUtils(context, hexMath)
+    fun provideDrawUtils(hexMath: HexMath, @Named("app_context") context: Context): DrawUtils {
+        return DrawUtils(hexMath, context)
     }
 }
