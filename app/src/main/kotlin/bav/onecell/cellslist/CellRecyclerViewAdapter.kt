@@ -2,6 +2,7 @@ package bav.onecell.cellslist
 
 import android.graphics.Bitmap
 import android.graphics.Canvas
+import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
 import android.support.v7.widget.RecyclerView
 import android.text.Editable
@@ -33,18 +34,18 @@ class CellRecyclerViewAdapter(private val presenter: CellsList.Presenter, privat
         holder.setCellTitle(presenter.getCellName(position))
 
         presenter.getCell(position)?.let {
-            val srcBitmap = (holder.view.preview.drawable as BitmapDrawable).bitmap
-            val bitmap = Bitmap.createBitmap(srcBitmap.width, srcBitmap.height, Bitmap.Config.ARGB_8888)
-            val canvas = Canvas(bitmap)
+            holder.previewBitmap.eraseColor(Color.TRANSPARENT)
+            val canvas = Canvas(holder.previewBitmap)
             val layout = drawUtils.provideLayout(canvas, it.size() * 2)
             drawUtils.drawCell(canvas, it, layout = layout)
-            srcBitmap.recycle()
-            holder.view.preview.setImageBitmap(bitmap)
             holder.view.preview.invalidate()
         }
     }
 
-    class ViewHolder(val view: View, private val presenter: CellsList.Presenter) : RecyclerView.ViewHolder(view) {
+    class ViewHolder(val view: View, private val presenter: CellsList.Presenter,
+                     val previewBitmap: Bitmap = Bitmap.createBitmap(500, 500, Bitmap.Config.ARGB_8888))
+        : RecyclerView.ViewHolder(view) {
+
         init {
             view.buttonEditCell.setOnClickListener {
                 presenter.openCellEditor(adapterPosition)
@@ -62,6 +63,7 @@ class CellRecyclerViewAdapter(private val presenter: CellsList.Presenter, privat
                 override fun afterTextChanged(s: Editable?) {}
                 override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             })
+            view.preview.setImageBitmap(previewBitmap)
         }
 
         fun setCellTitle(title: String) {
