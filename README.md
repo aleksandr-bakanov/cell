@@ -2,7 +2,6 @@
 Learn Android deeply while having fun.
 
 # TODO
-* Cells collection view
 * Rules and conditions edition views
 * Breadcrumbs
 * Editor tips for placing hexes
@@ -13,6 +12,7 @@ Learn Android deeply while having fun.
 * Store user data on Firebase
 * Tutorial screens
 * Help section
+* Randomize initial cell position in battle on ring
 
 # Future features
 * Multi-player

@@ -137,42 +137,39 @@ class BattlePresenter(
         battleState.directions.clear()
         battleState.rads.clear()
 
-        // Each cell will move to the nearest hex within all enemies
+        // Each cell will move to the nearest hex within all enemies.
+        // Distance will be calculated between all hexes of cell and all enemy hexes.
         cells.forEachIndexed { i, cell ->
-            var nearest: Hex = cell.data.origin
+            var ourHex: Hex = cell.data.origin
+            var nearestEnemyHex: Hex = cell.data.origin
             var minDistance = Int.MAX_VALUE
             // Search for nearest enemy hex
-            cells.forEachIndexed { j, enemy ->
-                if (j != i) {
-                    enemy.data.hexes.forEach {
-                        val candidate = hexMath.add(it.value, enemy.data.origin)
-                        val distance = hexMath.distance(cell.data.origin, candidate)
-                        if (distance < minDistance) {
-                            minDistance = distance
-                            nearest = candidate
+            cell.data.hexes.forEach { _, hex ->
+                val ourCandidate = hexMath.add(hex, cell.data.origin)
+                cells.forEachIndexed { j, enemy ->
+                    if (j != i) {
+                        enemy.data.hexes.forEach {
+                            val enemyCandidate = hexMath.add(it.value, enemy.data.origin)
+                            val distance = hexMath.distance(ourCandidate, enemyCandidate)
+                            if (distance < minDistance) {
+                                minDistance = distance
+                                ourHex = ourCandidate
+                                nearestEnemyHex = enemyCandidate
+                            }
                         }
                     }
                 }
             }
             // Find direction to move
-            // There is a case when origin has same position as nearest enemy hex (origin is empty).
-            // In such case current cell will choose east as moving direction. If both cells will choose
-            // same direction they will move eternally. We should avoid such case, therefore we will choose random
-            // direction for cell in such case.
-            if (minDistance == 0) {
-                battleState.directions.add((0..5).shuffled().last())
-                battleState.rads.add(0f)
-            } else {
-                // Origin point
-                val op = hexMath.hexToPixel(Layout.DUMMY, cell.data.origin)
-                // Nearest hex point
-                val hp = hexMath.hexToPixel(Layout.DUMMY, nearest)
-                // Angle direction to enemy hex
-                val angle = atan2(hp.y.toFloat() - op.y.toFloat(), hp.x.toFloat() - op.x.toFloat())
-                battleState.rads.add(angle)
-                // Determine direction based on angle
-                battleState.directions.add(hexMath.radToNeighborDirection(angle))
-            }
+            // Origin point
+            val op = hexMath.hexToPixel(Layout.DUMMY, ourHex)
+            // Nearest hex point
+            val nehp = hexMath.hexToPixel(Layout.DUMMY, nearestEnemyHex)
+            // Angle direction to enemy hex
+            val angle = atan2(nehp.y.toFloat() - op.y.toFloat(), nehp.x.toFloat() - op.x.toFloat())
+            battleState.rads.add(angle)
+            // Determine direction based on angle
+            battleState.directions.add(hexMath.radToNeighborDirection(angle))
         }
     }
 
