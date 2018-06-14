@@ -9,7 +9,7 @@ import com.google.gson.Gson
 class Rule(private val conditions: MutableList<Condition> = mutableListOf(),
            val action: Action = Action()) {
 
-    fun check(state: BattleState): Boolean {
+    fun check(state: BattleFieldState): Boolean {
         return conditions.map { it.check(state) }.all { it }
     }
 

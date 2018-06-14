@@ -8,7 +8,7 @@ import bav.onecell.model.cell.Cell
  *
  * There are common and individual for each cell properties.
  */
-class BattleState {
+class BattleFieldState {
     // Individual properties
     var directionToNearestEnemy: Cell.Direction = Cell.Direction.N
 

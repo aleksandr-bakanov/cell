@@ -1,6 +1,5 @@
 package bav.onecell.battle
 
-import bav.onecell.common.router.Router
 import bav.onecell.model.BattleFieldSnapshot
 import bav.onecell.model.GameRules
 import bav.onecell.model.RepositoryContract
@@ -9,7 +8,6 @@ import bav.onecell.model.cell.logic.BattleFieldState
 import bav.onecell.model.hexes.Hex
 import bav.onecell.model.hexes.HexMath
 import bav.onecell.model.hexes.Layout
-import io.reactivex.Observable
 import io.reactivex.subjects.PublishSubject
 import kotlinx.coroutines.experimental.launch
 import java.util.LinkedList
@@ -18,15 +16,14 @@ import kotlin.math.PI
 import kotlin.math.atan2
 import kotlin.math.round
 
-class BattlePresenter(
+class BattleEngine(
         private val view: Battle.View,
         private val hexMath: HexMath,
         private val gameRules: GameRules,
-        private val cellRepository: RepositoryContract.CellRepo,
-        private val router: Router) : Battle.Presenter {
+        private val cellRepository: RepositoryContract.CellRepo) {
 
     companion object {
-        private const val TAG = "BattlePresenter"
+        private const val TAG = "BattleEngine"
     }
 
     private val battleRoundSteps: Queue<() -> Unit> = LinkedList<() -> Unit>()
@@ -37,8 +34,7 @@ class BattlePresenter(
     private val battleFieldSnapshots = mutableListOf<BattleFieldSnapshot>()
     private val snapshotCount = PublishSubject.create<Int>()
 
-    //region Overridden methods
-    override fun initialize(cellIndexes: List<Int>) {
+    fun initialize(cellIndexes: List<Int>) {
         initializeBattleSteps()
 
         // Make copy of cells
@@ -61,13 +57,6 @@ class BattlePresenter(
 
         evaluateBattle()
     }
-
-    override fun finishBattle() {
-        router.goBack()
-    }
-
-    override fun snapshotsCounter(): Observable<Int> = snapshotCount
-    //endregion
 
     //region Private methods
     private fun initializeBattleSteps() {

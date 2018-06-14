@@ -27,7 +27,7 @@ class Condition(var operation: Operation = Operation.EQUALS,
         }
     }
 
-    fun check(state: BattleState): Boolean {
+    fun check(state: BattleFieldState): Boolean {
         val fieldToCheckValue: Int = when (fieldToCheck) {
             FieldToCheck.DIRECTION_TO_NEAREST_ENEMY -> state.directionToNearestEnemy.ordinal
         }
