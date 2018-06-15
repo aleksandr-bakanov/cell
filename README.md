@@ -3,7 +3,6 @@ Learn Android deeply while having fun.
 
 # TODO
 * Rules and conditions edition views
-* Breadcrumbs
 * Editor tips for placing hexes
 * RenderScript (hashes arrays, binary search)
 * Save battle state between configuration changes
@@ -13,6 +12,13 @@ Learn Android deeply while having fun.
 * Tutorial screens
 * Help section
 * Randomize initial cell position in battle on ring
+* Limited resources for forming cells
+* Friendly fire and intersection of friendly cells
+* Direction to nearest friend
+* Different battle scenarios? Save VIP cell?
+* Same group id for friendly cells
+* Death ray hex
+* Provide list of cells to battle engine and get battle results from it
 
 # Future features
 * Multi-player
