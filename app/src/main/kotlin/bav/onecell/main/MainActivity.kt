@@ -2,6 +2,7 @@ package bav.onecell.main
 
 import android.os.Bundle
 import android.support.v4.app.FragmentActivity
+import android.view.View
 import bav.onecell.OneCellApplication
 import bav.onecell.R
 import bav.onecell.battle.BattleFragment
@@ -46,6 +47,8 @@ class MainActivity : FragmentActivity() {
         }
 
         disposables.add(router.windowChange().subscribe { changeWindow(it) })
+
+        hideSystemUi()
     }
 
     override fun onDestroy() {
@@ -75,6 +78,16 @@ class MainActivity : FragmentActivity() {
                 .replace(R.id.holder, fragment)
                 .addToBackStack(null)
                 .commit()
+    }
+
+    private fun hideSystemUi() {
+        window.decorView.systemUiVisibility =
+            View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY or
+            View.SYSTEM_UI_FLAG_LAYOUT_STABLE or
+            View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION or
+            View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or
+            View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or
+            View.SYSTEM_UI_FLAG_FULLSCREEN
     }
     //endregion
 }
