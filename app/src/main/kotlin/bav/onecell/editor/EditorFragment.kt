@@ -2,6 +2,7 @@ package bav.onecell.editor
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.content.ContextCompat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,6 +19,7 @@ import kotlinx.android.synthetic.main.fragment_editor.radioButtonAttackCell
 import kotlinx.android.synthetic.main.fragment_editor.radioButtonEnergyCell
 import kotlinx.android.synthetic.main.fragment_editor.radioButtonLifeCell
 import kotlinx.android.synthetic.main.fragment_editor.radioButtonRemoveCell
+import kotlinx.android.synthetic.main.fragment_editor.textMoney
 import javax.inject.Inject
 
 class EditorFragment : Fragment(), Editor.View {
@@ -29,8 +31,6 @@ class EditorFragment : Fragment(), Editor.View {
     @Inject
     lateinit var drawUtils: DrawUtils
 
-    // TODO: same variable exists in EditorCanvasView, it is unnecessary duplicate
-    private var selectedCellType: Hex.Type = Hex.Type.LIFE
     private val disposables = CompositeDisposable()
 
     //region Lifecycle methods
@@ -57,6 +57,7 @@ class EditorFragment : Fragment(), Editor.View {
         disposables.addAll(
                 presenter.getCellProvider().subscribe {
                     editorCanvasView.cell = it
+                    textMoney.text = resources.getString(R.string.text_money, it.data.money)
                 },
                 presenter.getBackgroundCellRadiusProvider().subscribe {
                     editorCanvasView.backgroundFieldRadius = it
@@ -82,13 +83,12 @@ class EditorFragment : Fragment(), Editor.View {
 
     //region View listeners
     private fun onCellTypeRadioButtonClicked(view: View) {
-        selectedCellType = when (view.id) {
+        editorCanvasView.selectedCellType = when (view.id) {
             R.id.radioButtonLifeCell -> Hex.Type.LIFE
             R.id.radioButtonEnergyCell -> Hex.Type.ENERGY
             R.id.radioButtonAttackCell -> Hex.Type.ATTACK
             else -> Hex.Type.REMOVE
         }
-        editorCanvasView.selectedCellType = selectedCellType
     }
 
     private fun onCellRotateButtonClicked(view: View) {

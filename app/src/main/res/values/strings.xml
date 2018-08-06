@@ -15,8 +15,7 @@
     <string name="radio_button_energy_cell_title">Energy</string>
     <string name="radio_button_attack_cell_title">Attack</string>
     <string name="radio_button_remove_cell_title">Remove</string>
-    <string name="button_rotate_cell_left_title"><![CDATA[<<]]></string>
-    <string name="button_rotate_cell_right_title"><![CDATA[>>]]></string>
+    <string name="text_money">Power left: %1$d</string>
 
     <!-- Battle view -->
     <string name="button_next_step_title">Full step</string>

@@ -10,11 +10,18 @@ import com.google.gson.Gson
 @Entity(tableName = "cellData")
 data class Data(
         @PrimaryKey(autoGenerate = true) var id: Long? = null,
+        // hexes - hexes contained in cell
         @ColumnInfo(name = "hexes") var hexes: MutableMap<Int, Hex> = mutableMapOf(),
+        // origin - an origin coordinates
         @ColumnInfo(name = "origin") var origin: Hex = Hex(0, 0, 0),
+        // direction - direction of cell's look
         @ColumnInfo(name = "direction") var direction: Cell.Direction = Cell.Direction.N,
+        // rules - set of rules according to which cell will act in battle
         @ColumnInfo(name = "rules") var rules: MutableList<Rule> = arrayListOf(),
-        @ColumnInfo(name = "name") var name: String = "") {
+        // name - cell's name
+        @ColumnInfo(name = "name") var name: String = "",
+        // money - can be spent to build up cell
+        @ColumnInfo(name = "money") var money: Int = 10) {
 
     companion object {
         fun fromJson(json: String): Data {

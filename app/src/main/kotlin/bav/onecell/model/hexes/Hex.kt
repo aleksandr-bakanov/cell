@@ -19,6 +19,10 @@ data class Hex(var q: Int = 0, var r: Int = 0, var s: Int = 0) {
         ENERGY_TO_NEIGHBOR(2), ENERGY_TO_FAR_NEIGHBOR(1)
     }
 
+    enum class Price(val value: Int) {
+        LIFE(1), ENERGY(3), ATTACK(2);
+    }
+
     var type: Type = Type.REMOVE
     @Transient var power: Int = 0
     @Transient var receivedDamage: Int = 0
