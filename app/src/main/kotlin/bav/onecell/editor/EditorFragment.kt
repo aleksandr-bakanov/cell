@@ -58,6 +58,10 @@ class EditorFragment : Fragment(), Editor.View {
                 presenter.getCellProvider().subscribe {
                     editorCanvasView.cell = it
                     textMoney.text = resources.getString(R.string.text_money, it.data.money)
+
+                    disposables.add(it.getMoneyProvider().subscribe { money ->
+                        textMoney.text = resources.getString(R.string.text_money, money)
+                    })
                 },
                 presenter.getBackgroundCellRadiusProvider().subscribe {
                     editorCanvasView.backgroundFieldRadius = it

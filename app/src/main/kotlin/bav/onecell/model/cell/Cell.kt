@@ -3,7 +3,10 @@ package bav.onecell.model.cell
 import bav.onecell.model.cell.logic.BattleFieldState
 import bav.onecell.model.hexes.Hex
 import bav.onecell.model.hexes.HexMath
+import io.reactivex.Observable
+import io.reactivex.subjects.BehaviorSubject
 import kotlin.math.abs
+import kotlin.math.max
 
 // TODO: add cell visibility radius - cell may observe battlefield within limited radius from cell's center
 class Cell(private val hexMath: HexMath,
@@ -23,6 +26,22 @@ class Cell(private val hexMath: HexMath,
     }
 
     private val outlineHexes: MutableSet<Hex> = mutableSetOf()
+
+    private val moneyProvider = BehaviorSubject.create<Int>()
+    fun getMoneyProvider(): Observable<Int> = moneyProvider
+    private fun setMoney(value: Int) {
+        data.money = value
+        moneyProvider.onNext(value)
+    }
+    fun addMoney(value: Int) = setMoney(data.money + value)
+    fun removeMoney(value: Int) = setMoney(max(data.money - value, 0))
+
+    fun hexTypeToPrice(type: Hex.Type): Int = when (type) {
+        Hex.Type.LIFE -> Hex.Price.LIFE.value
+        Hex.Type.ENERGY -> Hex.Price.ENERGY.value
+        Hex.Type.ATTACK -> Hex.Price.ATTACK.value
+        else -> 0
+    }
 
     fun clone(): Cell = Cell(hexMath, data.clone())
 

@@ -30,7 +30,8 @@ class EditorPresenter(
 
     override fun addHexToCell(hex: Hex) {
         cell?.let {
-            if (gameRules.isAllowedToAddHexIntoCell(it, hex)) {
+            if (gameRules.isAllowedToAddHexIntoCell(it, hex) and gameRules.userHasEnoughMoney(it, hex)) {
+                it.removeMoney(it.hexTypeToPrice(hex.type))
                 it.addHex(hex)
                 it.evaluateCellHexesPower()
             }
@@ -40,6 +41,7 @@ class EditorPresenter(
     override fun removeHexFromCell(hex: Hex) {
         cell?.let {
             if (gameRules.isAllowedToRemoveHexFromCell(it, hex)) {
+                it.addMoney(it.hexTypeToPrice(it.data.hexes[hex.hashCode()]?.type ?: Hex.Type.REMOVE))
                 it.removeHex(hex)
                 it.evaluateCellHexesPower()
             }
