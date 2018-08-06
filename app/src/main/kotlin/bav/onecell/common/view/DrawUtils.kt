@@ -30,20 +30,20 @@ class DrawUtils(private val hexMath: HexMath, context: Context) {
 
     init {
         gridPaint.style = Paint.Style.STROKE
-        gridPaint.color = ContextCompat.getColor(context, R.color.cellConstructorGrid)
+        gridPaint.color = ContextCompat.getColor(context, R.color.cellEditorGrid)
         gridPaint.strokeWidth = 1.0f
 
         lifePaint.style = Paint.Style.FILL
-        lifePaint.color = ContextCompat.getColor(context, R.color.cellConstructorLife)
+        lifePaint.color = ContextCompat.getColor(context, R.color.cellEditorLife)
 
         energyPaint.style = Paint.Style.FILL
-        energyPaint.color = ContextCompat.getColor(context, R.color.cellConstructorEnergy)
+        energyPaint.color = ContextCompat.getColor(context, R.color.cellEditorEnergy)
 
         attackPaint.style = Paint.Style.FILL
-        attackPaint.color = ContextCompat.getColor(context, R.color.cellConstructorAttack)
+        attackPaint.color = ContextCompat.getColor(context, R.color.cellEditorAttack)
 
         strokePaint.style = Paint.Style.STROKE
-        strokePaint.color = ContextCompat.getColor(context, R.color.cellConstructorStroke)
+        strokePaint.color = ContextCompat.getColor(context, R.color.cellEditorStroke)
         strokePaint.strokeWidth = 1.0f
 
         cellOutlinePaint.style = Paint.Style.STROKE
@@ -69,14 +69,14 @@ class DrawUtils(private val hexMath: HexMath, context: Context) {
                  aPaint: Paint = attackPaint, layout: Layout = Layout.DUMMY) {
         cell?.let {
             var paint: Paint
-            for (hex in it.data.hexes) {
-                paint = when (hex.value.type) {
+            for ((_, hex) in it.data.hexes) {
+                paint = when (hex.type) {
                     Hex.Type.LIFE -> lPaint
                     Hex.Type.ENERGY -> ePaint
                     Hex.Type.ATTACK -> aPaint
                     else -> gridPaint
                 }
-                val path: Path = getHexPath(layout, hexMath.add(hex.value, it.data.origin))
+                val path: Path = getHexPath(layout, hexMath.add(hex, it.data.origin))
                 path.fillType = Path.FillType.EVEN_ODD
                 canvas?.drawPath(path, paint)
                 canvas?.drawPath(path, strokePaint)
@@ -85,6 +85,16 @@ class DrawUtils(private val hexMath: HexMath, context: Context) {
             drawOriginMarker(canvas, it, layout)
             // Draw outline
             drawCellOutline(canvas, it, layout)
+        }
+    }
+
+    fun drawHexes(canvas: Canvas?, cell: Cell?, hexes: Collection<Hex>?, paint: Paint, layout: Layout = Layout.DUMMY) {
+        if (cell != null && hexes != null) {
+            for (hex in hexes) {
+                val path: Path = getHexPath(layout, hexMath.add(hex, cell.data.origin))
+                path.fillType = Path.FillType.EVEN_ODD
+                canvas?.drawPath(path, paint)
+            }
         }
     }
 

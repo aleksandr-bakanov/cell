@@ -21,6 +21,6 @@ class EditorModule(val view: Editor.View) {
     @FragmentScope
     fun provideEditorPresenter(gameRules: GameRules, cellRepository: RepositoryContract.CellRepo, router: Router):
             Editor.Presenter {
-        return EditorPresenter(gameRules, cellRepository, router)
+        return EditorPresenter(view, gameRules, cellRepository, router)
     }
 }

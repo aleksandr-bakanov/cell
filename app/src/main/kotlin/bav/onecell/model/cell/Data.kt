@@ -11,7 +11,8 @@ import com.google.gson.Gson
 data class Data(
         @PrimaryKey(autoGenerate = true) var id: Long? = null,
         // hexes - hexes contained in cell
-        @ColumnInfo(name = "hexes") var hexes: MutableMap<Int, Hex> = mutableMapOf(),
+        @ColumnInfo(name = "hexes") var hexes: MutableMap<Int, Hex> =
+                mutableMapOf(Pair(Hex().hashCode(), Hex().withType(Hex.Type.LIFE))),
         // origin - an origin coordinates
         @ColumnInfo(name = "origin") var origin: Hex = Hex(0, 0, 0),
         // direction - direction of cell's look

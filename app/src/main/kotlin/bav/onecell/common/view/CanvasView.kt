@@ -51,7 +51,7 @@ open class CanvasView(context: Context, attributeSet: AttributeSet) : View(conte
 
     init {
         gridPaint.style = Paint.Style.STROKE
-        gridPaint.color = ContextCompat.getColor(context, R.color.cellConstructorGrid)
+        gridPaint.color = ContextCompat.getColor(context, R.color.cellEditorGrid)
         gridPaint.strokeWidth = 1.0f
 
         coordinateTextPaint.color = Color.BLACK

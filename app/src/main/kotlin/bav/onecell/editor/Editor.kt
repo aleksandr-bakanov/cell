@@ -7,6 +7,7 @@ import io.reactivex.Observable
 interface Editor {
 
     interface View {
+        fun highlightTips(type: Hex.Type)
     }
 
     interface Presenter {
@@ -54,5 +55,7 @@ interface Editor {
          * @return Observable which emit background field radius
          */
         fun getBackgroundCellRadiusProvider(): Observable<Int>
+
+        fun getTipHexes(type: Hex.Type): Collection<Hex>
     }
 }

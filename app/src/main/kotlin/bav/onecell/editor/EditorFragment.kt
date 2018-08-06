@@ -24,12 +24,9 @@ import javax.inject.Inject
 
 class EditorFragment : Fragment(), Editor.View {
 
-    @Inject
-    lateinit var presenter: Editor.Presenter
-    @Inject
-    lateinit var hexMath: HexMath
-    @Inject
-    lateinit var drawUtils: DrawUtils
+    @Inject lateinit var presenter: Editor.Presenter
+    @Inject lateinit var hexMath: HexMath
+    @Inject lateinit var drawUtils: DrawUtils
 
     private val disposables = CompositeDisposable()
 
@@ -69,6 +66,7 @@ class EditorFragment : Fragment(), Editor.View {
                 }
         )
         arguments?.let { presenter.initialize(it.getInt(CELL_INDEX)) }
+        highlightTips(editorCanvasView.selectedCellType)
     }
 
     override fun onDestroyView() {
@@ -87,12 +85,15 @@ class EditorFragment : Fragment(), Editor.View {
 
     //region View listeners
     private fun onCellTypeRadioButtonClicked(view: View) {
-        editorCanvasView.selectedCellType = when (view.id) {
+        val type = when (view.id) {
             R.id.radioButtonLifeCell -> Hex.Type.LIFE
             R.id.radioButtonEnergyCell -> Hex.Type.ENERGY
             R.id.radioButtonAttackCell -> Hex.Type.ATTACK
             else -> Hex.Type.REMOVE
         }
+        editorCanvasView.selectedCellType = type
+        editorCanvasView.tipHexes = presenter.getTipHexes(type)
+        editorCanvasView.invalidate()
     }
 
     private fun onCellRotateButtonClicked(view: View) {
@@ -100,6 +101,13 @@ class EditorFragment : Fragment(), Editor.View {
             R.id.buttonRotateCellLeft -> presenter.rotateCellLeft()
             R.id.buttonRotateCellRight -> presenter.rotateCellRight()
         }
+        editorCanvasView.invalidate()
+    }
+    //endregion
+
+    //region Overridden methods
+    override fun highlightTips(type: Hex.Type) {
+        editorCanvasView.tipHexes = presenter.getTipHexes(type)
         editorCanvasView.invalidate()
     }
     //endregion

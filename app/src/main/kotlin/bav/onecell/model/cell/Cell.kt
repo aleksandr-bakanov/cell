@@ -27,6 +27,10 @@ class Cell(private val hexMath: HexMath,
 
     private val outlineHexes: MutableSet<Hex> = mutableSetOf()
 
+    init {
+        updateOutlineHexes()
+    }
+
     private val moneyProvider = BehaviorSubject.create<Int>()
     fun getMoneyProvider(): Observable<Int> = moneyProvider
     private fun setMoney(value: Int) {
@@ -49,10 +53,12 @@ class Cell(private val hexMath: HexMath,
 
     fun addHex(hex: Hex) {
         data.hexes[hex.hashCode()] = hex
+        updateOutlineHexes()
     }
 
     fun removeHex(hex: Hex) {
         data.hexes.remove(hex.hashCode())
+        updateOutlineHexes()
     }
 
     fun contains(hex: Hex): Boolean = data.hexes[hex.hashCode()] != null

@@ -2,9 +2,12 @@ package bav.onecell.editor
 
 import android.content.Context
 import android.graphics.Canvas
+import android.graphics.Paint
+import android.support.v4.content.ContextCompat
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
+import bav.onecell.R
 import bav.onecell.common.view.CanvasView
 import bav.onecell.model.cell.Cell
 import bav.onecell.model.hexes.Hex
@@ -19,8 +22,13 @@ class EditorCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
     var cell: Cell? = null
     lateinit var presenter: Editor.Presenter
     var selectedCellType: Hex.Type = Hex.Type.LIFE
+    var tipHexes: Collection<Hex>? = null
+    private val tipPaint = Paint()
 
     init {
+        tipPaint.style = Paint.Style.FILL
+        tipPaint.color = ContextCompat.getColor(context, R.color.cellEditorTip)
+
         setOnTouchListener(
                 { view: View?, event: MotionEvent? ->
                     super.onTouchListener(view, event)
@@ -47,6 +55,7 @@ class EditorCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
 
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
+        drawUtils.drawHexes(canvas, cell, tipHexes, tipPaint, layout)
         drawUtils.drawCell(canvas, cell, layout = layout)
     }
 }

@@ -10,6 +10,7 @@ import io.reactivex.subjects.BehaviorSubject
 
 // TODO: persist cell on exit from editor
 class EditorPresenter(
+        private val view: Editor.View,
         private val gameRules: GameRules,
         private val cellRepository: RepositoryContract.CellRepo,
         private val router: Router) : Editor.Presenter {
@@ -34,6 +35,7 @@ class EditorPresenter(
                 it.removeMoney(it.hexTypeToPrice(hex.type))
                 it.addHex(hex)
                 it.evaluateCellHexesPower()
+                view.highlightTips(hex.type)
             }
         }
     }
@@ -64,4 +66,11 @@ class EditorPresenter(
 
     override fun getCellProvider(): Observable<Cell> = cellProvider
     override fun getBackgroundCellRadiusProvider(): Observable<Int> = backgroundFieldRadiusProvider
+
+    override fun getTipHexes(type: Hex.Type): Collection<Hex> {
+        cell?.let { c ->
+            return c.getOutlineHexes().filter { hex -> gameRules.isAllowedToAddHexIntoCell(c, hex.withType(type)) }
+        }
+        return mutableSetOf()
+    }
 }

@@ -5,12 +5,13 @@
     <color name="colorAccent">#FF4081</color>
 
     <!-- Cell editor view -->
-    <color name="cellConstructorBackground">#cccccc</color>
-    <color name="cellConstructorGrid">#888888</color>
-    <color name="cellConstructorLife">#5aba17</color>
-    <color name="cellConstructorEnergy">#c1d214</color>
-    <color name="cellConstructorAttack">#d41313</color>
-    <color name="cellConstructorStroke">#000000</color>
+    <color name="cellEditorBackground">#cccccc</color>
+    <color name="cellEditorGrid">#888888</color>
+    <color name="cellEditorTip">#b3b3b3</color>
+    <color name="cellEditorLife">#5aba17</color>
+    <color name="cellEditorEnergy">#c1d214</color>
+    <color name="cellEditorAttack">#d41313</color>
+    <color name="cellEditorStroke">#000000</color>
     
     <!-- Battle view -->
     <color name="battleViewRing">#40b4d7</color>
