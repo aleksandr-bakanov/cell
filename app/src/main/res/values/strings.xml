@@ -26,4 +26,9 @@
     <!-- Condition editor view -->
     <string name="button_ok">Save</string>
     <string name="button_cancel">Cancel</string>
+
+    <!-- Cut scene view -->
+    <string name="image_description_cut_scene_background">Cut scene background</string>
+    <string name="image_description_cut_scene_left_character">Left character</string>
+    <string name="image_description_cut_scene_right_character">Right character</string>
 </resources>

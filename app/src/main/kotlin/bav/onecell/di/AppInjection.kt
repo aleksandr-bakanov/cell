@@ -9,6 +9,8 @@ import bav.onecell.cellslist.CellsListModule
 import bav.onecell.cellslist.CellsListSubcomponent
 import bav.onecell.common.CommonModule
 import bav.onecell.common.storage.StorageModule
+import bav.onecell.cutscene.CutSceneModule
+import bav.onecell.cutscene.CutSceneSubcomponent
 import bav.onecell.editor.EditorModule
 import bav.onecell.editor.EditorSubcomponent
 import bav.onecell.main.MainModule
@@ -28,6 +30,7 @@ interface AppComponent {
     fun plus(battleModule: BattleModule): BattleSubcomponent
     fun plus(cellsListModule: CellsListModule): CellsListSubcomponent
     fun plus(cellLogicModule: CellLogicModule): CellLogicSubcomponent
+    fun plus(cutSceneModule: CutSceneModule): CutSceneSubcomponent
 }
 
 @Module
