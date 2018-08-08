@@ -16,8 +16,10 @@ import bav.onecell.common.router.Router.WindowType.BATTLE_CELLS_SELECTION
 import bav.onecell.common.router.Router.WindowType.CELLS_LIST
 import bav.onecell.common.router.Router.WindowType.CELL_EDITOR
 import bav.onecell.common.router.Router.WindowType.CONDITIONS_EDITOR
+import bav.onecell.common.router.Router.WindowType.CUT_SCENE
 import bav.onecell.common.router.Router.WindowType.MAIN
 import bav.onecell.common.router.Router.WindowType.RULES_EDITOR
+import bav.onecell.cutscene.CutSceneFragment
 import bav.onecell.editor.EditorFragment
 import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
@@ -73,6 +75,7 @@ class MainActivity : FragmentActivity() {
             CELL_EDITOR -> EditorFragment.newInstance(window.args)
             RULES_EDITOR -> RuleListFragment.newInstance(window.args)
             CONDITIONS_EDITOR -> ConditionListFragment.newInstance(window.args)
+            CUT_SCENE -> CutSceneFragment.newInstance(window.args)
         }
         supportFragmentManager.beginTransaction()
                 .replace(R.id.holder, fragment)

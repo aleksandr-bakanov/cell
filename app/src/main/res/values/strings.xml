@@ -4,6 +4,7 @@
     <!-- Main view -->
     <string name="button_show_cells_title">Cells</string>
     <string name="button_go_to_battle_title">Battle</string>
+    <string name="button_new_game_title">New game</string>
 
     <string name="button_start_battle_title">Start battle</string>
     <string name="button_create_new_cell_title">Create new cell</string>
@@ -30,4 +31,20 @@
     <string name="image_description_cut_scene_background">Cut scene background</string>
     <string name="image_description_cut_scene_left_character">Left character</string>
     <string name="image_description_cut_scene_right_character">Right character</string>
+    <string name="button_previous_frame_title">⇦</string>
+    <string name="button_next_frame_title">⇨</string>
+
+    <!-- Cut scenes -->
+    <string name="cut_scene_introduction">
+        {
+            background: \"wallpaper_01\",
+            left: \"left_character\",
+            right: \"left_character\",
+            frames: [
+                { text: \"Hello world!\" },
+                { text: \"Changing background\", background: \"wallpaper_02\" },
+                { text: \"Return back to default background and change left character\", left: \"left_character_01\" }
+            ]
+        }
+    </string>
 </resources>

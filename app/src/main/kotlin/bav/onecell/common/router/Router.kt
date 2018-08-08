@@ -10,7 +10,7 @@ interface Router {
     data class Window(val type: WindowType, val args: Bundle? = null)
 
     enum class WindowType {
-        MAIN, CELLS_LIST, BATTLE_CELLS_SELECTION, BATTLE, CELL_EDITOR, RULES_EDITOR, CONDITIONS_EDITOR
+        MAIN, CELLS_LIST, BATTLE_CELLS_SELECTION, BATTLE, CELL_EDITOR, RULES_EDITOR, CONDITIONS_EDITOR, CUT_SCENE
     }
 
     fun windowChange(): Observable<Window>
@@ -36,4 +36,6 @@ interface Router {
     fun setHostActivity(activity: FragmentActivity)
 
     fun goToConditionEditor(condition: Condition, whatToEdit: Int)
+
+    fun goToCutScene(cutSceneInfo: String)
 }

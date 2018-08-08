@@ -7,6 +7,7 @@ import bav.onecell.celllogic.conditions.ConditionEditorDialogFragment
 import bav.onecell.celllogic.conditions.ConditionListFragment
 import bav.onecell.celllogic.rules.ActionEditorDialogFragment
 import bav.onecell.celllogic.rules.RuleListFragment
+import bav.onecell.cutscene.CutSceneFragment
 import bav.onecell.editor.EditorFragment
 import bav.onecell.model.cell.logic.Condition
 import io.reactivex.Observable
@@ -72,5 +73,11 @@ class RouterImpl : Router {
     override fun goToActionEditor(cellIndex: Int, ruleIndex: Int) {
         val fragment = ActionEditorDialogFragment.newInstance(cellIndex, ruleIndex)
         fragment.show(host.fragmentManager, ActionEditorDialogFragment.ACTION_EDITOR_DIALOG_TAG)
+    }
+
+    override fun goToCutScene(cutSceneInfo: String) {
+        val bundle = Bundle()
+        bundle.putString(CutSceneFragment.INFO_JSON, cutSceneInfo)
+        windowChanger.onNext(Router.Window(Router.WindowType.CUT_SCENE, bundle))
     }
 }

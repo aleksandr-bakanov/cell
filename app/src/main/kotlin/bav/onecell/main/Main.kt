@@ -16,5 +16,7 @@ interface Main {
          * Opens cells list window.
          */
         fun openCellsListView()
+
+        fun openCutScene(info: String)
     }
 }

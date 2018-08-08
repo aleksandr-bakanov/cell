@@ -16,5 +16,10 @@ class MainPresenter(
     override fun openCellsListView() {
         router.goToCellsList()
     }
+
+    override fun openCutScene(info: String) {
+        router.goToCutScene(info)
+    }
+
     //endregion
 }
