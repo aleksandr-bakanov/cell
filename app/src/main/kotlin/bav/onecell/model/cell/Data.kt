@@ -32,7 +32,7 @@ data class Data(
 
     fun clone(): Data {
         val data = Data(origin = origin, direction = direction)
-        hexes.forEach { (k, v) -> data.hexes[k] = v.clone() }
+        hexes.forEach { entry -> data.hexes[entry.key] = entry.value.clone() }
         rules.forEach { data.rules.add(it) }
         return data
     }

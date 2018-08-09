@@ -131,8 +131,8 @@ class BattleEngine(
             var nearestEnemyHex: Hex = cell.data.origin
             var minDistance = Int.MAX_VALUE
             // Search for nearest enemy hex
-            cell.data.hexes.forEach { _, hex ->
-                val ourCandidate = hexMath.add(hex, cell.data.origin)
+            cell.data.hexes.forEach { entry ->
+                val ourCandidate = hexMath.add(entry.value, cell.data.origin)
                 cells.forEachIndexed { j, enemy ->
                     if (j != i) {
                         enemy.data.hexes.forEach {
@@ -267,10 +267,10 @@ class BattleEngine(
         cells.forEachIndexed { index, cell ->
             // Remove powerless hexes
             val hexesToRemove = mutableListOf<Int>()
-            cell.data.hexes.forEach { (key, hex) ->
+            cell.data.hexes.forEach { entry ->
                 // If power becomes less or equal then zero, hex should be removed from cell
-                if (hex.power <= 0) {
-                    hexesToRemove.add(key)
+                if (entry.value.power <= 0) {
+                    hexesToRemove.add(entry.key)
                 }
             }
             if (hexesToRemove.isNotEmpty()) {
