@@ -84,9 +84,9 @@ class CutSceneFragment : Fragment(), CutScene.View {
     private fun showFrame(index: Int) {
         if (index !in 0 until frames.size) return
         val frameData = frames[index]
-        background.background = resources.getDrawable(getBackground(frameData.background))
-        leftCharacter.background = resources.getDrawable(getLeftCharacter(frameData.left))
-        rightCharacter.background = resources.getDrawable(getRightCharacter(frameData.right))
+        background.setImageDrawable(resources.getDrawable(getBackground(frameData.background)))
+        leftCharacter.setImageDrawable(resources.getDrawable(getLeftCharacter(frameData.left)))
+        rightCharacter.setImageDrawable(resources.getDrawable(getRightCharacter(frameData.right)))
         textView.text = frameData.text
     }
 
