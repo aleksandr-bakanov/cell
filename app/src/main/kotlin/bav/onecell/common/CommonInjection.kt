@@ -3,6 +3,8 @@ package bav.onecell.common
 import android.content.Context
 import bav.onecell.common.router.Router
 import bav.onecell.common.router.RouterImpl
+import bav.onecell.common.router.SceneManager
+import bav.onecell.common.router.SceneManagerImpl
 import bav.onecell.common.view.DrawUtils
 import bav.onecell.model.GameRules
 import bav.onecell.model.hexes.HexMath
@@ -17,6 +19,12 @@ class CommonModule {
     @Singleton
     fun provideRouter(): Router {
         return RouterImpl()
+    }
+
+    @Provides
+    @Singleton
+    fun provideSceneManager(router: Router): SceneManager {
+        return SceneManagerImpl(router)
     }
 
     @Provides

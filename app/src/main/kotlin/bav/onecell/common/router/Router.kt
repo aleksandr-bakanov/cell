@@ -39,3 +39,12 @@ interface Router {
 
     fun goToCutScene(cutSceneInfo: String)
 }
+
+interface SceneManager {
+    /**
+     * Scene manager initializer
+     *
+     * @param scenario JSON scenario representation
+     */
+    fun initialize(scenario: String)
+}
