@@ -38,8 +38,8 @@
     <string name="scene_manager_scenario">
         {
             scenes: {
-                main_menu: { window: \"MAIN\" }
-                introduction: { window: \"CUT_SCENE\", params: \"cut_scene_introduction\" }
+                main_menu: { window: \"MAIN\" },
+                introduction: { window: \"CUT_SCENE\", params: \"cut_scene_introduction\", next_scene: \"main_menu\" }
             }
         }
     </string>

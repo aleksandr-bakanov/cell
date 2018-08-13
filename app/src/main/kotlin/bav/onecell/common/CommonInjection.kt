@@ -23,8 +23,8 @@ class CommonModule {
 
     @Provides
     @Singleton
-    fun provideSceneManager(router: Router): SceneManager {
-        return SceneManagerImpl(router)
+    fun provideSceneManager(router: Router, @Named("app_context") context: Context): SceneManager {
+        return SceneManagerImpl(router, context)
     }
 
     @Provides

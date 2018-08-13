@@ -17,6 +17,6 @@ interface Main {
          */
         fun openCellsListView()
 
-        fun openCutScene(info: String)
+        fun startNewGame(info: String)
     }
 }

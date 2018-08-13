@@ -1,6 +1,6 @@
 package bav.onecell.cutscene
 
-import bav.onecell.common.router.Router
+import bav.onecell.common.router.SceneManager
 import bav.onecell.di.scopes.ActivityScope
 import dagger.Module
 import dagger.Provides
@@ -16,7 +16,7 @@ interface CutSceneSubcomponent {
 class CutSceneModule {
     @Provides
     @ActivityScope
-    fun provideCutScenePresenter(router: Router): CutScene.Presenter {
-        return CutScenePresenter()
+    fun provideCutScenePresenter(sceneManager: SceneManager): CutScene.Presenter {
+        return CutScenePresenter(sceneManager)
     }
 }

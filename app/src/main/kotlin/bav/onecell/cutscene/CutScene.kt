@@ -7,6 +7,6 @@ interface CutScene {
     }
 
     interface Presenter {
-
+        fun openNextScene()
     }
 }

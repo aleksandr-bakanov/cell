@@ -1,9 +1,10 @@
 package bav.onecell.main
 
 import bav.onecell.common.router.Router
+import bav.onecell.common.router.SceneManager
 
 class MainPresenter(
-        private val router: Router) : Main.Presenter {
+        private val router: Router, private val sceneManager: SceneManager) : Main.Presenter {
 
     companion object {
         private const val TAG = "MainPresenter"
@@ -17,9 +18,8 @@ class MainPresenter(
         router.goToCellsList()
     }
 
-    override fun openCutScene(info: String) {
-        router.goToCutScene(info)
+    override fun startNewGame(info: String) {
+        sceneManager.openIntroductionScene()
     }
-
     //endregion
 }

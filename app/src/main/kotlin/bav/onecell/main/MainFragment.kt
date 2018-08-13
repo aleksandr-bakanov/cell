@@ -30,7 +30,7 @@ class MainFragment : Fragment(), Main.View {
 
         buttonGoToBattle.setOnClickListener { presenter.openPreBattleView() }
         buttonShowCells.setOnClickListener { presenter.openCellsListView() }
-        buttonNewGame.setOnClickListener { presenter.openCutScene(resources.getString(R.string.cut_scene_introduction)) }
+        buttonNewGame.setOnClickListener { presenter.startNewGame(resources.getString(R.string.cut_scene_introduction)) }
     }
 
     override fun onDestroyView() {

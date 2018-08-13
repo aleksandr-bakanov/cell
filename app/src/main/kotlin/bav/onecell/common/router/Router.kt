@@ -10,7 +10,12 @@ interface Router {
     data class Window(val type: WindowType, val args: Bundle? = null)
 
     enum class WindowType {
-        MAIN, CELLS_LIST, BATTLE_CELLS_SELECTION, BATTLE, CELL_EDITOR, RULES_EDITOR, CONDITIONS_EDITOR, CUT_SCENE
+        MAIN, CELLS_LIST, BATTLE_CELLS_SELECTION, BATTLE, CELL_EDITOR, RULES_EDITOR, CONDITIONS_EDITOR, CUT_SCENE;
+
+        companion object {
+            private val map = WindowType.values().associateBy { it.toString() }
+            fun fromString(type: String): WindowType = map[type] ?: MAIN
+        }
     }
 
     fun windowChange(): Observable<Window>
@@ -41,10 +46,9 @@ interface Router {
 }
 
 interface SceneManager {
-    /**
-     * Scene manager initializer
-     *
-     * @param scenario JSON scenario representation
-     */
-    fun initialize(scenario: String)
+    fun openMainMenu()
+
+    fun openIntroductionScene()
+
+    fun openNextScene()
 }

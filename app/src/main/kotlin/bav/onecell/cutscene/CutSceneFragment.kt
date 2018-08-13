@@ -56,18 +56,18 @@ class CutSceneFragment : Fragment(), CutScene.View {
                 .inject(this)
     }
 
-    private fun getDrawable(name: String): Int = resources.getIdentifier(name, "drawable", "bav.onecell")
-    private fun getBackground(name: String): Int = if (name.isEmpty()) defaultBackground else getDrawable(name)
-    private fun getLeftCharacter(name: String): Int = if (name.isEmpty()) defaultLeftCharacter else getDrawable(name)
-    private fun getRightCharacter(name: String): Int = if (name.isEmpty()) defaultRightCharacter else getDrawable(name)
+    private fun getDrawableIdentifier(name: String): Int = resources.getIdentifier(name, "drawable", "bav.onecell")
+    private fun getBackground(name: String): Int = if (name.isEmpty()) defaultBackground else getDrawableIdentifier(name)
+    private fun getLeftCharacter(name: String): Int = if (name.isEmpty()) defaultLeftCharacter else getDrawableIdentifier(name)
+    private fun getRightCharacter(name: String): Int = if (name.isEmpty()) defaultRightCharacter else getDrawableIdentifier(name)
 
     private fun parseArguments(arguments: Bundle?) {
         arguments?.let {
             try {
                 val info = JSONObject(it.getString(INFO_JSON))
-                defaultBackground = getDrawable(info.getString(BACKGROUND))
-                defaultLeftCharacter = getDrawable(info.getString(LEFT))
-                defaultRightCharacter = getDrawable(info.getString(RIGHT))
+                defaultBackground = getDrawableIdentifier(info.getString(BACKGROUND))
+                defaultLeftCharacter = getDrawableIdentifier(info.getString(LEFT))
+                defaultRightCharacter = getDrawableIdentifier(info.getString(RIGHT))
                 val framesArray = info.getJSONArray(FRAMES)
                 for (i in 0 until framesArray.length()) {
                     val data = framesArray.getJSONObject(i)
@@ -91,8 +91,12 @@ class CutSceneFragment : Fragment(), CutScene.View {
     }
 
     private fun showNextFrame() {
-        if (currentFrameIndex == frames.size - 1) return
-        showFrame(++currentFrameIndex)
+        if (currentFrameIndex == frames.size - 1) {
+            presenter.openNextScene()
+        }
+        else {
+            showFrame(++currentFrameIndex)
+        }
     }
 
     private fun showPreviousFrame() {

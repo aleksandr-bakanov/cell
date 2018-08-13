@@ -26,8 +26,7 @@ import javax.inject.Inject
 
 class MainActivity : FragmentActivity() {
 
-    @Inject
-    lateinit var router: Router
+    @Inject lateinit var router: Router
     private val disposables: CompositeDisposable = CompositeDisposable()
 
     companion object {
@@ -79,7 +78,7 @@ class MainActivity : FragmentActivity() {
         }
         supportFragmentManager.beginTransaction()
                 .replace(R.id.holder, fragment)
-                .addToBackStack(null)
+                //.addToBackStack(null)
                 .commit()
     }
 
