@@ -32,6 +32,7 @@ class BattleEngine(
     private var battleFieldSize: Int = 0
     private val battleState = BattleFieldState()
     private val battleFieldSnapshots = mutableListOf<BattleFieldSnapshot>()
+    private var currentSnapshot = BattleFieldSnapshot()
     private val snapshotCount = PublishSubject.create<Int>()
 
     fun initialize(cellIndexes: List<Int>) {
@@ -52,8 +53,7 @@ class BattleEngine(
 
         moveCellsToTheirInitialPosition()
 
-        saveSnapshot()
-        view.updateBattleView()
+        saveCellsAndCorpsesToSnapshot()
 
         evaluateBattle()
     }
@@ -92,17 +92,25 @@ class BattleEngine(
         battleRoundSteps.add(action)
     }
 
-    private fun saveSnapshot() {
-        val snapshot = BattleFieldSnapshot()
-        // TODO: save only viewable data (i.e. rules doesn't need to be cloned)
+    private fun createNextSnapshot() {
+        currentSnapshot = BattleFieldSnapshot()
+    }
+
+    private fun saveCellsAndCorpsesToSnapshot() {
+        // TODO: save only viewable data (i.e. rules aren't need to be cloned)
         for (c in cells) {
-            snapshot.cells.add(c.clone())
+            currentSnapshot.cells.add(c.clone())
         }
         for (c in corpses) {
-            snapshot.corpses.add(c.clone())
+            currentSnapshot.corpses.add(c.clone())
         }
-        battleFieldSnapshots.add(snapshot)
+    }
+
+    private fun saveSnapshot() {
+        battleFieldSnapshots.add(currentSnapshot)
         snapshotCount.onNext(battleFieldSnapshots.size)
+        createNextSnapshot()
+        saveCellsAndCorpsesToSnapshot()
     }
 
     private fun moveCellsToTheirInitialPosition() {
@@ -162,7 +170,8 @@ class BattleEngine(
 
     private fun applyCellLogic(index: Int, cell: Cell) {
         correctBattleStateForCell(index)
-        cell.applyCellLogic(battleState)
+        val performedAction = cell.applyCellLogic(battleState)
+        currentSnapshot.cellsActions.add(performedAction)
     }
 
     private fun correctBattleStateForCell(index: Int) {
@@ -188,6 +197,7 @@ class BattleEngine(
     private fun moveCells() {
         // Move cells
         battleState.directions.forEachIndexed { index, direction ->
+            currentSnapshot.movingDirections.add(direction)
             cells[index].data.origin = hexMath.add(cells[index].data.origin, hexMath.getHexByDirection(direction))
         }
     }
@@ -273,6 +283,7 @@ class BattleEngine(
                     hexesToRemove.add(entry.key)
                 }
             }
+            currentSnapshot.hexesToRemove[index].addAll(hexesToRemove)
             if (hexesToRemove.isNotEmpty()) {
                 hexesToRemove.forEach { cell.data.hexes.remove(it) }
                 // If connectivity of life and energy hexes has been broken then cell dies
@@ -317,6 +328,7 @@ class BattleEngine(
     }
 
     private val calculateDamages = {
+        for (i in 0 until cells.size) { currentSnapshot.hexesToRemove.add(mutableListOf()) }
         checkIntersections()
         checkNeighboring()
     }

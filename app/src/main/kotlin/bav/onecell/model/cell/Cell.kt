@@ -1,5 +1,6 @@
 package bav.onecell.model.cell
 
+import bav.onecell.model.cell.logic.Action
 import bav.onecell.model.cell.logic.BattleFieldState
 import bav.onecell.model.hexes.Hex
 import bav.onecell.model.hexes.HexMath
@@ -247,13 +248,22 @@ class Cell(private val hexMath: HexMath,
         data.hexes = newHexes
     }
 
-    fun applyCellLogic(state: BattleFieldState) {
+    /**
+     * Applies cell's logic
+     *
+     * @param state Current state of battle from this cell point of view
+     * @return Action to be performed
+     */
+    fun applyCellLogic(state: BattleFieldState): Action? {
+        var action: Action? = null
         for (index in 0 until data.rules.size) {
             val rule = data.rules[index]
             if (rule.check(state)) {
                 rule.action.perform(this)
+                action = rule.action
                 break
             }
         }
+        return action
     }
 }
