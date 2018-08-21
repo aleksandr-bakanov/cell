@@ -1,17 +1,12 @@
 package bav.onecell.battle
 
-import bav.onecell.model.BattleFieldSnapshot
-import bav.onecell.model.hexes.Hex
+import bav.onecell.model.BattleInfo
 import io.reactivex.Observable
 
 interface Battle {
 
     interface View {
-        fun setBackgroundFieldRadius(radius: Int)
         fun updateBattleView(snapshotIndex: Int = 0)
-        fun setRing(ring: List<Hex>)
-        fun reportBattleEnd()
-        fun setSnapshots(snapshots: List<BattleFieldSnapshot>)
     }
 
     interface Presenter {
@@ -24,6 +19,6 @@ interface Battle {
 
         fun finishBattle()
 
-        fun snapshotsCounter(): Observable<Int>
+        fun battleResultsProvider(): Observable<BattleInfo>
     }
 }

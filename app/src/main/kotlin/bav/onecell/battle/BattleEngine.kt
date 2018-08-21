@@ -1,6 +1,7 @@
 package bav.onecell.battle
 
 import bav.onecell.model.BattleFieldSnapshot
+import bav.onecell.model.BattleInfo
 import bav.onecell.model.GameRules
 import bav.onecell.model.RepositoryContract
 import bav.onecell.model.cell.Cell
@@ -17,7 +18,6 @@ import kotlin.math.atan2
 import kotlin.math.round
 
 class BattleEngine(
-        private val view: Battle.View,
         private val hexMath: HexMath,
         private val gameRules: GameRules,
         private val cellRepository: RepositoryContract.CellRepo) {
@@ -26,17 +26,45 @@ class BattleEngine(
         private const val TAG = "BattleEngine"
     }
 
-    private val battleRoundSteps: Queue<() -> Unit> = LinkedList<() -> Unit>()
     private val cells = mutableListOf<Cell>()
     private val corpses = mutableListOf<Cell>()
     private var battleFieldSize: Int = 0
     private val battleState = BattleFieldState()
     private val battleFieldSnapshots = mutableListOf<BattleFieldSnapshot>()
-    private var currentSnapshot = BattleFieldSnapshot()
-    private val snapshotCount = PublishSubject.create<Int>()
+    private lateinit var currentSnapshot: BattleFieldSnapshot
+    val battleResultProvider = PublishSubject.create<BattleInfo>()
+
+    //region Partial round steps
+    private val battleRoundSteps: Queue<() -> Unit> = LinkedList<() -> Unit>()
+
+    private lateinit var firstStep: () -> Unit
+
+    private val calculateBattleState = { calculateBattleState() }
+
+    private val applyCellsLogic = { cells.forEachIndexed { index, cell -> applyCellLogic(index, cell) } }
+
+    private val moveCells = { moveCells() }
+
+    private val calculateDamages = {
+        for (i in 0 until cells.size) { currentSnapshot.hexesToRemove.add(mutableListOf()) }
+        checkIntersections()
+        checkNeighboring()
+    }
+
+    private val checkWhetherBattleEnds = {
+        if (isBattleOver()) {
+            saveSnapshot()
+            battleResultProvider.onNext(BattleInfo(battleFieldSnapshots))
+        }
+    }
+    //endregion
+
+    init {
+        initializeBattleSteps()
+    }
 
     fun initialize(cellIndexes: List<Int>) {
-        initializeBattleSteps()
+        clearEngine()
 
         // Make copy of cells
         for (i in cellIndexes) cellRepository.getCell(i)?.let {
@@ -48,17 +76,19 @@ class BattleEngine(
 
         battleFieldSize = round(cells.map { it.size() }.sum() * 1.5).toInt()
 
-        view.setBackgroundFieldRadius(battleFieldSize)
-        view.setSnapshots(battleFieldSnapshots)
-
         moveCellsToTheirInitialPosition()
-
         saveCellsAndCorpsesToSnapshot()
-
         evaluateBattle()
     }
 
     //region Private methods
+    private fun clearEngine() {
+        cells.clear()
+        corpses.clear()
+        battleFieldSnapshots.clear()
+        currentSnapshot = BattleFieldSnapshot()
+    }
+
     private fun initializeBattleSteps() {
         firstStep = calculateBattleState
         for (action in arrayOf(
@@ -108,7 +138,6 @@ class BattleEngine(
 
     private fun saveSnapshot() {
         battleFieldSnapshots.add(currentSnapshot)
-        snapshotCount.onNext(battleFieldSnapshots.size)
         createNextSnapshot()
         saveCellsAndCorpsesToSnapshot()
     }
@@ -123,7 +152,6 @@ class BattleEngine(
                 hex = hexMath.getHexNeighbor(hex, i)
             }
         }
-        view.setRing(ring)
         val step = ring.size / cells.size
         cells.forEachIndexed { index, cell -> cell.data.origin = ring[index * step] }
     }
@@ -158,7 +186,7 @@ class BattleEngine(
             // Find direction to move
             // Origin point
             val op = hexMath.hexToPixel(Layout.DUMMY, ourHex)
-            // Nearest hex point
+            // Nearest enemy hex point
             val nehp = hexMath.hexToPixel(Layout.DUMMY, nearestEnemyHex)
             // Angle direction to enemy hex
             val angle = atan2(nehp.y.toFloat() - op.y.toFloat(), nehp.x.toFloat() - op.x.toFloat())
@@ -310,33 +338,5 @@ class BattleEngine(
     }
 
     private fun isBattleOver(): Boolean = cells.size <= 1
-    //endregion
-
-    //region Partial round steps
-    private lateinit var firstStep: () -> Unit
-
-    private val calculateBattleState = {
-        calculateBattleState()
-    }
-
-    private val applyCellsLogic = {
-        cells.forEachIndexed { index, cell -> applyCellLogic(index, cell) }
-    }
-
-    private val moveCells = {
-        moveCells()
-    }
-
-    private val calculateDamages = {
-        for (i in 0 until cells.size) { currentSnapshot.hexesToRemove.add(mutableListOf()) }
-        checkIntersections()
-        checkNeighboring()
-    }
-
-    private val checkWhetherBattleEnds = {
-        if (isBattleOver()) {
-            view.reportBattleEnd()
-        }
-    }
     //endregion
 }

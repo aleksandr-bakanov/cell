@@ -4,7 +4,7 @@ buildscript {
     ext.android_support_version = '27.1.1'
     ext.cicerone_version = '3.0.0'
     ext.dagger_version = '2.14.1'
-    ext.kotlin_version = '1.2.51'
+    ext.kotlin_version = '1.2.61'
     ext.kotlinx_coroutines_version = '0.22.5'
 
     repositories {

@@ -11,7 +11,6 @@ import android.view.View
 import bav.onecell.R
 import bav.onecell.common.view.CanvasView
 import bav.onecell.model.BattleFieldSnapshot
-import bav.onecell.model.cell.Cell
 import bav.onecell.model.hexes.Hex
 
 class BattleCanvasView(context: Context, attributeSet: AttributeSet) : CanvasView(context, attributeSet) {
@@ -26,7 +25,7 @@ class BattleCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
     private val corpseLifePaint = Paint()
     private val corpseEnergyPaint = Paint()
     private val corpseAttackPaint = Paint()
-    lateinit var snapshots: List<BattleFieldSnapshot>
+    var snapshots: List<BattleFieldSnapshot>? = null
     var currentSnapshotIndex: Int = 0
 
     init {
@@ -51,13 +50,16 @@ class BattleCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
 
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
-        if (currentSnapshotIndex >= 0 && currentSnapshotIndex < snapshots.size) {
-            val snapshot = snapshots[currentSnapshotIndex]
-            snapshot.corpses.forEach { corpse ->
-                drawUtils.drawCell(canvas, corpse, corpseLifePaint, corpseEnergyPaint, corpseAttackPaint, layout)
+        snapshots?.let {
+            if (currentSnapshotIndex >= 0 && currentSnapshotIndex < it.size) {
+                val snapshot = it[currentSnapshotIndex]
+                snapshot.corpses.forEach { corpse ->
+                    drawUtils.drawCell(canvas, corpse, corpseLifePaint, corpseEnergyPaint, corpseAttackPaint, layout)
+                }
+                snapshot.cells.forEach { cell -> drawUtils.drawCell(canvas, cell, layout = layout) }
             }
-            snapshot.cells.forEach { cell -> drawUtils.drawCell(canvas, cell, layout = layout) }
         }
+
     }
 
     private fun drawRing(canvas: Canvas?) {

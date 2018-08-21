@@ -61,7 +61,6 @@ obj/
 *.iws
 /out/
 .idea/copyright/
-.idea/codeStyles/codeStyleConfig.xml
 .idea/markdown-navigator.xml
 .idea/markdown-navigator
 
