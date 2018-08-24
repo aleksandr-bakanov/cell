@@ -55,7 +55,9 @@ class EditorCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
 
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
-        drawUtils.drawHexes(canvas, cell, tipHexes, tipPaint, layout)
-        drawUtils.drawCell(canvas, cell, layout = layout)
+        cell?.let {
+            drawUtils.drawHexes(canvas, it.data.origin, tipHexes, tipPaint, layout)
+            drawUtils.drawCell(canvas, it, layout = layout)
+        }
     }
 }

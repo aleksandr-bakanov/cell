@@ -25,7 +25,7 @@ class EditorPresenter(
 
     override fun initialize(cellIndex: Int) {
         cell = cellRepository.getCell(cellIndex)
-        backgroundFieldRadiusProvider.onNext(5)
+        backgroundFieldRadiusProvider.onNext(2)
         cellProvider.onNext(cell!!)
     }
 
@@ -69,6 +69,7 @@ class EditorPresenter(
 
     override fun getTipHexes(type: Hex.Type): Collection<Hex> {
         cell?.let { c ->
+            c.updateOutlineHexes()
             return c.getOutlineHexes().filter { hex -> gameRules.isAllowedToAddHexIntoCell(c, hex.withType(type)) }
         }
         return mutableSetOf()

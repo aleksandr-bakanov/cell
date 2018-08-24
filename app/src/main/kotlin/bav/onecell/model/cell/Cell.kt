@@ -22,6 +22,9 @@ class Cell(private val hexMath: HexMath,
         }
     }
 
+    data class AnimationData(var rotation: Float = 0f)
+    val animationData = AnimationData()
+
     companion object {
         const val TAG = "Cell"
     }
@@ -62,7 +65,7 @@ class Cell(private val hexMath: HexMath,
         updateOutlineHexes()
     }
 
-    fun contains(hex: Hex): Boolean = data.hexes[hex.hashCode()] != null
+    fun contains(hex: Hex): Boolean = data.hexes.containsKey(hex.hashCode())
 
     fun evaluateCellHexesPower() {
         data.hexes.values.forEach { hex ->

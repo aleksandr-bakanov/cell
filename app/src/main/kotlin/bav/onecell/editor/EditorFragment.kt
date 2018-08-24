@@ -1,5 +1,8 @@
 package bav.onecell.editor
 
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
+import android.animation.ValueAnimator
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
@@ -21,6 +24,7 @@ import kotlinx.android.synthetic.main.fragment_editor.radioButtonLifeCell
 import kotlinx.android.synthetic.main.fragment_editor.radioButtonRemoveCell
 import kotlinx.android.synthetic.main.fragment_editor.textMoney
 import javax.inject.Inject
+import kotlin.math.PI
 
 class EditorFragment : Fragment(), Editor.View {
 
@@ -98,10 +102,57 @@ class EditorFragment : Fragment(), Editor.View {
 
     private fun onCellRotateButtonClicked(view: View) {
         when (view.id) {
-            R.id.buttonRotateCellLeft -> presenter.rotateCellLeft()
-            R.id.buttonRotateCellRight -> presenter.rotateCellRight()
+            R.id.buttonRotateCellLeft -> {
+                //presenter.rotateCellLeft()
+                editorCanvasView.tipHexes = null
+                animateCellRotationLeft()
+            }
+            R.id.buttonRotateCellRight -> {
+                //presenter.rotateCellRight()
+                editorCanvasView.tipHexes = null
+                animateCellRotationRight()
+            }
         }
-        editorCanvasView.invalidate()
+    }
+
+    private fun animateCellRotationLeft() {
+        ValueAnimator.ofFloat(0f, -PI.toFloat() / 3f).apply {
+            duration = 1000
+            addUpdateListener {
+                editorCanvasView.cell?.animationData?.rotation = it.animatedValue as Float
+                editorCanvasView.invalidate()
+            }
+            addListener(object: AnimatorListenerAdapter() {
+                override fun onAnimationEnd(animation: Animator?) {
+                    super.onAnimationEnd(animation)
+                    editorCanvasView.cell?.animationData?.rotation = 0f
+                    presenter.rotateCellLeft()
+                    editorCanvasView.tipHexes = presenter.getTipHexes(editorCanvasView.selectedCellType)
+                    editorCanvasView.invalidate()
+                }
+            })
+            start()
+        }
+    }
+
+    private fun animateCellRotationRight() {
+        ValueAnimator.ofFloat(0f, PI.toFloat() / 3f).apply {
+            duration = 1000
+            addUpdateListener {
+                editorCanvasView.cell?.animationData?.rotation = it.animatedValue as Float
+                editorCanvasView.invalidate()
+            }
+            addListener(object: AnimatorListenerAdapter() {
+                override fun onAnimationEnd(animation: Animator?) {
+                    super.onAnimationEnd(animation)
+                    editorCanvasView.cell?.animationData?.rotation = 0f
+                    presenter.rotateCellRight()
+                    editorCanvasView.tipHexes = presenter.getTipHexes(editorCanvasView.selectedCellType)
+                    editorCanvasView.invalidate()
+                }
+            })
+            start()
+        }
     }
     //endregion
 

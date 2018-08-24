@@ -48,7 +48,7 @@ class DrawUtils(private val hexMath: HexMath, context: Context) {
 
         cellOutlinePaint.style = Paint.Style.STROKE
         cellOutlinePaint.color = Color.BLACK
-        cellOutlinePaint.strokeWidth = 3.0f
+        cellOutlinePaint.strokeWidth = 5.0f
         cellOutlinePaint.strokeJoin = Paint.Join.ROUND
         cellOutlinePaint.strokeCap = Paint.Cap.ROUND
     }
@@ -69,6 +69,7 @@ class DrawUtils(private val hexMath: HexMath, context: Context) {
                  aPaint: Paint = attackPaint, layout: Layout = Layout.DUMMY) {
         cell?.let {
             var paint: Paint
+            val originPoint = hexMath.hexToPixel(layout, it.data.origin)
             for ((_, hex) in it.data.hexes) {
                 paint = when (hex.type) {
                     Hex.Type.LIFE -> lPaint
@@ -76,7 +77,7 @@ class DrawUtils(private val hexMath: HexMath, context: Context) {
                     Hex.Type.ATTACK -> aPaint
                     else -> gridPaint
                 }
-                val path: Path = getHexPath(layout, hexMath.add(hex, it.data.origin))
+                val path: Path = getHexPath(layout, hexMath.add(hex, it.data.origin), originPoint, it.animationData.rotation)
                 path.fillType = Path.FillType.EVEN_ODD
                 canvas?.drawPath(path, paint)
                 canvas?.drawPath(path, strokePaint)
@@ -88,25 +89,42 @@ class DrawUtils(private val hexMath: HexMath, context: Context) {
         }
     }
 
-    fun drawHexes(canvas: Canvas?, cell: Cell?, hexes: Collection<Hex>?, paint: Paint, layout: Layout = Layout.DUMMY) {
-        if (cell != null && hexes != null) {
-            for (hex in hexes) {
-                val path: Path = getHexPath(layout, hexMath.add(hex, cell.data.origin))
-                path.fillType = Path.FillType.EVEN_ODD
-                canvas?.drawPath(path, paint)
-            }
+    fun drawHexes(canvas: Canvas?, origin: Hex, hexes: Collection<Hex>?, paint: Paint, layout: Layout = Layout.DUMMY) {
+        hexes?.forEach { hex ->
+            val path: Path = getHexPath(layout, hexMath.add(hex, origin))
+            path.fillType = Path.FillType.EVEN_ODD
+            canvas?.drawPath(path, paint)
         }
     }
 
-    private fun getHexPath(layout: Layout, hex: Hex): Path {
+    private fun getHexPath(layout: Layout, hex: Hex, rotateAround: Point? = null, rotation: Float = 0f): Path {
         val hexCorners: ArrayList<Point> = hexMath.poligonCorners(layout, hex)
+        rotateAround?.let { rotatePoints(hexCorners, it, rotation) }
+
         val path = Path()
         path.moveTo(hexCorners[0].x.toFloat(), hexCorners[0].y.toFloat())
         for (i in 1..(hexCorners.size - 1)) {
             path.lineTo(hexCorners[i].x.toFloat(), hexCorners[i].y.toFloat())
         }
         path.lineTo(hexCorners[0].x.toFloat(), hexCorners[0].y.toFloat())
+
         return path
+    }
+
+    private fun rotatePoints(points: List<Point>, origin: Point, angle: Float) {
+        val s = sin(angle)
+        val c = cos(angle)
+        points.forEach { p ->
+            // Translate point back to origin
+            p.x -= origin.x
+            p.y -= origin.y
+            // Rotate point
+            val newX = p.x * c - p.y * s
+            val newY = p.x * s + p.y * c
+            // Translate point back
+            p.x = newX + origin.x
+            p.y = newY + origin.y
+        }
     }
 
     private fun drawOriginMarker(canvas: Canvas?, cell: Cell, layout: Layout) {
@@ -150,6 +168,7 @@ class DrawUtils(private val hexMath: HexMath, context: Context) {
         val lines = mutableListOf<Pair<Point, Point>>()
         cell.data.hexes.forEach {
             val hexCorners: ArrayList<Point> = hexMath.poligonCorners(layout, hexMath.add(it.value, cell.data.origin))
+            rotatePoints(hexCorners, hexMath.hexToPixel(layout, cell.data.origin), cell.animationData.rotation)
             for (direction in 0..5) {
                 val neighbor = hexMath.getHexNeighbor(it.value, direction)
                 if (!cell.data.hexes.values.contains(neighbor)) {
