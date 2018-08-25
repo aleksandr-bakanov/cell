@@ -1,5 +1,6 @@
 package bav.onecell.battle
 
+import android.animation.ValueAnimator
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
@@ -10,6 +11,7 @@ import android.widget.Toast
 import bav.onecell.OneCellApplication
 import bav.onecell.R
 import bav.onecell.common.view.DrawUtils
+import bav.onecell.model.cell.Cell
 import bav.onecell.model.hexes.HexMath
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -55,7 +57,7 @@ class BattleFragment : Fragment(), Battle.View {
                 val next = battleCanvasView.currentSnapshotIndex + 1
                 if (next < it.size) {
                     seekBar.progress = next
-                    updateBattleView(next)
+                    animateOneSnapshot(next)
                 }
             }
 
@@ -64,7 +66,7 @@ class BattleFragment : Fragment(), Battle.View {
             val previous = battleCanvasView.currentSnapshotIndex - 1
             if (previous >= 0) {
                 seekBar.progress = previous
-                updateBattleView(previous)
+                animateOneSnapshot(previous)
             }
         }
 
@@ -87,13 +89,13 @@ class BattleFragment : Fragment(), Battle.View {
                         })
 
         presenter.initialize(arguments?.getIntegerArrayList(EXTRA_CELL_INDEXES) ?: arrayListOf())
+        battleCanvasView.backgroundFieldRadius = 5
     }
 
     override fun onDestroyView() {
         disposables.dispose()
         super.onDestroyView()
     }
-
     //endregion
 
     //region Private methods
@@ -109,6 +111,43 @@ class BattleFragment : Fragment(), Battle.View {
             buttonFinishBattle.visibility = View.VISIBLE
         }
     }
+
+    private fun animateOneSnapshot(snapshotIndex: Int) {
+        battleCanvasView.snapshots?.let {
+            val snapshot = it[snapshotIndex]
+
+            // Draw initial state
+            updateBattleView(snapshotIndex)
+
+            // Apply cell actions
+
+
+            // Apply moving animations for every living cell
+            snapshot.cells.forEachIndexed { index, cell ->
+                if (index >= 0 && index < snapshot.movingDirections.size)
+                    animateCellMoving(cell, snapshot.movingDirections[index])
+            }
+
+            // Remove hexes destroyed at this round
+
+        }
+    }
+
+    private fun animateCellMoving(cell: Cell, direction: Int) {
+        // Clear cell moving fraction
+        cell.animationData.movingFraction = 0f
+        // Save move direction
+        cell.animationData.moveDirection = direction
+        // Start animation
+        ValueAnimator.ofFloat(0f, 1f).apply {
+            duration = CELL_MOVING_DURATION_MS
+            addUpdateListener {
+                cell.animationData.movingFraction = it.animatedValue as Float
+                battleCanvasView.invalidate()
+            }
+            start()
+        }
+    }
     //endregion
 
     //region Overridden methods
@@ -121,6 +160,8 @@ class BattleFragment : Fragment(), Battle.View {
     companion object {
         private const val TAG = "BattleFragment"
         const val EXTRA_CELL_INDEXES = "cell_indexes"
+
+        const val CELL_MOVING_DURATION_MS: Long = 1000
 
         fun newInstance(bundle: Bundle?): BattleFragment {
             val fragment = BattleFragment()

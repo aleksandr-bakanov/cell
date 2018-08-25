@@ -4,6 +4,7 @@ import bav.onecell.model.cell.logic.Action
 import bav.onecell.model.cell.logic.BattleFieldState
 import bav.onecell.model.hexes.Hex
 import bav.onecell.model.hexes.HexMath
+import bav.onecell.model.hexes.Point
 import io.reactivex.Observable
 import io.reactivex.subjects.BehaviorSubject
 import kotlin.math.abs
@@ -22,7 +23,8 @@ class Cell(private val hexMath: HexMath,
         }
     }
 
-    data class AnimationData(var rotation: Float = 0f)
+    data class AnimationData(var rotation: Float = 0f,
+                             var moveDirection: Int = 0, var movingFraction: Float = 0f)
     val animationData = AnimationData()
 
     companion object {

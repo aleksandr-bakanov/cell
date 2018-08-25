@@ -77,7 +77,9 @@ class DrawUtils(private val hexMath: HexMath, context: Context) {
                     Hex.Type.ATTACK -> aPaint
                     else -> gridPaint
                 }
-                val path: Path = getHexPath(layout, hexMath.add(hex, it.data.origin), originPoint, it.animationData.rotation)
+                val path: Path = getHexPath(layout, hexMath.add(hex, it.data.origin), originPoint,
+                                            it.animationData.rotation, it.animationData.moveDirection,
+                                            it.animationData.movingFraction)
                 path.fillType = Path.FillType.EVEN_ODD
                 canvas?.drawPath(path, paint)
                 canvas?.drawPath(path, strokePaint)
@@ -97,9 +99,13 @@ class DrawUtils(private val hexMath: HexMath, context: Context) {
         }
     }
 
-    private fun getHexPath(layout: Layout, hex: Hex, rotateAround: Point? = null, rotation: Float = 0f): Path {
+    private fun getHexPath(layout: Layout, hex: Hex, rotateAround: Point? = null, rotation: Float = 0f,
+                           movingDirection: Int = 0, movingFraction: Float = 0f): Path {
         val hexCorners: ArrayList<Point> = hexMath.poligonCorners(layout, hex)
+
+        // Rotation and moving offset
         rotateAround?.let { rotatePoints(hexCorners, it, rotation) }
+        if (movingFraction > 0f) offsetPoints(hexCorners, movingDirection, movingFraction, layout)
 
         val path = Path()
         path.moveTo(hexCorners[0].x.toFloat(), hexCorners[0].y.toFloat())
@@ -124,6 +130,14 @@ class DrawUtils(private val hexMath: HexMath, context: Context) {
             // Translate point back
             p.x = newX + origin.x
             p.y = newY + origin.y
+        }
+    }
+
+    private fun offsetPoints(points: List<Point>, direction: Int, fraction: Float, layout: Layout) {
+        val offsetPoint = hexMath.hexToPixel(layout, hexMath.getHexByDirection(direction))
+        points.forEach { p ->
+            p.x += (offsetPoint.x - layout.origin.x) * fraction
+            p.y += (offsetPoint.y - layout.origin.y) * fraction
         }
     }
 
@@ -168,7 +182,12 @@ class DrawUtils(private val hexMath: HexMath, context: Context) {
         val lines = mutableListOf<Pair<Point, Point>>()
         cell.data.hexes.forEach {
             val hexCorners: ArrayList<Point> = hexMath.poligonCorners(layout, hexMath.add(it.value, cell.data.origin))
+
+            // Rotate and offset
             rotatePoints(hexCorners, hexMath.hexToPixel(layout, cell.data.origin), cell.animationData.rotation)
+            if (cell.animationData.movingFraction > 0f)
+                offsetPoints(hexCorners, cell.animationData.moveDirection, cell.animationData.movingFraction, layout)
+
             for (direction in 0..5) {
                 val neighbor = hexMath.getHexNeighbor(it.value, direction)
                 if (!cell.data.hexes.values.contains(neighbor)) {
