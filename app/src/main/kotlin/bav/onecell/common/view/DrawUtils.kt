@@ -5,6 +5,7 @@ import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Path
+import android.graphics.Typeface
 import android.support.v4.content.ContextCompat
 import bav.onecell.R
 import bav.onecell.model.cell.Cell
@@ -21,12 +22,20 @@ import kotlin.math.sin
 
 class DrawUtils(private val hexMath: HexMath, context: Context) {
 
+    companion object {
+        private const val POWER_TEXT_SIZE = 64f
+    }
+
     private val gridPaint = Paint()
     private val lifePaint = Paint()
     private val energyPaint = Paint()
     private val attackPaint = Paint()
     private val strokePaint = Paint()
     private val cellOutlinePaint = Paint()
+    private val powerTextPaint = Paint()
+    private val powerLifeTextPaint = Paint()
+    private val powerEnergyTextPaint = Paint()
+    private val powerAttackTextPaint = Paint()
 
     init {
         gridPaint.style = Paint.Style.STROKE
@@ -51,6 +60,26 @@ class DrawUtils(private val hexMath: HexMath, context: Context) {
         cellOutlinePaint.strokeWidth = 5.0f
         cellOutlinePaint.strokeJoin = Paint.Join.ROUND
         cellOutlinePaint.strokeCap = Paint.Cap.ROUND
+
+        powerLifeTextPaint.color = ContextCompat.getColor(context, R.color.battleViewPowerTextLife)
+        powerLifeTextPaint.typeface = Typeface.DEFAULT_BOLD
+        powerLifeTextPaint.textSize = POWER_TEXT_SIZE
+        powerLifeTextPaint.textAlign = Paint.Align.CENTER
+
+        powerEnergyTextPaint.color = ContextCompat.getColor(context, R.color.battleViewPowerTextEnergy)
+        powerEnergyTextPaint.typeface = Typeface.DEFAULT_BOLD
+        powerEnergyTextPaint.textSize = POWER_TEXT_SIZE
+        powerEnergyTextPaint.textAlign = Paint.Align.CENTER
+
+        powerAttackTextPaint.color = ContextCompat.getColor(context, R.color.battleViewPowerTextAttack)
+        powerAttackTextPaint.typeface = Typeface.DEFAULT_BOLD
+        powerAttackTextPaint.textSize = POWER_TEXT_SIZE
+        powerAttackTextPaint.textAlign = Paint.Align.CENTER
+
+        powerTextPaint.color = Color.BLACK
+        powerTextPaint.typeface = Typeface.DEFAULT_BOLD
+        powerTextPaint.textSize = POWER_TEXT_SIZE
+        powerTextPaint.textAlign = Paint.Align.CENTER
     }
 
     fun provideLayout(canvas: Canvas?, cellSize: Int): Layout {
@@ -226,9 +255,15 @@ class DrawUtils(private val hexMath: HexMath, context: Context) {
         }
     }
 
-    fun drawCellPower(canvas: Canvas?, cell: Cell, layout: Layout, paint: Paint) {
+    fun drawCellPower(canvas: Canvas?, cell: Cell, layout: Layout) {
         cell.data.hexes.forEach {
-            drawHexPower(canvas, layout, cell, hexMath.add(cell.data.origin, it.value), it.value.power,  paint)
+            val paint = when (it.value.type) {
+                Hex.Type.LIFE -> powerLifeTextPaint
+                Hex.Type.ENERGY -> powerEnergyTextPaint
+                Hex.Type.ATTACK -> powerAttackTextPaint
+                else -> powerTextPaint
+            }
+            drawHexPower(canvas, layout, cell, hexMath.add(cell.data.origin, it.value), it.value.power, paint)
         }
     }
 

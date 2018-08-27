@@ -18,4 +18,7 @@
     <color name="battleViewCorpseLife">#08500e</color>
     <color name="battleViewCorpseEnergy">#645b09</color>
     <color name="battleViewCorpseAttack">#69190b</color>
+    <color name="battleViewPowerTextLife">#117b19</color>
+    <color name="battleViewPowerTextEnergy">#817612</color>
+    <color name="battleViewPowerTextAttack">#8e2311</color>
 </resources>

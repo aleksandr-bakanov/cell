@@ -43,7 +43,7 @@ open class CanvasView(context: Context, attributeSet: AttributeSet) : View(conte
     private val gridPaint = Paint()
     private val coordinateTextPaint = Paint()
     private val indexTextPaint = Paint()
-    protected val powerTextPaint = Paint()
+
     private var coordinateTextVerticalOffset = (layout.size.x / 10).toFloat()
 
     private var isInitialized = false
@@ -61,11 +61,6 @@ open class CanvasView(context: Context, attributeSet: AttributeSet) : View(conte
         indexTextPaint.color = Color.RED
         indexTextPaint.textSize = 48f
         indexTextPaint.textAlign = Paint.Align.CENTER
-
-        powerTextPaint.color = Color.BLACK
-        powerTextPaint.typeface = Typeface.DEFAULT_BOLD
-        powerTextPaint.textSize = 72f
-        powerTextPaint.textAlign = Paint.Align.CENTER
     }
 
     protected fun onTouchListener(view: View?, event: MotionEvent?): Boolean {
