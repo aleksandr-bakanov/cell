@@ -13,5 +13,5 @@ data class BattleFieldSnapshot(
         val cellsActions: MutableList<Action?> = mutableListOf(),
         // Cell's moving direction
         val movingDirections: MutableList<Int> = mutableListOf(),
-        // Hexes to be removed (hashes of hexes)
+        // Hexes to be removed (hashes of hexes), list can be empty
         val hexesToRemove: MutableList<MutableList<Int>> = mutableListOf())

@@ -6,7 +6,7 @@ import io.reactivex.Observable
 interface Battle {
 
     interface View {
-        fun updateBattleView(snapshotIndex: Int = 0)
+        fun drawSnapshotInitialState(snapshotIndex: Int = 0)
     }
 
     interface Presenter {

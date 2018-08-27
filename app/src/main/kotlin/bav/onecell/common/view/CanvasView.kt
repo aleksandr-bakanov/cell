@@ -43,7 +43,7 @@ open class CanvasView(context: Context, attributeSet: AttributeSet) : View(conte
     private val gridPaint = Paint()
     private val coordinateTextPaint = Paint()
     private val indexTextPaint = Paint()
-    private val powerTextPaint = Paint()
+    protected val powerTextPaint = Paint()
     private var coordinateTextVerticalOffset = (layout.size.x / 10).toFloat()
 
     private var isInitialized = false
@@ -133,18 +133,6 @@ open class CanvasView(context: Context, attributeSet: AttributeSet) : View(conte
     private fun drawCellIndex(canvas: Canvas?, cell: Cell, index: Int = 0) {
         val origin = hexMath.hexToPixel(layout, cell.data.origin)
         canvas?.drawText(index.toString(), origin.x.toFloat(), origin.y.toFloat(), indexTextPaint)
-    }
-
-    private fun drawCellPower(canvas: Canvas?, cell: Cell) {
-        cell.data.hexes.forEach {
-            drawHexPower(canvas, hexMath.add(cell.data.origin, it.value), it.value.power)
-        }
-    }
-
-    private fun drawHexPower(canvas: Canvas?, hex: Hex, power: Int) {
-        val origin = hexMath.hexToPixel(layout, hex)
-        canvas?.drawText(power.toString(), origin.x.toFloat(), origin.y.toFloat() + (layout.size.x / 2).toFloat(),
-                         powerTextPaint)
     }
 
     private fun drawHexCornerIndexes(canvas: Canvas?, hex: Hex) {

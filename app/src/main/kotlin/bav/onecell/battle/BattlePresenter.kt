@@ -17,12 +17,12 @@ class BattlePresenter(
     override fun battleResultsProvider(): PublishSubject<BattleInfo> = battleEngine.battleResultProvider
 
     override fun initialize(cellIndexes: List<Int>) {
-        view.updateBattleView()
+        view.drawSnapshotInitialState()
         battleEngine.initialize(cellIndexes)
     }
 
     override fun finishBattle() {
-        router.goBack()
+        router.goToMain()
     }
     //endregion
 }

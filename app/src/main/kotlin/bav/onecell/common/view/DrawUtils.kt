@@ -80,9 +80,18 @@ class DrawUtils(private val hexMath: HexMath, context: Context) {
                 val path: Path = getHexPath(layout, hexMath.add(hex, it.data.origin), originPoint,
                                             it.animationData.rotation, it.animationData.moveDirection,
                                             it.animationData.movingFraction)
+
+                val oldPaintAlpha = paint.alpha
+                it.animationData.hexHashesToRemove?.let { hexHashesToRemove ->
+                    if (hexHashesToRemove.contains(hex.hashCode())) {
+                        paint.alpha = 255 - (it.animationData.fadeFraction * 255f).toInt()
+                    }
+                }
+
                 path.fillType = Path.FillType.EVEN_ODD
                 canvas?.drawPath(path, paint)
                 canvas?.drawPath(path, strokePaint)
+                paint.alpha = oldPaintAlpha
             }
             // Draw origin marker
             drawOriginMarker(canvas, it, layout)
@@ -144,6 +153,7 @@ class DrawUtils(private val hexMath: HexMath, context: Context) {
     private fun drawOriginMarker(canvas: Canvas?, cell: Cell, layout: Layout) {
         // Origin point
         val o = hexMath.hexToPixel(layout, cell.data.origin)
+        offsetPoints(listOf(o), cell.animationData.moveDirection, cell.animationData.movingFraction, layout)
 
         val angle = (-PI / 2) + (PI / 3) * cell.data.direction.ordinal
         // tail point
@@ -154,20 +164,26 @@ class DrawUtils(private val hexMath: HexMath, context: Context) {
         var lp = Point(layout.size.x / 3, -layout.size.x / 3)
         // right point
         var rp = Point(layout.size.x / 3, layout.size.x / 3)
+        
+        val s = sin(angle)
+        val c = cos(angle)
 
         // Rotate arrow points
-        tp = Point(tp.x * cos(angle) - tp.y * sin(angle), tp.x * sin(angle) + tp.y * cos(angle))
-        hp = Point(hp.x * cos(angle) - hp.y * sin(angle), hp.x * sin(angle) + hp.y * cos(angle))
-        lp = Point(lp.x * cos(angle) - lp.y * sin(angle), lp.x * sin(angle) + lp.y * cos(angle))
-        rp = Point(rp.x * cos(angle) - rp.y * sin(angle), rp.x * sin(angle) + rp.y * cos(angle))
+        tp = Point(tp.x * c - tp.y * s, tp.x * s + tp.y * c)
+        hp = Point(hp.x * c - hp.y * s, hp.x * s + hp.y * c)
+        lp = Point(lp.x * c - lp.y * s, lp.x * s + lp.y * c)
+        rp = Point(rp.x * c - rp.y * s, rp.x * s + rp.y * c)
+        
+        val oxf = o.x.toFloat()
+        val oyf = o.y.toFloat()
 
         // Draw lines
-        canvas?.drawLine(tp.x.toFloat() + o.x.toFloat(), tp.y.toFloat() + o.y.toFloat(),
-                         hp.x.toFloat() + o.x.toFloat(), hp.y.toFloat() + o.y.toFloat(), strokePaint)
-        canvas?.drawLine(lp.x.toFloat() + o.x.toFloat(), lp.y.toFloat() + o.y.toFloat(),
-                         hp.x.toFloat() + o.x.toFloat(), hp.y.toFloat() + o.y.toFloat(), strokePaint)
-        canvas?.drawLine(rp.x.toFloat() + o.x.toFloat(), rp.y.toFloat() + o.y.toFloat(),
-                         hp.x.toFloat() + o.x.toFloat(), hp.y.toFloat() + o.y.toFloat(), strokePaint)
+        canvas?.drawLine(tp.x.toFloat() + oxf, tp.y.toFloat() + oyf,
+                         hp.x.toFloat() + oxf, hp.y.toFloat() + oyf, strokePaint)
+        canvas?.drawLine(lp.x.toFloat() + oxf, lp.y.toFloat() + oyf,
+                         hp.x.toFloat() + oxf, hp.y.toFloat() + oyf, strokePaint)
+        canvas?.drawLine(rp.x.toFloat() + oxf, rp.y.toFloat() + oyf,
+                         hp.x.toFloat() + oxf, hp.y.toFloat() + oyf, strokePaint)
     }
 
     private fun drawCellOutline(canvas: Canvas?, cell: Cell, layout: Layout) {
@@ -208,5 +224,18 @@ class DrawUtils(private val hexMath: HexMath, context: Context) {
             5 -> Pair(corners[3], corners[4])
             else -> Pair(corners[0], corners[0])
         }
+    }
+
+    fun drawCellPower(canvas: Canvas?, cell: Cell, layout: Layout, paint: Paint) {
+        cell.data.hexes.forEach {
+            drawHexPower(canvas, layout, cell, hexMath.add(cell.data.origin, it.value), it.value.power,  paint)
+        }
+    }
+
+    private fun drawHexPower(canvas: Canvas?, layout: Layout, cell: Cell, hex: Hex, power: Int, paint: Paint) {
+        val origin = hexMath.hexToPixel(layout, hex)
+        offsetPoints(listOf(origin), cell.animationData.moveDirection, cell.animationData.movingFraction, layout)
+        canvas?.drawText(power.toString(), origin.x.toFloat(), origin.y.toFloat() + (layout.size.x / 2).toFloat(),
+                         paint)
     }
 }

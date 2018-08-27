@@ -1,11 +1,14 @@
 package bav.onecell.battle
 
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
 import android.animation.ValueAnimator
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.animation.AnimatorSet
 import android.widget.SeekBar
 import android.widget.Toast
 import bav.onecell.OneCellApplication
@@ -22,6 +25,7 @@ import kotlinx.android.synthetic.main.fragment_battle.buttonNextStep
 import kotlinx.android.synthetic.main.fragment_battle.buttonPreviousStep
 import kotlinx.android.synthetic.main.fragment_battle.seekBar
 import javax.inject.Inject
+import android.util.Log
 
 class BattleFragment : Fragment(), Battle.View {
 
@@ -34,10 +38,9 @@ class BattleFragment : Fragment(), Battle.View {
     private val seekBarListener = object : SeekBar.OnSeekBarChangeListener {
         override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
             if (fromUser) {
-                updateBattleView(progress)
+                animateOneSnapshot(progress)
             }
         }
-
         override fun onStartTrackingTouch(seekBar: SeekBar?) {}
         override fun onStopTrackingTouch(seekBar: SeekBar?) {}
     }
@@ -85,6 +88,7 @@ class BattleFragment : Fragment(), Battle.View {
                             seekBar.max = it.snapshots.size - 1
                             battleCanvasView.snapshots = it.snapshots
                             battleCanvasView.invalidate()
+                            animateOneSnapshot(0)
                             reportBattleEnd()
                         })
 
@@ -117,41 +121,88 @@ class BattleFragment : Fragment(), Battle.View {
             val snapshot = it[snapshotIndex]
 
             // Draw initial state
-            updateBattleView(snapshotIndex)
+            drawSnapshotInitialState(snapshotIndex)
+
 
             // Apply cell actions
 
 
             // Apply moving animations for every living cell
+            val movingAnimators = mutableListOf<Animator>()
             snapshot.cells.forEachIndexed { index, cell ->
                 if (index >= 0 && index < snapshot.movingDirections.size)
-                    animateCellMoving(cell, snapshot.movingDirections[index])
+                    movingAnimators.add(animateCellMoving(cell, snapshot.movingDirections[index]))
             }
+            val movingAnimatorSet = AnimatorSet()
+            movingAnimatorSet.playTogether(movingAnimators)
 
             // Remove hexes destroyed at this round
+            val hexRemovalAnimators = mutableListOf<Animator>()
+            snapshot.cells.forEachIndexed { index, cell ->
+                if (index >= 0 && index < snapshot.hexesToRemove.size)
+                    hexRemovalAnimators.add(animateDeadHexesRemoval(cell, snapshot.hexesToRemove[index]))
+            }
+            val hexRemovalAnimatorSet = AnimatorSet()
+            hexRemovalAnimatorSet.playTogether(hexRemovalAnimators)
 
+            // Play snapshot
+            val snapshotAnimators = AnimatorSet()
+            snapshotAnimators.play(movingAnimatorSet).before(hexRemovalAnimatorSet)
+            snapshotAnimators.addListener(object : AnimatorListenerAdapter() {
+                override fun onAnimationEnd(animation: Animator?) {
+                    snapshot.cells.forEach { c ->
+                        with (c.animationData) {
+                            movingFraction = 0f
+                            fadeFraction = 0f
+                        }
+                    }
+                    if (snapshotIndex + 1 < it.size) {
+                        // Draw next state
+                        battleCanvasView.fallBackToPreviousSnapshot = true
+                        drawSnapshotInitialState(snapshotIndex + 1)
+                    }
+                    super.onAnimationEnd(animation)
+                }
+            })
+            snapshotAnimators.start()
         }
     }
 
-    private fun animateCellMoving(cell: Cell, direction: Int) {
+    private fun animateCellMoving(cell: Cell, direction: Int): Animator {
         // Clear cell moving fraction
         cell.animationData.movingFraction = 0f
         // Save move direction
         cell.animationData.moveDirection = direction
         // Start animation
-        ValueAnimator.ofFloat(0f, 1f).apply {
+        return ValueAnimator.ofFloat(0f, 1f).apply {
             duration = CELL_MOVING_DURATION_MS
             addUpdateListener {
                 cell.animationData.movingFraction = it.animatedValue as Float
                 battleCanvasView.invalidate()
             }
-            start()
+        }
+    }
+
+    private fun animateDeadHexesRemoval(cell: Cell, hexHashes: List<Int>): Animator {
+        cell.animationData.fadeFraction = 0f
+        return ValueAnimator.ofFloat(0f, 1f).apply {
+            duration = if (hexHashes.isNotEmpty()) HEX_FADING_DURATION_MS else 0
+            addListener(object : AnimatorListenerAdapter() {
+                override fun onAnimationStart(animation: Animator?) {
+                    super.onAnimationStart(animation)
+                    cell.animationData.hexHashesToRemove = hexHashes
+                }
+            })
+            addUpdateListener {
+                cell.animationData.fadeFraction = it.animatedValue as Float
+                battleCanvasView.invalidate()
+            }
         }
     }
     //endregion
 
     //region Overridden methods
-    override fun updateBattleView(snapshotIndex: Int) {
+    override fun drawSnapshotInitialState(snapshotIndex: Int) {
         battleCanvasView.currentSnapshotIndex = snapshotIndex
         battleCanvasView.invalidate()
     }
@@ -161,7 +212,8 @@ class BattleFragment : Fragment(), Battle.View {
         private const val TAG = "BattleFragment"
         const val EXTRA_CELL_INDEXES = "cell_indexes"
 
-        const val CELL_MOVING_DURATION_MS: Long = 1000
+        const val CELL_MOVING_DURATION_MS: Long = 500
+        const val HEX_FADING_DURATION_MS: Long = 500
 
         fun newInstance(bundle: Bundle?): BattleFragment {
             val fragment = BattleFragment()

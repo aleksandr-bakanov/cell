@@ -8,6 +8,7 @@ import android.support.v4.content.ContextCompat
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
+import android.util.Log
 import bav.onecell.R
 import bav.onecell.common.view.CanvasView
 import bav.onecell.model.BattleFieldSnapshot
@@ -27,6 +28,7 @@ class BattleCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
     private val corpseAttackPaint = Paint()
     var snapshots: List<BattleFieldSnapshot>? = null
     var currentSnapshotIndex: Int = 0
+    var fallBackToPreviousSnapshot = false
 
     init {
         ringPaint.style = Paint.Style.FILL
@@ -56,10 +58,16 @@ class BattleCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
                 snapshot.corpses.forEach { corpse ->
                     drawUtils.drawCell(canvas, corpse, corpseLifePaint, corpseEnergyPaint, corpseAttackPaint, layout)
                 }
-                snapshot.cells.forEach { cell -> drawUtils.drawCell(canvas, cell, layout = layout) }
+                snapshot.cells.forEach { cell ->
+                    drawUtils.drawCell(canvas, cell, layout = layout)
+                    drawUtils.drawCellPower(canvas, cell, layout, powerTextPaint)
+                }
             }
         }
-
+        if (fallBackToPreviousSnapshot) {
+            currentSnapshotIndex--
+            fallBackToPreviousSnapshot = false
+        }
     }
 
     private fun drawRing(canvas: Canvas?) {
