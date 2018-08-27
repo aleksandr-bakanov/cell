@@ -58,7 +58,7 @@ class BattleFragment : Fragment(), Battle.View {
         buttonNextStep.setOnClickListener { _ ->
             battleCanvasView.snapshots?.let {
                 val next = battleCanvasView.currentSnapshotIndex + 1
-                if (next < it.size) {
+                if (next < it.size - 1) {
                     seekBar.progress = next
                     animateOneSnapshot(next)
                 }
@@ -85,7 +85,7 @@ class BattleFragment : Fragment(), Battle.View {
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe {
-                            seekBar.max = it.snapshots.size - 1
+                            seekBar.max = it.snapshots.size - 2
                             battleCanvasView.snapshots = it.snapshots
                             battleCanvasView.invalidate()
                             animateOneSnapshot(0)
