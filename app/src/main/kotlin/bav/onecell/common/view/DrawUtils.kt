@@ -269,7 +269,9 @@ class DrawUtils(private val hexMath: HexMath, context: Context) {
 
     private fun drawHexPower(canvas: Canvas?, layout: Layout, cell: Cell, hex: Hex, power: Int, paint: Paint) {
         val origin = hexMath.hexToPixel(layout, hex)
-        offsetPoints(listOf(origin), cell.animationData.moveDirection, cell.animationData.movingFraction, layout)
+        val listOfOrigin = listOf(origin)
+        rotatePoints(listOfOrigin, hexMath.hexToPixel(layout, cell.data.origin), cell.animationData.rotation)
+        offsetPoints(listOfOrigin, cell.animationData.moveDirection, cell.animationData.movingFraction, layout)
         canvas?.drawText(power.toString(), origin.x.toFloat(), origin.y.toFloat() + (layout.size.x / 2).toFloat(),
                          paint)
     }

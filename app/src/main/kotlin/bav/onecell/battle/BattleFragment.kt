@@ -26,6 +26,9 @@ import kotlinx.android.synthetic.main.fragment_battle.buttonPreviousStep
 import kotlinx.android.synthetic.main.fragment_battle.seekBar
 import javax.inject.Inject
 import android.util.Log
+import bav.onecell.model.cell.logic.Action
+import kotlinx.android.synthetic.main.fragment_editor.editorCanvasView
+import kotlin.math.PI
 
 class BattleFragment : Fragment(), Battle.View {
 
@@ -125,6 +128,16 @@ class BattleFragment : Fragment(), Battle.View {
 
 
             // Apply cell actions
+            val cellLogicAnimators = mutableListOf<Animator>()
+            snapshot.cells.forEachIndexed { index, cell ->
+                if (index >= 0 && index < snapshot.cellsActions.size) {
+                    snapshot.cellsActions[index]?.let { action ->
+                        cellLogicAnimators.add(animateCellAction(cell, action))
+                    }
+                }
+            }
+            val cellLogicAnimatorSet = AnimatorSet()
+            cellLogicAnimatorSet.playTogether(cellLogicAnimators)
 
 
             // Apply moving animations for every living cell
@@ -136,6 +149,7 @@ class BattleFragment : Fragment(), Battle.View {
             val movingAnimatorSet = AnimatorSet()
             movingAnimatorSet.playTogether(movingAnimators)
 
+
             // Remove hexes destroyed at this round
             val hexRemovalAnimators = mutableListOf<Animator>()
             snapshot.cells.forEachIndexed { index, cell ->
@@ -145,15 +159,20 @@ class BattleFragment : Fragment(), Battle.View {
             val hexRemovalAnimatorSet = AnimatorSet()
             hexRemovalAnimatorSet.playTogether(hexRemovalAnimators)
 
+
             // Play snapshot
+            val logicAndMovement = AnimatorSet()
+            logicAndMovement.play(cellLogicAnimatorSet).before(movingAnimatorSet)
+
             val snapshotAnimators = AnimatorSet()
-            snapshotAnimators.play(movingAnimatorSet).before(hexRemovalAnimatorSet)
+            snapshotAnimators.play(logicAndMovement).before(hexRemovalAnimatorSet)
             snapshotAnimators.addListener(object : AnimatorListenerAdapter() {
                 override fun onAnimationEnd(animation: Animator?) {
                     snapshot.cells.forEach { c ->
                         with (c.animationData) {
                             movingFraction = 0f
                             fadeFraction = 0f
+                            rotation = 0f
                         }
                     }
                     if (snapshotIndex + 1 < it.size) {
@@ -199,6 +218,24 @@ class BattleFragment : Fragment(), Battle.View {
             }
         }
     }
+
+    private fun animateCellAction(cell: Cell, action: Action): Animator {
+        return when (action.act) {
+            Action.Act.CHANGE_DIRECTION -> animateCellRotation(cell, action.value)
+        }
+    }
+
+    private fun animateCellRotation(cell: Cell, direction: Int): Animator {
+        cell.animationData.rotation = 0f
+        val angle = cell.getRotationAngle(direction)
+        return ValueAnimator.ofFloat(0f, cell.getRotationAngle(direction)).apply {
+            duration = if (angle != 0f) CELL_ROTATION_DURATION_MS else 0
+            addUpdateListener {
+                cell.animationData.rotation = it.animatedValue as Float
+                battleCanvasView.invalidate()
+            }
+        }
+    }
     //endregion
 
     //region Overridden methods
@@ -214,6 +251,7 @@ class BattleFragment : Fragment(), Battle.View {
 
         const val CELL_MOVING_DURATION_MS: Long = 500
         const val HEX_FADING_DURATION_MS: Long = 500
+        const val CELL_ROTATION_DURATION_MS: Long = 500
 
         fun newInstance(bundle: Bundle?): BattleFragment {
             val fragment = BattleFragment()

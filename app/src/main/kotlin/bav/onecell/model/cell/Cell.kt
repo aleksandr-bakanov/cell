@@ -6,6 +6,7 @@ import bav.onecell.model.hexes.Hex
 import bav.onecell.model.hexes.HexMath
 import io.reactivex.Observable
 import io.reactivex.subjects.BehaviorSubject
+import kotlin.math.PI
 import kotlin.math.abs
 import kotlin.math.max
 
@@ -270,5 +271,77 @@ class Cell(private val hexMath: HexMath,
             }
         }
         return action
+    }
+
+    fun getRotationAngle(direction: Int): Float {
+        val newDirection = Cell.Direction.fromInt(direction)
+
+        val zeroRotation = 0f
+        val rightRotation = PI.toFloat() / 3f
+        val leftRotation = -PI.toFloat() / 3f
+        val twiceRightRotation = 2f * PI.toFloat() / 3f
+        val twiceLeftRotation = 2f * -PI.toFloat() / 3f
+        val flipRotation = if (Math.random() < 0.5) PI.toFloat() else -PI.toFloat()
+
+        return if (data.direction == newDirection) zeroRotation
+        else if (abs(data.direction.ordinal - newDirection.ordinal) == 3) flipRotation
+        else {
+            when (data.direction) {
+                Direction.N -> {
+                    when (newDirection) {
+                        Direction.NE -> rightRotation
+                        Direction.SE -> twiceRightRotation
+                        Direction.NW -> leftRotation
+                        Direction.SW -> twiceLeftRotation
+                        else -> zeroRotation
+                    }
+                }
+                Direction.NE -> {
+                    when (newDirection) {
+                        Direction.SE -> rightRotation
+                        Direction.S -> twiceRightRotation
+                        Direction.N -> leftRotation
+                        Direction.NW -> twiceLeftRotation
+                        else -> zeroRotation
+                    }
+                }
+                Direction.SE -> {
+                    when (newDirection) {
+                        Direction.S -> rightRotation
+                        Direction.SW -> twiceRightRotation
+                        Direction.NE -> leftRotation
+                        Direction.N -> twiceLeftRotation
+                        else -> zeroRotation
+                    }
+                }
+                Direction.S -> {
+                    when (newDirection) {
+                        Direction.SW -> rightRotation
+                        Direction.NW -> twiceRightRotation
+                        Direction.SE -> leftRotation
+                        Direction.NE -> twiceLeftRotation
+                        else -> zeroRotation
+                    }
+                }
+                Direction.SW -> {
+                    when (newDirection) {
+                        Direction.NW -> rightRotation
+                        Direction.N -> twiceRightRotation
+                        Direction.S -> leftRotation
+                        Direction.SE -> twiceLeftRotation
+                        else -> zeroRotation
+                    }
+                }
+                Direction.NW -> {
+                    when (newDirection) {
+                        Direction.N -> rightRotation
+                        Direction.NE -> twiceRightRotation
+                        Direction.SW -> leftRotation
+                        Direction.S -> twiceLeftRotation
+                        else -> zeroRotation
+                    }
+                }
+            }
+        }
     }
 }
