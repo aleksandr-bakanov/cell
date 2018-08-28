@@ -344,4 +344,67 @@ class Cell(private val hexMath: HexMath,
             }
         }
     }
+
+    fun rotateHex(hex: Hex, oldDirection: Direction, newDirection: Direction): Hex {
+        if (oldDirection == newDirection) return hex
+        else if (abs(oldDirection.ordinal - newDirection.ordinal) == 3) return hexMath.rotateFlip(hex)
+        else {
+            return when (oldDirection) {
+                Direction.N -> {
+                    when (newDirection) {
+                        Direction.NE -> hexMath.rotateRight(hex)
+                        Direction.SE -> hexMath.rotateRightTwice(hex)
+                        Direction.NW -> hexMath.rotateLeft(hex)
+                        Direction.SW -> hexMath.rotateLeftTwice(hex)
+                        else -> hex
+                    }
+                }
+                Direction.NE -> {
+                    when (newDirection) {
+                        Direction.SE -> hexMath.rotateRight(hex)
+                        Direction.S -> hexMath.rotateRightTwice(hex)
+                        Direction.N -> hexMath.rotateLeft(hex)
+                        Direction.NW -> hexMath.rotateLeftTwice(hex)
+                        else -> hex
+                    }
+                }
+                Direction.SE -> {
+                    when (newDirection) {
+                        Direction.S -> hexMath.rotateRight(hex)
+                        Direction.SW -> hexMath.rotateRightTwice(hex)
+                        Direction.NE -> hexMath.rotateLeft(hex)
+                        Direction.N -> hexMath.rotateLeftTwice(hex)
+                        else -> hex
+                    }
+                }
+                Direction.S -> {
+                    when (newDirection) {
+                        Direction.SW -> hexMath.rotateRight(hex)
+                        Direction.NW -> hexMath.rotateRightTwice(hex)
+                        Direction.SE -> hexMath.rotateLeft(hex)
+                        Direction.NE -> hexMath.rotateLeftTwice(hex)
+                        else -> hex
+                    }
+                }
+                Direction.SW -> {
+                    when (newDirection) {
+                        Direction.NW -> hexMath.rotateRight(hex)
+                        Direction.N -> hexMath.rotateRightTwice(hex)
+                        Direction.S -> hexMath.rotateLeft(hex)
+                        Direction.SE -> hexMath.rotateLeftTwice(hex)
+                        else -> hex
+                    }
+                }
+                Direction.NW -> {
+                    when (newDirection) {
+                        Direction.N -> hexMath.rotateRight(hex)
+                        Direction.NE -> hexMath.rotateRightTwice(hex)
+                        Direction.SW -> hexMath.rotateLeft(hex)
+                        Direction.S -> hexMath.rotateLeftTwice(hex)
+                        else -> hex
+                    }
+                }
+            }
+        }
+    }
 }

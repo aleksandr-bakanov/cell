@@ -234,6 +234,12 @@ class BattleFragment : Fragment(), Battle.View {
                 cell.animationData.rotation = it.animatedValue as Float
                 battleCanvasView.invalidate()
             }
+            addListener(object : AnimatorListenerAdapter() {
+                override fun onAnimationEnd(animation: Animator?) {
+
+                    super.onAnimationEnd(animation)
+                }
+            })
         }
     }
     //endregion

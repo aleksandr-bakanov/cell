@@ -311,16 +311,18 @@ class BattleEngine(
         val cellsToRemove = mutableListOf<Int>()
         cells.forEachIndexed { index, cell ->
             // Remove powerless hexes
-            val hexesToRemove = mutableListOf<Int>()
+            val hexesToRemove = mutableListOf<Hex>()
             cell.data.hexes.forEach { entry ->
                 // If power becomes less or equal then zero, hex should be removed from cell
                 if (entry.value.power <= 0) {
-                    hexesToRemove.add(entry.key)
+                    hexesToRemove.add(entry.value)
                 }
             }
-            currentSnapshot.hexesToRemove[index].addAll(hexesToRemove)
+
+            currentSnapshot.hexesToRemove[index].addAll(correctHexesToRemoveForSnapshot(hexesToRemove, index))
+
             if (hexesToRemove.isNotEmpty()) {
-                hexesToRemove.forEach { cell.data.hexes.remove(it) }
+                hexesToRemove.forEach { cell.data.hexes.remove(it.hashCode()) }
                 // If connectivity of life and energy hexes has been broken then cell dies
                 if (!gameRules.checkHexesConnectivity(cell.data.hexes.values.filter {
                             it.type == Hex.Type.LIFE || it.type == Hex.Type.ENERGY
@@ -345,5 +347,14 @@ class BattleEngine(
     }
 
     private fun isBattleOver(): Boolean = cells.size <= 1
+
+    private fun correctHexesToRemoveForSnapshot(hexesToRemove: List<Hex>, cellIndex: Int): Collection<Int> {
+        val snapshotCell = currentSnapshot.cells[cellIndex]
+        val snapshotCellDirection = snapshotCell.data.direction
+        val newDirection = cells[cellIndex].data.direction
+
+        return if (snapshotCellDirection == newDirection) hexesToRemove.map { it.hashCode() }
+        else hexesToRemove.map { snapshotCell.rotateHex(it, newDirection, snapshotCellDirection).hashCode() }
+    }
     //endregion
 }
