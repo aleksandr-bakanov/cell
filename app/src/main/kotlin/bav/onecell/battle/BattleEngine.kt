@@ -200,6 +200,10 @@ class BattleEngine(
     private fun applyCellLogic(index: Int, cell: Cell) {
         correctBattleStateForCell(index)
         val performedAction = cell.applyCellLogic(battleState)
+        if (performedAction != null) {
+            // TODO: currently it's applicable only for rotations
+            cell.updateOutlineHexes()
+        }
         currentSnapshot.cellsActions.add(performedAction)
     }
 
@@ -293,8 +297,10 @@ class BattleEngine(
         // Deal real damage
         cells.forEach { cell ->
             cell.data.hexes.values.forEach { hex ->
-                hex.power -= hex.receivedDamage
-                hex.receivedDamage = 0
+                if (hex.receivedDamage > 0) {
+                    hex.power -= hex.receivedDamage
+                    hex.receivedDamage = 0
+                }
             }
         }
         checkCellsVitality()
