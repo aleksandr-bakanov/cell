@@ -1,13 +1,13 @@
 package bav.onecell.common.view
 
 import android.content.Context
-import android.content.res.Configuration
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Path
 import android.support.v4.content.ContextCompat
 import android.util.AttributeSet
+import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import bav.onecell.R
@@ -29,7 +29,6 @@ open class CanvasView(context: Context, attributeSet: AttributeSet) : View(conte
         set(value) {
             field = value
             backgroundHexes = hexMath.getNeighborsWithinRadius(hexMath.ZERO_HEX, value)
-            isInitialized = false
         }
 
     lateinit var hexMath: HexMath
@@ -45,7 +44,6 @@ open class CanvasView(context: Context, attributeSet: AttributeSet) : View(conte
 
     private var coordinateTextVerticalOffset = (layout.size.x / 10).toFloat()
 
-    private var isInitialized = false
     private lateinit var backgroundHexes: Set<Hex>
 
     init {
@@ -81,29 +79,19 @@ open class CanvasView(context: Context, attributeSet: AttributeSet) : View(conte
         return true
     }
 
-    override fun onConfigurationChanged(newConfig: Configuration?) {
-        super.onConfigurationChanged(newConfig)
-        isInitialized = false
+    override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
+        super.onSizeChanged(w, h, oldw, oldh)
+        initializeLayout(w, h)
     }
 
-    override fun onDraw(canvas: Canvas?) {
-        super.onDraw(canvas)
-        if (!isInitialized) {
-            initializeLayout(canvas)
-            isInitialized = true
-        }
-    }
-
-    private fun initializeLayout(canvas: Canvas?) {
-        canvas?.let {
-            val canvasSize = min(it.width, it.height)
-            val hexesOnField = backgroundFieldRadius * 2 + 1
-            val hexSize = (canvasSize / hexesOnField) / 2
-            layout.size = Point(hexSize.toDouble(), hexSize.toDouble())
-            layout.origin = Point(it.width.toDouble() / 2.0,
-                                  it.height.toDouble() / 2.0)
-            coordinateTextVerticalOffset = (layout.size.x / 10).toFloat()
-        }
+    private fun initializeLayout(width: Int, height: Int) {
+        val canvasSize = min(width, height)
+        val hexesOnField = backgroundFieldRadius * 2 + 1
+        val hexSize = (canvasSize / hexesOnField) / 2
+        layout.size = Point(hexSize.toDouble(), hexSize.toDouble())
+        layout.origin = Point(width.toDouble() / 2.0,
+                              height.toDouble() / 2.0)
+        coordinateTextVerticalOffset = (layout.size.x / 10).toFloat()
     }
 
     private fun drawBackgroundGrid(canvas: Canvas?) {
