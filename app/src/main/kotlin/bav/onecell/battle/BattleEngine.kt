@@ -70,6 +70,7 @@ class BattleEngine(
         // Make copy of cells
         for (i in cellIndexes) cellRepository.getCell(i)?.let {
             val clone = it.clone()
+            clone.data.id = i.toLong()
             clone.evaluateCellHexesPower()
             clone.updateOutlineHexes()
             cells.add(clone)
