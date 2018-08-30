@@ -10,7 +10,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.animation.AnimatorSet
 import android.widget.SeekBar
-import android.widget.Toast
 import bav.onecell.OneCellApplication
 import bav.onecell.R
 import bav.onecell.common.view.DrawUtils
@@ -27,8 +26,6 @@ import kotlinx.android.synthetic.main.fragment_battle.seekBar
 import javax.inject.Inject
 import android.util.Log
 import bav.onecell.model.cell.logic.Action
-import kotlinx.android.synthetic.main.fragment_editor.editorCanvasView
-import kotlin.math.PI
 
 class BattleFragment : Fragment(), Battle.View {
 
@@ -114,7 +111,6 @@ class BattleFragment : Fragment(), Battle.View {
 
     private fun reportBattleEnd() {
         activity?.runOnUiThread {
-            Toast.makeText(activity, "Battle is over", Toast.LENGTH_SHORT).show()
             buttonFinishBattle.visibility = View.VISIBLE
         }
     }
@@ -234,12 +230,6 @@ class BattleFragment : Fragment(), Battle.View {
                 cell.animationData.rotation = it.animatedValue as Float
                 battleCanvasView.invalidate()
             }
-            addListener(object : AnimatorListenerAdapter() {
-                override fun onAnimationEnd(animation: Animator?) {
-
-                    super.onAnimationEnd(animation)
-                }
-            })
         }
     }
     //endregion

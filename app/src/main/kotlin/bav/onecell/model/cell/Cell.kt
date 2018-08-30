@@ -13,9 +13,7 @@ import kotlin.math.max
 // TODO: add cell visibility radius - cell may observe battlefield within limited radius from cell's center
 class Cell(private val hexMath: HexMath,
            val data: Data = Data(),
-           // id in battle
-           var battleId: Int = 0,
-           var battleGroupId: Int = 0) {
+           val battleData: BattleData = BattleData()) {
 
     enum class Direction {
         N, NE, SE, S, SW, NW;
@@ -30,6 +28,12 @@ class Cell(private val hexMath: HexMath,
                              var moveDirection: Int = 0, var movingFraction: Float = 0f,
                              var hexHashesToRemove: List<Int>? = null, var fadeFraction: Float = 0f)
     val animationData = AnimationData()
+
+    data class BattleData(var battleId: Int = 0,
+                          var battleGroupId: Int = 0,
+                          var isAlive: Boolean = true) {
+        fun clone(): BattleData = BattleData(battleId, battleGroupId, isAlive)
+    }
 
     companion object {
         const val TAG = "Cell"
@@ -57,7 +61,7 @@ class Cell(private val hexMath: HexMath,
         else -> 0
     }
 
-    fun clone(): Cell = Cell(hexMath, data.clone(), battleId, battleGroupId)
+    fun clone(): Cell = Cell(hexMath, data.clone(), battleData.clone())
 
     fun size(): Int = data.hexes.values.map { maxOf(maxOf(abs(it.q), abs(it.r)), abs(it.s)) }.max()?.let { it + 1 } ?: 0
 

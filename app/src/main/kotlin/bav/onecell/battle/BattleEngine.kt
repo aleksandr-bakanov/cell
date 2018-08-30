@@ -71,7 +71,8 @@ class BattleEngine(
         // Make copy of cells
         for (i in cellIndexes) cellRepository.getCell(i)?.let {
             val clone = it.clone()
-            clone.battleId = i
+            clone.battleData.battleId = i
+            clone.battleData.isAlive = true
             damageDealtByCells[i] = 0
             clone.evaluateCellHexesPower()
             clone.updateOutlineHexes()
@@ -272,9 +273,9 @@ class BattleEngine(
                 cell.data.hexes[hexMath.subtract(intersected, cell.data.origin).hashCode()]?.let {
                     // Each hex deals damage equals to its power unless it is the most powerful hex in intersection,
                     // in such case its damage will be equals to `damage`.
-                    val currentDamage = damageDealtByCells[cell.battleId] ?: 0
-                    if (it.power > damage) damageDealtByCells[cell.battleId] = currentDamage + damage
-                    else damageDealtByCells[cell.battleId] = currentDamage + it.power
+                    val currentDamage = damageDealtByCells[cell.battleData.battleId] ?: 0
+                    if (it.power > damage) damageDealtByCells[cell.battleData.battleId] = currentDamage + damage
+                    else damageDealtByCells[cell.battleData.battleId] = currentDamage + it.power
 
                     it.power -= damage
                 }
@@ -305,8 +306,8 @@ class BattleEngine(
                     ourHex.receivedDamage += it.power
                     // Save dealt damage
                     getHexCellOwner(it)?.let { owner ->
-                        val currentDamage = damageDealtByCells[owner.battleId] ?: 0
-                        damageDealtByCells[owner.battleId] = currentDamage + it.power
+                        val currentDamage = damageDealtByCells[owner.battleData.battleId] ?: 0
+                        damageDealtByCells[owner.battleData.battleId] = currentDamage + it.power
                     }
                 }
             }
@@ -367,6 +368,7 @@ class BattleEngine(
         cellsToRemove.sortDescending()
         cellsToRemove.forEach {
             corpses.add(cells[it])
+            cells[it].battleData.isAlive = false
             cells.removeAt(it)
         }
     }
