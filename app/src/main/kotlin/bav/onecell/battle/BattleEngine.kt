@@ -34,6 +34,7 @@ class BattleEngine(
     private val battleFieldSnapshots = mutableListOf<BattleFieldSnapshot>()
     private lateinit var currentSnapshot: BattleFieldSnapshot
     val battleResultProvider = PublishSubject.create<BattleInfo>()
+    private val damageDealtByCells: MutableMap<Int, Int> = mutableMapOf()
 
     //region Partial round steps
     private val battleRoundSteps: Queue<() -> Unit> = LinkedList<() -> Unit>()
@@ -55,7 +56,7 @@ class BattleEngine(
     private val checkWhetherBattleEnds = {
         if (isBattleOver()) {
             saveSnapshot()
-            battleResultProvider.onNext(BattleInfo(battleFieldSnapshots))
+            battleResultProvider.onNext(BattleInfo(battleFieldSnapshots, damageDealtByCells))
         }
     }
     //endregion
@@ -70,7 +71,8 @@ class BattleEngine(
         // Make copy of cells
         for (i in cellIndexes) cellRepository.getCell(i)?.let {
             val clone = it.clone()
-            clone.data.id = i.toLong()
+            clone.battleId = i
+            damageDealtByCells[i] = 0
             clone.evaluateCellHexesPower()
             clone.updateOutlineHexes()
             cells.add(clone)
@@ -88,6 +90,7 @@ class BattleEngine(
         cells.clear()
         corpses.clear()
         battleFieldSnapshots.clear()
+        damageDealtByCells.clear()
         currentSnapshot = BattleFieldSnapshot()
     }
 
@@ -267,6 +270,12 @@ class BattleEngine(
             // Deal damage
             cells.forEach { cell ->
                 cell.data.hexes[hexMath.subtract(intersected, cell.data.origin).hashCode()]?.let {
+                    // Each hex deals damage equals to its power unless it is the most powerful hex in intersection,
+                    // in such case its damage will be equals to `damage`.
+                    val currentDamage = damageDealtByCells[cell.battleId] ?: 0
+                    if (it.power > damage) damageDealtByCells[cell.battleId] = currentDamage + damage
+                    else damageDealtByCells[cell.battleId] = currentDamage + it.power
+
                     it.power -= damage
                 }
             }
@@ -286,13 +295,20 @@ class BattleEngine(
                         enemy.data.hexes.values.map { hexMath.add(enemy.data.origin, it).withPower(it.power) })
             }
             // Get all enemy hexes which are neighbors to us
-            val neighboringHexes = enemyHexes.intersect(cellOutline)
+            val neighboringEnemyHexes = enemyHexes.intersect(cellOutline)
             // Come through all our hexes
-            cell.data.hexes.values.forEach { hex ->
-                val hexInGlobal = hexMath.add(hex, cell.data.origin)
-                val neighbors = neighboringHexes.intersect(hexMath.hexNeighbors(hexInGlobal))
+            cell.data.hexes.values.forEach { ourHex ->
+                val hexInGlobal = hexMath.add(ourHex, cell.data.origin)
+                val neighbors = neighboringEnemyHexes.intersect(hexMath.hexNeighbors(hexInGlobal))
                 // Saving damage to our hex
-                neighbors.forEach { hex.receivedDamage += it.power }
+                neighbors.forEach {
+                    ourHex.receivedDamage += it.power
+                    // Save dealt damage
+                    getHexCellOwner(it)?.let { owner ->
+                        val currentDamage = damageDealtByCells[owner.battleId] ?: 0
+                        damageDealtByCells[owner.battleId] = currentDamage + it.power
+                    }
+                }
             }
         }
         // Deal real damage
@@ -305,6 +321,14 @@ class BattleEngine(
             }
         }
         checkCellsVitality()
+    }
+
+    private fun getHexCellOwner(hexInGlobal: Hex): Cell? {
+        cells.forEach { cell ->
+            val hexInLocal = hexMath.subtract(hexInGlobal, cell.data.origin)
+            if (cell.data.hexes.keys.contains(hexInLocal.hashCode())) return cell
+        }
+        return null
     }
 
     private fun checkCellsVitality() {
