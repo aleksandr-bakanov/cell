@@ -56,7 +56,8 @@ class BattleEngine(
     private val checkWhetherBattleEnds = {
         if (isBattleOver()) {
             saveSnapshot()
-            battleResultProvider.onNext(BattleInfo(battleFieldSnapshots, damageDealtByCells))
+            battleResultProvider.onNext(BattleInfo(battleFieldSnapshots, damageDealtByCells,
+                                                   getDeadOrAliveCells(battleFieldSnapshots.last())))
         }
     }
     //endregion
@@ -87,6 +88,13 @@ class BattleEngine(
     }
 
     //region Private methods
+    private fun getDeadOrAliveCells(snapshot: BattleFieldSnapshot): Map<Int, Boolean> {
+        val deadOrAliveCells = mutableMapOf<Int, Boolean>()
+        for (cell in snapshot.cells) deadOrAliveCells[cell.battleData.battleId] = cell.battleData.isAlive
+        for (corpse in snapshot.corpses) deadOrAliveCells[corpse.battleData.battleId] = corpse.battleData.isAlive
+        return deadOrAliveCells
+    }
+
     private fun clearEngine() {
         cells.clear()
         corpses.clear()

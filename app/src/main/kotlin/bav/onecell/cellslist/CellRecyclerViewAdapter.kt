@@ -3,7 +3,6 @@ package bav.onecell.cellslist
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Color
-import android.graphics.drawable.BitmapDrawable
 import android.support.v7.widget.RecyclerView
 import android.text.Editable
 import android.text.TextWatcher
@@ -60,6 +59,7 @@ class CellRecyclerViewAdapter(private val presenter: CellsList.Presenter, privat
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                     s?.let { presenter.setCellName(adapterPosition, it.toString()) }
                 }
+
                 override fun afterTextChanged(s: Editable?) {}
                 override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             })
