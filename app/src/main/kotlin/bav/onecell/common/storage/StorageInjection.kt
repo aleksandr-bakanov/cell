@@ -13,8 +13,8 @@ class StorageModule {
 
     @Provides
     @Singleton
-    fun provideStorage(dataBase: CellDataBase, hexMath: HexMath): Storage {
-        return StorageImpl(dataBase, hexMath)
+    fun provideStorage(@Named("app_context") context: Context, dataBase: CellDataBase, hexMath: HexMath): Storage {
+        return StorageImpl(context, dataBase, hexMath)
     }
 
     @Provides

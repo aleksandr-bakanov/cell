@@ -17,6 +17,7 @@ class BattleResultsPresenter(
         cellIndexes.addAll(dealtDamage.keys.sorted())
         this.dealtDamage.putAll(dealtDamage)
         this.deadOrAliveCells.putAll(deadOrAliveCells)
+        // TODO: convert dealt damage to money for each cell
     }
 
     override fun cellsCount(): Int = deadOrAliveCells.size
