@@ -2,6 +2,7 @@ package bav.onecell.common.router
 
 import android.os.Bundle
 import android.support.v4.app.FragmentActivity
+import android.util.Log
 import bav.onecell.battle.BattleFragment
 import bav.onecell.battle.results.BattleResultsFragment
 import bav.onecell.celllogic.conditions.ConditionEditorDialogFragment
@@ -86,7 +87,13 @@ class RouterImpl : Router {
         val bundle = Bundle()
         bundle.putIntArray(BattleResultsFragment.CELL_INDEXES, dealtDamage.keys.toIntArray())
         bundle.putIntArray(BattleResultsFragment.DEALT_DAMAGE, dealtDamage.values.toIntArray())
-        bundle.putBooleanArray(BattleResultsFragment.DEAD_OR_ALIVE, deadOrAliveCells.values.toBooleanArray())
+        val doa = arrayListOf<Boolean>()
+        dealtDamage.keys.forEach { doa.add(deadOrAliveCells[it] ?: false) }
+        bundle.putBooleanArray(BattleResultsFragment.DEAD_OR_ALIVE, doa.toBooleanArray())
         windowChanger.onNext(Router.Window(Router.WindowType.BATTLE_RESULTS, bundle))
+    }
+
+    companion object {
+        private const val TAG = "RouterImpl"
     }
 }

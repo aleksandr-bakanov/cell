@@ -1,5 +1,6 @@
 package bav.onecell.battle.results
 
+import android.util.Log
 import bav.onecell.common.router.Router
 import bav.onecell.model.RepositoryContract
 import bav.onecell.model.cell.Cell
@@ -28,5 +29,9 @@ class BattleResultsPresenter(
 
     override fun goToHeroesScreen() {
         router.goToMain()
+    }
+
+    companion object {
+        private const val TAG = "BattleResultsPresenter"
     }
 }
