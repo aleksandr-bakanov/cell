@@ -17,7 +17,7 @@ interface Battle {
          */
         fun initialize(cellIndexes: List<Int>)
 
-        fun finishBattle()
+        fun finishBattle(battleInfo: BattleInfo)
 
         fun battleResultsProvider(): Observable<BattleInfo>
     }

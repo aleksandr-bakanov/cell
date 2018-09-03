@@ -18,6 +18,6 @@ class BattleResultsModule(val view: BattleResults.View) {
     @Provides
     @FragmentScope
     fun provideBattleResultsPresenter(router: Router, cellRepo: RepositoryContract.CellRepo): BattleResults.Presenter {
-        return BattleResultsPresenter(view, router)
+        return BattleResultsPresenter(view, router, cellRepo)
     }
 }

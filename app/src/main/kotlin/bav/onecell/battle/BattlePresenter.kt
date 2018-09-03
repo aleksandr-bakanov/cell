@@ -21,8 +21,8 @@ class BattlePresenter(
         battleEngine.initialize(cellIndexes)
     }
 
-    override fun finishBattle() {
-        router.goToMain()
+    override fun finishBattle(battleInfo: BattleInfo) {
+        router.goToBattleResults(battleInfo.damageDealtByCells, battleInfo.deadOrAliveCells)
     }
     //endregion
 }

@@ -10,20 +10,27 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/cell200x200" />
+        app:srcCompat="@drawable/cell100x100" />
 
     <TextView
         android:id="@+id/cellName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="@id/preview"
+        app:layout_constraintStart_toEndOf="@id/preview"
         android:textSize="36sp" />
 
     <TextView
         android:id="@+id/dealtDamage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/deadOrAlive"
         android:textSize="36sp" />
+
+    <CheckBox
+        android:id="@+id/deadOrAlive"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:enabled="false"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
 </android.support.constraint.ConstraintLayout>

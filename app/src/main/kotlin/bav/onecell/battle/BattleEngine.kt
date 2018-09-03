@@ -56,8 +56,6 @@ class BattleEngine(
     private val checkWhetherBattleEnds = {
         if (isBattleOver()) {
             saveSnapshot()
-            battleResultProvider.onNext(BattleInfo(battleFieldSnapshots, damageDealtByCells,
-                                                   getDeadOrAliveCells(battleFieldSnapshots.last())))
         }
     }
     //endregion
@@ -119,6 +117,8 @@ class BattleEngine(
             while (!isBattleOver()) {
                 doFullStep()
             }
+            battleResultProvider.onNext(BattleInfo(battleFieldSnapshots, damageDealtByCells,
+                                                   getDeadOrAliveCells(battleFieldSnapshots.last())))
         }
     }
 

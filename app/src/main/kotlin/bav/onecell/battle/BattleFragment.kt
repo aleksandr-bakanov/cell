@@ -54,7 +54,6 @@ class BattleFragment : Fragment(), Battle.View {
         super.onActivityCreated(savedInstanceState)
         inject()
 
-        buttonFinishBattle.setOnClickListener { presenter.finishBattle() }
         buttonNextStep.setOnClickListener { _ ->
             battleCanvasView.snapshots?.let {
                 val next = battleCanvasView.currentSnapshotIndex + 1
@@ -84,9 +83,10 @@ class BattleFragment : Fragment(), Battle.View {
                 presenter.battleResultsProvider()
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe {
-                            seekBar.max = it.snapshots.size - 2
-                            battleCanvasView.snapshots = it.snapshots
+                        .subscribe { battleInfo ->
+                            buttonFinishBattle.setOnClickListener { presenter.finishBattle(battleInfo) }
+                            seekBar.max = battleInfo.snapshots.size - 2
+                            battleCanvasView.snapshots = battleInfo.snapshots
                             battleCanvasView.invalidate()
                             animateOneSnapshot(0)
                             reportBattleEnd()

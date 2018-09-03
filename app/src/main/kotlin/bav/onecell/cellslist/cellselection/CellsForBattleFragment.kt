@@ -32,8 +32,6 @@ class CellsForBattleFragment : Fragment(), CellsForBattle.View {
         super.onActivityCreated(savedInstanceState)
         inject()
 
-        Log.d(TAG, "onActivityCreated: presenter = $presenter")
-
         buttonStartBattle.setOnClickListener { openBattleView() }
 
         recyclerViewCellList.layoutManager = LinearLayoutManager(context)

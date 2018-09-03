@@ -10,6 +10,9 @@ import android.view.ViewGroup
 import bav.onecell.R
 import bav.onecell.common.view.DrawUtils
 import kotlinx.android.synthetic.main.item_row_cell.view.preview
+import kotlinx.android.synthetic.main.item_row_cell_in_battle_results.view.cellName
+import kotlinx.android.synthetic.main.item_row_cell_in_battle_results.view.deadOrAlive
+import kotlinx.android.synthetic.main.item_row_cell_in_battle_results.view.dealtDamage
 
 class BattleResultsRecyclerViewAdapter(private val presenter: BattleResults.Presenter,
                                        private val drawUtils: DrawUtils) :
@@ -17,7 +20,7 @@ class BattleResultsRecyclerViewAdapter(private val presenter: BattleResults.Pres
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
-                .inflate(R.layout.item_row_cell, parent, false)
+                .inflate(R.layout.item_row_cell_in_battle_results, parent, false)
         return ViewHolder(view, presenter)
     }
 
@@ -30,15 +33,24 @@ class BattleResultsRecyclerViewAdapter(private val presenter: BattleResults.Pres
             val layout = drawUtils.provideLayout(canvas, it.size() * 2)
             drawUtils.drawCell(canvas, it, layout = layout)
             holder.view.preview.invalidate()
+
+            holder.view.cellName.text = it.data.name
         }
+        holder.view.dealtDamage.text = presenter.getDealtDamage(position).toString()
+        holder.view.deadOrAlive.isChecked = presenter.getDeadOrAlive(position)
     }
 
     class ViewHolder(val view: View, private val presenter: BattleResults.Presenter,
-                     val previewBitmap: Bitmap = Bitmap.createBitmap(500, 500, Bitmap.Config.ARGB_8888))
+                     val previewBitmap: Bitmap = Bitmap.createBitmap(PREVIEW_BITMAP_SIZE, PREVIEW_BITMAP_SIZE,
+                                                                     Bitmap.Config.ARGB_8888))
         : RecyclerView.ViewHolder(view) {
 
         init {
             view.preview.setImageBitmap(previewBitmap)
         }
+    }
+
+    companion object {
+        const val PREVIEW_BITMAP_SIZE = 300
     }
 }

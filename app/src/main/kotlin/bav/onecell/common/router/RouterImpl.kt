@@ -3,6 +3,7 @@ package bav.onecell.common.router
 import android.os.Bundle
 import android.support.v4.app.FragmentActivity
 import bav.onecell.battle.BattleFragment
+import bav.onecell.battle.results.BattleResultsFragment
 import bav.onecell.celllogic.conditions.ConditionEditorDialogFragment
 import bav.onecell.celllogic.conditions.ConditionListFragment
 import bav.onecell.celllogic.rules.ActionEditorDialogFragment
@@ -79,5 +80,13 @@ class RouterImpl : Router {
         val bundle = Bundle()
         bundle.putString(CutSceneFragment.INFO_JSON, cutSceneInfo)
         windowChanger.onNext(Router.Window(Router.WindowType.CUT_SCENE, bundle))
+    }
+
+    override fun goToBattleResults(dealtDamage: Map<Int, Int>, deadOrAliveCells: Map<Int, Boolean>) {
+        val bundle = Bundle()
+        bundle.putIntArray(BattleResultsFragment.CELL_INDEXES, dealtDamage.keys.toIntArray())
+        bundle.putIntArray(BattleResultsFragment.DEALT_DAMAGE, dealtDamage.values.toIntArray())
+        bundle.putBooleanArray(BattleResultsFragment.DEAD_OR_ALIVE, deadOrAliveCells.values.toBooleanArray())
+        windowChanger.onNext(Router.Window(Router.WindowType.BATTLE_RESULTS, bundle))
     }
 }

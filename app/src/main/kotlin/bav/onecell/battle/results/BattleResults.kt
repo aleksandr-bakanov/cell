@@ -9,6 +9,9 @@ interface BattleResults {
     interface Presenter {
         fun initialize(dealtDamage: Map<Int, Int>, deadOrAliveCells: Map<Int, Boolean>)
         fun cellsCount(): Int
-        fun getCell(index: Int): Cell?
+        fun getCell(position: Int): Cell?
+        fun getDealtDamage(position: Int): Int
+        fun getDeadOrAlive(position: Int): Boolean
+        fun goToHeroesScreen()
     }
 }

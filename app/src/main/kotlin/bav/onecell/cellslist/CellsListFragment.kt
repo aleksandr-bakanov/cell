@@ -16,10 +16,8 @@ import javax.inject.Inject
 
 class CellsListFragment : Fragment(), CellsList.View {
 
-    @Inject
-    lateinit var presenter: CellsList.Presenter
-    @Inject
-    lateinit var drawUtils: DrawUtils
+    @Inject lateinit var presenter: CellsList.Presenter
+    @Inject lateinit var drawUtils: DrawUtils
     private val disposables = CompositeDisposable()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,

@@ -6,6 +6,7 @@ import android.view.View
 import bav.onecell.OneCellApplication
 import bav.onecell.R
 import bav.onecell.battle.BattleFragment
+import bav.onecell.battle.results.BattleResultsFragment
 import bav.onecell.celllogic.conditions.ConditionListFragment
 import bav.onecell.celllogic.rules.RuleListFragment
 import bav.onecell.cellslist.CellsListFragment
@@ -13,6 +14,7 @@ import bav.onecell.cellslist.cellselection.CellsForBattleFragment
 import bav.onecell.common.router.Router
 import bav.onecell.common.router.Router.WindowType.BATTLE
 import bav.onecell.common.router.Router.WindowType.BATTLE_CELLS_SELECTION
+import bav.onecell.common.router.Router.WindowType.BATTLE_RESULTS
 import bav.onecell.common.router.Router.WindowType.CELLS_LIST
 import bav.onecell.common.router.Router.WindowType.CELL_EDITOR
 import bav.onecell.common.router.Router.WindowType.CONDITIONS_EDITOR
@@ -75,6 +77,7 @@ class MainActivity : FragmentActivity() {
             RULES_EDITOR -> RuleListFragment.newInstance(window.args)
             CONDITIONS_EDITOR -> ConditionListFragment.newInstance(window.args)
             CUT_SCENE -> CutSceneFragment.newInstance(window.args)
+            BATTLE_RESULTS -> BattleResultsFragment.newInstance(window.args)
         }
         supportFragmentManager.beginTransaction()
                 .replace(R.id.holder, fragment)
