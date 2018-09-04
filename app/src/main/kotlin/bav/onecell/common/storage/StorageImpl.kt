@@ -3,8 +3,10 @@ package bav.onecell.common.storage
 import android.content.Context
 import android.preference.PreferenceManager
 import android.util.Log
+import bav.onecell.R
 import bav.onecell.model.cell.Cell
 import bav.onecell.model.RepositoryContract
+import bav.onecell.model.cell.Data
 import bav.onecell.model.hexes.HexMath
 import kotlinx.coroutines.experimental.launch
 
@@ -13,40 +15,35 @@ class StorageImpl(
         private val dataBase: CellDataBase,
         private val hexMath: HexMath): Storage {
 
-    init {
-        initializeStorage()
-    }
-
     override fun storeCellRepository(repo: RepositoryContract.CellRepo) {
         launch {
             val dao = dataBase.cellDataDao()
             // TODO: optimise persistence
-            dao.deleteAll()
-            for (i in 0..(repo.cellsCount() - 1)) {
+            for (i in 0 until repo.cellsCount()) {
                 repo.getCell(i)?.let { dao.insert(it.data) }
             }
         }
     }
 
     override fun restoreCellRepository(): List<Cell> {
-        val cells = mutableListOf<Cell>()
-        for (d in dataBase.cellDataDao().getAll()) {
-            cells.add(Cell(hexMath, d))
-            Log.d(TAG, d.toJson())
-        }
-        return cells
-    }
-
-    //region Private methods
-    private fun initializeStorage() {
+        val dao = dataBase.cellDataDao()
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
         if (sharedPreferences.getBoolean(FIRST_TIME_APP_LAUNCH, true)) {
             sharedPreferences.edit().putBoolean(FIRST_TIME_APP_LAUNCH, false).apply()
             // Fill storage from JSON descriptions
-
+            val cellJsons = context.resources.getStringArray(R.array.cell_descriptions)
+            dao.deleteAll()
+            for (json in cellJsons) {
+                dao.insert(Data.fromJson(json))
+            }
         }
+
+        val cells = mutableListOf<Cell>()
+        for (d in dao.getAll()) {
+            cells.add(Cell(hexMath, d))
+        }
+        return cells
     }
-    //endregion
 
     companion object {
         private const val TAG = "StorageImpl"

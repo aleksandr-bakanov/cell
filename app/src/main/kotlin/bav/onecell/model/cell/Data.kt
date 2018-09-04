@@ -9,7 +9,7 @@ import com.google.gson.Gson
 
 @Entity(tableName = "cellData")
 data class Data(
-        @PrimaryKey(autoGenerate = true) var id: Long? = null,
+        @PrimaryKey var id: Long = 0,
         // hexes - hexes contained in cell
         @ColumnInfo(name = "hexes") var hexes: MutableMap<Int, Hex> =
                 mutableMapOf(Pair(Hex().hashCode(), Hex().withType(Hex.Type.LIFE))),
