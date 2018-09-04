@@ -42,7 +42,8 @@
         {
             scenes: {
                 main_menu: { window: \"MAIN\" },
-                introduction: { window: \"CUT_SCENE\", params: \"cut_scene_introduction\", next_scene: \"main_menu\" }
+                introduction: { window: \"CUT_SCENE\", params: \"cut_scene_introduction\", next_scene: \"battle_with_gopniks\" },
+                battle_with_gopniks: { window: \"BATTLE\", params: [0, 2, 3], next_scene: \"main_menu\" }
             }
         }
     </string>

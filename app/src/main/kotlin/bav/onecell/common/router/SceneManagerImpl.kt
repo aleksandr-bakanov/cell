@@ -35,10 +35,22 @@ class SceneManagerImpl(private val router: Router, private val context: Context)
         router.goToCutScene(cutSceneInfo)
     }
 
+    override fun openBattleWithGopniks() {
+        val cellIndexesForBattle = mutableListOf<Int>()
+        scenes[BATTLE_WITH_GOPNIKS]?.getJSONArray(PARAMS)?.let {
+            for (i in 0 until it.length()) {
+                cellIndexesForBattle.add(it.getInt(i))
+            }
+        }
+        currentScene = BATTLE_WITH_GOPNIKS
+        router.goToBattle(cellIndexesForBattle)
+    }
+
     override fun openNextScene() {
         val nextScene = scenes[currentScene]?.getString(NEXT_SCENE)
         when (nextScene) {
             MAIN_MENU -> openMainMenu()
+            BATTLE_WITH_GOPNIKS -> openBattleWithGopniks()
         }
     }
     //endregion
@@ -51,8 +63,9 @@ class SceneManagerImpl(private val router: Router, private val context: Context)
         private const val PARAMS = "params"
         private const val NEXT_SCENE = "next_scene"
 
-        private const val INTRODUCTION = "introduction"
         private const val MAIN_MENU = "main_menu"
+        private const val INTRODUCTION = "introduction"
+        private const val BATTLE_WITH_GOPNIKS = "battle_with_gopniks"
 
         private const val TAG = "SceneManager"
     }

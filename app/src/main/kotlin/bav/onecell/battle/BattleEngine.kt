@@ -10,6 +10,8 @@ import bav.onecell.model.cell.logic.BattleFieldState
 import bav.onecell.model.hexes.Hex
 import bav.onecell.model.hexes.HexMath
 import bav.onecell.model.hexes.Layout
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.PublishSubject
 import kotlinx.coroutines.experimental.launch
 import java.util.LinkedList
@@ -66,7 +68,13 @@ class BattleEngine(
 
     fun initialize(cellIndexes: List<Int>) {
         clearEngine()
+        cellRepository.loadFromStore()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe { startCalculation(cellIndexes) }
+    }
 
+    private fun startCalculation(cellIndexes: List<Int>) {
         // Make copy of cells
         for (i in cellIndexes) cellRepository.getCell(i)?.let {
             val clone = it.clone()

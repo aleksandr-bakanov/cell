@@ -51,9 +51,7 @@ class CellsListPresenter(
         cellRepository.loadFromStore()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({
-                    cellRepoNotifier.onNext(Unit)
-                })
+                .subscribe { cellRepoNotifier.onNext(Unit) }
     }
 
     override fun cellRepoUpdateNotifier(): Observable<Unit> = cellRepoNotifier

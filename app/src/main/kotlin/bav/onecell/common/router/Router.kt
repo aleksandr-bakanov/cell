@@ -53,5 +53,7 @@ interface SceneManager {
 
     fun openIntroductionScene()
 
+    fun openBattleWithGopniks()
+
     fun openNextScene()
 }
