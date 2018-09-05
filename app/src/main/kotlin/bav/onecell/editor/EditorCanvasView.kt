@@ -29,28 +29,26 @@ class EditorCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
         tipPaint.style = Paint.Style.FILL
         tipPaint.color = ContextCompat.getColor(context, R.color.cellEditorTip)
 
-        setOnTouchListener(
-                { view: View?, event: MotionEvent? ->
-                    super.onTouchListener(view, event)
-                    if (event?.action == MotionEvent.ACTION_UP) {
-                        if (event.pointerCount == 1) {
-                            val x: Double = event.x.toDouble()
-                            val y: Double = event.y.toDouble()
-                            val point = Point(x, y)
-                            val fHex = hexMath.pixelToHex(layout, point)
-                            val hex = hexMath.round(fHex)
-                            if (selectedCellType == Hex.Type.REMOVE) {
-                                presenter.removeHexFromCell(hex)
-                            } else {
-                                hex.type = selectedCellType
-                                presenter.addHexToCell(hex)
-                            }
-                            invalidate()
-                        }
+        setOnTouchListener { view: View?, event: MotionEvent? ->
+            super.onTouchListener(view, event)
+            if (event?.action == MotionEvent.ACTION_UP) {
+                if (event.pointerCount == 1) {
+                    val x: Double = event.x.toDouble()
+                    val y: Double = event.y.toDouble()
+                    val point = Point(x, y)
+                    val fHex = hexMath.pixelToHex(layout, point)
+                    val hex = hexMath.round(fHex)
+                    if (selectedCellType == Hex.Type.REMOVE) {
+                        presenter.removeHexFromCell(hex)
+                    } else {
+                        hex.type = selectedCellType
+                        presenter.addHexToCell(hex)
                     }
-                    true
+                    invalidate()
                 }
-        )
+            }
+            true
+        }
     }
 
     override fun onDraw(canvas: Canvas?) {

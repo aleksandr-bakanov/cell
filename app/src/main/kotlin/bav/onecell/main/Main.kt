@@ -18,5 +18,7 @@ interface Main {
         fun openCellsListView()
 
         fun startNewGame(info: String)
+
+        fun openHeroScreen()
     }
 }

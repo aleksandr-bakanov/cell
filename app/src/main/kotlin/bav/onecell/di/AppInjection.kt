@@ -15,6 +15,8 @@ import bav.onecell.cutscene.CutSceneModule
 import bav.onecell.cutscene.CutSceneSubcomponent
 import bav.onecell.editor.EditorModule
 import bav.onecell.editor.EditorSubcomponent
+import bav.onecell.heroscreen.HeroScreenModule
+import bav.onecell.heroscreen.HeroScreenSubcomponent
 import bav.onecell.main.MainModule
 import bav.onecell.main.MainSubcomponent
 import bav.onecell.model.ModelModule
@@ -34,6 +36,7 @@ interface AppComponent {
     fun plus(cellLogicModule: CellLogicModule): CellLogicSubcomponent
     fun plus(cutSceneModule: CutSceneModule): CutSceneSubcomponent
     fun plus(battleResultsModule: BattleResultsModule): BattleResultsSubcomponent
+    fun plus(heroScreenModule: HeroScreenModule): HeroScreenSubcomponent
 }
 
 @Module

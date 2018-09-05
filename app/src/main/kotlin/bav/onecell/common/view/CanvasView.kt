@@ -160,7 +160,7 @@ open class CanvasView(context: Context, attributeSet: AttributeSet) : View(conte
         return getPartialHexPath(hex, 3, 5, true)
     }
 
-    protected fun getPartialHexPath(hex: Hex, startCorner: Int, endCorner: Int,
+    private fun getPartialHexPath(hex: Hex, startCorner: Int, endCorner: Int,
                                     endInFirstCorner: Boolean = false): Path {
         val hexCorners: ArrayList<Point> = hexMath.poligonCorners(layout, hex)
         val path = Path()

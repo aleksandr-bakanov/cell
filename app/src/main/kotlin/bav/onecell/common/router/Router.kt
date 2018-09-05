@@ -11,7 +11,7 @@ interface Router {
 
     enum class WindowType {
         MAIN, CELLS_LIST, BATTLE_CELLS_SELECTION, BATTLE, CELL_EDITOR, RULES_EDITOR, CONDITIONS_EDITOR, CUT_SCENE,
-        BATTLE_RESULTS;
+        BATTLE_RESULTS, HERO_SCREEN;
 
         companion object {
             private val map = WindowType.values().associateBy { it.toString() }
@@ -46,6 +46,8 @@ interface Router {
     fun goToCutScene(cutSceneInfo: String)
 
     fun goToBattleResults(dealtDamage: Map<Int, Int>, deadOrAliveCells: Map<Int, Boolean>)
+
+    fun goToHeroesScreen()
 }
 
 interface SceneManager {

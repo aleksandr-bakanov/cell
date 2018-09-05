@@ -21,5 +21,10 @@ class MainPresenter(
     override fun startNewGame(info: String) {
         sceneManager.openIntroductionScene()
     }
+
+    override fun openHeroScreen() {
+        router.goToHeroesScreen()
+    }
+
     //endregion
 }

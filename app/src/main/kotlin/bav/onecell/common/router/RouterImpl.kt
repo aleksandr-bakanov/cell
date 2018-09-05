@@ -93,6 +93,11 @@ class RouterImpl : Router {
         windowChanger.onNext(Router.Window(Router.WindowType.BATTLE_RESULTS, bundle))
     }
 
+    override fun goToHeroesScreen() {
+        val bundle = Bundle()
+        windowChanger.onNext(Router.Window(Router.WindowType.HERO_SCREEN, bundle))
+    }
+
     companion object {
         private const val TAG = "RouterImpl"
     }

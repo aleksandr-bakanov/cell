@@ -9,6 +9,7 @@ import bav.onecell.OneCellApplication
 import bav.onecell.R
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_main.buttonGoToBattle
+import kotlinx.android.synthetic.main.fragment_main.buttonHeroScreen
 import kotlinx.android.synthetic.main.fragment_main.buttonNewGame
 import kotlinx.android.synthetic.main.fragment_main.buttonShowCells
 import javax.inject.Inject
@@ -31,6 +32,7 @@ class MainFragment : Fragment(), Main.View {
         buttonGoToBattle.setOnClickListener { presenter.openPreBattleView() }
         buttonShowCells.setOnClickListener { presenter.openCellsListView() }
         buttonNewGame.setOnClickListener { presenter.startNewGame(resources.getString(R.string.cut_scene_introduction)) }
+        buttonHeroScreen.setOnClickListener { presenter.openHeroScreen() }
     }
 
     override fun onDestroyView() {

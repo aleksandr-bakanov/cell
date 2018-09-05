@@ -19,10 +19,12 @@ import bav.onecell.common.router.Router.WindowType.CELLS_LIST
 import bav.onecell.common.router.Router.WindowType.CELL_EDITOR
 import bav.onecell.common.router.Router.WindowType.CONDITIONS_EDITOR
 import bav.onecell.common.router.Router.WindowType.CUT_SCENE
+import bav.onecell.common.router.Router.WindowType.HERO_SCREEN
 import bav.onecell.common.router.Router.WindowType.MAIN
 import bav.onecell.common.router.Router.WindowType.RULES_EDITOR
 import bav.onecell.cutscene.CutSceneFragment
 import bav.onecell.editor.EditorFragment
+import bav.onecell.heroscreen.HeroScreenFragment
 import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
 
@@ -50,7 +52,10 @@ class MainActivity : FragmentActivity() {
         }
 
         disposables.add(router.windowChange().subscribe { changeWindow(it) })
+    }
 
+    override fun onResume() {
+        super.onResume()
         hideSystemUi()
     }
 
@@ -78,6 +83,7 @@ class MainActivity : FragmentActivity() {
             CONDITIONS_EDITOR -> ConditionListFragment.newInstance(window.args)
             CUT_SCENE -> CutSceneFragment.newInstance(window.args)
             BATTLE_RESULTS -> BattleResultsFragment.newInstance(window.args)
+            HERO_SCREEN -> HeroScreenFragment.newInstance(window.args)
         }
         supportFragmentManager.beginTransaction()
                 .replace(R.id.holder, fragment)
