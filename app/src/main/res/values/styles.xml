@@ -8,4 +8,14 @@
     <item name="colorAccent">@color/colorAccent</item>
   </style>
 
+  <style name="EditorLifeButtonTheme" parent="Widget.AppCompat.Button.Colored">
+    <item name="colorButtonNormal">@color/cellEditorLife</item>
+  </style>
+  <style name="EditorAttackButtonTheme" parent="Widget.AppCompat.Button.Colored">
+    <item name="colorButtonNormal">@color/cellEditorAttack</item>
+  </style>
+  <style name="EditorEnergyButtonTheme" parent="Widget.AppCompat.Button.Colored">
+    <item name="colorButtonNormal">@color/cellEditorEnergy</item>
+  </style>
+
 </resources>

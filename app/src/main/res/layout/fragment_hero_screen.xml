@@ -5,30 +5,95 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <!-- Avatars -->
     <android.support.v7.widget.AppCompatImageButton
         android:id="@+id/kittaroAvatar"
         android:layout_width="@dimen/hero_screen_avatar_size"
         android:layout_height="@dimen/hero_screen_avatar_size"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/cell100x100" />
 
     <android.support.v7.widget.AppCompatImageButton
         android:id="@+id/zoiAvatar"
         android:layout_width="@dimen/hero_screen_avatar_size"
         android:layout_height="@dimen/hero_screen_avatar_size"
-        app:layout_constraintTop_toBottomOf="@id/kittaroAvatar"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/kittaroAvatar"
         app:srcCompat="@drawable/cell100x100" />
 
     <android.support.v7.widget.AppCompatImageButton
         android:id="@+id/aimaAvatar"
         android:layout_width="@dimen/hero_screen_avatar_size"
         android:layout_height="@dimen/hero_screen_avatar_size"
-        app:layout_constraintTop_toBottomOf="@id/zoiAvatar"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/zoiAvatar"
         app:srcCompat="@drawable/cell100x100" />
 
+    <!-- Hex types buttons -->
+    <Button
+        android:id="@+id/radioButtonLifeHex"
+        android:layout_width="@dimen/hero_screen_hex_type_size"
+        android:layout_height="@dimen/hero_screen_hex_type_size"
+        android:padding="5dp"
+        android:text="L"
+        android:theme="@style/EditorLifeButtonTheme"
+        app:layout_constraintBottom_toTopOf="@id/editorCanvasView"
+        app:layout_constraintEnd_toStartOf="@+id/radioButtonAttackHex"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/kittaroAvatar"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/radioButtonAttackHex"
+        android:layout_width="@dimen/hero_screen_hex_type_size"
+        android:layout_height="@dimen/hero_screen_hex_type_size"
+        android:padding="5dp"
+        android:text="A"
+        android:theme="@style/EditorAttackButtonTheme"
+        app:layout_constraintBottom_toTopOf="@id/editorCanvasView"
+        app:layout_constraintEnd_toStartOf="@+id/radioButtonEnergyHex"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/radioButtonLifeHex"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/radioButtonEnergyHex"
+        android:layout_width="@dimen/hero_screen_hex_type_size"
+        android:layout_height="@dimen/hero_screen_hex_type_size"
+        android:padding="5dp"
+        android:text="E"
+        android:theme="@style/EditorEnergyButtonTheme"
+        app:layout_constraintBottom_toTopOf="@id/editorCanvasView"
+        app:layout_constraintEnd_toStartOf="@+id/radioButtonRemoveHex"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/radioButtonAttackHex"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/radioButtonRemoveHex"
+        android:layout_width="@dimen/hero_screen_hex_type_size"
+        android:layout_height="@dimen/hero_screen_hex_type_size"
+        android:padding="5dp"
+        android:text="X"
+        app:layout_constraintBottom_toTopOf="@id/editorCanvasView"
+        app:layout_constraintEnd_toStartOf="@+id/textMoney"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/radioButtonEnergyHex"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Money field -->
+    <TextView
+        android:id="@+id/textMoney"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/text_money"
+        android:textAlignment="textEnd"
+        app:layout_constraintBottom_toTopOf="@id/editorCanvasView"
+        app:layout_constraintEnd_toEndOf="@id/editorCanvasView"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Other buttons -->
     <Button
         android:id="@+id/buttonMainMenu"
         android:layout_width="wrap_content"
@@ -41,32 +106,48 @@
         android:id="@+id/cellName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAlignment="textEnd"
         android:text="@string/text_cell_name"
+        android:textAlignment="textEnd"
+        android:textSize="36sp"
         app:layout_constraintEnd_toStartOf="@id/buttonMainMenu"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout
-        android:id="@+id/editorAndHistoryLayout"
+    <bav.onecell.editor.EditorCanvasView
+        android:id="@+id/editorCanvasView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/textHeroHistory"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/zoiAvatar"
+        app:layout_constraintTop_toBottomOf="@id/cellName" />
+
+    <TextView
+        android:id="@+id/textHeroHistory"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="@string/text_history_stub"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@id/editorCanvasView"
+        app:layout_constraintTop_toBottomOf="@id/cellName" />
+
+    <!-- Rotation buttons -->
+    <android.support.v7.widget.AppCompatImageButton
+        android:id="@+id/buttonRotateCellLeft"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@id/kittaroAvatar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/buttonMainMenu">
+        app:layout_constraintStart_toStartOf="@id/editorCanvasView"
+        app:srcCompat="@drawable/ic_rotate_left_black_24dp" />
 
-        <bav.onecell.editor.EditorCanvasView
-            android:id="@+id/editorCanvasView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"/>
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/text_history_stub"/>
-    </LinearLayout>
+    <android.support.v7.widget.AppCompatImageButton
+        android:id="@+id/buttonRotateCellRight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/editorCanvasView"
+        app:srcCompat="@drawable/ic_rotate_right_black_24dp" />
 
 </android.support.constraint.ConstraintLayout>
