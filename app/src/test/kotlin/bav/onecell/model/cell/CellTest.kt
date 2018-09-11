@@ -15,6 +15,7 @@ class CellTest {
     @Before
     fun setup() {
         cell.data.hexes.clear()
+        cell.updateOutlineHexes()
         cell.data.direction = Cell.Direction.N
     }
 

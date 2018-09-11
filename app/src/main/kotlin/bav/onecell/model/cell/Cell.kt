@@ -151,67 +151,19 @@ class Cell(private val hexMath: HexMath,
         rotate(newDir)
     }
 
-    // TODO: make it formula
+    /**
+     * Simple formula has been provided by Danil Bogaevsky.
+     */
     fun rotate(newDirection: Direction) {
-        if (data.direction == newDirection) return
-        else if (abs(data.direction.ordinal - newDirection.ordinal) == 3) rotateHexesFlip()
-        else {
-            when (data.direction) {
-                Direction.N -> {
-                    when (newDirection) {
-                        Direction.NE -> rotateHexesRight()
-                        Direction.SE -> rotateHexesRightTwice()
-                        Direction.NW -> rotateHexesLeft()
-                        Direction.SW -> rotateHexesLeftTwice()
-                        else -> Unit
-                    }
-                }
-                Direction.NE -> {
-                    when (newDirection) {
-                        Direction.SE -> rotateHexesRight()
-                        Direction.S -> rotateHexesRightTwice()
-                        Direction.N -> rotateHexesLeft()
-                        Direction.NW -> rotateHexesLeftTwice()
-                        else -> Unit
-                    }
-                }
-                Direction.SE -> {
-                    when (newDirection) {
-                        Direction.S -> rotateHexesRight()
-                        Direction.SW -> rotateHexesRightTwice()
-                        Direction.NE -> rotateHexesLeft()
-                        Direction.N -> rotateHexesLeftTwice()
-                        else -> Unit
-                    }
-                }
-                Direction.S -> {
-                    when (newDirection) {
-                        Direction.SW -> rotateHexesRight()
-                        Direction.NW -> rotateHexesRightTwice()
-                        Direction.SE -> rotateHexesLeft()
-                        Direction.NE -> rotateHexesLeftTwice()
-                        else -> Unit
-                    }
-                }
-                Direction.SW -> {
-                    when (newDirection) {
-                        Direction.NW -> rotateHexesRight()
-                        Direction.N -> rotateHexesRightTwice()
-                        Direction.S -> rotateHexesLeft()
-                        Direction.SE -> rotateHexesLeftTwice()
-                        else -> Unit
-                    }
-                }
-                Direction.NW -> {
-                    when (newDirection) {
-                        Direction.N -> rotateHexesRight()
-                        Direction.NE -> rotateHexesRightTwice()
-                        Direction.SW -> rotateHexesLeft()
-                        Direction.S -> rotateHexesLeftTwice()
-                        else -> Unit
-                    }
-                }
-            }
+        var r = (data.direction.ordinal - newDirection.ordinal) % 6
+        if (r < 0) r += 6
+        when (r) {
+            1 -> rotateHexesLeft()
+            2 -> rotateHexesLeftTwice()
+            3 -> rotateHexesFlip()
+            4 -> rotateHexesRightTwice()
+            5 -> rotateHexesRight()
+            else -> Unit
         }
         data.direction = newDirection
     }
@@ -290,128 +242,29 @@ class Cell(private val hexMath: HexMath,
         val twiceLeftRotation = 2f * -PI.toFloat() / 3f
         val flipRotation = if (Math.random() < 0.5) PI.toFloat() else -PI.toFloat()
 
-        return if (data.direction == newDirection) zeroRotation
-        else if (abs(data.direction.ordinal - newDirection.ordinal) == 3) flipRotation
-        else {
-            when (data.direction) {
-                Direction.N -> {
-                    when (newDirection) {
-                        Direction.NE -> rightRotation
-                        Direction.SE -> twiceRightRotation
-                        Direction.NW -> leftRotation
-                        Direction.SW -> twiceLeftRotation
-                        else -> zeroRotation
-                    }
-                }
-                Direction.NE -> {
-                    when (newDirection) {
-                        Direction.SE -> rightRotation
-                        Direction.S -> twiceRightRotation
-                        Direction.N -> leftRotation
-                        Direction.NW -> twiceLeftRotation
-                        else -> zeroRotation
-                    }
-                }
-                Direction.SE -> {
-                    when (newDirection) {
-                        Direction.S -> rightRotation
-                        Direction.SW -> twiceRightRotation
-                        Direction.NE -> leftRotation
-                        Direction.N -> twiceLeftRotation
-                        else -> zeroRotation
-                    }
-                }
-                Direction.S -> {
-                    when (newDirection) {
-                        Direction.SW -> rightRotation
-                        Direction.NW -> twiceRightRotation
-                        Direction.SE -> leftRotation
-                        Direction.NE -> twiceLeftRotation
-                        else -> zeroRotation
-                    }
-                }
-                Direction.SW -> {
-                    when (newDirection) {
-                        Direction.NW -> rightRotation
-                        Direction.N -> twiceRightRotation
-                        Direction.S -> leftRotation
-                        Direction.SE -> twiceLeftRotation
-                        else -> zeroRotation
-                    }
-                }
-                Direction.NW -> {
-                    when (newDirection) {
-                        Direction.N -> rightRotation
-                        Direction.NE -> twiceRightRotation
-                        Direction.SW -> leftRotation
-                        Direction.S -> twiceLeftRotation
-                        else -> zeroRotation
-                    }
-                }
-            }
+        var r = (data.direction.ordinal - newDirection.ordinal) % 6
+        if (r < 0) r += 6
+
+        return when (r) {
+            1 -> leftRotation
+            2 -> twiceLeftRotation
+            3 -> flipRotation
+            4 -> twiceRightRotation
+            5 -> rightRotation
+            else -> zeroRotation
         }
     }
 
     fun rotateHex(hex: Hex, oldDirection: Direction, newDirection: Direction): Hex {
-        if (oldDirection == newDirection) return hex
-        else if (abs(oldDirection.ordinal - newDirection.ordinal) == 3) return hexMath.rotateFlip(hex)
-        else {
-            return when (oldDirection) {
-                Direction.N -> {
-                    when (newDirection) {
-                        Direction.NE -> hexMath.rotateRight(hex)
-                        Direction.SE -> hexMath.rotateRightTwice(hex)
-                        Direction.NW -> hexMath.rotateLeft(hex)
-                        Direction.SW -> hexMath.rotateLeftTwice(hex)
-                        else -> hex
-                    }
-                }
-                Direction.NE -> {
-                    when (newDirection) {
-                        Direction.SE -> hexMath.rotateRight(hex)
-                        Direction.S -> hexMath.rotateRightTwice(hex)
-                        Direction.N -> hexMath.rotateLeft(hex)
-                        Direction.NW -> hexMath.rotateLeftTwice(hex)
-                        else -> hex
-                    }
-                }
-                Direction.SE -> {
-                    when (newDirection) {
-                        Direction.S -> hexMath.rotateRight(hex)
-                        Direction.SW -> hexMath.rotateRightTwice(hex)
-                        Direction.NE -> hexMath.rotateLeft(hex)
-                        Direction.N -> hexMath.rotateLeftTwice(hex)
-                        else -> hex
-                    }
-                }
-                Direction.S -> {
-                    when (newDirection) {
-                        Direction.SW -> hexMath.rotateRight(hex)
-                        Direction.NW -> hexMath.rotateRightTwice(hex)
-                        Direction.SE -> hexMath.rotateLeft(hex)
-                        Direction.NE -> hexMath.rotateLeftTwice(hex)
-                        else -> hex
-                    }
-                }
-                Direction.SW -> {
-                    when (newDirection) {
-                        Direction.NW -> hexMath.rotateRight(hex)
-                        Direction.N -> hexMath.rotateRightTwice(hex)
-                        Direction.S -> hexMath.rotateLeft(hex)
-                        Direction.SE -> hexMath.rotateLeftTwice(hex)
-                        else -> hex
-                    }
-                }
-                Direction.NW -> {
-                    when (newDirection) {
-                        Direction.N -> hexMath.rotateRight(hex)
-                        Direction.NE -> hexMath.rotateRightTwice(hex)
-                        Direction.SW -> hexMath.rotateLeft(hex)
-                        Direction.S -> hexMath.rotateLeftTwice(hex)
-                        else -> hex
-                    }
-                }
-            }
+        var r = (oldDirection.ordinal - newDirection.ordinal) % 6
+        if (r < 0) r += 6
+        return when (r) {
+            1 -> hexMath.rotateLeft(hex)
+            2 -> hexMath.rotateLeftTwice(hex)
+            3 -> hexMath.rotateFlip(hex)
+            4 -> hexMath.rotateRightTwice(hex)
+            5 -> hexMath.rotateRight(hex)
+            else -> hex
         }
     }
 }
