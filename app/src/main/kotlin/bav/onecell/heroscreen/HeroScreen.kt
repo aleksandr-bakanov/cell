@@ -1,10 +1,12 @@
 package bav.onecell.heroscreen
 
+import bav.onecell.editor.Editor
+
 interface HeroScreen {
-    interface View {
+    interface View: Editor.View {
 
     }
-    interface Presenter {
+    interface Presenter: Editor.Presenter {
         fun openMainMenu()
     }
 }
