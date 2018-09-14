@@ -25,7 +25,7 @@ open class CanvasView(context: Context, attributeSet: AttributeSet) : View(conte
         private const val TAG = "CanvasView"
     }
 
-    var backgroundFieldRadius: Int = 1
+    var backgroundFieldRadius: Int = 3
         set(value) {
             field = value
             backgroundHexes = hexMath.getNeighborsWithinRadius(hexMath.ZERO_HEX, value)
