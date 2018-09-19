@@ -10,5 +10,6 @@ interface Storage {
      * @param repo
      */
     fun storeCellRepository(repo: RepositoryContract.CellRepo)
+    fun storeCell(cell: Cell)
     fun restoreCellRepository(): List<Cell>
 }

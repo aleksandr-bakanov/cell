@@ -48,4 +48,8 @@ class CellRepository(
     override fun storeCells() {
         storage.storeCellRepository(this)
     }
+
+    override fun storeCell(cell: Cell) {
+        storage.storeCell(cell)
+    }
 }

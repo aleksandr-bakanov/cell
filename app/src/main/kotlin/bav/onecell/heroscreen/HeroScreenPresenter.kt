@@ -24,16 +24,20 @@ class HeroScreenPresenter(
     private var cell: Cell? = null
     private val cellProvider = BehaviorSubject.create<Cell>()
     private val backgroundFieldRadiusProvider = BehaviorSubject.create<Int>()
+    private var currentCellIndex = -1
 
     override fun initialize(cellIndex: Int) {
-        cellRepository.loadFromStore()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe {
-                    cell = cellRepository.getCell(cellIndex)
-                    backgroundFieldRadiusProvider.onNext(4)
-                    cellProvider.onNext(cell!!)
-                }
+        if (cellIndex != currentCellIndex) {
+            cellRepository.loadFromStore()
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe {
+                        cell?.let { currentCell -> cellRepository.storeCell(currentCell) }
+                        cell = cellRepository.getCell(cellIndex)
+                        backgroundFieldRadiusProvider.onNext(4)
+                        cellProvider.onNext(cell!!)
+                    }
+        }
     }
 
     override fun addHexToCell(hex: Hex) {
@@ -83,6 +87,7 @@ class HeroScreenPresenter(
     }
 
     override fun openMainMenu() {
+        cell?.let { cellRepository.storeCell(it) }
         router.goToMain()
     }
 }

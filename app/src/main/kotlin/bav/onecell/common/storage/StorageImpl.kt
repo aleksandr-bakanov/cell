@@ -25,6 +25,10 @@ class StorageImpl(
         }
     }
 
+    override fun storeCell(cell: Cell) {
+        launch { dataBase.cellDataDao().insert(cell.data) }
+    }
+
     override fun restoreCellRepository(): List<Cell> {
         val dao = dataBase.cellDataDao()
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
