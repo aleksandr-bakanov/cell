@@ -12,7 +12,8 @@
         android:layout_height="@dimen/hero_screen_avatar_size"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/cell100x100" />
+        app:srcCompat="@drawable/cell100x100"
+        android:layout_margin="@dimen/hero_screen_avatar_margin" />
 
     <android.support.v7.widget.AppCompatImageButton
         android:id="@+id/zoiAvatar"
@@ -20,7 +21,8 @@
         android:layout_height="@dimen/hero_screen_avatar_size"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/kittaroAvatar"
-        app:srcCompat="@drawable/cell100x100" />
+        app:srcCompat="@drawable/cell100x100"
+        android:layout_margin="@dimen/hero_screen_avatar_margin" />
 
     <android.support.v7.widget.AppCompatImageButton
         android:id="@+id/aimaAvatar"
@@ -28,7 +30,17 @@
         android:layout_height="@dimen/hero_screen_avatar_size"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/zoiAvatar"
-        app:srcCompat="@drawable/cell100x100" />
+        app:srcCompat="@drawable/cell100x100"
+        android:layout_margin="@dimen/hero_screen_avatar_margin" />
+
+    <android.support.v7.widget.AppCompatImageButton
+        android:id="@+id/buttonSwitchScreen"
+        android:layout_width="@dimen/hero_screen_avatar_size"
+        android:layout_height="@dimen/hero_screen_avatar_size"
+        android:layout_margin="@dimen/hero_screen_avatar_margin"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/aimaAvatar"
+        app:srcCompat="@drawable/ic_memory_black_24dp" />
 
     <!-- Hex types buttons -->
     <Button
@@ -149,5 +161,28 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/editorCanvasView"
         app:srcCompat="@drawable/ic_rotate_right_black_24dp" />
+
+    <!-- Cell logic edition -->
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerViewRulesList"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toEndOf="@id/zoiAvatar"
+        app:layout_constraintEnd_toStartOf="@id/recyclerViewConditionsList"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cellName"
+        android:visibility="gone" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerViewConditionsList"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@id/recyclerViewRulesList"
+        app:layout_constraintTop_toBottomOf="@id/cellName"
+        android:visibility="gone" />
 
 </android.support.constraint.ConstraintLayout>

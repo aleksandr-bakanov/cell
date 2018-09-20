@@ -20,5 +20,7 @@ interface RepositoryContract {
         fun getCell(index: Int): Cell?
 
         fun storeCells()
+
+        fun storeCell(cell: Cell)
     }
 }

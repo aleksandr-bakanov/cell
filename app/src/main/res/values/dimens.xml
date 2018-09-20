@@ -3,5 +3,6 @@
     <dimen name="text_margin">16dp</dimen>
 
     <dimen name="hero_screen_avatar_size">50dp</dimen>
+    <dimen name="hero_screen_avatar_margin">5dp</dimen>
     <dimen name="hero_screen_hex_type_size">40dp</dimen>
 </resources>

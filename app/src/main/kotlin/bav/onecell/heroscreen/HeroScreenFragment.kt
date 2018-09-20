@@ -1,5 +1,8 @@
 package bav.onecell.heroscreen
 
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
+import android.animation.ValueAnimator
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
@@ -11,10 +14,21 @@ import bav.onecell.common.view.DrawUtils
 import bav.onecell.model.hexes.Hex
 import bav.onecell.model.hexes.HexMath
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.disposables.Disposable
+import kotlinx.android.synthetic.main.fragment_hero_screen.aimaAvatar
 import kotlinx.android.synthetic.main.fragment_hero_screen.buttonMainMenu
+import kotlinx.android.synthetic.main.fragment_hero_screen.buttonRotateCellLeft
+import kotlinx.android.synthetic.main.fragment_hero_screen.buttonRotateCellRight
 import kotlinx.android.synthetic.main.fragment_hero_screen.editorCanvasView
+import kotlinx.android.synthetic.main.fragment_hero_screen.kittaroAvatar
+import kotlinx.android.synthetic.main.fragment_hero_screen.radioButtonAttackHex
+import kotlinx.android.synthetic.main.fragment_hero_screen.radioButtonEnergyHex
+import kotlinx.android.synthetic.main.fragment_hero_screen.radioButtonLifeHex
+import kotlinx.android.synthetic.main.fragment_hero_screen.radioButtonRemoveHex
 import kotlinx.android.synthetic.main.fragment_hero_screen.textMoney
+import kotlinx.android.synthetic.main.fragment_hero_screen.zoiAvatar
 import javax.inject.Inject
+import kotlin.math.PI
 
 class HeroScreenFragment: Fragment(), HeroScreen.View {
 
@@ -23,6 +37,7 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
     @Inject lateinit var drawUtils: DrawUtils
 
     private val disposables = CompositeDisposable()
+    private var moneyDisposable: Disposable? = null
 
     //region Lifecycle methods
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -35,6 +50,16 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
         initiateCanvasView()
 
         buttonMainMenu.setOnClickListener { presenter.openMainMenu() }
+        radioButtonLifeHex.setOnClickListener { onHexTypeRadioButtonClicked(it) }
+        radioButtonAttackHex.setOnClickListener { onHexTypeRadioButtonClicked(it) }
+        radioButtonEnergyHex.setOnClickListener { onHexTypeRadioButtonClicked(it) }
+        radioButtonRemoveHex.setOnClickListener { onHexTypeRadioButtonClicked(it) }
+        buttonRotateCellLeft.setOnClickListener { onCellRotateButtonClicked(it) }
+        buttonRotateCellRight.setOnClickListener { onCellRotateButtonClicked(it) }
+
+        kittaroAvatar.setOnClickListener { presenter.initialize(KITTARO_INDEX) }
+        zoiAvatar.setOnClickListener { presenter.initialize(ZOI_INDEX) }
+        aimaAvatar.setOnClickListener { presenter.initialize(AIMA_INDEX) }
 
         disposables.addAll(
                 presenter.getCellProvider().subscribe {
@@ -42,21 +67,24 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
                     textMoney.text = resources.getString(R.string.text_money, it.data.money)
                     highlightTips(editorCanvasView.selectedCellType)
 
-                    disposables.add(it.getMoneyProvider().subscribe { money ->
+                    /// TODO: make it cleaner
+                    moneyDisposable?.dispose()
+                    moneyDisposable = it.getMoneyProvider().subscribe { money ->
                         textMoney.text = resources.getString(R.string.text_money, money)
-                    })
+                    }
                 },
                 presenter.getBackgroundCellRadiusProvider().subscribe {
                     editorCanvasView.backgroundFieldRadius = it
                     editorCanvasView.invalidate()
                 }
         )
-        presenter.initialize(0)
+        presenter.initialize(KITTARO_INDEX)
 
     }
 
     override fun onDestroyView() {
         disposables.dispose()
+        moneyDisposable?.dispose()
         super.onDestroyView()
     }
     //endregion
@@ -80,10 +108,75 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
         editorCanvasView.drawUtils = drawUtils
         editorCanvasView.presenter = presenter
     }
+
+    private fun onHexTypeRadioButtonClicked(view: View) {
+        val type = when (view.id) {
+            R.id.radioButtonLifeHex -> Hex.Type.LIFE
+            R.id.radioButtonEnergyHex -> Hex.Type.ENERGY
+            R.id.radioButtonAttackHex -> Hex.Type.ATTACK
+            else -> Hex.Type.REMOVE
+        }
+        editorCanvasView.selectedCellType = type
+        editorCanvasView.tipHexes = presenter.getTipHexes(type)
+        editorCanvasView.invalidate()
+    }
+
+
+    private fun onCellRotateButtonClicked(view: View) {
+        editorCanvasView.tipHexes = null
+        when (view.id) {
+            R.id.buttonRotateCellLeft -> animateCellRotationLeft()
+            R.id.buttonRotateCellRight -> animateCellRotationRight()
+        }
+    }
+
+    private fun animateCellRotationLeft() {
+        ValueAnimator.ofFloat(0f, -PI.toFloat() / 3f).apply {
+            duration = 1000
+            addUpdateListener {
+                editorCanvasView.cell?.animationData?.rotation = it.animatedValue as Float
+                editorCanvasView.invalidate()
+            }
+            addListener(object: AnimatorListenerAdapter() {
+                override fun onAnimationEnd(animation: Animator?) {
+                    super.onAnimationEnd(animation)
+                    editorCanvasView.cell?.animationData?.rotation = 0f
+                    presenter.rotateCellLeft()
+                    editorCanvasView.tipHexes = presenter.getTipHexes(editorCanvasView.selectedCellType)
+                    editorCanvasView.invalidate()
+                }
+            })
+            start()
+        }
+    }
+
+    private fun animateCellRotationRight() {
+        ValueAnimator.ofFloat(0f, PI.toFloat() / 3f).apply {
+            duration = 1000
+            addUpdateListener {
+                editorCanvasView.cell?.animationData?.rotation = it.animatedValue as Float
+                editorCanvasView.invalidate()
+            }
+            addListener(object: AnimatorListenerAdapter() {
+                override fun onAnimationEnd(animation: Animator?) {
+                    super.onAnimationEnd(animation)
+                    editorCanvasView.cell?.animationData?.rotation = 0f
+                    presenter.rotateCellRight()
+                    editorCanvasView.tipHexes = presenter.getTipHexes(editorCanvasView.selectedCellType)
+                    editorCanvasView.invalidate()
+                }
+            })
+            start()
+        }
+    }
     //endregion
 
     companion object {
         private const val TAG = "EditorFragment"
+
+        private const val KITTARO_INDEX = 0
+        private const val ZOI_INDEX = 1
+        private const val AIMA_INDEX = 2
 
         @JvmStatic
         fun newInstance(bundle: Bundle?): HeroScreenFragment {
