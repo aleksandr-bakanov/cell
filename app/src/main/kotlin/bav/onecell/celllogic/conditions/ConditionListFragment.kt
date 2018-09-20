@@ -28,8 +28,8 @@ class ConditionListFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         inject()
-        presenter.initialize(arguments?.getInt(CELL_INDEX) ?: -1,
-                             arguments?.getInt(RULE_INDEX) ?: -1)
+        presenter.initializeConditionList(arguments?.getInt(CELL_INDEX) ?: -1,
+                                          arguments?.getInt(RULE_INDEX) ?: -1)
 
         buttonAddNewCondition.setOnClickListener { presenter.createNewCondition() }
 

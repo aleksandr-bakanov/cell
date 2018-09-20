@@ -5,11 +5,14 @@ import android.animation.AnimatorListenerAdapter
 import android.animation.ValueAnimator
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import bav.onecell.OneCellApplication
 import bav.onecell.R
+import bav.onecell.celllogic.conditions.ConditionsRecyclerViewAdapter
+import bav.onecell.celllogic.rules.RulesRecyclerViewAdapter
 import bav.onecell.common.view.DrawUtils
 import bav.onecell.model.hexes.Hex
 import bav.onecell.model.hexes.HexMath
@@ -19,12 +22,16 @@ import kotlinx.android.synthetic.main.fragment_hero_screen.aimaAvatar
 import kotlinx.android.synthetic.main.fragment_hero_screen.buttonMainMenu
 import kotlinx.android.synthetic.main.fragment_hero_screen.buttonRotateCellLeft
 import kotlinx.android.synthetic.main.fragment_hero_screen.buttonRotateCellRight
+import kotlinx.android.synthetic.main.fragment_hero_screen.buttonSwitchScreen
 import kotlinx.android.synthetic.main.fragment_hero_screen.editorCanvasView
 import kotlinx.android.synthetic.main.fragment_hero_screen.kittaroAvatar
 import kotlinx.android.synthetic.main.fragment_hero_screen.radioButtonAttackHex
 import kotlinx.android.synthetic.main.fragment_hero_screen.radioButtonEnergyHex
 import kotlinx.android.synthetic.main.fragment_hero_screen.radioButtonLifeHex
 import kotlinx.android.synthetic.main.fragment_hero_screen.radioButtonRemoveHex
+import kotlinx.android.synthetic.main.fragment_hero_screen.recyclerViewConditionsList
+import kotlinx.android.synthetic.main.fragment_hero_screen.recyclerViewRulesList
+import kotlinx.android.synthetic.main.fragment_hero_screen.textHeroHistory
 import kotlinx.android.synthetic.main.fragment_hero_screen.textMoney
 import kotlinx.android.synthetic.main.fragment_hero_screen.zoiAvatar
 import javax.inject.Inject
@@ -38,6 +45,7 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
 
     private val disposables = CompositeDisposable()
     private var moneyDisposable: Disposable? = null
+    private var isCellLogicViewsShown = false
 
     //region Lifecycle methods
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -56,10 +64,17 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
         radioButtonRemoveHex.setOnClickListener { onHexTypeRadioButtonClicked(it) }
         buttonRotateCellLeft.setOnClickListener { onCellRotateButtonClicked(it) }
         buttonRotateCellRight.setOnClickListener { onCellRotateButtonClicked(it) }
+        buttonSwitchScreen.setOnClickListener { switchCellLogicEditorViews() }
 
         kittaroAvatar.setOnClickListener { presenter.initialize(KITTARO_INDEX) }
         zoiAvatar.setOnClickListener { presenter.initialize(ZOI_INDEX) }
         aimaAvatar.setOnClickListener { presenter.initialize(AIMA_INDEX) }
+
+        recyclerViewRulesList.layoutManager = LinearLayoutManager(context)
+        recyclerViewRulesList.adapter = RulesRecyclerViewAdapter(presenter)
+
+        recyclerViewConditionsList.layoutManager = LinearLayoutManager(context)
+        recyclerViewConditionsList.adapter = ConditionsRecyclerViewAdapter(presenter)
 
         disposables.addAll(
                 presenter.getCellProvider().subscribe {
@@ -76,10 +91,15 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
                 presenter.getBackgroundCellRadiusProvider().subscribe {
                     editorCanvasView.backgroundFieldRadius = it
                     editorCanvasView.invalidate()
+                },
+                presenter.rulesUpdateNotifier().subscribe {
+                    recyclerViewRulesList.adapter.notifyDataSetChanged()
+                },
+                presenter.conditionsUpdateNotifier().subscribe {
+                    recyclerViewConditionsList.adapter.notifyDataSetChanged()
                 }
         )
         presenter.initialize(KITTARO_INDEX)
-
     }
 
     override fun onDestroyView() {
@@ -120,7 +140,6 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
         editorCanvasView.tipHexes = presenter.getTipHexes(type)
         editorCanvasView.invalidate()
     }
-
 
     private fun onCellRotateButtonClicked(view: View) {
         editorCanvasView.tipHexes = null
@@ -169,6 +188,24 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
             start()
         }
     }
+
+    private fun switchCellLogicEditorViews() {
+        isCellLogicViewsShown = !isCellLogicViewsShown
+
+        val cellLogicVisibility = getVisibilityByBool(isCellLogicViewsShown)
+        val editorVisibility = getVisibilityByBool(!isCellLogicViewsShown)
+
+        /// TODO: energy hex is available not from the beginning
+        for (view in arrayListOf<View>(radioButtonLifeHex, radioButtonAttackHex, radioButtonEnergyHex,
+                                       radioButtonRemoveHex, textMoney, editorCanvasView, textHeroHistory,
+                                       buttonRotateCellLeft, buttonRotateCellRight))
+            view.visibility = editorVisibility
+
+        for (view in arrayListOf<View>(recyclerViewRulesList, recyclerViewConditionsList))
+            view.visibility = cellLogicVisibility
+    }
+
+    private fun getVisibilityByBool(b: Boolean): Int = if (b) View.VISIBLE else View.GONE
     //endregion
 
     companion object {

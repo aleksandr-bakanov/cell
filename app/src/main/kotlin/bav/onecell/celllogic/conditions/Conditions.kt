@@ -14,7 +14,7 @@ interface Conditions {
          *
          * @param cellIndex Index of cell to be working with
          */
-        fun initialize(cellIndex: Int, ruleIndex: Int)
+        fun initializeConditionList(cellIndex: Int, ruleIndex: Int)
 
         fun conditionsUpdateNotifier(): Observable<Unit>
 
