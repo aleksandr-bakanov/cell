@@ -10,7 +10,7 @@ interface Picker {
     interface Presenter {
         fun pickerOptionsCount(): Int
         fun pickerOptionOnClick(position: Int)
-        fun getPickerOptionTitle(position: Int): String
+        fun getPickerOptionTitle(position: Int): Int
         fun optionsUpdateNotifier(): Observable<Unit>
     }
 }

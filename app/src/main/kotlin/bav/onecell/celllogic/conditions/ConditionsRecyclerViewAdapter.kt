@@ -1,5 +1,6 @@
 package bav.onecell.celllogic.conditions
 
+import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -36,15 +37,15 @@ class ConditionsRecyclerViewAdapter(private val presenter: Conditions.Presenter)
             R.layout.item_row_rule_condition -> {
                 holder.view.title.text = "#$position"
                 presenter.getCondition(position)?.let {
-                    holder.view.buttonFieldToCheck.text = getFieldToCheckRepresentation(it.fieldToCheck)
+                    holder.view.buttonFieldToCheck.text = getFieldToCheckRepresentation(holder.view.context, it.fieldToCheck)
                 }
             }
         }
     }
 
-    private fun getFieldToCheckRepresentation(fieldToCheck: Condition.FieldToCheck): String {
+    private fun getFieldToCheckRepresentation(context: Context, fieldToCheck: Condition.FieldToCheck): String {
         return when (fieldToCheck) {
-            Condition.FieldToCheck.DIRECTION_TO_NEAREST_ENEMY -> "\uD83D\uDE08"
+            Condition.FieldToCheck.DIRECTION_TO_NEAREST_ENEMY -> context.resources.getString(R.string.utf_icon_direction_to_nearest_enemy)
         }
     }
 

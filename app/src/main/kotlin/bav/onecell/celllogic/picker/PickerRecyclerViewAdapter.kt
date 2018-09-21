@@ -19,7 +19,8 @@ class PickerRecyclerViewAdapter(private val presenter: Picker.Presenter) :
     override fun getItemCount(): Int = presenter.pickerOptionsCount()
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.view.buttonOption.text = presenter.getPickerOptionTitle(position)
+        holder.view.buttonOption.text =
+                holder.view.context.resources.getString(presenter.getPickerOptionTitle(position))
     }
 
     class ViewHolder(val view: View, private val presenter: Picker.Presenter) : RecyclerView.ViewHolder(view) {

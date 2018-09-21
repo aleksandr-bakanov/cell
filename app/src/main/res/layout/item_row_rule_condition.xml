@@ -13,8 +13,8 @@
 
     <Button
         android:id="@+id/buttonFieldToCheck"
-        android:layout_width="@dimen/hero_screen_hex_type_size"
-        android:layout_height="@dimen/hero_screen_hex_type_size"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text=""
         app:layout_constraintStart_toEndOf="@id/title" />
 

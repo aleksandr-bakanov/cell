@@ -1,5 +1,6 @@
 package bav.onecell.heroscreen
 
+import bav.onecell.R
 import bav.onecell.common.router.Router
 import bav.onecell.model.GameRules
 import bav.onecell.model.RepositoryContract
@@ -34,7 +35,7 @@ class HeroScreenPresenter(
     private var currentlyEditedCondition: Condition? = null
     private val conditionsNotifier = PublishSubject.create<Unit>()
     private val pickerOptionsNotifier = PublishSubject.create<Unit>()
-    private var pickerOptionsSource: List<Pair<String, () -> Unit? >>? = null
+    private var pickerOptionsSource: List<Pair<Int, () -> Unit? >>? = null
 
     override fun initialize(cellIndex: Int) {
         if (cellIndex != currentCellIndex) {
@@ -68,11 +69,11 @@ class HeroScreenPresenter(
         }
     }
 
-    override fun getPickerOptionTitle(position: Int): String {
+    override fun getPickerOptionTitle(position: Int): Int {
         pickerOptionsSource?.let {
             if (position >= 0 && position < it.size) return it[position].first
         }
-        return ""
+        return 0
     }
 
     override fun optionsUpdateNotifier(): Observable<Unit> = pickerOptionsNotifier
@@ -243,7 +244,7 @@ class HeroScreenPresenter(
         setPickerOptionsSource(cellRuleActions)
     }
 
-    private fun setPickerOptionsSource(source: List<Pair<String, () -> Unit? >>?) {
+    private fun setPickerOptionsSource(source: List<Pair<Int, () -> Unit? >>?) {
         pickerOptionsSource = source
         pickerOptionsNotifier.onNext(Unit)
     }
@@ -251,16 +252,16 @@ class HeroScreenPresenter(
 
     //region Picker options
     private val cellRuleActions = arrayListOf(
-            Pair("↑", { currentlyEditedRule?.action?.let { it.act = Action.Act.CHANGE_DIRECTION; it.value = Cell.Direction.N.ordinal }}),
-            Pair("↗", { currentlyEditedRule?.action?.let { it.act = Action.Act.CHANGE_DIRECTION; it.value = Cell.Direction.NE.ordinal }}),
-            Pair("↘", { currentlyEditedRule?.action?.let { it.act = Action.Act.CHANGE_DIRECTION; it.value = Cell.Direction.SE.ordinal }}),
-            Pair("↓", { currentlyEditedRule?.action?.let { it.act = Action.Act.CHANGE_DIRECTION; it.value = Cell.Direction.S.ordinal }}),
-            Pair("↙", { currentlyEditedRule?.action?.let { it.act = Action.Act.CHANGE_DIRECTION; it.value = Cell.Direction.SW.ordinal }}),
-            Pair("↖", { currentlyEditedRule?.action?.let { it.act = Action.Act.CHANGE_DIRECTION; it.value = Cell.Direction.NW.ordinal }})
+            Pair(R.string.utf_icon_north_direction, { currentlyEditedRule?.action?.let { it.act = Action.Act.CHANGE_DIRECTION; it.value = Cell.Direction.N.ordinal }}),
+            Pair(R.string.utf_icon_north_east_direction, { currentlyEditedRule?.action?.let { it.act = Action.Act.CHANGE_DIRECTION; it.value = Cell.Direction.NE.ordinal }}),
+            Pair(R.string.utf_icon_south_east_direction, { currentlyEditedRule?.action?.let { it.act = Action.Act.CHANGE_DIRECTION; it.value = Cell.Direction.SE.ordinal }}),
+            Pair(R.string.utf_icon_south_direction, { currentlyEditedRule?.action?.let { it.act = Action.Act.CHANGE_DIRECTION; it.value = Cell.Direction.S.ordinal }}),
+            Pair(R.string.utf_icon_south_west_direction, { currentlyEditedRule?.action?.let { it.act = Action.Act.CHANGE_DIRECTION; it.value = Cell.Direction.SW.ordinal }}),
+            Pair(R.string.utf_icon_north_west_direction, { currentlyEditedRule?.action?.let { it.act = Action.Act.CHANGE_DIRECTION; it.value = Cell.Direction.NW.ordinal }})
     )
 
     private val cellRuleConditionFieldsToCheck = arrayListOf(
-            Pair("\uD83D\uDE08", {
+            Pair(R.string.utf_icon_direction_to_nearest_enemy, {
                 currentlyEditedCondition?.let { it.setToDefault(); it.fieldToCheck = Condition.FieldToCheck.DIRECTION_TO_NEAREST_ENEMY }
             })
     )
