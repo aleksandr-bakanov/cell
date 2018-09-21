@@ -35,4 +35,13 @@ class Condition(var operation: Operation = Operation.EQUALS,
             Operation.EQUALS -> fieldToCheckValue == expected
         }
     }
+
+    fun setToDefault() {
+        operation = Operation.EQUALS
+        expected = NO_DATA
+    }
+
+    companion object {
+        const val NO_DATA = -1
+    }
 }

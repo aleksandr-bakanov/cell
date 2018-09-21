@@ -26,6 +26,14 @@ interface Conditions {
 
         fun openConditionEditor(conditionIndex: Int, whatToEdit: Int)
 
+        fun chooseFieldToCheck(conditionIndex: Int)
+
+        fun chooseOperation(conditionIndex: Int)
+
+        fun chooseExpectedValue(conditionIndex: Int)
+
         fun provideActionDialogValues(): Array<String>
+
+        fun getCondition(index: Int): Condition?
     }
 }

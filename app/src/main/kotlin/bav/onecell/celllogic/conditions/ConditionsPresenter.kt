@@ -59,4 +59,20 @@ class ConditionsPresenter(private val cellRepository: RepositoryContract.CellRep
     override fun provideActionDialogValues(): Array<String> {
         return directionValues
     }
+
+    override fun chooseFieldToCheck(conditionIndex: Int) {
+
+    }
+
+    override fun chooseOperation(conditionIndex: Int) {
+
+    }
+
+    override fun chooseExpectedValue(conditionIndex: Int) {
+
+    }
+
+    override fun getCondition(index: Int): Condition? {
+        return null
+    }
 }

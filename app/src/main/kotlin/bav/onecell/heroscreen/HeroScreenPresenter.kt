@@ -31,6 +31,7 @@ class HeroScreenPresenter(
     private val rulesNotifier = PublishSubject.create<Unit>()
     private var currentCellIndex = -1
     private var currentlyEditedRule: Rule? = null
+    private var currentlyEditedCondition: Condition? = null
     private val conditionsNotifier = PublishSubject.create<Unit>()
     private val pickerOptionsNotifier = PublishSubject.create<Unit>()
     private var pickerOptionsSource: List<Pair<String, () -> Unit? >>? = null
@@ -60,7 +61,9 @@ class HeroScreenPresenter(
         pickerOptionsSource?.let {
             if (position >= 0 && position < it.size) {
                 it[position].second()
+                /// TODO: notify only necessary recycler views
                 rulesNotifier.onNext(Unit)
+                conditionsNotifier.onNext(Unit)
             }
         }
     }
@@ -86,13 +89,17 @@ class HeroScreenPresenter(
     override fun conditionsCount(): Int = currentlyEditedRule?.size() ?: 0
 
     override fun createNewCondition() {
-        currentlyEditedRule?.addCondition(Condition())
-        conditionsNotifier.onNext(Unit)
+        currentlyEditedRule?.let {
+            it.addCondition(Condition())
+            conditionsNotifier.onNext(Unit)
+        }
     }
 
     override fun removeCondition(index: Int) {
-        currentlyEditedRule?.removeConditionAt(index)
-        conditionsNotifier.onNext(Unit)
+        currentlyEditedRule?.let {
+            it.removeConditionAt(index)
+            conditionsNotifier.onNext(Unit)
+        }
     }
 
     override fun openConditionEditor(conditionIndex: Int, whatToEdit: Int) {
@@ -111,6 +118,23 @@ class HeroScreenPresenter(
     )
 
     override fun provideActionDialogValues(): Array<String> = directionValues
+
+    override fun chooseFieldToCheck(conditionIndex: Int) {
+        currentlyEditedCondition = currentlyEditedRule?.getCondition(conditionIndex)
+        currentlyEditedCondition?.let {
+            setPickerOptionsSource(cellRuleConditionFieldsToCheck)
+        }
+    }
+
+    override fun chooseOperation(conditionIndex: Int) {
+
+    }
+
+    override fun chooseExpectedValue(conditionIndex: Int) {
+
+    }
+
+    override fun getCondition(index: Int): Condition? = currentlyEditedRule?.getCondition(index)
     //endregion
 
     //region Rules.Presenter methods
@@ -216,19 +240,29 @@ class HeroScreenPresenter(
     //region Private methods
     private fun initializeRuleActionChoice(ruleIndex: Int) {
         currentlyEditedRule = rules?.get(ruleIndex)
-        pickerOptionsSource = cellRuleActions
+        setPickerOptionsSource(cellRuleActions)
+    }
+
+    private fun setPickerOptionsSource(source: List<Pair<String, () -> Unit? >>?) {
+        pickerOptionsSource = source
         pickerOptionsNotifier.onNext(Unit)
     }
     //endregion
 
-    //region Cell rule actions
+    //region Picker options
     private val cellRuleActions = arrayListOf(
-            Pair("↑", { currentlyEditedRule?.action?.let { it.act = Action.Act.CHANGE_DIRECTION; it.value = Cell.Direction.N.ordinal }  }),
-            Pair("↗", { currentlyEditedRule?.action?.let { it.act = Action.Act.CHANGE_DIRECTION; it.value = Cell.Direction.NE.ordinal }  }),
-            Pair("↘", { currentlyEditedRule?.action?.let { it.act = Action.Act.CHANGE_DIRECTION; it.value = Cell.Direction.SE.ordinal }  }),
-            Pair("↓", { currentlyEditedRule?.action?.let { it.act = Action.Act.CHANGE_DIRECTION; it.value = Cell.Direction.S.ordinal }  }),
-            Pair("↙", { currentlyEditedRule?.action?.let { it.act = Action.Act.CHANGE_DIRECTION; it.value = Cell.Direction.SW.ordinal }  }),
-            Pair("↖", { currentlyEditedRule?.action?.let { it.act = Action.Act.CHANGE_DIRECTION; it.value = Cell.Direction.NW.ordinal }  })
+            Pair("↑", { currentlyEditedRule?.action?.let { it.act = Action.Act.CHANGE_DIRECTION; it.value = Cell.Direction.N.ordinal }}),
+            Pair("↗", { currentlyEditedRule?.action?.let { it.act = Action.Act.CHANGE_DIRECTION; it.value = Cell.Direction.NE.ordinal }}),
+            Pair("↘", { currentlyEditedRule?.action?.let { it.act = Action.Act.CHANGE_DIRECTION; it.value = Cell.Direction.SE.ordinal }}),
+            Pair("↓", { currentlyEditedRule?.action?.let { it.act = Action.Act.CHANGE_DIRECTION; it.value = Cell.Direction.S.ordinal }}),
+            Pair("↙", { currentlyEditedRule?.action?.let { it.act = Action.Act.CHANGE_DIRECTION; it.value = Cell.Direction.SW.ordinal }}),
+            Pair("↖", { currentlyEditedRule?.action?.let { it.act = Action.Act.CHANGE_DIRECTION; it.value = Cell.Direction.NW.ordinal }})
+    )
+
+    private val cellRuleConditionFieldsToCheck = arrayListOf(
+            Pair("\uD83D\uDE08", {
+                currentlyEditedCondition?.let { it.setToDefault(); it.fieldToCheck = Condition.FieldToCheck.DIRECTION_TO_NEAREST_ENEMY }
+            })
     )
     //endregion
 }

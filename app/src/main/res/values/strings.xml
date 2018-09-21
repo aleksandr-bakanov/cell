@@ -38,6 +38,10 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non lacus malesuada,
     <string name="button_ok">Save</string>
     <string name="button_cancel">Cancel</string>
 
+    <!-- Rules editor view -->
+    <string name="button_add_new_rule_title">Add rule</string>
+    <string name="button_add_new_condition_title">Add condition</string>
+
     <!-- Cut scene view -->
     <string name="image_description_cut_scene_background">Cut scene background</string>
     <string name="image_description_cut_scene_left_character">Left character</string>

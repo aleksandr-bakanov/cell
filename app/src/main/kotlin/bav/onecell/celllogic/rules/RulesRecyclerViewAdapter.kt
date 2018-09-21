@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import bav.onecell.R
 import bav.onecell.model.cell.Cell
 import bav.onecell.model.cell.logic.Action
+import kotlinx.android.synthetic.main.item_row_add_new_rule.view.buttonAddNewRule
 import kotlinx.android.synthetic.main.item_row_rule.view.buttonChooseRuleAction
 import kotlinx.android.synthetic.main.item_row_rule.view.buttonOpenRuleConditions
 import kotlinx.android.synthetic.main.item_row_rule.view.buttonRemoveRule
@@ -16,17 +17,28 @@ class RulesRecyclerViewAdapter(private val presenter: Rules.Presenter) :
         RecyclerView.Adapter<RulesRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context)
-                .inflate(R.layout.item_row_rule, parent, false)
-        return ViewHolder(view, presenter)
+        val view = LayoutInflater.from(parent.context).inflate(viewType, parent, false)
+        return ViewHolder(view, presenter, viewType)
     }
 
-    override fun getItemCount(): Int = presenter.rulesCount()
+    override fun getItemViewType(position: Int): Int {
+        return if (position == presenter.rulesCount()) R.layout.item_row_add_new_rule
+               else R.layout.item_row_rule
+    }
+
+    override fun getItemCount(): Int = presenter.rulesCount() + 1
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.setRuleTitle("Rule #$position")
-        presenter.getRule(position)?.let {
-            holder.view.buttonChooseRuleAction.text = getActionRepresentation(it.action)
+        when (getItemViewType(position)) {
+            R.layout.item_row_add_new_rule -> {
+                // Do nothing
+            }
+            R.layout.item_row_rule -> {
+                holder.view.title.text = "Rule #$position"
+                presenter.getRule(position)?.let {
+                    holder.view.buttonChooseRuleAction.text = getActionRepresentation(it.action)
+                }
+            }
         }
     }
 
@@ -46,15 +58,18 @@ class RulesRecyclerViewAdapter(private val presenter: Rules.Presenter) :
         }
     }
 
-    class ViewHolder(val view: View, private val presenter: Rules.Presenter) : RecyclerView.ViewHolder(view) {
+    class ViewHolder(val view: View, private val presenter: Rules.Presenter, viewType: Int) : RecyclerView.ViewHolder(view) {
         init {
-            view.buttonRemoveRule.setOnClickListener { presenter.removeRule(adapterPosition) }
-            view.buttonOpenRuleConditions.setOnClickListener { presenter.openConditionsList(adapterPosition) }
-            view.buttonChooseRuleAction.setOnClickListener { presenter.openActionEditor(adapterPosition) }
-        }
-
-        fun setRuleTitle(title: String) {
-            view.title.text = title
+            when (viewType) {
+                R.layout.item_row_add_new_rule -> {
+                    view.buttonAddNewRule.setOnClickListener { presenter.createNewRule() }
+                }
+                R.layout.item_row_rule -> {
+                    view.buttonRemoveRule.setOnClickListener { presenter.removeRule(adapterPosition) }
+                    view.buttonOpenRuleConditions.setOnClickListener { presenter.openConditionsList(adapterPosition) }
+                    view.buttonChooseRuleAction.setOnClickListener { presenter.openActionEditor(adapterPosition) }
+                }
+            }
         }
     }
 }
