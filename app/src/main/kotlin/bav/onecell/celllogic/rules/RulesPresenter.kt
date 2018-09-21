@@ -56,4 +56,13 @@ class RulesPresenter(private val cellRepository: RepositoryContract.CellRepo,
             }
         }
     }
+
+    override fun getRule(index: Int): Rule? {
+        rules?.let {
+            if (index >= 0 && index < it.size) {
+                return it[index]
+            }
+        }
+        return null
+    }
 }

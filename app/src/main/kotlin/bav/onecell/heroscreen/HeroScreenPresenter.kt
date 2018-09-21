@@ -147,6 +147,15 @@ class HeroScreenPresenter(
             }
         }
     }
+
+    override fun getRule(index: Int): Rule? {
+        rules?.let {
+            if (index >= 0 && index < it.size) {
+                return it[index]
+            }
+        }
+        return null
+    }
     //endregion
 
     //region Editor.Presenter methods

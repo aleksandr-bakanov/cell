@@ -1,5 +1,6 @@
 package bav.onecell.celllogic.rules
 
+import bav.onecell.model.cell.logic.Rule
 import io.reactivex.Observable
 
 interface Rules {
@@ -35,5 +36,7 @@ interface Rules {
         fun openConditionsList(ruleIndex: Int)
 
         fun openActionEditor(ruleIndex: Int)
+
+        fun getRule(index: Int): Rule?
     }
 }
