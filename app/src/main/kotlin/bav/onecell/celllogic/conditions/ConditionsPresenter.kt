@@ -23,7 +23,7 @@ class ConditionsPresenter(private val cellRepository: RepositoryContract.CellRep
 
     private var currentlyEditedRule: Rule? = null
 
-    override fun initialize(cellIndex: Int, ruleIndex: Int) {
+    override fun initializeConditionList(cellIndex: Int, ruleIndex: Int) {
         currentlyEditedRule = cellRepository.getCell(cellIndex)?.data?.rules?.get(ruleIndex)
     }
 
