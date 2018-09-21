@@ -6,12 +6,14 @@ import android.animation.ValueAnimator
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
+import android.util.LayoutDirection
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import bav.onecell.OneCellApplication
 import bav.onecell.R
 import bav.onecell.celllogic.conditions.ConditionsRecyclerViewAdapter
+import bav.onecell.celllogic.picker.PickerRecyclerViewAdapter
 import bav.onecell.celllogic.rules.RulesRecyclerViewAdapter
 import bav.onecell.common.view.DrawUtils
 import bav.onecell.model.hexes.Hex
@@ -29,6 +31,7 @@ import kotlinx.android.synthetic.main.fragment_hero_screen.radioButtonAttackHex
 import kotlinx.android.synthetic.main.fragment_hero_screen.radioButtonEnergyHex
 import kotlinx.android.synthetic.main.fragment_hero_screen.radioButtonLifeHex
 import kotlinx.android.synthetic.main.fragment_hero_screen.radioButtonRemoveHex
+import kotlinx.android.synthetic.main.fragment_hero_screen.recyclerViewCellLogicPicker
 import kotlinx.android.synthetic.main.fragment_hero_screen.recyclerViewConditionsList
 import kotlinx.android.synthetic.main.fragment_hero_screen.recyclerViewRulesList
 import kotlinx.android.synthetic.main.fragment_hero_screen.textHeroHistory
@@ -76,6 +79,9 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
         recyclerViewConditionsList.layoutManager = LinearLayoutManager(context)
         recyclerViewConditionsList.adapter = ConditionsRecyclerViewAdapter(presenter)
 
+        recyclerViewCellLogicPicker.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        recyclerViewCellLogicPicker.adapter = PickerRecyclerViewAdapter(presenter)
+
         disposables.addAll(
                 presenter.getCellProvider().subscribe {
                     editorCanvasView.cell = it
@@ -97,6 +103,9 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
                 },
                 presenter.conditionsUpdateNotifier().subscribe {
                     recyclerViewConditionsList.adapter.notifyDataSetChanged()
+                },
+                presenter.optionsUpdateNotifier().subscribe {
+                    recyclerViewCellLogicPicker.adapter.notifyDataSetChanged()
                 }
         )
         presenter.initialize(KITTARO_INDEX)
@@ -109,7 +118,7 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
     }
     //endregion
 
-    //region Overridden methods
+    //region HeroScreen.View methods
     override fun highlightTips(type: Hex.Type) {
         editorCanvasView.tipHexes = presenter.getTipHexes(type)
         editorCanvasView.invalidate()
@@ -201,7 +210,7 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
                                        buttonRotateCellLeft, buttonRotateCellRight))
             view.visibility = editorVisibility
 
-        for (view in arrayListOf<View>(recyclerViewRulesList, recyclerViewConditionsList))
+        for (view in arrayListOf<View>(recyclerViewRulesList, recyclerViewConditionsList, recyclerViewCellLogicPicker))
             view.visibility = cellLogicVisibility
     }
 

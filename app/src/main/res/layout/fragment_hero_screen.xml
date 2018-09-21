@@ -170,7 +170,7 @@
         app:layout_constraintStart_toEndOf="@id/zoiAvatar"
         app:layout_constraintEnd_toStartOf="@id/recyclerViewConditionsList"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/recyclerViewCellLogicPicker"
         app:layout_constraintTop_toBottomOf="@id/cellName"
         android:visibility="gone" />
 
@@ -178,11 +178,20 @@
         android:id="@+id/recyclerViewConditionsList"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/recyclerViewCellLogicPicker"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@id/recyclerViewRulesList"
         app:layout_constraintTop_toBottomOf="@id/cellName"
+        android:visibility="gone" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerViewCellLogicPicker"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/hero_screen_cell_logic_picker_height"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/zoiAvatar"
         android:visibility="gone" />
 
 </android.support.constraint.ConstraintLayout>

@@ -4,6 +4,7 @@ import bav.onecell.common.router.Router
 import bav.onecell.model.GameRules
 import bav.onecell.model.RepositoryContract
 import bav.onecell.model.cell.Cell
+import bav.onecell.model.cell.logic.Action
 import bav.onecell.model.cell.logic.Condition
 import bav.onecell.model.cell.logic.Rule
 import bav.onecell.model.hexes.Hex
@@ -31,6 +32,8 @@ class HeroScreenPresenter(
     private var currentCellIndex = -1
     private var currentlyEditedRule: Rule? = null
     private val conditionsNotifier = PublishSubject.create<Unit>()
+    private val pickerOptionsNotifier = PublishSubject.create<Unit>()
+    private var pickerOptionsSource: List<Pair<String, () -> Unit? >>? = null
 
     override fun initialize(cellIndex: Int) {
         if (cellIndex != currentCellIndex) {
@@ -49,6 +52,28 @@ class HeroScreenPresenter(
                     }
         }
     }
+
+    //region Picker.Presenter methods
+    override fun pickerOptionsCount(): Int = pickerOptionsSource?.size ?: 0
+
+    override fun pickerOptionOnClick(position: Int) {
+        pickerOptionsSource?.let {
+            if (position >= 0 && position < it.size) {
+                it[position].second()
+                rulesNotifier.onNext(Unit)
+            }
+        }
+    }
+
+    override fun getPickerOptionTitle(position: Int): String {
+        pickerOptionsSource?.let {
+            if (position >= 0 && position < it.size) return it[position].first
+        }
+        return ""
+    }
+
+    override fun optionsUpdateNotifier(): Observable<Unit> = pickerOptionsNotifier
+    //endregion
 
     //region Conditions.Presenter methods
     override fun initializeConditionList(cellIndex: Int, ruleIndex: Int) {
@@ -118,7 +143,7 @@ class HeroScreenPresenter(
     override fun openActionEditor(ruleIndex: Int) {
         rules?.let {
             if (ruleIndex >= 0 && ruleIndex < it.size) {
-                router.goToActionEditor(currentCellIndex, ruleIndex)
+                initializeRuleActionChoice(ruleIndex)
             }
         }
     }
@@ -177,5 +202,24 @@ class HeroScreenPresenter(
         cell?.let { cellRepository.storeCell(it) }
         router.goToMain()
     }
+    //endregion
+
+    //region Private methods
+    private fun initializeRuleActionChoice(ruleIndex: Int) {
+        currentlyEditedRule = rules?.get(ruleIndex)
+        pickerOptionsSource = cellRuleActions
+        pickerOptionsNotifier.onNext(Unit)
+    }
+    //endregion
+
+    //region Cell rule actions
+    private val cellRuleActions = arrayListOf(
+            Pair("↑", { currentlyEditedRule?.action?.let { it.act = Action.Act.CHANGE_DIRECTION; it.value = Cell.Direction.N.ordinal }  }),
+            Pair("↗", { currentlyEditedRule?.action?.let { it.act = Action.Act.CHANGE_DIRECTION; it.value = Cell.Direction.NE.ordinal }  }),
+            Pair("↘", { currentlyEditedRule?.action?.let { it.act = Action.Act.CHANGE_DIRECTION; it.value = Cell.Direction.SE.ordinal }  }),
+            Pair("↓", { currentlyEditedRule?.action?.let { it.act = Action.Act.CHANGE_DIRECTION; it.value = Cell.Direction.S.ordinal }  }),
+            Pair("↙", { currentlyEditedRule?.action?.let { it.act = Action.Act.CHANGE_DIRECTION; it.value = Cell.Direction.SW.ordinal }  }),
+            Pair("↖", { currentlyEditedRule?.action?.let { it.act = Action.Act.CHANGE_DIRECTION; it.value = Cell.Direction.NW.ordinal }  })
+    )
     //endregion
 }
