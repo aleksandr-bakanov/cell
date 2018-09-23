@@ -99,6 +99,7 @@ class HeroScreenPresenter(
     override fun removeCondition(index: Int) {
         currentlyEditedRule?.let {
             it.removeConditionAt(index)
+            setPickerOptionsSource(null)
             conditionsNotifier.onNext(Unit)
         }
     }
@@ -128,11 +129,17 @@ class HeroScreenPresenter(
     }
 
     override fun chooseOperation(conditionIndex: Int) {
-
+        currentlyEditedCondition = currentlyEditedRule?.getCondition(conditionIndex)
+        currentlyEditedCondition?.let {
+            setPickerOptionsSource(getCellRuleConditionOperations())
+        }
     }
 
     override fun chooseExpectedValue(conditionIndex: Int) {
-
+        currentlyEditedCondition = currentlyEditedRule?.getCondition(conditionIndex)
+        currentlyEditedCondition?.let {
+            setPickerOptionsSource(getCellRuleConditionExpectedValue())
+        }
     }
 
     override fun getCondition(index: Int): Condition? = currentlyEditedRule?.getCondition(index)
@@ -265,5 +272,33 @@ class HeroScreenPresenter(
                 currentlyEditedCondition?.let { it.setToDefault(); it.fieldToCheck = Condition.FieldToCheck.DIRECTION_TO_NEAREST_ENEMY }
             })
     )
+
+    private fun getCellRuleConditionOperations(): List<Pair<Int, () -> Unit? >>? {
+        return currentlyEditedCondition?.let { condition ->
+            when (condition.fieldToCheck) {
+                Condition.FieldToCheck.DIRECTION_TO_NEAREST_ENEMY -> arrayListOf(
+                        /// TODO: move these array-lists to consts
+                        Pair(R.string.utf_icon_equality, {
+                            currentlyEditedCondition?.let { it.operation = Condition.Operation.EQUALS }
+                        }))
+            }
+        }
+    }
+
+    private fun getCellRuleConditionExpectedValue(): List<Pair<Int, () -> Unit? >>? {
+        return currentlyEditedCondition?.let { condition ->
+            when (condition.fieldToCheck) {
+                Condition.FieldToCheck.DIRECTION_TO_NEAREST_ENEMY -> arrayListOf(
+                        /// TODO: move these array-lists to consts
+                        Pair(R.string.utf_icon_north_direction, { currentlyEditedCondition?.let { it.expected = Cell.Direction.N.ordinal }}),
+                        Pair(R.string.utf_icon_north_east_direction, { currentlyEditedCondition?.let { it.expected = Cell.Direction.NE.ordinal }}),
+                        Pair(R.string.utf_icon_south_east_direction, { currentlyEditedCondition?.let { it.expected = Cell.Direction.SE.ordinal }}),
+                        Pair(R.string.utf_icon_south_direction, { currentlyEditedCondition?.let { it.expected = Cell.Direction.S.ordinal }}),
+                        Pair(R.string.utf_icon_south_west_direction, { currentlyEditedCondition?.let { it.expected = Cell.Direction.SW.ordinal }}),
+                        Pair(R.string.utf_icon_north_west_direction, { currentlyEditedCondition?.let { it.expected = Cell.Direction.NW.ordinal }})
+                )
+            }
+        }
+    }
     //endregion
 }

@@ -4,32 +4,25 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        android:textSize="36sp" />
-
     <Button
         android:id="@+id/buttonFieldToCheck"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=""
+        android:textSize="@dimen/hero_screen_cell_logic_utf_icons_size"
         app:layout_constraintStart_toEndOf="@id/title" />
 
-    <android.support.v7.widget.AppCompatImageButton
+    <Button
         android:id="@+id/buttonOperation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/ic_live_help_black_24dp"
+        android:textSize="@dimen/hero_screen_cell_logic_utf_icons_size"
         app:layout_constraintStart_toEndOf="@id/buttonFieldToCheck" />
 
-    <android.support.v7.widget.AppCompatImageButton
+    <Button
         android:id="@+id/buttonExpectedValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/ic_priority_high_black_24dp"
+        android:textSize="@dimen/hero_screen_cell_logic_utf_icons_size"
         app:layout_constraintStart_toEndOf="@id/buttonOperation" />
 
     <android.support.v7.widget.AppCompatImageButton

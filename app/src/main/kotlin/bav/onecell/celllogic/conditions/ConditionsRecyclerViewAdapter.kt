@@ -6,9 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import bav.onecell.R
+import bav.onecell.model.cell.Cell
 import bav.onecell.model.cell.logic.Condition
 import kotlinx.android.synthetic.main.item_row_add_new_condition.view.buttonAddNewCondition
-import kotlinx.android.synthetic.main.item_row_rule.view.title
 import kotlinx.android.synthetic.main.item_row_rule_condition.view.buttonExpectedValue
 import kotlinx.android.synthetic.main.item_row_rule_condition.view.buttonFieldToCheck
 import kotlinx.android.synthetic.main.item_row_rule_condition.view.buttonOperation
@@ -35,9 +35,10 @@ class ConditionsRecyclerViewAdapter(private val presenter: Conditions.Presenter)
                 // Do nothing
             }
             R.layout.item_row_rule_condition -> {
-                holder.view.title.text = "#$position"
                 presenter.getCondition(position)?.let {
                     holder.view.buttonFieldToCheck.text = getFieldToCheckRepresentation(holder.view.context, it.fieldToCheck)
+                    holder.view.buttonOperation.text = getOperationRepresentation(holder.view.context, it.operation)
+                    holder.view.buttonExpectedValue.text = getExpectedValueRepresentation(holder.view.context, it.fieldToCheck, it.expected)
                 }
             }
         }
@@ -46,6 +47,26 @@ class ConditionsRecyclerViewAdapter(private val presenter: Conditions.Presenter)
     private fun getFieldToCheckRepresentation(context: Context, fieldToCheck: Condition.FieldToCheck): String {
         return when (fieldToCheck) {
             Condition.FieldToCheck.DIRECTION_TO_NEAREST_ENEMY -> context.resources.getString(R.string.utf_icon_direction_to_nearest_enemy)
+        }
+    }
+
+    private fun getOperationRepresentation(context: Context, operation: Condition.Operation): String {
+        return when (operation) {
+            Condition.Operation.EQUALS -> context.resources.getString(R.string.utf_icon_equality)
+        }
+    }
+
+    private fun getExpectedValueRepresentation(context: Context, fieldToCheck: Condition.FieldToCheck, expected: Int): String {
+        return when (fieldToCheck) {
+            Condition.FieldToCheck.DIRECTION_TO_NEAREST_ENEMY -> when (expected) {
+                Cell.Direction.N.ordinal -> context.resources.getString(R.string.utf_icon_north_direction)
+                Cell.Direction.NE.ordinal -> context.resources.getString(R.string.utf_icon_north_east_direction)
+                Cell.Direction.SE.ordinal -> context.resources.getString(R.string.utf_icon_south_east_direction)
+                Cell.Direction.S.ordinal -> context.resources.getString(R.string.utf_icon_south_direction)
+                Cell.Direction.SW.ordinal -> context.resources.getString(R.string.utf_icon_south_west_direction)
+                Cell.Direction.NW.ordinal -> context.resources.getString(R.string.utf_icon_north_west_direction)
+                else -> ""
+            }
         }
     }
 
