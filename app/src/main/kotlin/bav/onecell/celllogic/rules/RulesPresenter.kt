@@ -65,4 +65,6 @@ class RulesPresenter(private val cellRepository: RepositoryContract.CellRepo,
         }
         return null
     }
+
+    override fun getCurrentlySelectedRuleIndex(): Int? = null
 }

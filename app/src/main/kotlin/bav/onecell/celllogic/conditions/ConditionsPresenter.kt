@@ -72,7 +72,7 @@ class ConditionsPresenter(private val cellRepository: RepositoryContract.CellRep
 
     }
 
-    override fun getCondition(index: Int): Condition? {
-        return null
-    }
+    override fun getCondition(index: Int): Condition? = null
+
+    override fun getCurrentConditionIndex(): Int? = null
 }

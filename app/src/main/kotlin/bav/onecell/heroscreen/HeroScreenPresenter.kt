@@ -32,6 +32,8 @@ class HeroScreenPresenter(
     private val rulesNotifier = PublishSubject.create<Unit>()
     private var currentCellIndex = -1
     private var currentlyEditedRule: Rule? = null
+    private var currentRuleIndex: Int? = null
+    private var currentConditionIndex: Int? = null
     private var currentlyEditedCondition: Condition? = null
     private val conditionsNotifier = PublishSubject.create<Unit>()
     private val pickerOptionsNotifier = PublishSubject.create<Unit>()
@@ -48,6 +50,8 @@ class HeroScreenPresenter(
                         rules = cell?.data?.rules
                         rulesNotifier.onNext(Unit)
                         currentlyEditedRule = null
+                        currentRuleIndex = null
+                        currentConditionIndex = null
                         conditionsNotifier.onNext(Unit)
                         backgroundFieldRadiusProvider.onNext(4)
                         cellProvider.onNext(cell!!)
@@ -81,8 +85,9 @@ class HeroScreenPresenter(
 
     //region Conditions.Presenter methods
     override fun initializeConditionList(cellIndex: Int, ruleIndex: Int) {
-        currentlyEditedRule = rules?.get(ruleIndex)
+        setCurrentRule(ruleIndex)
         conditionsNotifier.onNext(Unit)
+        setPickerOptionsSource(null)
     }
 
     override fun conditionsUpdateNotifier(): Observable<Unit> = conditionsNotifier
@@ -105,9 +110,7 @@ class HeroScreenPresenter(
     }
 
     override fun openConditionEditor(conditionIndex: Int, whatToEdit: Int) {
-        currentlyEditedRule?.getCondition(conditionIndex)?.let {
-            router.goToConditionEditor(it, whatToEdit)
-        }
+        // Do nothing, planned to remove
     }
 
     private val directionValues: Array<String> = arrayOf(
@@ -122,27 +125,23 @@ class HeroScreenPresenter(
     override fun provideActionDialogValues(): Array<String> = directionValues
 
     override fun chooseFieldToCheck(conditionIndex: Int) {
-        currentlyEditedCondition = currentlyEditedRule?.getCondition(conditionIndex)
-        currentlyEditedCondition?.let {
+        if (setCurrentCondition(conditionIndex))
             setPickerOptionsSource(cellRuleConditionFieldsToCheck)
-        }
     }
 
     override fun chooseOperation(conditionIndex: Int) {
-        currentlyEditedCondition = currentlyEditedRule?.getCondition(conditionIndex)
-        currentlyEditedCondition?.let {
+        if (setCurrentCondition(conditionIndex))
             setPickerOptionsSource(getCellRuleConditionOperations())
-        }
     }
 
     override fun chooseExpectedValue(conditionIndex: Int) {
-        currentlyEditedCondition = currentlyEditedRule?.getCondition(conditionIndex)
-        currentlyEditedCondition?.let {
+        if (setCurrentCondition(conditionIndex))
             setPickerOptionsSource(getCellRuleConditionExpectedValue())
-        }
     }
 
     override fun getCondition(index: Int): Condition? = currentlyEditedRule?.getCondition(index)
+
+    override fun getCurrentConditionIndex(): Int? = currentConditionIndex
     //endregion
 
     //region Rules.Presenter methods
@@ -243,17 +242,40 @@ class HeroScreenPresenter(
         cell?.let { cellRepository.storeCell(it) }
         router.goToMain()
     }
+
+    override fun getCurrentlySelectedRuleIndex(): Int? = currentRuleIndex
     //endregion
 
     //region Private methods
     private fun initializeRuleActionChoice(ruleIndex: Int) {
-        currentlyEditedRule = rules?.get(ruleIndex)
+        setCurrentRule(ruleIndex)
         setPickerOptionsSource(cellRuleActions)
     }
 
     private fun setPickerOptionsSource(source: List<Pair<Int, () -> Unit? >>?) {
         pickerOptionsSource = source
         pickerOptionsNotifier.onNext(Unit)
+    }
+
+    private fun setCurrentRule(ruleIndex: Int) {
+        currentlyEditedRule = rules?.get(ruleIndex)
+        currentlyEditedRule?.let {
+            currentRuleIndex = ruleIndex
+            rulesNotifier.onNext(Unit)
+            clearCurrentCondition()
+        }
+    }
+
+    private fun setCurrentCondition(conditionIndex: Int): Boolean {
+        currentlyEditedCondition = currentlyEditedRule?.getCondition(conditionIndex)
+        currentlyEditedCondition?.let { currentConditionIndex = conditionIndex; conditionsNotifier.onNext(Unit) }
+        return currentlyEditedCondition != null
+    }
+
+    private fun clearCurrentCondition() {
+        currentlyEditedCondition = null
+        currentConditionIndex = null
+        conditionsNotifier.onNext(Unit)
     }
     //endregion
 

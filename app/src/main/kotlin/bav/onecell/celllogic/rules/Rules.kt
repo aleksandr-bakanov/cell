@@ -38,5 +38,7 @@ interface Rules {
         fun openActionEditor(ruleIndex: Int)
 
         fun getRule(index: Int): Rule?
+
+        fun getCurrentlySelectedRuleIndex(): Int?
     }
 }

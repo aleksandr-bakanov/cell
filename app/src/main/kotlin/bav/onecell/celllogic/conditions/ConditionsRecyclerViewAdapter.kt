@@ -1,6 +1,7 @@
 package bav.onecell.celllogic.conditions
 
 import android.content.Context
+import android.support.v4.content.ContextCompat
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +14,7 @@ import kotlinx.android.synthetic.main.item_row_rule_condition.view.buttonExpecte
 import kotlinx.android.synthetic.main.item_row_rule_condition.view.buttonFieldToCheck
 import kotlinx.android.synthetic.main.item_row_rule_condition.view.buttonOperation
 import kotlinx.android.synthetic.main.item_row_rule_condition.view.buttonRemoveCondition
+import kotlinx.android.synthetic.main.item_row_rule_condition.view.conditionRow
 
 class ConditionsRecyclerViewAdapter(private val presenter: Conditions.Presenter) :
         RecyclerView.Adapter<ConditionsRecyclerViewAdapter.ViewHolder>() {
@@ -36,6 +38,7 @@ class ConditionsRecyclerViewAdapter(private val presenter: Conditions.Presenter)
             }
             R.layout.item_row_rule_condition -> {
                 presenter.getCondition(position)?.let {
+                    holder.view.conditionRow.setBackgroundColor(getRowBackgroundColor(holder.view.context, position))
                     holder.view.buttonFieldToCheck.text = getFieldToCheckRepresentation(holder.view.context, it.fieldToCheck)
                     holder.view.buttonOperation.text = getOperationRepresentation(holder.view.context, it.operation)
                     holder.view.buttonExpectedValue.text = getExpectedValueRepresentation(holder.view.context, it.fieldToCheck, it.expected)
@@ -68,6 +71,12 @@ class ConditionsRecyclerViewAdapter(private val presenter: Conditions.Presenter)
                 else -> ""
             }
         }
+    }
+
+    private fun getRowBackgroundColor(context: Context, position: Int): Int {
+        return if (position == presenter.getCurrentConditionIndex())
+            ContextCompat.getColor(context, R.color.heroScreenSelectedConditionBackgroundColor)
+        else ContextCompat.getColor(context, R.color.heroScreenUnselectedConditionBackgroundColor)
     }
 
     class ViewHolder(val view: View, private val presenter: Conditions.Presenter, viewType: Int) : RecyclerView.ViewHolder(view) {

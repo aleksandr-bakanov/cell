@@ -1,6 +1,7 @@
 package bav.onecell.celllogic.rules
 
 import android.content.Context
+import android.support.v4.content.ContextCompat
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +13,7 @@ import kotlinx.android.synthetic.main.item_row_add_new_rule.view.buttonAddNewRul
 import kotlinx.android.synthetic.main.item_row_rule.view.buttonChooseRuleAction
 import kotlinx.android.synthetic.main.item_row_rule.view.buttonOpenRuleConditions
 import kotlinx.android.synthetic.main.item_row_rule.view.buttonRemoveRule
+import kotlinx.android.synthetic.main.item_row_rule.view.ruleRow
 import kotlinx.android.synthetic.main.item_row_rule.view.title
 
 class RulesRecyclerViewAdapter(private val presenter: Rules.Presenter) :
@@ -36,6 +38,7 @@ class RulesRecyclerViewAdapter(private val presenter: Rules.Presenter) :
             }
             R.layout.item_row_rule -> {
                 holder.view.title.text = "Rule #$position"
+                holder.view.ruleRow.setBackgroundColor(getRowBackgroundColor(holder.view.context, position))
                 presenter.getRule(position)?.let {
                     holder.view.buttonChooseRuleAction.text = getActionRepresentation(holder.view.context, it.action)
                 }
@@ -57,6 +60,12 @@ class RulesRecyclerViewAdapter(private val presenter: Rules.Presenter) :
                 }
             }
         }
+    }
+
+    private fun getRowBackgroundColor(context: Context, position: Int): Int {
+        return if (position == presenter.getCurrentlySelectedRuleIndex())
+            ContextCompat.getColor(context, R.color.heroScreenSelectedRuleBackgroundColor)
+            else ContextCompat.getColor(context, R.color.heroScreenUnselectedRuleBackgroundColor)
     }
 
     class ViewHolder(val view: View, private val presenter: Rules.Presenter, viewType: Int) : RecyclerView.ViewHolder(view) {

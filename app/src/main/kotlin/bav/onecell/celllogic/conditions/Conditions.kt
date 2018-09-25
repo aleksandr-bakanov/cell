@@ -35,5 +35,7 @@ interface Conditions {
         fun provideActionDialogValues(): Array<String>
 
         fun getCondition(index: Int): Condition?
+
+        fun getCurrentConditionIndex(): Int?
     }
 }
