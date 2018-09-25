@@ -41,6 +41,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non lacus malesuada,
     <!-- Rules editor view -->
     <string name="button_add_new_rule_title">Add rule</string>
     <string name="button_add_new_condition_title">Add condition</string>
+    <string name="condition_representation">(%1$s %2$s %3$s)</string>
 
     <!-- UTF icons -->
     <string name="utf_icon_north_direction">⬆️</string>

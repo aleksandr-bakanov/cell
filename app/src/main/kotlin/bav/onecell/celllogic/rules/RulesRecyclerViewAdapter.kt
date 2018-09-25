@@ -7,17 +7,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import bav.onecell.R
-import bav.onecell.model.cell.Cell
-import bav.onecell.model.cell.logic.Action
+import bav.onecell.common.Common
+import bav.onecell.model.cell.logic.Condition
 import kotlinx.android.synthetic.main.item_row_add_new_rule.view.buttonAddNewRule
 import kotlinx.android.synthetic.main.item_row_rule.view.buttonChooseRuleAction
-import kotlinx.android.synthetic.main.item_row_rule.view.buttonOpenRuleConditions
 import kotlinx.android.synthetic.main.item_row_rule.view.buttonRemoveRule
 import kotlinx.android.synthetic.main.item_row_rule.view.ruleRow
 import kotlinx.android.synthetic.main.item_row_rule.view.title
 
-class RulesRecyclerViewAdapter(private val presenter: Rules.Presenter) :
-        RecyclerView.Adapter<RulesRecyclerViewAdapter.ViewHolder>() {
+class RulesRecyclerViewAdapter(
+        private val presenter: Rules.Presenter,
+        private val resourceProvider: Common.ResourceProvider) : RecyclerView.Adapter<RulesRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(viewType, parent, false)
@@ -37,29 +37,17 @@ class RulesRecyclerViewAdapter(private val presenter: Rules.Presenter) :
                 // Do nothing
             }
             R.layout.item_row_rule -> {
-                holder.view.title.text = "Rule #$position"
                 holder.view.ruleRow.setBackgroundColor(getRowBackgroundColor(holder.view.context, position))
                 presenter.getRule(position)?.let {
-                    holder.view.buttonChooseRuleAction.text = getActionRepresentation(holder.view.context, it.action)
+                    holder.view.title.text = getConditionsRepresentation(it.getConditions())
+                    holder.view.buttonChooseRuleAction.text = resourceProvider.getActionRepresentation(it.action)
                 }
             }
         }
     }
 
-    private fun getActionRepresentation(context: Context, action: Action): String {
-        return when (action.act) {
-            Action.Act.CHANGE_DIRECTION -> {
-                when (action.value) {
-                    Cell.Direction.N.ordinal -> context.resources.getString(R.string.utf_icon_north_direction)
-                    Cell.Direction.NE.ordinal -> context.resources.getString(R.string.utf_icon_north_east_direction)
-                    Cell.Direction.SE.ordinal -> context.resources.getString(R.string.utf_icon_south_east_direction)
-                    Cell.Direction.S.ordinal -> context.resources.getString(R.string.utf_icon_south_direction)
-                    Cell.Direction.SW.ordinal -> context.resources.getString(R.string.utf_icon_south_west_direction)
-                    Cell.Direction.NW.ordinal -> context.resources.getString(R.string.utf_icon_north_west_direction)
-                    else -> ""
-                }
-            }
-        }
+    private fun getConditionsRepresentation(conditions: List<Condition>): String {
+        return conditions.joinToString(" ") { resourceProvider.getConditionRepresentation(it) }
     }
 
     private fun getRowBackgroundColor(context: Context, position: Int): Int {
@@ -76,7 +64,7 @@ class RulesRecyclerViewAdapter(private val presenter: Rules.Presenter) :
                 }
                 R.layout.item_row_rule -> {
                     view.buttonRemoveRule.setOnClickListener { presenter.removeRule(adapterPosition) }
-                    view.buttonOpenRuleConditions.setOnClickListener { presenter.openConditionsList(adapterPosition) }
+                    view.ruleRow.setOnClickListener { presenter.openConditionsList(adapterPosition) }
                     view.buttonChooseRuleAction.setOnClickListener { presenter.openActionEditor(adapterPosition) }
                 }
             }

@@ -52,4 +52,10 @@ class CommonModule {
     fun provideBattleEngine(hexMath: HexMath, gameRules: GameRules, cellRepository: RepositoryContract.CellRepo): BattleEngine {
         return BattleEngine(hexMath, gameRules, cellRepository)
     }
+
+    @Provides
+    @Singleton
+    fun provideResourceProvider(@Named("app_context") context: Context): Common.ResourceProvider {
+        return ResourceProviderImpl(context)
+    }
 }

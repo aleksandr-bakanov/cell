@@ -1,5 +1,6 @@
 package bav.onecell.heroscreen
 
+import bav.onecell.common.Common
 import bav.onecell.common.router.Router
 import bav.onecell.di.scopes.FragmentScope
 import bav.onecell.model.GameRules
@@ -18,8 +19,8 @@ interface HeroScreenSubcomponent {
 class HeroScreenModule(val view: HeroScreen.View) {
     @Provides
     @FragmentScope
-    fun provideHeroScreenPresenter(gameRules: GameRules, cellRepo: RepositoryContract.CellRepo, router: Router)
-            : HeroScreen.Presenter {
-        return HeroScreenPresenter(view, gameRules, cellRepo, router)
+    fun provideHeroScreenPresenter(gameRules: GameRules, cellRepo: RepositoryContract.CellRepo, router: Router,
+                                   resourceProvider: Common.ResourceProvider) : HeroScreen.Presenter {
+        return HeroScreenPresenter(view, gameRules, cellRepo, router, resourceProvider)
     }
 }

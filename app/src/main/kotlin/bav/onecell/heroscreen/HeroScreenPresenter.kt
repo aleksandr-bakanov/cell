@@ -1,6 +1,7 @@
 package bav.onecell.heroscreen
 
 import bav.onecell.R
+import bav.onecell.common.Common
 import bav.onecell.common.router.Router
 import bav.onecell.model.GameRules
 import bav.onecell.model.RepositoryContract
@@ -19,7 +20,8 @@ class HeroScreenPresenter(
         private val view: HeroScreen.View,
         private val gameRules: GameRules,
         private val cellRepository: RepositoryContract.CellRepo,
-        private val router: Router) : HeroScreen.Presenter {
+        private val router: Router,
+        private val resourceProvider: Common.ResourceProvider) : HeroScreen.Presenter {
 
     companion object {
         private const val TAG = "HeroScreenPresenter"
@@ -98,6 +100,7 @@ class HeroScreenPresenter(
         currentlyEditedRule?.let {
             it.addCondition(Condition())
             conditionsNotifier.onNext(Unit)
+            rulesNotifier.onNext(Unit)
         }
     }
 
@@ -106,6 +109,7 @@ class HeroScreenPresenter(
             it.removeConditionAt(index)
             setPickerOptionsSource(null)
             conditionsNotifier.onNext(Unit)
+            rulesNotifier.onNext(Unit)
         }
     }
 

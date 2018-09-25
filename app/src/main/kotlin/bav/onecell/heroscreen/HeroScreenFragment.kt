@@ -15,6 +15,7 @@ import bav.onecell.R
 import bav.onecell.celllogic.conditions.ConditionsRecyclerViewAdapter
 import bav.onecell.celllogic.picker.PickerRecyclerViewAdapter
 import bav.onecell.celllogic.rules.RulesRecyclerViewAdapter
+import bav.onecell.common.Common
 import bav.onecell.common.view.DrawUtils
 import bav.onecell.model.hexes.Hex
 import bav.onecell.model.hexes.HexMath
@@ -45,6 +46,7 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
     @Inject lateinit var presenter: HeroScreen.Presenter
     @Inject lateinit var hexMath: HexMath
     @Inject lateinit var drawUtils: DrawUtils
+    @Inject lateinit var resourceProvider: Common.ResourceProvider
 
     private val disposables = CompositeDisposable()
     private var moneyDisposable: Disposable? = null
@@ -74,10 +76,10 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
         aimaAvatar.setOnClickListener { presenter.initialize(AIMA_INDEX) }
 
         recyclerViewRulesList.layoutManager = LinearLayoutManager(context)
-        recyclerViewRulesList.adapter = RulesRecyclerViewAdapter(presenter)
+        recyclerViewRulesList.adapter = RulesRecyclerViewAdapter(presenter, resourceProvider)
 
         recyclerViewConditionsList.layoutManager = LinearLayoutManager(context)
-        recyclerViewConditionsList.adapter = ConditionsRecyclerViewAdapter(presenter)
+        recyclerViewConditionsList.adapter = ConditionsRecyclerViewAdapter(presenter, resourceProvider)
 
         recyclerViewCellLogicPicker.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         recyclerViewCellLogicPicker.adapter = PickerRecyclerViewAdapter(presenter)

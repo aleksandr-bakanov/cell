@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import bav.onecell.OneCellApplication
 import bav.onecell.R
 import bav.onecell.celllogic.CellLogicModule
+import bav.onecell.common.Common
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_rule_list.buttonAddNewRule
 import kotlinx.android.synthetic.main.fragment_rule_list.recyclerViewRulesList
@@ -16,8 +17,8 @@ import javax.inject.Inject
 
 class RuleListFragment : Fragment() {
 
-    @Inject
-    lateinit var presenter: Rules.Presenter
+    @Inject lateinit var presenter: Rules.Presenter
+    @Inject lateinit var resourceProvider: Common.ResourceProvider
     private val disposables = CompositeDisposable()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -33,7 +34,7 @@ class RuleListFragment : Fragment() {
         buttonAddNewRule.setOnClickListener { presenter.createNewRule() }
 
         recyclerViewRulesList.layoutManager = LinearLayoutManager(context)
-        recyclerViewRulesList.adapter = RulesRecyclerViewAdapter(presenter)
+        recyclerViewRulesList.adapter = RulesRecyclerViewAdapter(presenter, resourceProvider)
 
         disposables.addAll(
                 presenter.rulesUpdateNotifier().subscribe {

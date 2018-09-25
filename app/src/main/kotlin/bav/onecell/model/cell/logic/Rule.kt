@@ -30,4 +30,6 @@ class Rule(private val conditions: MutableList<Condition> = mutableListOf(),
     fun toJson(): String {
         return Gson().toJson(this)
     }
+
+    fun getConditions(): List<Condition> = conditions
 }

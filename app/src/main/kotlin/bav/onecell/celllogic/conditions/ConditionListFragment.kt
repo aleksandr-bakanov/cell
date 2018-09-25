@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import bav.onecell.OneCellApplication
 import bav.onecell.R
 import bav.onecell.celllogic.CellLogicModule
+import bav.onecell.common.Common
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_condition_list.buttonAddNewCondition
 import kotlinx.android.synthetic.main.fragment_condition_list.recyclerViewConditionsList
@@ -16,8 +17,8 @@ import javax.inject.Inject
 
 class ConditionListFragment : Fragment() {
 
-    @Inject
-    lateinit var presenter: Conditions.Presenter
+    @Inject lateinit var presenter: Conditions.Presenter
+    @Inject lateinit var resourceProvider: Common.ResourceProvider
     private val disposables = CompositeDisposable()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -34,7 +35,7 @@ class ConditionListFragment : Fragment() {
         buttonAddNewCondition.setOnClickListener { presenter.createNewCondition() }
 
         recyclerViewConditionsList.layoutManager = LinearLayoutManager(context)
-        recyclerViewConditionsList.adapter = ConditionsRecyclerViewAdapter(presenter)
+        recyclerViewConditionsList.adapter = ConditionsRecyclerViewAdapter(presenter, resourceProvider)
 
         disposables.addAll(
                 presenter.conditionsUpdateNotifier().subscribe {
