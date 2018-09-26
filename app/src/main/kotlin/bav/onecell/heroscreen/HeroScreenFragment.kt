@@ -28,6 +28,7 @@ import kotlinx.android.synthetic.main.fragment_hero_screen.buttonMainMenu
 import kotlinx.android.synthetic.main.fragment_hero_screen.buttonRotateCellLeft
 import kotlinx.android.synthetic.main.fragment_hero_screen.buttonRotateCellRight
 import kotlinx.android.synthetic.main.fragment_hero_screen.buttonSwitchScreen
+import kotlinx.android.synthetic.main.fragment_hero_screen.cellName
 import kotlinx.android.synthetic.main.fragment_hero_screen.editorCanvasView
 import kotlinx.android.synthetic.main.fragment_hero_screen.kittaroAvatar
 import kotlinx.android.synthetic.main.fragment_hero_screen.radioButtonAttackHex
@@ -134,6 +135,10 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
     //region HeroScreen.View methods
     override fun setPickerBackground(colorId: Int) {
         recyclerViewCellLogicPicker.setBackgroundColor(ContextCompat.getColor(requireContext(), colorId))
+    }
+
+    override fun setCellName(name: String) {
+        cellName.text = name
     }
     //endregion
 

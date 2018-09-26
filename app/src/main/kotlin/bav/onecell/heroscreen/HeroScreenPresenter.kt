@@ -12,6 +12,7 @@ import bav.onecell.model.cell.logic.Rule
 import bav.onecell.model.hexes.Hex
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.BehaviorSubject
 import io.reactivex.subjects.PublishSubject
@@ -28,6 +29,7 @@ class HeroScreenPresenter(
     }
 
     private var cell: Cell? = null
+    private var cellDisposable: Disposable? = null
     private val cellProvider = BehaviorSubject.create<Cell>()
     private val backgroundFieldRadiusProvider = BehaviorSubject.create<Int>()
     private var rules: MutableList<Rule>? = null
@@ -43,12 +45,14 @@ class HeroScreenPresenter(
 
     override fun initialize(cellIndex: Int) {
         if (cellIndex != currentCellIndex) {
-            cellRepository.loadFromStore()
+            cellDisposable?.dispose()
+            cellDisposable = cellRepository.loadFromStore()
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe {
                         cell?.let { currentCell -> cellRepository.storeCell(currentCell) }
                         cell = cellRepository.getCell(cellIndex)
+                        cell?.let { c -> view.setCellName(c.data.name) }
                         rules = cell?.data?.rules
                         rulesNotifier.onNext(Unit)
                         currentlyEditedRule = null
