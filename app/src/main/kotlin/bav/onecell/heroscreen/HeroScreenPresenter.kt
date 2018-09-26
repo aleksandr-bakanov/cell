@@ -214,6 +214,34 @@ class HeroScreenPresenter(
         }
         return null
     }
+
+    override fun increaseSelectedRulePriority() {
+        rules?.let { rules ->
+            currentRuleIndex?.let { index ->
+                if (index > 0) {
+                    val tmp = rules[index]
+                    rules[index] = rules[index - 1]
+                    rules[index - 1] = tmp
+                    currentRuleIndex = index - 1
+                    rulesNotifier.onNext(Unit)
+                }
+            }
+        }
+    }
+
+    override fun decreaseSelectedRulePriority() {
+        rules?.let { rules ->
+            currentRuleIndex?.let { index ->
+                if (index < rules.size - 1) {
+                    val tmp = rules[index]
+                    rules[index] = rules[index + 1]
+                    rules[index + 1] = tmp
+                    currentRuleIndex = index + 1
+                    rulesNotifier.onNext(Unit)
+                }
+            }
+        }
+    }
     //endregion
 
     //region Editor.Presenter methods

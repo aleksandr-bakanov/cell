@@ -163,10 +163,31 @@
         app:srcCompat="@drawable/ic_rotate_right_black_24dp" />
 
     <!-- Cell logic edition -->
+    <Button
+        android:id="@+id/buttonIncreaseRulePriority"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/utf_icon_increase_priority"
+        android:textSize="@dimen/hero_screen_cell_logic_utf_icons_size"
+        app:layout_constraintStart_toStartOf="@id/recyclerViewRulesList"
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/buttonDecreaseRulePriority"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/utf_icon_decrease_priority"
+        android:textSize="@dimen/hero_screen_cell_logic_utf_icons_size"
+        app:layout_constraintEnd_toEndOf="@id/recyclerViewRulesList"
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="gone" />
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerViewRulesList"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_margin="@dimen/hero_screen_cell_logic_margin"
         app:layout_constraintStart_toEndOf="@id/zoiAvatar"
         app:layout_constraintEnd_toStartOf="@id/recyclerViewConditionsList"
         app:layout_constraintHorizontal_bias="0.5"
@@ -178,6 +199,7 @@
         android:id="@+id/recyclerViewConditionsList"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_margin="@dimen/hero_screen_cell_logic_margin"
         app:layout_constraintBottom_toTopOf="@id/recyclerViewCellLogicPicker"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -189,6 +211,9 @@
         android:id="@+id/recyclerViewCellLogicPicker"
         android:layout_width="0dp"
         android:layout_height="@dimen/hero_screen_cell_logic_picker_height"
+        android:layout_marginTop="@dimen/hero_screen_cell_logic_margin"
+        android:layout_marginStart="@dimen/hero_screen_cell_logic_margin"
+        android:layout_marginEnd="@dimen/hero_screen_cell_logic_margin"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/zoiAvatar"

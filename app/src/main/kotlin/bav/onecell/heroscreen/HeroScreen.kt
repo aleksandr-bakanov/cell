@@ -11,5 +11,7 @@ interface HeroScreen {
     }
     interface Presenter: Editor.Presenter, Rules.Presenter, Conditions.Presenter, Picker.Presenter {
         fun openMainMenu()
+        fun increaseSelectedRulePriority()
+        fun decreaseSelectedRulePriority()
     }
 }

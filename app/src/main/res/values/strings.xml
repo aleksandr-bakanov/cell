@@ -52,6 +52,8 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non lacus malesuada,
     <string name="utf_icon_north_west_direction">↖️</string>
     <string name="utf_icon_direction_to_nearest_enemy">➡️ 👿</string>
     <string name="utf_icon_equality">=</string>
+    <string name="utf_icon_increase_priority">☝️</string>
+    <string name="utf_icon_decrease_priority">👇️</string>
 
     <!-- Cut scene view -->
     <string name="image_description_cut_scene_background">Cut scene background</string>

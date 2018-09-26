@@ -7,7 +7,6 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.LinearLayoutManager
-import android.util.LayoutDirection
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,6 +22,8 @@ import bav.onecell.model.hexes.HexMath
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.fragment_hero_screen.aimaAvatar
+import kotlinx.android.synthetic.main.fragment_hero_screen.buttonDecreaseRulePriority
+import kotlinx.android.synthetic.main.fragment_hero_screen.buttonIncreaseRulePriority
 import kotlinx.android.synthetic.main.fragment_hero_screen.buttonMainMenu
 import kotlinx.android.synthetic.main.fragment_hero_screen.buttonRotateCellLeft
 import kotlinx.android.synthetic.main.fragment_hero_screen.buttonRotateCellRight
@@ -71,6 +72,8 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
         buttonRotateCellLeft.setOnClickListener { onCellRotateButtonClicked(it) }
         buttonRotateCellRight.setOnClickListener { onCellRotateButtonClicked(it) }
         buttonSwitchScreen.setOnClickListener { switchCellLogicEditorViews() }
+        buttonIncreaseRulePriority.setOnClickListener { presenter.increaseSelectedRulePriority() }
+        buttonDecreaseRulePriority.setOnClickListener { presenter.decreaseSelectedRulePriority() }
 
         kittaroAvatar.setOnClickListener { presenter.initialize(KITTARO_INDEX) }
         zoiAvatar.setOnClickListener { presenter.initialize(ZOI_INDEX) }
@@ -219,7 +222,8 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
                                        buttonRotateCellLeft, buttonRotateCellRight))
             view.visibility = editorVisibility
 
-        for (view in arrayListOf<View>(recyclerViewRulesList, recyclerViewConditionsList, recyclerViewCellLogicPicker))
+        for (view in arrayListOf<View>(recyclerViewRulesList, recyclerViewConditionsList, recyclerViewCellLogicPicker,
+                                       buttonIncreaseRulePriority, buttonDecreaseRulePriority))
             view.visibility = cellLogicVisibility
     }
 
