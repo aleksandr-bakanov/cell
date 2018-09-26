@@ -107,7 +107,17 @@ class HeroScreenPresenter(
     override fun removeCondition(index: Int) {
         currentlyEditedRule?.let {
             it.removeConditionAt(index)
-            setPickerOptionsSource(null)
+            currentConditionIndex?.let { currentIndex ->
+                if (currentIndex == index) {
+                    clearCurrentCondition()
+                }
+                else if (currentIndex < index) {
+                    // Do nothing
+                }
+                else {
+                    currentConditionIndex = currentIndex - 1
+                }
+            }
             conditionsNotifier.onNext(Unit)
             rulesNotifier.onNext(Unit)
         }
@@ -162,6 +172,17 @@ class HeroScreenPresenter(
         rules?.let {
             if (index in 0 until it.size) {
                 it.removeAt(index)
+                currentRuleIndex?.let { currentIndex ->
+                    if (currentIndex == index) {
+                        clearCurrentRule()
+                    }
+                    else if (currentIndex < index) {
+                        // Do nothing
+                    }
+                    else {
+                        currentRuleIndex = currentIndex - 1
+                    }
+                }
             }
             rulesNotifier.onNext(Unit)
         }
@@ -294,6 +315,7 @@ class HeroScreenPresenter(
     private fun clearCurrentCondition() {
         currentlyEditedCondition = null
         currentConditionIndex = null
+        setPickerOptionsSource(null)
         conditionsNotifier.onNext(Unit)
     }
 
@@ -301,6 +323,8 @@ class HeroScreenPresenter(
         currentlyEditedRule = null
         currentRuleIndex = null
         rulesNotifier.onNext(Unit)
+        clearCurrentCondition()
+        setPickerOptionsSource(null)
     }
     //endregion
 
