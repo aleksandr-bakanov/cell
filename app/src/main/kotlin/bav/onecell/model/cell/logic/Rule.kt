@@ -10,7 +10,7 @@ class Rule(private val conditions: MutableList<Condition> = mutableListOf(),
            val action: Action = Action()) {
 
     fun check(state: BattleFieldState): Boolean {
-        return conditions.map { it.check(state) }.all { it }
+        return conditions.asSequence().map { it.check(state) }.all { it }
     }
 
     fun addCondition(condition: Condition) {

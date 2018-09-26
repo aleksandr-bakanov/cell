@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <android.support.v7.widget.AppCompatImageButton
+        android:id="@+id/avatar"
+        android:layout_width="@dimen/hero_screen_avatar_size"
+        android:layout_height="@dimen/hero_screen_avatar_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/cell100x100"
+        android:layout_margin="@dimen/hero_screen_avatar_margin" />
+
+</android.support.constraint.ConstraintLayout>

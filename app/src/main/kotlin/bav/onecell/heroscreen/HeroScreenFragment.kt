@@ -21,7 +21,6 @@ import bav.onecell.model.hexes.Hex
 import bav.onecell.model.hexes.HexMath
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
-import kotlinx.android.synthetic.main.fragment_hero_screen.aimaAvatar
 import kotlinx.android.synthetic.main.fragment_hero_screen.buttonDecreaseRulePriority
 import kotlinx.android.synthetic.main.fragment_hero_screen.buttonIncreaseRulePriority
 import kotlinx.android.synthetic.main.fragment_hero_screen.buttonMainMenu
@@ -30,17 +29,16 @@ import kotlinx.android.synthetic.main.fragment_hero_screen.buttonRotateCellRight
 import kotlinx.android.synthetic.main.fragment_hero_screen.buttonSwitchScreen
 import kotlinx.android.synthetic.main.fragment_hero_screen.cellName
 import kotlinx.android.synthetic.main.fragment_hero_screen.editorCanvasView
-import kotlinx.android.synthetic.main.fragment_hero_screen.kittaroAvatar
 import kotlinx.android.synthetic.main.fragment_hero_screen.radioButtonAttackHex
 import kotlinx.android.synthetic.main.fragment_hero_screen.radioButtonEnergyHex
 import kotlinx.android.synthetic.main.fragment_hero_screen.radioButtonLifeHex
 import kotlinx.android.synthetic.main.fragment_hero_screen.radioButtonRemoveHex
+import kotlinx.android.synthetic.main.fragment_hero_screen.recyclerViewAvatars
 import kotlinx.android.synthetic.main.fragment_hero_screen.recyclerViewCellLogicPicker
 import kotlinx.android.synthetic.main.fragment_hero_screen.recyclerViewConditionsList
 import kotlinx.android.synthetic.main.fragment_hero_screen.recyclerViewRulesList
 import kotlinx.android.synthetic.main.fragment_hero_screen.textHeroHistory
 import kotlinx.android.synthetic.main.fragment_hero_screen.textMoney
-import kotlinx.android.synthetic.main.fragment_hero_screen.zoiAvatar
 import javax.inject.Inject
 import kotlin.math.PI
 
@@ -76,9 +74,12 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
         buttonIncreaseRulePriority.setOnClickListener { presenter.increaseSelectedRulePriority() }
         buttonDecreaseRulePriority.setOnClickListener { presenter.decreaseSelectedRulePriority() }
 
-        kittaroAvatar.setOnClickListener { presenter.initialize(KITTARO_INDEX) }
+        /*kittaroAvatar.setOnClickListener { presenter.initialize(KITTARO_INDEX) }
         zoiAvatar.setOnClickListener { presenter.initialize(ZOI_INDEX) }
-        aimaAvatar.setOnClickListener { presenter.initialize(AIMA_INDEX) }
+        aimaAvatar.setOnClickListener { presenter.initialize(AIMA_INDEX) }*/
+
+        recyclerViewAvatars.layoutManager = LinearLayoutManager(context)
+        recyclerViewAvatars.adapter = HeroIconsRecyclerViewAdapter(presenter)
 
         recyclerViewRulesList.layoutManager = LinearLayoutManager(context)
         recyclerViewRulesList.adapter = RulesRecyclerViewAdapter(presenter, resourceProvider)
@@ -139,6 +140,10 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
 
     override fun setCellName(name: String) {
         cellName.text = name
+    }
+
+    override fun updateAvatars() {
+        recyclerViewAvatars.adapter.notifyDataSetChanged()
     }
     //endregion
 

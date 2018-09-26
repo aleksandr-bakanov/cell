@@ -59,8 +59,10 @@ class HeroScreenPresenter(
                         currentRuleIndex = null
                         currentConditionIndex = null
                         conditionsNotifier.onNext(Unit)
+                        setPickerOptionsSource(null)
                         backgroundFieldRadiusProvider.onNext(4)
                         cellProvider.onNext(cell!!)
+                        view.updateAvatars()
                     }
         }
     }
@@ -303,6 +305,8 @@ class HeroScreenPresenter(
     }
 
     override fun getCurrentlySelectedRuleIndex(): Int? = currentRuleIndex
+
+    override fun getCellCount(): Int = cellRepository.cellsCount()
     //endregion
 
     //region Private methods
