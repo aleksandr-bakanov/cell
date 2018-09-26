@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter
 import android.animation.ValueAnimator
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.content.ContextCompat
 import android.support.v7.widget.LinearLayoutManager
 import android.util.LayoutDirection
 import android.view.LayoutInflater
@@ -120,10 +121,16 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
     }
     //endregion
 
-    //region HeroScreen.View methods
+    //region Editor.View methods
     override fun highlightTips(type: Hex.Type) {
         editorCanvasView.tipHexes = presenter.getTipHexes(type)
         editorCanvasView.invalidate()
+    }
+    //endregion
+
+    //region HeroScreen.View methods
+    override fun setPickerBackground(colorId: Int) {
+        recyclerViewCellLogicPicker.setBackgroundColor(ContextCompat.getColor(requireContext(), colorId))
     }
     //endregion
 
@@ -220,7 +227,7 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
     //endregion
 
     companion object {
-        private const val TAG = "EditorFragment"
+        private const val TAG = "HeroScreenFragment"
 
         private const val KITTARO_INDEX = 0
         private const val ZOI_INDEX = 1

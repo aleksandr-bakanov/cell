@@ -7,7 +7,7 @@ import bav.onecell.editor.Editor
 
 interface HeroScreen {
     interface View: Editor.View {
-
+        fun setPickerBackground(colorId: Int)
     }
     interface Presenter: Editor.Presenter, Rules.Presenter, Conditions.Presenter, Picker.Presenter {
         fun openMainMenu()

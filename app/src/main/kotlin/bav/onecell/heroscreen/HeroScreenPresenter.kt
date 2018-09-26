@@ -160,7 +160,9 @@ class HeroScreenPresenter(
 
     override fun removeRule(index: Int) {
         rules?.let {
-            if (index in 0 until it.size) it.removeAt(index)
+            if (index in 0 until it.size) {
+                it.removeAt(index)
+            }
             rulesNotifier.onNext(Unit)
         }
     }
@@ -258,7 +260,20 @@ class HeroScreenPresenter(
 
     private fun setPickerOptionsSource(source: List<Pair<Int, () -> Unit? >>?) {
         pickerOptionsSource = source
+        updatePickerBackground(source)
         pickerOptionsNotifier.onNext(Unit)
+    }
+
+    private fun updatePickerBackground(source: List<Pair<Int, () -> Unit? >>?) {
+        view.setPickerBackground(
+                when (source) {
+                    cellRuleActions -> R.color.heroScreenSelectedRuleBackgroundColor
+                    cellRuleConditionFieldsToCheck,
+                    cellRuleConditionOperationsDirectionToNearestEnemy,
+                    cellRuleConditionExpectedValuesDirectionToNearestEnemy -> R.color.heroScreenSelectedConditionBackgroundColor
+                    else -> R.color.heroScreenUnselectedRuleBackgroundColor
+                }
+        )
     }
 
     private fun setCurrentRule(ruleIndex: Int) {
@@ -281,6 +296,12 @@ class HeroScreenPresenter(
         currentConditionIndex = null
         conditionsNotifier.onNext(Unit)
     }
+
+    private fun clearCurrentRule() {
+        currentlyEditedRule = null
+        currentRuleIndex = null
+        rulesNotifier.onNext(Unit)
+    }
     //endregion
 
     //region Picker options
@@ -299,14 +320,25 @@ class HeroScreenPresenter(
             })
     )
 
+    private val cellRuleConditionOperationsDirectionToNearestEnemy = arrayListOf(
+            Pair(R.string.utf_icon_equality, {
+                currentlyEditedCondition?.let { it.operation = Condition.Operation.EQUALS }
+            })
+    )
+
+    private val cellRuleConditionExpectedValuesDirectionToNearestEnemy = arrayListOf(
+            Pair(R.string.utf_icon_north_direction, { currentlyEditedCondition?.let { it.expected = Cell.Direction.N.ordinal }}),
+            Pair(R.string.utf_icon_north_east_direction, { currentlyEditedCondition?.let { it.expected = Cell.Direction.NE.ordinal }}),
+            Pair(R.string.utf_icon_south_east_direction, { currentlyEditedCondition?.let { it.expected = Cell.Direction.SE.ordinal }}),
+            Pair(R.string.utf_icon_south_direction, { currentlyEditedCondition?.let { it.expected = Cell.Direction.S.ordinal }}),
+            Pair(R.string.utf_icon_south_west_direction, { currentlyEditedCondition?.let { it.expected = Cell.Direction.SW.ordinal }}),
+            Pair(R.string.utf_icon_north_west_direction, { currentlyEditedCondition?.let { it.expected = Cell.Direction.NW.ordinal }})
+    )
+
     private fun getCellRuleConditionOperations(): List<Pair<Int, () -> Unit? >>? {
         return currentlyEditedCondition?.let { condition ->
             when (condition.fieldToCheck) {
-                Condition.FieldToCheck.DIRECTION_TO_NEAREST_ENEMY -> arrayListOf(
-                        /// TODO: move these array-lists to consts
-                        Pair(R.string.utf_icon_equality, {
-                            currentlyEditedCondition?.let { it.operation = Condition.Operation.EQUALS }
-                        }))
+                Condition.FieldToCheck.DIRECTION_TO_NEAREST_ENEMY -> cellRuleConditionOperationsDirectionToNearestEnemy
             }
         }
     }
@@ -314,15 +346,7 @@ class HeroScreenPresenter(
     private fun getCellRuleConditionExpectedValue(): List<Pair<Int, () -> Unit? >>? {
         return currentlyEditedCondition?.let { condition ->
             when (condition.fieldToCheck) {
-                Condition.FieldToCheck.DIRECTION_TO_NEAREST_ENEMY -> arrayListOf(
-                        /// TODO: move these array-lists to consts
-                        Pair(R.string.utf_icon_north_direction, { currentlyEditedCondition?.let { it.expected = Cell.Direction.N.ordinal }}),
-                        Pair(R.string.utf_icon_north_east_direction, { currentlyEditedCondition?.let { it.expected = Cell.Direction.NE.ordinal }}),
-                        Pair(R.string.utf_icon_south_east_direction, { currentlyEditedCondition?.let { it.expected = Cell.Direction.SE.ordinal }}),
-                        Pair(R.string.utf_icon_south_direction, { currentlyEditedCondition?.let { it.expected = Cell.Direction.S.ordinal }}),
-                        Pair(R.string.utf_icon_south_west_direction, { currentlyEditedCondition?.let { it.expected = Cell.Direction.SW.ordinal }}),
-                        Pair(R.string.utf_icon_north_west_direction, { currentlyEditedCondition?.let { it.expected = Cell.Direction.NW.ordinal }})
-                )
+                Condition.FieldToCheck.DIRECTION_TO_NEAREST_ENEMY -> cellRuleConditionExpectedValuesDirectionToNearestEnemy
             }
         }
     }

@@ -45,8 +45,8 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non lacus malesuada,
 
     <!-- UTF icons -->
     <string name="utf_icon_north_direction">⬆️</string>
-    <string name="utf_icon_north_east_direction">↗️️</string>
-    <string name="utf_icon_south_east_direction">↘️️</string>
+    <string name="utf_icon_north_east_direction">↗️</string>
+    <string name="utf_icon_south_east_direction">↘️</string>
     <string name="utf_icon_south_direction">⬇️</string>
     <string name="utf_icon_south_west_direction">↙️</string>
     <string name="utf_icon_north_west_direction">↖️</string>
