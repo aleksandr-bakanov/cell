@@ -12,7 +12,7 @@
         android:textColor="@android:color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/buttonChooseRuleAction"
-        android:textSize="36sp" />
+        android:textSize="@dimen/hero_screen_cell_logic_rule_representation_size" />
 
     <Button
         android:id="@+id/buttonChooseRuleAction"

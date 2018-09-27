@@ -1,5 +1,6 @@
 package bav.onecell.heroscreen
 
+import android.graphics.Rect
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -21,9 +22,21 @@ class HeroIconsRecyclerViewAdapter(
 
     }
 
+    companion object {
+        const val GAP_BETWEEN_ITEMS = 4
+    }
+
     class ViewHolder(val view: View, private val presenter: HeroScreen.Presenter) : RecyclerView.ViewHolder(view) {
         init {
             view.avatar.setOnClickListener { presenter.initialize(adapterPosition) }
+        }
+    }
+
+    class VerticalSpaceItemDecoration : RecyclerView.ItemDecoration() {
+        override fun getItemOffsets(outRect: Rect?, view: View?, parent: RecyclerView?, state: RecyclerView.State?) {
+            parent?.adapter?.let {
+                if (parent.getChildAdapterPosition(view) != it.itemCount - 1) outRect?.bottom = GAP_BETWEEN_ITEMS
+            }
         }
     }
 }

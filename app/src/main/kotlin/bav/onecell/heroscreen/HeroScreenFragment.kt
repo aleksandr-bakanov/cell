@@ -79,6 +79,7 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
         aimaAvatar.setOnClickListener { presenter.initialize(AIMA_INDEX) }*/
 
         recyclerViewAvatars.layoutManager = LinearLayoutManager(context)
+        recyclerViewAvatars.addItemDecoration(HeroIconsRecyclerViewAdapter.VerticalSpaceItemDecoration())
         recyclerViewAvatars.adapter = HeroIconsRecyclerViewAdapter(presenter)
 
         recyclerViewRulesList.layoutManager = LinearLayoutManager(context)

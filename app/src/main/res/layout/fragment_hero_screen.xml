@@ -9,6 +9,7 @@
         android:id="@+id/recyclerViewAvatars"
         android:layout_width="@dimen/hero_screen_avatar_size"
         android:layout_height="0dp"
+        android:layout_margin="@dimen/hero_screen_avatar_margin"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>

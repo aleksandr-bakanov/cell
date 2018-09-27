@@ -4,7 +4,7 @@ buildscript {
     ext.android_support_version = '27.1.1'
     ext.cicerone_version = '3.0.0'
     ext.dagger_version = '2.14.1'
-    ext.kotlin_version = '1.2.61'
+    ext.kotlin_version = '1.2.71'
     ext.kotlinx_coroutines_version = '0.22.5'
 
     repositories {
@@ -12,7 +12,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.1.4'
+        classpath 'com.android.tools.build:gradle:3.2.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 
         // NOTE: Do not place your application dependencies here; they belong
