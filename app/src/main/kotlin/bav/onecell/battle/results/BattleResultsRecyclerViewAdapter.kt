@@ -3,7 +3,7 @@ package bav.onecell.battle.results
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Color
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,7 +16,7 @@ import kotlinx.android.synthetic.main.item_row_cell_in_battle_results.view.dealt
 
 class BattleResultsRecyclerViewAdapter(private val presenter: BattleResults.Presenter,
                                        private val drawUtils: DrawUtils) :
-        RecyclerView.Adapter<BattleResultsRecyclerViewAdapter.ViewHolder>() {
+        androidx.recyclerview.widget.RecyclerView.Adapter<BattleResultsRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -43,7 +43,7 @@ class BattleResultsRecyclerViewAdapter(private val presenter: BattleResults.Pres
     class ViewHolder(val view: View, private val presenter: BattleResults.Presenter,
                      val previewBitmap: Bitmap = Bitmap.createBitmap(PREVIEW_BITMAP_SIZE, PREVIEW_BITMAP_SIZE,
                                                                      Bitmap.Config.ARGB_8888))
-        : RecyclerView.ViewHolder(view) {
+        : androidx.recyclerview.widget.RecyclerView.ViewHolder(view) {
 
         init {
             view.preview.setImageBitmap(previewBitmap)

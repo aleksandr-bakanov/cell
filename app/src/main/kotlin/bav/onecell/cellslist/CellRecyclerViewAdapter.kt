@@ -3,7 +3,7 @@ package bav.onecell.cellslist
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Color
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
@@ -19,7 +19,7 @@ import kotlinx.android.synthetic.main.item_row_cell.view.preview
 import kotlinx.android.synthetic.main.item_row_cell.view.title
 
 class CellRecyclerViewAdapter(private val presenter: CellsList.Presenter, private val drawUtils: DrawUtils) :
-        RecyclerView.Adapter<CellRecyclerViewAdapter.ViewHolder>() {
+        androidx.recyclerview.widget.RecyclerView.Adapter<CellRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -43,7 +43,7 @@ class CellRecyclerViewAdapter(private val presenter: CellsList.Presenter, privat
 
     class ViewHolder(val view: View, private val presenter: CellsList.Presenter,
                      val previewBitmap: Bitmap = Bitmap.createBitmap(500, 500, Bitmap.Config.ARGB_8888))
-        : RecyclerView.ViewHolder(view) {
+        : androidx.recyclerview.widget.RecyclerView.ViewHolder(view) {
 
         init {
             view.buttonEditCell.setOnClickListener {

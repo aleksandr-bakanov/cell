@@ -1,8 +1,8 @@
 package bav.onecell.celllogic.conditions
 
 import android.content.Context
-import android.support.v4.content.ContextCompat
-import android.support.v7.widget.RecyclerView
+import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.item_row_rule_condition.view.conditionRow
 
 class ConditionsRecyclerViewAdapter(
         private val presenter: Conditions.Presenter,
-        private val resourceProvider: Common.ResourceProvider) : RecyclerView.Adapter<ConditionsRecyclerViewAdapter.ViewHolder>() {
+        private val resourceProvider: Common.ResourceProvider) : androidx.recyclerview.widget.RecyclerView.Adapter<ConditionsRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(viewType, parent, false)
@@ -53,7 +53,7 @@ class ConditionsRecyclerViewAdapter(
         else ContextCompat.getColor(context, R.color.heroScreenUnselectedConditionBackgroundColor)
     }
 
-    class ViewHolder(val view: View, private val presenter: Conditions.Presenter, viewType: Int) : RecyclerView.ViewHolder(view) {
+    class ViewHolder(val view: View, private val presenter: Conditions.Presenter, viewType: Int) : androidx.recyclerview.widget.RecyclerView.ViewHolder(view) {
         init {
             when (viewType) {
                 R.layout.item_row_add_new_condition -> {

@@ -1,11 +1,12 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
-    ext.android_support_version = '27.1.1'
-    ext.cicerone_version = '3.0.0'
-    ext.dagger_version = '2.14.1'
+    ext.android_support_version = '28.0.0'
+    ext.dagger_version = '2.17'
     ext.kotlin_version = '1.2.71'
     ext.kotlinx_coroutines_version = '0.22.5'
+    ext.nav_version = '1.0.0-alpha06'
+    ext.androidx_version = '1.0.0'
 
     repositories {
         google()

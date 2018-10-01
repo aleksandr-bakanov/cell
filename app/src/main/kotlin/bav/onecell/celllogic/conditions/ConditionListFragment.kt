@@ -1,8 +1,8 @@
 package bav.onecell.celllogic.conditions
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v7.widget.LinearLayoutManager
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -39,7 +39,7 @@ class ConditionListFragment : Fragment() {
 
         disposables.addAll(
                 presenter.conditionsUpdateNotifier().subscribe {
-                    recyclerViewConditionsList.adapter.notifyDataSetChanged()
+                    recyclerViewConditionsList.adapter?.notifyDataSetChanged()
                 }
         )
     }

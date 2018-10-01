@@ -1,6 +1,6 @@
 package bav.onecell.common.storage
 
-import android.arch.persistence.room.TypeConverter
+import androidx.room.TypeConverter
 import bav.onecell.model.cell.Cell
 import bav.onecell.model.cell.Data
 import bav.onecell.model.cell.logic.Rule

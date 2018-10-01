@@ -1,7 +1,7 @@
 package bav.onecell.heroscreen
 
 import android.graphics.Rect
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -33,9 +33,9 @@ class HeroIconsRecyclerViewAdapter(
     }
 
     class VerticalSpaceItemDecoration : RecyclerView.ItemDecoration() {
-        override fun getItemOffsets(outRect: Rect?, view: View?, parent: RecyclerView?, state: RecyclerView.State?) {
-            parent?.adapter?.let {
-                if (parent.getChildAdapterPosition(view) != it.itemCount - 1) outRect?.bottom = GAP_BETWEEN_ITEMS
+        override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
+            parent.adapter?.let {
+                if (parent.getChildAdapterPosition(view) != it.itemCount - 1) outRect.bottom = GAP_BETWEEN_ITEMS
             }
         }
     }

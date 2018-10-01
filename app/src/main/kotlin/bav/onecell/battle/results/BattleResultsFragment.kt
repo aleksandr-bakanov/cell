@@ -1,9 +1,8 @@
 package bav.onecell.battle.results
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +13,7 @@ import kotlinx.android.synthetic.main.fragment_battle_results.buttonToHeroesScre
 import kotlinx.android.synthetic.main.fragment_battle_results.recyclerViewBattleResults
 import javax.inject.Inject
 
-class BattleResultsFragment: Fragment(), BattleResults.View {
+class BattleResultsFragment: androidx.fragment.app.Fragment(), BattleResults.View {
 
     @Inject lateinit var presenter: BattleResults.Presenter
     @Inject lateinit var drawUtils: DrawUtils
@@ -29,7 +28,7 @@ class BattleResultsFragment: Fragment(), BattleResults.View {
         inject()
 
         buttonToHeroesScreen.setOnClickListener { presenter.goToHeroesScreen() }
-        recyclerViewBattleResults.layoutManager = LinearLayoutManager(context)
+        recyclerViewBattleResults.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(context)
         recyclerViewBattleResults.adapter = BattleResultsRecyclerViewAdapter(presenter, drawUtils)
         initializePresenter(arguments)
     }

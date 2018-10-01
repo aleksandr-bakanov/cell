@@ -4,11 +4,10 @@ import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Paint
 import android.graphics.Path
-import android.support.v4.content.ContextCompat
+import androidx.core.content.ContextCompat
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
-import android.util.Log
 import bav.onecell.R
 import bav.onecell.common.view.CanvasView
 import bav.onecell.model.BattleFieldSnapshot

@@ -1,7 +1,7 @@
 package bav.onecell.cutscene
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -64,7 +64,7 @@ class CutSceneFragment : Fragment(), CutScene.View {
     private fun parseArguments(arguments: Bundle?) {
         arguments?.let {
             try {
-                val info = JSONObject(it.getString(INFO_JSON))
+                val info = JSONObject(it.getString(CUT_SCENE_INFO))
                 defaultBackground = getDrawableIdentifier(info.getString(BACKGROUND))
                 defaultLeftCharacter = getDrawableIdentifier(info.getString(LEFT))
                 defaultRightCharacter = getDrawableIdentifier(info.getString(RIGHT))
@@ -106,7 +106,7 @@ class CutSceneFragment : Fragment(), CutScene.View {
 
     companion object {
         private const val TAG = "CutSceneFragment"
-        const val INFO_JSON = "info_json"
+        const val CUT_SCENE_INFO = "cutSceneInfo"
         const val BACKGROUND = "background"
         const val LEFT = "left"
         const val RIGHT = "right"

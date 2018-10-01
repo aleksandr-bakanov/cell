@@ -1,8 +1,7 @@
 package bav.onecell.common.router
 
 import android.os.Bundle
-import android.support.v4.app.FragmentActivity
-import android.util.Log
+import androidx.fragment.app.FragmentActivity
 import bav.onecell.battle.BattleFragment
 import bav.onecell.battle.results.BattleResultsFragment
 import bav.onecell.celllogic.conditions.ConditionEditorDialogFragment
@@ -17,7 +16,7 @@ import io.reactivex.subjects.PublishSubject
 
 class RouterImpl : Router {
 
-    private lateinit var host: FragmentActivity
+    private lateinit var host: androidx.fragment.app.FragmentActivity
     private val windowChanger = PublishSubject.create<Router.Window>()
 
     override fun windowChange(): Observable<Router.Window> = windowChanger
@@ -63,7 +62,7 @@ class RouterImpl : Router {
         windowChanger.onNext(Router.Window(Router.WindowType.CONDITIONS_EDITOR, bundle))
     }
 
-    override fun setHostActivity(activity: FragmentActivity) {
+    override fun setHostActivity(activity: androidx.fragment.app.FragmentActivity) {
         host = activity
     }
 
@@ -79,7 +78,7 @@ class RouterImpl : Router {
 
     override fun goToCutScene(cutSceneInfo: String) {
         val bundle = Bundle()
-        bundle.putString(CutSceneFragment.INFO_JSON, cutSceneInfo)
+        bundle.putString(CutSceneFragment.CUT_SCENE_INFO, cutSceneInfo)
         windowChanger.onNext(Router.Window(Router.WindowType.CUT_SCENE, bundle))
     }
 

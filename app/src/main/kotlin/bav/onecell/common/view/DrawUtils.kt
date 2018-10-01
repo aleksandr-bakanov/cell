@@ -6,7 +6,7 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Path
 import android.graphics.Typeface
-import android.support.v4.content.ContextCompat
+import androidx.core.content.ContextCompat
 import bav.onecell.R
 import bav.onecell.model.cell.Cell
 import bav.onecell.model.hexes.Hex

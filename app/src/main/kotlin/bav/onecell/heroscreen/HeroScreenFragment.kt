@@ -4,9 +4,9 @@ import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.animation.ValueAnimator
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v4.content.ContextCompat
-import android.support.v7.widget.LinearLayoutManager
+import androidx.fragment.app.Fragment
+import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -108,13 +108,13 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
                     editorCanvasView.invalidate()
                 },
                 presenter.rulesUpdateNotifier().subscribe {
-                    recyclerViewRulesList.adapter.notifyDataSetChanged()
+                    recyclerViewRulesList.adapter?.notifyDataSetChanged()
                 },
                 presenter.conditionsUpdateNotifier().subscribe {
-                    recyclerViewConditionsList.adapter.notifyDataSetChanged()
+                    recyclerViewConditionsList.adapter?.notifyDataSetChanged()
                 },
                 presenter.optionsUpdateNotifier().subscribe {
-                    recyclerViewCellLogicPicker.adapter.notifyDataSetChanged()
+                    recyclerViewCellLogicPicker.adapter?.notifyDataSetChanged()
                 }
         )
         presenter.initialize(KITTARO_INDEX)
@@ -144,7 +144,7 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
     }
 
     override fun updateAvatars() {
-        recyclerViewAvatars.adapter.notifyDataSetChanged()
+        recyclerViewAvatars.adapter?.notifyDataSetChanged()
     }
     //endregion
 

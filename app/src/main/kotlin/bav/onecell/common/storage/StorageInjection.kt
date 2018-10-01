@@ -1,6 +1,6 @@
 package bav.onecell.common.storage
 
-import android.arch.persistence.room.Room
+import androidx.room.Room
 import android.content.Context
 import bav.onecell.model.hexes.HexMath
 import dagger.Module

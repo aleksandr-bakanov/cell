@@ -1,9 +1,8 @@
 package bav.onecell.cellslist.cellselection
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,8 +11,8 @@ import bav.onecell.OneCellApplication
 import bav.onecell.R
 import bav.onecell.cellslist.CellsListModule
 import io.reactivex.disposables.CompositeDisposable
-import kotlinx.android.synthetic.main.fragment_cell_list.recyclerViewCellList
 import kotlinx.android.synthetic.main.fragment_choose_cells_for_battle.buttonStartBattle
+import kotlinx.android.synthetic.main.fragment_choose_cells_for_battle.recyclerViewCellList
 import kotlinx.android.synthetic.main.item_row_cell_for_selection.view.checkboxSelect
 import javax.inject.Inject
 
@@ -38,7 +37,7 @@ class CellsForBattleFragment : Fragment(), CellsForBattle.View {
         recyclerViewCellList.adapter = CellForBattleRecyclerViewAdapter(presenter)
 
         disposables.add(presenter.cellRepoUpdateNotifier().subscribe {
-            recyclerViewCellList.adapter.notifyDataSetChanged()
+            recyclerViewCellList.adapter?.notifyDataSetChanged()
         })
         presenter.initialize()
     }

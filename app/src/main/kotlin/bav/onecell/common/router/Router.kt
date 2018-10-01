@@ -1,7 +1,7 @@
 package bav.onecell.common.router
 
 import android.os.Bundle
-import android.support.v4.app.FragmentActivity
+import androidx.fragment.app.FragmentActivity
 import bav.onecell.model.cell.logic.Condition
 import io.reactivex.Observable
 
@@ -39,7 +39,7 @@ interface Router {
 
     fun goToActionEditor(cellIndex: Int, ruleIndex: Int)
 
-    fun setHostActivity(activity: FragmentActivity)
+    fun setHostActivity(activity: androidx.fragment.app.FragmentActivity)
 
     fun goToConditionEditor(condition: Condition, whatToEdit: Int)
 

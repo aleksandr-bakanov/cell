@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="bav.onecell.main.MainFragment"
+        android:label="MainFragment"
+        tools:layout="@layout/fragment_main">
+        <action
+            android:id="@+id/action_mainFragment_to_heroScreenFragment"
+            app:destination="@id/heroScreenFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_cutSceneFragment"
+            app:destination="@id/cutSceneFragment" >
+            <argument
+                android:name="cutSceneInfo"
+                android:defaultValue="@string/cut_scene_introduction" />
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/heroScreenFragment"
+        android:name="bav.onecell.heroscreen.HeroScreenFragment"
+        android:label="HeroScreenFragment"
+        tools:layout="@layout/fragment_hero_screen"/>
+    <fragment
+        android:id="@+id/cutSceneFragment"
+        android:name="bav.onecell.cutscene.CutSceneFragment"
+        android:label="CutSceneFragment"
+        tools:layout="@layout/fragment_cut_scene">
+        <argument
+            android:name="cutSceneInfo"
+            android:defaultValue="@string/cut_scene_introduction"
+            app:argType="string"/>
+    </fragment>
+</navigation>

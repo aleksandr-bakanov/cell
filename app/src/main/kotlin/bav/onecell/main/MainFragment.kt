@@ -1,12 +1,15 @@
 package bav.onecell.main
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
+import androidx.navigation.findNavController
 import bav.onecell.OneCellApplication
 import bav.onecell.R
+import bav.onecell.cutscene.CutSceneFragment
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_main.buttonGoToBattle
 import kotlinx.android.synthetic.main.fragment_main.buttonHeroScreen
@@ -31,7 +34,11 @@ class MainFragment : Fragment(), Main.View {
 
         buttonGoToBattle.setOnClickListener { presenter.openPreBattleView() }
         buttonShowCells.setOnClickListener { presenter.openCellsListView() }
-        buttonNewGame.setOnClickListener { presenter.startNewGame(resources.getString(R.string.cut_scene_introduction)) }
+        buttonNewGame.setOnClickListener { view ->
+            val bundle = bundleOf(CutSceneFragment.CUT_SCENE_INFO to resources.getString(R.string.cut_scene_introduction))
+            view.findNavController().navigate(R.id.action_mainFragment_to_cutSceneFragment, bundle)
+            /*presenter.startNewGame(resources.getString(R.string.cut_scene_introduction))*/
+        }
         buttonHeroScreen.setOnClickListener { presenter.openHeroScreen() }
     }
 

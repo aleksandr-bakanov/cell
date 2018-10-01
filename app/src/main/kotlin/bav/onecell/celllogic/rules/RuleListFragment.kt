@@ -1,8 +1,8 @@
 package bav.onecell.celllogic.rules
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v7.widget.LinearLayoutManager
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -38,7 +38,7 @@ class RuleListFragment : Fragment() {
 
         disposables.addAll(
                 presenter.rulesUpdateNotifier().subscribe {
-                    recyclerViewRulesList.adapter.notifyDataSetChanged()
+                    recyclerViewRulesList.adapter?.notifyDataSetChanged()
                 }
         )
     }

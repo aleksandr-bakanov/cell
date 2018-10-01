@@ -1,7 +1,7 @@
 package bav.onecell.main
 
 import android.os.Bundle
-import android.support.v4.app.FragmentActivity
+import androidx.fragment.app.FragmentActivity
 import android.view.View
 import bav.onecell.OneCellApplication
 import bav.onecell.R
@@ -45,11 +45,11 @@ class MainActivity : FragmentActivity() {
 
         setContentView(R.layout.activity_main)
 
-        if (savedInstanceState == null) {
+        /*if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
                     .replace(R.id.holder, MainFragment.newInstance())
                     .commit()
-        }
+        }*/
 
         disposables.add(router.windowChange().subscribe { changeWindow(it) })
     }
@@ -85,10 +85,10 @@ class MainActivity : FragmentActivity() {
             BATTLE_RESULTS -> BattleResultsFragment.newInstance(window.args)
             HERO_SCREEN -> HeroScreenFragment.newInstance(window.args)
         }
-        supportFragmentManager.beginTransaction()
+        /*supportFragmentManager.beginTransaction()
                 .replace(R.id.holder, fragment)
                 //.addToBackStack(null)
-                .commit()
+                .commit()*/
     }
 
     private fun hideSystemUi() {

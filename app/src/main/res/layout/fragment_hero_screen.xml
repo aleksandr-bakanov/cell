@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <!-- Avatars -->
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewAvatars"
         android:layout_width="@dimen/hero_screen_avatar_size"
         android:layout_height="0dp"
@@ -118,7 +118,7 @@
         app:layout_constraintTop_toBottomOf="@id/cellName" />
 
     <!-- Rotation buttons -->
-    <android.support.v7.widget.AppCompatImageButton
+    <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/buttonRotateCellLeft"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -126,7 +126,7 @@
         app:layout_constraintStart_toStartOf="@id/editorCanvasView"
         app:srcCompat="@drawable/ic_rotate_left_black_24dp" />
 
-    <android.support.v7.widget.AppCompatImageButton
+    <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/buttonRotateCellRight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -155,7 +155,7 @@
         app:layout_constraintTop_toTopOf="parent"
         android:visibility="gone" />
 
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewRulesList"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -167,7 +167,7 @@
         app:layout_constraintTop_toBottomOf="@id/cellName"
         android:visibility="gone" />
 
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewConditionsList"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -179,7 +179,7 @@
         app:layout_constraintTop_toBottomOf="@id/cellName"
         android:visibility="gone" />
 
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewCellLogicPicker"
         android:layout_width="0dp"
         android:layout_height="@dimen/hero_screen_cell_logic_picker_height"
@@ -191,7 +191,7 @@
         app:layout_constraintStart_toEndOf="@id/recyclerViewAvatars"
         android:visibility="gone" />
 
-    <android.support.v7.widget.AppCompatImageButton
+    <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/buttonSwitchScreen"
         android:layout_width="@dimen/hero_screen_avatar_size"
         android:layout_height="@dimen/hero_screen_avatar_size"
@@ -200,4 +200,4 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:srcCompat="@drawable/ic_memory_black_24dp" />
 
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
