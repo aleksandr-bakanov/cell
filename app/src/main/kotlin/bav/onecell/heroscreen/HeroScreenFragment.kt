@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import bav.onecell.OneCellApplication
 import bav.onecell.R
 import bav.onecell.celllogic.conditions.ConditionsRecyclerViewAdapter
@@ -63,7 +64,10 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
         inject()
         initiateCanvasView()
 
-        buttonMainMenu.setOnClickListener { presenter.openMainMenu() }
+        buttonMainMenu.setOnClickListener { view ->
+            view.findNavController().navigate(R.id.action_heroScreenFragment_to_mainFragment)
+            //presenter.openMainMenu()
+        }
         radioButtonLifeHex.setOnClickListener { onHexTypeRadioButtonClicked(it) }
         radioButtonAttackHex.setOnClickListener { onHexTypeRadioButtonClicked(it) }
         radioButtonEnergyHex.setOnClickListener { onHexTypeRadioButtonClicked(it) }

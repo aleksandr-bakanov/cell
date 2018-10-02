@@ -39,7 +39,10 @@ class MainFragment : Fragment(), Main.View {
             view.findNavController().navigate(R.id.action_mainFragment_to_cutSceneFragment, bundle)
             /*presenter.startNewGame(resources.getString(R.string.cut_scene_introduction))*/
         }
-        buttonHeroScreen.setOnClickListener { presenter.openHeroScreen() }
+        buttonHeroScreen.setOnClickListener { view ->
+            view.findNavController().navigate(R.id.action_mainFragment_to_heroScreenFragment)
+            //presenter.openHeroScreen()
+        }
     }
 
     override fun onDestroyView() {

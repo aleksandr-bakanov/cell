@@ -45,12 +45,6 @@ class MainActivity : FragmentActivity() {
 
         setContentView(R.layout.activity_main)
 
-        /*if (savedInstanceState == null) {
-            supportFragmentManager.beginTransaction()
-                    .replace(R.id.holder, MainFragment.newInstance())
-                    .commit()
-        }*/
-
         disposables.add(router.windowChange().subscribe { changeWindow(it) })
     }
 

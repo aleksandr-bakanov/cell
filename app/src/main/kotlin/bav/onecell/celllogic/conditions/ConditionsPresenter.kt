@@ -43,7 +43,7 @@ class ConditionsPresenter(private val cellRepository: RepositoryContract.CellRep
 
     override fun openConditionEditor(conditionIndex: Int, whatToEdit: Int) {
         currentlyEditedRule?.getCondition(conditionIndex)?.let {
-            router.goToConditionEditor(it, whatToEdit)
+
         }
     }
 

@@ -15,7 +15,7 @@ class MainPresenter(
     }
 
     override fun openCellsListView() {
-        router.goToCellsList()
+
     }
 
     override fun startNewGame(info: String) {

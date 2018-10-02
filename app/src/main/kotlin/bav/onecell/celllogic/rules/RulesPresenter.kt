@@ -44,7 +44,7 @@ class RulesPresenter(private val cellRepository: RepositoryContract.CellRepo,
     override fun openConditionsList(ruleIndex: Int) {
         rules?.let {
             if (ruleIndex >= 0 && ruleIndex < it.size) {
-                router.goToConditionList(currentlyEditedCellIndex, ruleIndex)
+
             }
         }
     }
@@ -52,7 +52,7 @@ class RulesPresenter(private val cellRepository: RepositoryContract.CellRepo,
     override fun openActionEditor(ruleIndex: Int) {
         rules?.let {
             if (ruleIndex >= 0 && ruleIndex < it.size) {
-                router.goToActionEditor(currentlyEditedCellIndex, ruleIndex)
+
             }
         }
     }

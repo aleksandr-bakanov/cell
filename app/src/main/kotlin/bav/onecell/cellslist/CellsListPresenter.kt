@@ -27,11 +27,11 @@ class CellsListPresenter(
     override fun cellsCount(): Int = cellRepository.cellsCount()
 
     override fun openCellEditor(cellIndex: Int) {
-        router.goToCellEditor(cellIndex)
+
     }
 
     override fun openCellRulesEditor(cellIndex: Int) {
-        router.goToRulesList(cellIndex)
+
     }
 
     override fun getCellName(index: Int): String = cellRepository.getCell(index)?.data?.name ?: ""

@@ -29,19 +29,7 @@ interface Router {
 
     fun goToBattle(cellIndexes: List<Int>)
 
-    fun goToCellsList()
-
-    fun goToCellEditor(index: Int)
-
-    fun goToRulesList(index: Int)
-
-    fun goToConditionList(cellIndex: Int, ruleIndex: Int)
-
-    fun goToActionEditor(cellIndex: Int, ruleIndex: Int)
-
-    fun setHostActivity(activity: androidx.fragment.app.FragmentActivity)
-
-    fun goToConditionEditor(condition: Condition, whatToEdit: Int)
+    fun setHostActivity(activity: FragmentActivity)
 
     fun goToCutScene(cutSceneInfo: String)
 
