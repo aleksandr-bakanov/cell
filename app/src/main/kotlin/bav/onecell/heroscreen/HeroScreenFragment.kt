@@ -66,7 +66,7 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
 
         buttonMainMenu.setOnClickListener { view ->
             view.findNavController().navigate(R.id.action_heroScreenFragment_to_mainFragment)
-            //presenter.openMainMenu()
+            presenter.openMainMenu()
         }
         radioButtonLifeHex.setOnClickListener { onHexTypeRadioButtonClicked(it) }
         radioButtonAttackHex.setOnClickListener { onHexTypeRadioButtonClicked(it) }

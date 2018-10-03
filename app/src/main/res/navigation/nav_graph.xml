@@ -14,8 +14,8 @@
             android:id="@+id/action_mainFragment_to_heroScreenFragment"
             app:destination="@id/heroScreenFragment" />
         <action
-            android:id="@+id/action_mainFragment_to_cutSceneFragment"
-            app:destination="@id/cutSceneFragment" >
+            android:id="@+id/action_mainFragment_to_cutSceneIntroduction"
+            app:destination="@+id/cutSceneIntroduction">
             <argument
                 android:name="cutSceneInfo"
                 android:defaultValue="@string/cut_scene_introduction" />
@@ -31,17 +31,17 @@
             app:destination="@id/mainFragment" />
     </fragment>
     <fragment
-        android:id="@+id/cutSceneFragment"
+        android:id="@+id/cutSceneIntroduction"
         android:name="bav.onecell.cutscene.CutSceneFragment"
-        android:label="CutSceneFragment"
+        android:label="Introduction"
         tools:layout="@layout/fragment_cut_scene">
         <argument
             android:name="cutSceneInfo"
             android:defaultValue="@string/cut_scene_introduction"
-            app:argType="string"/>
+            app:argType="string" />
         <action
             android:id="@+id/action_cutSceneFragment_to_cutSceneFragment2"
-            app:destination="@id/cutSceneFragment2" >
+            app:destination="@id/cutSceneFragment2">
             <argument
                 android:name="cutSceneInfo"
                 android:defaultValue="@string/cut_scene_introduction" />

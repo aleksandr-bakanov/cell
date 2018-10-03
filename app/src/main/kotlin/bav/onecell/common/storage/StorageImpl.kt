@@ -20,12 +20,14 @@ class StorageImpl(
             val dao = dataBase.cellDataDao()
             // TODO: optimise persistence
             for (i in 0 until repo.cellsCount()) {
+                Log.d(TAG, "${repo.getCell(i)?.data?.toJson()}")
                 repo.getCell(i)?.let { dao.insert(it.data) }
             }
         }
     }
 
     override fun storeCell(cell: Cell) {
+        Log.d(TAG, cell.data.toJson())
         launch { dataBase.cellDataDao().insert(cell.data) }
     }
 
@@ -38,6 +40,7 @@ class StorageImpl(
             val cellJsons = context.resources.getStringArray(R.array.cell_descriptions)
             dao.deleteAll()
             for (json in cellJsons) {
+                Log.d(TAG, "restore: $json")
                 dao.insert(Data.fromJson(json))
             }
         }

@@ -301,7 +301,7 @@ class HeroScreenPresenter(
     //region HeroScreen.Presenter methods
     override fun openMainMenu() {
         cell?.let { cellRepository.storeCell(it) }
-        router.goToMain()
+        //router.goToMain()
     }
 
     override fun getCurrentlySelectedRuleIndex(): Int? = currentRuleIndex

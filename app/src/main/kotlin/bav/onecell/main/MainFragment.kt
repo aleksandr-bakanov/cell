@@ -36,7 +36,7 @@ class MainFragment : Fragment(), Main.View {
         buttonShowCells.setOnClickListener { presenter.openCellsListView() }
         buttonNewGame.setOnClickListener { view ->
             val bundle = bundleOf(CutSceneFragment.CUT_SCENE_INFO to resources.getString(R.string.cut_scene_introduction))
-            view.findNavController().navigate(R.id.action_mainFragment_to_cutSceneFragment, bundle)
+            view.findNavController().navigate(R.id.action_mainFragment_to_cutSceneIntroduction, bundle)
             /*presenter.startNewGame(resources.getString(R.string.cut_scene_introduction))*/
         }
         buttonHeroScreen.setOnClickListener { view ->
