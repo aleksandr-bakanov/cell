@@ -11,6 +11,7 @@ import bav.onecell.model.hexes.Hex
 import bav.onecell.model.hexes.HexMath
 import bav.onecell.model.hexes.Layout
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.PublishSubject
 import kotlinx.coroutines.experimental.launch
@@ -37,6 +38,7 @@ class BattleEngine(
     private lateinit var currentSnapshot: BattleFieldSnapshot
     val battleResultProvider = PublishSubject.create<BattleInfo>()
     private val damageDealtByCells: MutableMap<Int, Int> = mutableMapOf()
+    private var cellRepositoryDisposable: Disposable? = null
 
     //region Partial round steps
     private val battleRoundSteps: Queue<() -> Unit> = LinkedList<() -> Unit>()
@@ -68,7 +70,8 @@ class BattleEngine(
 
     fun initialize(cellIndexes: List<Int>) {
         clearEngine()
-        cellRepository.loadFromStore()
+        cellRepositoryDisposable?.dispose()
+        cellRepositoryDisposable = cellRepository.loadFromStore()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe { startCalculation(cellIndexes) }
@@ -86,7 +89,7 @@ class BattleEngine(
             cells.add(clone)
         }
 
-        battleFieldSize = round(cells.map { it.size() }.sum() * 1.5).toInt()
+        battleFieldSize = round(cells.asSequence().map { it.size() }.sum() * 1.5).toInt()
 
         moveCellsToTheirInitialPosition()
         saveCellsAndCorpsesToSnapshot()
@@ -165,7 +168,7 @@ class BattleEngine(
     }
 
     private fun moveCellsToTheirInitialPosition() {
-        val ringRadius = battleFieldSize - (cells.map { it.size() }.max() ?: 0)
+        val ringRadius = battleFieldSize - (cells.asSequence().map { it.size() }.max() ?: 0)
         val ring = mutableListOf<Hex>()
         var hex = hexMath.multiply(hexMath.getHexByDirection(4), ringRadius)
         for (i in 0..5) {
