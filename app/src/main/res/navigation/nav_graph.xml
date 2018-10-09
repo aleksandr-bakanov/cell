@@ -20,6 +20,12 @@
                 android:name="cutSceneInfo"
                 android:defaultValue="@string/cut_scene_introduction" />
         </action>
+        <action
+            android:id="@+id/action_mainFragment_to_battleFragment"
+            app:destination="@id/battleFragment">
+            <argument
+                android:name="cell_indexes" />
+        </action>
     </fragment>
     <fragment
         android:id="@+id/heroScreenFragment"
@@ -57,4 +63,9 @@
             android:defaultValue="@string/cut_scene_introduction"
             app:argType="string"/>
     </fragment>
+    <fragment
+        android:id="@+id/battleFragment"
+        android:name="bav.onecell.battle.BattleFragment"
+        android:label="BattleFragment"
+        tools:layout="@layout/fragment_battle"/>
 </navigation>

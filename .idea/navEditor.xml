@@ -8,13 +8,13 @@
             <LayoutPositions>
               <option name="myPositions">
                 <map>
-                  <entry key="cutSceneFragment">
+                  <entry key="battleFragment">
                     <value>
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="38" />
-                            <option name="y" value="-500" />
+                            <option name="x" value="-58" />
+                            <option name="y" value="-525" />
                           </Point>
                         </option>
                       </LayoutPositions>
@@ -28,6 +28,27 @@
                             <option name="x" value="269" />
                             <option name="y" value="-502" />
                           </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="cutSceneIntroduction">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="12" />
+                            <option name="y" value="12" />
+                          </Point>
+                        </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_cutSceneFragment_to_cutSceneFragment2">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
                         </option>
                       </LayoutPositions>
                     </value>
@@ -64,7 +85,7 @@
                         </option>
                         <option name="myPositions">
                           <map>
-                            <entry key="action_mainFragment_to_cutSceneFragment">
+                            <entry key="action_mainFragment_to_cutSceneIntroduction">
                               <value>
                                 <LayoutPositions />
                               </value>

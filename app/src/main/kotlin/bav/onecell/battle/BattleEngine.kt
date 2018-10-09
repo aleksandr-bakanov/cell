@@ -1,6 +1,5 @@
 package bav.onecell.battle
 
-import android.util.Log
 import bav.onecell.model.BattleFieldSnapshot
 import bav.onecell.model.BattleInfo
 import bav.onecell.model.GameRules
@@ -195,7 +194,7 @@ class BattleEngine(
             cell.data.hexes.forEach { entry ->
                 val ourCandidate = hexMath.add(entry.value, cell.data.origin)
                 cells.forEachIndexed { j, enemy ->
-                    if (j != i) {
+                    if (j != i && cell.data.groupId != enemy.data.groupId) {
                         enemy.data.hexes.forEach {
                             val enemyCandidate = hexMath.add(it.value, enemy.data.origin)
                             val distance = hexMath.distance(ourCandidate, enemyCandidate)
@@ -273,30 +272,27 @@ class BattleEngine(
         }
         // Deal damage to each intersected hex
         intersectedHexes.forEach { intersected ->
-            // Calculate second in strength of power value for each intersected hex
-            var damage = 0
-            var maxPower = 0
+            // Calculate maximum damages dealt by hexes with same group id
+            val maxDamageOfGroup = mutableMapOf<Int, Int>()
             cells.forEach { cell ->
                 // intersected are in global coordinates, we should revert them to local ones
-                cell.data.hexes[hexMath.subtract(intersected, cell.data.origin).hashCode()]?.let {
-                    if (it.power >= maxPower) {
-                        damage = maxPower
-                        maxPower = it.power
-                    } else if (it.power > damage) {
-                        damage = it.power
+                cell.data.hexes[hexMath.subtract(intersected, cell.data.origin).hashCode()]?.let { hex ->
+                    val currentGroupDamage = maxDamageOfGroup.getOrPut(cell.data.groupId) { 0 }
+                    if (hex.power > currentGroupDamage) {
+                        maxDamageOfGroup[cell.data.groupId] = hex.power
                     }
                 }
             }
             // Deal damage
             cells.forEach { cell ->
                 cell.data.hexes[hexMath.subtract(intersected, cell.data.origin).hashCode()]?.let {
-                    // Each hex deals damage equals to its power unless it is the most powerful hex in intersection,
-                    // in such case its damage will be equals to `damage`.
+                    // Each hex, if it is in intersection, receives damage equals to maximum of damages within
+                    // enemy's groups.
                     val currentDamage = damageDealtByCells[cell.battleData.battleId] ?: 0
-                    if (it.power > damage) damageDealtByCells[cell.battleData.battleId] = currentDamage + damage
-                    else damageDealtByCells[cell.battleData.battleId] = currentDamage + it.power
-
-                    it.power -= damage
+                    damageDealtByCells[cell.battleData.battleId] = currentDamage + it.power
+                    it.power -= maxDamageOfGroup
+                            .filter { entry -> entry.key != cell.data.groupId }
+                            .maxBy { entry -> entry.value }?.value ?: 0
                 }
             }
         }
@@ -308,25 +304,25 @@ class BattleEngine(
         cells.forEach { cell ->
             // Get cell outline
             val cellOutline = cell.getOutlineHexes().map { hexMath.add(cell.data.origin, it) }
-            // Get all enemy hexes
-            val enemyHexes = mutableSetOf<Hex>()
-            cells.filter { it != cell }.forEach { enemy ->
-                enemyHexes.addAll(
-                        enemy.data.hexes.values.map { hexMath.add(enemy.data.origin, it).withPower(it.power) })
-            }
             // Get all enemy hexes which are neighbors to us
-            val neighboringEnemyHexes = enemyHexes.intersect(cellOutline)
+            val neighboringEnemyHexesByBattleId = mutableMapOf<Int, MutableSet<Hex>>()
+            cells.filter { it.data.groupId != cell.data.groupId }.forEach { enemy ->
+                neighboringEnemyHexesByBattleId.getOrPut(enemy.battleData.battleId) { mutableSetOf() }.addAll(
+                        enemy.data.hexes.values.map { hexMath.add(enemy.data.origin, it).withPower(it.power) }
+                                .intersect(cellOutline))
+            }
             // Come through all our hexes
+            /// TODO: no need to run over all our hexes, only cell border is necessary
             cell.data.hexes.values.forEach { ourHex ->
                 val hexInGlobal = hexMath.add(ourHex, cell.data.origin)
-                val neighbors = neighboringEnemyHexes.intersect(hexMath.hexNeighbors(hexInGlobal))
-                // Saving damage to our hex
-                neighbors.forEach {
-                    ourHex.receivedDamage += it.power
-                    // Save dealt damage
-                    getHexCellOwner(it)?.let { owner ->
-                        val currentDamage = damageDealtByCells[owner.battleData.battleId] ?: 0
-                        damageDealtByCells[owner.battleData.battleId] = currentDamage + it.power
+                neighboringEnemyHexesByBattleId.forEach { enemyHexes ->
+                    val neighbors = enemyHexes.value.intersect(hexMath.hexNeighbors(hexInGlobal))
+                    // Saving damage to our hex
+                    neighbors.forEach {
+                        ourHex.receivedDamage += it.power
+                        // Save dealt damage
+                        val currentDamage = damageDealtByCells[enemyHexes.key] ?: 0
+                        damageDealtByCells[enemyHexes.key] = currentDamage + it.power
                     }
                 }
             }
@@ -341,14 +337,6 @@ class BattleEngine(
             }
         }
         checkCellsVitality()
-    }
-
-    private fun getHexCellOwner(hexInGlobal: Hex): Cell? {
-        cells.forEach { cell ->
-            val hexInLocal = hexMath.subtract(hexInGlobal, cell.data.origin)
-            if (cell.data.hexes.keys.contains(hexInLocal.hashCode())) return cell
-        }
-        return null
     }
 
     private fun checkCellsVitality() {
@@ -392,7 +380,7 @@ class BattleEngine(
         }
     }
 
-    private fun isBattleOver(): Boolean = cells.size <= 1
+    private fun isBattleOver(): Boolean = cells.map { it.data.groupId }.distinct().size <= 1
 
     private fun correctHexesToRemoveForSnapshot(hexesToRemove: List<Hex>, cellIndex: Int): Collection<Int> {
         val snapshotCell = currentSnapshot.cells[cellIndex]
