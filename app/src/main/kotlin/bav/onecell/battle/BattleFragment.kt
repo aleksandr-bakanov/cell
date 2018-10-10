@@ -27,6 +27,8 @@ import kotlinx.android.synthetic.main.fragment_battle.battleCanvasView
 import kotlinx.android.synthetic.main.fragment_battle.buttonFinishBattle
 import kotlinx.android.synthetic.main.fragment_battle.buttonNextStep
 import kotlinx.android.synthetic.main.fragment_battle.buttonPreviousStep
+import kotlinx.android.synthetic.main.fragment_battle.buttonZoomIn
+import kotlinx.android.synthetic.main.fragment_battle.buttonZoomOut
 import kotlinx.android.synthetic.main.fragment_battle.seekBar
 
 class BattleFragment : Fragment(), Battle.View {
@@ -72,6 +74,14 @@ class BattleFragment : Fragment(), Battle.View {
                 seekBar.progress = previous
                 animateOneSnapshot(previous)
             }
+        }
+        buttonZoomIn.setOnClickListener {
+            battleCanvasView.increaseLayoutSize()
+            battleCanvasView.invalidate()
+        }
+        buttonZoomOut.setOnClickListener {
+            battleCanvasView.decreaseLayoutSize()
+            battleCanvasView.invalidate()
         }
 
         seekBar.setOnSeekBarChangeListener(seekBarListener)

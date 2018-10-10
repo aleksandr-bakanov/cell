@@ -77,4 +77,11 @@ class BattleCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
         }
     }
 
+    override fun decreaseLayoutSize() {
+        super.decreaseLayoutSize()
+    }
+
+    override fun increaseLayoutSize() {
+        super.increaseLayoutSize()
+    }
 }

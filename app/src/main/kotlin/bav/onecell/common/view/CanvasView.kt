@@ -170,4 +170,17 @@ open class CanvasView(context: Context, attributeSet: AttributeSet) : View(conte
         if (endInFirstCorner) path.lineTo(hexCorners[0].x.toFloat(), hexCorners[0].y.toFloat())
         return path
     }
+
+    protected fun setLayoutSize(size: Double) {
+        layout.size.x = size
+        layout.size.y = size
+    }
+
+    open fun decreaseLayoutSize() {
+        setLayoutSize(layout.size.x / 2)
+    }
+
+    open fun increaseLayoutSize() {
+        setLayoutSize(layout.size.x * 2)
+    }
 }

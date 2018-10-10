@@ -263,6 +263,7 @@ class DrawUtils(private val hexMath: HexMath, context: Context) {
                 Hex.Type.ATTACK -> powerAttackTextPaint
                 else -> powerTextPaint
             }
+            paint.textSize = layout.size.x.toFloat()
             drawHexPower(canvas, layout, cell, hexMath.add(cell.data.origin, it.value), it.value.power, paint)
         }
     }
@@ -272,7 +273,7 @@ class DrawUtils(private val hexMath: HexMath, context: Context) {
         val listOfOrigin = listOf(origin)
         rotatePoints(listOfOrigin, hexMath.hexToPixel(layout, cell.data.origin), cell.animationData.rotation)
         offsetPoints(listOfOrigin, cell.animationData.moveDirection, cell.animationData.movingFraction, layout)
-        canvas?.drawText(power.toString(), origin.x.toFloat(), origin.y.toFloat() + (layout.size.x / 2).toFloat(),
+        canvas?.drawText(power.toString(), origin.x.toFloat(), origin.y.toFloat() + (layout.size.x / 3).toFloat(),
                          paint)
     }
 }
