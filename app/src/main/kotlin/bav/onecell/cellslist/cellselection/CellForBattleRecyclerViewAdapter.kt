@@ -8,23 +8,23 @@ import bav.onecell.R
 import kotlinx.android.synthetic.main.item_row_cell_for_selection.view.title
 
 class CellForBattleRecyclerViewAdapter(private val presenter: CellsForBattle.Presenter) :
-        androidx.recyclerview.widget.RecyclerView.Adapter<CellForBattleRecyclerViewAdapter.ViewHolder>() {
+        RecyclerView.Adapter<CellForBattleRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
                 .inflate(R.layout.item_row_cell_for_selection, parent, false)
-        return ViewHolder(view, presenter)
+        return ViewHolder(view)
     }
 
     override fun getItemCount() = presenter.cellsCount()
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.setCellTitle("Cell #$position")
+        holder.setCellTitle(presenter.getCell(position)?.data?.name)
     }
 
-    class ViewHolder(val view: View, private val presenter: CellsForBattle.Presenter) : androidx.recyclerview.widget.RecyclerView.ViewHolder(view) {
-        fun setCellTitle(title: String) {
-            view.title.text = title
+    class ViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
+        fun setCellTitle(title: String?) {
+            view.title.text = title ?: ""
         }
     }
 }

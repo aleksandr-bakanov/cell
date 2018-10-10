@@ -10,9 +10,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.animation.AnimatorSet
 import android.widget.SeekBar
+import androidx.navigation.findNavController
 import bav.onecell.OneCellApplication
 import bav.onecell.R
+import bav.onecell.battle.results.BattleResultsFragment
 import bav.onecell.common.view.DrawUtils
+import bav.onecell.model.BattleInfo
 import bav.onecell.model.cell.Cell
 import bav.onecell.model.hexes.HexMath
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -83,12 +86,11 @@ class BattleFragment : Fragment(), Battle.View {
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe { battleInfo ->
-                            buttonFinishBattle.setOnClickListener { presenter.finishBattle(battleInfo) }
                             seekBar.max = battleInfo.snapshots.size - 2
                             battleCanvasView.snapshots = battleInfo.snapshots
                             battleCanvasView.invalidate()
                             animateOneSnapshot(0)
-                            reportBattleEnd()
+                            reportBattleEnd(battleInfo)
                         })
 
         presenter.initialize(arguments?.getIntegerArrayList(EXTRA_CELL_INDEXES) ?: arrayListOf())
@@ -108,7 +110,19 @@ class BattleFragment : Fragment(), Battle.View {
                 .inject(this)
     }
 
-    private fun reportBattleEnd() {
+    private fun reportBattleEnd(battleInfo: BattleInfo) {
+        buttonFinishBattle.setOnClickListener { view ->
+            val dealtDamage: Map<Int, Int> = battleInfo.damageDealtByCells
+            val deadOrAliveCells: Map<Int, Boolean> = battleInfo.deadOrAliveCells
+            val bundle = Bundle()
+            bundle.putIntArray(BattleResultsFragment.CELL_INDEXES, dealtDamage.keys.toIntArray())
+            bundle.putIntArray(BattleResultsFragment.DEALT_DAMAGE, dealtDamage.values.toIntArray())
+            val doa = arrayListOf<Boolean>()
+            dealtDamage.keys.forEach { doa.add(deadOrAliveCells[it] ?: false) }
+            bundle.putBooleanArray(BattleResultsFragment.DEAD_OR_ALIVE, doa.toBooleanArray())
+            view.findNavController().navigate(R.id.action_battleFragment_to_battleResultsFragment, bundle)
+            //presenter.finishBattle(battleInfo)
+        }
         activity?.runOnUiThread {
             buttonFinishBattle.visibility = View.VISIBLE
         }

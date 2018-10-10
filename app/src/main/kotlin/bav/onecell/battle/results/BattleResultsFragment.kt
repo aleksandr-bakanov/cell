@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import bav.onecell.OneCellApplication
 import bav.onecell.R
 import bav.onecell.common.view.DrawUtils
@@ -27,7 +28,9 @@ class BattleResultsFragment: androidx.fragment.app.Fragment(), BattleResults.Vie
         super.onActivityCreated(savedInstanceState)
         inject()
 
-        buttonToHeroesScreen.setOnClickListener { presenter.goToHeroesScreen() }
+        buttonToHeroesScreen.setOnClickListener { view ->
+            view.findNavController().navigate(R.id.action_battleResultsFragment_to_heroScreenFragment)
+        }
         recyclerViewBattleResults.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(context)
         recyclerViewBattleResults.adapter = BattleResultsRecyclerViewAdapter(presenter, drawUtils)
         initializePresenter(arguments)

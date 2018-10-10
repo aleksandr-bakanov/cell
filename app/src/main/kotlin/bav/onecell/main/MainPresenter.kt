@@ -14,10 +14,6 @@ class MainPresenter(
         router.goToCellsForBattleSelection()
     }
 
-    override fun openCellsListView() {
-
-    }
-
     override fun startNewGame(info: String) {
         sceneManager.openIntroductionScene()
     }

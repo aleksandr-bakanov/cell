@@ -2,6 +2,7 @@ package bav.onecell.cellslist.cellselection
 
 import bav.onecell.common.router.Router
 import bav.onecell.model.RepositoryContract
+import bav.onecell.model.cell.Cell
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -18,6 +19,8 @@ class CellsForBattlePresenter(
     private val cellRepoNotifier = PublishSubject.create<Unit>()
 
     override fun cellsCount(): Int = cellRepository.cellsCount()
+
+    override fun getCell(index: Int): Cell? = cellRepository.getCell(index)
 
     override fun initialize() {
         cellRepository.loadFromStore()

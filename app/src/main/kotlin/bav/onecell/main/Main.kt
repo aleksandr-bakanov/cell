@@ -12,11 +12,6 @@ interface Main {
          */
         fun openPreBattleView()
 
-        /**
-         * Opens cells list window.
-         */
-        fun openCellsListView()
-
         fun startNewGame(info: String)
 
         fun openHeroScreen()

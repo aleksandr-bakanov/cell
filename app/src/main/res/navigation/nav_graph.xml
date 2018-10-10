@@ -21,11 +21,8 @@
                 android:defaultValue="@string/cut_scene_introduction" />
         </action>
         <action
-            android:id="@+id/action_mainFragment_to_battleFragment"
-            app:destination="@id/battleFragment">
-            <argument
-                android:name="cell_indexes" />
-        </action>
+            android:id="@+id/action_mainFragment_to_cellsForBattleFragment"
+            app:destination="@id/cellsForBattleFragment" />
     </fragment>
     <fragment
         android:id="@+id/heroScreenFragment"
@@ -67,5 +64,27 @@
         android:id="@+id/battleFragment"
         android:name="bav.onecell.battle.BattleFragment"
         android:label="BattleFragment"
-        tools:layout="@layout/fragment_battle"/>
+        tools:layout="@layout/fragment_battle">
+        <action
+            android:id="@+id/action_battleFragment_to_battleResultsFragment"
+            app:destination="@id/battleResultsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/cellsForBattleFragment"
+        android:name="bav.onecell.cellslist.cellselection.CellsForBattleFragment"
+        android:label="CellsForBattleFragment"
+        tools:layout="@layout/fragment_choose_cells_for_battle" >
+        <action
+            android:id="@+id/action_cellsForBattleFragment_to_battleFragment"
+            app:destination="@id/battleFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/battleResultsFragment"
+        android:name="bav.onecell.battle.results.BattleResultsFragment"
+        android:label="BattleResultsFragment"
+        tools:layout="@layout/fragment_battle_results" >
+        <action
+            android:id="@+id/action_battleResultsFragment_to_heroScreenFragment"
+            app:destination="@id/heroScreenFragment" />
+    </fragment>
 </navigation>

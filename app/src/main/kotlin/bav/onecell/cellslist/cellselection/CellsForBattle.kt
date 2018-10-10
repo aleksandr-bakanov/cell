@@ -1,5 +1,6 @@
 package bav.onecell.cellslist.cellselection
 
+import bav.onecell.model.cell.Cell
 import io.reactivex.Observable
 
 interface CellsForBattle {
@@ -13,6 +14,8 @@ interface CellsForBattle {
          * @return Cells count
          */
         fun cellsCount(): Int
+
+        fun getCell(index: Int): Cell?
 
         /**
          * Presenter initializer

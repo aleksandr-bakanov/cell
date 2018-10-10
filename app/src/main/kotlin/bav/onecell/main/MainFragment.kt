@@ -9,13 +9,11 @@ import androidx.core.os.bundleOf
 import androidx.navigation.findNavController
 import bav.onecell.OneCellApplication
 import bav.onecell.R
-import bav.onecell.battle.BattleFragment
 import bav.onecell.cutscene.CutSceneFragment
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_main.buttonGoToBattle
 import kotlinx.android.synthetic.main.fragment_main.buttonHeroScreen
 import kotlinx.android.synthetic.main.fragment_main.buttonNewGame
-import kotlinx.android.synthetic.main.fragment_main.buttonShowCells
 import javax.inject.Inject
 
 class MainFragment : Fragment(), Main.View {
@@ -34,19 +32,14 @@ class MainFragment : Fragment(), Main.View {
         inject()
 
         buttonGoToBattle.setOnClickListener { view ->
-            val bundle = bundleOf(BattleFragment.EXTRA_CELL_INDEXES to arrayListOf(0, 1, 3))
-            view.findNavController().navigate(R.id.action_mainFragment_to_battleFragment, bundle)
-            //presenter.openPreBattleView()
+            view.findNavController().navigate(R.id.action_mainFragment_to_cellsForBattleFragment)
         }
-        buttonShowCells.setOnClickListener { presenter.openCellsListView() }
         buttonNewGame.setOnClickListener { view ->
             val bundle = bundleOf(CutSceneFragment.CUT_SCENE_INFO to resources.getString(R.string.cut_scene_introduction))
             view.findNavController().navigate(R.id.action_mainFragment_to_cutSceneIntroduction, bundle)
-            /*presenter.startNewGame(resources.getString(R.string.cut_scene_introduction))*/
         }
         buttonHeroScreen.setOnClickListener { view ->
             view.findNavController().navigate(R.id.action_mainFragment_to_heroScreenFragment)
-            //presenter.openHeroScreen()
         }
     }
 
