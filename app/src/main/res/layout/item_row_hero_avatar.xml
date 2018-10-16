@@ -8,8 +8,10 @@
         android:id="@+id/avatar"
         android:layout_width="@dimen/hero_screen_avatar_size"
         android:layout_height="@dimen/hero_screen_avatar_size"
+        android:padding="0dp"
+        android:scaleType="fitCenter"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/cell100x100" />
+        app:srcCompat="@drawable/ic_avatar_kittaro" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

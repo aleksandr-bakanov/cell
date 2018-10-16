@@ -1,5 +1,6 @@
 package bav.onecell.common
 
+import android.graphics.drawable.Drawable
 import bav.onecell.model.cell.logic.Action
 import bav.onecell.model.cell.logic.Condition
 
@@ -14,5 +15,9 @@ interface Common {
         fun getExpectedValueRepresentation(fieldToCheck: Condition.FieldToCheck, expected: Int): String
 
         fun getConditionRepresentation(condition: Condition): String
+
+        fun getAvatarDrawable(index: Int): Drawable?
+
+        fun getAvatarDrawableId(index: Int): Int
     }
 }

@@ -78,13 +78,9 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
         buttonIncreaseRulePriority.setOnClickListener { presenter.increaseSelectedRulePriority() }
         buttonDecreaseRulePriority.setOnClickListener { presenter.decreaseSelectedRulePriority() }
 
-        /*kittaroAvatar.setOnClickListener { presenter.initialize(KITTARO_INDEX) }
-        zoiAvatar.setOnClickListener { presenter.initialize(ZOI_INDEX) }
-        aimaAvatar.setOnClickListener { presenter.initialize(AIMA_INDEX) }*/
-
         recyclerViewAvatars.layoutManager = LinearLayoutManager(context)
         recyclerViewAvatars.addItemDecoration(HeroIconsRecyclerViewAdapter.VerticalSpaceItemDecoration())
-        recyclerViewAvatars.adapter = HeroIconsRecyclerViewAdapter(presenter)
+        recyclerViewAvatars.adapter = HeroIconsRecyclerViewAdapter(presenter, resourceProvider)
 
         recyclerViewRulesList.layoutManager = LinearLayoutManager(context)
         recyclerViewRulesList.adapter = RulesRecyclerViewAdapter(presenter, resourceProvider)

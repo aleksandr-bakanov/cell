@@ -6,10 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import bav.onecell.R
+import bav.onecell.common.Common
 import kotlinx.android.synthetic.main.item_row_hero_avatar.view.avatar
 
 class HeroIconsRecyclerViewAdapter(
-        private val presenter: HeroScreen.Presenter): RecyclerView.Adapter<HeroIconsRecyclerViewAdapter.ViewHolder>() {
+        private val presenter: HeroScreen.Presenter,
+        private val resourceProvider: Common.ResourceProvider): RecyclerView.Adapter<HeroIconsRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_row_hero_avatar, parent, false)
@@ -19,7 +21,7 @@ class HeroIconsRecyclerViewAdapter(
     override fun getItemCount(): Int = presenter.getCellCount()
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-
+        holder.view.avatar.setImageResource(resourceProvider.getAvatarDrawableId(position))
     }
 
     companion object {

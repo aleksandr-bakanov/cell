@@ -1,6 +1,8 @@
 package bav.onecell.common
 
 import android.content.Context
+import android.graphics.drawable.Drawable
+import androidx.core.content.ContextCompat
 import bav.onecell.R
 import bav.onecell.model.cell.Cell
 import bav.onecell.model.cell.logic.Action
@@ -71,5 +73,27 @@ class ResourceProviderImpl(private val context: Context): Common.ResourceProvide
         val op = getOperationRepresentation(condition.operation)
         val exp = getExpectedValueRepresentation(condition.fieldToCheck, condition.expected)
         return context.resources.getString(R.string.condition_representation, ftc, op, exp)
+    }
+
+    override fun getAvatarDrawable(index: Int): Drawable? {
+        return when (index) {
+            0 -> ContextCompat.getDrawable(context, R.drawable.ic_avatar_kittaro)
+            1 -> ContextCompat.getDrawable(context, R.drawable.ic_avatar_zoi)
+            2 -> ContextCompat.getDrawable(context, R.drawable.ic_avatar_aima)
+            3, 4, 5 -> ContextCompat.getDrawable(context, R.drawable.ic_avatar_gopnik_01)
+            6, 7, 8, 9, 10 -> ContextCompat.getDrawable(context, R.drawable.ic_avatar_skilos_01)
+            else -> null
+        }
+    }
+
+    override fun getAvatarDrawableId(index: Int): Int {
+        return when (index) {
+            0 -> R.drawable.ic_avatar_kittaro
+            1 -> R.drawable.ic_avatar_zoi
+            2 -> R.drawable.ic_avatar_aima
+            3, 4, 5 -> R.drawable.ic_avatar_gopnik_01
+            6, 7, 8, 9, 10 -> R.drawable.ic_avatar_skilos_01
+            else -> R.drawable.ic_avatar_kittaro
+        }
     }
 }
