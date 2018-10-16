@@ -51,9 +51,22 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non lacus malesuada,
     <string name="utf_icon_south_west_direction">↙️</string>
     <string name="utf_icon_north_west_direction">↖️</string>
     <string name="utf_icon_direction_to_nearest_enemy">➡️ 👿</string>
+    <string name="utf_icon_distance_to_nearest_enemy">📏️ 👿</string>
     <string name="utf_icon_equality">=</string>
+    <string name="utf_icon_less_than">&lt;</string>
+    <string name="utf_icon_greater_than">&gt;</string>
     <string name="utf_icon_increase_priority">☝️</string>
     <string name="utf_icon_decrease_priority">👇️</string>
+    <string name="utf_icon_digit_zero">0</string>
+    <string name="utf_icon_digit_one">1</string>
+    <string name="utf_icon_digit_two">2</string>
+    <string name="utf_icon_digit_three">3</string>
+    <string name="utf_icon_digit_four">4</string>
+    <string name="utf_icon_digit_five">5</string>
+    <string name="utf_icon_digit_six">6</string>
+    <string name="utf_icon_digit_seven">7</string>
+    <string name="utf_icon_digit_eight">8</string>
+    <string name="utf_icon_digit_nine">9</string>
 
     <!-- Cut scene view -->
     <string name="image_description_cut_scene_background">Cut scene background</string>

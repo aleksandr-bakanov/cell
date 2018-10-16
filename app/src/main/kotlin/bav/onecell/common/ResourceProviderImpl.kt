@@ -27,12 +27,15 @@ class ResourceProviderImpl(private val context: Context): Common.ResourceProvide
     override fun getFieldToCheckRepresentation(fieldToCheck: Condition.FieldToCheck): String {
         return when (fieldToCheck) {
             Condition.FieldToCheck.DIRECTION_TO_NEAREST_ENEMY -> context.resources.getString(R.string.utf_icon_direction_to_nearest_enemy)
+            Condition.FieldToCheck.DISTANCE_TO_NEAREST_ENEMY -> context.resources.getString(R.string.utf_icon_distance_to_nearest_enemy)
         }
     }
 
     override fun getOperationRepresentation(operation: Condition.Operation): String {
         return when (operation) {
             Condition.Operation.EQUALS -> context.resources.getString(R.string.utf_icon_equality)
+            Condition.Operation.LESS_THAN -> context.resources.getString(R.string.utf_icon_less_than)
+            Condition.Operation.GREATER_THAN -> context.resources.getString(R.string.utf_icon_greater_than)
         }
     }
 
@@ -45,6 +48,19 @@ class ResourceProviderImpl(private val context: Context): Common.ResourceProvide
                 Cell.Direction.S.ordinal -> context.resources.getString(R.string.utf_icon_south_direction)
                 Cell.Direction.SW.ordinal -> context.resources.getString(R.string.utf_icon_south_west_direction)
                 Cell.Direction.NW.ordinal -> context.resources.getString(R.string.utf_icon_north_west_direction)
+                else -> ""
+            }
+            Condition.FieldToCheck.DISTANCE_TO_NEAREST_ENEMY -> when (expected) {
+                0 -> context.resources.getString(R.string.utf_icon_digit_zero)
+                1 -> context.resources.getString(R.string.utf_icon_digit_one)
+                2 -> context.resources.getString(R.string.utf_icon_digit_two)
+                3 -> context.resources.getString(R.string.utf_icon_digit_three)
+                4 -> context.resources.getString(R.string.utf_icon_digit_four)
+                5 -> context.resources.getString(R.string.utf_icon_digit_five)
+                6 -> context.resources.getString(R.string.utf_icon_digit_six)
+                7 -> context.resources.getString(R.string.utf_icon_digit_seven)
+                8 -> context.resources.getString(R.string.utf_icon_digit_eight)
+                9 -> context.resources.getString(R.string.utf_icon_digit_nine)
                 else -> ""
             }
         }

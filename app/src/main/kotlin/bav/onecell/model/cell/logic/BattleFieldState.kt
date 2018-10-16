@@ -11,10 +11,19 @@ import bav.onecell.model.cell.Cell
 class BattleFieldState {
     // Individual properties
     var directionToNearestEnemy: Cell.Direction = Cell.Direction.N
+    var distanceToNearestEnemy: Int = 0
 
     // Common properties
 
     // Private properties
     val directions = mutableListOf<Int>()
     val rads = mutableListOf<Float>()
+    val distances = mutableListOf<Int>()
+
+    // Methods
+    fun clear() {
+        directions.clear()
+        rads.clear()
+        distances.clear()
+    }
 }

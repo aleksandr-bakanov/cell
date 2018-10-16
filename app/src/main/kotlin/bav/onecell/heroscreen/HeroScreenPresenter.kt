@@ -375,15 +375,20 @@ class HeroScreenPresenter(
     )
 
     private val cellRuleConditionFieldsToCheck = arrayListOf(
-            Pair(R.string.utf_icon_direction_to_nearest_enemy, {
-                currentlyEditedCondition?.let { it.setToDefault(); it.fieldToCheck = Condition.FieldToCheck.DIRECTION_TO_NEAREST_ENEMY }
-            })
+            Pair(R.string.utf_icon_direction_to_nearest_enemy, { currentlyEditedCondition?.let { it.setToDefault(); it.fieldToCheck = Condition.FieldToCheck.DIRECTION_TO_NEAREST_ENEMY }}),
+            Pair(R.string.utf_icon_distance_to_nearest_enemy, { currentlyEditedCondition?.let { it.setToDefault(); it.fieldToCheck = Condition.FieldToCheck.DISTANCE_TO_NEAREST_ENEMY }})
     )
 
     private val cellRuleConditionOperationsDirectionToNearestEnemy = arrayListOf(
             Pair(R.string.utf_icon_equality, {
                 currentlyEditedCondition?.let { it.operation = Condition.Operation.EQUALS }
             })
+    )
+
+    private val cellRuleConditionOperationsDistanceToNearestEnemy = arrayListOf(
+            Pair(R.string.utf_icon_equality, { currentlyEditedCondition?.let { it.operation = Condition.Operation.EQUALS }}),
+            Pair(R.string.utf_icon_less_than, { currentlyEditedCondition?.let { it.operation = Condition.Operation.LESS_THAN }}),
+            Pair(R.string.utf_icon_greater_than, { currentlyEditedCondition?.let { it.operation = Condition.Operation.GREATER_THAN }})
     )
 
     private val cellRuleConditionExpectedValuesDirectionToNearestEnemy = arrayListOf(
@@ -395,10 +400,24 @@ class HeroScreenPresenter(
             Pair(R.string.utf_icon_north_west_direction, { currentlyEditedCondition?.let { it.expected = Cell.Direction.NW.ordinal }})
     )
 
+    private val cellRuleConditionExpectedValuesDistanceToNearestEnemy = arrayListOf(
+            Pair(R.string.utf_icon_digit_zero, { currentlyEditedCondition?.let { it.expected = 0 }}),
+            Pair(R.string.utf_icon_digit_one, { currentlyEditedCondition?.let { it.expected = 1 }}),
+            Pair(R.string.utf_icon_digit_two, { currentlyEditedCondition?.let { it.expected = 2 }}),
+            Pair(R.string.utf_icon_digit_three, { currentlyEditedCondition?.let { it.expected = 3 }}),
+            Pair(R.string.utf_icon_digit_four, { currentlyEditedCondition?.let { it.expected = 4 }}),
+            Pair(R.string.utf_icon_digit_five, { currentlyEditedCondition?.let { it.expected = 5 }}),
+            Pair(R.string.utf_icon_digit_six, { currentlyEditedCondition?.let { it.expected = 6 }}),
+            Pair(R.string.utf_icon_digit_seven, { currentlyEditedCondition?.let { it.expected = 7 }}),
+            Pair(R.string.utf_icon_digit_eight, { currentlyEditedCondition?.let { it.expected = 8 }}),
+            Pair(R.string.utf_icon_digit_nine, { currentlyEditedCondition?.let { it.expected = 9 }})
+    )
+
     private fun getCellRuleConditionOperations(): List<Pair<Int, () -> Unit? >>? {
         return currentlyEditedCondition?.let { condition ->
             when (condition.fieldToCheck) {
                 Condition.FieldToCheck.DIRECTION_TO_NEAREST_ENEMY -> cellRuleConditionOperationsDirectionToNearestEnemy
+                Condition.FieldToCheck.DISTANCE_TO_NEAREST_ENEMY -> cellRuleConditionOperationsDistanceToNearestEnemy
             }
         }
     }
@@ -407,6 +426,7 @@ class HeroScreenPresenter(
         return currentlyEditedCondition?.let { condition ->
             when (condition.fieldToCheck) {
                 Condition.FieldToCheck.DIRECTION_TO_NEAREST_ENEMY -> cellRuleConditionExpectedValuesDirectionToNearestEnemy
+                Condition.FieldToCheck.DISTANCE_TO_NEAREST_ENEMY -> cellRuleConditionExpectedValuesDistanceToNearestEnemy
             }
         }
     }

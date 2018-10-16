@@ -181,8 +181,7 @@ class BattleEngine(
     }
 
     private fun calculateBattleState() {
-        battleState.directions.clear()
-        battleState.rads.clear()
+        battleState.clear()
 
         // Each cell will move to the nearest hex within all enemies.
         // Distance will be calculated between all hexes of cell and all enemy hexes.
@@ -212,6 +211,8 @@ class BattleEngine(
             val op = hexMath.hexToPixel(Layout.DUMMY, ourHex)
             // Nearest enemy hex point
             val nehp = hexMath.hexToPixel(Layout.DUMMY, nearestEnemyHex)
+            // Distance to the enemy hex
+            battleState.distances.add(hexMath.distance(ourHex, nearestEnemyHex))
             // Angle direction to enemy hex
             val angle = atan2(nehp.y.toFloat() - op.y.toFloat(), nehp.x.toFloat() - op.x.toFloat())
             battleState.rads.add(angle)
@@ -232,6 +233,7 @@ class BattleEngine(
 
     private fun correctBattleStateForCell(index: Int) {
         battleState.directionToNearestEnemy = radToCellDirection(battleState.rads[index])
+        battleState.distanceToNearestEnemy = battleState.distances[index]
     }
 
     //    N

@@ -10,7 +10,7 @@ class Condition(var operation: Operation = Operation.EQUALS,
                 var expected: Int = Cell.Direction.N.ordinal) {
 
     enum class Operation {
-        EQUALS;
+        EQUALS, LESS_THAN, GREATER_THAN;
 
         companion object {
             private val map = Operation.values().associateBy { it.ordinal }
@@ -19,7 +19,7 @@ class Condition(var operation: Operation = Operation.EQUALS,
     }
 
     enum class FieldToCheck {
-        DIRECTION_TO_NEAREST_ENEMY;
+        DIRECTION_TO_NEAREST_ENEMY, DISTANCE_TO_NEAREST_ENEMY;
 
         companion object {
             private val map = FieldToCheck.values().associateBy { it.ordinal }
@@ -30,9 +30,12 @@ class Condition(var operation: Operation = Operation.EQUALS,
     fun check(state: BattleFieldState): Boolean {
         val fieldToCheckValue: Int = when (fieldToCheck) {
             FieldToCheck.DIRECTION_TO_NEAREST_ENEMY -> state.directionToNearestEnemy.ordinal
+            FieldToCheck.DISTANCE_TO_NEAREST_ENEMY -> state.distanceToNearestEnemy
         }
         return when (operation) {
             Operation.EQUALS -> fieldToCheckValue == expected
+            Operation.LESS_THAN -> fieldToCheckValue < expected
+            Operation.GREATER_THAN -> fieldToCheckValue > expected
         }
     }
 
