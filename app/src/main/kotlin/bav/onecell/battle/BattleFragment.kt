@@ -98,6 +98,7 @@ class BattleFragment : Fragment(), Battle.View {
                         .subscribe { battleInfo ->
                             seekBar.max = battleInfo.snapshots.size - 2
                             battleCanvasView.snapshots = battleInfo.snapshots
+                            battleCanvasView.isFog = battleInfo.isFog
                             battleCanvasView.invalidate()
                             animateOneSnapshot(0)
                             reportBattleEnd(battleInfo)

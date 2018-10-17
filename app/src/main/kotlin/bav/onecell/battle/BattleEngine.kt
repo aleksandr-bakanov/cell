@@ -16,6 +16,7 @@ import io.reactivex.subjects.PublishSubject
 import kotlinx.coroutines.experimental.launch
 import java.util.LinkedList
 import java.util.Queue
+import java.util.Random
 import kotlin.math.PI
 import kotlin.math.atan2
 import kotlin.math.round
@@ -38,6 +39,7 @@ class BattleEngine(
     val battleResultProvider = PublishSubject.create<BattleInfo>()
     private val damageDealtByCells: MutableMap<Int, Int> = mutableMapOf()
     private var cellRepositoryDisposable: Disposable? = null
+    private var isFog: Boolean = false
 
     //region Partial round steps
     private val battleRoundSteps: Queue<() -> Unit> = LinkedList<() -> Unit>()
@@ -67,7 +69,8 @@ class BattleEngine(
         initializeBattleSteps()
     }
 
-    fun initialize(cellIndexes: List<Int>) {
+    fun initialize(cellIndexes: List<Int>, useFog: Boolean = false) {
+        isFog = useFog
         clearEngine()
         cellRepositoryDisposable?.dispose()
         cellRepositoryDisposable = cellRepository.loadFromStore()
@@ -128,7 +131,8 @@ class BattleEngine(
                 doFullStep()
             }
             battleResultProvider.onNext(BattleInfo(battleFieldSnapshots, damageDealtByCells,
-                                                   getDeadOrAliveCells(battleFieldSnapshots.last())))
+                                                   getDeadOrAliveCells(battleFieldSnapshots.last()),
+                                                   isFog))
         }
     }
 
@@ -222,7 +226,7 @@ class BattleEngine(
     }
 
     private fun applyCellLogic(index: Int, cell: Cell) {
-        correctBattleStateForCell(index)
+        correctBattleStateForCell(index, cell)
         val performedAction = cell.applyCellLogic(battleState)
         if (performedAction != null) {
             // TODO: currently it's applicable only for rotations
@@ -231,9 +235,16 @@ class BattleEngine(
         currentSnapshot.cellsActions.add(performedAction)
     }
 
-    private fun correctBattleStateForCell(index: Int) {
-        battleState.directionToNearestEnemy = radToCellDirection(battleState.rads[index])
-        battleState.distanceToNearestEnemy = battleState.distances[index]
+    private fun correctBattleStateForCell(index: Int, cell: Cell) {
+        // In case of fog and enemy is not seen we should say cell that enemy is far away and in random direction.
+        if (isFog && battleState.distances[index] > cell.data.viewDistance) {
+            battleState.directionToNearestEnemy = Cell.Direction.fromInt((0..5).shuffled().last())
+            battleState.distanceToNearestEnemy = Int.MAX_VALUE
+        } else {
+            // Enemy is seen clearly
+            battleState.directionToNearestEnemy = radToCellDirection(battleState.rads[index])
+            battleState.distanceToNearestEnemy = battleState.distances[index]
+        }
     }
 
     //    N

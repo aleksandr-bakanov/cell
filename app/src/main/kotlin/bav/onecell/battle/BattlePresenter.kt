@@ -18,7 +18,7 @@ class BattlePresenter(
 
     override fun initialize(cellIndexes: List<Int>) {
         view.drawSnapshotInitialState()
-        battleEngine.initialize(cellIndexes)
+        battleEngine.initialize(cellIndexes, true)
     }
 
     override fun finishBattle(battleInfo: BattleInfo) {

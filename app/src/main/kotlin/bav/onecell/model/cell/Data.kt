@@ -24,7 +24,9 @@ data class Data(
         // money - can be spent to build up cell
         @ColumnInfo(name = "money") var money: Int = 10,
         // group id - cells with same group id are friends to each other
-        @ColumnInfo(name = "groupId") var groupId: Int = 0) {
+        @ColumnInfo(name = "groupId") var groupId: Int = 0,
+        // field of view - distance of view through the fog
+        @ColumnInfo(name = "viewDistance") var viewDistance: Int = 3) {
 
     companion object {
         fun fromJson(json: String): Data {
@@ -33,7 +35,7 @@ data class Data(
     }
 
     fun clone(): Data {
-        val data = Data(origin = origin, direction = direction, id = id, groupId = groupId)
+        val data = Data(origin = origin, direction = direction, id = id, groupId = groupId, viewDistance = viewDistance)
         data.hexes.clear()
         hexes.forEach { entry -> data.hexes[entry.key] = entry.value.clone() }
         rules.forEach { data.rules.add(it) }

@@ -9,4 +9,6 @@ data class BattleInfo(
         // Damage dealt by cells during the battle. Keys are indexes in cellRepository.
         val damageDealtByCells: Map<Int, Int> = mutableMapOf(),
         // Info about life status of cells at the end of the battle
-        val deadOrAliveCells: Map<Int, Boolean> = mutableMapOf())
+        val deadOrAliveCells: Map<Int, Boolean> = mutableMapOf(),
+        // Is battlefield fogged
+        val isFog: Boolean = false)

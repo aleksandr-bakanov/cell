@@ -21,6 +21,7 @@
     <color name="battleViewPowerTextLife">#117b19</color>
     <color name="battleViewPowerTextEnergy">#817612</color>
     <color name="battleViewPowerTextAttack">#8e2311</color>
+    <color name="battleViewGround">#e9b673</color>
 
     <!-- Hero screen view -->
     <color name="heroScreenSelectedRuleBackgroundColor">#f57f17</color>

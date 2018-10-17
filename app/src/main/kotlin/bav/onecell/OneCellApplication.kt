@@ -1,11 +1,12 @@
 package bav.onecell
 
-import android.app.Application
+import androidx.multidex.MultiDexApplication
+
 import bav.onecell.di.AppComponent
 import bav.onecell.di.AppModule
 import bav.onecell.di.DaggerAppComponent
 
-class OneCellApplication : Application() {
+class OneCellApplication : MultiDexApplication() {
 
     lateinit var appComponent: AppComponent
 
