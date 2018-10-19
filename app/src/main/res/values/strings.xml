@@ -44,19 +44,19 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non lacus malesuada,
     <string name="condition_representation">(%1$s %2$s %3$s)</string>
 
     <!-- UTF icons -->
-    <string name="utf_icon_north_direction">⬆️</string>
-    <string name="utf_icon_north_east_direction">↗️</string>
-    <string name="utf_icon_south_east_direction">↘️</string>
-    <string name="utf_icon_south_direction">⬇️</string>
-    <string name="utf_icon_south_west_direction">↙️</string>
-    <string name="utf_icon_north_west_direction">↖️</string>
-    <string name="utf_icon_direction_to_nearest_enemy">➡️ 👿</string>
-    <string name="utf_icon_distance_to_nearest_enemy">📏️ 👿</string>
+    <string name="utf_icon_north_direction">^</string>
+    <string name="utf_icon_north_east_direction">/^</string>
+    <string name="utf_icon_south_east_direction">\v</string>
+    <string name="utf_icon_south_direction">v</string>
+    <string name="utf_icon_south_west_direction">v/</string>
+    <string name="utf_icon_north_west_direction">^\</string>
+    <string name="utf_icon_direction_to_nearest_enemy">-> :)</string>
+    <string name="utf_icon_distance_to_nearest_enemy">|-| :)</string>
     <string name="utf_icon_equality">=</string>
     <string name="utf_icon_less_than">&lt;</string>
     <string name="utf_icon_greater_than">&gt;</string>
-    <string name="utf_icon_increase_priority">☝️</string>
-    <string name="utf_icon_decrease_priority">👇️</string>
+    <string name="utf_icon_increase_priority">^</string>
+    <string name="utf_icon_decrease_priority">v</string>
     <string name="utf_icon_digit_zero">0</string>
     <string name="utf_icon_digit_one">1</string>
     <string name="utf_icon_digit_two">2</string>
@@ -72,8 +72,8 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non lacus malesuada,
     <string name="image_description_cut_scene_background">Cut scene background</string>
     <string name="image_description_cut_scene_left_character">Left character</string>
     <string name="image_description_cut_scene_right_character">Right character</string>
-    <string name="button_previous_frame_title">⇦</string>
-    <string name="button_next_frame_title">⇨</string>
+    <string name="button_previous_frame_title">prev</string>
+    <string name="button_next_frame_title">next</string>
 
     <!-- Scenario -->
     <string name="scene_manager_scenario">
