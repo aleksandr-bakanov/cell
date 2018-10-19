@@ -28,6 +28,7 @@ class BattleCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
     private val corpseEnergyPaint = Paint()
     private val corpseAttackPaint = Paint()
     private val groundPaint = Paint()
+    private val clipPath = Path()
     var snapshots: List<BattleFieldSnapshot>? = null
     var currentSnapshotIndex: Int = 0
     var fallBackToPreviousSnapshot = false
@@ -54,26 +55,22 @@ class BattleCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
 
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
+
         snapshots?.let {
             if (currentSnapshotIndex >= 0 && currentSnapshotIndex < it.size) {
                 val snapshot = it[currentSnapshotIndex]
-                var observableArea: Collection<Hex>? = null
                 // Draw fog
                 if (isFog) {
                     canvas?.drawColor(Color.DKGRAY)
-                    observableArea = getObservableArea(snapshot.cells)
-                    // Draw ground
-                    drawUtils.drawHexes(canvas, hexMath.ZERO_HEX, observableArea, groundPaint, layout)
-                } else {
-                    canvas?.drawColor(ContextCompat.getColor(context, R.color.battleViewGround))
+                    canvas?.clipPath(observableAreaToPath(getObservableArea(snapshot.cells)))
                 }
+                canvas?.drawColor(groundPaint.color)
                 snapshot.corpses.forEach { corpse ->
-                    drawUtils.drawCell(canvas, corpse, corpseLifePaint, corpseEnergyPaint, corpseAttackPaint, layout,
-                                       observableArea = observableArea)
+                    drawUtils.drawCell(canvas, corpse, corpseLifePaint, corpseEnergyPaint, corpseAttackPaint, layout)
                 }
                 snapshot.cells.forEach { cell ->
-                    drawUtils.drawCell(canvas, cell, layout = layout, observableArea = observableArea)
-                    drawUtils.drawCellPower(canvas, cell, layout, observableArea)
+                    drawUtils.drawCell(canvas, cell, layout = layout)
+                    drawUtils.drawCellPower(canvas, cell, layout)
                 }
             }
         }
@@ -109,6 +106,16 @@ class BattleCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
             }
         }
         return commonArea
+    }
+
+    private fun observableAreaToPath(hexes: Collection<Hex>): Path {
+        clipPath.reset()
+        hexes.forEach { hex ->
+            val origin = hexMath.hexToPixel(layout, hex)
+            clipPath.addCircle(origin.x.toFloat(), origin.y.toFloat(), layout.size.x.toFloat(), Path.Direction.CW)
+        }
+        clipPath.close()
+        return clipPath
     }
 
     override fun decreaseLayoutSize() {

@@ -95,15 +95,11 @@ class DrawUtils(private val hexMath: HexMath, context: Context) {
     }
 
     fun drawCell(canvas: Canvas?, cell: Cell?, lPaint: Paint = lifePaint, ePaint: Paint = energyPaint,
-                 aPaint: Paint = attackPaint, layout: Layout = Layout.DUMMY, observableArea: Collection<Hex>? = null) {
+                 aPaint: Paint = attackPaint, layout: Layout = Layout.DUMMY) {
         cell?.let {
             var paint: Paint
             val originPoint = hexMath.hexToPixel(layout, it.data.origin)
-            drawingHexes@ for (hex in it.data.hexes.values) {
-                // Skip drawing this hex if it is not in observable area
-                if (observableArea != null && !observableArea.contains(hexMath.add(hex, it.data.origin))) {
-                    continue@drawingHexes
-                }
+            for (hex in it.data.hexes.values) {
                 paint = when (hex.type) {
                     Hex.Type.LIFE -> lPaint
                     Hex.Type.ENERGY -> ePaint
@@ -127,11 +123,9 @@ class DrawUtils(private val hexMath: HexMath, context: Context) {
                 paint.alpha = oldPaintAlpha
             }
             // Draw origin marker
-            if (observableArea == null || observableArea.contains(it.data.origin)) {
-                drawOriginMarker(canvas, it, layout)
-            }
+            drawOriginMarker(canvas, it, layout)
             // Draw outline
-            drawCellOutline(canvas, it, layout, observableArea)
+            drawCellOutline(canvas, it, layout)
         }
     }
 
@@ -221,20 +215,18 @@ class DrawUtils(private val hexMath: HexMath, context: Context) {
                          hp.x.toFloat() + oxf, hp.y.toFloat() + oyf, strokePaint)
     }
 
-    private fun drawCellOutline(canvas: Canvas?, cell: Cell, layout: Layout, observableArea: Collection<Hex>? = null) {
-        val outline = getCellOutline(cell, layout, observableArea)
+    private fun drawCellOutline(canvas: Canvas?, cell: Cell, layout: Layout) {
+        val outline = getCellOutline(cell, layout)
         outline.forEach {
             canvas?.drawLine(it.first.x.toFloat(), it.first.y.toFloat(), it.second.x.toFloat(), it.second.y.toFloat(),
                              cellOutlinePaint)
         }
     }
 
-    private fun getCellOutline(cell: Cell, layout: Layout, observableArea: Collection<Hex>? = null): List<Pair<Point, Point>> {
+    private fun getCellOutline(cell: Cell, layout: Layout): List<Pair<Point, Point>> {
         val lines = mutableListOf<Pair<Point, Point>>()
         cell.data.hexes.values.forEach { hex ->
             val hexInGlobal = hexMath.add(hex, cell.data.origin)
-            if (observableArea != null && !observableArea.contains(hexInGlobal)) return@forEach
-
             val hexCorners: ArrayList<Point> = hexMath.poligonCorners(layout, hexInGlobal)
 
             // Rotate and offset
@@ -264,9 +256,8 @@ class DrawUtils(private val hexMath: HexMath, context: Context) {
         }
     }
 
-    fun drawCellPower(canvas: Canvas?, cell: Cell, layout: Layout, observableArea: Collection<Hex>? = null) {
+    fun drawCellPower(canvas: Canvas?, cell: Cell, layout: Layout) {
         cell.data.hexes.values.forEach { hex ->
-            if (observableArea != null && !observableArea.contains(hexMath.add(hex, cell.data.origin))) return@forEach
             val paint = when (hex.type) {
                 Hex.Type.LIFE -> powerLifeTextPaint
                 Hex.Type.ENERGY -> powerEnergyTextPaint
