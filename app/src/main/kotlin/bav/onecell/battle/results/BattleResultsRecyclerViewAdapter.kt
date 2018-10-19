@@ -3,13 +3,12 @@ package bav.onecell.battle.results
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Color
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import bav.onecell.R
 import bav.onecell.common.view.DrawUtils
-import kotlinx.android.synthetic.main.item_row_cell.view.preview
+import kotlinx.android.synthetic.main.item_row_cell_in_battle_results.view.preview
 import kotlinx.android.synthetic.main.item_row_cell_in_battle_results.view.cellName
 import kotlinx.android.synthetic.main.item_row_cell_in_battle_results.view.deadOrAlive
 import kotlinx.android.synthetic.main.item_row_cell_in_battle_results.view.dealtDamage

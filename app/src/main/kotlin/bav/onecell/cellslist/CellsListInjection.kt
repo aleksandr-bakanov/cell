@@ -13,19 +13,11 @@ import dagger.Subcomponent
 @FragmentScope
 @Subcomponent(modules = [CellsListModule::class])
 interface CellsListSubcomponent {
-    fun inject(view: CellsListFragment)
     fun inject(view: CellsForBattleFragment)
 }
 
 @Module
 class CellsListModule {
-    @Provides
-    @FragmentScope
-    fun provideCellsListPresenter(router: Router, cellRepository: RepositoryContract.CellRepo):
-            CellsList.Presenter {
-        return CellsListPresenter(cellRepository, router)
-    }
-
     @Provides
     @FragmentScope
     fun provideCellsForBattlePresenter(router: Router, cellRepository: RepositoryContract.CellRepo):

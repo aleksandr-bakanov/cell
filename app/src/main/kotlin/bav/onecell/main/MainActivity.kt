@@ -7,21 +7,15 @@ import bav.onecell.OneCellApplication
 import bav.onecell.R
 import bav.onecell.battle.BattleFragment
 import bav.onecell.battle.results.BattleResultsFragment
-import bav.onecell.celllogic.conditions.ConditionListFragment
-import bav.onecell.celllogic.rules.RuleListFragment
-import bav.onecell.cellslist.CellsListFragment
 import bav.onecell.cellslist.cellselection.CellsForBattleFragment
 import bav.onecell.common.router.Router
 import bav.onecell.common.router.Router.WindowType.BATTLE
 import bav.onecell.common.router.Router.WindowType.BATTLE_CELLS_SELECTION
 import bav.onecell.common.router.Router.WindowType.BATTLE_RESULTS
-import bav.onecell.common.router.Router.WindowType.CELLS_LIST
 import bav.onecell.common.router.Router.WindowType.CELL_EDITOR
-import bav.onecell.common.router.Router.WindowType.CONDITIONS_EDITOR
 import bav.onecell.common.router.Router.WindowType.CUT_SCENE
 import bav.onecell.common.router.Router.WindowType.HERO_SCREEN
 import bav.onecell.common.router.Router.WindowType.MAIN
-import bav.onecell.common.router.Router.WindowType.RULES_EDITOR
 import bav.onecell.cutscene.CutSceneFragment
 import bav.onecell.editor.EditorFragment
 import bav.onecell.heroscreen.HeroScreenFragment
@@ -69,15 +63,13 @@ class MainActivity : FragmentActivity() {
     private fun changeWindow(window: Router.Window) {
         val fragment = when (window.type) {
             MAIN -> MainFragment.newInstance()
-            CELLS_LIST -> CellsListFragment.newInstance()
             BATTLE_CELLS_SELECTION -> CellsForBattleFragment.newInstance()
             BATTLE -> BattleFragment.newInstance(window.args)
             CELL_EDITOR -> EditorFragment.newInstance(window.args)
-            RULES_EDITOR -> RuleListFragment.newInstance(window.args)
-            CONDITIONS_EDITOR -> ConditionListFragment.newInstance(window.args)
             CUT_SCENE -> CutSceneFragment.newInstance(window.args)
             BATTLE_RESULTS -> BattleResultsFragment.newInstance(window.args)
             HERO_SCREEN -> HeroScreenFragment.newInstance(window.args)
+            else -> null
         }
         /*supportFragmentManager.beginTransaction()
                 .replace(R.id.holder, fragment)
