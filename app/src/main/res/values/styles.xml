@@ -17,5 +17,8 @@
   <style name="EditorEnergyButtonTheme" parent="Widget.AppCompat.Button.Colored">
     <item name="colorButtonNormal">@color/cellEditorEnergy</item>
   </style>
+  <style name="EditorDeathRayButtonTheme" parent="Widget.AppCompat.Button.Colored">
+    <item name="colorButtonNormal">@color/cellEditorDeathRay</item>
+  </style>
 
 </resources>

@@ -31,6 +31,7 @@ import kotlinx.android.synthetic.main.fragment_hero_screen.buttonSwitchScreen
 import kotlinx.android.synthetic.main.fragment_hero_screen.cellName
 import kotlinx.android.synthetic.main.fragment_hero_screen.editorCanvasView
 import kotlinx.android.synthetic.main.fragment_hero_screen.radioButtonAttackHex
+import kotlinx.android.synthetic.main.fragment_hero_screen.radioButtonDeathRayHex
 import kotlinx.android.synthetic.main.fragment_hero_screen.radioButtonEnergyHex
 import kotlinx.android.synthetic.main.fragment_hero_screen.radioButtonLifeHex
 import kotlinx.android.synthetic.main.fragment_hero_screen.radioButtonRemoveHex
@@ -71,6 +72,7 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
         radioButtonLifeHex.setOnClickListener { onHexTypeRadioButtonClicked(it) }
         radioButtonAttackHex.setOnClickListener { onHexTypeRadioButtonClicked(it) }
         radioButtonEnergyHex.setOnClickListener { onHexTypeRadioButtonClicked(it) }
+        radioButtonDeathRayHex.setOnClickListener { onHexTypeRadioButtonClicked(it) }
         radioButtonRemoveHex.setOnClickListener { onHexTypeRadioButtonClicked(it) }
         buttonRotateCellLeft.setOnClickListener { onCellRotateButtonClicked(it) }
         buttonRotateCellRight.setOnClickListener { onCellRotateButtonClicked(it) }
@@ -166,6 +168,7 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
             R.id.radioButtonLifeHex -> Hex.Type.LIFE
             R.id.radioButtonEnergyHex -> Hex.Type.ENERGY
             R.id.radioButtonAttackHex -> Hex.Type.ATTACK
+            R.id.radioButtonDeathRayHex -> Hex.Type.DEATH_RAY
             else -> Hex.Type.REMOVE
         }
         editorCanvasView.selectedCellType = type

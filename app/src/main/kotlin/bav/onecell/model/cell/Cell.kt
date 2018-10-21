@@ -58,6 +58,7 @@ class Cell(private val hexMath: HexMath,
         Hex.Type.LIFE -> Hex.Price.LIFE.value
         Hex.Type.ENERGY -> Hex.Price.ENERGY.value
         Hex.Type.ATTACK -> Hex.Price.ATTACK.value
+        Hex.Type.DEATH_RAY -> Hex.Price.DEATH_RAY.value
         else -> 0
     }
 
@@ -104,6 +105,9 @@ class Cell(private val hexMath: HexMath,
                             else -> Unit
                         }
                     }
+                }
+                Hex.Type.DEATH_RAY -> {
+                    hex.power = Hex.Power.DEATH_RAY_SELF.value
                 }
                 else -> Unit
             }

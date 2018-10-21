@@ -28,6 +28,7 @@ class BattleEngine(
 
     companion object {
         private const val TAG = "BattleEngine"
+        private const val DEATH_RAY_DISTANCE = 10
     }
 
     private val cells = mutableListOf<Cell>()
@@ -54,6 +55,7 @@ class BattleEngine(
 
     private val calculateDamages = {
         for (i in 0 until cells.size) { currentSnapshot.hexesToRemove.add(mutableListOf()) }
+        checkDeathRays()
         checkIntersections()
         checkNeighboring()
     }
@@ -268,6 +270,32 @@ class BattleEngine(
         battleState.directions.forEachIndexed { index, direction ->
             currentSnapshot.movingDirections.add(direction)
             cells[index].data.origin = hexMath.add(cells[index].data.origin, hexMath.getHexByDirection(direction))
+        }
+    }
+
+    private fun checkDeathRays() {
+        cells.groupBy { it.data.groupId }.values.forEach { groupOfCells ->
+            if (groupOfCells.size < 2) return@forEach
+            val currentGroupId = groupOfCells[0].data.groupId
+            val listOfDeathRayHexes = groupOfCells.asSequence().map {
+                it.data.hexes.values.filter { hex -> hex.type == Hex.Type.DEATH_RAY }
+            }.toMutableList()
+            val deathRays = mutableListOf<Pair<Hex, Hex>>()
+            while (listOfDeathRayHexes.size > 1) {
+                val deathRayHexesOfOneCell = listOfDeathRayHexes.first()
+                listOfDeathRayHexes.removeAt(0)
+                deathRayHexesOfOneCell.forEach { startHex ->
+                    listOfDeathRayHexes.forEach { endCell ->
+                        endCell.forEach { endHex ->
+                            if (hexMath.distance(startHex, endHex) <= DEATH_RAY_DISTANCE) {
+                                deathRays.add(Pair(startHex, endHex))
+                            }
+                        }
+                    }
+                }
+            }
+            // Пройтись по всем лучам, получить хексы, входящие в лучи
+            // Пройтись по всем вражеским клеткам и нанести им урон лучами
         }
     }
 

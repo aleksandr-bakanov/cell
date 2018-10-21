@@ -27,6 +27,7 @@ class BattleCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
     private val corpseLifePaint = Paint()
     private val corpseEnergyPaint = Paint()
     private val corpseAttackPaint = Paint()
+    private val corpseDeathRayPaint = Paint()
     private val groundPaint = Paint()
     private val clipPath = Path()
     var snapshots: List<BattleFieldSnapshot>? = null
@@ -47,6 +48,9 @@ class BattleCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
         corpseAttackPaint.style = Paint.Style.FILL
         corpseAttackPaint.color = ContextCompat.getColor(context, R.color.battleViewCorpseAttack)
 
+        corpseDeathRayPaint.style = Paint.Style.FILL
+        corpseDeathRayPaint.color = ContextCompat.getColor(context, R.color.battleViewCorpseDeathRay)
+
         groundPaint.style = Paint.Style.FILL
         groundPaint.color = ContextCompat.getColor(context, R.color.battleViewGround)
 
@@ -66,7 +70,8 @@ class BattleCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
                 }
                 canvas?.drawColor(groundPaint.color)
                 snapshot.corpses.forEach { corpse ->
-                    drawUtils.drawCell(canvas, corpse, corpseLifePaint, corpseEnergyPaint, corpseAttackPaint, layout)
+                    drawUtils.drawCell(canvas, corpse, corpseLifePaint, corpseEnergyPaint,
+                                       corpseAttackPaint, corpseDeathRayPaint, layout)
                 }
                 snapshot.cells.forEach { cell ->
                     drawUtils.drawCell(canvas, cell, layout = layout)

@@ -30,12 +30,14 @@ class DrawUtils(private val hexMath: HexMath, context: Context) {
     private val lifePaint = Paint()
     private val energyPaint = Paint()
     private val attackPaint = Paint()
+    private val deathRayPaint = Paint()
     private val strokePaint = Paint()
     private val cellOutlinePaint = Paint()
     private val powerTextPaint = Paint()
     private val powerLifeTextPaint = Paint()
     private val powerEnergyTextPaint = Paint()
     private val powerAttackTextPaint = Paint()
+    private val powerDeathRayTextPaint = Paint()
 
     init {
         gridPaint.style = Paint.Style.STROKE
@@ -50,6 +52,9 @@ class DrawUtils(private val hexMath: HexMath, context: Context) {
 
         attackPaint.style = Paint.Style.FILL
         attackPaint.color = ContextCompat.getColor(context, R.color.cellEditorAttack)
+
+        deathRayPaint.style = Paint.Style.FILL
+        deathRayPaint.color = ContextCompat.getColor(context, R.color.cellEditorDeathRay)
 
         strokePaint.style = Paint.Style.STROKE
         strokePaint.color = ContextCompat.getColor(context, R.color.cellEditorStroke)
@@ -76,6 +81,11 @@ class DrawUtils(private val hexMath: HexMath, context: Context) {
         powerAttackTextPaint.textSize = POWER_TEXT_SIZE
         powerAttackTextPaint.textAlign = Paint.Align.CENTER
 
+        powerDeathRayTextPaint.color = ContextCompat.getColor(context, R.color.battleViewPowerTextDeathRay)
+        powerDeathRayTextPaint.typeface = Typeface.DEFAULT_BOLD
+        powerDeathRayTextPaint.textSize = POWER_TEXT_SIZE
+        powerDeathRayTextPaint.textAlign = Paint.Align.CENTER
+
         powerTextPaint.color = Color.BLACK
         powerTextPaint.typeface = Typeface.DEFAULT_BOLD
         powerTextPaint.textSize = POWER_TEXT_SIZE
@@ -95,7 +105,7 @@ class DrawUtils(private val hexMath: HexMath, context: Context) {
     }
 
     fun drawCell(canvas: Canvas?, cell: Cell?, lPaint: Paint = lifePaint, ePaint: Paint = energyPaint,
-                 aPaint: Paint = attackPaint, layout: Layout = Layout.DUMMY) {
+                 aPaint: Paint = attackPaint, dPaint: Paint = deathRayPaint, layout: Layout = Layout.DUMMY) {
         cell?.let {
             var paint: Paint
             val originPoint = hexMath.hexToPixel(layout, it.data.origin)
@@ -104,6 +114,7 @@ class DrawUtils(private val hexMath: HexMath, context: Context) {
                     Hex.Type.LIFE -> lPaint
                     Hex.Type.ENERGY -> ePaint
                     Hex.Type.ATTACK -> aPaint
+                    Hex.Type.DEATH_RAY -> dPaint
                     else -> gridPaint
                 }
                 val path: Path = getHexPath(layout, hexMath.add(hex, it.data.origin), originPoint,
@@ -262,6 +273,7 @@ class DrawUtils(private val hexMath: HexMath, context: Context) {
                 Hex.Type.LIFE -> powerLifeTextPaint
                 Hex.Type.ENERGY -> powerEnergyTextPaint
                 Hex.Type.ATTACK -> powerAttackTextPaint
+                Hex.Type.DEATH_RAY -> powerDeathRayTextPaint
                 else -> powerTextPaint
             }
             paint.textSize = layout.size.x.toFloat()

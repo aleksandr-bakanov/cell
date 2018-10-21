@@ -11,7 +11,6 @@ Learn Android deeply while having fun.
 * Friendly fire and intersection of friendly cells
 * Direction to nearest friend
 * Different battle scenarios? Save VIP cell?
-* Same group id for friendly cells
 * Death ray hex
 
 # Future features
