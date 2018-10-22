@@ -158,7 +158,7 @@ class HexMath {
                 lerp(a.s, b.s, t))
     }
 
-    fun lineDraw(a: Hex, b: Hex): ArrayList<Hex> {
+    fun lineDraw(a: Hex, b: Hex): List<Hex> {
         val n: Int = distance(a, b)
         val aNudge = FractionalHex(a.q + 1e-6, a.r + 1e-6, a.s - 2e-6)
         val bNudge = FractionalHex(b.q + 1e-6, b.r + 1e-6, b.s - 2e-6)

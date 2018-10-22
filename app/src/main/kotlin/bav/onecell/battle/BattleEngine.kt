@@ -28,7 +28,8 @@ class BattleEngine(
 
     companion object {
         private const val TAG = "BattleEngine"
-        private const val DEATH_RAY_DISTANCE = 10
+        private const val DEATH_RAY_DISTANCE = 50
+        private const val DEATH_RAY_DAMAGE = 10
     }
 
     private val cells = mutableListOf<Cell>()
@@ -277,9 +278,11 @@ class BattleEngine(
         cells.groupBy { it.data.groupId }.values.forEach { groupOfCells ->
             if (groupOfCells.size < 2) return@forEach
             val currentGroupId = groupOfCells[0].data.groupId
-            val listOfDeathRayHexes = groupOfCells.asSequence().map {
-                it.data.hexes.values.filter { hex -> hex.type == Hex.Type.DEATH_RAY }
-            }.toMutableList()
+            val listOfDeathRayHexes = groupOfCells.asSequence()
+                    .map { cell -> cell.data.hexes.values
+                            .filter { hex -> hex.type == Hex.Type.DEATH_RAY }
+                            .map { hexMath.add(it, cell.data.origin) }
+                    }.toMutableList()
             val deathRays = mutableListOf<Pair<Hex, Hex>>()
             while (listOfDeathRayHexes.size > 1) {
                 val deathRayHexesOfOneCell = listOfDeathRayHexes.first()
@@ -295,8 +298,16 @@ class BattleEngine(
                 }
             }
             // Пройтись по всем лучам, получить хексы, входящие в лучи
+            val hexesAffectedByRays = mutableSetOf<Hex>()
+            deathRays.forEach { hexesAffectedByRays.addAll(hexMath.lineDraw(it.first, it.second)) }
             // Пройтись по всем вражеским клеткам и нанести им урон лучами
+            cells.filter { it.data.groupId != currentGroupId }.forEach { enemy ->
+                enemy.data.hexes.values
+                        .filter { hexesAffectedByRays.contains(hexMath.add(enemy.data.origin, it)) }
+                        .forEach { it.power -= DEATH_RAY_DAMAGE }
+            }
         }
+        checkCellsVitality()
     }
 
     private fun checkIntersections() {
