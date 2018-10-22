@@ -27,13 +27,14 @@ class BattleCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
     private val corpseLifePaint = Paint()
     private val corpseEnergyPaint = Paint()
     private val corpseAttackPaint = Paint()
-    private val corpseDeathRayPaint = Paint()
+    private val corpseDeathRayHexPaint = Paint()
     private val groundPaint = Paint()
     private val clipPath = Path()
     var snapshots: List<BattleFieldSnapshot>? = null
     var currentSnapshotIndex: Int = 0
     var fallBackToPreviousSnapshot = false
     var isFog: Boolean = false
+    var deathRayFraction: Float = 0f
 
     init {
         ringPaint.style = Paint.Style.FILL
@@ -48,8 +49,8 @@ class BattleCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
         corpseAttackPaint.style = Paint.Style.FILL
         corpseAttackPaint.color = ContextCompat.getColor(context, R.color.battleViewCorpseAttack)
 
-        corpseDeathRayPaint.style = Paint.Style.FILL
-        corpseDeathRayPaint.color = ContextCompat.getColor(context, R.color.battleViewCorpseDeathRay)
+        corpseDeathRayHexPaint.style = Paint.Style.FILL
+        corpseDeathRayHexPaint.color = ContextCompat.getColor(context, R.color.battleViewCorpseDeathRay)
 
         groundPaint.style = Paint.Style.FILL
         groundPaint.color = ContextCompat.getColor(context, R.color.battleViewGround)
@@ -71,12 +72,13 @@ class BattleCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
                 canvas?.drawColor(groundPaint.color)
                 snapshot.corpses.forEach { corpse ->
                     drawUtils.drawCell(canvas, corpse, corpseLifePaint, corpseEnergyPaint,
-                                       corpseAttackPaint, corpseDeathRayPaint, layout)
+                                       corpseAttackPaint, corpseDeathRayHexPaint, layout)
                 }
                 snapshot.cells.forEach { cell ->
                     drawUtils.drawCell(canvas, cell, layout = layout)
                     drawUtils.drawCellPower(canvas, cell, layout)
                 }
+                drawUtils.drawDeathRays(canvas, snapshot.deathRays, deathRayFraction, layout)
             }
         }
         if (fallBackToPreviousSnapshot) {

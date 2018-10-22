@@ -233,7 +233,7 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
         /// TODO: energy hex is available not from the beginning
         for (view in arrayListOf<View>(radioButtonLifeHex, radioButtonAttackHex, radioButtonEnergyHex,
                                        radioButtonRemoveHex, textMoney, editorCanvasView, textHeroHistory,
-                                       buttonRotateCellLeft, buttonRotateCellRight))
+                                       buttonRotateCellLeft, buttonRotateCellRight, radioButtonDeathRayHex))
             view.visibility = editorVisibility
 
         for (view in arrayListOf<View>(recyclerViewRulesList, recyclerViewConditionsList, recyclerViewCellLogicPicker,

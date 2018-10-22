@@ -23,6 +23,7 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 import bav.onecell.model.cell.logic.Action
+import bav.onecell.model.hexes.Hex
 import kotlinx.android.synthetic.main.fragment_battle.battleCanvasView
 import kotlinx.android.synthetic.main.fragment_battle.buttonFinishBattle
 import kotlinx.android.synthetic.main.fragment_battle.buttonNextStep
@@ -170,6 +171,10 @@ class BattleFragment : Fragment(), Battle.View {
             movingAnimatorSet.playTogether(movingAnimators)
 
 
+            // Animate death rays if any
+            val deathRaysAnimator = animateDeathRays(snapshot.deathRays)
+
+
             // Remove hexes destroyed at this round
             val hexRemovalAnimators = mutableListOf<Animator>()
             snapshot.cells.forEachIndexed { index, cell ->
@@ -184,8 +189,12 @@ class BattleFragment : Fragment(), Battle.View {
             val logicAndMovement = AnimatorSet()
             logicAndMovement.play(cellLogicAnimatorSet).before(movingAnimatorSet)
 
+            val logicMovementAndRays = AnimatorSet()
+            logicMovementAndRays.play(logicAndMovement).before(deathRaysAnimator)
+
             val snapshotAnimators = AnimatorSet()
-            snapshotAnimators.play(logicAndMovement).before(hexRemovalAnimatorSet)
+            snapshotAnimators.play(logicMovementAndRays).before(hexRemovalAnimatorSet)
+
             snapshotAnimators.addListener(object : AnimatorListenerAdapter() {
                 override fun onAnimationEnd(animation: Animator?) {
                     snapshot.cells.forEach { c ->
@@ -256,6 +265,17 @@ class BattleFragment : Fragment(), Battle.View {
             }
         }
     }
+
+    private fun animateDeathRays(rays: Collection<Pair<Hex, Hex>>): Animator {
+        battleCanvasView.deathRayFraction = 0f
+        return ValueAnimator.ofFloat(0f, 1f).apply {
+            duration = if (rays.isNotEmpty()) DEATH_RAY_DURATION_MS else 0
+            addUpdateListener {
+                battleCanvasView.deathRayFraction = if (it.animatedFraction < 1f) it.animatedFraction else 0f
+                battleCanvasView.invalidate()
+            }
+        }
+    }
     //endregion
 
     //region Overridden methods
@@ -272,6 +292,7 @@ class BattleFragment : Fragment(), Battle.View {
         const val CELL_MOVING_DURATION_MS: Long = 500
         const val HEX_FADING_DURATION_MS: Long = 500
         const val CELL_ROTATION_DURATION_MS: Long = 500
+        const val DEATH_RAY_DURATION_MS: Long = 300
 
         fun newInstance(bundle: Bundle?): BattleFragment {
             val fragment = BattleFragment()

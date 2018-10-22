@@ -6,6 +6,7 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Path
 import android.graphics.Typeface
+import android.util.Log
 import androidx.core.content.ContextCompat
 import bav.onecell.R
 import bav.onecell.model.cell.Cell
@@ -30,7 +31,7 @@ class DrawUtils(private val hexMath: HexMath, context: Context) {
     private val lifePaint = Paint()
     private val energyPaint = Paint()
     private val attackPaint = Paint()
-    private val deathRayPaint = Paint()
+    private val deathRayHexPaint = Paint()
     private val strokePaint = Paint()
     private val cellOutlinePaint = Paint()
     private val powerTextPaint = Paint()
@@ -38,6 +39,7 @@ class DrawUtils(private val hexMath: HexMath, context: Context) {
     private val powerEnergyTextPaint = Paint()
     private val powerAttackTextPaint = Paint()
     private val powerDeathRayTextPaint = Paint()
+    private val deathRayPaint = Paint()
 
     init {
         gridPaint.style = Paint.Style.STROKE
@@ -53,8 +55,12 @@ class DrawUtils(private val hexMath: HexMath, context: Context) {
         attackPaint.style = Paint.Style.FILL
         attackPaint.color = ContextCompat.getColor(context, R.color.cellEditorAttack)
 
-        deathRayPaint.style = Paint.Style.FILL
+        deathRayHexPaint.style = Paint.Style.FILL
+        deathRayHexPaint.color = ContextCompat.getColor(context, R.color.cellEditorDeathRay)
+
         deathRayPaint.color = ContextCompat.getColor(context, R.color.cellEditorDeathRay)
+        deathRayPaint.strokeWidth = 10f
+        deathRayPaint.strokeCap = Paint.Cap.ROUND
 
         strokePaint.style = Paint.Style.STROKE
         strokePaint.color = ContextCompat.getColor(context, R.color.cellEditorStroke)
@@ -105,7 +111,7 @@ class DrawUtils(private val hexMath: HexMath, context: Context) {
     }
 
     fun drawCell(canvas: Canvas?, cell: Cell?, lPaint: Paint = lifePaint, ePaint: Paint = energyPaint,
-                 aPaint: Paint = attackPaint, dPaint: Paint = deathRayPaint, layout: Layout = Layout.DUMMY) {
+                 aPaint: Paint = attackPaint, dPaint: Paint = deathRayHexPaint, layout: Layout = Layout.DUMMY) {
         cell?.let {
             var paint: Paint
             val originPoint = hexMath.hexToPixel(layout, it.data.origin)
@@ -288,5 +294,19 @@ class DrawUtils(private val hexMath: HexMath, context: Context) {
         offsetPoints(listOfOrigin, cell.animationData.moveDirection, cell.animationData.movingFraction, layout)
         canvas?.drawText(power.toString(), origin.x.toFloat(), origin.y.toFloat() + (layout.size.x / 3).toFloat(),
                          paint)
+    }
+
+    fun drawDeathRays(canvas: Canvas?, rays: Collection<Pair<Hex, Hex>>, fraction: Float, layout: Layout) {
+        rays.forEach { ray ->
+            val start = hexMath.hexToPixel(layout, ray.first)
+            val end = hexMath.hexToPixel(layout, ray.second)
+            val alpha = if (fraction < 0.5) {
+                (fraction * 2f * 255f).toInt()
+            } else {
+                ((1f - fraction) * 2f * 255f).toInt()
+            }
+            deathRayPaint.alpha = alpha
+            canvas?.drawLine(start.x.toFloat(), start.y.toFloat(), end.x.toFloat(), end.y.toFloat(), deathRayPaint)
+        }
     }
 }

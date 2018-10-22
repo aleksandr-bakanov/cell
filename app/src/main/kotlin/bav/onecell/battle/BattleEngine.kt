@@ -306,6 +306,7 @@ class BattleEngine(
                         .filter { hexesAffectedByRays.contains(hexMath.add(enemy.data.origin, it)) }
                         .forEach { it.power -= DEATH_RAY_DAMAGE }
             }
+            currentSnapshot.deathRays.addAll(deathRays)
         }
         checkCellsVitality()
     }

@@ -2,6 +2,7 @@ package bav.onecell.model
 
 import bav.onecell.model.cell.Cell
 import bav.onecell.model.cell.logic.Action
+import bav.onecell.model.hexes.Hex
 
 data class BattleFieldSnapshot(
         // Life cells
@@ -14,4 +15,6 @@ data class BattleFieldSnapshot(
         // Cell's moving direction
         val movingDirections: MutableList<Int> = mutableListOf(),
         // Hexes to be removed (hashes of hexes), list can be empty
-        val hexesToRemove: MutableList<MutableList<Int>> = mutableListOf())
+        val hexesToRemove: MutableList<MutableList<Int>> = mutableListOf(),
+        // Death rays, pairs of start and end points
+        val deathRays: MutableList<Pair<Hex, Hex>> = mutableListOf())
