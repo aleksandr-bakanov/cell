@@ -32,7 +32,7 @@ class DrawUtils(private val hexMath: HexMath, context: Context) {
     private val energyPaint = Paint()
     private val attackPaint = Paint()
     private val deathRayHexPaint = Paint()
-    private val strokePaint = Paint()
+    val strokePaint = Paint()
     private val cellOutlinePaint = Paint()
     private val powerTextPaint = Paint()
     private val powerLifeTextPaint = Paint()

@@ -67,7 +67,7 @@ class BattleCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
         groundPaint.color = ContextCompat.getColor(context, R.color.battleViewGround)
 
         setOnTouchListener { view: View?, event: MotionEvent? ->
-            var ret = true
+            var ret = false
             event?.let {
                 try {
                     if (it.pointerCount > 1) {
@@ -75,6 +75,7 @@ class BattleCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
                     } else if (it.action == MotionEvent.ACTION_DOWN) {
                         lastTouchX = it.getX(it.getPointerId(0))
                         lastTouchY = it.getY(it.getPointerId(0))
+                        ret = true
                     } else if (it.action == MotionEvent.ACTION_MOVE && it.pointerCount == 1) {
                         val curX = it.getX(it.getPointerId(0))
                         val curY = it.getY(it.getPointerId(0))
@@ -83,17 +84,21 @@ class BattleCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
                         lastTouchX = curX
                         lastTouchY = curY
                         layout.origin = Point(layout.origin.x + dx, layout.origin.y + dy)
+                        ret = true
                         invalidate()
-                    } else {
-                        ret = false
+                    } else if (it.action == MotionEvent.ACTION_UP) {
+                        Log.d(TAG, "ACTION_UP: $it")
+                        lastTouchX = it.getX(it.getPointerId(0))
+                        lastTouchY = it.getY(it.getPointerId(0))
+                        ret = true
                     }
+                    else {}
                 } catch (e: IllegalArgumentException) {
                     // Just ignore exception caused by ScaleGestureDetector
                     // See details here:
                     // https://github.com/chrisbanes/PhotoView/issues/31
                     // https://github.com/chrisbanes/PhotoView/commit/92a2a281134ceddc6e402ba4a83cc91180db8115#comments
                     // TODO: deal with 'pointerIndex out of range' exception lately
-                    ret = false
                 }
             }
             ret
@@ -121,6 +126,13 @@ class BattleCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
                     drawUtils.drawCellPower(canvas, cell, layout)
                 }
                 drawUtils.drawDeathRays(canvas, snapshot.deathRays, deathRayFraction, layout)
+
+                // Layout center
+                /*canvas?.drawCircle(layout.origin.x.toFloat(), layout.origin.y.toFloat(), 5f, ringPaint)
+                canvas?.let { c ->
+                    c.drawLine((width / 2 - 50).toFloat(), (height / 2).toFloat(), (width / 2 + 50).toFloat(), (height / 2).toFloat(), drawUtils.strokePaint)
+                    c.drawLine((width / 2).toFloat(), (height / 2 - 50).toFloat(), (width / 2).toFloat(), (height / 2 + 50).toFloat(), drawUtils.strokePaint)
+                }*/
             }
         }
         if (fallBackToPreviousSnapshot) {
@@ -177,9 +189,23 @@ class BattleCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
 
     private class ScaleListener(private val view: BattleCanvasView): ScaleGestureDetector.SimpleOnScaleGestureListener() {
         override fun onScale(detector: ScaleGestureDetector?): Boolean {
-            view.scaleFactor = view.scaleFactor * (detector?.scaleFactor ?: 1f)
+            val factor = detector?.scaleFactor ?: 1f
+
+            view.scaleFactor *= factor
             view.scaleFactor = max(MIN_SCALE, min(view.scaleFactor, MAX_SCALE))
             view.setLayoutSize(view.scaleFactor.toDouble() * Layout.DUMMY.size.x)
+
+            var layoutX = view.layout.origin.x
+            var layoutY = view.layout.origin.y
+            layoutX -= view.width / 2
+            layoutY -= view.height / 2
+            layoutX *= factor
+            layoutY *= factor
+            layoutX += view.width / 2
+            layoutY += view.height / 2
+            view.layout.origin.x = layoutX
+            view.layout.origin.y = layoutY
+
             view.invalidate()
             return true
         }

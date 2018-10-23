@@ -35,7 +35,7 @@ open class CanvasView(context: Context, attributeSet: AttributeSet) : View(conte
 
     protected var lastTouchX = 0f
     protected var lastTouchY = 0f
-    protected var layout = Layout(Orientation.LAYOUT_POINTY, Point(50.0, 50.0), Point())
+    protected var layout = Layout(Orientation.LAYOUT_POINTY, Point(Layout.DUMMY.size.x, Layout.DUMMY.size.y), Point())
 
     private val gridPaint = Paint()
     private val coordinateTextPaint = Paint()
