@@ -297,10 +297,10 @@ class BattleEngine(
                     }
                 }
             }
-            // Пройтись по всем лучам, получить хексы, входящие в лучи
+            // Transform rays to hexes
             val hexesAffectedByRays = mutableSetOf<Hex>()
             deathRays.forEach { hexesAffectedByRays.addAll(hexMath.lineDraw(it.first, it.second)) }
-            // Пройтись по всем вражеским клеткам и нанести им урон лучами
+            // Deal damage to the enemy cells
             cells.filter { it.data.groupId != currentGroupId }.forEach { enemy ->
                 enemy.data.hexes.values
                         .filter { hexesAffectedByRays.contains(hexMath.add(enemy.data.origin, it)) }

@@ -11,7 +11,13 @@ Learn Android deeply while having fun.
 * Friendly fire and intersection of friendly cells
 * Direction to nearest friend
 * Different battle scenarios? Save VIP cell?
-* Death ray hex
+* Make limited count of hexes instead of money. Life hexes will be base ones. Available transformations:
+  2 life -> 1 attack
+  5 life -> 1 energy
+  10 life -> 1 death ray
+  Backward transformations are also available. In such case it's possible to forbid some transformations.
+* Change edition screen. Pick and place different hexes whether from cell or from buckets.
+  Pick by long press (only from cell?).
 
 # Future features
 * Multi-player

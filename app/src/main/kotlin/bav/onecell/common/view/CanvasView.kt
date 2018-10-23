@@ -33,8 +33,8 @@ open class CanvasView(context: Context, attributeSet: AttributeSet) : View(conte
     lateinit var hexMath: HexMath
     lateinit var drawUtils: DrawUtils
 
-    private var lastTouchX = 0f
-    private var lastTouchY = 0f
+    protected var lastTouchX = 0f
+    protected var lastTouchY = 0f
     protected var layout = Layout(Orientation.LAYOUT_POINTY, Point(50.0, 50.0), Point())
 
     private val gridPaint = Paint()
@@ -171,7 +171,7 @@ open class CanvasView(context: Context, attributeSet: AttributeSet) : View(conte
         return path
     }
 
-    protected fun setLayoutSize(size: Double) {
+    open fun setLayoutSize(size: Double) {
         layout.size.x = size
         layout.size.y = size
     }

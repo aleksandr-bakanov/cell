@@ -7,18 +7,27 @@ import android.graphics.Paint
 import android.graphics.Path
 import androidx.core.content.ContextCompat
 import android.util.AttributeSet
+import android.util.Log
 import android.view.MotionEvent
+import android.view.ScaleGestureDetector
 import android.view.View
 import bav.onecell.R
 import bav.onecell.common.view.CanvasView
 import bav.onecell.model.BattleFieldSnapshot
 import bav.onecell.model.cell.Cell
 import bav.onecell.model.hexes.Hex
+import bav.onecell.model.hexes.Layout
+import bav.onecell.model.hexes.Point
+import java.lang.IllegalArgumentException
+import kotlin.math.max
+import kotlin.math.min
 
 class BattleCanvasView(context: Context, attributeSet: AttributeSet) : CanvasView(context, attributeSet) {
 
     companion object {
         private const val TAG = "BattleCanvasView"
+        const val MIN_SCALE = 0.01f
+        const val MAX_SCALE = 50.0f
     }
 
     lateinit var presenter: Battle.Presenter
@@ -35,6 +44,8 @@ class BattleCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
     var fallBackToPreviousSnapshot = false
     var isFog: Boolean = false
     var deathRayFraction: Float = 0f
+    private val scaleGestureDetector = ScaleGestureDetector(context, ScaleListener(this))
+    var scaleFactor: Float = 1f
 
     init {
         ringPaint.style = Paint.Style.FILL
@@ -55,7 +66,38 @@ class BattleCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
         groundPaint.style = Paint.Style.FILL
         groundPaint.color = ContextCompat.getColor(context, R.color.battleViewGround)
 
-        setOnTouchListener { view: View?, event: MotionEvent? -> super.onTouchListener(view, event) }
+        setOnTouchListener { view: View?, event: MotionEvent? ->
+            var ret = true
+            event?.let {
+                try {
+                    if (it.pointerCount > 1) {
+                        scaleGestureDetector.onTouchEvent(event)
+                    } else if (it.action == MotionEvent.ACTION_DOWN) {
+                        lastTouchX = it.getX(it.getPointerId(0))
+                        lastTouchY = it.getY(it.getPointerId(0))
+                    } else if (it.action == MotionEvent.ACTION_MOVE && it.pointerCount == 1) {
+                        val curX = it.getX(it.getPointerId(0))
+                        val curY = it.getY(it.getPointerId(0))
+                        val dx = curX - lastTouchX
+                        val dy = curY - lastTouchY
+                        lastTouchX = curX
+                        lastTouchY = curY
+                        layout.origin = Point(layout.origin.x + dx, layout.origin.y + dy)
+                        invalidate()
+                    } else {
+                        ret = false
+                    }
+                } catch (e: IllegalArgumentException) {
+                    // Just ignore exception caused by ScaleGestureDetector
+                    // See details here:
+                    // https://github.com/chrisbanes/PhotoView/issues/31
+                    // https://github.com/chrisbanes/PhotoView/commit/92a2a281134ceddc6e402ba4a83cc91180db8115#comments
+                    // TODO: deal with 'pointerIndex out of range' exception lately
+                    ret = false
+                }
+            }
+            ret
+        }
     }
 
     override fun onDraw(canvas: Canvas?) {
@@ -131,5 +173,15 @@ class BattleCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
 
     override fun increaseLayoutSize() {
         super.increaseLayoutSize()
+    }
+
+    private class ScaleListener(private val view: BattleCanvasView): ScaleGestureDetector.SimpleOnScaleGestureListener() {
+        override fun onScale(detector: ScaleGestureDetector?): Boolean {
+            view.scaleFactor = view.scaleFactor * (detector?.scaleFactor ?: 1f)
+            view.scaleFactor = max(MIN_SCALE, min(view.scaleFactor, MAX_SCALE))
+            view.setLayoutSize(view.scaleFactor.toDouble() * Layout.DUMMY.size.x)
+            view.invalidate()
+            return true
+        }
     }
 }
