@@ -5,6 +5,7 @@ import androidx.fragment.app.FragmentActivity
 import bav.onecell.battle.BattleFragment
 import bav.onecell.battle.results.BattleResultsFragment
 import bav.onecell.cutscene.CutSceneFragment
+import bav.onecell.model.InitialBattleParams
 import io.reactivex.Observable
 import io.reactivex.subjects.PublishSubject
 
@@ -29,7 +30,9 @@ class RouterImpl : Router {
 
     override fun goToBattle(cellIndexes: List<Int>) {
         val bundle = Bundle()
-        bundle.putIntegerArrayList(BattleFragment.EXTRA_CELL_INDEXES, ArrayList(cellIndexes))
+        val initialBattleParams = InitialBattleParams()
+        initialBattleParams.cellIndexes.addAll(cellIndexes)
+        bundle.putString(BattleFragment.EXTRA_PARAMS, InitialBattleParams.toJson(initialBattleParams))
         windowChanger.onNext(Router.Window(Router.WindowType.BATTLE, bundle))
     }
 

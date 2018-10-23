@@ -3,6 +3,7 @@ package bav.onecell.battle
 import bav.onecell.model.BattleFieldSnapshot
 import bav.onecell.model.BattleInfo
 import bav.onecell.model.GameRules
+import bav.onecell.model.InitialBattleParams
 import bav.onecell.model.RepositoryContract
 import bav.onecell.model.cell.Cell
 import bav.onecell.model.cell.logic.BattleFieldState
@@ -30,6 +31,9 @@ class BattleEngine(
         private const val TAG = "BattleEngine"
         private const val DEATH_RAY_DISTANCE = 50
         private const val DEATH_RAY_DAMAGE = 10
+
+        const val EXTRA_FOG = "fog"
+        const val EXTRA_CELL_INDEXES = "cell_indexes"
     }
 
     private val cells = mutableListOf<Cell>()
@@ -72,14 +76,14 @@ class BattleEngine(
         initializeBattleSteps()
     }
 
-    fun initialize(cellIndexes: List<Int>, useFog: Boolean = false) {
-        isFog = useFog
+    fun initialize(params: InitialBattleParams) {
+        isFog = params.isFog
         clearEngine()
         cellRepositoryDisposable?.dispose()
         cellRepositoryDisposable = cellRepository.loadFromStore()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe { startCalculation(cellIndexes) }
+                .subscribe { startCalculation(params.cellIndexes) }
     }
 
     private fun startCalculation(cellIndexes: List<Int>) {

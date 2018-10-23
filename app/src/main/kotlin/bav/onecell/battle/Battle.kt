@@ -13,9 +13,9 @@ interface Battle {
         /**
          * Presenter initializer
          *
-         * @param cellIndexes Indexes of cells within cell repository
+         * @param params Initial battle params in JSON
          */
-        fun initialize(cellIndexes: List<Int>)
+        fun initialize(params: String)
 
         fun finishBattle(battleInfo: BattleInfo)
 

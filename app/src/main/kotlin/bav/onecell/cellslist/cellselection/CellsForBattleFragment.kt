@@ -13,6 +13,7 @@ import bav.onecell.OneCellApplication
 import bav.onecell.R
 import bav.onecell.battle.BattleFragment
 import bav.onecell.cellslist.CellsListModule
+import bav.onecell.model.InitialBattleParams
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_choose_cells_for_battle.buttonStartBattle
 import kotlinx.android.synthetic.main.fragment_choose_cells_for_battle.recyclerViewCellList
@@ -66,7 +67,9 @@ class CellsForBattleFragment : Fragment(), CellsForBattle.View {
             }
         }
         if (indexes.size >= 2) {
-            val bundle = bundleOf(BattleFragment.EXTRA_CELL_INDEXES to ArrayList(indexes))
+            val params = InitialBattleParams()
+            params.cellIndexes.addAll(indexes)
+            val bundle = bundleOf(BattleFragment.EXTRA_PARAMS to InitialBattleParams.toJson(params))
             view.findNavController().navigate(R.id.action_cellsForBattleFragment_to_battleFragment, bundle)
         }
         // TODO: move string to resources

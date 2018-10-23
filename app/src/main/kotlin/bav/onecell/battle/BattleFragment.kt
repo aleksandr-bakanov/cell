@@ -28,8 +28,6 @@ import kotlinx.android.synthetic.main.fragment_battle.battleCanvasView
 import kotlinx.android.synthetic.main.fragment_battle.buttonFinishBattle
 import kotlinx.android.synthetic.main.fragment_battle.buttonNextStep
 import kotlinx.android.synthetic.main.fragment_battle.buttonPreviousStep
-import kotlinx.android.synthetic.main.fragment_battle.buttonZoomIn
-import kotlinx.android.synthetic.main.fragment_battle.buttonZoomOut
 import kotlinx.android.synthetic.main.fragment_battle.seekBar
 
 class BattleFragment : Fragment(), Battle.View {
@@ -76,14 +74,6 @@ class BattleFragment : Fragment(), Battle.View {
                 animateOneSnapshot(previous)
             }
         }
-        buttonZoomIn.setOnClickListener {
-            battleCanvasView.increaseLayoutSize()
-            battleCanvasView.invalidate()
-        }
-        buttonZoomOut.setOnClickListener {
-            battleCanvasView.decreaseLayoutSize()
-            battleCanvasView.invalidate()
-        }
 
         seekBar.setOnSeekBarChangeListener(seekBarListener)
 
@@ -105,7 +95,7 @@ class BattleFragment : Fragment(), Battle.View {
                             reportBattleEnd(battleInfo)
                         })
 
-        presenter.initialize(arguments?.getIntegerArrayList(EXTRA_CELL_INDEXES) ?: arrayListOf())
+        presenter.initialize(arguments?.getString(EXTRA_PARAMS).orEmpty())
         battleCanvasView.backgroundFieldRadius = 5
     }
 
@@ -287,7 +277,7 @@ class BattleFragment : Fragment(), Battle.View {
 
     companion object {
         private const val TAG = "BattleFragment"
-        const val EXTRA_CELL_INDEXES = "cell_indexes"
+        const val EXTRA_PARAMS = "params"
 
         const val CELL_MOVING_DURATION_MS: Long = 500
         const val HEX_FADING_DURATION_MS: Long = 500

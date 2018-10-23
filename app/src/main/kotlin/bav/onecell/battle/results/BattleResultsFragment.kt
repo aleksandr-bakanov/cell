@@ -51,7 +51,7 @@ class BattleResultsFragment: androidx.fragment.app.Fragment(), BattleResults.Vie
             val deadOrAlive = it.getBooleanArray(DEAD_OR_ALIVE)
             val dd = mutableMapOf<Int, Int>()
             val doa = mutableMapOf<Int, Boolean>()
-            cellIndexes.forEachIndexed { i, id ->
+            cellIndexes?.forEachIndexed { i, id ->
                 dd[id] = dealtDamage[i]
                 doa[id] = deadOrAlive[i]
             }

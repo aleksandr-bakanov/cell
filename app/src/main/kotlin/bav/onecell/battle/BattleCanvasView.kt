@@ -179,14 +179,6 @@ class BattleCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
         return clipPath
     }
 
-    override fun decreaseLayoutSize() {
-        super.decreaseLayoutSize()
-    }
-
-    override fun increaseLayoutSize() {
-        super.increaseLayoutSize()
-    }
-
     private class ScaleListener(private val view: BattleCanvasView): ScaleGestureDetector.SimpleOnScaleGestureListener() {
         override fun onScale(detector: ScaleGestureDetector?): Boolean {
             val factor = detector?.scaleFactor ?: 1f

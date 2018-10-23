@@ -2,6 +2,7 @@ package bav.onecell.battle
 
 import bav.onecell.common.router.Router
 import bav.onecell.model.BattleInfo
+import bav.onecell.model.InitialBattleParams
 import io.reactivex.subjects.PublishSubject
 
 class BattlePresenter(
@@ -16,9 +17,9 @@ class BattlePresenter(
     //region Overridden methods
     override fun battleResultsProvider(): PublishSubject<BattleInfo> = battleEngine.battleResultProvider
 
-    override fun initialize(cellIndexes: List<Int>) {
+    override fun initialize(params: String) {
         view.drawSnapshotInitialState()
-        battleEngine.initialize(cellIndexes, false)
+        battleEngine.initialize(InitialBattleParams.fromJson(params))
     }
 
     override fun finishBattle(battleInfo: BattleInfo) {
