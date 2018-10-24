@@ -70,8 +70,12 @@ class BattleCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
             var ret = false
             event?.let {
                 try {
-                    if (it.pointerCount > 1) {
-                        scaleGestureDetector.onTouchEvent(event)
+                    if (it.pointerCount == 2) {
+                        if (it.actionMasked == MotionEvent.ACTION_POINTER_UP) {
+                            lastTouchX = it.getX(it.getPointerId(0))
+                            lastTouchY = it.getY(it.getPointerId(0))
+                        }
+                        scaleGestureDetector.onTouchEvent(it)
                     } else if (it.action == MotionEvent.ACTION_DOWN) {
                         lastTouchX = it.getX(it.getPointerId(0))
                         lastTouchY = it.getY(it.getPointerId(0))
@@ -87,7 +91,6 @@ class BattleCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
                         ret = true
                         invalidate()
                     } else if (it.action == MotionEvent.ACTION_UP) {
-                        Log.d(TAG, "ACTION_UP: $it")
                         lastTouchX = it.getX(it.getPointerId(0))
                         lastTouchY = it.getY(it.getPointerId(0))
                         ret = true
