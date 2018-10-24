@@ -114,6 +114,7 @@ class BattleFragment : Fragment(), Battle.View {
 
     private fun reportBattleEnd(battleInfo: BattleInfo) {
         buttonFinishBattle.setOnClickListener { view ->
+            // TODO: clear animations before leaving the screen
             val dealtDamage: Map<Int, Int> = battleInfo.damageDealtByCells
             val deadOrAliveCells: Map<Int, Boolean> = battleInfo.deadOrAliveCells
             val bundle = Bundle()

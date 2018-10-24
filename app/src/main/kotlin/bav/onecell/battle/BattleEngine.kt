@@ -98,7 +98,7 @@ class BattleEngine(
             cells.add(clone)
         }
 
-        battleFieldSize = round(cells.asSequence().map { it.size() }.sum() * 1.5).toInt()
+        battleFieldSize = cells.asSequence().map { it.size() }.sum()
 
         moveCellsToTheirInitialPosition()
         saveCellsAndCorpsesToSnapshot()
@@ -188,7 +188,8 @@ class BattleEngine(
             }
         }
         val step = ring.size / cells.size
-        cells.forEachIndexed { index, cell -> cell.data.origin = ring[index * step] }
+        val shuffledIndexes = (0 until cells.size).shuffled()
+        shuffledIndexes.forEachIndexed { index, i -> cells[i].data.origin = ring[index * step] }
     }
 
     private fun calculateBattleState() {
