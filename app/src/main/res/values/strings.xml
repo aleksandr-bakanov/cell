@@ -96,18 +96,25 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non lacus malesuada,
                 { text: \"Hello world!\" },
                 { text: \"Changing background\", background: \"wallpaper_02\" },
                 { text: \"Return back to default background and change left character\", left: \"left_character_01\" }
-            ]
+            ],
+            nextScene: \"action_cutSceneIntroduction_to_battleWithGopniks\"
         }
     </string>
 
+    <!-- Battle scene params -->
+    <string name="battle_with_gopniks_params">{"cellIndexes":[0,3,4,5],"isFog":false}</string>
+
     <!-- Initial cell descriptions -->
     <string-array name="cell_descriptions">
+        <!-- Main heroes -->
         <item>{"direction":"N","hexes":{"0":{"q":0,"r":0,"s":0,"type":"LIFE"},"-930":{"q":-1,"r":1,"s":0,"type":"LIFE"},"30":{"q":0,"r":1,"s":-1,"type":"LIFE"},"-900":{"q":-1,"r":2,"s":-1,"type":"LIFE"},"930":{"q":1,"r":-1,"s":0,"type":"ATTACK"},"900":{"q":1,"r":-2,"s":1,"type":"ATTACK"},"-30":{"q":0,"r":-1,"s":1,"type":"ENERGY"}},"groupId":0,"id":0,"money":100,"name":\"Kittaro\","origin":{"q":0,"r":0,"s":0,"type":"REMOVE"},"rules":[]}</item>
         <item>{"direction":"N","hexes":{"0":{"q":0,"r":0,"s":0,"type":"LIFE"},"930":{"q":1,"r":-1,"s":0,"type":"ATTACK"},"-30":{"q":0,"r":-1,"s":1,"type":"ATTACK"},"-960":{"q":-1,"r":0,"s":1,"type":"ATTACK"},"-930":{"q":-1,"r":1,"s":0,"type":"ATTACK"},"30":{"q":0,"r":1,"s":-1,"type":"ATTACK"}},"groupId":0,"id":1,"money":100,"name":\"Zoi\","origin":{"q":0,"r":0,"s":0,"type":"REMOVE"},"rules":[]}</item>
         <item>{"direction":"N","hexes":{"0":{"q":0,"r":0,"s":0,"type":"LIFE"},"930":{"q":1,"r":-1,"s":0,"type":"LIFE"},"-930":{"q":-1,"r":1,"s":0,"type":"LIFE"},"1890":{"q":2,"r":-1,"s":-1,"type":"ATTACK"},"-1890":{"q":-2,"r":1,"s":1,"type":"ATTACK"},"-1860":{"q":-2,"r":2,"s":0,"type":"ATTACK"},"1860":{"q":2,"r":-2,"s":0,"type":"ATTACK"}},"groupId":0,"id":2,"money":100,"name":\"Aima\","origin":{"q":0,"r":0,"s":0,"type":"REMOVE"},"rules":[]}</item>
+        <!-- Gopniks -->
         <item>{"direction":"N","hexes":{"0":{"q":0,"r":0,"s":0,"type":"LIFE"},"930":{"q":1,"r":-1,"s":0,"type":"ATTACK"},"-960":{"q":-1,"r":0,"s":1,"type":"ATTACK"},"30":{"q":0,"r":1,"s":-1,"type":"ATTACK"},"960":{"q":1,"r":0,"s":-1,"type":"ENERGY"}},"groupId":1,"id":3,"money":100,"name":\"Gopnik #1\","origin":{"q":0,"r":0,"s":0,"type":"REMOVE"},"rules":[]}</item>
         <item>{"direction":"N","hexes":{"0":{"q":0,"r":0,"s":0,"type":"LIFE"},"930":{"q":1,"r":-1,"s":0,"type":"ATTACK"},"-960":{"q":-1,"r":0,"s":1,"type":"ATTACK"},"30":{"q":0,"r":1,"s":-1,"type":"ATTACK"},"960":{"q":1,"r":0,"s":-1,"type":"ENERGY"}},"groupId":1,"id":4,"money":100,"name":\"Gopnik #2\","origin":{"q":0,"r":0,"s":0,"type":"REMOVE"},"rules":[]}</item>
         <item>{"direction":"N","hexes":{"0":{"q":0,"r":0,"s":0,"type":"LIFE"},"930":{"q":1,"r":-1,"s":0,"type":"ATTACK"},"-960":{"q":-1,"r":0,"s":1,"type":"ATTACK"},"30":{"q":0,"r":1,"s":-1,"type":"ATTACK"},"960":{"q":1,"r":0,"s":-1,"type":"ENERGY"}},"groupId":1,"id":5,"money":100,"name":\"Gopnik #3\","origin":{"q":0,"r":0,"s":0,"type":"REMOVE"},"rules":[]}</item>
+        <!-- Skiloses -->
         <item>{"direction":"N","hexes":{"0":{"q":0,"r":0,"s":0,"type":"LIFE"},"930":{"q":1,"r":-1,"s":0,"type":"ATTACK"},"-960":{"q":-1,"r":0,"s":1,"type":"ATTACK"},"30":{"q":0,"r":1,"s":-1,"type":"ATTACK"},"960":{"q":1,"r":0,"s":-1,"type":"ENERGY"}},"groupId":2,"id":6,"money":100,"name":\"Skilos #1\","origin":{"q":0,"r":0,"s":0,"type":"REMOVE"},"rules":[]}</item>
         <item>{"direction":"N","hexes":{"0":{"q":0,"r":0,"s":0,"type":"LIFE"},"930":{"q":1,"r":-1,"s":0,"type":"ATTACK"},"-960":{"q":-1,"r":0,"s":1,"type":"ATTACK"},"30":{"q":0,"r":1,"s":-1,"type":"ATTACK"},"960":{"q":1,"r":0,"s":-1,"type":"ENERGY"}},"groupId":2,"id":7,"money":100,"name":\"Skilos #2\","origin":{"q":0,"r":0,"s":0,"type":"REMOVE"},"rules":[]}</item>
         <item>{"direction":"N","hexes":{"0":{"q":0,"r":0,"s":0,"type":"LIFE"},"930":{"q":1,"r":-1,"s":0,"type":"ATTACK"},"-960":{"q":-1,"r":0,"s":1,"type":"ATTACK"},"30":{"q":0,"r":1,"s":-1,"type":"ATTACK"},"960":{"q":1,"r":0,"s":-1,"type":"ENERGY"}},"groupId":2,"id":8,"money":100,"name":\"Skilos #3\","origin":{"q":0,"r":0,"s":0,"type":"REMOVE"},"rules":[]}</item>

@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.util.Log
 import androidx.core.content.ContextCompat
+import androidx.navigation.fragment.findNavController
 import bav.onecell.OneCellApplication
 import bav.onecell.R
 import io.reactivex.disposables.CompositeDisposable
@@ -29,6 +30,7 @@ class CutSceneFragment : Fragment(), CutScene.View {
     private var defaultLeftCharacter: Int = 0
     private var defaultRightCharacter: Int = 0
     private val frames: MutableList<FrameData> = mutableListOf()
+    private var nextScene: Int = 0
     private var currentFrameIndex: Int = 0
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -58,6 +60,7 @@ class CutSceneFragment : Fragment(), CutScene.View {
     }
 
     private fun getDrawableIdentifier(name: String): Int = resources.getIdentifier(name, "drawable", "bav.onecell")
+    private fun getIdIdentifier(name: String): Int = resources.getIdentifier(name, "id", "bav.onecell")
     private fun getBackground(name: String): Int = if (name.isEmpty()) defaultBackground else getDrawableIdentifier(name)
     private fun getLeftCharacter(name: String): Int = if (name.isEmpty()) defaultLeftCharacter else getDrawableIdentifier(name)
     private fun getRightCharacter(name: String): Int = if (name.isEmpty()) defaultRightCharacter else getDrawableIdentifier(name)
@@ -69,6 +72,7 @@ class CutSceneFragment : Fragment(), CutScene.View {
                 defaultBackground = getDrawableIdentifier(info.getString(BACKGROUND))
                 defaultLeftCharacter = getDrawableIdentifier(info.getString(LEFT))
                 defaultRightCharacter = getDrawableIdentifier(info.getString(RIGHT))
+                nextScene = getIdIdentifier(info.getString(NEXT_SCENE))
                 val framesArray = info.getJSONArray(FRAMES)
                 for (i in 0 until framesArray.length()) {
                     val data = framesArray.getJSONObject(i)
@@ -93,7 +97,7 @@ class CutSceneFragment : Fragment(), CutScene.View {
 
     private fun showNextFrame() {
         if (currentFrameIndex == frames.size - 1) {
-            presenter.openNextScene()
+            findNavController().navigate(nextScene)
         }
         else {
             showFrame(++currentFrameIndex)
@@ -113,6 +117,7 @@ class CutSceneFragment : Fragment(), CutScene.View {
         const val RIGHT = "right"
         const val TEXT = "text"
         const val FRAMES = "frames"
+        const val NEXT_SCENE = "nextScene"
         @JvmStatic
         fun newInstance(bundle: Bundle?): CutSceneFragment {
             val fragment = CutSceneFragment()

@@ -13,8 +13,6 @@ import bav.onecell.common.CommonModule
 import bav.onecell.common.storage.StorageModule
 import bav.onecell.cutscene.CutSceneModule
 import bav.onecell.cutscene.CutSceneSubcomponent
-import bav.onecell.editor.EditorModule
-import bav.onecell.editor.EditorSubcomponent
 import bav.onecell.heroscreen.HeroScreenModule
 import bav.onecell.heroscreen.HeroScreenSubcomponent
 import bav.onecell.main.MainModule
@@ -30,7 +28,6 @@ import javax.inject.Singleton
 @Component(modules = [AppModule::class, ModelModule::class, CommonModule::class, StorageModule::class])
 interface AppComponent {
     fun plus(mainModule: MainModule): MainSubcomponent
-    fun plus(editorModule: EditorModule): EditorSubcomponent
     fun plus(battleModule: BattleModule): BattleSubcomponent
     fun plus(cellsListModule: CellsListModule): CellsListSubcomponent
     fun plus(cellLogicModule: CellLogicModule): CellLogicSubcomponent

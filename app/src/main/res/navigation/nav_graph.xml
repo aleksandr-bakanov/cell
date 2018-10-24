@@ -39,22 +39,8 @@
             android:defaultValue="@string/cut_scene_introduction"
             app:argType="string" />
         <action
-            android:id="@+id/action_cutSceneFragment_to_cutSceneFragment2"
-            app:destination="@id/cutSceneFragment2">
-            <argument
-                android:name="cutSceneInfo"
-                android:defaultValue="@string/cut_scene_introduction" />
-        </action>
-    </fragment>
-    <fragment
-        android:id="@+id/cutSceneFragment2"
-        android:name="bav.onecell.cutscene.CutSceneFragment"
-        android:label="CutSceneFragment"
-        tools:layout="@layout/fragment_cut_scene" >
-        <argument
-            android:name="cutSceneInfo"
-            android:defaultValue="@string/cut_scene_introduction"
-            app:argType="string"/>
+            android:id="@+id/action_cutSceneIntroduction_to_battleWithGopniks"
+            app:destination="@id/battleWithGopniks" />
     </fragment>
     <fragment
         android:id="@+id/battleFragment"
@@ -82,5 +68,15 @@
         <action
             android:id="@+id/action_battleResultsFragment_to_heroScreenFragment"
             app:destination="@id/heroScreenFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/battleWithGopniks"
+        android:name="bav.onecell.battle.BattleFragment"
+        android:label="BattleFragment"
+        tools:layout="@layout/fragment_battle">
+        <argument
+            android:name="params"
+            android:defaultValue="@string/battle_with_gopniks_params"
+            app:argType="string" />
     </fragment>
 </navigation>

@@ -5,11 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
 import androidx.navigation.findNavController
 import bav.onecell.OneCellApplication
 import bav.onecell.R
-import bav.onecell.cutscene.CutSceneFragment
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_main.buttonGoToBattle
 import kotlinx.android.synthetic.main.fragment_main.buttonHeroScreen

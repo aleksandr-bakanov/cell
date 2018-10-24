@@ -10,7 +10,7 @@ interface Router {
     data class Window(val type: WindowType, val args: Bundle? = null)
 
     enum class WindowType {
-        MAIN, BATTLE_CELLS_SELECTION, BATTLE, CELL_EDITOR, CUT_SCENE, BATTLE_RESULTS, HERO_SCREEN;
+        MAIN, BATTLE_CELLS_SELECTION, BATTLE, CUT_SCENE, BATTLE_RESULTS, HERO_SCREEN;
 
         companion object {
             private val map = WindowType.values().associateBy { it.toString() }

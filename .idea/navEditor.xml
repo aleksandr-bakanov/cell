@@ -34,8 +34,8 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="336" />
-                            <option name="y" value="-501" />
+                            <option name="x" value="252" />
+                            <option name="y" value="-230" />
                           </Point>
                         </option>
                         <option name="myPositions">
@@ -46,6 +46,18 @@
                               </value>
                             </entry>
                           </map>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="battleWithGopniks">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="31" />
+                            <option name="y" value="102" />
+                          </Point>
                         </option>
                       </LayoutPositions>
                     </value>
@@ -71,18 +83,6 @@
                       </LayoutPositions>
                     </value>
                   </entry>
-                  <entry key="cutSceneFragment2">
-                    <value>
-                      <LayoutPositions>
-                        <option name="myPosition">
-                          <Point>
-                            <option name="x" value="-65" />
-                            <option name="y" value="118" />
-                          </Point>
-                        </option>
-                      </LayoutPositions>
-                    </value>
-                  </entry>
                   <entry key="cutSceneIntroduction">
                     <value>
                       <LayoutPositions>
@@ -91,15 +91,6 @@
                             <option name="x" value="-299" />
                             <option name="y" value="91" />
                           </Point>
-                        </option>
-                        <option name="myPositions">
-                          <map>
-                            <entry key="action_cutSceneFragment_to_cutSceneFragment2">
-                              <value>
-                                <LayoutPositions />
-                              </value>
-                            </entry>
-                          </map>
                         </option>
                       </LayoutPositions>
                     </value>
