@@ -3,6 +3,7 @@ package bav.onecell.main
 import android.os.Bundle
 import androidx.fragment.app.FragmentActivity
 import android.view.View
+import androidx.navigation.findNavController
 import bav.onecell.OneCellApplication
 import bav.onecell.R
 import bav.onecell.battle.BattleFragment
@@ -48,6 +49,16 @@ class MainActivity : FragmentActivity() {
     override fun onDestroy() {
         disposables.dispose()
         super.onDestroy()
+    }
+    //endregion
+
+    //region Overridden methods
+    override fun onBackPressed() {
+        val navController = findNavController(R.id.nav_host_fragment)
+        // TODO: save current destination and return to it on press on 'Continue' button
+        //navController.currentDestination
+        navController.popBackStack(R.id.mainFragment, false)
+        findNavController(R.id.nav_host_fragment).navigate(R.id.mainFragment)
     }
     //endregion
 

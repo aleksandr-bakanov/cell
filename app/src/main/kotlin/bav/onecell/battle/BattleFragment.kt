@@ -123,7 +123,7 @@ class BattleFragment : Fragment(), Battle.View {
             val doa = arrayListOf<Boolean>()
             dealtDamage.keys.forEach { doa.add(deadOrAliveCells[it] ?: false) }
             bundle.putBooleanArray(BattleResultsFragment.DEAD_OR_ALIVE, doa.toBooleanArray())
-            view.findNavController().navigate(R.id.action_battleFragment_to_battleResultsFragment, bundle)
+            view.findNavController().navigate(R.id.battleResultsFragment, bundle)
             //presenter.finishBattle(battleInfo)
         }
         activity?.runOnUiThread {
