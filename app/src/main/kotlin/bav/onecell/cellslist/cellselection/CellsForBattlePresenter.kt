@@ -17,6 +17,7 @@ class CellsForBattlePresenter(
     }
 
     private val cellRepoNotifier = PublishSubject.create<Unit>()
+    private val selectedCells: MutableSet<Int> = mutableSetOf()
 
     override fun cellsCount(): Int = cellRepository.cellsCount()
 
@@ -36,5 +37,12 @@ class CellsForBattlePresenter(
     override fun startBattle(cellIndexes: List<Int>) {
         router.goToBattle(cellIndexes)
     }
+
+    override fun cellSelected(index: Int, selected: Boolean) {
+        if (selected) selectedCells.add(index)
+        else selectedCells.remove(index)
+    }
+
+    override fun getSelectedCells(): List<Int> = selectedCells.toList()
     //endregion
 }

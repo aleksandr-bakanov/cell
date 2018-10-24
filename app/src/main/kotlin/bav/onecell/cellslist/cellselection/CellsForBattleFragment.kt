@@ -3,6 +3,7 @@ package bav.onecell.cellslist.cellselection
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,7 +18,6 @@ import bav.onecell.model.InitialBattleParams
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_choose_cells_for_battle.buttonStartBattle
 import kotlinx.android.synthetic.main.fragment_choose_cells_for_battle.recyclerViewCellList
-import kotlinx.android.synthetic.main.item_row_cell_for_selection.view.checkboxSelect
 import javax.inject.Inject
 
 class CellsForBattleFragment : Fragment(), CellsForBattle.View {
@@ -58,14 +58,7 @@ class CellsForBattleFragment : Fragment(), CellsForBattle.View {
     }
 
     private fun openBattleView(view: View) {
-        val indexes = mutableListOf<Int>()
-        for (i in 0 until recyclerViewCellList.childCount) {
-            val viewHolder = recyclerViewCellList
-                    .findViewHolderForAdapterPosition(i) as? CellForBattleRecyclerViewAdapter.ViewHolder
-            viewHolder?.let {
-                if (it.view.checkboxSelect.isChecked) indexes.add(i)
-            }
-        }
+        val indexes = presenter.getSelectedCells()
         if (indexes.size >= 2) {
             val params = InitialBattleParams()
             params.cellIndexes.addAll(indexes)

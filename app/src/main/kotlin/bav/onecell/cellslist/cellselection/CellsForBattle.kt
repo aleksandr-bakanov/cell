@@ -30,5 +30,9 @@ interface CellsForBattle {
         fun cellRepoUpdateNotifier(): Observable<Unit>
 
         fun startBattle(cellIndexes: List<Int>)
+
+        fun cellSelected(index: Int, selected: Boolean)
+
+        fun getSelectedCells(): List<Int>
     }
 }
