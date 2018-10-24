@@ -15,11 +15,7 @@
             app:destination="@id/heroScreenFragment" />
         <action
             android:id="@+id/action_mainFragment_to_cutSceneIntroduction"
-            app:destination="@+id/cutSceneIntroduction">
-            <argument
-                android:name="cutSceneInfo"
-                android:defaultValue="@string/cut_scene_introduction" />
-        </action>
+            app:destination="@id/cutSceneIntroduction" />
         <action
             android:id="@+id/action_mainFragment_to_cellsForBattleFragment"
             app:destination="@id/cellsForBattleFragment" />

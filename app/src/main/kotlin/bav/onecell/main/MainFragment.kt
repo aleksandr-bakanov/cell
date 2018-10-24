@@ -35,8 +35,7 @@ class MainFragment : Fragment(), Main.View {
             view.findNavController().navigate(R.id.action_mainFragment_to_cellsForBattleFragment)
         }
         buttonNewGame.setOnClickListener { view ->
-            val bundle = bundleOf(CutSceneFragment.CUT_SCENE_INFO to resources.getString(R.string.cut_scene_introduction))
-            view.findNavController().navigate(R.id.action_mainFragment_to_cutSceneIntroduction, bundle)
+            view.findNavController().navigate(R.id.action_mainFragment_to_cutSceneIntroduction)
         }
         buttonHeroScreen.setOnClickListener { view ->
             view.findNavController().navigate(R.id.action_mainFragment_to_heroScreenFragment)

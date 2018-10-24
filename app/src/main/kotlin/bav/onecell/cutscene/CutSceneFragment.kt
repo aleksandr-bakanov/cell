@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.util.Log
+import androidx.core.content.ContextCompat
 import bav.onecell.OneCellApplication
 import bav.onecell.R
 import io.reactivex.disposables.CompositeDisposable
@@ -84,9 +85,9 @@ class CutSceneFragment : Fragment(), CutScene.View {
     private fun showFrame(index: Int) {
         if (index !in 0 until frames.size) return
         val frameData = frames[index]
-        background.setImageDrawable(resources.getDrawable(getBackground(frameData.background)))
-        leftCharacter.setImageDrawable(resources.getDrawable(getLeftCharacter(frameData.left)))
-        rightCharacter.setImageDrawable(resources.getDrawable(getRightCharacter(frameData.right)))
+        background.setImageDrawable(ContextCompat.getDrawable(requireContext(), getBackground(frameData.background)))
+        leftCharacter.setImageDrawable(ContextCompat.getDrawable(requireContext(), getLeftCharacter(frameData.left)))
+        rightCharacter.setImageDrawable(ContextCompat.getDrawable(requireContext(), getRightCharacter(frameData.right)))
         textView.text = frameData.text
     }
 

@@ -1,5 +1,6 @@
 package bav.onecell.battle
 
+import android.util.Log
 import bav.onecell.common.router.Router
 import bav.onecell.model.BattleInfo
 import bav.onecell.model.InitialBattleParams
@@ -19,6 +20,7 @@ class BattlePresenter(
 
     override fun initialize(params: String) {
         view.drawSnapshotInitialState()
+        Log.d(TAG, "params = $params")
         battleEngine.initialize(InitialBattleParams.fromJson(params))
     }
 
