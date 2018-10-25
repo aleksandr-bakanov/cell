@@ -5,10 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
 import bav.onecell.OneCellApplication
 import bav.onecell.R
 import io.reactivex.disposables.CompositeDisposable
+import kotlinx.android.synthetic.main.fragment_main.buttonContinueGame
+import kotlinx.android.synthetic.main.fragment_main.buttonExitGame
 import kotlinx.android.synthetic.main.fragment_main.buttonGoToBattle
 import kotlinx.android.synthetic.main.fragment_main.buttonHeroScreen
 import kotlinx.android.synthetic.main.fragment_main.buttonNewGame
@@ -19,6 +22,7 @@ class MainFragment : Fragment(), Main.View {
     @Inject
     lateinit var presenter: Main.Presenter
     private val disposables = CompositeDisposable()
+    private var lastNavDestination: NavDestination? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -37,6 +41,16 @@ class MainFragment : Fragment(), Main.View {
         }
         buttonHeroScreen.setOnClickListener { view ->
             view.findNavController().navigate(R.id.action_mainFragment_to_heroScreenFragment)
+        }
+        buttonExitGame.setOnClickListener { requireActivity().finish() }
+        buttonContinueGame.setOnClickListener {
+            lastNavDestination?.let { destination -> it.findNavController().navigate(destination.id) }
+        }
+
+        (requireActivity() as? Main.NavigationInfoProvider)?.let {
+            disposables.add(it.provideLastDestination().subscribe { destination ->
+                lastNavDestination = destination
+            })
         }
     }
 

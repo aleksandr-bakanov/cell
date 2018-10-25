@@ -1,5 +1,8 @@
 package bav.onecell.main
 
+import androidx.navigation.NavDestination
+import io.reactivex.Observable
+
 interface Main {
 
     interface View {
@@ -15,5 +18,9 @@ interface Main {
         fun startNewGame(info: String)
 
         fun openHeroScreen()
+    }
+
+    interface NavigationInfoProvider {
+        fun provideLastDestination(): Observable<NavDestination>
     }
 }

@@ -1,8 +1,10 @@
 package bav.onecell.main
 
 import android.os.Bundle
-import androidx.fragment.app.FragmentActivity
+import android.util.Log
 import android.view.View
+import androidx.fragment.app.FragmentActivity
+import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
 import bav.onecell.OneCellApplication
 import bav.onecell.R
@@ -18,13 +20,16 @@ import bav.onecell.common.router.Router.WindowType.HERO_SCREEN
 import bav.onecell.common.router.Router.WindowType.MAIN
 import bav.onecell.cutscene.CutSceneFragment
 import bav.onecell.heroscreen.HeroScreenFragment
+import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.subjects.BehaviorSubject
 import javax.inject.Inject
 
-class MainActivity : FragmentActivity() {
+class MainActivity : FragmentActivity(), Main.NavigationInfoProvider {
 
     @Inject lateinit var router: Router
     private val disposables: CompositeDisposable = CompositeDisposable()
+    private val lastNavDestinationProvider: BehaviorSubject<NavDestination> = BehaviorSubject.create()
 
     companion object {
         private const val TAG = "MainActivity"
@@ -55,11 +60,11 @@ class MainActivity : FragmentActivity() {
     //region Overridden methods
     override fun onBackPressed() {
         val navController = findNavController(R.id.nav_host_fragment)
-        // TODO: save current destination and return to it on press on 'Continue' button
-        //navController.currentDestination
+        navController.currentDestination?.let { lastNavDestinationProvider.onNext(it) }
         navController.popBackStack(R.id.mainFragment, false)
-        findNavController(R.id.nav_host_fragment).navigate(R.id.mainFragment)
     }
+
+    override fun provideLastDestination(): Observable<NavDestination> = lastNavDestinationProvider
     //endregion
 
     //region Private methods
