@@ -106,6 +106,7 @@
         android:text="@string/text_cell_name"
         android:textAlignment="textEnd"
         android:textSize="36sp"
+        android:fontFamily="@font/bromine"
         app:layout_constraintEnd_toStartOf="@id/buttonMainMenu"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -123,7 +124,14 @@
         android:id="@+id/textHeroHistory"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:fontFamily="@font/bromine"
         android:text="@string/text_history_stub"
+        android:textSize="24sp"
+        android:textColor="@android:color/white"
+        android:shadowColor="@android:color/black"
+        android:shadowDx="@dimen/cut_scene_text_shadow_offset"
+        android:shadowDy="@dimen/cut_scene_text_shadow_offset"
+        android:shadowRadius="@dimen/cut_scene_text_shadow_radius"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

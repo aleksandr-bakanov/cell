@@ -8,37 +8,41 @@
         android:id="@+id/buttonNewGame"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/bromine"
         android:text="@string/button_new_game_title"
+        app:layout_constraintBottom_toTopOf="@id/buttonContinueGame"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/buttonContinueGame"
         app:layout_constraintVertical_chainStyle="packed" />
 
     <Button
         android:id="@+id/buttonContinueGame"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/bromine"
         android:text="@string/button_continue_game_title"
-        app:layout_constraintTop_toBottomOf="@id/buttonNewGame"
         app:layout_constraintBottom_toTopOf="@id/buttonGoToBattle"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/buttonNewGame" />
 
     <Button
         android:id="@+id/buttonGoToBattle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/bromine"
         android:text="@string/button_go_to_battle_title"
-        app:layout_constraintTop_toBottomOf="@id/buttonContinueGame"
         app:layout_constraintBottom_toTopOf="@id/buttonHeroScreen"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/buttonContinueGame" />
 
     <Button
         android:id="@+id/buttonHeroScreen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/bromine"
         android:text="@string/button_hero_screen_title"
         app:layout_constraintBottom_toTopOf="@id/buttonExitGame"
         app:layout_constraintEnd_toEndOf="parent"
@@ -49,7 +53,9 @@
         android:id="@+id/buttonExitGame"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/bromine"
         android:text="@string/button_exit_game_title"
+        android:textAllCaps="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
