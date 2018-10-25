@@ -58,4 +58,10 @@ class CommonModule {
     fun provideResourceProvider(@Named("app_context") context: Context): Common.ResourceProvider {
         return ResourceProviderImpl(context)
     }
+
+    @Provides
+    @Singleton
+    fun provideGameState(@Named("app_context") context: Context): Common.GameState {
+        return GameStateImpl(context)
+    }
 }

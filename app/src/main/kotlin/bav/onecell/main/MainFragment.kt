@@ -22,7 +22,7 @@ class MainFragment : Fragment(), Main.View {
     @Inject
     lateinit var presenter: Main.Presenter
     private val disposables = CompositeDisposable()
-    private var lastNavDestination: NavDestination? = null
+    private var lastNavDestination: Int = 0
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -44,7 +44,7 @@ class MainFragment : Fragment(), Main.View {
         }
         buttonExitGame.setOnClickListener { requireActivity().finish() }
         buttonContinueGame.setOnClickListener {
-            lastNavDestination?.let { destination -> it.findNavController().navigate(destination.id) }
+            if (lastNavDestination != 0) it.findNavController().navigate(lastNavDestination)
         }
 
         (requireActivity() as? Main.NavigationInfoProvider)?.let {

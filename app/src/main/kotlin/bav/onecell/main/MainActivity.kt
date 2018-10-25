@@ -4,13 +4,13 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.fragment.app.FragmentActivity
-import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
 import bav.onecell.OneCellApplication
 import bav.onecell.R
 import bav.onecell.battle.BattleFragment
 import bav.onecell.battle.results.BattleResultsFragment
 import bav.onecell.cellslist.cellselection.CellsForBattleFragment
+import bav.onecell.common.Common
 import bav.onecell.common.router.Router
 import bav.onecell.common.router.Router.WindowType.BATTLE
 import bav.onecell.common.router.Router.WindowType.BATTLE_CELLS_SELECTION
@@ -28,8 +28,9 @@ import javax.inject.Inject
 class MainActivity : FragmentActivity(), Main.NavigationInfoProvider {
 
     @Inject lateinit var router: Router
+    @Inject lateinit var gameState: Common.GameState
     private val disposables: CompositeDisposable = CompositeDisposable()
-    private val lastNavDestinationProvider: BehaviorSubject<NavDestination> = BehaviorSubject.create()
+    private val lastNavDestinationProvider: BehaviorSubject<Int> = BehaviorSubject.create()
 
     companion object {
         private const val TAG = "MainActivity"
@@ -44,6 +45,8 @@ class MainActivity : FragmentActivity(), Main.NavigationInfoProvider {
         setContentView(R.layout.activity_main)
 
         disposables.add(router.windowChange().subscribe { changeWindow(it) })
+
+        lastNavDestinationProvider.onNext(gameState.getLastNavDestinationId())
     }
 
     override fun onResume() {
@@ -60,11 +63,14 @@ class MainActivity : FragmentActivity(), Main.NavigationInfoProvider {
     //region Overridden methods
     override fun onBackPressed() {
         val navController = findNavController(R.id.nav_host_fragment)
-        navController.currentDestination?.let { lastNavDestinationProvider.onNext(it) }
+        navController.currentDestination?.let {
+            gameState.setLastNavDestinationId(it.id)
+            lastNavDestinationProvider.onNext(it.id)
+        }
         navController.popBackStack(R.id.mainFragment, false)
     }
 
-    override fun provideLastDestination(): Observable<NavDestination> = lastNavDestinationProvider
+    override fun provideLastDestination(): Observable<Int> = lastNavDestinationProvider
     //endregion
 
     //region Private methods

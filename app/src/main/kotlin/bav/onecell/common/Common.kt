@@ -20,4 +20,11 @@ interface Common {
 
         fun getAvatarDrawableId(index: Int): Int
     }
+
+    interface GameState {
+        fun getLastNavDestinationId(): Int
+        fun setLastNavDestinationId(id: Int)
+
+        fun isFirstLaunch(): Boolean
+    }
 }

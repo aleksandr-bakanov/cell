@@ -1,6 +1,5 @@
 package bav.onecell.main
 
-import androidx.navigation.NavDestination
 import io.reactivex.Observable
 
 interface Main {
@@ -21,6 +20,6 @@ interface Main {
     }
 
     interface NavigationInfoProvider {
-        fun provideLastDestination(): Observable<NavDestination>
+        fun provideLastDestination(): Observable<Int>
     }
 }
