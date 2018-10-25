@@ -5,7 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
 import bav.onecell.OneCellApplication
 import bav.onecell.R
@@ -50,6 +49,7 @@ class MainFragment : Fragment(), Main.View {
         (requireActivity() as? Main.NavigationInfoProvider)?.let {
             disposables.add(it.provideLastDestination().subscribe { destination ->
                 lastNavDestination = destination
+                buttonContinueGame.visibility = if (lastNavDestination == 0) View.GONE else View.VISIBLE
             })
         }
     }
