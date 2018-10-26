@@ -15,7 +15,63 @@
         app:layout_constraintBottom_toBottomOf="parent"/>
 
     <!-- Hex types buttons -->
-    <Button
+    <bav.onecell.common.view.HexPicker
+        android:id="@+id/radioButtonLifeHex"
+        android:layout_width="@dimen/hero_screen_hex_type_size"
+        android:layout_height="@dimen/hero_screen_hex_type_size"
+        android:padding="5dp"
+        app:layout_constraintBottom_toTopOf="@id/editorCanvasView"
+        app:layout_constraintEnd_toStartOf="@+id/radioButtonAttackHex"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@id/recyclerViewAvatars"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <bav.onecell.common.view.HexPicker
+        android:id="@+id/radioButtonAttackHex"
+        android:layout_width="@dimen/hero_screen_hex_type_size"
+        android:layout_height="@dimen/hero_screen_hex_type_size"
+        android:padding="5dp"
+        app:layout_constraintBottom_toTopOf="@id/editorCanvasView"
+        app:layout_constraintEnd_toStartOf="@id/radioButtonEnergyHex"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@id/radioButtonLifeHex"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <bav.onecell.common.view.HexPicker
+        android:id="@+id/radioButtonEnergyHex"
+        android:layout_width="@dimen/hero_screen_hex_type_size"
+        android:layout_height="@dimen/hero_screen_hex_type_size"
+        android:padding="5dp"
+        app:layout_constraintBottom_toTopOf="@id/editorCanvasView"
+        app:layout_constraintEnd_toStartOf="@id/radioButtonDeathRayHex"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@id/radioButtonAttackHex"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <bav.onecell.common.view.HexPicker
+        android:id="@+id/radioButtonDeathRayHex"
+        android:layout_width="@dimen/hero_screen_hex_type_size"
+        android:layout_height="@dimen/hero_screen_hex_type_size"
+        android:padding="5dp"
+        app:layout_constraintBottom_toTopOf="@id/editorCanvasView"
+        app:layout_constraintEnd_toStartOf="@id/radioButtonRemoveHex"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@id/radioButtonEnergyHex"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <bav.onecell.common.view.HexPicker
+        android:id="@+id/radioButtonRemoveHex"
+        android:layout_width="@dimen/hero_screen_hex_type_size"
+        android:layout_height="@dimen/hero_screen_hex_type_size"
+        android:padding="5dp"
+        app:layout_constraintBottom_toTopOf="@id/editorCanvasView"
+        app:layout_constraintEnd_toStartOf="@id/textMoney"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@id/radioButtonDeathRayHex"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <!-- <Button
         android:id="@+id/radioButtonLifeHex"
         android:layout_width="@dimen/hero_screen_hex_type_size"
         android:layout_height="@dimen/hero_screen_hex_type_size"
@@ -77,7 +133,7 @@
         app:layout_constraintEnd_toStartOf="@id/textMoney"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@id/radioButtonDeathRayHex"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" /> -->
 
     <!-- Money field -->
     <TextView

@@ -14,7 +14,7 @@ data class Data(
         @ColumnInfo(name = "hexes") var hexes: MutableMap<Int, Hex> =
                 mutableMapOf(Pair(Hex().hashCode(), Hex().withType(Hex.Type.LIFE))),
         // origin - an origin coordinates
-        @ColumnInfo(name = "origin") var origin: Hex = Hex(0, 0, 0),
+        @ColumnInfo(name = "origin") var origin: Hex = Hex(),
         // direction - direction of cell's look
         @ColumnInfo(name = "direction") var direction: Cell.Direction = Cell.Direction.N,
         // rules - set of rules according to which cell will act in battle
@@ -23,10 +23,14 @@ data class Data(
         @ColumnInfo(name = "name") var name: String = "",
         // money - can be spent to build up cell
         @ColumnInfo(name = "money") var money: Int = 10,
-        // group id - cells with same group id are friends to each other
+        // group id - cells with the same group id are friends to each other
         @ColumnInfo(name = "groupId") var groupId: Int = 0,
         // field of view - distance of view through the fog
-        @ColumnInfo(name = "viewDistance") var viewDistance: Int = 3) {
+        @ColumnInfo(name = "viewDistance") var viewDistance: Int = 3,
+        // hex bucket - hexes to be used to build up cell from. Map of Hex.Type.ordinal -> count.
+        @ColumnInfo(name = "hexBucket") var hexBucket: MutableMap<Int, Int> =
+                mutableMapOf(Pair(Hex.Type.LIFE.ordinal, 5), Pair(Hex.Type.ATTACK.ordinal, 5),
+                             Pair(Hex.Type.ENERGY.ordinal, 5), Pair(Hex.Type.DEATH_RAY.ordinal, 5))) {
 
     companion object {
         fun fromJson(json: String): Data {
@@ -39,6 +43,7 @@ data class Data(
         data.hexes.clear()
         hexes.forEach { entry -> data.hexes[entry.key] = entry.value.clone() }
         rules.forEach { data.rules.add(it) }
+        data.hexBucket.putAll(hexBucket)
         return data
     }
 

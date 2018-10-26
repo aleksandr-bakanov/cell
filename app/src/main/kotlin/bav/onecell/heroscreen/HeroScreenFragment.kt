@@ -41,6 +41,7 @@ import kotlinx.android.synthetic.main.fragment_hero_screen.recyclerViewCondition
 import kotlinx.android.synthetic.main.fragment_hero_screen.recyclerViewRulesList
 import kotlinx.android.synthetic.main.fragment_hero_screen.textHeroHistory
 import kotlinx.android.synthetic.main.fragment_hero_screen.textMoney
+import kotlinx.android.synthetic.main.view_hex_picker.view.buttonHex
 import javax.inject.Inject
 import kotlin.math.PI
 
@@ -69,11 +70,18 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
             view.findNavController().navigate(R.id.action_heroScreenFragment_to_mainFragment)
             presenter.openMainMenu()
         }
-        radioButtonLifeHex.setOnClickListener { onHexTypeRadioButtonClicked(it) }
-        radioButtonAttackHex.setOnClickListener { onHexTypeRadioButtonClicked(it) }
-        radioButtonEnergyHex.setOnClickListener { onHexTypeRadioButtonClicked(it) }
-        radioButtonDeathRayHex.setOnClickListener { onHexTypeRadioButtonClicked(it) }
-        radioButtonRemoveHex.setOnClickListener { onHexTypeRadioButtonClicked(it) }
+        radioButtonLifeHex.setButtonClickListener { onHexTypeRadioButtonClicked(it) }
+        radioButtonAttackHex.setButtonClickListener { onHexTypeRadioButtonClicked(it) }
+        radioButtonEnergyHex.setButtonClickListener { onHexTypeRadioButtonClicked(it) }
+        radioButtonDeathRayHex.setButtonClickListener { onHexTypeRadioButtonClicked(it) }
+        radioButtonRemoveHex.setButtonClickListener { onHexTypeRadioButtonClicked(it) }
+
+        radioButtonLifeHex.buttonHex.setImageResource(R.drawable.ic_hex_life)
+        radioButtonAttackHex.buttonHex.setImageResource(R.drawable.ic_hex_attack)
+        radioButtonEnergyHex.buttonHex.setImageResource(R.drawable.ic_hex_energy)
+        radioButtonDeathRayHex.buttonHex.setImageResource(R.drawable.ic_hex_death_ray)
+        radioButtonRemoveHex.buttonHex.setImageResource(R.drawable.ic_hex_life)
+
         buttonRotateCellLeft.setOnClickListener { onCellRotateButtonClicked(it) }
         buttonRotateCellRight.setOnClickListener { onCellRotateButtonClicked(it) }
         buttonSwitchScreen.setOnClickListener { switchCellLogicEditorViews() }

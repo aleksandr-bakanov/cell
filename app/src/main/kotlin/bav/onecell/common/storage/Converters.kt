@@ -12,6 +12,7 @@ import java.lang.reflect.Type
 class Converters {
     private val mapOfHexesType: Type = object : TypeToken<Map<Int, Hex>>(){}.type
     private val listOfRulesType: Type = object : TypeToken<List<Rule>>(){}.type
+    private val mapOfIntType: Type = object : TypeToken<Map<Int, Int>>(){}.type
 
     @TypeConverter
     fun cellDataToString(data: Data?): String? {
@@ -70,4 +71,10 @@ class Converters {
             Gson().fromJson(it, listOfRulesType)
         }
     }
+
+    @TypeConverter
+    fun mapOfIntToString(map: Map<Int, Int>?): String? = map?.let { Gson().toJson(it) }
+
+    @TypeConverter
+    fun stringToMapOfInt(str: String?): Map<Int, Int>? = str?.let { Gson().fromJson(it, mapOfIntType) }
 }
