@@ -57,5 +57,7 @@ interface Editor {
         fun getBackgroundCellRadiusProvider(): Observable<Int>
 
         fun getTipHexes(type: Hex.Type): Collection<Hex>
+
+        fun getHexInBucketCount(type: Hex.Type): Int
     }
 }

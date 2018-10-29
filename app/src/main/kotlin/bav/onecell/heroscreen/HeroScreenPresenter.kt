@@ -53,6 +53,7 @@ class HeroScreenPresenter(
                         cell?.let { currentCell -> cellRepository.storeCell(currentCell) }
                         cell = cellRepository.getCell(cellIndex)
                         cell?.let { c -> view.setCellName(c.data.name) }
+                        updateHexBucketCounts()
                         rules = cell?.data?.rules
                         rulesNotifier.onNext(Unit)
                         currentlyEditedRule = null
@@ -296,6 +297,8 @@ class HeroScreenPresenter(
         }
         return mutableSetOf()
     }
+
+    override fun getHexInBucketCount(type: Hex.Type): Int = cell?.data?.hexBucket?.get(type.ordinal) ?: 0
     //endregion
 
     //region HeroScreen.Presenter methods
@@ -361,6 +364,14 @@ class HeroScreenPresenter(
         rulesNotifier.onNext(Unit)
         clearCurrentCondition()
         setPickerOptionsSource(null)
+    }
+
+    private fun updateHexBucketCounts() {
+        cell?.let {
+            for (type in Hex.Type.values()) {
+                view.updateHexesInBucket(Pair(type, it.data.hexBucket[type.ordinal] ?: 0))
+            }
+        }
     }
     //endregion
 

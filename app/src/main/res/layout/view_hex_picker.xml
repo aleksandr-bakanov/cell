@@ -18,14 +18,17 @@
         android:id="@+id/textViewHexCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/bromine"
-        android:text="5"
-        android:textSize="20sp"
-        android:textColor="@android:color/black"
-        android:clickable="false"
-        android:longClickable="false"
         android:layout_margin="@dimen/hero_screen_avatar_margin"
+        android:clickable="false"
+        android:fontFamily="@font/bromine"
+        android:longClickable="false"
+        android:text="5"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@id/buttonHex"
-        app:layout_constraintEnd_toEndOf="@id/buttonHex" />
+        app:layout_constraintEnd_toEndOf="@id/buttonHex"
+        app:layout_constraintStart_toStartOf="@id/buttonHex"
+        app:layout_constraintTop_toTopOf="@id/buttonHex" />
 
 </merge>

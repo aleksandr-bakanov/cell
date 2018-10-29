@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.TextView
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.constraintlayout.widget.ConstraintLayout
 import bav.onecell.R
@@ -17,5 +18,18 @@ class HexPicker(context: Context, attributeSet: AttributeSet): ConstraintLayout(
     fun setButtonClickListener(listener: (v: View) -> Unit) {
         val button = findViewById<AppCompatImageButton>(R.id.buttonHex)
         button.setOnClickListener { listener.invoke(this) }
+    }
+
+    fun setButtonLongClickListener(listener: (v: View) -> Unit) {
+        val button = findViewById<AppCompatImageButton>(R.id.buttonHex)
+        button.setOnLongClickListener {
+            listener.invoke(this)
+            true
+        }
+    }
+
+    fun setHexCount(value: Int) {
+        val textField = findViewById<TextView>(R.id.textViewHexCount)
+        textField.text = value.toString()
     }
 }

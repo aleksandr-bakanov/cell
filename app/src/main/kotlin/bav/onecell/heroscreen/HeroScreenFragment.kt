@@ -7,6 +7,7 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,6 +19,7 @@ import bav.onecell.celllogic.picker.PickerRecyclerViewAdapter
 import bav.onecell.celllogic.rules.RulesRecyclerViewAdapter
 import bav.onecell.common.Common
 import bav.onecell.common.view.DrawUtils
+import bav.onecell.common.view.HexPicker
 import bav.onecell.model.hexes.Hex
 import bav.onecell.model.hexes.HexMath
 import io.reactivex.disposables.CompositeDisposable
@@ -64,29 +66,9 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         inject()
+
         initiateCanvasView()
-
-        buttonMainMenu.setOnClickListener { view ->
-            view.findNavController().navigate(R.id.action_heroScreenFragment_to_mainFragment)
-            presenter.openMainMenu()
-        }
-        radioButtonLifeHex.setButtonClickListener { onHexTypeRadioButtonClicked(it) }
-        radioButtonAttackHex.setButtonClickListener { onHexTypeRadioButtonClicked(it) }
-        radioButtonEnergyHex.setButtonClickListener { onHexTypeRadioButtonClicked(it) }
-        radioButtonDeathRayHex.setButtonClickListener { onHexTypeRadioButtonClicked(it) }
-        radioButtonRemoveHex.setButtonClickListener { onHexTypeRadioButtonClicked(it) }
-
-        radioButtonLifeHex.buttonHex.setImageResource(R.drawable.ic_hex_life)
-        radioButtonAttackHex.buttonHex.setImageResource(R.drawable.ic_hex_attack)
-        radioButtonEnergyHex.buttonHex.setImageResource(R.drawable.ic_hex_energy)
-        radioButtonDeathRayHex.buttonHex.setImageResource(R.drawable.ic_hex_death_ray)
-        radioButtonRemoveHex.buttonHex.setImageResource(R.drawable.ic_hex_life)
-
-        buttonRotateCellLeft.setOnClickListener { onCellRotateButtonClicked(it) }
-        buttonRotateCellRight.setOnClickListener { onCellRotateButtonClicked(it) }
-        buttonSwitchScreen.setOnClickListener { switchCellLogicEditorViews() }
-        buttonIncreaseRulePriority.setOnClickListener { presenter.increaseSelectedRulePriority() }
-        buttonDecreaseRulePriority.setOnClickListener { presenter.decreaseSelectedRulePriority() }
+        initiateButtons()
 
         recyclerViewAvatars.layoutManager = LinearLayoutManager(context)
         recyclerViewAvatars.addItemDecoration(HeroIconsRecyclerViewAdapter.VerticalSpaceItemDecoration())
@@ -142,6 +124,17 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
         editorCanvasView.tipHexes = presenter.getTipHexes(type)
         editorCanvasView.invalidate()
     }
+
+    override fun updateHexesInBucket(value: Pair<Hex.Type, Int>) {
+        val hexPicker = when (value.first) {
+            Hex.Type.LIFE -> radioButtonLifeHex
+            Hex.Type.ENERGY -> radioButtonEnergyHex
+            Hex.Type.ATTACK -> radioButtonAttackHex
+            Hex.Type.DEATH_RAY -> radioButtonDeathRayHex
+            else -> radioButtonRemoveHex
+        }
+        hexPicker.setHexCount(value.second)
+    }
     //endregion
 
     //region HeroScreen.View methods
@@ -165,23 +158,56 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
                 .inject(this)
     }
 
+    private fun initiateButtons() {
+        buttonMainMenu.setOnClickListener { view ->
+            view.findNavController().navigate(R.id.action_heroScreenFragment_to_mainFragment)
+            presenter.openMainMenu()
+        }
+
+        for (view in arrayListOf<HexPicker>(radioButtonLifeHex, radioButtonAttackHex, radioButtonEnergyHex,
+                                            radioButtonDeathRayHex, radioButtonRemoveHex)) {
+            view.setButtonClickListener { onHexTypeButtonClicked(it) }
+            view.setButtonLongClickListener { onHexTypeButtonLongClicked(it) }
+        }
+
+        radioButtonLifeHex.buttonHex.setImageResource(R.drawable.ic_hex_life)
+        radioButtonAttackHex.buttonHex.setImageResource(R.drawable.ic_hex_attack)
+        radioButtonEnergyHex.buttonHex.setImageResource(R.drawable.ic_hex_energy)
+        radioButtonDeathRayHex.buttonHex.setImageResource(R.drawable.ic_hex_death_ray)
+        radioButtonRemoveHex.buttonHex.setImageResource(R.drawable.ic_hex_life)
+
+        buttonRotateCellLeft.setOnClickListener { onCellRotateButtonClicked(it) }
+        buttonRotateCellRight.setOnClickListener { onCellRotateButtonClicked(it) }
+        buttonSwitchScreen.setOnClickListener { switchCellLogicEditorViews() }
+        buttonIncreaseRulePriority.setOnClickListener { presenter.increaseSelectedRulePriority() }
+        buttonDecreaseRulePriority.setOnClickListener { presenter.decreaseSelectedRulePriority() }
+    }
+
     private fun initiateCanvasView() {
         editorCanvasView.hexMath = hexMath
         editorCanvasView.drawUtils = drawUtils
         editorCanvasView.presenter = presenter
     }
 
-    private fun onHexTypeRadioButtonClicked(view: View) {
-        val type = when (view.id) {
-            R.id.radioButtonLifeHex -> Hex.Type.LIFE
-            R.id.radioButtonEnergyHex -> Hex.Type.ENERGY
-            R.id.radioButtonAttackHex -> Hex.Type.ATTACK
-            R.id.radioButtonDeathRayHex -> Hex.Type.DEATH_RAY
-            else -> Hex.Type.REMOVE
-        }
+    private fun getHexTypeBasedOnHexButtonId(id: Int): Hex.Type = when (id) {
+        R.id.radioButtonLifeHex -> Hex.Type.LIFE
+        R.id.radioButtonEnergyHex -> Hex.Type.ENERGY
+        R.id.radioButtonAttackHex -> Hex.Type.ATTACK
+        R.id.radioButtonDeathRayHex -> Hex.Type.DEATH_RAY
+        else -> Hex.Type.REMOVE
+    }
+
+    private fun onHexTypeButtonClicked(view: View) {
+        val type = getHexTypeBasedOnHexButtonId(view.id)
+        Log.d(TAG, "Short click: $type")
         editorCanvasView.selectedCellType = type
         editorCanvasView.tipHexes = presenter.getTipHexes(type)
         editorCanvasView.invalidate()
+    }
+
+    private fun onHexTypeButtonLongClicked(view: View) {
+        val type = getHexTypeBasedOnHexButtonId(view.id)
+        Log.d(TAG, "Long click: $type")
     }
 
     private fun onCellRotateButtonClicked(view: View) {
