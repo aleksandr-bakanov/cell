@@ -65,85 +65,9 @@
         android:layout_height="@dimen/hero_screen_hex_type_size"
         android:padding="5dp"
         app:layout_constraintBottom_toTopOf="@id/editorCanvasView"
-        app:layout_constraintEnd_toStartOf="@id/textMoney"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@id/radioButtonDeathRayHex"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-    <!-- <Button
-        android:id="@+id/radioButtonLifeHex"
-        android:layout_width="@dimen/hero_screen_hex_type_size"
-        android:layout_height="@dimen/hero_screen_hex_type_size"
-        android:padding="5dp"
-        android:text="L"
-        android:theme="@style/EditorLifeButtonTheme"
-        app:layout_constraintBottom_toTopOf="@id/editorCanvasView"
-        app:layout_constraintEnd_toStartOf="@+id/radioButtonAttackHex"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@id/recyclerViewAvatars"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/radioButtonAttackHex"
-        android:layout_width="@dimen/hero_screen_hex_type_size"
-        android:layout_height="@dimen/hero_screen_hex_type_size"
-        android:padding="5dp"
-        android:text="A"
-        android:theme="@style/EditorAttackButtonTheme"
-        app:layout_constraintBottom_toTopOf="@id/editorCanvasView"
-        app:layout_constraintEnd_toStartOf="@id/radioButtonEnergyHex"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@id/radioButtonLifeHex"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/radioButtonEnergyHex"
-        android:layout_width="@dimen/hero_screen_hex_type_size"
-        android:layout_height="@dimen/hero_screen_hex_type_size"
-        android:padding="5dp"
-        android:text="E"
-        android:theme="@style/EditorEnergyButtonTheme"
-        app:layout_constraintBottom_toTopOf="@id/editorCanvasView"
-        app:layout_constraintEnd_toStartOf="@id/radioButtonDeathRayHex"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@id/radioButtonAttackHex"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/radioButtonDeathRayHex"
-        android:layout_width="@dimen/hero_screen_hex_type_size"
-        android:layout_height="@dimen/hero_screen_hex_type_size"
-        android:padding="5dp"
-        android:text="D"
-        android:theme="@style/EditorDeathRayButtonTheme"
-        app:layout_constraintBottom_toTopOf="@id/editorCanvasView"
-        app:layout_constraintEnd_toStartOf="@id/radioButtonRemoveHex"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@id/radioButtonEnergyHex"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/radioButtonRemoveHex"
-        android:layout_width="@dimen/hero_screen_hex_type_size"
-        android:layout_height="@dimen/hero_screen_hex_type_size"
-        android:padding="5dp"
-        android:text="X"
-        app:layout_constraintBottom_toTopOf="@id/editorCanvasView"
-        app:layout_constraintEnd_toStartOf="@id/textMoney"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@id/radioButtonDeathRayHex"
-        app:layout_constraintTop_toTopOf="parent" /> -->
-
-    <!-- Money field -->
-    <TextView
-        android:id="@+id/textMoney"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/text_money"
-        android:textAlignment="textEnd"
-        app:layout_constraintBottom_toTopOf="@id/editorCanvasView"
         app:layout_constraintEnd_toEndOf="@id/editorCanvasView"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@id/radioButtonDeathRayHex"
         app:layout_constraintTop_toTopOf="parent" />
 
     <!--Other buttons -->

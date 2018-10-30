@@ -5,7 +5,6 @@ import android.animation.AnimatorListenerAdapter
 import android.animation.ValueAnimator
 import android.content.ClipData
 import android.content.ClipDescription
-import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.core.content.ContextCompat
@@ -15,9 +14,7 @@ import android.view.DragEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.navigation.findNavController
-import bav.onecell.BuildConfig
 import bav.onecell.OneCellApplication
 import bav.onecell.R
 import bav.onecell.celllogic.conditions.ConditionsRecyclerViewAdapter
@@ -29,7 +26,6 @@ import bav.onecell.common.view.HexPicker
 import bav.onecell.model.hexes.Hex
 import bav.onecell.model.hexes.HexMath
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.fragment_hero_screen.buttonDecreaseRulePriority
 import kotlinx.android.synthetic.main.fragment_hero_screen.buttonIncreaseRulePriority
 import kotlinx.android.synthetic.main.fragment_hero_screen.buttonMainMenu
@@ -48,7 +44,6 @@ import kotlinx.android.synthetic.main.fragment_hero_screen.recyclerViewCellLogic
 import kotlinx.android.synthetic.main.fragment_hero_screen.recyclerViewConditionsList
 import kotlinx.android.synthetic.main.fragment_hero_screen.recyclerViewRulesList
 import kotlinx.android.synthetic.main.fragment_hero_screen.textHeroHistory
-import kotlinx.android.synthetic.main.fragment_hero_screen.textMoney
 import kotlinx.android.synthetic.main.view_hex_picker.view.buttonHex
 import javax.inject.Inject
 import kotlin.math.PI
@@ -317,7 +312,7 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
 
         /// TODO: energy hex is available not from the beginning
         for (view in arrayListOf<View>(radioButtonLifeHex, radioButtonAttackHex, radioButtonEnergyHex,
-                                       radioButtonRemoveHex, textMoney, editorCanvasView, textHeroHistory,
+                                       radioButtonRemoveHex, editorCanvasView, textHeroHistory,
                                        buttonRotateCellLeft, buttonRotateCellRight, radioButtonDeathRayHex))
             view.visibility = editorVisibility
 
