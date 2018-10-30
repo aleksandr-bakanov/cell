@@ -33,11 +33,7 @@ class EditorCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
             super.onTouchListener(view, event)
             if (event?.action == MotionEvent.ACTION_UP) {
                 if (event.pointerCount == 1) {
-                    val x: Double = event.x.toDouble()
-                    val y: Double = event.y.toDouble()
-                    val point = Point(x, y)
-                    val fHex = hexMath.pixelToHex(layout, point)
-                    val hex = hexMath.round(fHex)
+                    val hex = pointToHex(event.x, event.y)
                     if (selectedCellType == Hex.Type.REMOVE) {
                         presenter.removeHexFromCell(hex)
                     } else {
@@ -57,5 +53,11 @@ class EditorCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
             drawUtils.drawHexes(canvas, it.data.origin, tipHexes, tipPaint, layout)
             drawUtils.drawCell(canvas, it, layout = layout)
         }
+    }
+
+    fun pointToHex(x: Float, y: Float): Hex {
+        val point = Point(x.toDouble(), y.toDouble())
+        val fHex = hexMath.pixelToHex(layout, point)
+        return hexMath.round(fHex)
     }
 }

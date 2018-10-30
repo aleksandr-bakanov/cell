@@ -3,15 +3,21 @@ package bav.onecell.heroscreen
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.animation.ValueAnimator
+import android.content.ClipData
+import android.content.ClipDescription
+import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import android.util.Log
+import android.view.DragEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.navigation.findNavController
+import bav.onecell.BuildConfig
 import bav.onecell.OneCellApplication
 import bav.onecell.R
 import bav.onecell.celllogic.conditions.ConditionsRecyclerViewAdapter
@@ -187,6 +193,7 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
         editorCanvasView.hexMath = hexMath
         editorCanvasView.drawUtils = drawUtils
         editorCanvasView.presenter = presenter
+        editorCanvasView.setOnDragListener(mDragListen)
     }
 
     private fun getHexTypeBasedOnHexButtonId(id: Int): Hex.Type = when (id) {
@@ -198,16 +205,69 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
     }
 
     private fun onHexTypeButtonClicked(view: View) {
+        highlightEditorTips(getHexTypeBasedOnHexButtonId(view.id))
+    }
+
+    private fun onHexTypeButtonLongClicked(view: View) {
         val type = getHexTypeBasedOnHexButtonId(view.id)
-        Log.d(TAG, "Short click: $type")
+        highlightEditorTips(type)
+        val typeOrdinal = type.ordinal
+        val item = ClipData.Item(typeOrdinal.toString())
+        val dragData = ClipData(
+                typeOrdinal.toString(),
+                arrayOf(ClipDescription.MIMETYPE_TEXT_PLAIN),
+                item)
+
+        val shadow = View.DragShadowBuilder(view.buttonHex)
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+            view.startDragAndDrop(dragData, shadow, null, 0)
+        }
+        else {
+            view.startDrag(dragData, shadow, null, 0)
+        }
+    }
+
+    private fun highlightEditorTips(type: Hex.Type) {
         editorCanvasView.selectedCellType = type
         editorCanvasView.tipHexes = presenter.getTipHexes(type)
         editorCanvasView.invalidate()
     }
 
-    private fun onHexTypeButtonLongClicked(view: View) {
-        val type = getHexTypeBasedOnHexButtonId(view.id)
-        Log.d(TAG, "Long click: $type")
+    private val mDragListen = View.OnDragListener { v, event ->
+        // Handles each of the expected events
+        when (event.action) {
+            DragEvent.ACTION_DRAG_STARTED -> {
+                // Determines if this View can accept the dragged data
+                event.clipDescription.hasMimeType(ClipDescription.MIMETYPE_TEXT_PLAIN)
+            }
+            DragEvent.ACTION_DRAG_ENTERED,
+            DragEvent.ACTION_DRAG_LOCATION,
+            DragEvent.ACTION_DRAG_EXITED,
+            DragEvent.ACTION_DRAG_ENDED -> {
+                true
+            }
+            DragEvent.ACTION_DROP -> {
+                // Gets the item containing the dragged data
+                val item: ClipData.Item = event.clipData.getItemAt(0)
+
+                val hex = editorCanvasView.pointToHex(event.x, event.y)
+                val typeOrdinal = item.text.toString().toInt()
+                if (typeOrdinal == Hex.Type.REMOVE.ordinal) {
+                    presenter.removeHexFromCell(hex)
+                } else {
+                    hex.type = Hex.Type.values()[typeOrdinal]
+                    presenter.addHexToCell(hex)
+                }
+                v.invalidate()
+
+                // Returns true. DragEvent.getResult() will return true.
+                true
+            }
+            else -> {
+                // An unknown action type was received.
+                false
+            }
+        }
     }
 
     private fun onCellRotateButtonClicked(view: View) {
