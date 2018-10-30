@@ -152,7 +152,7 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
 
     private fun initiateButtons() {
         buttonMainMenu.setOnClickListener { view ->
-            view.findNavController().navigate(R.id.action_heroScreenFragment_to_mainFragment)
+            view.findNavController().navigate(R.id.action_heroScreen_to_mainFragment)
             presenter.openMainMenu()
         }
 

@@ -99,12 +99,12 @@ Lorem ipsum dolor sit amet, اللغة العربية. 한국어, 조선어, 韓
                 { text: \"Changing background\", background: \"wallpaper_02\" },
                 { text: \"Return back to default background and change left character\", left: \"left_character_01\" }
             ],
-            nextScene: \"action_cutSceneIntroduction_to_battleWithGopniks\"
+            nextScene: \"action_cutSceneIntroduction_to_battleGopniks\"
         }
     </string>
 
     <!-- Battle scene params -->
-    <string name="battle_with_gopniks_params">{"cellIndexes":[0,3,4,5],"isFog":false}</string>
+    <string name="battle_with_gopniks_params">{battleParams:{cellIndexes:[0,3,4,5],isFog:false},nextScene:"action_battleGopniks_to_battleResultsGopniks"}</string>
 
     <!-- Initial cell descriptions -->
     <string-array name="cell_descriptions">

@@ -14,6 +14,9 @@ import androidx.navigation.findNavController
 import bav.onecell.OneCellApplication
 import bav.onecell.R
 import bav.onecell.battle.results.BattleResultsFragment
+import bav.onecell.common.Common
+import bav.onecell.common.Consts.Companion.BATTLE_PARAMS
+import bav.onecell.common.Consts.Companion.NEXT_SCENE
 import bav.onecell.common.view.DrawUtils
 import bav.onecell.model.BattleInfo
 import bav.onecell.model.cell.Cell
@@ -29,14 +32,17 @@ import kotlinx.android.synthetic.main.fragment_battle.buttonFinishBattle
 import kotlinx.android.synthetic.main.fragment_battle.buttonNextStep
 import kotlinx.android.synthetic.main.fragment_battle.buttonPreviousStep
 import kotlinx.android.synthetic.main.fragment_battle.seekBar
+import org.json.JSONObject
 
 class BattleFragment : Fragment(), Battle.View {
 
     @Inject lateinit var hexMath: HexMath
     @Inject lateinit var presenter: Battle.Presenter
     @Inject lateinit var drawUtils: DrawUtils
+    @Inject lateinit var resourceProvider: Common.ResourceProvider
 
     private val disposables = CompositeDisposable()
+    private var nextScene: Int = 0
 
     private val seekBarListener = object : SeekBar.OnSeekBarChangeListener {
         override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
@@ -95,7 +101,12 @@ class BattleFragment : Fragment(), Battle.View {
                             reportBattleEnd(battleInfo)
                         })
 
-        presenter.initialize(arguments?.getString(EXTRA_PARAMS).orEmpty())
+        arguments?.let {
+            val info = JSONObject(it.getString(EXTRA_PARAMS).orEmpty())
+            val battleParams = info.getString(BATTLE_PARAMS)
+            nextScene = resourceProvider.getIdIdentifier(info.getString(NEXT_SCENE))
+            presenter.initialize(battleParams)
+        }
         battleCanvasView.backgroundFieldRadius = 5
     }
 
@@ -123,7 +134,7 @@ class BattleFragment : Fragment(), Battle.View {
             val doa = arrayListOf<Boolean>()
             dealtDamage.keys.forEach { doa.add(deadOrAliveCells[it] ?: false) }
             bundle.putBooleanArray(BattleResultsFragment.DEAD_OR_ALIVE, doa.toBooleanArray())
-            view.findNavController().navigate(R.id.battleResultsFragment, bundle)
+            view.findNavController().navigate(nextScene, bundle)
             //presenter.finishBattle(battleInfo)
         }
         activity?.runOnUiThread {

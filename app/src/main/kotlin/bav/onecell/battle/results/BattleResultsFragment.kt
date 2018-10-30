@@ -1,14 +1,13 @@
 package bav.onecell.battle.results
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.findNavController
 import bav.onecell.OneCellApplication
 import bav.onecell.R
+import bav.onecell.common.Common
 import bav.onecell.common.view.DrawUtils
 import kotlinx.android.synthetic.main.fragment_battle_results.buttonToHeroesScreen
 import kotlinx.android.synthetic.main.fragment_battle_results.recyclerViewBattleResults
@@ -18,6 +17,7 @@ class BattleResultsFragment: androidx.fragment.app.Fragment(), BattleResults.Vie
 
     @Inject lateinit var presenter: BattleResults.Presenter
     @Inject lateinit var drawUtils: DrawUtils
+    @Inject lateinit var resourceProvider: Common.ResourceProvider
 
     //region Lifecycle methods
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -27,10 +27,6 @@ class BattleResultsFragment: androidx.fragment.app.Fragment(), BattleResults.Vie
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         inject()
-
-        buttonToHeroesScreen.setOnClickListener { view ->
-            view.findNavController().navigate(R.id.action_battleResultsFragment_to_heroScreenFragment)
-        }
         recyclerViewBattleResults.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(context)
         recyclerViewBattleResults.adapter = BattleResultsRecyclerViewAdapter(presenter, drawUtils)
         initializePresenter(arguments)
@@ -56,6 +52,9 @@ class BattleResultsFragment: androidx.fragment.app.Fragment(), BattleResults.Vie
                 doa[id] = deadOrAlive[i]
             }
             presenter.initialize(dd, doa)
+            buttonToHeroesScreen.setOnClickListener { view ->
+                view.findNavController().navigate(R.id.heroScreen)
+            }
         }
     }
     //endregion
