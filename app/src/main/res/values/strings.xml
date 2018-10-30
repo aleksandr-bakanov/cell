@@ -26,7 +26,6 @@ Lorem ipsum dolor sit amet, اللغة العربية. 한국어, 조선어, 韓
     <string name="radio_button_energy_cell_title">Energy</string>
     <string name="radio_button_attack_cell_title">Attack</string>
     <string name="radio_button_remove_cell_title">Remove</string>
-    <string name="text_money">[%1$d]</string>
 
     <!-- Battle view -->
     <string name="button_next_step_title">Full step</string>
