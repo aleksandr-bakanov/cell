@@ -4,8 +4,9 @@ import bav.onecell.common.storage.Storage
 import bav.onecell.model.cell.Cell
 import bav.onecell.model.hexes.HexMath
 import io.reactivex.subjects.ReplaySubject
-import kotlinx.coroutines.experimental.async
-import kotlinx.coroutines.experimental.launch
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
 
 class CellRepository(
         private val hexMath: HexMath,
@@ -15,7 +16,7 @@ class CellRepository(
     private val loadFromStoreStatus: ReplaySubject<Unit> = ReplaySubject.create()
 
     init {
-        launch {
+        GlobalScope.launch {
             val cellsFromStorage = async { storage.restoreCellRepository() }.await()
             for (cell in cellsFromStorage) {
                 cells.add(cell)

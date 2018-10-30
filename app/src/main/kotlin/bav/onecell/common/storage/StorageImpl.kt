@@ -8,7 +8,8 @@ import bav.onecell.model.cell.Cell
 import bav.onecell.model.RepositoryContract
 import bav.onecell.model.cell.Data
 import bav.onecell.model.hexes.HexMath
-import kotlinx.coroutines.experimental.launch
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class StorageImpl(
         private val context: Context,
@@ -17,7 +18,7 @@ class StorageImpl(
         private val gameState: Common.GameState): Storage {
 
     override fun storeCellRepository(repo: RepositoryContract.CellRepo) {
-        launch {
+        GlobalScope.launch {
             val dao = dataBase.cellDataDao()
             // TODO: optimise persistence
             for (i in 0 until repo.cellsCount()) {
@@ -29,7 +30,7 @@ class StorageImpl(
 
     override fun storeCell(cell: Cell) {
         Log.d(TAG, cell.data.toJson())
-        launch { dataBase.cellDataDao().insert(cell.data) }
+        GlobalScope.launch { dataBase.cellDataDao().insert(cell.data) }
     }
 
     override fun restoreCellRepository(): List<Cell> {

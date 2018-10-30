@@ -14,13 +14,12 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.PublishSubject
-import kotlinx.coroutines.experimental.launch
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import java.util.LinkedList
 import java.util.Queue
-import java.util.Random
 import kotlin.math.PI
 import kotlin.math.atan2
-import kotlin.math.round
 
 class BattleEngine(
         private val hexMath: HexMath,
@@ -133,7 +132,7 @@ class BattleEngine(
     }
 
     private fun evaluateBattle() {
-        launch {
+        GlobalScope.launch {
             while (!isBattleOver()) {
                 doFullStep()
             }
