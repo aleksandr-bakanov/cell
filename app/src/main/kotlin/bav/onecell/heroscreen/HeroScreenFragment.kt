@@ -61,7 +61,6 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
     @Inject lateinit var resourceProvider: Common.ResourceProvider
 
     private val disposables = CompositeDisposable()
-    private var moneyDisposable: Disposable? = null
     private var isCellLogicViewsShown = false
 
     //region Lifecycle methods
@@ -92,14 +91,7 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
         disposables.addAll(
                 presenter.getCellProvider().subscribe {
                     editorCanvasView.cell = it
-                    textMoney.text = resources.getString(R.string.text_money, it.data.money)
                     highlightTips(editorCanvasView.selectedCellType)
-
-                    /// TODO: make it cleaner
-                    moneyDisposable?.dispose()
-                    moneyDisposable = it.getMoneyProvider().subscribe { money ->
-                        textMoney.text = resources.getString(R.string.text_money, money)
-                    }
                 },
                 presenter.getBackgroundCellRadiusProvider().subscribe {
                     editorCanvasView.backgroundFieldRadius = it
@@ -120,7 +112,6 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
 
     override fun onDestroyView() {
         disposables.dispose()
-        moneyDisposable?.dispose()
         super.onDestroyView()
     }
     //endregion
@@ -131,15 +122,15 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
         editorCanvasView.invalidate()
     }
 
-    override fun updateHexesInBucket(value: Pair<Hex.Type, Int>) {
-        val hexPicker = when (value.first) {
+    override fun updateHexesInBucket(type: Hex.Type, count: Int) {
+        val hexPicker = when (type) {
             Hex.Type.LIFE -> radioButtonLifeHex
             Hex.Type.ENERGY -> radioButtonEnergyHex
             Hex.Type.ATTACK -> radioButtonAttackHex
             Hex.Type.DEATH_RAY -> radioButtonDeathRayHex
             else -> radioButtonRemoveHex
         }
-        hexPicker.setHexCount(value.second)
+        hexPicker.setHexCount(count)
     }
     //endregion
 

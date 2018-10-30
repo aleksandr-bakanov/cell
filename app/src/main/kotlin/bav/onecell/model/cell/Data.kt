@@ -21,8 +21,6 @@ data class Data(
         @ColumnInfo(name = "rules") var rules: MutableList<Rule> = arrayListOf(),
         // name - cell's name
         @ColumnInfo(name = "name") var name: String = "",
-        // money - can be spent to build up cell
-        @ColumnInfo(name = "money") var money: Int = 10,
         // group id - cells with the same group id are friends to each other
         @ColumnInfo(name = "groupId") var groupId: Int = 0,
         // field of view - distance of view through the fog

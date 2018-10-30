@@ -15,6 +15,7 @@ Learn Android deeply while having fun.
   Backward transformations are also available. In such case it's possible to forbid some transformations.
 * Change edition screen. Pick and place different hexes whether from cell or from buckets.
   Pick by long press (only from cell?).
+* Wolowolowolowolo - turning enemies to friendly cells
 
 # Future features
 * Multi-player

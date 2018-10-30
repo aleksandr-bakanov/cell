@@ -45,14 +45,7 @@ class Cell(private val hexMath: HexMath,
         updateOutlineHexes()
     }
 
-    private val moneyProvider = BehaviorSubject.create<Int>()
-    fun getMoneyProvider(): Observable<Int> = moneyProvider
-    private fun setMoney(value: Int) {
-        data.money = value
-        moneyProvider.onNext(value)
-    }
-    fun addMoney(value: Int) = setMoney(data.money + value)
-    fun removeMoney(value: Int) = setMoney(max(data.money - value, 0))
+    fun hasHexesInBucket(type: Hex.Type): Boolean = (data.hexBucket[type.ordinal] ?: 0) > 0
 
     fun hexTypeToPrice(type: Hex.Type): Int = when (type) {
         Hex.Type.LIFE -> Hex.Price.LIFE.value

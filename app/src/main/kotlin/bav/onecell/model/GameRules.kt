@@ -9,8 +9,6 @@ import bav.onecell.model.hexes.HexMath
  */
 class GameRules(private val hexMath: HexMath) {
 
-    fun userHasEnoughMoney(cell: Cell, hex: Hex): Boolean = cell.data.money >= cell.hexTypeToPrice(hex.type)
-
     fun isAllowedToAddHexIntoCell(cell: Cell, hex: Hex): Boolean {
         if (cell.data.hexes.values.contains(hex)) return false
         return when (hex.type) {

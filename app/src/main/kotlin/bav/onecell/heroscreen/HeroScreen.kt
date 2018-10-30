@@ -11,7 +11,7 @@ interface HeroScreen {
         fun setPickerBackground(colorId: Int)
         fun setCellName(name: String)
         fun updateAvatars()
-        fun updateHexesInBucket(value: Pair<Hex.Type, Int>)
+        fun updateHexesInBucket(type: Hex.Type, count: Int)
     }
     interface Presenter: Editor.Presenter, Rules.Presenter, Conditions.Presenter, Picker.Presenter {
         override fun initialize(cellIndex: Int)

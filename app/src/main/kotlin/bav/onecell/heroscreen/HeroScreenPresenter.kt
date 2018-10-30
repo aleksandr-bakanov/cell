@@ -254,8 +254,8 @@ class HeroScreenPresenter(
     //region Editor.Presenter methods
     override fun addHexToCell(hex: Hex) {
         cell?.let {
-            if (gameRules.isAllowedToAddHexIntoCell(it, hex) and gameRules.userHasEnoughMoney(it, hex)) {
-                it.removeMoney(it.hexTypeToPrice(hex.type))
+            if (gameRules.isAllowedToAddHexIntoCell(it, hex) and it.hasHexesInBucket(hex.type)) {
+                decreaseHexesInBucket(it, hex.type)
                 it.addHex(hex)
                 it.evaluateCellHexesPower()
                 view.highlightTips(hex.type)
@@ -266,7 +266,8 @@ class HeroScreenPresenter(
     override fun removeHexFromCell(hex: Hex) {
         cell?.let {
             if (gameRules.isAllowedToRemoveHexFromCell(it, hex)) {
-                it.addMoney(it.hexTypeToPrice(it.data.hexes[hex.hashCode()]?.type ?: Hex.Type.REMOVE))
+                val hexType = it.data.hexes[hex.hashCode()]?.type ?: Hex.Type.REMOVE
+                increaseHexesInBucket(it, hexType)
                 it.removeHex(hex)
                 it.evaluateCellHexesPower()
             }
@@ -313,6 +314,18 @@ class HeroScreenPresenter(
     //endregion
 
     //region Private methods
+    private fun updateHexesInBucket(cell: Cell, type: Hex.Type, count: Int) {
+        val hexCount = (cell.data.hexBucket[type.ordinal] ?: 0) + count
+        cell.data.hexBucket[type.ordinal] = hexCount
+        view.updateHexesInBucket(type, hexCount)
+    }
+    private fun increaseHexesInBucket(cell: Cell, type: Hex.Type) {
+        updateHexesInBucket(cell, type, 1)
+    }
+    private fun decreaseHexesInBucket(cell: Cell, type: Hex.Type) {
+        updateHexesInBucket(cell, type, -1)
+    }
+
     private fun initializeRuleActionChoice(ruleIndex: Int) {
         setCurrentRule(ruleIndex)
         setPickerOptionsSource(cellRuleActions)
@@ -369,7 +382,7 @@ class HeroScreenPresenter(
     private fun updateHexBucketCounts() {
         cell?.let {
             for (type in Hex.Type.values()) {
-                view.updateHexesInBucket(Pair(type, it.data.hexBucket[type.ordinal] ?: 0))
+                view.updateHexesInBucket(type, it.data.hexBucket[type.ordinal] ?: 0)
             }
         }
     }
