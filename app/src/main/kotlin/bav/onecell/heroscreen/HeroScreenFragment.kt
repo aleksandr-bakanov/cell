@@ -9,7 +9,6 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
-import android.util.Log
 import android.view.DragEvent
 import android.view.LayoutInflater
 import android.view.View
@@ -21,6 +20,7 @@ import bav.onecell.celllogic.conditions.ConditionsRecyclerViewAdapter
 import bav.onecell.celllogic.picker.PickerRecyclerViewAdapter
 import bav.onecell.celllogic.rules.RulesRecyclerViewAdapter
 import bav.onecell.common.Common
+import bav.onecell.common.Consts
 import bav.onecell.common.view.DrawUtils
 import bav.onecell.common.view.HexPicker
 import bav.onecell.model.hexes.Hex
@@ -28,7 +28,7 @@ import bav.onecell.model.hexes.HexMath
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_hero_screen.buttonDecreaseRulePriority
 import kotlinx.android.synthetic.main.fragment_hero_screen.buttonIncreaseRulePriority
-import kotlinx.android.synthetic.main.fragment_hero_screen.buttonMainMenu
+import kotlinx.android.synthetic.main.fragment_hero_screen.buttonNextScene
 import kotlinx.android.synthetic.main.fragment_hero_screen.buttonRotateCellLeft
 import kotlinx.android.synthetic.main.fragment_hero_screen.buttonRotateCellRight
 import kotlinx.android.synthetic.main.fragment_hero_screen.buttonSwitchScreen
@@ -57,6 +57,7 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
 
     private val disposables = CompositeDisposable()
     private var isCellLogicViewsShown = false
+    private var nextScene: Int = 0
 
     //region Lifecycle methods
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -67,6 +68,7 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
         super.onActivityCreated(savedInstanceState)
         inject()
 
+        nextScene = resourceProvider.getIdIdentifier(arguments?.getString(Consts.NEXT_SCENE))
         initiateCanvasView()
         initiateButtons()
 
@@ -151,8 +153,8 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
     }
 
     private fun initiateButtons() {
-        buttonMainMenu.setOnClickListener { view ->
-            view.findNavController().navigate(R.id.action_heroScreen_to_mainFragment)
+        buttonNextScene.setOnClickListener { view ->
+            view.findNavController().navigate(nextScene)
             presenter.openMainMenu()
         }
 

@@ -25,22 +25,13 @@
         android:name="bav.onecell.heroscreen.HeroScreenFragment"
         android:label="Hero screen"
         tools:layout="@layout/fragment_hero_screen">
+        <argument
+            android:name="nextScene"
+            android:defaultValue="mainFragment"
+            app:argType="string" />
         <action
             android:id="@+id/action_heroScreen_to_mainFragment"
             app:destination="@id/mainFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/cutSceneIntroduction"
-        android:name="bav.onecell.cutscene.CutSceneFragment"
-        android:label="Introduction"
-        tools:layout="@layout/fragment_cut_scene">
-        <argument
-            android:name="cutSceneInfo"
-            android:defaultValue="@string/cut_scene_introduction"
-            app:argType="string" />
-        <action
-            android:id="@+id/action_cutSceneIntroduction_to_battleGopniks"
-            app:destination="@id/battleGopniks" />
     </fragment>
     <fragment
         android:id="@+id/battleFragment"
@@ -69,6 +60,23 @@
             android:id="@+id/action_battleResultsFragment_to_heroScreen"
             app:destination="@id/heroScreen" />
     </fragment>
+
+    <!-- Story -->
+    <!-- Introduction -->
+    <fragment
+        android:id="@+id/cutSceneIntroduction"
+        android:name="bav.onecell.cutscene.CutSceneFragment"
+        android:label="Introduction"
+        tools:layout="@layout/fragment_cut_scene">
+        <argument
+            android:name="cutSceneInfo"
+            android:defaultValue="@string/cut_scene_introduction"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_cutSceneIntroduction_to_battleGopniks"
+            app:destination="@id/battleGopniks" />
+    </fragment>
+    <!-- Battle with gopniks -->
     <fragment
         android:id="@+id/battleGopniks"
         android:name="bav.onecell.battle.BattleFragment"
@@ -82,9 +90,113 @@
             android:id="@+id/action_battleGopniks_to_battleResultsGopniks"
             app:destination="@id/battleResultsGopniks" />
     </fragment>
+    <!-- Results of the battle with gopniks -->
     <fragment
         android:id="@+id/battleResultsGopniks"
         android:name="bav.onecell.battle.results.BattleResultsFragment"
         android:label="Result of battle with gopniks"
-        tools:layout="@layout/fragment_battle_results" />
+        tools:layout="@layout/fragment_battle_results">
+        <argument
+            android:name="nextScene"
+            android:defaultValue="cutSceneAfterGopniks"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_battleResultsGopniks_to_cutSceneAfterGopniks"
+            app:destination="@id/cutSceneAfterGopniks" />
+    </fragment>
+    <!-- Cut scene with an explanation of hero screen -->
+    <fragment
+        android:id="@+id/cutSceneAfterGopniks"
+        android:name="bav.onecell.cutscene.CutSceneFragment"
+        android:label="Scene after battle with gopniks"
+        tools:layout="@layout/fragment_cut_scene">
+        <argument
+            android:name="cutSceneInfo"
+            android:defaultValue="@string/cut_scene_after_gopniks"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_cutSceneAfterGopniks_to_heroScreenAfterGopniks"
+            app:destination="@id/heroScreenAfterGopniks" />
+    </fragment>
+    <!-- First hero screen -->
+    <fragment
+        android:id="@+id/heroScreenAfterGopniks"
+        android:name="bav.onecell.heroscreen.HeroScreenFragment"
+        android:label="Hero screen after gopniks"
+        tools:layout="@layout/fragment_hero_screen">
+        <argument
+            android:name="nextScene"
+            android:defaultValue="cutSceneBeforeSkilos"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_heroScreenAfterGopniks_to_cutSceneBeforeSkilos"
+            app:destination="@id/cutSceneBeforeSkilos" />
+    </fragment>
+    <!-- Cut scene before battle with skilos -->
+    <fragment
+        android:id="@+id/cutSceneBeforeSkilos"
+        android:name="bav.onecell.cutscene.CutSceneFragment"
+        android:label="Cut scene before battle with skilos"
+        tools:layout="@layout/fragment_cut_scene">
+        <argument
+            android:name="cutSceneInfo"
+            android:defaultValue="@string/cut_scene_before_skilos"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_cutSceneBeforeSkilos_to_battleSkilos"
+            app:destination="@id/battleSkilos" />
+    </fragment>
+    <!-- Battle with skilos -->
+    <fragment
+        android:id="@+id/battleSkilos"
+        android:name="bav.onecell.battle.BattleFragment"
+        android:label="Battle with gopniks"
+        tools:layout="@layout/fragment_battle">
+        <argument
+            android:name="params"
+            android:defaultValue="@string/battle_with_skilos_params"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_battleSkilos_to_battleResultsSkilos"
+            app:destination="@id/battleResultsSkilos" />
+    </fragment>
+    <!-- Results of the battle with skilos -->
+    <fragment
+        android:id="@+id/battleResultsSkilos"
+        android:name="bav.onecell.battle.results.BattleResultsFragment"
+        android:label="Result of battle with skilos"
+        tools:layout="@layout/fragment_battle_results">
+        <argument
+            android:name="nextScene"
+            android:defaultValue="cutSceneAfterSkilos"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_battleResultsSkilos_to_cutSceneAfterGopniks"
+            app:destination="@id/cutSceneAfterSkilos" />
+    </fragment>
+    <!-- Cut scene with an explanation of cell logic -->
+    <fragment
+        android:id="@+id/cutSceneAfterSkilos"
+        android:name="bav.onecell.cutscene.CutSceneFragment"
+        android:label="Scene after battle with skilos"
+        tools:layout="@layout/fragment_cut_scene">
+        <argument
+            android:name="cutSceneInfo"
+            android:defaultValue="@string/cut_scene_after_skilos"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_cutSceneAfterSkilos_to_heroScreenAfterSkilos"
+            app:destination="@id/heroScreenAfterSkilos" />
+    </fragment>
+    <!-- Hero screen after battle with skilos -->
+    <fragment
+        android:id="@+id/heroScreenAfterSkilos"
+        android:name="bav.onecell.heroscreen.HeroScreenFragment"
+        android:label="Hero screen after battle with skilos"
+        tools:layout="@layout/fragment_hero_screen">
+        <argument
+            android:name="nextScene"
+            android:defaultValue="TBD"
+            app:argType="string" />
+    </fragment>
 </navigation>

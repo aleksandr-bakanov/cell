@@ -8,6 +8,7 @@ import androidx.navigation.findNavController
 import bav.onecell.OneCellApplication
 import bav.onecell.R
 import bav.onecell.common.Common
+import bav.onecell.common.Consts
 import bav.onecell.common.view.DrawUtils
 import kotlinx.android.synthetic.main.fragment_battle_results.buttonToHeroesScreen
 import kotlinx.android.synthetic.main.fragment_battle_results.recyclerViewBattleResults
@@ -45,6 +46,7 @@ class BattleResultsFragment: androidx.fragment.app.Fragment(), BattleResults.Vie
             val cellIndexes = it.getIntArray(CELL_INDEXES)
             val dealtDamage = it.getIntArray(DEALT_DAMAGE)
             val deadOrAlive = it.getBooleanArray(DEAD_OR_ALIVE)
+            val nextScene = resourceProvider.getIdIdentifier(it.getString(Consts.NEXT_SCENE))
             val dd = mutableMapOf<Int, Int>()
             val doa = mutableMapOf<Int, Boolean>()
             cellIndexes?.forEachIndexed { i, id ->
@@ -53,7 +55,7 @@ class BattleResultsFragment: androidx.fragment.app.Fragment(), BattleResults.Vie
             }
             presenter.initialize(dd, doa)
             buttonToHeroesScreen.setOnClickListener { view ->
-                view.findNavController().navigate(R.id.heroScreen)
+                view.findNavController().navigate(nextScene)
             }
         }
     }

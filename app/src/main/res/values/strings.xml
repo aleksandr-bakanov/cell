@@ -17,6 +17,7 @@
     <!-- Heroes view -->
     <string name="text_cell_name">Name</string>
     <string name="text_main_menu">Main menu</string>
+    <string name="text_next_scene">Go</string>
     <string name="text_history_stub">
 Lorem ipsum dolor sit amet, اللغة العربية. 한국어, 조선어, 韓國語, Русский язык. 日本語 カタカナ. Ελληνικ
     </string>
@@ -88,6 +89,9 @@ Lorem ipsum dolor sit amet, اللغة العربية. 한국어, 조선어, 韓
     </string>
 
     <!-- Cut scenes -->
+    <!--
+      - Introduction cut scene contains introduction history, gopniks encounter and description of battle screen
+      -->
     <string name="cut_scene_introduction">
         {
             background: \"wallpaper_01\",
@@ -101,9 +105,60 @@ Lorem ipsum dolor sit amet, اللغة العربية. 한국어, 조선어, 韓
             nextScene: \"action_cutSceneIntroduction_to_battleGopniks\"
         }
     </string>
+    <!--
+      - Cut scene after gopniks contains description of the hero screen interface. At this moment only Kittaro
+      - is available. Also the button for switching between editor and logic screens should be hidden.
+      - Next scene - hero screen.
+      -->
+    <string name="cut_scene_after_gopniks">
+        {
+            background: \"wallpaper_01\",
+            left: \"left_character\",
+            right: \"left_character\",
+            frames: [
+                { text: \"cut_scene_after_gopniks 1\" },
+                { text: \"cut_scene_after_gopniks 2\", background: \"wallpaper_02\" },
+                { text: \"cut_scene_after_gopniks 3\", left: \"left_character_01\" }
+            ],
+            nextScene: \"action_cutSceneAfterGopniks_to_heroScreenAfterGopniks\"
+        }
+    </string>
+    <!--
+      - Cut scene before encounter with skiloses.
+      -->
+    <string name="cut_scene_before_skilos">
+        {
+            background: \"wallpaper_01\",
+            left: \"left_character\",
+            right: \"left_character\",
+            frames: [
+                { text: \"cut_scene_before_skilos 1\" },
+                { text: \"cut_scene_before_skilos 2\", background: \"wallpaper_02\" },
+                { text: \"cut_scene_before_skilos 3\", left: \"left_character_01\" }
+            ],
+            nextScene: \"action_cutSceneBeforeSkilos_to_battleSkilos\"
+        }
+    </string>
+    <!--
+      - Cut scene after encounter with skiloses.
+      -->
+    <string name="cut_scene_after_skilos">
+        {
+            background: \"wallpaper_01\",
+            left: \"left_character\",
+            right: \"left_character\",
+            frames: [
+                { text: \"cut_scene_after_skilos 1\" },
+                { text: \"cut_scene_after_skilos 2\", background: \"wallpaper_02\" },
+                { text: \"cut_scene_after_skilos 3\", left: \"left_character_01\" }
+            ],
+            nextScene: \"action_cutSceneAfterSkilos_to_heroScreenAfterSkilos\"
+        }
+    </string>
 
-    <!-- Battle scene params -->
+    <!-- Battle scenes params -->
     <string name="battle_with_gopniks_params">{battleParams:{cellIndexes:[0,3,4,5],isFog:false},nextScene:"action_battleGopniks_to_battleResultsGopniks"}</string>
+    <string name="battle_with_skilos_params">{battleParams:{cellIndexes:[0,6,7,8,9,10],isFog:false},nextScene:"action_battleSkilos_to_battleResultsSkilos"}</string>
 
     <!-- Initial cell descriptions -->
     <string-array name="cell_descriptions">

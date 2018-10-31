@@ -97,6 +97,6 @@ class ResourceProviderImpl(private val context: Context): Common.ResourceProvide
         }
     }
 
-    override fun getDrawableIdentifier(name: String): Int = context.resources.getIdentifier(name, "drawable", "bav.onecell")
-    override fun getIdIdentifier(name: String): Int = context.resources.getIdentifier(name, "id", "bav.onecell")
+    override fun getDrawableIdentifier(name: String?): Int = context.resources.getIdentifier(name, "drawable", "bav.onecell")
+    override fun getIdIdentifier(name: String?): Int = context.resources.getIdentifier(name, "id", "bav.onecell")
 }

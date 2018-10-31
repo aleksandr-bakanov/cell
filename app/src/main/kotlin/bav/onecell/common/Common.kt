@@ -20,9 +20,9 @@ interface Common {
 
         fun getAvatarDrawableId(index: Int): Int
 
-        fun getDrawableIdentifier(name: String): Int
+        fun getDrawableIdentifier(name: String?): Int
 
-        fun getIdIdentifier(name: String): Int
+        fun getIdIdentifier(name: String?): Int
     }
 
     interface GameState {
