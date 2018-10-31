@@ -56,6 +56,10 @@
         android:name="bav.onecell.battle.results.BattleResultsFragment"
         android:label="Battle results"
         tools:layout="@layout/fragment_battle_results">
+        <argument
+            android:name="nextScene"
+            android:defaultValue="heroScreen"
+            app:argType="string" />
         <action
             android:id="@+id/action_battleResultsFragment_to_heroScreen"
             app:destination="@id/heroScreen" />
