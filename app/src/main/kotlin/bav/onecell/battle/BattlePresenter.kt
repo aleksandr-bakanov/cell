@@ -5,6 +5,7 @@ import bav.onecell.common.router.Router
 import bav.onecell.model.BattleInfo
 import bav.onecell.model.InitialBattleParams
 import io.reactivex.subjects.PublishSubject
+import org.json.JSONObject
 
 class BattlePresenter(
         private val view: Battle.View,
@@ -20,7 +21,6 @@ class BattlePresenter(
 
     override fun initialize(params: String) {
         view.drawSnapshotInitialState()
-        Log.d(TAG, "params = $params")
         battleEngine.initialize(InitialBattleParams.fromJson(params))
     }
 

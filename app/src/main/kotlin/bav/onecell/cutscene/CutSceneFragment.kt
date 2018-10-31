@@ -10,6 +10,8 @@ import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.findNavController
 import bav.onecell.OneCellApplication
 import bav.onecell.R
+import bav.onecell.common.Common
+import bav.onecell.common.Consts
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_cut_scene.background
 import kotlinx.android.synthetic.main.fragment_cut_scene.buttonNextFrame
@@ -24,6 +26,7 @@ import javax.inject.Inject
 class CutSceneFragment : Fragment(), CutScene.View {
 
     @Inject lateinit var presenter: CutScene.Presenter
+    @Inject lateinit var resourceProvider: Common.ResourceProvider
     private val disposables = CompositeDisposable()
 
     private var defaultBackground: Int = 0
@@ -59,20 +62,18 @@ class CutSceneFragment : Fragment(), CutScene.View {
                 .inject(this)
     }
 
-    private fun getDrawableIdentifier(name: String): Int = resources.getIdentifier(name, "drawable", "bav.onecell")
-    private fun getIdIdentifier(name: String): Int = resources.getIdentifier(name, "id", "bav.onecell")
-    private fun getBackground(name: String): Int = if (name.isEmpty()) defaultBackground else getDrawableIdentifier(name)
-    private fun getLeftCharacter(name: String): Int = if (name.isEmpty()) defaultLeftCharacter else getDrawableIdentifier(name)
-    private fun getRightCharacter(name: String): Int = if (name.isEmpty()) defaultRightCharacter else getDrawableIdentifier(name)
+    private fun getBackground(name: String): Int = if (name.isEmpty()) defaultBackground else resourceProvider.getDrawableIdentifier(name)
+    private fun getLeftCharacter(name: String): Int = if (name.isEmpty()) defaultLeftCharacter else resourceProvider.getDrawableIdentifier(name)
+    private fun getRightCharacter(name: String): Int = if (name.isEmpty()) defaultRightCharacter else resourceProvider.getDrawableIdentifier(name)
 
     private fun parseArguments(arguments: Bundle?) {
         arguments?.let {
             try {
                 val info = JSONObject(it.getString(CUT_SCENE_INFO))
-                defaultBackground = getDrawableIdentifier(info.getString(BACKGROUND))
-                defaultLeftCharacter = getDrawableIdentifier(info.getString(LEFT))
-                defaultRightCharacter = getDrawableIdentifier(info.getString(RIGHT))
-                nextScene = getIdIdentifier(info.getString(NEXT_SCENE))
+                defaultBackground = resourceProvider.getDrawableIdentifier(info.getString(BACKGROUND))
+                defaultLeftCharacter = resourceProvider.getDrawableIdentifier(info.getString(LEFT))
+                defaultRightCharacter = resourceProvider.getDrawableIdentifier(info.getString(RIGHT))
+                nextScene = resourceProvider.getIdIdentifier(info.getString(Consts.NEXT_SCENE))
                 val framesArray = info.getJSONArray(FRAMES)
                 for (i in 0 until framesArray.length()) {
                     val data = framesArray.getJSONObject(i)
@@ -117,7 +118,6 @@ class CutSceneFragment : Fragment(), CutScene.View {
         const val RIGHT = "right"
         const val TEXT = "text"
         const val FRAMES = "frames"
-        const val NEXT_SCENE = "nextScene"
         @JvmStatic
         fun newInstance(bundle: Bundle?): CutSceneFragment {
             val fragment = CutSceneFragment()

@@ -11,8 +11,8 @@
         android:label="Main"
         tools:layout="@layout/fragment_main">
         <action
-            android:id="@+id/action_mainFragment_to_heroScreenFragment"
-            app:destination="@id/heroScreenFragment" />
+            android:id="@+id/action_mainFragment_to_heroScreen"
+            app:destination="@id/heroScreen" />
         <action
             android:id="@+id/action_mainFragment_to_cutSceneIntroduction"
             app:destination="@id/cutSceneIntroduction" />
@@ -21,12 +21,12 @@
             app:destination="@id/cellsForBattleFragment" />
     </fragment>
     <fragment
-        android:id="@+id/heroScreenFragment"
+        android:id="@+id/heroScreen"
         android:name="bav.onecell.heroscreen.HeroScreenFragment"
         android:label="Hero screen"
         tools:layout="@layout/fragment_hero_screen">
         <action
-            android:id="@+id/action_heroScreenFragment_to_mainFragment"
+            android:id="@+id/action_heroScreen_to_mainFragment"
             app:destination="@id/mainFragment" />
     </fragment>
     <fragment
@@ -39,8 +39,8 @@
             android:defaultValue="@string/cut_scene_introduction"
             app:argType="string" />
         <action
-            android:id="@+id/action_cutSceneIntroduction_to_battleWithGopniks"
-            app:destination="@id/battleWithGopniks" />
+            android:id="@+id/action_cutSceneIntroduction_to_battleGopniks"
+            app:destination="@id/battleGopniks" />
     </fragment>
     <fragment
         android:id="@+id/battleFragment"
@@ -66,11 +66,11 @@
         android:label="Battle results"
         tools:layout="@layout/fragment_battle_results">
         <action
-            android:id="@+id/action_battleResultsFragment_to_heroScreenFragment"
-            app:destination="@id/heroScreenFragment" />
+            android:id="@+id/action_battleResultsFragment_to_heroScreen"
+            app:destination="@id/heroScreen" />
     </fragment>
     <fragment
-        android:id="@+id/battleWithGopniks"
+        android:id="@+id/battleGopniks"
         android:name="bav.onecell.battle.BattleFragment"
         android:label="Battle with gopniks"
         tools:layout="@layout/fragment_battle">
@@ -78,5 +78,13 @@
             android:name="params"
             android:defaultValue="@string/battle_with_gopniks_params"
             app:argType="string" />
+        <action
+            android:id="@+id/action_battleGopniks_to_battleResultsGopniks"
+            app:destination="@id/battleResultsGopniks" />
     </fragment>
+    <fragment
+        android:id="@+id/battleResultsGopniks"
+        android:name="bav.onecell.battle.results.BattleResultsFragment"
+        android:label="Result of battle with gopniks"
+        tools:layout="@layout/fragment_battle_results" />
 </navigation>

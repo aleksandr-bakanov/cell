@@ -39,7 +39,7 @@ class MainFragment : Fragment(), Main.View {
             view.findNavController().navigate(R.id.action_mainFragment_to_cutSceneIntroduction)
         }
         buttonHeroScreen.setOnClickListener { view ->
-            view.findNavController().navigate(R.id.action_mainFragment_to_heroScreenFragment)
+            view.findNavController().navigate(R.id.action_mainFragment_to_heroScreen)
         }
         buttonExitGame.setOnClickListener { requireActivity().finish() }
         buttonContinueGame.setOnClickListener {
