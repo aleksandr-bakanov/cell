@@ -80,9 +80,9 @@ dependencies {
     // Tests
     testImplementation 'junit:junit:4.12'
     testImplementation "androidx.room:room-testing:2.0.0"
-    androidTestImplementation 'androidx.test:runner:1.1.0-beta02'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-beta02'
-    androidTestImplementation "android.arch.navigation:navigation-testing-ktx:$nav_version"
+    androidTestImplementation 'androidx.test:runner:1.1.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
+    androidTestImplementation "android.arch.navigation:navigation-testing-ktx:1.0.0-alpha06"
 }
 
 jacoco {

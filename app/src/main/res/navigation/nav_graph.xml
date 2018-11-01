@@ -26,7 +26,7 @@
         android:label="Hero screen"
         tools:layout="@layout/fragment_hero_screen">
         <argument
-            android:name="nextScene"
+            android:name="@string/next_scene"
             android:defaultValue="mainFragment"
             app:argType="string" />
         <action
@@ -57,7 +57,7 @@
         android:label="Battle results"
         tools:layout="@layout/fragment_battle_results">
         <argument
-            android:name="nextScene"
+            android:name="@string/next_scene"
             android:defaultValue="heroScreen"
             app:argType="string" />
         <action
@@ -65,7 +65,12 @@
             app:destination="@id/heroScreen" />
     </fragment>
 
-    <!-- Story -->
+    <!--
+      - Story
+      -->
+    <!--
+      - Chapter 1
+      -->
     <!-- Introduction -->
     <fragment
         android:id="@+id/cutSceneIntroduction"
@@ -80,6 +85,7 @@
             android:id="@+id/action_cutSceneIntroduction_to_battleGopniks"
             app:destination="@id/battleGopniks" />
     </fragment>
+
     <!-- Battle with gopniks -->
     <fragment
         android:id="@+id/battleGopniks"
@@ -94,6 +100,7 @@
             android:id="@+id/action_battleGopniks_to_battleResultsGopniks"
             app:destination="@id/battleResultsGopniks" />
     </fragment>
+
     <!-- Results of the battle with gopniks -->
     <fragment
         android:id="@+id/battleResultsGopniks"
@@ -101,13 +108,18 @@
         android:label="Result of battle with gopniks"
         tools:layout="@layout/fragment_battle_results">
         <argument
-            android:name="nextScene"
+            android:name="@string/next_scene"
+            android:defaultValue="cutSceneAfterGopniks"
+            app:argType="string" />
+        <argument
+            android:name="@string/previous_scene"
             android:defaultValue="cutSceneAfterGopniks"
             app:argType="string" />
         <action
             android:id="@+id/action_battleResultsGopniks_to_cutSceneAfterGopniks"
             app:destination="@id/cutSceneAfterGopniks" />
     </fragment>
+
     <!-- Cut scene with an explanation of hero screen -->
     <fragment
         android:id="@+id/cutSceneAfterGopniks"
@@ -122,6 +134,7 @@
             android:id="@+id/action_cutSceneAfterGopniks_to_heroScreenAfterGopniks"
             app:destination="@id/heroScreenAfterGopniks" />
     </fragment>
+
     <!-- First hero screen -->
     <fragment
         android:id="@+id/heroScreenAfterGopniks"
@@ -129,13 +142,17 @@
         android:label="Hero screen after gopniks"
         tools:layout="@layout/fragment_hero_screen">
         <argument
-            android:name="nextScene"
+            android:name="@string/next_scene"
             android:defaultValue="cutSceneBeforeSkilos"
             app:argType="string" />
         <action
             android:id="@+id/action_heroScreenAfterGopniks_to_cutSceneBeforeSkilos"
             app:destination="@id/cutSceneBeforeSkilos" />
     </fragment>
+
+    <!--
+      - Chapter 2
+      -->
     <!-- Cut scene before battle with skilos -->
     <fragment
         android:id="@+id/cutSceneBeforeSkilos"
@@ -150,6 +167,7 @@
             android:id="@+id/action_cutSceneBeforeSkilos_to_battleSkilos"
             app:destination="@id/battleSkilos" />
     </fragment>
+
     <!-- Battle with skilos -->
     <fragment
         android:id="@+id/battleSkilos"
@@ -164,6 +182,7 @@
             android:id="@+id/action_battleSkilos_to_battleResultsSkilos"
             app:destination="@id/battleResultsSkilos" />
     </fragment>
+
     <!-- Results of the battle with skilos -->
     <fragment
         android:id="@+id/battleResultsSkilos"
@@ -171,13 +190,18 @@
         android:label="Result of battle with skilos"
         tools:layout="@layout/fragment_battle_results">
         <argument
-            android:name="nextScene"
+            android:name="@string/next_scene"
             android:defaultValue="cutSceneAfterSkilos"
+            app:argType="string" />
+        <argument
+            android:name="@string/previous_scene"
+            android:defaultValue="heroScreenAfterGopniks"
             app:argType="string" />
         <action
             android:id="@+id/action_battleResultsSkilos_to_cutSceneAfterGopniks"
             app:destination="@id/cutSceneAfterSkilos" />
     </fragment>
+
     <!-- Cut scene with an explanation of cell logic -->
     <fragment
         android:id="@+id/cutSceneAfterSkilos"
@@ -192,6 +216,7 @@
             android:id="@+id/action_cutSceneAfterSkilos_to_heroScreenAfterSkilos"
             app:destination="@id/heroScreenAfterSkilos" />
     </fragment>
+
     <!-- Hero screen after battle with skilos -->
     <fragment
         android:id="@+id/heroScreenAfterSkilos"
@@ -199,8 +224,12 @@
         android:label="Hero screen after battle with skilos"
         tools:layout="@layout/fragment_hero_screen">
         <argument
-            android:name="nextScene"
+            android:name="@string/next_scene"
             android:defaultValue="TBD"
             app:argType="string" />
     </fragment>
+
+    <!--
+      - Chapter 3
+      -->
 </navigation>

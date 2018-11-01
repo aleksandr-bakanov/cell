@@ -15,6 +15,7 @@ import bav.onecell.OneCellApplication
 import bav.onecell.R
 import bav.onecell.battle.results.BattleResultsFragment
 import bav.onecell.common.Common
+import bav.onecell.common.Consts
 import bav.onecell.common.Consts.Companion.BATTLE_PARAMS
 import bav.onecell.common.Consts.Companion.NEXT_SCENE
 import bav.onecell.common.view.DrawUtils
@@ -134,8 +135,8 @@ class BattleFragment : Fragment(), Battle.View {
             val doa = arrayListOf<Boolean>()
             dealtDamage.keys.forEach { doa.add(deadOrAliveCells[it] ?: false) }
             bundle.putBooleanArray(BattleResultsFragment.DEAD_OR_ALIVE, doa.toBooleanArray())
+            bundle.putBoolean(BattleResultsFragment.IS_BATTLE_WON, battleInfo.winnerGroupId == Consts.HERO_GROUP_ID)
             view.findNavController().navigate(nextScene, bundle)
-            //presenter.finishBattle(battleInfo)
         }
         activity?.runOnUiThread {
             buttonFinishBattle.visibility = View.VISIBLE

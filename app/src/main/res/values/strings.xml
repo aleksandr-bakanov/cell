@@ -89,6 +89,10 @@ Lorem ipsum dolor sit amet, اللغة العربية. 한국어, 조선어, 韓
         }
     </string>
 
+    <!-- Navigation graph constants -->
+    <string name="next_scene">next_scene</string>
+    <string name="previous_scene">previous_scene</string>
+
     <!-- Cut scenes -->
     <!--
       - Introduction cut scene contains introduction history, gopniks encounter and description of battle screen
@@ -103,7 +107,7 @@ Lorem ipsum dolor sit amet, اللغة العربية. 한국어, 조선어, 韓
                 { text: \"Changing background\", background: \"wallpaper_02\" },
                 { text: \"Return back to default background and change left character\", left: \"left_character_01\" }
             ],
-            nextScene: \"action_cutSceneIntroduction_to_battleGopniks\"
+            next_scene: \"action_cutSceneIntroduction_to_battleGopniks\"
         }
     </string>
     <!--
@@ -121,7 +125,7 @@ Lorem ipsum dolor sit amet, اللغة العربية. 한국어, 조선어, 韓
                 { text: \"cut_scene_after_gopniks 2\", background: \"wallpaper_02\" },
                 { text: \"cut_scene_after_gopniks 3\", left: \"left_character_01\" }
             ],
-            nextScene: \"action_cutSceneAfterGopniks_to_heroScreenAfterGopniks\"
+            next_scene: \"action_cutSceneAfterGopniks_to_heroScreenAfterGopniks\"
         }
     </string>
     <!--
@@ -137,7 +141,7 @@ Lorem ipsum dolor sit amet, اللغة العربية. 한국어, 조선어, 韓
                 { text: \"cut_scene_before_skilos 2\", background: \"wallpaper_02\" },
                 { text: \"cut_scene_before_skilos 3\", left: \"left_character_01\" }
             ],
-            nextScene: \"action_cutSceneBeforeSkilos_to_battleSkilos\"
+            next_scene: \"action_cutSceneBeforeSkilos_to_battleSkilos\"
         }
     </string>
     <!--
@@ -153,13 +157,13 @@ Lorem ipsum dolor sit amet, اللغة العربية. 한국어, 조선어, 韓
                 { text: \"cut_scene_after_skilos 2\", background: \"wallpaper_02\" },
                 { text: \"cut_scene_after_skilos 3\", left: \"left_character_01\" }
             ],
-            nextScene: \"action_cutSceneAfterSkilos_to_heroScreenAfterSkilos\"
+            next_scene: \"action_cutSceneAfterSkilos_to_heroScreenAfterSkilos\"
         }
     </string>
 
     <!-- Battle scenes params -->
-    <string name="battle_with_gopniks_params">{battleParams:{cellIndexes:[0,3,4,5],isFog:false},nextScene:"action_battleGopniks_to_battleResultsGopniks"}</string>
-    <string name="battle_with_skilos_params">{battleParams:{cellIndexes:[0,6,7,8,9,10],isFog:false},nextScene:"action_battleSkilos_to_battleResultsSkilos"}</string>
+    <string name="battle_with_gopniks_params">{battleParams:{cellIndexes:[0,3,4,5],isFog:false},next_scene:"action_battleGopniks_to_battleResultsGopniks"}</string>
+    <string name="battle_with_skilos_params">{battleParams:{cellIndexes:[0,6,7,8,9,10],isFog:false},next_scene:"action_battleSkilos_to_battleResultsSkilos"}</string>
 
     <!-- Initial cell descriptions -->
     <string-array name="cell_descriptions">

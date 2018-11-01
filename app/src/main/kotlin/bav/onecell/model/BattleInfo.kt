@@ -11,4 +11,6 @@ data class BattleInfo(
         // Info about life status of cells at the end of the battle
         val deadOrAliveCells: Map<Int, Boolean> = mutableMapOf(),
         // Is battlefield fogged
-        val isFog: Boolean = false)
+        val isFog: Boolean = false,
+        // Winner group id - means which party has won
+        val winnerGroupId: Int = 0)

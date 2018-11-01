@@ -11,6 +11,7 @@ import bav.onecell.common.Common
 import bav.onecell.common.Consts
 import bav.onecell.common.view.DrawUtils
 import kotlinx.android.synthetic.main.fragment_battle_results.buttonToHeroesScreen
+import kotlinx.android.synthetic.main.fragment_battle_results.buttonTryAgain
 import kotlinx.android.synthetic.main.fragment_battle_results.recyclerViewBattleResults
 import javax.inject.Inject
 
@@ -31,6 +32,7 @@ class BattleResultsFragment: androidx.fragment.app.Fragment(), BattleResults.Vie
         recyclerViewBattleResults.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(context)
         recyclerViewBattleResults.adapter = BattleResultsRecyclerViewAdapter(presenter, drawUtils)
         initializePresenter(arguments)
+        initializeButtons(arguments)
     }
     //endregion
 
@@ -46,7 +48,6 @@ class BattleResultsFragment: androidx.fragment.app.Fragment(), BattleResults.Vie
             val cellIndexes = it.getIntArray(CELL_INDEXES)
             val dealtDamage = it.getIntArray(DEALT_DAMAGE)
             val deadOrAlive = it.getBooleanArray(DEAD_OR_ALIVE)
-            val nextScene = resourceProvider.getIdIdentifier(it.getString(Consts.NEXT_SCENE))
             val dd = mutableMapOf<Int, Int>()
             val doa = mutableMapOf<Int, Boolean>()
             cellIndexes?.forEachIndexed { i, id ->
@@ -54,8 +55,25 @@ class BattleResultsFragment: androidx.fragment.app.Fragment(), BattleResults.Vie
                 doa[id] = deadOrAlive[i]
             }
             presenter.initialize(dd, doa)
-            buttonToHeroesScreen.setOnClickListener { view ->
-                view.findNavController().navigate(nextScene)
+        }
+    }
+
+    private fun initializeButtons(arguments: Bundle?) {
+        arguments?.let {
+            val nextScene = resourceProvider.getIdIdentifier(it.getString(Consts.NEXT_SCENE))
+            val prevScene = resourceProvider.getIdIdentifier(it.getString(PREVIOUS_SCENE))
+            val isBattleWon = it.getBoolean(IS_BATTLE_WON)
+            buttonToHeroesScreen.visibility = if (isBattleWon) View.VISIBLE else View.GONE
+            buttonTryAgain.visibility = if (!isBattleWon) View.VISIBLE else View.GONE
+            if (isBattleWon) {
+                buttonToHeroesScreen.setOnClickListener { view ->
+                    view.findNavController().navigate(nextScene)
+                }
+            }
+            else {
+                buttonTryAgain.setOnClickListener { view ->
+                    view.findNavController().navigate(prevScene)
+                }
             }
         }
     }
@@ -67,6 +85,8 @@ class BattleResultsFragment: androidx.fragment.app.Fragment(), BattleResults.Vie
         const val DEALT_DAMAGE = "dealt_damage"
         const val DEAD_OR_ALIVE = "dead_or_alive"
         const val CELL_INDEXES = "cell_indexes"
+        const val IS_BATTLE_WON = "is_battle_won"
+        private val PREVIOUS_SCENE = "previous_scene"
 
         fun newInstance(bundle: Bundle?): BattleResultsFragment {
             val fragment = BattleResultsFragment()

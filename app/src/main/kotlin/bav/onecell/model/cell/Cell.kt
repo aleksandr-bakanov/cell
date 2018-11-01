@@ -30,9 +30,8 @@ class Cell(private val hexMath: HexMath,
     val animationData = AnimationData()
 
     data class BattleData(var battleId: Int = 0,
-                          var battleGroupId: Int = 0,
                           var isAlive: Boolean = true) {
-        fun clone(): BattleData = BattleData(battleId, battleGroupId, isAlive)
+        fun clone(): BattleData = BattleData(battleId, isAlive)
     }
 
     companion object {

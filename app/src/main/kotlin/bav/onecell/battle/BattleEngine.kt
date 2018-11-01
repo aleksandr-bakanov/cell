@@ -136,9 +136,10 @@ class BattleEngine(
             while (!isBattleOver()) {
                 doFullStep()
             }
+            val winnerGroupId = battleFieldSnapshots.last().cells[0].data.groupId
             battleResultProvider.onNext(BattleInfo(battleFieldSnapshots, damageDealtByCells,
                                                    getDeadOrAliveCells(battleFieldSnapshots.last()),
-                                                   isFog))
+                                                   isFog, winnerGroupId))
         }
     }
 
