@@ -9,6 +9,7 @@ import bav.onecell.OneCellApplication
 import bav.onecell.R
 import bav.onecell.common.Common
 import bav.onecell.common.Consts
+import bav.onecell.common.extensions.visible
 import bav.onecell.common.view.DrawUtils
 import kotlinx.android.synthetic.main.fragment_battle_results.buttonToHeroesScreen
 import kotlinx.android.synthetic.main.fragment_battle_results.buttonTryAgain
@@ -63,8 +64,8 @@ class BattleResultsFragment: androidx.fragment.app.Fragment(), BattleResults.Vie
             val nextScene = resourceProvider.getIdIdentifier(it.getString(Consts.NEXT_SCENE))
             val prevScene = resourceProvider.getIdIdentifier(it.getString(PREVIOUS_SCENE))
             val isBattleWon = it.getBoolean(IS_BATTLE_WON)
-            buttonToHeroesScreen.visibility = if (isBattleWon) View.VISIBLE else View.GONE
-            buttonTryAgain.visibility = if (!isBattleWon) View.VISIBLE else View.GONE
+            buttonToHeroesScreen.visible = isBattleWon
+            buttonTryAgain.visible = !isBattleWon
             if (isBattleWon) {
                 buttonToHeroesScreen.setOnClickListener { view ->
                     view.findNavController().navigate(nextScene)

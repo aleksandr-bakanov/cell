@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.navigation.findNavController
 import bav.onecell.OneCellApplication
 import bav.onecell.R
+import bav.onecell.common.extensions.visible
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_main.buttonContinueGame
 import kotlinx.android.synthetic.main.fragment_main.buttonExitGame
@@ -49,7 +50,7 @@ class MainFragment : Fragment(), Main.View {
         (requireActivity() as? Main.NavigationInfoProvider)?.let {
             disposables.add(it.provideLastDestination().subscribe { destination ->
                 lastNavDestination = destination
-                buttonContinueGame.visibility = if (lastNavDestination == 0) View.GONE else View.VISIBLE
+                buttonContinueGame.visible = lastNavDestination != 0
             })
         }
     }

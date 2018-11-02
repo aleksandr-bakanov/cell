@@ -30,5 +30,16 @@ interface Common {
         fun setLastNavDestinationId(id: Int)
 
         fun isFirstLaunch(): Boolean
+
+        fun setDecision(field: String, value: Boolean)
+        fun getDecision(field: String): Decision
+
+        companion object {
+            const val HELP_GONATO = "help_gonato"
+        }
+
+        enum class Decision {
+            NOT_TAKEN, YES, NO
+        }
     }
 }

@@ -21,6 +21,7 @@ import bav.onecell.celllogic.picker.PickerRecyclerViewAdapter
 import bav.onecell.celllogic.rules.RulesRecyclerViewAdapter
 import bav.onecell.common.Common
 import bav.onecell.common.Consts
+import bav.onecell.common.extensions.visible
 import bav.onecell.common.view.DrawUtils
 import bav.onecell.common.view.HexPicker
 import bav.onecell.model.hexes.Hex
@@ -309,21 +310,19 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
     private fun switchCellLogicEditorViews() {
         isCellLogicViewsShown = !isCellLogicViewsShown
 
-        val cellLogicVisibility = getVisibilityByBool(isCellLogicViewsShown)
-        val editorVisibility = getVisibilityByBool(!isCellLogicViewsShown)
+        val cellLogicVisibility = isCellLogicViewsShown
+        val editorVisibility = !isCellLogicViewsShown
 
         /// TODO: energy hex is available not from the beginning
         for (view in arrayListOf<View>(radioButtonLifeHex, radioButtonAttackHex, radioButtonEnergyHex,
                                        radioButtonRemoveHex, editorCanvasView, textHeroHistory,
                                        buttonRotateCellLeft, buttonRotateCellRight, radioButtonDeathRayHex))
-            view.visibility = editorVisibility
+            view.visible = editorVisibility
 
         for (view in arrayListOf<View>(recyclerViewRulesList, recyclerViewConditionsList, recyclerViewCellLogicPicker,
                                        buttonIncreaseRulePriority, buttonDecreaseRulePriority))
-            view.visibility = cellLogicVisibility
+            view.visible = cellLogicVisibility
     }
-
-    private fun getVisibilityByBool(b: Boolean): Int = if (b) View.VISIBLE else View.GONE
     //endregion
 
     companion object {

@@ -68,4 +68,22 @@
         app:layout_constraintEnd_toStartOf="@id/rightCharacter"
         app:layout_constraintBottom_toTopOf="@id/textView" />
 
+    <Button
+        android:id="@+id/buttonNo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_no_title"
+        android:visibility="gone"
+        app:layout_constraintStart_toEndOf="@id/leftCharacter"
+        app:layout_constraintBottom_toTopOf="@id/textView" />
+
+    <Button
+        android:id="@+id/buttonYes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_yes_title"
+        android:visibility="gone"
+        app:layout_constraintEnd_toStartOf="@id/rightCharacter"
+        app:layout_constraintBottom_toTopOf="@id/textView" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
