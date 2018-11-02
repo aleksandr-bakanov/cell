@@ -104,6 +104,7 @@ class CutSceneFragment : Fragment(), CutScene.View {
             rightCharacter.setImageDrawable(ContextCompat.getDrawable(requireContext(), getRightCharacter(it.right)))
             textView.text = it.text
 
+            // TODO: don't give a choice if decision has been taken already
             buttonNextFrame.visible = it.decisionField.isEmpty()
             buttonPreviousFrame.visible = it.decisionField.isEmpty()
             buttonYes.visible = it.decisionField.isNotEmpty()
