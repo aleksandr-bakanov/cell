@@ -23,6 +23,14 @@ interface Common {
         fun getDrawableIdentifier(name: String?): Int
 
         fun getIdIdentifier(name: String?): Int
+
+        fun getStringIdentifier(name: String?): Int
+
+        fun getDrawable(id: Int): Drawable?
+        fun getDrawable(name: String?): Drawable?
+
+        fun getString(id: Int): String?
+        fun getString(name: String?): String?
     }
 
     interface GameState {

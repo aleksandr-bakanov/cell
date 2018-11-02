@@ -102,7 +102,7 @@ class CutSceneFragment : Fragment(), CutScene.View {
             background.setImageDrawable(ContextCompat.getDrawable(requireContext(), getBackground(it.background)))
             leftCharacter.setImageDrawable(ContextCompat.getDrawable(requireContext(), getLeftCharacter(it.left)))
             rightCharacter.setImageDrawable(ContextCompat.getDrawable(requireContext(), getRightCharacter(it.right)))
-            textView.text = it.text
+            textView.text = resourceProvider.getString(it.text)
 
             // TODO: don't give a choice if decision has been taken already
             buttonNextFrame.visible = it.decisionField.isEmpty()

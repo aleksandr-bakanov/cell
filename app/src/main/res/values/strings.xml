@@ -105,15 +105,20 @@ Lorem ipsum dolor sit amet, اللغة العربية. 한국어, 조선어, 韓
             left: 'left_character',
             right: 'left_character',
             frames: {
-                '0': { text: 'Hello world!' },
-                '1': { text: 'Do you want to help?', background: 'wallpaper_02', decisionField: 'help_gonato', yesNextFrame: 2, noNextFrame: 3},
-                '2': { text: 'You\\'ve helped us :-)', left: 'left_character_01', nextFrame: 4 },
-                '3': { text: 'You DIDN\\'T help us :-(' },
-                '4': { text: 'End of the story' }
+                '0': { text: 'cs_introduction_0' },
+                '1': { text: 'cs_introduction_1', background: 'wallpaper_02', decisionField: 'help_gonato', yesNextFrame: 2, noNextFrame: 3},
+                '2': { text: 'cs_introduction_2', left: 'left_character_01', nextFrame: 4 },
+                '3': { text: 'cs_introduction_3' },
+                '4': { text: 'cs_introduction_4' }
             },
             next_scene: 'action_cutSceneIntroduction_to_battleGopniks'
         }"
     </string>
+    <string name="cs_introduction_0">Hello world!</string>
+    <string name="cs_introduction_1">Do you want to help?</string>
+    <string name="cs_introduction_2">You\'ve helped us :-)</string>
+    <string name="cs_introduction_3">You DIDN\'T help us :-(</string>
+    <string name="cs_introduction_4">End of the story</string>
     <!--
       - Cut scene after gopniks contains description of the hero screen interface. At this moment only Kittaro
       - is available. Also the button for switching between editor and logic screens should be hidden.
@@ -125,13 +130,12 @@ Lorem ipsum dolor sit amet, اللغة العربية. 한국어, 조선어, 韓
             left: 'left_character',
             right: 'left_character',
             frames: {
-                '0': { text: 'cut_scene_after_gopniks 1' },
-                '1': { text: 'cut_scene_after_gopniks 2', background: 'wallpaper_02' },
-                '2': { text: 'cut_scene_after_gopniks 3', left: 'left_character_01' }
+                '0': { text: 'cs_after_gopniks_0' }
             },
             next_scene: 'action_cutSceneAfterGopniks_to_heroScreenAfterGopniks'
         }"
     </string>
+    <string name="cs_after_gopniks_0">cut_scene_after_gopniks 1</string>
     <!--
       - Cut scene before encounter with skiloses.
       -->
@@ -141,13 +145,12 @@ Lorem ipsum dolor sit amet, اللغة العربية. 한국어, 조선어, 韓
             left: 'left_character',
             right: 'left_character',
             frames: {
-                '0': { text: 'cut_scene_before_skilos 1' },
-                '1': { text: 'cut_scene_before_skilos 2', background: 'wallpaper_02' },
-                '2': { text: 'cut_scene_before_skilos 3', left: 'left_character_01' }
+                '0': { text: 'cs_before_skilos_0' }
             },
             next_scene: 'action_cutSceneBeforeSkilos_to_battleSkilos'
         }"
     </string>
+    <string name="cs_before_skilos_0">cut_scene_before_skilos 1</string>
     <!--
       - Cut scene after encounter with skiloses.
       -->
@@ -157,13 +160,12 @@ Lorem ipsum dolor sit amet, اللغة العربية. 한국어, 조선어, 韓
             left: 'left_character',
             right: 'left_character',
             frames: {
-                '0': { text: 'cut_scene_after_skilos 1' },
-                '1': { text: 'cut_scene_after_skilos 2', background: 'wallpaper_02' },
-                '2': { text: 'cut_scene_after_skilos 3', left: 'left_character_01' }
+                '0': { text: 'cs_after_skilos_0' }
             },
             next_scene: 'action_cutSceneAfterSkilos_to_heroScreenAfterSkilos'
         }"
     </string>
+    <string name="cs_after_skilos_0">cut_scene_after_skilos 1</string>
 
     <!-- Battle scenes params -->
     <string name="battle_with_gopniks_params">{battleParams:{cellIndexes:[0,3,4,5],isFog:false},next_scene:"action_battleGopniks_to_battleResultsGopniks"}</string>

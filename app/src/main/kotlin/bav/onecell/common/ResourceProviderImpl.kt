@@ -99,4 +99,11 @@ class ResourceProviderImpl(private val context: Context): Common.ResourceProvide
 
     override fun getDrawableIdentifier(name: String?): Int = context.resources.getIdentifier(name, "drawable", "bav.onecell")
     override fun getIdIdentifier(name: String?): Int = context.resources.getIdentifier(name, "id", "bav.onecell")
+    override fun getStringIdentifier(name: String?): Int = context.resources.getIdentifier(name, "string", "bav.onecell")
+
+    override fun getDrawable(id: Int): Drawable? = ContextCompat.getDrawable(context, id)
+    override fun getString(id: Int): String? = context.resources.getString(id)
+
+    override fun getString(name: String?): String? = getString(getStringIdentifier(name))
+    override fun getDrawable(name: String?): Drawable? = getDrawable(getDrawableIdentifier(name))
 }
