@@ -57,6 +57,17 @@ class CutSceneFragment : Fragment(), CutScene.View {
         parseArguments(arguments)
     }
 
+    override fun onResume() {
+        super.onResume()
+        currentFrameIndex = gameState.getCurrentFrame()
+        showFrame(currentFrameIndex)
+    }
+
+    override fun onPause() {
+        gameState.setCurrentFrame(currentFrameIndex)
+        super.onPause()
+    }
+
     override fun onDestroyView() {
         disposables.dispose()
         super.onDestroyView()
@@ -94,7 +105,6 @@ class CutSceneFragment : Fragment(), CutScene.View {
                 Log.e(TAG, "wrong json: $e")
             }
         }
-        showFrame(currentFrameIndex)
     }
 
     private fun showFrame(index: Int) {
@@ -114,6 +124,7 @@ class CutSceneFragment : Fragment(), CutScene.View {
 
     private fun showNextFrame() {
         if (currentFrameIndex == frames.size - 1) {
+            currentFrameIndex = 0
             findNavController().navigate(nextScene)
         }
         else {

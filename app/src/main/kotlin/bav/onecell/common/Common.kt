@@ -42,6 +42,9 @@ interface Common {
         fun setDecision(field: String, value: Boolean)
         fun getDecision(field: String): Decision
 
+        fun setCurrentFrame(index: Int)
+        fun getCurrentFrame(): Int
+
         companion object {
             const val HELP_GONATO = "help_gonato"
         }

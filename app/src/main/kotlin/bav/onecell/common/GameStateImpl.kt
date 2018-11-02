@@ -30,8 +30,13 @@ class GameStateImpl(private val context: Context,
         }
     }
 
+    override fun setCurrentFrame(index: Int) = preferences.edit().putInt(CURRENT_FRAME_INDEX, index).apply()
+
+    override fun getCurrentFrame(): Int = preferences.getInt(CURRENT_FRAME_INDEX, 0)
+
     companion object {
         private const val FIRST_TIME_APP_LAUNCH = "first_time_app_launch"
         private const val LAST_NAV_DESTINATION_ID = "last_nav_destination_id"
+        private const val CURRENT_FRAME_INDEX = "current_frame_index"
     }
 }
