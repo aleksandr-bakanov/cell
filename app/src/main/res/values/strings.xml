@@ -18,9 +18,13 @@
     <string name="text_cell_name">Name</string>
     <string name="text_main_menu">Main menu</string>
     <string name="text_next_scene">Go</string>
-    <string name="text_history_stub">
-Lorem ipsum dolor sit amet, اللغة العربية. 한국어, 조선어, 韓國語, Русский язык. 日本語 カタカナ. Ελληνικ
-    </string>
+    <string name="text_history_stub">Lorem ipsum dolor sit amet, اللغة العربية. 한국어, 조선어, 韓國語, Русский язык. 日本語 カタカナ. Ελληνικ</string>
+    <string name="button_transform_life_to_energy_hex_title">5L -> 1E</string>
+    <string name="button_transform_life_to_attack_hex_title">3L -> 1A</string>
+    <string name="button_transform_life_to_death_ray_hex_title">10L -> 1D</string>
+    <string name="button_transform_energy_to_life_hex_title">1E -> 5L</string>
+    <string name="button_transform_attack_to_life_hex_title">1A -> 3L</string>
+    <string name="button_transform_death_ray_to_life_hex_title">1D -> 10L</string>
 
     <!-- Editor view -->
     <string name="radio_button_life_cell_title">Life</string>

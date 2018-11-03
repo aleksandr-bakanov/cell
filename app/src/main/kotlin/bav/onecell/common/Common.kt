@@ -34,6 +34,8 @@ interface Common {
     }
 
     interface GameState {
+        fun dropGameState()
+
         fun getLastNavDestinationId(): Int
         fun setLastNavDestinationId(id: Int)
 

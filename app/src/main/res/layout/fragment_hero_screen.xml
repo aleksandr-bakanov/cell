@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -10,9 +11,9 @@
         android:layout_width="@dimen/hero_screen_avatar_size"
         android:layout_height="0dp"
         android:layout_margin="@dimen/hero_screen_avatar_margin"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <!-- Hex types buttons -->
     <bav.onecell.common.view.HexPicker
@@ -83,10 +84,10 @@
         android:id="@+id/cellName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/bromine"
         android:text="@string/text_cell_name"
         android:textAlignment="textEnd"
         android:textSize="36sp"
-        android:fontFamily="@font/bromine"
         app:layout_constraintEnd_toStartOf="@id/buttonNextScene"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -105,13 +106,13 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:fontFamily="@font/bromine"
-        android:text="@string/text_history_stub"
-        android:textSize="24sp"
-        android:textColor="@android:color/white"
         android:shadowColor="@android:color/black"
         android:shadowDx="@dimen/cut_scene_text_shadow_offset"
         android:shadowDy="@dimen/cut_scene_text_shadow_offset"
         android:shadowRadius="@dimen/cut_scene_text_shadow_radius"
+        android:text="@string/text_history_stub"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -135,6 +136,79 @@
         app:layout_constraintEnd_toEndOf="@id/editorCanvasView"
         app:srcCompat="@drawable/ic_rotate_right_black_24dp" />
 
+    <!-- Transform hexes button -->
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/buttonTransformHexes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/editorCanvasView"
+        app:layout_constraintStart_toStartOf="@id/editorCanvasView"
+        app:srcCompat="@drawable/ic_account_balance_black_24dp" />
+
+    <Button
+        android:id="@+id/buttonTransformLifeToAttackHex"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_transform_life_to_attack_hex_title"
+        app:layout_constraintBottom_toTopOf="@id/buttonTransformLifeToEnergyHex"
+        app:layout_constraintStart_toStartOf="@id/editorCanvasView"
+        app:layout_constraintTop_toTopOf="@id/editorCanvasView"
+        app:layout_constraintEnd_toStartOf="@id/buttonTransformAttackToLifeHex"/>
+
+    <Button
+        android:id="@+id/buttonTransformLifeToEnergyHex"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_transform_life_to_energy_hex_title"
+        app:layout_constraintBottom_toTopOf="@id/buttonTransformLifeToDeathRayHex"
+        app:layout_constraintStart_toStartOf="@id/editorCanvasView"
+        app:layout_constraintTop_toBottomOf="@id/buttonTransformLifeToAttackHex"
+        app:layout_constraintEnd_toStartOf="@id/buttonTransformEnergyToLifeHex"/>
+
+    <Button
+        android:id="@+id/buttonTransformLifeToDeathRayHex"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_transform_life_to_death_ray_hex_title"
+        app:layout_constraintBottom_toBottomOf="@id/editorCanvasView"
+        app:layout_constraintStart_toStartOf="@id/editorCanvasView"
+        app:layout_constraintTop_toBottomOf="@id/buttonTransformLifeToEnergyHex"
+        app:layout_constraintEnd_toStartOf="@id/buttonTransformDeathRayToLifeHex"/>
+
+    <Button
+        android:id="@+id/buttonTransformAttackToLifeHex"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="@string/button_transform_attack_to_life_hex_title"
+        app:layout_constraintBottom_toTopOf="@id/buttonTransformEnergyToLifeHex"
+        app:layout_constraintEnd_toEndOf="@id/editorCanvasView"
+        app:layout_constraintStart_toEndOf="@+id/buttonTransformLifeToAttackHex"
+        app:layout_constraintTop_toTopOf="@id/editorCanvasView" />
+
+    <Button
+        android:id="@+id/buttonTransformEnergyToLifeHex"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_transform_energy_to_life_hex_title"
+        app:layout_constraintBottom_toTopOf="@id/buttonTransformDeathRayToLifeHex"
+        app:layout_constraintEnd_toEndOf="@id/editorCanvasView"
+        app:layout_constraintTop_toBottomOf="@id/buttonTransformAttackToLifeHex"
+        app:layout_constraintStart_toEndOf="@+id/buttonTransformLifeToEnergyHex"
+        />
+
+    <Button
+        android:id="@+id/buttonTransformDeathRayToLifeHex"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_transform_death_ray_to_life_hex_title"
+        app:layout_constraintBottom_toBottomOf="@id/editorCanvasView"
+        app:layout_constraintEnd_toEndOf="@id/editorCanvasView"
+        app:layout_constraintTop_toBottomOf="@id/buttonTransformEnergyToLifeHex"
+        app:layout_constraintStart_toEndOf="@+id/buttonTransformLifeToDeathRayHex"
+        />
+
     <!-- Cell logic edition -->
     <Button
         android:id="@+id/buttonIncreaseRulePriority"
@@ -142,9 +216,9 @@
         android:layout_height="wrap_content"
         android:text="@string/utf_icon_increase_priority"
         android:textSize="@dimen/hero_screen_cell_logic_utf_icons_size"
+        android:visibility="gone"
         app:layout_constraintStart_toStartOf="@id/recyclerViewRulesList"
-        app:layout_constraintTop_toTopOf="parent"
-        android:visibility="gone" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/buttonDecreaseRulePriority"
@@ -152,53 +226,53 @@
         android:layout_height="wrap_content"
         android:text="@string/utf_icon_decrease_priority"
         android:textSize="@dimen/hero_screen_cell_logic_utf_icons_size"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="@id/recyclerViewRulesList"
-        app:layout_constraintTop_toTopOf="parent"
-        android:visibility="gone" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewRulesList"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_margin="@dimen/hero_screen_cell_logic_margin"
-        app:layout_constraintStart_toEndOf="@id/recyclerViewAvatars"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/recyclerViewCellLogicPicker"
         app:layout_constraintEnd_toStartOf="@id/recyclerViewConditionsList"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintBottom_toTopOf="@id/recyclerViewCellLogicPicker"
-        app:layout_constraintTop_toBottomOf="@id/cellName"
-        android:visibility="gone" />
+        app:layout_constraintStart_toEndOf="@id/recyclerViewAvatars"
+        app:layout_constraintTop_toBottomOf="@id/cellName" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewConditionsList"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_margin="@dimen/hero_screen_cell_logic_margin"
+        android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@id/recyclerViewCellLogicPicker"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@id/recyclerViewRulesList"
-        app:layout_constraintTop_toBottomOf="@id/cellName"
-        android:visibility="gone" />
+        app:layout_constraintTop_toBottomOf="@id/cellName" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewCellLogicPicker"
         android:layout_width="0dp"
         android:layout_height="@dimen/hero_screen_cell_logic_picker_height"
-        android:layout_marginTop="@dimen/hero_screen_cell_logic_margin"
-        android:layout_marginStart="@dimen/hero_screen_cell_logic_margin"
         android:layout_marginEnd="@dimen/hero_screen_cell_logic_margin"
+        android:layout_marginStart="@dimen/hero_screen_cell_logic_margin"
+        android:layout_marginTop="@dimen/hero_screen_cell_logic_margin"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/recyclerViewAvatars"
-        android:visibility="gone" />
+        app:layout_constraintStart_toEndOf="@id/recyclerViewAvatars" />
 
     <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/buttonSwitchScreen"
         android:layout_width="@dimen/hero_screen_avatar_size"
         android:layout_height="@dimen/hero_screen_avatar_size"
         android:layout_margin="@dimen/hero_screen_avatar_margin"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/ic_memory_black_24dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -16,7 +16,6 @@ Learn Android deeply while having fun.
 * Change edition screen. Pick and place different hexes whether from cell or from buckets.
   Pick by long press (only from cell?).
 * Wolowolowolowolo - turning enemies to friendly cells
-* Add return to hero screen from battle results screen in case of heroes death
 
 # Future features
 * Multi-player

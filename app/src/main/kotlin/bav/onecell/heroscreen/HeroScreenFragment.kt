@@ -33,6 +33,13 @@ import kotlinx.android.synthetic.main.fragment_hero_screen.buttonNextScene
 import kotlinx.android.synthetic.main.fragment_hero_screen.buttonRotateCellLeft
 import kotlinx.android.synthetic.main.fragment_hero_screen.buttonRotateCellRight
 import kotlinx.android.synthetic.main.fragment_hero_screen.buttonSwitchScreen
+import kotlinx.android.synthetic.main.fragment_hero_screen.buttonTransformAttackToLifeHex
+import kotlinx.android.synthetic.main.fragment_hero_screen.buttonTransformDeathRayToLifeHex
+import kotlinx.android.synthetic.main.fragment_hero_screen.buttonTransformEnergyToLifeHex
+import kotlinx.android.synthetic.main.fragment_hero_screen.buttonTransformHexes
+import kotlinx.android.synthetic.main.fragment_hero_screen.buttonTransformLifeToAttackHex
+import kotlinx.android.synthetic.main.fragment_hero_screen.buttonTransformLifeToDeathRayHex
+import kotlinx.android.synthetic.main.fragment_hero_screen.buttonTransformLifeToEnergyHex
 import kotlinx.android.synthetic.main.fragment_hero_screen.cellName
 import kotlinx.android.synthetic.main.fragment_hero_screen.editorCanvasView
 import kotlinx.android.synthetic.main.fragment_hero_screen.radioButtonAttackHex
@@ -58,6 +65,7 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
 
     private val disposables = CompositeDisposable()
     private var isCellLogicViewsShown = false
+    private var isHexesTrasformShown = false
     private var nextScene: Int = 0
 
     //region Lifecycle methods
@@ -176,6 +184,8 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
         buttonSwitchScreen.setOnClickListener { switchCellLogicEditorViews() }
         buttonIncreaseRulePriority.setOnClickListener { presenter.increaseSelectedRulePriority() }
         buttonDecreaseRulePriority.setOnClickListener { presenter.decreaseSelectedRulePriority() }
+
+        buttonTransformHexes.setOnClickListener { switchHexesTransformViews() }
     }
 
     private fun initiateCanvasView() {
@@ -316,12 +326,32 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
         /// TODO: energy hex is available not from the beginning
         for (view in arrayListOf<View>(radioButtonLifeHex, radioButtonAttackHex, radioButtonEnergyHex,
                                        radioButtonRemoveHex, editorCanvasView, textHeroHistory,
-                                       buttonRotateCellLeft, buttonRotateCellRight, radioButtonDeathRayHex))
+                                       buttonRotateCellLeft, buttonRotateCellRight, radioButtonDeathRayHex,
+                                       buttonTransformHexes))
             view.visible = editorVisibility
 
         for (view in arrayListOf<View>(recyclerViewRulesList, recyclerViewConditionsList, recyclerViewCellLogicPicker,
                                        buttonIncreaseRulePriority, buttonDecreaseRulePriority))
             view.visible = cellLogicVisibility
+
+        if (editorVisibility) {
+            showHexesTransformOrEditorView()
+        }
+    }
+
+    private fun switchHexesTransformViews() {
+        isHexesTrasformShown = !isHexesTrasformShown
+        showHexesTransformOrEditorView()
+    }
+
+    private fun showHexesTransformOrEditorView() {
+        for (view in arrayListOf<View>(editorCanvasView, buttonRotateCellLeft, buttonRotateCellRight))
+            view.visibility = if (!isHexesTrasformShown) View.VISIBLE else View.INVISIBLE
+
+        for (view in arrayListOf<View>(buttonTransformAttackToLifeHex, buttonTransformDeathRayToLifeHex,
+                                       buttonTransformEnergyToLifeHex, buttonTransformLifeToAttackHex,
+                                       buttonTransformLifeToDeathRayHex, buttonTransformLifeToEnergyHex))
+            view.visible = isHexesTrasformShown
     }
     //endregion
 
