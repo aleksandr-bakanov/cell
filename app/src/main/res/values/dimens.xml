@@ -4,6 +4,7 @@
 
     <dimen name="hero_screen_avatar_size">52dp</dimen>
     <dimen name="hero_screen_avatar_margin">4dp</dimen>
+    <dimen name="hero_screen_avatar_list_width">56dp</dimen> <!-- size + margin -->
     <dimen name="hero_screen_hex_type_size">52dp</dimen>
     <dimen name="hero_screen_cell_logic_picker_height">52dp</dimen>
     <dimen name="hero_screen_cell_logic_utf_icons_size">28sp</dimen>

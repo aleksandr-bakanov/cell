@@ -327,7 +327,9 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
         for (view in arrayListOf<View>(radioButtonLifeHex, radioButtonAttackHex, radioButtonEnergyHex,
                                        radioButtonRemoveHex, editorCanvasView, textHeroHistory,
                                        buttonRotateCellLeft, buttonRotateCellRight, radioButtonDeathRayHex,
-                                       buttonTransformHexes))
+                                       buttonTransformHexes, buttonTransformAttackToLifeHex, buttonTransformDeathRayToLifeHex,
+                                       buttonTransformEnergyToLifeHex, buttonTransformLifeToAttackHex,
+                                       buttonTransformLifeToDeathRayHex, buttonTransformLifeToEnergyHex))
             view.visible = editorVisibility
 
         for (view in arrayListOf<View>(recyclerViewRulesList, recyclerViewConditionsList, recyclerViewCellLogicPicker,
@@ -346,7 +348,7 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
 
     private fun showHexesTransformOrEditorView() {
         for (view in arrayListOf<View>(editorCanvasView, buttonRotateCellLeft, buttonRotateCellRight))
-            view.visibility = if (!isHexesTrasformShown) View.VISIBLE else View.INVISIBLE
+            view.visible = !isHexesTrasformShown
 
         for (view in arrayListOf<View>(buttonTransformAttackToLifeHex, buttonTransformDeathRayToLifeHex,
                                        buttonTransformEnergyToLifeHex, buttonTransformLifeToAttackHex,

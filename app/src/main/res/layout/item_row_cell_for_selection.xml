@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:textSize="36sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/guideline"/>
+        app:layout_constraintEnd_toStartOf="@id/guideline_row_cell_for_selection"/>
 
     <CheckBox
         android:id="@+id/checkboxSelect"
@@ -20,7 +20,7 @@
         app:layout_constraintStart_toEndOf="@id/title" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline"
+        android:id="@+id/guideline_row_cell_for_selection"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"

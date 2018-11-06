@@ -21,10 +21,10 @@
         android:layout_width="@dimen/hero_screen_hex_type_size"
         android:layout_height="@dimen/hero_screen_hex_type_size"
         android:padding="5dp"
-        app:layout_constraintBottom_toTopOf="@id/editorCanvasView"
+        app:layout_constraintBottom_toTopOf="@id/guideline_hero_screen_cellname_bottom"
         app:layout_constraintEnd_toStartOf="@+id/radioButtonAttackHex"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@id/recyclerViewAvatars"
+        app:layout_constraintStart_toEndOf="@id/guideline_hero_screen_avatars_end"
         app:layout_constraintTop_toTopOf="parent" />
 
     <bav.onecell.common.view.HexPicker
@@ -32,7 +32,7 @@
         android:layout_width="@dimen/hero_screen_hex_type_size"
         android:layout_height="@dimen/hero_screen_hex_type_size"
         android:padding="5dp"
-        app:layout_constraintBottom_toTopOf="@id/editorCanvasView"
+        app:layout_constraintBottom_toTopOf="@id/guideline_hero_screen_cellname_bottom"
         app:layout_constraintEnd_toStartOf="@id/radioButtonEnergyHex"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@id/radioButtonLifeHex"
@@ -43,7 +43,7 @@
         android:layout_width="@dimen/hero_screen_hex_type_size"
         android:layout_height="@dimen/hero_screen_hex_type_size"
         android:padding="5dp"
-        app:layout_constraintBottom_toTopOf="@id/editorCanvasView"
+        app:layout_constraintBottom_toTopOf="@id/guideline_hero_screen_cellname_bottom"
         app:layout_constraintEnd_toStartOf="@id/radioButtonDeathRayHex"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@id/radioButtonAttackHex"
@@ -54,7 +54,7 @@
         android:layout_width="@dimen/hero_screen_hex_type_size"
         android:layout_height="@dimen/hero_screen_hex_type_size"
         android:padding="5dp"
-        app:layout_constraintBottom_toTopOf="@id/editorCanvasView"
+        app:layout_constraintBottom_toTopOf="@id/guideline_hero_screen_cellname_bottom"
         app:layout_constraintEnd_toStartOf="@id/radioButtonRemoveHex"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@id/radioButtonEnergyHex"
@@ -65,8 +65,8 @@
         android:layout_width="@dimen/hero_screen_hex_type_size"
         android:layout_height="@dimen/hero_screen_hex_type_size"
         android:padding="5dp"
-        app:layout_constraintBottom_toTopOf="@id/editorCanvasView"
-        app:layout_constraintEnd_toEndOf="@id/editorCanvasView"
+        app:layout_constraintBottom_toTopOf="@id/guideline_hero_screen_cellname_bottom"
+        app:layout_constraintEnd_toEndOf="@id/guideline_hero_screen_center_vertical"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@id/radioButtonDeathRayHex"
         app:layout_constraintTop_toTopOf="parent" />
@@ -89,22 +89,23 @@
         android:textAlignment="textEnd"
         android:textSize="36sp"
         app:layout_constraintEnd_toStartOf="@id/buttonNextScene"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/guideline_hero_screen_cellname_bottom"/>
 
     <bav.onecell.editor.EditorCanvasView
         android:id="@+id/editorCanvasView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/textHeroHistory"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@id/recyclerViewAvatars"
+        app:layout_constraintEnd_toStartOf="@id/guideline_hero_screen_center_vertical"
+        app:layout_constraintStart_toEndOf="@id/guideline_hero_screen_avatars_end"
         app:layout_constraintTop_toBottomOf="@id/cellName" />
 
     <TextView
         android:id="@+id/textHeroHistory"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:background="#AAAAAA"
         android:fontFamily="@font/bromine"
         android:shadowColor="@android:color/black"
         android:shadowDx="@dimen/cut_scene_text_shadow_offset"
@@ -115,8 +116,7 @@
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@id/editorCanvasView"
+        app:layout_constraintStart_toEndOf="@id/guideline_hero_screen_center_vertical"
         app:layout_constraintTop_toBottomOf="@id/cellName" />
 
     <!-- Rotation buttons -->
@@ -125,7 +125,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@id/editorCanvasView"
+        app:layout_constraintStart_toStartOf="@id/guideline_hero_screen_avatars_end"
         app:srcCompat="@drawable/ic_rotate_left_black_24dp" />
 
     <androidx.appcompat.widget.AppCompatImageButton
@@ -133,7 +133,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@id/editorCanvasView"
+        app:layout_constraintEnd_toEndOf="@id/guideline_hero_screen_center_vertical"
         app:srcCompat="@drawable/ic_rotate_right_black_24dp" />
 
     <!-- Transform hexes button -->
@@ -142,8 +142,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@id/editorCanvasView"
-        app:layout_constraintStart_toStartOf="@id/editorCanvasView"
+        app:layout_constraintEnd_toEndOf="@id/guideline_hero_screen_center_vertical"
+        app:layout_constraintStart_toStartOf="@id/guideline_hero_screen_avatars_end"
         app:srcCompat="@drawable/ic_account_balance_black_24dp" />
 
     <Button
@@ -151,9 +151,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/button_transform_life_to_attack_hex_title"
+        android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@id/buttonTransformLifeToEnergyHex"
-        app:layout_constraintStart_toStartOf="@id/editorCanvasView"
-        app:layout_constraintTop_toTopOf="@id/editorCanvasView"
+        app:layout_constraintStart_toStartOf="@id/guideline_hero_screen_avatars_end"
+        app:layout_constraintTop_toTopOf="@id/guideline_hero_screen_cellname_bottom"
         app:layout_constraintEnd_toStartOf="@id/buttonTransformAttackToLifeHex"/>
 
     <Button
@@ -161,8 +162,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/button_transform_life_to_energy_hex_title"
+        android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@id/buttonTransformLifeToDeathRayHex"
-        app:layout_constraintStart_toStartOf="@id/editorCanvasView"
+        app:layout_constraintStart_toStartOf="@id/guideline_hero_screen_avatars_end"
         app:layout_constraintTop_toBottomOf="@id/buttonTransformLifeToAttackHex"
         app:layout_constraintEnd_toStartOf="@id/buttonTransformEnergyToLifeHex"/>
 
@@ -171,8 +173,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/button_transform_life_to_death_ray_hex_title"
-        app:layout_constraintBottom_toBottomOf="@id/editorCanvasView"
-        app:layout_constraintStart_toStartOf="@id/editorCanvasView"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@id/guideline_hero_screen_avatars_end"
         app:layout_constraintTop_toBottomOf="@id/buttonTransformLifeToEnergyHex"
         app:layout_constraintEnd_toStartOf="@id/buttonTransformDeathRayToLifeHex"/>
 
@@ -182,18 +185,20 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="@string/button_transform_attack_to_life_hex_title"
+        android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@id/buttonTransformEnergyToLifeHex"
-        app:layout_constraintEnd_toEndOf="@id/editorCanvasView"
+        app:layout_constraintEnd_toEndOf="@id/guideline_hero_screen_center_vertical"
         app:layout_constraintStart_toEndOf="@+id/buttonTransformLifeToAttackHex"
-        app:layout_constraintTop_toTopOf="@id/editorCanvasView" />
+        app:layout_constraintTop_toTopOf="@id/guideline_hero_screen_cellname_bottom" />
 
     <Button
         android:id="@+id/buttonTransformEnergyToLifeHex"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/button_transform_energy_to_life_hex_title"
+        android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@id/buttonTransformDeathRayToLifeHex"
-        app:layout_constraintEnd_toEndOf="@id/editorCanvasView"
+        app:layout_constraintEnd_toEndOf="@id/guideline_hero_screen_center_vertical"
         app:layout_constraintTop_toBottomOf="@id/buttonTransformAttackToLifeHex"
         app:layout_constraintStart_toEndOf="@+id/buttonTransformLifeToEnergyHex"
         />
@@ -203,8 +208,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/button_transform_death_ray_to_life_hex_title"
-        app:layout_constraintBottom_toBottomOf="@id/editorCanvasView"
-        app:layout_constraintEnd_toEndOf="@id/editorCanvasView"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/guideline_hero_screen_center_vertical"
         app:layout_constraintTop_toBottomOf="@id/buttonTransformEnergyToLifeHex"
         app:layout_constraintStart_toEndOf="@+id/buttonTransformLifeToDeathRayHex"
         />
@@ -239,7 +245,7 @@
         app:layout_constraintBottom_toTopOf="@id/recyclerViewCellLogicPicker"
         app:layout_constraintEnd_toStartOf="@id/recyclerViewConditionsList"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@id/recyclerViewAvatars"
+        app:layout_constraintStart_toEndOf="@id/guideline_hero_screen_avatars_end"
         app:layout_constraintTop_toBottomOf="@id/cellName" />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -264,7 +270,7 @@
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/recyclerViewAvatars" />
+        app:layout_constraintStart_toEndOf="@id/guideline_hero_screen_avatars_end" />
 
     <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/buttonSwitchScreen"
@@ -274,5 +280,25 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/ic_memory_black_24dp" />
+
+    <!-- Guidelines -->
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_hero_screen_center_vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.55" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_hero_screen_avatars_end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="@dimen/hero_screen_avatar_list_width" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_hero_screen_cellname_bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="@dimen/hero_screen_avatar_list_width" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
