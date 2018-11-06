@@ -2,6 +2,7 @@ package bav.onecell.heroscreen
 
 import bav.onecell.R
 import bav.onecell.common.Common
+import bav.onecell.common.Consts
 import bav.onecell.common.router.Router
 import bav.onecell.model.GameRules
 import bav.onecell.model.RepositoryContract
@@ -255,7 +256,7 @@ class HeroScreenPresenter(
     override fun addHexToCell(hex: Hex) {
         cell?.let {
             if (gameRules.isAllowedToAddHexIntoCell(it, hex) and it.hasHexesInBucket(hex.type)) {
-                decreaseHexesInBucket(it, hex.type)
+                decreaseHexesInBucket(hex.type)
                 it.addHex(hex)
                 it.evaluateCellHexesPower()
                 view.highlightTips(hex.type)
@@ -267,7 +268,7 @@ class HeroScreenPresenter(
         cell?.let {
             if (gameRules.isAllowedToRemoveHexFromCell(it, hex)) {
                 val hexType = it.data.hexes[hex.hashCode()]?.type ?: Hex.Type.REMOVE
-                increaseHexesInBucket(it, hexType)
+                increaseHexesInBucket(hexType)
                 it.removeHex(hex)
                 it.evaluateCellHexesPower()
             }
@@ -311,19 +312,69 @@ class HeroScreenPresenter(
     override fun getCurrentlySelectedRuleIndex(): Int? = currentRuleIndex
 
     override fun getCellCount(): Int = cellRepository.cellsCount()
+
+    override fun transformLifeHexToAttack() {
+        transformHexes(Hex.Type.LIFE, Hex.Type.ATTACK, Hex.TransformPrice.LIFE_TO_ATTACK.value, 1)
+    }
+
+    override fun transformLifeHexToEnergy() {
+        transformHexes(Hex.Type.LIFE, Hex.Type.ENERGY, Hex.TransformPrice.LIFE_TO_ENERGY.value, 1)
+    }
+
+    override fun transformLifeHexToDeathRay() {
+        transformHexes(Hex.Type.LIFE, Hex.Type.DEATH_RAY, Hex.TransformPrice.LIFE_TO_DEATH_RAY.value, 1)
+    }
+
+    override fun transformAttackHexToLife() {
+        transformHexes(Hex.Type.ATTACK, Hex.Type.LIFE, 1, Hex.TransformPrice.LIFE_TO_ATTACK.value)
+    }
+
+    override fun transformEnergyHexToLife() {
+        transformHexes(Hex.Type.ENERGY, Hex.Type.LIFE, 1, Hex.TransformPrice.LIFE_TO_ENERGY.value)
+    }
+
+    override fun transformDeathRayHexToLife() {
+        transformHexes(Hex.Type.DEATH_RAY, Hex.Type.LIFE, 1, Hex.TransformPrice.LIFE_TO_DEATH_RAY.value)
+    }
     //endregion
 
     //region Private methods
-    private fun updateHexesInBucket(cell: Cell, type: Hex.Type, count: Int) {
-        val hexCount = (cell.data.hexBucket[type.ordinal] ?: 0) + count
-        cell.data.hexBucket[type.ordinal] = hexCount
-        view.updateHexesInBucket(type, hexCount)
+    private fun transformHexes(from: Hex.Type, to: Hex.Type, price: Int, income: Int) {
+        cell?.let {
+            val currentFromCount = it.data.hexBucket.getOrElse(from.ordinal, Consts.ZERO)
+            if (currentFromCount >= price) {
+                val newFromCount = currentFromCount - price
+                val newToCount = it.data.hexBucket.getOrElse(to.ordinal, Consts.ZERO) + income
+                it.data.hexBucket[from.ordinal] = newFromCount
+                it.data.hexBucket[to.ordinal] = newToCount
+                view.updateHexesInBucket(from, newFromCount)
+                view.updateHexesInBucket(to, newToCount)
+            }
+        }
     }
-    private fun increaseHexesInBucket(cell: Cell, type: Hex.Type) {
-        updateHexesInBucket(cell, type, 1)
+
+    private fun notifyHexesInBucket(type: Hex.Type, count: Int) {
+        cell?.let {
+            val hexCount = (it.data.hexBucket[type.ordinal] ?: 0) + count
+            it.data.hexBucket[type.ordinal] = hexCount
+            view.updateHexesInBucket(type, hexCount)
+        }
     }
-    private fun decreaseHexesInBucket(cell: Cell, type: Hex.Type) {
-        updateHexesInBucket(cell, type, -1)
+
+    private fun increaseHexesInBucket(type: Hex.Type) {
+        notifyHexesInBucket(type, 1)
+    }
+
+    private fun decreaseHexesInBucket(type: Hex.Type) {
+        notifyHexesInBucket(type, -1)
+    }
+
+    private fun notifyAllHexesInBucket() {
+        cell?.let {
+            for (type in Hex.Type.values()) {
+                view.updateHexesInBucket(type, it.data.hexBucket[type.ordinal] ?: 0)
+            }
+        }
     }
 
     private fun initializeRuleActionChoice(ruleIndex: Int) {

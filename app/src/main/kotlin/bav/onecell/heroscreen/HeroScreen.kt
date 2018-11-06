@@ -19,5 +19,12 @@ interface HeroScreen {
         fun increaseSelectedRulePriority()
         fun decreaseSelectedRulePriority()
         fun getCellCount(): Int
+
+        fun transformLifeHexToAttack()
+        fun transformLifeHexToEnergy()
+        fun transformLifeHexToDeathRay()
+        fun transformAttackHexToLife()
+        fun transformEnergyHexToLife()
+        fun transformDeathRayHexToLife()
     }
 }

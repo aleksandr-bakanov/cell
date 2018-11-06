@@ -23,6 +23,10 @@ data class Hex(var q: Int = 0, var r: Int = 0, var s: Int = 0) {
         LIFE(1), ENERGY(3), ATTACK(2), DEATH_RAY(5);
     }
 
+    enum class TransformPrice(val value: Int) {
+        LIFE_TO_ATTACK(3), LIFE_TO_ENERGY(5), LIFE_TO_DEATH_RAY(10)
+    }
+
     var type: Type = Type.REMOVE
     @Transient var power: Int = 0
     @Transient var receivedDamage: Int = 0

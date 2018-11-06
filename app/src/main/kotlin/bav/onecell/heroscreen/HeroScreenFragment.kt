@@ -186,6 +186,12 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
         buttonDecreaseRulePriority.setOnClickListener { presenter.decreaseSelectedRulePriority() }
 
         buttonTransformHexes.setOnClickListener { switchHexesTransformViews() }
+        buttonTransformLifeToAttackHex.setOnClickListener { presenter.transformLifeHexToAttack() }
+        buttonTransformLifeToEnergyHex.setOnClickListener { presenter.transformLifeHexToEnergy() }
+        buttonTransformLifeToDeathRayHex.setOnClickListener { presenter.transformLifeHexToDeathRay() }
+        buttonTransformAttackToLifeHex.setOnClickListener { presenter.transformAttackHexToLife() }
+        buttonTransformEnergyToLifeHex.setOnClickListener { presenter.transformEnergyHexToLife() }
+        buttonTransformDeathRayToLifeHex.setOnClickListener { presenter.transformDeathRayHexToLife() }
     }
 
     private fun initiateCanvasView() {
