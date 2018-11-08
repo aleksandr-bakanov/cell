@@ -113,7 +113,7 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
                     recyclerViewCellLogicPicker.adapter?.notifyDataSetChanged()
                 }
         )
-        presenter.initialize(KITTARO_INDEX)
+        presenter.initialize(Consts.KITTARO_INDEX)
     }
 
     override fun onDestroyView() {
@@ -365,10 +365,6 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
 
     companion object {
         private const val TAG = "HeroScreenFragment"
-
-        private const val KITTARO_INDEX = 0
-        private const val ZOI_INDEX = 1
-        private const val AIMA_INDEX = 2
 
         @JvmStatic
         fun newInstance(bundle: Bundle?): HeroScreenFragment {

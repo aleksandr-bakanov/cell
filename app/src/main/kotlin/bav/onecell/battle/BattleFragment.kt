@@ -44,6 +44,7 @@ class BattleFragment : Fragment(), Battle.View {
 
     private val disposables = CompositeDisposable()
     private var nextScene: Int = 0
+    private var reward: String = ""
 
     private val seekBarListener = object : SeekBar.OnSeekBarChangeListener {
         override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
@@ -106,6 +107,7 @@ class BattleFragment : Fragment(), Battle.View {
             val info = JSONObject(it.getString(EXTRA_PARAMS).orEmpty())
             val battleParams = info.getString(BATTLE_PARAMS)
             nextScene = resourceProvider.getIdIdentifier(info.getString(NEXT_SCENE))
+            reward = info.optString(Consts.BATTLE_REWARD)
             presenter.initialize(battleParams)
         }
         battleCanvasView.backgroundFieldRadius = 5
@@ -136,6 +138,7 @@ class BattleFragment : Fragment(), Battle.View {
             dealtDamage.keys.forEach { doa.add(deadOrAliveCells[it] ?: false) }
             bundle.putBooleanArray(BattleResultsFragment.DEAD_OR_ALIVE, doa.toBooleanArray())
             bundle.putBoolean(BattleResultsFragment.IS_BATTLE_WON, battleInfo.winnerGroupId == Consts.HERO_GROUP_ID)
+            bundle.putString(Consts.BATTLE_REWARD, reward)
             view.findNavController().navigate(nextScene, bundle)
         }
         activity?.runOnUiThread {

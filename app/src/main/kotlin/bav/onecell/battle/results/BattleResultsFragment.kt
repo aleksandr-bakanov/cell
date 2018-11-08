@@ -1,6 +1,7 @@
 package bav.onecell.battle.results
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,9 +12,11 @@ import bav.onecell.common.Common
 import bav.onecell.common.Consts
 import bav.onecell.common.extensions.visible
 import bav.onecell.common.view.DrawUtils
+import bav.onecell.model.hexes.Hex
 import kotlinx.android.synthetic.main.fragment_battle_results.buttonToHeroesScreen
 import kotlinx.android.synthetic.main.fragment_battle_results.buttonTryAgain
 import kotlinx.android.synthetic.main.fragment_battle_results.recyclerViewBattleResults
+import org.json.JSONObject
 import javax.inject.Inject
 
 class BattleResultsFragment: androidx.fragment.app.Fragment(), BattleResults.View {
@@ -70,12 +73,22 @@ class BattleResultsFragment: androidx.fragment.app.Fragment(), BattleResults.Vie
                 buttonToHeroesScreen.setOnClickListener { view ->
                     view.findNavController().navigate(nextScene)
                 }
+                rewardForBattle(it.getString(Consts.BATTLE_REWARD, ""))
             }
             else {
                 buttonTryAgain.setOnClickListener { view ->
                     view.findNavController().navigate(prevScene)
                 }
             }
+        }
+    }
+
+    private fun rewardForBattle(rewardJson: String) {
+        val reward = JSONObject(rewardJson)
+        presenter.getCell(Consts.KITTARO_INDEX)?.let { cell ->
+            val bucket = cell.data.hexBucket
+            for (type in Hex.Type.values().filter { it != Hex.Type.REMOVE })
+                bucket[type.ordinal] = bucket.getOrElse(type.ordinal, Consts.ZERO) + reward.optInt(type.toString())
         }
     }
     //endregion
@@ -87,7 +100,13 @@ class BattleResultsFragment: androidx.fragment.app.Fragment(), BattleResults.Vie
         const val DEAD_OR_ALIVE = "dead_or_alive"
         const val CELL_INDEXES = "cell_indexes"
         const val IS_BATTLE_WON = "is_battle_won"
-        private val PREVIOUS_SCENE = "previous_scene"
+        private const val PREVIOUS_SCENE = "previous_scene"
+
+        // Hex types
+        private const val LIFE = "LIFE"
+        private const val ATTACK = "ATTACK"
+        private const val ENERGY = "ENERGY"
+        private const val DEATH_RAY = "DEATH_RAY"
 
         fun newInstance(bundle: Bundle?): BattleResultsFragment {
             val fragment = BattleResultsFragment()
