@@ -115,7 +115,9 @@
                 '3': { text: 'cs_introduction_3' },
                 '4': { text: 'cs_introduction_4' }
             },
-            next_scene: 'action_cutSceneIntroduction_to_battleGopniks'
+            next_scene: 'action_cutSceneIntroduction_to_battleGopniks',
+            yes_next_scene: 'action_cutSceneIntroduction_to_battleGopniks',
+            no_next_scene: 'action_cutSceneIntroduction_to_battleGopniks',
         }"
     </string>
     <string name="cs_introduction_0">Hello world!</string>

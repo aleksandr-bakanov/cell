@@ -65,7 +65,7 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
 
     private val disposables = CompositeDisposable()
     private var isCellLogicViewsShown = false
-    private var isHexesTrasformShown = false
+    private var isHexesTransformShown = false
     private var nextScene: Int = 0
 
     //region Lifecycle methods
@@ -348,18 +348,18 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
     }
 
     private fun switchHexesTransformViews() {
-        isHexesTrasformShown = !isHexesTrasformShown
+        isHexesTransformShown = !isHexesTransformShown
         showHexesTransformOrEditorView()
     }
 
     private fun showHexesTransformOrEditorView() {
         for (view in arrayListOf<View>(editorCanvasView, buttonRotateCellLeft, buttonRotateCellRight))
-            view.visible = !isHexesTrasformShown
+            view.visible = !isHexesTransformShown
 
         for (view in arrayListOf<View>(buttonTransformAttackToLifeHex, buttonTransformDeathRayToLifeHex,
                                        buttonTransformEnergyToLifeHex, buttonTransformLifeToAttackHex,
                                        buttonTransformLifeToDeathRayHex, buttonTransformLifeToEnergyHex))
-            view.visible = isHexesTrasformShown
+            view.visible = isHexesTransformShown
     }
     //endregion
 

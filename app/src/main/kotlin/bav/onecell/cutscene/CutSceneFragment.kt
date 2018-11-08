@@ -38,7 +38,10 @@ class CutSceneFragment : Fragment(), CutScene.View {
     private var defaultRightCharacter: Int = 0
     private val frames: MutableMap<Int, FrameData> = mutableMapOf()
     private var nextScene: Int = 0
+    private var yesNextScene: Int = 0
+    private var noNextScene: Int = 0
     private var currentFrameIndex: Int = 0
+    private var decisionMade: String = ""
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -87,10 +90,12 @@ class CutSceneFragment : Fragment(), CutScene.View {
         arguments?.let {
             try {
                 val info = JSONObject(it.getString(CUT_SCENE_INFO))
-                defaultBackground = resourceProvider.getDrawableIdentifier(info.getString(BACKGROUND))
-                defaultLeftCharacter = resourceProvider.getDrawableIdentifier(info.getString(LEFT))
-                defaultRightCharacter = resourceProvider.getDrawableIdentifier(info.getString(RIGHT))
-                nextScene = resourceProvider.getIdIdentifier(info.getString(Consts.NEXT_SCENE))
+                defaultBackground = resourceProvider.getDrawableIdentifier(info.optString(BACKGROUND))
+                defaultLeftCharacter = resourceProvider.getDrawableIdentifier(info.optString(LEFT))
+                defaultRightCharacter = resourceProvider.getDrawableIdentifier(info.optString(RIGHT))
+                nextScene = resourceProvider.getIdIdentifier(info.optString(Consts.NEXT_SCENE))
+                yesNextScene = resourceProvider.getIdIdentifier(info.optString(Consts.YES_NEXT_SCENE))
+                noNextScene = resourceProvider.getIdIdentifier(info.optString(Consts.NO_NEXT_SCENE))
                 val framesMap = info.getJSONObject(FRAMES)
                 for (i in framesMap.keys()) {
                     val data = framesMap.getJSONObject(i)
@@ -125,7 +130,14 @@ class CutSceneFragment : Fragment(), CutScene.View {
     private fun showNextFrame() {
         if (currentFrameIndex == frames.size - 1) {
             currentFrameIndex = 0
-            findNavController().navigate(nextScene)
+            val toScene = if (decisionMade.isNotEmpty()) {
+                              when (gameState.getDecision(decisionMade)) {
+                                  Common.GameState.Decision.YES -> yesNextScene
+                                  Common.GameState.Decision.NO -> noNextScene
+                                  else -> nextScene
+                              }
+                          } else nextScene
+            findNavController().navigate(toScene)
         }
         else {
             val nextFrameIndex = frames[currentFrameIndex]?.nextFrame ?: DEFAULT_NEXT_FRAME
@@ -142,6 +154,7 @@ class CutSceneFragment : Fragment(), CutScene.View {
     private fun makeDecision(value: Boolean) {
         frames[currentFrameIndex]?.let { frame ->
             gameState.setDecision(frame.decisionField, value)
+            decisionMade = frame.decisionField
             currentFrameIndex = if (value) frame.yesNextFrame else frame.noNextFrame
             showFrame(currentFrameIndex)
         }
