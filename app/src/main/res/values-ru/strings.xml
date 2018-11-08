@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Introduction scene -->
+    <string name="cs_introduction_0">Киттаро, ты должен срочно доставить это сообщение королю! Поспеши, от тебя зависит судьба общины!</string>
+    <string name="cs_introduction_1">Эй, Китти, куда это ты намылился? Что это ты там такое прячешь?</string>
+    <string name="cs_introduction_2">Не ваше дело, пропустите&#9230;</string>
+    <string name="cs_introduction_3">Посмотрите-ка котик рвется в бой, жми его, пацаны!</string>
+</resources>
