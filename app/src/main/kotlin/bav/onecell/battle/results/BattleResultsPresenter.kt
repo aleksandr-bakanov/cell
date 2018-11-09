@@ -1,6 +1,7 @@
 package bav.onecell.battle.results
 
 import android.util.Log
+import bav.onecell.common.Common
 import bav.onecell.common.router.Router
 import bav.onecell.model.RepositoryContract
 import bav.onecell.model.cell.Cell
@@ -9,6 +10,7 @@ class BattleResultsPresenter(
         private val view: BattleResults.View,
         private val router: Router,
         private val cellRepo: RepositoryContract.CellRepo,
+        private val resourceProvider: Common.ResourceProvider,
         private val dealtDamage: MutableMap<Int, Int> = mutableMapOf(),
         private val deadOrAliveCells: MutableMap<Int, Boolean> = mutableMapOf(),
         private val cellIndexes: MutableList<Int> = mutableListOf()) : BattleResults.Presenter {
@@ -31,6 +33,8 @@ class BattleResultsPresenter(
     override fun goToHeroesScreen() {
         router.goToMain()
     }
+
+    override fun getCellName(resourceId: String): String = resourceProvider.getString(resourceId) ?: ""
 
     companion object {
         private const val TAG = "BattleResultsPresenter"

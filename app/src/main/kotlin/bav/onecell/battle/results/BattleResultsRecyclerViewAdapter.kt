@@ -33,7 +33,7 @@ class BattleResultsRecyclerViewAdapter(private val presenter: BattleResults.Pres
             drawUtils.drawCell(canvas, it, layout = layout)
             holder.view.preview.invalidate()
 
-            holder.view.cellName.text = it.data.name
+            holder.view.cellName.text = presenter.getCellName(it.data.name)
         }
         holder.view.dealtDamage.text = presenter.getDealtDamage(position).toString()
         holder.view.deadOrAlive.isChecked = presenter.getDeadOrAlive(position)

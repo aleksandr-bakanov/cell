@@ -5,4 +5,17 @@
     <string name="cs_introduction_1">Эй, Китти, куда это ты намылился? Что это ты там такое прячешь?</string>
     <string name="cs_introduction_2">Не ваше дело, пропустите&#9230;</string>
     <string name="cs_introduction_3">Посмотрите-ка котик рвется в бой, жми его, пацаны!</string>
+
+    <!-- Character names -->
+    <string name="character_name_kittaro">Киттаро</string>
+    <string name="character_name_zoi">Зои</string>
+    <string name="character_name_aima">Айма</string>
+    <string name="character_name_gopnik_1">Башка</string> <!-- by Artem1101 -->
+    <string name="character_name_gopnik_2">Гречка</string> <!-- by Artem1101 -->
+    <string name="character_name_gopnik_3">Костыль-могила</string> <!-- by Artem1101 -->
+    <string name="character_name_skilos_1">Пёся #1</string>
+    <string name="character_name_skilos_2">Пёся #2</string>
+    <string name="character_name_skilos_3">Пёся #3</string>
+    <string name="character_name_skilos_4">Пёся #4</string>
+    <string name="character_name_skilos_5">Пёся #5</string>
 </resources>

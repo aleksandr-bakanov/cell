@@ -53,7 +53,7 @@ class HeroScreenPresenter(
                     .subscribe {
                         cell?.let { currentCell -> cellRepository.storeCell(currentCell) }
                         cell = cellRepository.getCell(cellIndex)
-                        cell?.let { c -> view.setCellName(c.data.name) }
+                        cell?.let { c -> view.setCellName(resourceProvider.getString(c.data.name) ?: "") }
                         updateHexBucketCounts()
                         rules = cell?.data?.rules
                         rulesNotifier.onNext(Unit)

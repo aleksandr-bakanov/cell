@@ -197,21 +197,155 @@
         }"
     </string>
 
+    <!-- Character names -->
+    <string name="character_name_kittaro">Kittaro</string>
+    <string name="character_name_zoi">Zoi</string>
+    <string name="character_name_aima">Aima</string>
+    <string name="character_name_gopnik_1">Gopnik #1</string>
+    <string name="character_name_gopnik_2">Gopnik #2</string>
+    <string name="character_name_gopnik_3">Gopnik #3</string>
+    <string name="character_name_skilos_1">Skilos #1</string>
+    <string name="character_name_skilos_2">Skilos #2</string>
+    <string name="character_name_skilos_3">Skilos #3</string>
+    <string name="character_name_skilos_4">Skilos #4</string>
+    <string name="character_name_skilos_5">Skilos #5</string>
+
     <!-- Initial cell descriptions -->
     <string-array name="cell_descriptions" translatable="false">
         <!-- Main heroes -->
-        <item>{"hexBucket":{0:1,1:2,2:3,3:4},"direction":"N","hexes":{"0":{"q":0,"r":0,"s":0,"type":"LIFE"},"-930":{"q":-1,"r":1,"s":0,"type":"LIFE"},"30":{"q":0,"r":1,"s":-1,"type":"LIFE"},"-900":{"q":-1,"r":2,"s":-1,"type":"LIFE"},"930":{"q":1,"r":-1,"s":0,"type":"ATTACK"},"900":{"q":1,"r":-2,"s":1,"type":"ATTACK"},"-30":{"q":0,"r":-1,"s":1,"type":"ENERGY"}},"groupId":0,"id":0,"name":\"Kittaro\","origin":{"q":0,"r":0,"s":0,"type":"REMOVE"},"rules":[]}</item>
-        <item>{"hexBucket":{0:5,1:6,2:7,3:8},"direction":"N","hexes":{"0":{"q":0,"r":0,"s":0,"type":"LIFE"},"930":{"q":1,"r":-1,"s":0,"type":"ATTACK"},"-30":{"q":0,"r":-1,"s":1,"type":"ATTACK"},"-960":{"q":-1,"r":0,"s":1,"type":"ATTACK"},"-930":{"q":-1,"r":1,"s":0,"type":"ATTACK"},"30":{"q":0,"r":1,"s":-1,"type":"ATTACK"}},"groupId":0,"id":1,"name":\"Zoi\","origin":{"q":0,"r":0,"s":0,"type":"REMOVE"},"rules":[]}</item>
-        <item>{"hexBucket":{0:9,1:10,2:11,3:12},"direction":"N","hexes":{"0":{"q":0,"r":0,"s":0,"type":"LIFE"},"930":{"q":1,"r":-1,"s":0,"type":"LIFE"},"-930":{"q":-1,"r":1,"s":0,"type":"LIFE"},"1890":{"q":2,"r":-1,"s":-1,"type":"ATTACK"},"-1890":{"q":-2,"r":1,"s":1,"type":"ATTACK"},"-1860":{"q":-2,"r":2,"s":0,"type":"ATTACK"},"1860":{"q":2,"r":-2,"s":0,"type":"ATTACK"}},"groupId":0,"id":2,"name":\"Aima\","origin":{"q":0,"r":0,"s":0,"type":"REMOVE"},"rules":[]}</item>
+        <item>
+            "{
+                hexBucket: {0:1, 1:2, 2:3, 3:4},
+                direction: 'N',
+                hexes: {'0':{q:0,r:0,s:0,type:'LIFE'},'-930':{q:-1,r:1,s:0,type:'LIFE'},'30':{q:0,r:1,s:-1,type:'LIFE'},'-900':{q:-1,r:2,s:-1,type:'LIFE'},'930':{q:1,r:-1,s:0,type:'ATTACK'},'900':{q:1,r:-2,s:1,type:'ATTACK'},'-30':{q:0,r:-1,s:1,type:'ENERGY'}},
+                groupId: 0,
+                id: 0,
+                name: 'character_name_kittaro',
+                origin: {q:0,r:0,s:0,type:'REMOVE'},
+                rules: []
+            }"
+        </item>
+        <item>
+            "{
+                hexBucket: {0:5, 1:6, 2:7, 3:8},
+                direction: 'N',
+                hexes: {'0':{q:0,r:0,s:0,type:'LIFE'},'930':{q:1,r:-1,s:0,type:'ATTACK'},'-30':{q:0,r:-1,s:1,type:'ATTACK'},'-960':{q:-1,r:0,s:1,type:'ATTACK'},'-930':{q:-1,r:1,s:0,type:'ATTACK'},'30':{q:0,r:1,s:-1,type:'ATTACK'}},
+                groupId: 0,
+                id: 1,
+                name: 'character_name_zoi',
+                origin: {q:0,r:0,s:0,type:'REMOVE'},
+                rules: []
+            }"
+        </item>
+        <item>
+            "{
+                hexBucket: {0:9,1:10,2:11,3:12},
+                direction: 'N',
+                hexes: {'0':{q:0,r:0,s:0,type:'LIFE'},'930':{q:1,r:-1,s:0,type:'LIFE'},'-930':{q:-1,r:1,s:0,type:'LIFE'},'1890':{q:2,r:-1,s:-1,type:'ATTACK'},'-1890':{q:-2,r:1,s:1,type:'ATTACK'},'-1860':{q:-2,r:2,s:0,type:'ATTACK'},'1860':{q:2,r:-2,s:0,type:'ATTACK'}},
+                groupId: 0,
+                id: 2,
+                name: 'character_name_aima',
+                origin: {q:0,r:0,s:0,type:'REMOVE'},
+                rules: []
+            }"
+        </item>
         <!-- Gopniks -->
-        <item>{"hexBucket":{0:5,1:5,2:5,3:5},"direction":"N","hexes":{"0":{"q":0,"r":0,"s":0,"type":"LIFE"},"930":{"q":1,"r":-1,"s":0,"type":"ATTACK"},"-960":{"q":-1,"r":0,"s":1,"type":"ATTACK"},"30":{"q":0,"r":1,"s":-1,"type":"ATTACK"},"960":{"q":1,"r":0,"s":-1,"type":"ENERGY"}},"groupId":1,"id":3,"name":\"Gopnik #1\","origin":{"q":0,"r":0,"s":0,"type":"REMOVE"},"rules":[]}</item>
-        <item>{"hexBucket":{0:5,1:5,2:5,3:5},"direction":"N","hexes":{"0":{"q":0,"r":0,"s":0,"type":"LIFE"},"930":{"q":1,"r":-1,"s":0,"type":"ATTACK"},"-960":{"q":-1,"r":0,"s":1,"type":"ATTACK"},"30":{"q":0,"r":1,"s":-1,"type":"ATTACK"},"960":{"q":1,"r":0,"s":-1,"type":"ENERGY"}},"groupId":1,"id":4,"name":\"Gopnik #2\","origin":{"q":0,"r":0,"s":0,"type":"REMOVE"},"rules":[]}</item>
-        <item>{"hexBucket":{0:5,1:5,2:5,3:5},"direction":"N","hexes":{"0":{"q":0,"r":0,"s":0,"type":"LIFE"},"930":{"q":1,"r":-1,"s":0,"type":"ATTACK"},"-960":{"q":-1,"r":0,"s":1,"type":"ATTACK"},"30":{"q":0,"r":1,"s":-1,"type":"ATTACK"},"960":{"q":1,"r":0,"s":-1,"type":"ENERGY"}},"groupId":1,"id":5,"name":\"Gopnik #3\","origin":{"q":0,"r":0,"s":0,"type":"REMOVE"},"rules":[]}</item>
+        <item>
+            "{
+                hexBucket: {0:0,1:0,2:0,3:0},
+                direction: 'N',
+                hexes: {'0':{q:0,r:0,s:0,type:'LIFE'},'930':{q:1,r:-1,s:0,type:'ATTACK'},'-960':{q:-1,r:0,s:1,type:'ATTACK'},'30':{q:0,r:1,s:-1,type:'ATTACK'},'960':{q:1,r:0,s:-1,type:'ENERGY'}},
+                groupId: 1,
+                id: 3,
+                name: 'character_name_gopnik_1',
+                origin: {q:0,r:0,s:0,type:'REMOVE'},
+                rules: []
+            }"
+        </item>
+        <item>
+            "{
+                hexBucket: {0:0,1:0,2:0,3:0},
+                direction: 'N',
+                hexes: {'0':{q:0,r:0,s:0,type:'LIFE'},'930':{q:1,r:-1,s:0,type:'ATTACK'},'-960':{q:-1,r:0,s:1,type:'ATTACK'},'30':{q:0,r:1,s:-1,type:'ATTACK'},'960':{q:1,r:0,s:-1,type:'ENERGY'}},
+                groupId: 1,
+                id: 4,
+                name: 'character_name_gopnik_2',
+                origin: {q:0,r:0,s:0,type:'REMOVE'},
+                rules: []
+            }"
+        </item>
+        <item>
+            "{
+                hexBucket: {0:0,1:0,2:0,3:0},
+                direction: 'N',
+                hexes: {'0':{q:0,r:0,s:0,type:'LIFE'},'930':{q:1,r:-1,s:0,type:'ATTACK'},'-960':{q:-1,r:0,s:1,type:'ATTACK'},'30':{q:0,r:1,s:-1,type:'ATTACK'},'960':{q:1,r:0,s:-1,type:'ENERGY'}},
+                groupId: 1,
+                id: 5,
+                name: 'character_name_gopnik_3',
+                origin: {q:0,r:0,s:0,type:'REMOVE'},
+                rules: []
+            }"
+        </item>
         <!-- Skiloses -->
-        <item>{"hexBucket":{0:5,1:5,2:5,3:5},"direction":"N","hexes":{"0":{"q":0,"r":0,"s":0,"type":"LIFE"},"930":{"q":1,"r":-1,"s":0,"type":"ATTACK"},"-960":{"q":-1,"r":0,"s":1,"type":"ATTACK"},"30":{"q":0,"r":1,"s":-1,"type":"ATTACK"},"960":{"q":1,"r":0,"s":-1,"type":"ENERGY"}},"groupId":2,"id":6,"name":\"Skilos #1\","origin":{"q":0,"r":0,"s":0,"type":"REMOVE"},"rules":[]}</item>
-        <item>{"hexBucket":{0:5,1:5,2:5,3:5},"direction":"N","hexes":{"0":{"q":0,"r":0,"s":0,"type":"LIFE"},"930":{"q":1,"r":-1,"s":0,"type":"ATTACK"},"-960":{"q":-1,"r":0,"s":1,"type":"ATTACK"},"30":{"q":0,"r":1,"s":-1,"type":"ATTACK"},"960":{"q":1,"r":0,"s":-1,"type":"ENERGY"}},"groupId":2,"id":7,"name":\"Skilos #2\","origin":{"q":0,"r":0,"s":0,"type":"REMOVE"},"rules":[]}</item>
-        <item>{"hexBucket":{0:5,1:5,2:5,3:5},"direction":"N","hexes":{"0":{"q":0,"r":0,"s":0,"type":"LIFE"},"930":{"q":1,"r":-1,"s":0,"type":"ATTACK"},"-960":{"q":-1,"r":0,"s":1,"type":"ATTACK"},"30":{"q":0,"r":1,"s":-1,"type":"ATTACK"},"960":{"q":1,"r":0,"s":-1,"type":"ENERGY"}},"groupId":2,"id":8,"name":\"Skilos #3\","origin":{"q":0,"r":0,"s":0,"type":"REMOVE"},"rules":[]}</item>
-        <item>{"hexBucket":{0:5,1:5,2:5,3:5},"direction":"N","hexes":{"0":{"q":0,"r":0,"s":0,"type":"LIFE"},"930":{"q":1,"r":-1,"s":0,"type":"ATTACK"},"-960":{"q":-1,"r":0,"s":1,"type":"ATTACK"},"30":{"q":0,"r":1,"s":-1,"type":"ATTACK"},"960":{"q":1,"r":0,"s":-1,"type":"ENERGY"}},"groupId":2,"id":9,"name":\"Skilos #4\","origin":{"q":0,"r":0,"s":0,"type":"REMOVE"},"rules":[]}</item>
-        <item>{"hexBucket":{0:5,1:5,2:5,3:5},"direction":"N","hexes":{"0":{"q":0,"r":0,"s":0,"type":"LIFE"},"930":{"q":1,"r":-1,"s":0,"type":"ATTACK"},"-960":{"q":-1,"r":0,"s":1,"type":"ATTACK"},"30":{"q":0,"r":1,"s":-1,"type":"ATTACK"},"960":{"q":1,"r":0,"s":-1,"type":"ENERGY"}},"groupId":2,"id":10,"name":\"Skilos #5\","origin":{"q":0,"r":0,"s":0,"type":"REMOVE"},"rules":[]}</item>
+        <item>
+            "{
+                hexBucket: {0:0,1:0,2:0,3:0},
+                direction: 'N',
+                hexes: {'0':{q:0,r:0,s:0,type:'LIFE'},'930':{q:1,r:-1,s:0,type:'ATTACK'},'-960':{q:-1,r:0,s:1,type:'ATTACK'},'30':{q:0,r:1,s:-1,type:'ATTACK'},'960':{q:1,r:0,s:-1,type:'ENERGY'}},
+                groupId: 2,
+                id: 6,
+                name: 'character_name_skilos_1',
+                origin: {q:0,r:0,s:0,type:'REMOVE'},
+                rules: []
+            }"
+        </item>
+        <item>
+            "{
+                hexBucket: {0:0,1:0,2:0,3:0},
+                direction: 'N',
+                hexes: {'0':{q:0,r:0,s:0,type:'LIFE'},'930':{q:1,r:-1,s:0,type:'ATTACK'},'-960':{q:-1,r:0,s:1,type:'ATTACK'},'30':{q:0,r:1,s:-1,type:'ATTACK'},'960':{q:1,r:0,s:-1,type:'ENERGY'}},
+                groupId: 2,
+                id: 7,
+                name: 'character_name_skilos_2',
+                origin: {q:0,r:0,s:0,type:'REMOVE'},
+                rules: []
+            }"
+        </item>
+        <item>
+            "{
+                hexBucket: {0:0,1:0,2:0,3:0},
+                direction: 'N',
+                hexes: {'0':{q:0,r:0,s:0,type:'LIFE'},'930':{q:1,r:-1,s:0,type:'ATTACK'},'-960':{q:-1,r:0,s:1,type:'ATTACK'},'30':{q:0,r:1,s:-1,type:'ATTACK'},'960':{q:1,r:0,s:-1,type:'ENERGY'}},
+                groupId: 2,
+                id: 8,
+                name: 'character_name_skilos_3',
+                origin: {q:0,r:0,s:0,type:'REMOVE'},
+                rules: []
+            }"
+        </item>
+        <item>
+            "{
+                hexBucket: {0:0,1:0,2:0,3:0},
+                direction: 'N',
+                hexes: {'0':{q:0,r:0,s:0,type:'LIFE'},'930':{q:1,r:-1,s:0,type:'ATTACK'},'-960':{q:-1,r:0,s:1,type:'ATTACK'},'30':{q:0,r:1,s:-1,type:'ATTACK'},'960':{q:1,r:0,s:-1,type:'ENERGY'}},
+                groupId: 2,
+                id: 9,
+                name: 'character_name_skilos_4',
+                origin: {q:0,r:0,s:0,type:'REMOVE'},
+                rules: []
+            }"
+        </item>
+        <item>
+            "{
+                hexBucket: {0:0,1:0,2:0,3:0},
+                direction: 'N',
+                hexes: {'0':{q:0,r:0,s:0,type:'LIFE'},'930':{q:1,r:-1,s:0,type:'ATTACK'},'-960':{q:-1,r:0,s:1,type:'ATTACK'},'30':{q:0,r:1,s:-1,type:'ATTACK'},'960':{q:1,r:0,s:-1,type:'ENERGY'}},
+                groupId: 2,
+                id: 10,
+                name: 'character_name_skilos_5',
+                origin: {q:0,r:0,s:0,type:'REMOVE'},
+                rules: []
+            }"
+        </item>
     </string-array>
 </resources>

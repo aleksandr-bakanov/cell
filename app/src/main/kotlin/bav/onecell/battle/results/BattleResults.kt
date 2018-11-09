@@ -13,5 +13,6 @@ interface BattleResults {
         fun getDealtDamage(position: Int): Int
         fun getDeadOrAlive(position: Int): Boolean
         fun goToHeroesScreen()
+        fun getCellName(resourceId: String): String
     }
 }
