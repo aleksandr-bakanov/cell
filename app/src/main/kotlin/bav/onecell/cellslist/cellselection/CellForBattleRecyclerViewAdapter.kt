@@ -6,10 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import bav.onecell.R
+import bav.onecell.common.Common
 import kotlinx.android.synthetic.main.item_row_cell_for_selection.view.checkboxSelect
 import kotlinx.android.synthetic.main.item_row_cell_for_selection.view.title
 
-class CellForBattleRecyclerViewAdapter(private val presenter: CellsForBattle.Presenter) :
+class CellForBattleRecyclerViewAdapter(private val presenter: CellsForBattle.Presenter,
+                                       private val resourceProvider: Common.ResourceProvider) :
         RecyclerView.Adapter<CellForBattleRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -21,12 +23,13 @@ class CellForBattleRecyclerViewAdapter(private val presenter: CellsForBattle.Pre
     override fun getItemCount() = presenter.cellsCount()
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.setCellTitle(presenter.getCell(position)?.data?.name)
+        holder.setCellTitle(resourceProvider.getString(presenter.getCell(position)?.data?.name))
     }
 
     class ViewHolder(val view: View, presenter: CellsForBattle.Presenter) : RecyclerView.ViewHolder(view) {
         init {
             view.checkboxSelect.setOnCheckedChangeListener { _, isChecked ->
+
                 presenter.cellSelected(adapterPosition, isChecked)
             }
         }

@@ -14,6 +14,7 @@ import bav.onecell.OneCellApplication
 import bav.onecell.R
 import bav.onecell.battle.BattleFragment
 import bav.onecell.cellslist.CellsListModule
+import bav.onecell.common.Common
 import bav.onecell.model.InitialBattleParams
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_choose_cells_for_battle.buttonStartBattle
@@ -24,6 +25,8 @@ class CellsForBattleFragment : Fragment(), CellsForBattle.View {
 
     @Inject
     lateinit var presenter: CellsForBattle.Presenter
+    @Inject
+    lateinit var resourceProvider: Common.ResourceProvider
     private val disposables = CompositeDisposable()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -38,7 +41,7 @@ class CellsForBattleFragment : Fragment(), CellsForBattle.View {
         buttonStartBattle.setOnClickListener { openBattleView(it) }
 
         recyclerViewCellList.layoutManager = LinearLayoutManager(context)
-        recyclerViewCellList.adapter = CellForBattleRecyclerViewAdapter(presenter)
+        recyclerViewCellList.adapter = CellForBattleRecyclerViewAdapter(presenter, resourceProvider)
 
         disposables.add(presenter.cellRepoUpdateNotifier().subscribe {
             recyclerViewCellList.adapter?.notifyDataSetChanged()

@@ -209,6 +209,21 @@
     <string name="character_name_skilos_3">Skilos #3</string>
     <string name="character_name_skilos_4">Skilos #4</string>
     <string name="character_name_skilos_5">Skilos #5</string>
+    <string name="character_name_belos">Belos</string>
+    <string name="character_name_omikhli">Omikhli</string>
+    <string name="character_name_nihterib_1">Nihterib #1</string>
+    <string name="character_name_nihterib_2">Nihterib #2</string>
+    <string name="character_name_nihterib_3">Nihterib #3</string>
+    <string name="character_name_nihterib_4">Nihterib #4</string>
+    <string name="character_name_nihterib_5">Nihterib #5</string>
+    <string name="character_name_nihterib_6">Nihterib #6</string>
+    <string name="character_name_nihterib_7">Nihterib #7</string>
+    <string name="character_name_nihterib_8">Nihterib #8</string>
+    <string name="character_name_nihterib_9">Nihterib #9</string>
+    <string name="character_name_nihterib_10">Nihterib #10</string>
+    <string name="character_name_nihterib_11">Nihterib #11</string>
+    <string name="character_name_nihterib_12">Nihterib #12</string>
+    <string name="character_name_nihterib_13">Nihterib #13</string>
 
     <!-- Initial cell descriptions -->
     <string-array name="cell_descriptions" translatable="false">
@@ -343,6 +358,189 @@
                 groupId: 2,
                 id: 10,
                 name: 'character_name_skilos_5',
+                origin: {q:0,r:0,s:0,type:'REMOVE'},
+                rules: []
+            }"
+        </item>
+        <!-- Belos -->
+        <item>
+            "{
+                hexBucket: {0:50,1:50,2:50,3:50},
+                direction: 'N',
+                hexes: {'0':{q:0,r:0,s:0,type:'LIFE'},'930':{q:1,r:-1,s:0,type:'ATTACK'},'-960':{q:-1,r:0,s:1,type:'ATTACK'},'30':{q:0,r:1,s:-1,type:'ATTACK'},'960':{q:1,r:0,s:-1,type:'ENERGY'}},
+                groupId: 3,
+                id: 11,
+                name: 'character_name_belos',
+                origin: {q:0,r:0,s:0,type:'REMOVE'},
+                rules: []
+            }"
+        </item>
+        <!-- Omikhli -->
+        <item>
+            "{
+                hexBucket: {0:50,1:50,2:50,3:50},
+                direction: 'N',
+                hexes: {'0':{q:0,r:0,s:0,type:'LIFE'},'930':{q:1,r:-1,s:0,type:'ATTACK'},'-960':{q:-1,r:0,s:1,type:'ATTACK'},'30':{q:0,r:1,s:-1,type:'ATTACK'},'960':{q:1,r:0,s:-1,type:'ENERGY'}},
+                groupId: 4,
+                id: 12,
+                name: 'character_name_omikhli',
+                origin: {q:0,r:0,s:0,type:'REMOVE'},
+                rules: []
+            }"
+        </item>
+        <!-- Nihteribs -->
+        <item>
+            "{
+                hexBucket: {0:50,1:50,2:50,3:50},
+                direction: 'N',
+                hexes: {'0':{q:0,r:0,s:0,type:'LIFE'}},
+                groupId: 5,
+                id: 13,
+                name: 'character_name_nihterib_1',
+                origin: {q:0,r:0,s:0,type:'REMOVE'},
+                rules: []
+            }"
+        </item>
+        <item>
+            "{
+                hexBucket: {0:50,1:50,2:50,3:50},
+                direction: 'N',
+                hexes: {'0':{q:0,r:0,s:0,type:'LIFE'}},
+                groupId: 5,
+                id: 14,
+                name: 'character_name_nihterib_2',
+                origin: {q:0,r:0,s:0,type:'REMOVE'},
+                rules: []
+            }"
+        </item>
+        <item>
+            "{
+                hexBucket: {0:50,1:50,2:50,3:50},
+                direction: 'N',
+                hexes: {'0':{q:0,r:0,s:0,type:'LIFE'}},
+                groupId: 5,
+                id: 15,
+                name: 'character_name_nihterib_3',
+                origin: {q:0,r:0,s:0,type:'REMOVE'},
+                rules: []
+            }"
+        </item>
+        <item>
+            "{
+                hexBucket: {0:50,1:50,2:50,3:50},
+                direction: 'N',
+                hexes: {'0':{q:0,r:0,s:0,type:'LIFE'}},
+                groupId: 5,
+                id: 16,
+                name: 'character_name_nihterib_4',
+                origin: {q:0,r:0,s:0,type:'REMOVE'},
+                rules: []
+            }"
+        </item>
+        <item>
+            "{
+                hexBucket: {0:50,1:50,2:50,3:50},
+                direction: 'N',
+                hexes: {'0':{q:0,r:0,s:0,type:'LIFE'}},
+                groupId: 5,
+                id: 17,
+                name: 'character_name_nihterib_5',
+                origin: {q:0,r:0,s:0,type:'REMOVE'},
+                rules: []
+            }"
+        </item>
+        <item>
+            "{
+                hexBucket: {0:50,1:50,2:50,3:50},
+                direction: 'N',
+                hexes: {'0':{q:0,r:0,s:0,type:'LIFE'}},
+                groupId: 5,
+                id: 18,
+                name: 'character_name_nihterib_6',
+                origin: {q:0,r:0,s:0,type:'REMOVE'},
+                rules: []
+            }"
+        </item>
+        <item>
+            "{
+                hexBucket: {0:50,1:50,2:50,3:50},
+                direction: 'N',
+                hexes: {'0':{q:0,r:0,s:0,type:'LIFE'}},
+                groupId: 5,
+                id: 19,
+                name: 'character_name_nihterib_7',
+                origin: {q:0,r:0,s:0,type:'REMOVE'},
+                rules: []
+            }"
+        </item>
+        <item>
+            "{
+                hexBucket: {0:50,1:50,2:50,3:50},
+                direction: 'N',
+                hexes: {'0':{q:0,r:0,s:0,type:'LIFE'}},
+                groupId: 5,
+                id: 20,
+                name: 'character_name_nihterib_8',
+                origin: {q:0,r:0,s:0,type:'REMOVE'},
+                rules: []
+            }"
+        </item>
+        <item>
+            "{
+                hexBucket: {0:50,1:50,2:50,3:50},
+                direction: 'N',
+                hexes: {'0':{q:0,r:0,s:0,type:'LIFE'}},
+                groupId: 5,
+                id: 21,
+                name: 'character_name_nihterib_9',
+                origin: {q:0,r:0,s:0,type:'REMOVE'},
+                rules: []
+            }"
+        </item>
+        <item>
+            "{
+                hexBucket: {0:50,1:50,2:50,3:50},
+                direction: 'N',
+                hexes: {'0':{q:0,r:0,s:0,type:'LIFE'}},
+                groupId: 5,
+                id: 21,
+                name: 'character_name_nihterib_10',
+                origin: {q:0,r:0,s:0,type:'REMOVE'},
+                rules: []
+            }"
+        </item>
+        <item>
+            "{
+                hexBucket: {0:50,1:50,2:50,3:50},
+                direction: 'N',
+                hexes: {'0':{q:0,r:0,s:0,type:'LIFE'}},
+                groupId: 5,
+                id: 21,
+                name: 'character_name_nihterib_11',
+                origin: {q:0,r:0,s:0,type:'REMOVE'},
+                rules: []
+            }"
+        </item>
+        <item>
+            "{
+                hexBucket: {0:50,1:50,2:50,3:50},
+                direction: 'N',
+                hexes: {'0':{q:0,r:0,s:0,type:'LIFE'}},
+                groupId: 5,
+                id: 22,
+                name: 'character_name_nihterib_12',
+                origin: {q:0,r:0,s:0,type:'REMOVE'},
+                rules: []
+            }"
+        </item>
+        <item>
+            "{
+                hexBucket: {0:50,1:50,2:50,3:50},
+                direction: 'N',
+                hexes: {'0':{q:0,r:0,s:0,type:'LIFE'}},
+                groupId: 5,
+                id: 23,
+                name: 'character_name_nihterib_13',
                 origin: {q:0,r:0,s:0,type:'REMOVE'},
                 rules: []
             }"

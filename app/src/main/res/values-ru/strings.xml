@@ -15,7 +15,22 @@
     <string name="character_name_gopnik_3">Костыль-могила</string> <!-- by Artem1101 -->
     <string name="character_name_skilos_1">Пёся #1</string>
     <string name="character_name_skilos_2">Пёся #2</string>
-    <string name="character_name_skilos_3">Пёся #3</string>
+    <string name="character_name_skilos_3">Жирнющая пёся</string>
     <string name="character_name_skilos_4">Пёся #4</string>
     <string name="character_name_skilos_5">Пёся #5</string>
+    <string name="character_name_belos">Белос</string>
+    <string name="character_name_omikhli">Омихли</string>
+    <string name="character_name_nihterib_1">Нихтериб #1</string>
+    <string name="character_name_nihterib_2">Нихтериб #2</string>
+    <string name="character_name_nihterib_3">Нихтериб #3</string>
+    <string name="character_name_nihterib_4">Нихтериб #4</string>
+    <string name="character_name_nihterib_5">Нихтериб #5</string>
+    <string name="character_name_nihterib_6">Нихтериб #6</string>
+    <string name="character_name_nihterib_7">Нихтериб #7</string>
+    <string name="character_name_nihterib_8">Нихтериб #8</string>
+    <string name="character_name_nihterib_9">Нихтериб #9</string>
+    <string name="character_name_nihterib_10">Нихтериб #10</string>
+    <string name="character_name_nihterib_11">Нихтериб #11</string>
+    <string name="character_name_nihterib_12">Нихтериб #12</string>
+    <string name="character_name_nihterib_13">Нихтериб #13</string>
 </resources>
