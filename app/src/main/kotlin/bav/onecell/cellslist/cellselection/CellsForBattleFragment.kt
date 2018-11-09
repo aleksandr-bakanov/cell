@@ -3,7 +3,6 @@ package bav.onecell.cellslist.cellselection
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +14,7 @@ import bav.onecell.R
 import bav.onecell.battle.BattleFragment
 import bav.onecell.cellslist.CellsListModule
 import bav.onecell.common.Common
+import bav.onecell.common.Consts
 import bav.onecell.model.InitialBattleParams
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_choose_cells_for_battle.buttonStartBattle
@@ -63,9 +63,10 @@ class CellsForBattleFragment : Fragment(), CellsForBattle.View {
     private fun openBattleView(view: View) {
         val indexes = presenter.getSelectedCells()
         if (indexes.size >= 2) {
-            val params = InitialBattleParams()
-            params.cellIndexes.addAll(indexes)
-            val bundle = bundleOf(BattleFragment.EXTRA_PARAMS to InitialBattleParams.toJson(params))
+            val battleParams = InitialBattleParams()
+            battleParams.cellIndexes.addAll(indexes)
+            val json = "{${Consts.BATTLE_PARAMS}:${InitialBattleParams.toJson(battleParams)},${Consts.BATTLE_REWARD}:{},next_scene:'action_battleFragment_to_battleResultsFragment'}"
+            val bundle = bundleOf(BattleFragment.EXTRA_PARAMS to json)
             view.findNavController().navigate(R.id.action_cellsForBattleFragment_to_battleFragment, bundle)
         }
         // TODO: move string to resources

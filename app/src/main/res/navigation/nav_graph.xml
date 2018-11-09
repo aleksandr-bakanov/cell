@@ -60,6 +60,10 @@
             android:name="@string/next_scene"
             android:defaultValue="heroScreen"
             app:argType="string" />
+        <argument
+            android:name="@string/previous_scene"
+            android:defaultValue="heroScreen"
+            app:argType="string" />
         <action
             android:id="@+id/action_battleResultsFragment_to_heroScreen"
             app:destination="@id/heroScreen" />

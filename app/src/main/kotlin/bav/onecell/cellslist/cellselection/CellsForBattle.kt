@@ -33,6 +33,8 @@ interface CellsForBattle {
 
         fun cellSelected(index: Int, selected: Boolean)
 
+        fun isCellSelected(index: Int): Boolean
+
         fun getSelectedCells(): List<Int>
     }
 }

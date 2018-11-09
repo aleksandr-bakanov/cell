@@ -43,6 +43,8 @@ class CellsForBattlePresenter(
         else selectedCells.remove(index)
     }
 
+    override fun isCellSelected(index: Int): Boolean = selectedCells.contains(index)
+
     override fun getSelectedCells(): List<Int> = selectedCells.toList()
     //endregion
 }

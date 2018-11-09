@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CheckBox
 import bav.onecell.R
 import bav.onecell.common.Common
 import kotlinx.android.synthetic.main.item_row_cell_for_selection.view.checkboxSelect
@@ -17,24 +18,27 @@ class CellForBattleRecyclerViewAdapter(private val presenter: CellsForBattle.Pre
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
                 .inflate(R.layout.item_row_cell_for_selection, parent, false)
-        return ViewHolder(view, presenter)
+        return ViewHolder(view, presenter, resourceProvider)
     }
 
     override fun getItemCount() = presenter.cellsCount()
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.setCellTitle(resourceProvider.getString(presenter.getCell(position)?.data?.name))
+        holder.inflate(position)
     }
 
-    class ViewHolder(val view: View, presenter: CellsForBattle.Presenter) : RecyclerView.ViewHolder(view) {
+    class ViewHolder(val view: View, private val presenter: CellsForBattle.Presenter,
+                     private val resourceProvider: Common.ResourceProvider) : RecyclerView.ViewHolder(view) {
+        private var id: Int = 0
         init {
-            view.checkboxSelect.setOnCheckedChangeListener { _, isChecked ->
-
-                presenter.cellSelected(adapterPosition, isChecked)
+            view.checkboxSelect.setOnClickListener {
+                presenter.cellSelected(id, (it as CheckBox).isChecked)
             }
         }
-        fun setCellTitle(title: String?) {
-            view.title.text = title ?: ""
+        fun inflate(position: Int) {
+            view.title.text = resourceProvider.getString(presenter.getCell(position)?.data?.name)
+            view.checkboxSelect.isChecked = presenter.isCellSelected(position)
+            id = position
         }
     }
 }
