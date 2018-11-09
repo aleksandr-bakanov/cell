@@ -102,12 +102,6 @@ class BattleResultsFragment: androidx.fragment.app.Fragment(), BattleResults.Vie
         const val IS_BATTLE_WON = "is_battle_won"
         private const val PREVIOUS_SCENE = "previous_scene"
 
-        // Hex types
-        private const val LIFE = "LIFE"
-        private const val ATTACK = "ATTACK"
-        private const val ENERGY = "ENERGY"
-        private const val DEATH_RAY = "DEATH_RAY"
-
         fun newInstance(bundle: Bundle?): BattleResultsFragment {
             val fragment = BattleResultsFragment()
             fragment.arguments = bundle

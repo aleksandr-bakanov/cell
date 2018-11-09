@@ -82,10 +82,11 @@ class BattleEngine(
         cellRepositoryDisposable = cellRepository.loadFromStore()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe { startCalculation(params.cellIndexes) }
+                .subscribe { startCalculation(params) }
     }
 
-    private fun startCalculation(cellIndexes: List<Int>) {
+    private fun startCalculation(params: InitialBattleParams) {
+        val cellIndexes = params.cellIndexes
         // Make copy of cells
         for (i in cellIndexes) cellRepository.getCell(i)?.let {
             val clone = it.clone()
@@ -99,7 +100,7 @@ class BattleEngine(
 
         battleFieldSize = cells.asSequence().map { it.size() }.sum()
 
-        moveCellsToTheirInitialPosition()
+        moveCellsToTheirInitialPosition(params.origins)
         saveCellsAndCorpsesToSnapshot()
         evaluateBattle()
     }
@@ -177,19 +178,27 @@ class BattleEngine(
         saveCellsAndCorpsesToSnapshot()
     }
 
-    private fun moveCellsToTheirInitialPosition() {
-        val ringRadius = battleFieldSize - (cells.asSequence().map { it.size() }.max() ?: 0)
-        val ring = mutableListOf<Hex>()
-        var hex = hexMath.multiply(hexMath.getHexByDirection(4), ringRadius)
-        for (i in 0..5) {
-            for (j in 0..(ringRadius - 1)) {
-                ring.add(hex)
-                hex = hexMath.getHexNeighbor(hex, i)
+    private fun moveCellsToTheirInitialPosition(origins: Map<String, InitialBattleParams.HexCoord>) {
+        if (origins.isEmpty()) {
+            val ringRadius = battleFieldSize - (cells.asSequence().map { it.size() }.max() ?: 0)
+            val ring = mutableListOf<Hex>()
+            var hex = hexMath.multiply(hexMath.getHexByDirection(4), ringRadius)
+            for (i in 0..5) {
+                for (j in 0..(ringRadius - 1)) {
+                    ring.add(hex)
+                    hex = hexMath.getHexNeighbor(hex, i)
+                }
+            }
+            val step = ring.size / cells.size
+            val shuffledIndexes = (0 until cells.size).shuffled()
+            shuffledIndexes.forEachIndexed { index, i -> cells[i].data.origin = ring[index * step] }
+        }
+        else {
+            cells.forEach { cell ->
+                val id = cell.battleData.battleId.toString()
+                origins[id]?.let { cell.data.origin = Hex(it.q, it.r, it.s) }
             }
         }
-        val step = ring.size / cells.size
-        val shuffledIndexes = (0 until cells.size).shuffled()
-        shuffledIndexes.forEachIndexed { index, i -> cells[i].data.origin = ring[index * step] }
     }
 
     private fun calculateBattleState() {
