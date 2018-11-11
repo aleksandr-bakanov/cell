@@ -1,5 +1,6 @@
 package bav.onecell.model
 
+import bav.onecell.model.battle.Bullet
 import bav.onecell.model.cell.Cell
 import bav.onecell.model.cell.logic.Action
 import bav.onecell.model.hexes.Hex
@@ -17,4 +18,6 @@ data class BattleFieldSnapshot(
         // Hexes to be removed (hashes of hexes), list can be empty
         val hexesToRemove: MutableList<MutableList<Int>> = mutableListOf(),
         // Death rays, pairs of start and end points
-        val deathRays: MutableList<Pair<Hex, Hex>> = mutableListOf())
+        val deathRays: MutableList<Pair<Hex, Hex>> = mutableListOf(),
+        // Bullets
+        val bullets: MutableList<Bullet> = mutableListOf())

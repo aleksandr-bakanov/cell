@@ -1,5 +1,6 @@
 package bav.onecell.model.cell
 
+import bav.onecell.model.battle.Bullet.Companion.OMNI_BULLET_TIMEOUT
 import bav.onecell.model.cell.logic.Action
 import bav.onecell.model.cell.logic.BattleFieldState
 import bav.onecell.model.hexes.Hex
@@ -30,8 +31,9 @@ class Cell(private val hexMath: HexMath,
     val animationData = AnimationData()
 
     data class BattleData(var battleId: Int = 0,
-                          var isAlive: Boolean = true) {
-        fun clone(): BattleData = BattleData(battleId, isAlive)
+                          var isAlive: Boolean = true,
+                          var omniBulletTimeout: Int = OMNI_BULLET_TIMEOUT) {
+        fun clone(): BattleData = BattleData(battleId, isAlive, omniBulletTimeout)
     }
 
     companion object {

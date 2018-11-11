@@ -5,6 +5,9 @@ import bav.onecell.model.BattleInfo
 import bav.onecell.model.GameRules
 import bav.onecell.model.InitialBattleParams
 import bav.onecell.model.RepositoryContract
+import bav.onecell.model.battle.Bullet
+import bav.onecell.model.battle.Bullet.Companion.OMNI_BULLET_RANGE
+import bav.onecell.model.battle.Bullet.Companion.OMNI_BULLET_TIMEOUT
 import bav.onecell.model.cell.Cell
 import bav.onecell.model.cell.logic.BattleFieldState
 import bav.onecell.model.hexes.Hex
@@ -37,6 +40,7 @@ class BattleEngine(
 
     private val cells = mutableListOf<Cell>()
     private val corpses = mutableListOf<Cell>()
+    private val bullets = mutableListOf<Bullet>()
     private var battleFieldSize: Int = 0
     private val battleState = BattleFieldState()
     private val battleFieldSnapshots = mutableListOf<BattleFieldSnapshot>()
@@ -53,7 +57,12 @@ class BattleEngine(
 
     private val calculateBattleState = { calculateBattleState() }
 
-    private val applyCellsLogic = { cells.forEachIndexed { index, cell -> applyCellLogic(index, cell) } }
+    private val applyCellsLogic = {
+        cells.forEachIndexed { index, cell ->
+            checkOmniBulletsCreation(cell)
+            applyCellLogic(index, cell)
+        }
+    }
 
     private val moveCells = { moveCells() }
 
@@ -242,6 +251,20 @@ class BattleEngine(
         }
     }
 
+    private fun checkOmniBulletsCreation(cell: Cell) {
+        cell.battleData.omniBulletTimeout--
+        if (cell.battleData.omniBulletTimeout == 0) {
+            cell.data.hexes.filter { it.value.type == Hex.Type.OMNI_BULLET }.forEach {
+                val originInGlobal = hexMath.add(cell.data.origin, it.value)
+                for (direction in 0..5) {
+                    bullets.add(Bullet(cell.data.groupId, direction, OMNI_BULLET_RANGE,
+                                       hexMath.getHexNeighbor(originInGlobal, direction)))
+                }
+            }
+            cell.battleData.omniBulletTimeout = OMNI_BULLET_TIMEOUT
+        }
+    }
+
     private fun applyCellLogic(index: Int, cell: Cell) {
         correctBattleStateForCell(index, cell)
         val performedAction = cell.applyCellLogic(battleState)
@@ -286,6 +309,20 @@ class BattleEngine(
             currentSnapshot.movingDirections.add(direction)
             cells[index].data.origin = hexMath.add(cells[index].data.origin, hexMath.getHexByDirection(direction))
         }
+        // Move bullets
+        val indexesOfBulletsToRemove = mutableListOf<Int>()
+        bullets.forEachIndexed { index, bullet ->
+            bullet.timeToLive--
+            if (bullet.timeToLive == 0) {
+                indexesOfBulletsToRemove.add(index)
+            }
+            else {
+                bullet.origin = hexMath.getHexNeighbor(bullet.origin, bullet.direction)
+            }
+        }
+        indexesOfBulletsToRemove.sortDescending()
+        indexesOfBulletsToRemove.forEach { bullets.removeAt(it) }
+        bullets.forEach { currentSnapshot.bullets.add(it.clone()) }
     }
 
     private fun checkDeathRays() {
