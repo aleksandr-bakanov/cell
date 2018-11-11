@@ -23,8 +23,10 @@ interface HeroScreen {
         fun transformLifeHexToAttack()
         fun transformLifeHexToEnergy()
         fun transformLifeHexToDeathRay()
+        fun transformLifeHexToOmniBullet()
         fun transformAttackHexToLife()
         fun transformEnergyHexToLife()
         fun transformDeathRayHexToLife()
+        fun transformOmniBulletHexToLife()
     }
 }

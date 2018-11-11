@@ -22,9 +22,11 @@
     <string name="button_transform_life_to_energy_hex_title" translatable="false">5L -> 1E</string>
     <string name="button_transform_life_to_attack_hex_title" translatable="false">3L -> 1A</string>
     <string name="button_transform_life_to_death_ray_hex_title" translatable="false">10L -> 1D</string>
+    <string name="button_transform_life_to_omni_bullet_hex_title" translatable="false">15L -> 1O</string>
     <string name="button_transform_energy_to_life_hex_title" translatable="false">1E -> 5L</string>
     <string name="button_transform_attack_to_life_hex_title" translatable="false">1A -> 3L</string>
     <string name="button_transform_death_ray_to_life_hex_title" translatable="false">1D -> 10L</string>
+    <string name="button_transform_omni_bullet_to_life_hex_title" translatable="false">1O -> 15L</string>
 
     <!-- Editor view -->
     <string name="radio_button_life_cell_title" translatable="false">Life</string>
@@ -611,5 +613,7 @@
                 rules: []
             }"
         </item>
+        <!-- Guardsmen -->
+
     </string-array>
 </resources>

@@ -16,6 +16,7 @@ class GameRules(private val hexMath: HexMath) {
             Hex.Type.ENERGY -> checkEnergyCell(cell.data.hexes.values, hex)
             Hex.Type.ATTACK -> checkAttackCell(cell.data.hexes.values, hex)
             Hex.Type.DEATH_RAY -> checkAttackCell(cell.data.hexes.values, hex)
+            Hex.Type.OMNI_BULLET -> checkAttackCell(cell.data.hexes.values, hex)
             else -> false
         }
     }

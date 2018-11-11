@@ -11,20 +11,17 @@ data class Hex(var q: Int = 0, var r: Int = 0, var s: Int = 0) {
     }
 
     enum class Type {
-        LIFE, ENERGY, ATTACK, DEATH_RAY, REMOVE
+        LIFE, ENERGY, ATTACK, DEATH_RAY, OMNI_BULLET, REMOVE
     }
 
     enum class Power(val value: Int) {
         LIFE_SELF(2), ENERGY_SELF(1), LIFE_TO_NEIGHBOR(1),
-        ENERGY_TO_NEIGHBOR(2), ENERGY_TO_FAR_NEIGHBOR(1), DEATH_RAY_SELF(1);
-    }
-
-    enum class Price(val value: Int) {
-        LIFE(1), ENERGY(3), ATTACK(2), DEATH_RAY(5);
+        ENERGY_TO_NEIGHBOR(2), ENERGY_TO_FAR_NEIGHBOR(1), DEATH_RAY_SELF(1),
+        OMNI_BULLET_SELF(1);
     }
 
     enum class TransformPrice(val value: Int) {
-        LIFE_TO_ATTACK(3), LIFE_TO_ENERGY(5), LIFE_TO_DEATH_RAY(10)
+        LIFE_TO_ATTACK(3), LIFE_TO_ENERGY(5), LIFE_TO_DEATH_RAY(10), LIFE_TO_OMNI_BULLET(15)
     }
 
     var type: Type = Type.REMOVE

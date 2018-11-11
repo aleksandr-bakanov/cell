@@ -325,6 +325,10 @@ class HeroScreenPresenter(
         transformHexes(Hex.Type.LIFE, Hex.Type.DEATH_RAY, Hex.TransformPrice.LIFE_TO_DEATH_RAY.value, 1)
     }
 
+    override fun transformLifeHexToOmniBullet() {
+        transformHexes(Hex.Type.LIFE, Hex.Type.OMNI_BULLET, Hex.TransformPrice.LIFE_TO_OMNI_BULLET.value, 1)
+    }
+
     override fun transformAttackHexToLife() {
         transformHexes(Hex.Type.ATTACK, Hex.Type.LIFE, 1, Hex.TransformPrice.LIFE_TO_ATTACK.value)
     }
@@ -335,6 +339,10 @@ class HeroScreenPresenter(
 
     override fun transformDeathRayHexToLife() {
         transformHexes(Hex.Type.DEATH_RAY, Hex.Type.LIFE, 1, Hex.TransformPrice.LIFE_TO_DEATH_RAY.value)
+    }
+
+    override fun transformOmniBulletHexToLife() {
+        transformHexes(Hex.Type.OMNI_BULLET, Hex.Type.LIFE, 1, Hex.TransformPrice.LIFE_TO_OMNI_BULLET.value)
     }
     //endregion
 

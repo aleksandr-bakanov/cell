@@ -11,6 +11,7 @@
     <color name="cellEditorLife">#5aba17</color>
     <color name="cellEditorEnergy">#c1d214</color>
     <color name="cellEditorDeathRay">#9c27b0</color>
+    <color name="cellEditorOmniBullet">#2ad4ff</color>
     <color name="cellEditorAttack">#d41313</color>
     <color name="cellEditorStroke">#000000</color>
 
@@ -20,10 +21,12 @@
     <color name="battleViewCorpseEnergy">#645b09</color>
     <color name="battleViewCorpseAttack">#69190b</color>
     <color name="battleViewCorpseDeathRay">#6a1b9a</color>
+    <color name="battleViewCorpseOmniBullet">#186962</color>
     <color name="battleViewPowerTextLife">#117b19</color>
     <color name="battleViewPowerTextEnergy">#817612</color>
     <color name="battleViewPowerTextAttack">#8e2311</color>
     <color name="battleViewPowerTextDeathRay">#812191</color>
+    <color name="battleViewPowerTextOmniBullet">#186962</color>
     <color name="battleViewGround">#e9b673</color>
 
     <!-- Hero screen view -->

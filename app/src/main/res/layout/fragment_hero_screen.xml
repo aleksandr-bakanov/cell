@@ -55,9 +55,20 @@
         android:layout_height="@dimen/hero_screen_hex_type_size"
         android:padding="5dp"
         app:layout_constraintBottom_toTopOf="@id/guideline_hero_screen_cellname_bottom"
-        app:layout_constraintEnd_toStartOf="@id/radioButtonRemoveHex"
+        app:layout_constraintEnd_toStartOf="@id/radioButtonOmniBulletHex"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@id/radioButtonEnergyHex"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <bav.onecell.common.view.HexPicker
+        android:id="@+id/radioButtonOmniBulletHex"
+        android:layout_width="@dimen/hero_screen_hex_type_size"
+        android:layout_height="@dimen/hero_screen_hex_type_size"
+        android:padding="5dp"
+        app:layout_constraintBottom_toTopOf="@id/guideline_hero_screen_cellname_bottom"
+        app:layout_constraintEnd_toStartOf="@id/radioButtonRemoveHex"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@id/radioButtonDeathRayHex"
         app:layout_constraintTop_toTopOf="parent" />
 
     <bav.onecell.common.view.HexPicker
@@ -68,7 +79,7 @@
         app:layout_constraintBottom_toTopOf="@id/guideline_hero_screen_cellname_bottom"
         app:layout_constraintEnd_toEndOf="@id/guideline_hero_screen_center_vertical"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@id/radioButtonDeathRayHex"
+        app:layout_constraintStart_toEndOf="@id/radioButtonOmniBulletHex"
         app:layout_constraintTop_toTopOf="parent" />
 
     <!--Other buttons -->
@@ -151,7 +162,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/button_transform_life_to_attack_hex_title"
-        android:visibility="gone"
+        android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@id/buttonTransformLifeToEnergyHex"
         app:layout_constraintStart_toStartOf="@id/guideline_hero_screen_avatars_end"
         app:layout_constraintTop_toTopOf="@id/guideline_hero_screen_cellname_bottom"
@@ -162,7 +173,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/button_transform_life_to_energy_hex_title"
-        android:visibility="gone"
+        android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@id/buttonTransformLifeToDeathRayHex"
         app:layout_constraintStart_toStartOf="@id/guideline_hero_screen_avatars_end"
         app:layout_constraintTop_toBottomOf="@id/buttonTransformLifeToAttackHex"
@@ -173,11 +184,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/button_transform_life_to_death_ray_hex_title"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@id/buttonTransformLifeToOmniBulletHex"
         app:layout_constraintStart_toStartOf="@id/guideline_hero_screen_avatars_end"
         app:layout_constraintTop_toBottomOf="@id/buttonTransformLifeToEnergyHex"
         app:layout_constraintEnd_toStartOf="@id/buttonTransformDeathRayToLifeHex"/>
+
+    <Button
+        android:id="@+id/buttonTransformLifeToOmniBulletHex"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_transform_life_to_omni_bullet_hex_title"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@id/guideline_hero_screen_avatars_end"
+        app:layout_constraintTop_toBottomOf="@id/buttonTransformLifeToDeathRayHex"
+        app:layout_constraintEnd_toStartOf="@id/buttonTransformOmniBulletToLifeHex"/>
 
     <Button
         android:id="@+id/buttonTransformAttackToLifeHex"
@@ -185,7 +207,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="@string/button_transform_attack_to_life_hex_title"
-        android:visibility="gone"
+        android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@id/buttonTransformEnergyToLifeHex"
         app:layout_constraintEnd_toEndOf="@id/guideline_hero_screen_center_vertical"
         app:layout_constraintStart_toEndOf="@+id/buttonTransformLifeToAttackHex"
@@ -196,7 +218,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/button_transform_energy_to_life_hex_title"
-        android:visibility="gone"
+        android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@id/buttonTransformDeathRayToLifeHex"
         app:layout_constraintEnd_toEndOf="@id/guideline_hero_screen_center_vertical"
         app:layout_constraintTop_toBottomOf="@id/buttonTransformAttackToLifeHex"
@@ -208,11 +230,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/button_transform_death_ray_to_life_hex_title"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@id/buttonTransformOmniBulletToLifeHex"
         app:layout_constraintEnd_toEndOf="@id/guideline_hero_screen_center_vertical"
         app:layout_constraintTop_toBottomOf="@id/buttonTransformEnergyToLifeHex"
         app:layout_constraintStart_toEndOf="@+id/buttonTransformLifeToDeathRayHex"
+        />
+
+    <Button
+        android:id="@+id/buttonTransformOmniBulletToLifeHex"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_transform_omni_bullet_to_life_hex_title"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/guideline_hero_screen_center_vertical"
+        app:layout_constraintTop_toBottomOf="@id/buttonTransformDeathRayToLifeHex"
+        app:layout_constraintStart_toEndOf="@+id/buttonTransformLifeToOmniBulletHex"
         />
 
     <!-- Cell logic edition -->

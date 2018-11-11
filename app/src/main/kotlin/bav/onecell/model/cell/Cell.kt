@@ -46,14 +46,6 @@ class Cell(private val hexMath: HexMath,
 
     fun hasHexesInBucket(type: Hex.Type): Boolean = (data.hexBucket[type.ordinal] ?: 0) > 0
 
-    fun hexTypeToPrice(type: Hex.Type): Int = when (type) {
-        Hex.Type.LIFE -> Hex.Price.LIFE.value
-        Hex.Type.ENERGY -> Hex.Price.ENERGY.value
-        Hex.Type.ATTACK -> Hex.Price.ATTACK.value
-        Hex.Type.DEATH_RAY -> Hex.Price.DEATH_RAY.value
-        else -> 0
-    }
-
     fun clone(): Cell = Cell(hexMath, data.clone(), battleData.clone())
 
     fun size(): Int = data.hexes.values.map { maxOf(maxOf(abs(it.q), abs(it.r)), abs(it.s)) }.max()?.let { it + 1 } ?: 0
@@ -100,6 +92,9 @@ class Cell(private val hexMath: HexMath,
                 }
                 Hex.Type.DEATH_RAY -> {
                     hex.power = Hex.Power.DEATH_RAY_SELF.value
+                }
+                Hex.Type.OMNI_BULLET -> {
+                    hex.power = Hex.Power.OMNI_BULLET_SELF.value
                 }
                 else -> Unit
             }

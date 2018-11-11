@@ -32,6 +32,7 @@ class DrawUtils(private val hexMath: HexMath, context: Context) {
     private val energyPaint = Paint()
     private val attackPaint = Paint()
     private val deathRayHexPaint = Paint()
+    private val omniBulletHexPaint = Paint()
     val strokePaint = Paint()
     private val cellOutlinePaint = Paint()
     private val powerTextPaint = Paint()
@@ -39,6 +40,7 @@ class DrawUtils(private val hexMath: HexMath, context: Context) {
     private val powerEnergyTextPaint = Paint()
     private val powerAttackTextPaint = Paint()
     private val powerDeathRayTextPaint = Paint()
+    private val powerOmniBulletTextPaint = Paint()
     private val deathRayPaint = Paint()
 
     init {
@@ -57,6 +59,9 @@ class DrawUtils(private val hexMath: HexMath, context: Context) {
 
         deathRayHexPaint.style = Paint.Style.FILL
         deathRayHexPaint.color = ContextCompat.getColor(context, R.color.cellEditorDeathRay)
+
+        omniBulletHexPaint.style = Paint.Style.FILL
+        omniBulletHexPaint.color = ContextCompat.getColor(context, R.color.cellEditorOmniBullet)
 
         deathRayPaint.color = ContextCompat.getColor(context, R.color.cellEditorDeathRay)
         deathRayPaint.strokeWidth = 10f
@@ -92,6 +97,11 @@ class DrawUtils(private val hexMath: HexMath, context: Context) {
         powerDeathRayTextPaint.textSize = POWER_TEXT_SIZE
         powerDeathRayTextPaint.textAlign = Paint.Align.CENTER
 
+        powerOmniBulletTextPaint.color = ContextCompat.getColor(context, R.color.battleViewPowerTextOmniBullet)
+        powerOmniBulletTextPaint.typeface = Typeface.DEFAULT_BOLD
+        powerOmniBulletTextPaint.textSize = POWER_TEXT_SIZE
+        powerOmniBulletTextPaint.textAlign = Paint.Align.CENTER
+
         powerTextPaint.color = Color.BLACK
         powerTextPaint.typeface = Typeface.DEFAULT_BOLD
         powerTextPaint.textSize = POWER_TEXT_SIZE
@@ -111,7 +121,8 @@ class DrawUtils(private val hexMath: HexMath, context: Context) {
     }
 
     fun drawCell(canvas: Canvas?, cell: Cell?, lPaint: Paint = lifePaint, ePaint: Paint = energyPaint,
-                 aPaint: Paint = attackPaint, dPaint: Paint = deathRayHexPaint, layout: Layout = Layout.DUMMY) {
+                 aPaint: Paint = attackPaint, dPaint: Paint = deathRayHexPaint, oPaint: Paint = omniBulletHexPaint,
+                 layout: Layout = Layout.DUMMY) {
         cell?.let {
             var paint: Paint
             val originPoint = hexMath.hexToPixel(layout, it.data.origin)
@@ -121,6 +132,7 @@ class DrawUtils(private val hexMath: HexMath, context: Context) {
                     Hex.Type.ENERGY -> ePaint
                     Hex.Type.ATTACK -> aPaint
                     Hex.Type.DEATH_RAY -> dPaint
+                    Hex.Type.OMNI_BULLET -> oPaint
                     else -> gridPaint
                 }
                 val path: Path = getHexPath(layout, hexMath.add(hex, it.data.origin), originPoint,
@@ -280,6 +292,7 @@ class DrawUtils(private val hexMath: HexMath, context: Context) {
                 Hex.Type.ENERGY -> powerEnergyTextPaint
                 Hex.Type.ATTACK -> powerAttackTextPaint
                 Hex.Type.DEATH_RAY -> powerDeathRayTextPaint
+                Hex.Type.OMNI_BULLET -> powerOmniBulletTextPaint
                 else -> powerTextPaint
             }
             paint.textSize = layout.size.x.toFloat()

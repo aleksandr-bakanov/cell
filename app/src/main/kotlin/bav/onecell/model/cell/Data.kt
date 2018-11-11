@@ -27,8 +27,9 @@ data class Data(
         @ColumnInfo(name = "viewDistance") var viewDistance: Int = 3,
         // hex bucket - hexes to be used to build up cell from. Map of Hex.Type.ordinal -> count.
         @ColumnInfo(name = "hexBucket") var hexBucket: MutableMap<Int, Int> =
-                mutableMapOf(Pair(Hex.Type.LIFE.ordinal, 5), Pair(Hex.Type.ATTACK.ordinal, 5),
-                             Pair(Hex.Type.ENERGY.ordinal, 5), Pair(Hex.Type.DEATH_RAY.ordinal, 5))) {
+                mutableMapOf(Hex.Type.LIFE.ordinal to 5, Hex.Type.ATTACK.ordinal to 5,
+                             Hex.Type.ENERGY.ordinal to 5, Hex.Type.DEATH_RAY.ordinal to 5,
+                             Hex.Type.OMNI_BULLET.ordinal to 5)) {
 
     companion object {
         fun fromJson(json: String): Data {

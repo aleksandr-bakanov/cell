@@ -40,12 +40,15 @@ import kotlinx.android.synthetic.main.fragment_hero_screen.buttonTransformHexes
 import kotlinx.android.synthetic.main.fragment_hero_screen.buttonTransformLifeToAttackHex
 import kotlinx.android.synthetic.main.fragment_hero_screen.buttonTransformLifeToDeathRayHex
 import kotlinx.android.synthetic.main.fragment_hero_screen.buttonTransformLifeToEnergyHex
+import kotlinx.android.synthetic.main.fragment_hero_screen.buttonTransformLifeToOmniBulletHex
+import kotlinx.android.synthetic.main.fragment_hero_screen.buttonTransformOmniBulletToLifeHex
 import kotlinx.android.synthetic.main.fragment_hero_screen.cellName
 import kotlinx.android.synthetic.main.fragment_hero_screen.editorCanvasView
 import kotlinx.android.synthetic.main.fragment_hero_screen.radioButtonAttackHex
 import kotlinx.android.synthetic.main.fragment_hero_screen.radioButtonDeathRayHex
 import kotlinx.android.synthetic.main.fragment_hero_screen.radioButtonEnergyHex
 import kotlinx.android.synthetic.main.fragment_hero_screen.radioButtonLifeHex
+import kotlinx.android.synthetic.main.fragment_hero_screen.radioButtonOmniBulletHex
 import kotlinx.android.synthetic.main.fragment_hero_screen.radioButtonRemoveHex
 import kotlinx.android.synthetic.main.fragment_hero_screen.recyclerViewAvatars
 import kotlinx.android.synthetic.main.fragment_hero_screen.recyclerViewCellLogicPicker
@@ -134,6 +137,7 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
             Hex.Type.ENERGY -> radioButtonEnergyHex
             Hex.Type.ATTACK -> radioButtonAttackHex
             Hex.Type.DEATH_RAY -> radioButtonDeathRayHex
+            Hex.Type.OMNI_BULLET -> radioButtonOmniBulletHex
             else -> radioButtonRemoveHex
         }
         hexPicker.setHexCount(count)
@@ -168,7 +172,7 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
         }
 
         for (view in arrayListOf<HexPicker>(radioButtonLifeHex, radioButtonAttackHex, radioButtonEnergyHex,
-                                            radioButtonDeathRayHex, radioButtonRemoveHex)) {
+                                            radioButtonDeathRayHex, radioButtonOmniBulletHex, radioButtonRemoveHex)) {
             view.setButtonClickListener { onHexTypeButtonClicked(it) }
             view.setButtonLongClickListener { onHexTypeButtonLongClicked(it) }
         }
@@ -177,6 +181,7 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
         radioButtonAttackHex.buttonHex.setImageResource(R.drawable.ic_hex_attack)
         radioButtonEnergyHex.buttonHex.setImageResource(R.drawable.ic_hex_energy)
         radioButtonDeathRayHex.buttonHex.setImageResource(R.drawable.ic_hex_death_ray)
+        radioButtonOmniBulletHex.buttonHex.setImageResource(R.drawable.ic_hex_omni_bullet)
         radioButtonRemoveHex.buttonHex.setImageResource(R.drawable.ic_hex_life)
 
         buttonRotateCellLeft.setOnClickListener { onCellRotateButtonClicked(it) }
@@ -189,9 +194,11 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
         buttonTransformLifeToAttackHex.setOnClickListener { presenter.transformLifeHexToAttack() }
         buttonTransformLifeToEnergyHex.setOnClickListener { presenter.transformLifeHexToEnergy() }
         buttonTransformLifeToDeathRayHex.setOnClickListener { presenter.transformLifeHexToDeathRay() }
+        buttonTransformLifeToOmniBulletHex.setOnClickListener { presenter.transformLifeHexToOmniBullet() }
         buttonTransformAttackToLifeHex.setOnClickListener { presenter.transformAttackHexToLife() }
         buttonTransformEnergyToLifeHex.setOnClickListener { presenter.transformEnergyHexToLife() }
         buttonTransformDeathRayToLifeHex.setOnClickListener { presenter.transformDeathRayHexToLife() }
+        buttonTransformOmniBulletToLifeHex.setOnClickListener { presenter.transformOmniBulletHexToLife() }
     }
 
     private fun initiateCanvasView() {
@@ -206,6 +213,7 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
         R.id.radioButtonEnergyHex -> Hex.Type.ENERGY
         R.id.radioButtonAttackHex -> Hex.Type.ATTACK
         R.id.radioButtonDeathRayHex -> Hex.Type.DEATH_RAY
+        R.id.radioButtonOmniBulletHex -> Hex.Type.OMNI_BULLET
         else -> Hex.Type.REMOVE
     }
 
@@ -334,6 +342,7 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
                                        radioButtonRemoveHex, editorCanvasView, textHeroHistory,
                                        buttonRotateCellLeft, buttonRotateCellRight, radioButtonDeathRayHex,
                                        buttonTransformHexes, buttonTransformAttackToLifeHex, buttonTransformDeathRayToLifeHex,
+                                       buttonTransformOmniBulletToLifeHex, buttonTransformLifeToOmniBulletHex,
                                        buttonTransformEnergyToLifeHex, buttonTransformLifeToAttackHex,
                                        buttonTransformLifeToDeathRayHex, buttonTransformLifeToEnergyHex))
             view.visible = editorVisibility
@@ -358,7 +367,8 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
 
         for (view in arrayListOf<View>(buttonTransformAttackToLifeHex, buttonTransformDeathRayToLifeHex,
                                        buttonTransformEnergyToLifeHex, buttonTransformLifeToAttackHex,
-                                       buttonTransformLifeToDeathRayHex, buttonTransformLifeToEnergyHex))
+                                       buttonTransformLifeToDeathRayHex, buttonTransformLifeToEnergyHex,
+                                       buttonTransformOmniBulletToLifeHex, buttonTransformLifeToOmniBulletHex))
             view.visible = isHexesTransformShown
     }
     //endregion
