@@ -33,6 +33,7 @@ class BattleEngine(
         private const val TAG = "BattleEngine"
         private const val DEATH_RAY_DISTANCE = 50
         private const val DEATH_RAY_DAMAGE = 10
+        private const val OMNI_BULLET_DAMAGE = 2
 
         const val EXTRA_FOG = "fog"
         const val EXTRA_CELL_INDEXES = "cell_indexes"
@@ -64,10 +65,14 @@ class BattleEngine(
         }
     }
 
-    private val moveCells = { moveCells() }
+    private val moveCells = {
+        moveCells()
+        moveBullets()
+    }
 
     private val calculateDamages = {
         for (i in 0 until cells.size) { currentSnapshot.hexesToRemove.add(mutableListOf()) }
+        checkBullets()
         checkDeathRays()
         checkIntersections()
         checkNeighboring()
@@ -146,7 +151,9 @@ class BattleEngine(
             while (!isBattleOver()) {
                 doFullStep()
             }
-            val winnerGroupId = battleFieldSnapshots.last().cells[0].data.groupId
+            val winnerGroupId =
+                    if (battleFieldSnapshots.last().cells.size > 0) battleFieldSnapshots.last().cells[0].data.groupId
+                    else -1
             battleResultProvider.onNext(BattleInfo(battleFieldSnapshots, damageDealtByCells,
                                                    getDeadOrAliveCells(battleFieldSnapshots.last()),
                                                    isFog, winnerGroupId))
@@ -257,8 +264,7 @@ class BattleEngine(
             cell.data.hexes.filter { it.value.type == Hex.Type.OMNI_BULLET }.forEach {
                 val originInGlobal = hexMath.add(cell.data.origin, it.value)
                 for (direction in 0..5) {
-                    bullets.add(Bullet(cell.data.groupId, direction, OMNI_BULLET_RANGE,
-                                       hexMath.getHexNeighbor(originInGlobal, direction)))
+                    bullets.add(Bullet(cell.data.groupId, direction, OMNI_BULLET_RANGE, originInGlobal))
                 }
             }
             cell.battleData.omniBulletTimeout = OMNI_BULLET_TIMEOUT
@@ -304,16 +310,17 @@ class BattleEngine(
     }
 
     private fun moveCells() {
-        // Move cells
         battleState.directions.forEachIndexed { index, direction ->
             currentSnapshot.movingDirections.add(direction)
             cells[index].data.origin = hexMath.add(cells[index].data.origin, hexMath.getHexByDirection(direction))
         }
-        // Move bullets
+    }
+
+    private fun moveBullets() {
         val indexesOfBulletsToRemove = mutableListOf<Int>()
         bullets.forEachIndexed { index, bullet ->
             bullet.timeToLive--
-            if (bullet.timeToLive == 0) {
+            if (bullet.timeToLive <= 0) {
                 indexesOfBulletsToRemove.add(index)
             }
             else {
@@ -358,6 +365,22 @@ class BattleEngine(
                         .forEach { it.power -= DEATH_RAY_DAMAGE }
             }
             currentSnapshot.deathRays.addAll(deathRays)
+        }
+        checkCellsVitality()
+    }
+
+    private fun checkBullets() {
+        bullets.groupBy { it.groupId }.values.forEach { groupOfBullets ->
+            val currentGroupId = groupOfBullets[0].groupId
+            cells.filter { it.data.groupId != currentGroupId }.forEach { enemy ->
+                groupOfBullets.forEach { bullet ->
+                    val bulletInEnemyLocal = hexMath.subtract(bullet.origin, enemy.data.origin)
+                    enemy.data.hexes[bulletInEnemyLocal.hashCode()]?.let {
+                        it.power -= OMNI_BULLET_DAMAGE
+                        bullet.timeToLive = 0
+                    }
+                }
+            }
         }
         checkCellsVitality()
     }

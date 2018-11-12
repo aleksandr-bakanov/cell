@@ -20,6 +20,7 @@ import bav.onecell.common.Consts.Companion.BATTLE_PARAMS
 import bav.onecell.common.Consts.Companion.NEXT_SCENE
 import bav.onecell.common.view.DrawUtils
 import bav.onecell.model.BattleInfo
+import bav.onecell.model.battle.Bullet
 import bav.onecell.model.cell.Cell
 import bav.onecell.model.hexes.HexMath
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -173,6 +174,9 @@ class BattleFragment : Fragment(), Battle.View {
                 if (index >= 0 && index < snapshot.movingDirections.size)
                     movingAnimators.add(animateCellMoving(cell, snapshot.movingDirections[index]))
             }
+            snapshot.bullets.forEach { bullet ->
+                movingAnimators.add(animateBulletMoving(bullet))
+            }
             val movingAnimatorSet = AnimatorSet()
             movingAnimatorSet.playTogether(movingAnimators)
 
@@ -210,6 +214,9 @@ class BattleFragment : Fragment(), Battle.View {
                             rotation = 0f
                         }
                     }
+                    snapshot.bullets.forEach { bullet ->
+                        bullet.movingFraction = 0f
+                    }
                     if (snapshotIndex + 1 < it.size) {
                         // Draw next state
                         battleCanvasView.fallBackToPreviousSnapshot = true
@@ -232,6 +239,17 @@ class BattleFragment : Fragment(), Battle.View {
             duration = CELL_MOVING_DURATION_MS
             addUpdateListener {
                 cell.animationData.movingFraction = it.animatedValue as Float
+                battleCanvasView.invalidate()
+            }
+        }
+    }
+
+    private fun animateBulletMoving(bullet: Bullet): Animator {
+        bullet.movingFraction = 0f
+        return ValueAnimator.ofFloat(0f, 1f).apply {
+            duration = CELL_MOVING_DURATION_MS
+            addUpdateListener {
+                bullet.movingFraction = it.animatedValue as Float
                 battleCanvasView.invalidate()
             }
         }

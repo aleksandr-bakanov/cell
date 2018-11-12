@@ -7,7 +7,6 @@ import android.graphics.Paint
 import android.graphics.Path
 import androidx.core.content.ContextCompat
 import android.util.AttributeSet
-import android.util.Log
 import android.view.MotionEvent
 import android.view.ScaleGestureDetector
 import android.view.View
@@ -133,6 +132,8 @@ class BattleCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
                     drawUtils.drawCellPower(canvas, cell, layout)
                 }
                 drawUtils.drawDeathRays(canvas, snapshot.deathRays, deathRayFraction, layout)
+
+                snapshot.bullets.forEach { bullet -> drawUtils.drawBullet(canvas, bullet, layout = layout) }
 
                 // Layout center
                 /*canvas?.drawCircle(layout.origin.x.toFloat(), layout.origin.y.toFloat(), 5f, ringPaint)

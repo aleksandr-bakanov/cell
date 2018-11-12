@@ -185,6 +185,15 @@
                             <option name="y" value="444" />
                           </Point>
                         </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_cutSceneAfterSkilos_to_heroScreenAfterSkilos">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
+                        </option>
                       </LayoutPositions>
                     </value>
                   </entry>

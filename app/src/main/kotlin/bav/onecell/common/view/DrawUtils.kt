@@ -9,6 +9,7 @@ import android.graphics.Typeface
 import android.util.Log
 import androidx.core.content.ContextCompat
 import bav.onecell.R
+import bav.onecell.model.battle.Bullet
 import bav.onecell.model.cell.Cell
 import bav.onecell.model.hexes.Hex
 import bav.onecell.model.hexes.HexMath
@@ -164,6 +165,15 @@ class DrawUtils(private val hexMath: HexMath, context: Context) {
             path.fillType = Path.FillType.EVEN_ODD
             canvas?.drawPath(path, paint)
         }
+    }
+
+    fun drawBullet(canvas: Canvas?, bullet: Bullet, paint: Paint = omniBulletHexPaint, outlinePaint: Paint = cellOutlinePaint,
+                   layout: Layout = Layout.DUMMY) {
+        val path: Path = getHexPath(layout, bullet.origin, movingDirection = bullet.direction,
+                                    movingFraction = bullet.movingFraction)
+        path.fillType = Path.FillType.EVEN_ODD
+        canvas?.drawPath(path, paint)
+        canvas?.drawPath(path, outlinePaint)
     }
 
     private fun getHexPath(layout: Layout, hex: Hex, rotateAround: Point? = null, rotation: Float = 0f,
