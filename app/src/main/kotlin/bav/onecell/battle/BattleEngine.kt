@@ -1,5 +1,6 @@
 package bav.onecell.battle
 
+import android.util.Log
 import bav.onecell.model.BattleFieldSnapshot
 import bav.onecell.model.BattleInfo
 import bav.onecell.model.GameRules
@@ -130,6 +131,7 @@ class BattleEngine(
     private fun clearEngine() {
         cells.clear()
         corpses.clear()
+        bullets.clear()
         battleFieldSnapshots.clear()
         damageDealtByCells.clear()
         currentSnapshot = BattleFieldSnapshot()
@@ -317,6 +319,7 @@ class BattleEngine(
     }
 
     private fun moveBullets() {
+        bullets.forEach { currentSnapshot.bullets.add(it.clone()) }
         val indexesOfBulletsToRemove = mutableListOf<Int>()
         bullets.forEachIndexed { index, bullet ->
             bullet.timeToLive--
@@ -329,7 +332,6 @@ class BattleEngine(
         }
         indexesOfBulletsToRemove.sortDescending()
         indexesOfBulletsToRemove.forEach { bullets.removeAt(it) }
-        bullets.forEach { currentSnapshot.bullets.add(it.clone()) }
     }
 
     private fun checkDeathRays() {
@@ -376,8 +378,12 @@ class BattleEngine(
                 groupOfBullets.forEach { bullet ->
                     val bulletInEnemyLocal = hexMath.subtract(bullet.origin, enemy.data.origin)
                     enemy.data.hexes[bulletInEnemyLocal.hashCode()]?.let {
-                        it.power -= OMNI_BULLET_DAMAGE
-                        bullet.timeToLive = 0
+                        // Hash codes may be the same but hexes may not.
+                        // Compare Hex(1, -1, 0)(930) and Hex(0, 31, -31)(also 930).
+                        if (it == bulletInEnemyLocal) {
+                            it.power -= OMNI_BULLET_DAMAGE
+                            bullet.timeToLive = 0
+                        }
                     }
                 }
             }

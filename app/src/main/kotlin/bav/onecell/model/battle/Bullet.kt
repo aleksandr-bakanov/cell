@@ -8,7 +8,7 @@ data class Bullet(val groupId: Int, val direction: Int, var timeToLive: Int, var
     fun clone(): Bullet = Bullet(groupId, direction, timeToLive, origin, movingFraction)
 
     companion object {
-        const val OMNI_BULLET_TIMEOUT = 3
+        const val OMNI_BULLET_TIMEOUT = 2
         const val OMNI_BULLET_RANGE = 15
     }
 }

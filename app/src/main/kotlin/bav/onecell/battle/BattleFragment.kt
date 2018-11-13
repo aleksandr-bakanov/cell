@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.animation.AnimatorSet
 import android.widget.SeekBar
+import android.widget.Toast
 import androidx.navigation.findNavController
 import bav.onecell.OneCellApplication
 import bav.onecell.R
