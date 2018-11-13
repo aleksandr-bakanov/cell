@@ -33,7 +33,7 @@ class CellTest {
         val origin = Hex(1, 2, -3)
         val direction = Cell.Direction.SW
         val hexes = arrayOf(Hex(1, 2, -3), Hex(0, 5, -5))
-        val map = mutableMapOf<Hex.MapKey, Hex>()
+        val map = mutableMapOf<Pair<Int, Int>, Hex>()
         hexes.forEach { map[it.mapKey] = it }
         val cell = Cell(hexMath, Data(hexes = map, origin = origin, direction = direction))
 

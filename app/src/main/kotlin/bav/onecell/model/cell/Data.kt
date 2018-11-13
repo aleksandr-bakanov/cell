@@ -6,13 +6,14 @@ import androidx.room.PrimaryKey
 import bav.onecell.model.cell.logic.Rule
 import bav.onecell.model.hexes.Hex
 import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 
 @Entity(tableName = "cellData")
 data class Data(
         @PrimaryKey var id: Long = 0,
         // hexes - hexes contained in cell, keys of the map are pairs of (q, r) coordinates
-        @ColumnInfo(name = "hexes") var hexes: MutableMap<Hex.MapKey, Hex> =
-                mutableMapOf(Hex.MapKey(0, 0) to Hex().withType(Hex.Type.LIFE)),
+        @ColumnInfo(name = "hexes") var hexes: MutableMap<Pair<Int, Int>, Hex> =
+                mutableMapOf(Pair(0, 0) to Hex().withType(Hex.Type.LIFE)),
         // origin - an origin coordinates
         @ColumnInfo(name = "origin") var origin: Hex = Hex(),
         // direction - direction of cell's look
@@ -33,7 +34,7 @@ data class Data(
 
     companion object {
         fun fromJson(json: String): Data {
-            return Gson().fromJson(json, Data::class.java)
+            return GsonBuilder().enableComplexMapKeySerialization().create().fromJson(json, Data::class.java)
         }
     }
 
@@ -48,6 +49,6 @@ data class Data(
     }
 
     fun toJson(): String {
-        return Gson().toJson(this)
+        return GsonBuilder().enableComplexMapKeySerialization().create().toJson(this)
     }
 }

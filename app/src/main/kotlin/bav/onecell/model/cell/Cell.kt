@@ -162,7 +162,7 @@ class Cell(private val hexMath: HexMath,
     }
 
     private fun rotateHexesFlip() {
-        val newHexes = mutableMapOf<Hex.MapKey, Hex>()
+        val newHexes = mutableMapOf<Pair<Int, Int>, Hex>()
         data.hexes.forEach {
             val newHex = hexMath.rotateFlip(it.value).withType(it.value.type).withPower(it.value.power)
             newHexes[newHex.mapKey] = newHex
@@ -171,7 +171,7 @@ class Cell(private val hexMath: HexMath,
     }
 
     private fun rotateHexesRight() {
-        val newHexes = mutableMapOf<Hex.MapKey, Hex>()
+        val newHexes = mutableMapOf<Pair<Int, Int>, Hex>()
         data.hexes.forEach {
             val newHex = hexMath.rotateRight(it.value).withType(it.value.type).withPower(it.value.power)
             newHexes[newHex.mapKey] = newHex
@@ -180,7 +180,7 @@ class Cell(private val hexMath: HexMath,
     }
 
     private fun rotateHexesRightTwice() {
-        val newHexes = mutableMapOf<Hex.MapKey, Hex>()
+        val newHexes = mutableMapOf<Pair<Int, Int>, Hex>()
         data.hexes.forEach {
             val newHex = hexMath.rotateRightTwice(it.value).withType(it.value.type).withPower(it.value.power)
             newHexes[newHex.mapKey] = newHex
@@ -189,7 +189,7 @@ class Cell(private val hexMath: HexMath,
     }
 
     private fun rotateHexesLeft() {
-        val newHexes = mutableMapOf<Hex.MapKey, Hex>()
+        val newHexes = mutableMapOf<Pair<Int, Int>, Hex>()
         data.hexes.forEach {
             val newHex = hexMath.rotateLeft(it.value).withType(it.value.type).withPower(it.value.power)
             newHexes[newHex.mapKey] = newHex
@@ -198,7 +198,7 @@ class Cell(private val hexMath: HexMath,
     }
 
     private fun rotateHexesLeftTwice() {
-        val newHexes = mutableMapOf<Hex.MapKey, Hex>()
+        val newHexes = mutableMapOf<Pair<Int, Int>, Hex>()
         data.hexes.forEach {
             val newHex = hexMath.rotateLeftTwice(it.value).withType(it.value.type).withPower(it.value.power)
             newHexes[newHex.mapKey] = newHex

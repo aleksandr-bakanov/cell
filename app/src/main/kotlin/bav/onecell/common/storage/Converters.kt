@@ -6,11 +6,12 @@ import bav.onecell.model.cell.Data
 import bav.onecell.model.cell.logic.Rule
 import bav.onecell.model.hexes.Hex
 import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
 import java.lang.reflect.Type
 
 class Converters {
-    private val mapOfHexesType: Type = object : TypeToken<Map<Hex.MapKey, Hex>>(){}.type
+    private val mapOfHexesType: Type = object : TypeToken<Map<Pair<Int, Int>, Hex>>(){}.type
     private val listOfRulesType: Type = object : TypeToken<List<Rule>>(){}.type
     private val mapOfPairIntType: Type = object : TypeToken<Map<Int, Int>>(){}.type
     private val pairOfIntType: Type = object : TypeToken<Pair<Int, Int>>(){}.type
@@ -46,10 +47,14 @@ class Converters {
     }
 
     @TypeConverter
-    fun mapOfHexesToString(hexes: Map<Hex.MapKey, Hex>?): String? = hexes?.let { Gson().toJson(it) }
+    fun mapOfHexesToString(hexes: Map<Pair<Int, Int>, Hex>?): String? = hexes?.let {
+        GsonBuilder().enableComplexMapKeySerialization().create().toJson(it)
+    }
 
     @TypeConverter
-    fun stringToMapOfHexes(str: String?): Map<Hex.MapKey, Hex>? = str?.let { Gson().fromJson(it, mapOfHexesType) }
+    fun stringToMapOfHexes(str: String?): Map<Pair<Int, Int>, Hex>? = str?.let {
+        GsonBuilder().enableComplexMapKeySerialization().create().fromJson(it, mapOfHexesType)
+    }
 
     @TypeConverter
     fun listOfRulesToString(rules: List<Rule>?): String? = rules?.let { Gson().toJson(it) }
