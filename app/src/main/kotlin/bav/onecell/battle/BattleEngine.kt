@@ -377,7 +377,7 @@ class BattleEngine(
             cells.filter { it.data.groupId != currentGroupId }.forEach { enemy ->
                 groupOfBullets.forEach { bullet ->
                     val bulletInEnemyLocal = hexMath.subtract(bullet.origin, enemy.data.origin)
-                    enemy.data.hexes[bulletInEnemyLocal.hashCode()]?.let {
+                    enemy.data.hexes[bulletInEnemyLocal.mapKey]?.let {
                         // Hash codes may be the same but hexes may not.
                         // Compare Hex(1, -1, 0)(930) and Hex(0, 31, -31)(also 930).
                         if (it == bulletInEnemyLocal) {
@@ -409,7 +409,7 @@ class BattleEngine(
             val maxDamageOfGroup = mutableMapOf<Int, Int>()
             cells.forEach { cell ->
                 // intersected are in global coordinates, we should revert them to local ones
-                cell.data.hexes[hexMath.subtract(intersected, cell.data.origin).hashCode()]?.let { hex ->
+                cell.data.hexes[hexMath.subtract(intersected, cell.data.origin).mapKey]?.let { hex ->
                     val currentGroupDamage = maxDamageOfGroup.getOrPut(cell.data.groupId) { 0 }
                     if (hex.power > currentGroupDamage) {
                         maxDamageOfGroup[cell.data.groupId] = hex.power
@@ -418,7 +418,7 @@ class BattleEngine(
             }
             // Deal damage
             cells.forEach { cell ->
-                cell.data.hexes[hexMath.subtract(intersected, cell.data.origin).hashCode()]?.let {
+                cell.data.hexes[hexMath.subtract(intersected, cell.data.origin).mapKey]?.let {
                     // Each hex, if it is in intersection, receives damage equals to maximum of damages within
                     // enemy's groups.
                     val currentDamage = damageDealtByCells[cell.battleData.battleId] ?: 0
@@ -488,7 +488,7 @@ class BattleEngine(
             currentSnapshot.hexesToRemove[index].addAll(correctHexesToRemoveForSnapshot(hexesToRemove, index))
 
             if (hexesToRemove.isNotEmpty()) {
-                hexesToRemove.forEach { cell.data.hexes.remove(it.hashCode()) }
+                hexesToRemove.forEach { cell.data.hexes.remove(it.mapKey) }
                 // If connectivity of life and energy hexes has been broken then cell dies
                 if (!gameRules.checkHexesConnectivity(cell.data.hexes.values.filter {
                             it.type == Hex.Type.LIFE || it.type == Hex.Type.ENERGY

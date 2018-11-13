@@ -27,6 +27,7 @@ data class Hex(var q: Int = 0, var r: Int = 0, var s: Int = 0) {
     var type: Type = Type.REMOVE
     @Transient var power: Int = 0
     @Transient var receivedDamage: Int = 0
+    @Transient val mapKey = MapKey(q, r)
 
     init {
         if (q + r + s != 0) throw IllegalArgumentException("q + r + s should be equal to 0")
@@ -48,4 +49,6 @@ data class Hex(var q: Int = 0, var r: Int = 0, var s: Int = 0) {
         val gson = Gson()
         return gson.toJson(this)
     }
+
+    data class MapKey(val q: Int = 0, val r: Int = 0)
 }

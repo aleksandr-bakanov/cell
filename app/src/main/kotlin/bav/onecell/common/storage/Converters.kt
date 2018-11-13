@@ -10,9 +10,10 @@ import com.google.gson.reflect.TypeToken
 import java.lang.reflect.Type
 
 class Converters {
-    private val mapOfHexesType: Type = object : TypeToken<Map<Int, Hex>>(){}.type
+    private val mapOfHexesType: Type = object : TypeToken<Map<Hex.MapKey, Hex>>(){}.type
     private val listOfRulesType: Type = object : TypeToken<List<Rule>>(){}.type
-    private val mapOfIntType: Type = object : TypeToken<Map<Int, Int>>(){}.type
+    private val mapOfPairIntType: Type = object : TypeToken<Map<Int, Int>>(){}.type
+    private val pairOfIntType: Type = object : TypeToken<Pair<Int, Int>>(){}.type
 
     @TypeConverter
     fun cellDataToString(data: Data?): String? {
@@ -45,36 +46,26 @@ class Converters {
     }
 
     @TypeConverter
-    fun mapOfHexesToString(hexes: Map<Int, Hex>?): String? {
-        return hexes?.let {
-            Gson().toJson(it)
-        }
-    }
+    fun mapOfHexesToString(hexes: Map<Hex.MapKey, Hex>?): String? = hexes?.let { Gson().toJson(it) }
 
     @TypeConverter
-    fun stringToMapOfHexes(str: String?): Map<Int, Hex>? {
-        return str?.let {
-            Gson().fromJson(it, mapOfHexesType)
-        }
-    }
+    fun stringToMapOfHexes(str: String?): Map<Hex.MapKey, Hex>? = str?.let { Gson().fromJson(it, mapOfHexesType) }
 
     @TypeConverter
-    fun listOfRulesToString(rules: List<Rule>?): String? {
-        return rules?.let {
-            Gson().toJson(it)
-        }
-    }
+    fun listOfRulesToString(rules: List<Rule>?): String? = rules?.let { Gson().toJson(it) }
 
     @TypeConverter
-    fun stringToListOfRules(str: String?): List<Rule>? {
-        return str?.let {
-            Gson().fromJson(it, listOfRulesType)
-        }
-    }
+    fun stringToListOfRules(str: String?): List<Rule>? = str?.let { Gson().fromJson(it, listOfRulesType) }
 
     @TypeConverter
     fun mapOfIntToString(map: Map<Int, Int>?): String? = map?.let { Gson().toJson(it) }
 
     @TypeConverter
-    fun stringToMapOfInt(str: String?): Map<Int, Int>? = str?.let { Gson().fromJson(it, mapOfIntType) }
+    fun stringToMapOfInt(str: String?): Map<Int, Int>? = str?.let { Gson().fromJson(it, mapOfPairIntType) }
+
+    @TypeConverter
+    fun pairOfIntToString(pair: Pair<Int, Int>?): String? = pair?.let { Gson().toJson(it) }
+
+    @TypeConverter
+    fun stringToPairOfInt(str: String?): Pair<Int, Int>? = str?.let { Gson().fromJson(it, pairOfIntType) }
 }

@@ -33,8 +33,8 @@ class CellTest {
         val origin = Hex(1, 2, -3)
         val direction = Cell.Direction.SW
         val hexes = arrayOf(Hex(1, 2, -3), Hex(0, 5, -5))
-        val map = mutableMapOf<Int, Hex>()
-        hexes.forEach { map[it.hashCode()] = it }
+        val map = mutableMapOf<Hex.MapKey, Hex>()
+        hexes.forEach { map[it.mapKey] = it }
         val cell = Cell(hexMath, Data(hexes = map, origin = origin, direction = direction))
 
         val copy = cell.clone()
@@ -100,12 +100,12 @@ class CellTest {
         val mostFarAttackHex = Hex(-2, 2, 0).withType(Hex.Type.ATTACK)
         for (hex in arrayOf(lifeHex, energyHex, nearAttackHex, farAttackHex, veryFarAttackHex, mostFarAttackHex)) cell.addHex(hex)
         cell.evaluateCellHexesPower()
-        assertEquals(Hex.Power.LIFE_SELF.value, cell.data.hexes[lifeHex.hashCode()]?.power)
-        assertEquals(Hex.Power.ENERGY_SELF.value, cell.data.hexes[energyHex.hashCode()]?.power)
-        assertEquals(Hex.Power.LIFE_TO_NEIGHBOR.value + Hex.Power.ENERGY_TO_NEIGHBOR.value, cell.data.hexes[nearAttackHex.hashCode()]?.power)
-        assertEquals(Hex.Power.LIFE_TO_NEIGHBOR.value + Hex.Power.ENERGY_TO_FAR_NEIGHBOR.value, cell.data.hexes[farAttackHex.hashCode()]?.power)
-        assertEquals(Hex.Power.ENERGY_TO_FAR_NEIGHBOR.value, cell.data.hexes[veryFarAttackHex.hashCode()]?.power)
-        assertEquals(0, cell.data.hexes[mostFarAttackHex.hashCode()]?.power)
+        assertEquals(Hex.Power.LIFE_SELF.value, cell.data.hexes[lifeHex.mapKey]?.power)
+        assertEquals(Hex.Power.ENERGY_SELF.value, cell.data.hexes[energyHex.mapKey]?.power)
+        assertEquals(Hex.Power.LIFE_TO_NEIGHBOR.value + Hex.Power.ENERGY_TO_NEIGHBOR.value, cell.data.hexes[nearAttackHex.mapKey]?.power)
+        assertEquals(Hex.Power.LIFE_TO_NEIGHBOR.value + Hex.Power.ENERGY_TO_FAR_NEIGHBOR.value, cell.data.hexes[farAttackHex.mapKey]?.power)
+        assertEquals(Hex.Power.ENERGY_TO_FAR_NEIGHBOR.value, cell.data.hexes[veryFarAttackHex.mapKey]?.power)
+        assertEquals(0, cell.data.hexes[mostFarAttackHex.mapKey]?.power)
     }
 
     @Test

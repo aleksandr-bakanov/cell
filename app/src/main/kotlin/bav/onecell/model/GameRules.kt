@@ -24,7 +24,7 @@ class GameRules(private val hexMath: HexMath) {
     fun isAllowedToRemoveHexFromCell(cell: Cell, hex: Hex): Boolean {
         if (cell.data.hexes.isEmpty()) return false
         // If cell doesn't contain such hex then it obviously can't be removed
-        if (!cell.data.hexes.contains(hex.hashCode())) return false
+        if (!cell.data.hexes.contains(hex.mapKey)) return false
         // The only one life hex left in cell is allowed to be removed
         if (cell.data.hexes.size == 1) return true
         // Cell can't exist without life hexes

@@ -10,9 +10,9 @@ import com.google.gson.Gson
 @Entity(tableName = "cellData")
 data class Data(
         @PrimaryKey var id: Long = 0,
-        // hexes - hexes contained in cell
-        @ColumnInfo(name = "hexes") var hexes: MutableMap<Int, Hex> =
-                mutableMapOf(Pair(Hex().hashCode(), Hex().withType(Hex.Type.LIFE))),
+        // hexes - hexes contained in cell, keys of the map are pairs of (q, r) coordinates
+        @ColumnInfo(name = "hexes") var hexes: MutableMap<Hex.MapKey, Hex> =
+                mutableMapOf(Hex.MapKey(0, 0) to Hex().withType(Hex.Type.LIFE)),
         // origin - an origin coordinates
         @ColumnInfo(name = "origin") var origin: Hex = Hex(),
         // direction - direction of cell's look
