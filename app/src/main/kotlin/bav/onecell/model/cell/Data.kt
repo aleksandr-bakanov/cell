@@ -3,10 +3,23 @@ package bav.onecell.model.cell
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import bav.onecell.common.storage.Converters
 import bav.onecell.model.cell.logic.Rule
 import bav.onecell.model.hexes.Hex
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import com.google.gson.InstanceCreator
+import com.google.gson.JsonDeserializationContext
+import com.google.gson.JsonDeserializer
+import com.google.gson.JsonElement
+import com.google.gson.JsonPrimitive
+import com.google.gson.JsonSerializationContext
+import com.google.gson.JsonSerializer
+import com.google.gson.TypeAdapter
+import com.google.gson.stream.JsonReader
+import com.google.gson.stream.JsonToken
+import com.google.gson.stream.JsonWriter
+import java.lang.reflect.Type
 
 @Entity(tableName = "cellData")
 data class Data(
@@ -33,9 +46,57 @@ data class Data(
                              Hex.Type.OMNI_BULLET.ordinal to 5)) {
 
     companion object {
-        fun fromJson(json: String): Data {
-            return GsonBuilder().enableComplexMapKeySerialization().create().fromJson(json, Data::class.java)
+        private val pairIntAdapter = object : TypeAdapter<Pair<Int, Int>>(),
+                                              InstanceCreator<Pair<Int, Int>>,
+                                              JsonSerializer<Pair<Int, Int>>,
+                                              JsonDeserializer<Pair<Int, Int>> {
+            // TypeAdapter
+            override fun read(reader: JsonReader?): Pair<Int, Int>? {
+                if (reader?.peek() == JsonToken.NULL) {
+                    reader.nextNull()
+                    return null
+                }
+                return reader?.nextString()?.let { xy ->
+                    // Omit brackets in (x,y)
+                    val parts = xy.substring(1, xy.length - 1).split(",")
+                    Pair(parts[0].toInt(), parts[1].toInt())
+                }
+            }
+            override fun write(writer: JsonWriter?, value: Pair<Int, Int>?) {
+                if (value == null) {
+                    writer?.nullValue()
+                }
+                else {
+                    writer?.value("(${value.first},${value.second})")
+                }
+            }
+
+            // InstanceCreator
+            override fun createInstance(type: Type?): Pair<Int, Int> = Pair(0, 0)
+
+            // JsonSerializer
+            override fun serialize(src: Pair<Int, Int>?, typeOfSrc: Type?,
+                                   context: JsonSerializationContext?): JsonElement {
+                return JsonPrimitive("(${src?.first},${src?.second})")
+            }
+
+            // JsonDeserializer
+            override fun deserialize(json: JsonElement?, typeOfT: Type?,
+                                     context: JsonDeserializationContext?): Pair<Int, Int> {
+                return json?.asString.let { xy ->
+                    // Omit brackets in (x,y)
+                    val parts = xy?.substring(1, xy?.length - 1)?.split(",")
+                    Pair(parts?.get(0)?.toInt() ?: 0, parts?.get(1)?.toInt() ?: 0)
+                }
+            }
         }
+
+        fun fromJson(json: String): Data = GsonBuilder()
+                /// TODO: implement pretty output of pair of ints for Gson later
+                //.registerTypeAdapter(Converters.PAIR_OF_INT_TYPE, pairIntAdapter)
+                .enableComplexMapKeySerialization()
+                .create()
+                .fromJson(json, Data::class.java)
     }
 
     fun clone(): Data {
@@ -48,7 +109,9 @@ data class Data(
         return data
     }
 
-    fun toJson(): String {
-        return GsonBuilder().enableComplexMapKeySerialization().create().toJson(this)
-    }
+    fun toJson(): String = GsonBuilder()
+            //.registerTypeAdapter(Converters.PAIR_OF_INT_TYPE, pairIntAdapter)
+            .enableComplexMapKeySerialization()
+            .create()
+            .toJson(this)
 }

@@ -8,14 +8,15 @@ class DataTest {
 
     @Test
     fun serializationShouldWorkFine() {
-        val origin = Hex(1, 2, -3)
+        val origin = Hex()
         val direction = Cell.Direction.SW
-        val hexes = arrayOf(Hex(1, 2, -3), Hex(0, 5, -5))
+        val hexes = arrayOf(Hex().withType(Hex.Type.LIFE))
         val map = mutableMapOf<Pair<Int, Int>, Hex>()
         hexes.forEach { map[it.mapKey] = it }
         val data = Data(id = 1, hexes = map, origin = origin, direction = direction)
 
         val json = data.toJson()
+        System.out.println("json = $json")
         val clone = Data.fromJson(json)
 
         assertEquals(origin, clone.origin)

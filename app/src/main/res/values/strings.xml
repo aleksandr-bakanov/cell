@@ -239,7 +239,7 @@
             "{
                 hexBucket: {0:1, 1:2, 2:3, 3:4},
                 direction: 'N',
-                hexes: {'0':{q:0,r:0,s:0,type:'LIFE'},'-930':{q:-1,r:1,s:0,type:'LIFE'},'30':{q:0,r:1,s:-1,type:'LIFE'},'-900':{q:-1,r:2,s:-1,type:'LIFE'},'930':{q:1,r:-1,s:0,type:'ATTACK'},'900':{q:1,r:-2,s:1,type:'ATTACK'},'-30':{q:0,r:-1,s:1,type:'ENERGY'}},
+                hexes: [[{"first":0,"second":0},{"type":"LIFE","q":0,"r":0,"s":0}]],
                 groupId: 0,
                 id: 0,
                 name: 'character_name_kittaro',
@@ -251,7 +251,7 @@
             "{
                 hexBucket: {0:5, 1:6, 2:7, 3:8},
                 direction: 'N',
-                hexes: {'0':{q:0,r:0,s:0,type:'LIFE'},'930':{q:1,r:-1,s:0,type:'ATTACK'},'-30':{q:0,r:-1,s:1,type:'ATTACK'},'-960':{q:-1,r:0,s:1,type:'ATTACK'},'-930':{q:-1,r:1,s:0,type:'ATTACK'},'30':{q:0,r:1,s:-1,type:'ATTACK'}},
+                hexes: [[{"first":0,"second":0},{"type":"LIFE","q":0,"r":0,"s":0}]],
                 groupId: 0,
                 id: 1,
                 name: 'character_name_zoi',
@@ -263,7 +263,7 @@
             "{
                 hexBucket: {0:9,1:10,2:11,3:12},
                 direction: 'N',
-                hexes: {'0':{q:0,r:0,s:0,type:'LIFE'},'930':{q:1,r:-1,s:0,type:'LIFE'},'-930':{q:-1,r:1,s:0,type:'LIFE'},'1890':{q:2,r:-1,s:-1,type:'ATTACK'},'-1890':{q:-2,r:1,s:1,type:'ATTACK'},'-1860':{q:-2,r:2,s:0,type:'ATTACK'},'1860':{q:2,r:-2,s:0,type:'ATTACK'}},
+                hexes: [[{"first":0,"second":0},{"type":"LIFE","q":0,"r":0,"s":0}]],
                 groupId: 0,
                 id: 2,
                 name: 'character_name_aima',
@@ -276,7 +276,7 @@
             "{
                 hexBucket: {0:0,1:0,2:0,3:0},
                 direction: 'N',
-                hexes: {'0':{q:0,r:0,s:0,type:'LIFE'},'930':{q:1,r:-1,s:0,type:'ATTACK'},'-960':{q:-1,r:0,s:1,type:'ATTACK'},'30':{q:0,r:1,s:-1,type:'ATTACK'},'960':{q:1,r:0,s:-1,type:'ENERGY'}},
+                hexes: [[{"first":0,"second":0},{"type":"LIFE","q":0,"r":0,"s":0}]],
                 groupId: 1,
                 id: 3,
                 name: 'character_name_gopnik_1',
@@ -288,7 +288,7 @@
             "{
                 hexBucket: {0:0,1:0,2:0,3:0},
                 direction: 'N',
-                hexes: {'0':{q:0,r:0,s:0,type:'LIFE'},'930':{q:1,r:-1,s:0,type:'ATTACK'},'-960':{q:-1,r:0,s:1,type:'ATTACK'},'30':{q:0,r:1,s:-1,type:'ATTACK'},'960':{q:1,r:0,s:-1,type:'ENERGY'}},
+                hexes: [[{"first":0,"second":0},{"type":"LIFE","q":0,"r":0,"s":0}]],
                 groupId: 1,
                 id: 4,
                 name: 'character_name_gopnik_2',
@@ -300,7 +300,7 @@
             "{
                 hexBucket: {0:0,1:0,2:0,3:0},
                 direction: 'N',
-                hexes: {'0':{q:0,r:0,s:0,type:'LIFE'},'930':{q:1,r:-1,s:0,type:'ATTACK'},'-960':{q:-1,r:0,s:1,type:'ATTACK'},'30':{q:0,r:1,s:-1,type:'ATTACK'},'960':{q:1,r:0,s:-1,type:'ENERGY'}},
+                hexes: [[{"first":0,"second":0},{"type":"LIFE","q":0,"r":0,"s":0}]],
                 groupId: 1,
                 id: 5,
                 name: 'character_name_gopnik_3',
@@ -313,7 +313,7 @@
             "{
                 hexBucket: {0:0,1:0,2:0,3:0},
                 direction: 'N',
-                hexes: {'0':{q:0,r:0,s:0,type:'LIFE'},'930':{q:1,r:-1,s:0,type:'ATTACK'},'-960':{q:-1,r:0,s:1,type:'ATTACK'},'30':{q:0,r:1,s:-1,type:'ATTACK'},'960':{q:1,r:0,s:-1,type:'ENERGY'}},
+                hexes: [[{"first":0,"second":0},{"type":"LIFE","q":0,"r":0,"s":0}]],
                 groupId: 2,
                 id: 6,
                 name: 'character_name_skilos_1',
@@ -325,7 +325,7 @@
             "{
                 hexBucket: {0:0,1:0,2:0,3:0},
                 direction: 'N',
-                hexes: {'0':{q:0,r:0,s:0,type:'LIFE'},'930':{q:1,r:-1,s:0,type:'ATTACK'},'-960':{q:-1,r:0,s:1,type:'ATTACK'},'30':{q:0,r:1,s:-1,type:'ATTACK'},'960':{q:1,r:0,s:-1,type:'ENERGY'}},
+                hexes: [[{"first":0,"second":0},{"type":"LIFE","q":0,"r":0,"s":0}]],
                 groupId: 2,
                 id: 7,
                 name: 'character_name_skilos_2',
@@ -337,7 +337,7 @@
             "{
                 hexBucket: {0:0,1:0,2:0,3:0},
                 direction: 'N',
-                hexes: {'0':{q:0,r:0,s:0,type:'LIFE'},'930':{q:1,r:-1,s:0,type:'ATTACK'},'-960':{q:-1,r:0,s:1,type:'ATTACK'},'30':{q:0,r:1,s:-1,type:'ATTACK'},'960':{q:1,r:0,s:-1,type:'ENERGY'}},
+                hexes: [[{"first":0,"second":0},{"type":"LIFE","q":0,"r":0,"s":0}]],
                 groupId: 2,
                 id: 8,
                 name: 'character_name_skilos_3',
@@ -349,7 +349,7 @@
             "{
                 hexBucket: {0:0,1:0,2:0,3:0},
                 direction: 'N',
-                hexes: {'0':{q:0,r:0,s:0,type:'LIFE'},'930':{q:1,r:-1,s:0,type:'ATTACK'},'-960':{q:-1,r:0,s:1,type:'ATTACK'},'30':{q:0,r:1,s:-1,type:'ATTACK'},'960':{q:1,r:0,s:-1,type:'ENERGY'}},
+                hexes: [[{"first":0,"second":0},{"type":"LIFE","q":0,"r":0,"s":0}]],
                 groupId: 2,
                 id: 9,
                 name: 'character_name_skilos_4',
@@ -361,7 +361,7 @@
             "{
                 hexBucket: {0:0,1:0,2:0,3:0},
                 direction: 'N',
-                hexes: {'0':{q:0,r:0,s:0,type:'LIFE'},'930':{q:1,r:-1,s:0,type:'ATTACK'},'-960':{q:-1,r:0,s:1,type:'ATTACK'},'30':{q:0,r:1,s:-1,type:'ATTACK'},'960':{q:1,r:0,s:-1,type:'ENERGY'}},
+                hexes: [[{"first":0,"second":0},{"type":"LIFE","q":0,"r":0,"s":0}]],
                 groupId: 2,
                 id: 10,
                 name: 'character_name_skilos_5',
@@ -374,7 +374,7 @@
             "{
                 hexBucket: {0:50,1:50,2:50,3:50},
                 direction: 'N',
-                hexes: {'0':{q:0,r:0,s:0,type:'LIFE'},'930':{q:1,r:-1,s:0,type:'ATTACK'},'-960':{q:-1,r:0,s:1,type:'ATTACK'},'30':{q:0,r:1,s:-1,type:'ATTACK'},'960':{q:1,r:0,s:-1,type:'ENERGY'}},
+                hexes: [[{"first":0,"second":0},{"type":"LIFE","q":0,"r":0,"s":0}]],
                 groupId: 3,
                 id: 11,
                 name: 'character_name_belos',
@@ -387,7 +387,7 @@
             "{
                 hexBucket: {0:50,1:50,2:50,3:50},
                 direction: 'N',
-                hexes: {'0':{q:0,r:0,s:0,type:'LIFE'},'930':{q:1,r:-1,s:0,type:'ATTACK'},'-960':{q:-1,r:0,s:1,type:'ATTACK'},'30':{q:0,r:1,s:-1,type:'ATTACK'},'960':{q:1,r:0,s:-1,type:'ENERGY'}},
+                hexes: [[{"first":0,"second":0},{"type":"LIFE","q":0,"r":0,"s":0}]],
                 groupId: 4,
                 id: 12,
                 name: 'character_name_omikhli',
@@ -400,7 +400,7 @@
             "{
                 hexBucket: {0:50,1:50,2:50,3:50},
                 direction: 'N',
-                hexes: {'0':{q:0,r:0,s:0,type:'LIFE'}},
+                hexes: [[{"first":0,"second":0},{"type":"LIFE","q":0,"r":0,"s":0}]],
                 groupId: 5,
                 id: 13,
                 name: 'character_name_nihterib_1',
@@ -412,7 +412,7 @@
             "{
                 hexBucket: {0:50,1:50,2:50,3:50},
                 direction: 'N',
-                hexes: {'0':{q:0,r:0,s:0,type:'LIFE'}},
+                hexes: [[{"first":0,"second":0},{"type":"LIFE","q":0,"r":0,"s":0}]],
                 groupId: 5,
                 id: 14,
                 name: 'character_name_nihterib_2',
@@ -424,7 +424,7 @@
             "{
                 hexBucket: {0:50,1:50,2:50,3:50},
                 direction: 'N',
-                hexes: {'0':{q:0,r:0,s:0,type:'LIFE'}},
+                hexes: [[{"first":0,"second":0},{"type":"LIFE","q":0,"r":0,"s":0}]],
                 groupId: 5,
                 id: 15,
                 name: 'character_name_nihterib_3',
@@ -436,7 +436,7 @@
             "{
                 hexBucket: {0:50,1:50,2:50,3:50},
                 direction: 'N',
-                hexes: {'0':{q:0,r:0,s:0,type:'LIFE'}},
+                hexes: [[{"first":0,"second":0},{"type":"LIFE","q":0,"r":0,"s":0}]],
                 groupId: 5,
                 id: 16,
                 name: 'character_name_nihterib_4',
@@ -448,7 +448,7 @@
             "{
                 hexBucket: {0:50,1:50,2:50,3:50},
                 direction: 'N',
-                hexes: {'0':{q:0,r:0,s:0,type:'LIFE'}},
+                hexes: [[{"first":0,"second":0},{"type":"LIFE","q":0,"r":0,"s":0}]],
                 groupId: 5,
                 id: 17,
                 name: 'character_name_nihterib_5',
@@ -460,7 +460,7 @@
             "{
                 hexBucket: {0:50,1:50,2:50,3:50},
                 direction: 'N',
-                hexes: {'0':{q:0,r:0,s:0,type:'LIFE'}},
+                hexes: [[{"first":0,"second":0},{"type":"LIFE","q":0,"r":0,"s":0}]],
                 groupId: 5,
                 id: 18,
                 name: 'character_name_nihterib_6',
@@ -472,7 +472,7 @@
             "{
                 hexBucket: {0:50,1:50,2:50,3:50},
                 direction: 'N',
-                hexes: {'0':{q:0,r:0,s:0,type:'LIFE'}},
+                hexes: [[{"first":0,"second":0},{"type":"LIFE","q":0,"r":0,"s":0}]],
                 groupId: 5,
                 id: 19,
                 name: 'character_name_nihterib_7',
@@ -484,7 +484,7 @@
             "{
                 hexBucket: {0:50,1:50,2:50,3:50},
                 direction: 'N',
-                hexes: {'0':{q:0,r:0,s:0,type:'LIFE'}},
+                hexes: [[{"first":0,"second":0},{"type":"LIFE","q":0,"r":0,"s":0}]],
                 groupId: 5,
                 id: 20,
                 name: 'character_name_nihterib_8',
@@ -496,7 +496,7 @@
             "{
                 hexBucket: {0:50,1:50,2:50,3:50},
                 direction: 'N',
-                hexes: {'0':{q:0,r:0,s:0,type:'LIFE'}},
+                hexes: [[{"first":0,"second":0},{"type":"LIFE","q":0,"r":0,"s":0}]],
                 groupId: 5,
                 id: 21,
                 name: 'character_name_nihterib_9',
@@ -508,7 +508,7 @@
             "{
                 hexBucket: {0:50,1:50,2:50,3:50},
                 direction: 'N',
-                hexes: {'0':{q:0,r:0,s:0,type:'LIFE'}},
+                hexes: [[{"first":0,"second":0},{"type":"LIFE","q":0,"r":0,"s":0}]],
                 groupId: 5,
                 id: 21,
                 name: 'character_name_nihterib_10',
@@ -520,7 +520,7 @@
             "{
                 hexBucket: {0:50,1:50,2:50,3:50},
                 direction: 'N',
-                hexes: {'0':{q:0,r:0,s:0,type:'LIFE'}},
+                hexes: [[{"first":0,"second":0},{"type":"LIFE","q":0,"r":0,"s":0}]],
                 groupId: 5,
                 id: 21,
                 name: 'character_name_nihterib_11',
@@ -532,7 +532,7 @@
             "{
                 hexBucket: {0:50,1:50,2:50,3:50},
                 direction: 'N',
-                hexes: {'0':{q:0,r:0,s:0,type:'LIFE'}},
+                hexes: [[{"first":0,"second":0},{"type":"LIFE","q":0,"r":0,"s":0}]],
                 groupId: 5,
                 id: 22,
                 name: 'character_name_nihterib_12',
@@ -544,7 +544,7 @@
             "{
                 hexBucket: {0:50,1:50,2:50,3:50},
                 direction: 'N',
-                hexes: {'0':{q:0,r:0,s:0,type:'LIFE'}},
+                hexes: [[{"first":0,"second":0},{"type":"LIFE","q":0,"r":0,"s":0}]],
                 groupId: 5,
                 id: 23,
                 name: 'character_name_nihterib_13',
@@ -557,7 +557,7 @@
             "{
                 hexBucket: {0:50,1:50,2:50,3:50},
                 direction: 'N',
-                hexes: {'0':{q:0,r:0,s:0,type:'LIFE'}},
+                hexes: [[{"first":0,"second":0},{"type":"LIFE","q":0,"r":0,"s":0}]],
                 groupId: 6,
                 id: 24,
                 name: 'character_name_drunkard_1',
@@ -569,7 +569,7 @@
             "{
                 hexBucket: {0:50,1:50,2:50,3:50},
                 direction: 'N',
-                hexes: {'0':{q:0,r:0,s:0,type:'LIFE'}},
+                hexes: [[{"first":0,"second":0},{"type":"LIFE","q":0,"r":0,"s":0}]],
                 groupId: 6,
                 id: 25,
                 name: 'character_name_drunkard_2',
@@ -581,7 +581,7 @@
             "{
                 hexBucket: {0:50,1:50,2:50,3:50},
                 direction: 'N',
-                hexes: {'0':{q:0,r:0,s:0,type:'LIFE'}},
+                hexes: [[{"first":0,"second":0},{"type":"LIFE","q":0,"r":0,"s":0}]],
                 groupId: 6,
                 id: 26,
                 name: 'character_name_drunkard_3',
@@ -593,7 +593,7 @@
             "{
                 hexBucket: {0:50,1:50,2:50,3:50},
                 direction: 'N',
-                hexes: {'0':{q:0,r:0,s:0,type:'LIFE'}},
+                hexes: [[{"first":0,"second":0},{"type":"LIFE","q":0,"r":0,"s":0}]],
                 groupId: 6,
                 id: 27,
                 name: 'character_name_drunkard_4',
@@ -605,7 +605,7 @@
             "{
                 hexBucket: {0:50,1:50,2:50,3:50},
                 direction: 'N',
-                hexes: {'0':{q:0,r:0,s:0,type:'LIFE'}},
+                hexes: [[{"first":0,"second":0},{"type":"LIFE","q":0,"r":0,"s":0}]],
                 groupId: 6,
                 id: 28,
                 name: 'character_name_drunkard_5',
