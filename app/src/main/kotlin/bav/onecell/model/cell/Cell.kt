@@ -27,7 +27,7 @@ class Cell(private val hexMath: HexMath,
 
     data class AnimationData(var rotation: Float = 0f,
                              var moveDirection: Int = 0, var movingFraction: Float = 0f,
-                             var hexHashesToRemove: List<Int>? = null, var fadeFraction: Float = 0f)
+                             var hexHashesToRemove: List<Pair<Int, Int>>? = null, var fadeFraction: Float = 0f)
     val animationData = AnimationData()
 
     data class BattleData(var battleId: Int = 0,

@@ -515,13 +515,13 @@ class BattleEngine(
 
     private fun isBattleOver(): Boolean = cells.map { it.data.groupId }.distinct().size <= 1
 
-    private fun correctHexesToRemoveForSnapshot(hexesToRemove: List<Hex>, cellIndex: Int): Collection<Int> {
+    private fun correctHexesToRemoveForSnapshot(hexesToRemove: List<Hex>, cellIndex: Int): Collection<Pair<Int, Int>> {
         val snapshotCell = currentSnapshot.cells[cellIndex]
         val snapshotCellDirection = snapshotCell.data.direction
         val newDirection = cells[cellIndex].data.direction
 
-        return if (snapshotCellDirection == newDirection) hexesToRemove.map { it.hashCode() }
-        else hexesToRemove.map { snapshotCell.rotateHex(it, newDirection, snapshotCellDirection).hashCode() }
+        return if (snapshotCellDirection == newDirection) hexesToRemove.map { it.mapKey }
+        else hexesToRemove.map { snapshotCell.rotateHex(it, newDirection, snapshotCellDirection).mapKey }
     }
     //endregion
 }

@@ -4,13 +4,13 @@ import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.animation.ValueAnimator
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.animation.AnimatorSet
 import android.widget.SeekBar
-import android.widget.Toast
 import androidx.navigation.findNavController
 import bav.onecell.OneCellApplication
 import bav.onecell.R
@@ -20,6 +20,7 @@ import bav.onecell.common.Consts
 import bav.onecell.common.Consts.Companion.BATTLE_PARAMS
 import bav.onecell.common.Consts.Companion.NEXT_SCENE
 import bav.onecell.common.view.DrawUtils
+import bav.onecell.model.BattleFieldSnapshot
 import bav.onecell.model.BattleInfo
 import bav.onecell.model.battle.Bullet
 import bav.onecell.model.cell.Cell
@@ -47,6 +48,9 @@ class BattleFragment : Fragment(), Battle.View {
     private val disposables = CompositeDisposable()
     private var nextScene: Int = 0
     private var reward: String = ""
+    private var battleDuration: Long = 0
+    private var currentTimestamp: Long = 0
+    private val TIMESTAMP_STEP: Long = 100
 
     private val seekBarListener = object : SeekBar.OnSeekBarChangeListener {
         override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
@@ -68,21 +72,26 @@ class BattleFragment : Fragment(), Battle.View {
         inject()
 
         buttonNextStep.setOnClickListener { _ ->
-            battleCanvasView.snapshots?.let {
+            /*battleCanvasView.snapshots?.let {
                 val next = battleCanvasView.currentSnapshotIndex + 1
                 if (next < it.size - 1) {
                     seekBar.progress = next
                     animateOneSnapshot(next)
                 }
-            }
-
+            }*/
+            currentTimestamp += TIMESTAMP_STEP
+            if (currentTimestamp > battleDuration) currentTimestamp = battleDuration
+            drawFrame(currentTimestamp)
         }
         buttonPreviousStep.setOnClickListener {
-            val previous = battleCanvasView.currentSnapshotIndex - 1
+            /*val previous = battleCanvasView.currentSnapshotIndex - 1
             if (previous >= 0) {
                 seekBar.progress = previous
                 animateOneSnapshot(previous)
-            }
+            }*/
+            currentTimestamp -= TIMESTAMP_STEP
+            if (currentTimestamp < 0) currentTimestamp = 0
+            drawFrame(currentTimestamp)
         }
 
         seekBar.setOnSeekBarChangeListener(seekBarListener)
@@ -98,10 +107,13 @@ class BattleFragment : Fragment(), Battle.View {
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe { battleInfo ->
                             seekBar.max = battleInfo.snapshots.size - 2
+                            battleDuration = battleInfo.snapshots.sumBy { it.duration() }.toLong()
                             battleCanvasView.snapshots = battleInfo.snapshots
                             battleCanvasView.isFog = battleInfo.isFog
                             battleCanvasView.invalidate()
-                            animateOneSnapshot(0)
+                            Log.d(TAG, "battleInfo: snapshot.size = ${battleInfo.snapshots.size}, battleDuration = $battleDuration")
+                            //animateOneSnapshot(0)
+                            drawFrame(currentTimestamp)
                             reportBattleEnd(battleInfo)
                         })
 
@@ -256,14 +268,14 @@ class BattleFragment : Fragment(), Battle.View {
         }
     }
 
-    private fun animateDeadHexesRemoval(cell: Cell, hexHashes: List<Int>): Animator {
+    private fun animateDeadHexesRemoval(cell: Cell, hexHashes: List<Pair<Int, Int>>): Animator {
         cell.animationData.fadeFraction = 0f
         return ValueAnimator.ofFloat(0f, 1f).apply {
             duration = if (hexHashes.isNotEmpty()) HEX_FADING_DURATION_MS else 0
             addListener(object : AnimatorListenerAdapter() {
                 override fun onAnimationStart(animation: Animator?) {
                     super.onAnimationStart(animation)
-                    cell.animationData.hexHashesToRemove = hexHashes
+                    cell.animationData.hexHashesToRemove = null
                 }
             })
             addUpdateListener {
@@ -300,6 +312,98 @@ class BattleFragment : Fragment(), Battle.View {
                 battleCanvasView.invalidate()
             }
         }
+    }
+
+    data class FrameState(val snapshotIndex: Int, val actionFraction: Float, val movingFraction: Float,
+                          val deathRayFraction: Float, val hexRemovalFraction: Float)
+
+    private fun getFrameState(timestamp: Long): FrameState {
+        var acc = 0
+        var snapshotIndex = -1
+        battleCanvasView.snapshots?.forEach {
+            snapshotIndex++
+            Log.d(TAG, "getFrameState($timestamp): snapshot $snapshotIndex duration = ${it.duration()}")
+            if (acc + it.duration() > timestamp) return@forEach
+            acc += it.duration()
+        }
+
+        val snapshot = battleCanvasView.snapshots?.get(snapshotIndex)!!
+
+        val actionTime = timestamp - acc
+        val actionFraction = animationTimeFraction(actionTime, snapshot.actionsDuration())
+        acc += snapshot.actionsDuration()
+
+        val movingTime = timestamp - acc
+        val movingFraction = animationTimeFraction(movingTime, snapshot.movementDuration())
+        acc += snapshot.movementDuration()
+
+        val deathRayTime = timestamp - acc
+        val deathRayFraction = animationTimeFraction(deathRayTime, snapshot.deathRaysDuration())
+        acc += snapshot.deathRaysDuration()
+
+        val hexRemovalTime = timestamp - acc
+        val hexRemovalFraction = animationTimeFraction(hexRemovalTime, snapshot.hexRemovalDuration())
+
+        return FrameState(snapshotIndex, actionFraction, movingFraction, deathRayFraction, hexRemovalFraction)
+    }
+
+    private fun animationTimeFraction(time: Long, animationDuration: Int): Float {
+        return if (animationDuration == 0) 0f
+               else if (time < 0) 0f
+               else if (time > animationDuration) 1f
+               else time.toFloat() / animationDuration.toFloat()
+    }
+
+    private fun drawFrame(timestamp: Long) {
+        val frameState = getFrameState(timestamp)
+        Log.d(TAG, "drawFrame($timestamp): frameState = $frameState")
+
+        battleCanvasView.currentSnapshotIndex = frameState.snapshotIndex
+        battleCanvasView.snapshots?.get(frameState.snapshotIndex)?.let { snapshot ->
+            // Actions
+            snapshot.cells.forEachIndexed { index, cell ->
+                // Reset actions data
+                cell.animationData.rotation = 0f
+                if (index >= 0 && index < snapshot.cellsActions.size) {
+                    snapshot.cellsActions[index]?.let { action ->
+                        when (action.act) {
+                            Action.Act.CHANGE_DIRECTION -> {
+                                val angle = cell.getRotationAngle(action.value)
+                                cell.animationData.rotation = if (angle == 0f) 0f else {
+                                    cell.getRotationAngle(action.value) * frameState.actionFraction
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            // Moving
+            snapshot.cells.forEachIndexed { index, cell ->
+                if (index >= 0 && index < snapshot.movingDirections.size) {
+                    // Save move direction
+                    cell.animationData.moveDirection = snapshot.movingDirections[index]
+                    // Clear cell moving fraction
+                    cell.animationData.movingFraction = frameState.movingFraction
+                }
+            }
+            snapshot.bullets.forEach { bullet ->
+                bullet.movingFraction = frameState.movingFraction
+            }
+
+            // Death rays
+            battleCanvasView.deathRayFraction = if (snapshot.deathRays.isNotEmpty()) frameState.deathRayFraction else 0f
+
+            // Hex removal
+            snapshot.cells.forEachIndexed { index, cell ->
+                if (index >= 0 && index < snapshot.hexesToRemove.size) {
+                    cell.animationData.hexHashesToRemove = snapshot.hexesToRemove[index]
+                    cell.animationData.fadeFraction = frameState.hexRemovalFraction
+                }
+            }
+        }
+
+        battleCanvasView.invalidate()
     }
     //endregion
 

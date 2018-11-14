@@ -142,7 +142,7 @@ class DrawUtils(private val hexMath: HexMath, context: Context) {
 
                 val oldPaintAlpha = paint.alpha
                 it.animationData.hexHashesToRemove?.let { hexHashesToRemove ->
-                    if (hexHashesToRemove.contains(hex.hashCode())) {
+                    if (hexHashesToRemove.contains(hex.mapKey)) {
                         paint.alpha = 255 - (it.animationData.fadeFraction * 255f).toInt()
                     }
                 }
