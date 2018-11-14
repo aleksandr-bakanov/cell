@@ -56,7 +56,7 @@ class BattleFragment : Fragment(), Battle.View {
     private var battleDuration: Long = 0
     private var currentTimestamp: Long = 0
     private val TIMESTAMP_STEP: Long = 100
-    private val TIMESTAMP_ANIMATION_STEP: Long = 16 // For ~30 fps
+    private val TIMESTAMP_ANIMATION_STEP: Long = 16 // For ~60 fps
     private val ANIMATION_TIMER_THREAD_NAME = "animation_timer_thread"
     private var animationTimer: Timer? = null
 
@@ -295,11 +295,6 @@ class BattleFragment : Fragment(), Battle.View {
     companion object {
         private const val TAG = "BattleFragment"
         const val EXTRA_PARAMS = "params"
-
-        const val CELL_MOVING_DURATION_MS: Long = 500
-        const val HEX_FADING_DURATION_MS: Long = 500
-        const val CELL_ROTATION_DURATION_MS: Long = 500
-        const val DEATH_RAY_DURATION_MS: Long = 300
 
         fun newInstance(bundle: Bundle?): BattleFragment {
             val fragment = BattleFragment()
