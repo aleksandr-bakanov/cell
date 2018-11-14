@@ -233,7 +233,7 @@ class Cell(private val hexMath: HexMath,
         val leftRotation = -PI.toFloat() / 3f
         val twiceRightRotation = 2f * PI.toFloat() / 3f
         val twiceLeftRotation = 2f * -PI.toFloat() / 3f
-        val flipRotation = if (Math.random() < 0.5) PI.toFloat() else -PI.toFloat()
+        val flipRotation = /*if (Math.random() < 0.5) PI.toFloat() else */-PI.toFloat()
 
         var r = (data.direction.ordinal - newDirection.ordinal) % 6
         if (r < 0) r += 6

@@ -341,6 +341,7 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
         for (view in arrayListOf<View>(radioButtonLifeHex, radioButtonAttackHex, radioButtonEnergyHex,
                                        radioButtonRemoveHex, editorCanvasView, textHeroHistory,
                                        buttonRotateCellLeft, buttonRotateCellRight, radioButtonDeathRayHex,
+                                       radioButtonOmniBulletHex,
                                        buttonTransformHexes, buttonTransformAttackToLifeHex, buttonTransformDeathRayToLifeHex,
                                        buttonTransformOmniBulletToLifeHex, buttonTransformLifeToOmniBulletHex,
                                        buttonTransformEnergyToLifeHex, buttonTransformLifeToAttackHex,

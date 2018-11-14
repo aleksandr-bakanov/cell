@@ -129,7 +129,7 @@ class BattleCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
                 }
                 snapshot.cells.forEach { cell ->
                     drawUtils.drawCell(canvas, cell, layout = layout)
-                    drawUtils.drawCellPower(canvas, cell, layout)
+                    //drawUtils.drawCellPower(canvas, cell, layout)
                 }
                 drawUtils.drawDeathRays(canvas, snapshot.deathRays, deathRayFraction, layout)
 

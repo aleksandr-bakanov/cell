@@ -25,9 +25,27 @@ data class BattleFieldSnapshot(
     fun duration(): Int = movementDuration() + hexRemovalDuration() + actionsDuration() + deathRaysDuration()
 
     fun movementDuration(): Int = if (movingDirections.isNotEmpty()) CELL_MOVING_DURATION_MS else 0
-    fun hexRemovalDuration(): Int = if (hexesToRemove.isNotEmpty()) HEX_FADING_DURATION_MS else 0
-    fun actionsDuration(): Int = if (cellsActions.filter { it != null }.isNotEmpty()) ACTION_PERFORM_DURATION_MS else 0
+    fun hexRemovalDuration(): Int = if (hexesToRemove.sumBy { it.size } > 0) HEX_FADING_DURATION_MS else 0
     fun deathRaysDuration(): Int = if (deathRays.isNotEmpty()) DEATH_RAY_DURATION_MS else 0
+    fun actionsDuration(): Int {
+        var duration = 0
+        loop@ for (i in 0 until cellsActions.size) {
+            val action = cellsActions[i]
+            if (action != null) {
+                val cell = cells[i]
+                when (action.act) {
+                    Action.Act.CHANGE_DIRECTION -> {
+                        val angle = cell.getRotationAngle(action.value)
+                        if (angle != 0f) {
+                            duration = ACTION_PERFORM_DURATION_MS
+                            break@loop
+                        }
+                    }
+                }
+            }
+        }
+        return duration
+    }
 
     companion object {
         const val CELL_MOVING_DURATION_MS: Int = 500
