@@ -184,7 +184,13 @@
                     '5': {q:0, r:3, s:-3}
                 }
             },
-            reward: {LIFE:5, ATTACK:2},
+            reward: {
+                '0': {LIFE:5, ATTACK:2},
+                '1': {LIFE:5, ATTACK:2},
+                'gameState': {
+                    'help_gonato': true
+                }
+            },
             next_scene: 'action_battleGopniks_to_battleResultsGopniks'
         }"
     </string>
@@ -194,7 +200,10 @@
                 cellIndexes: [0,6,7,8,9,10],
                 isFog: false
             },
-            reward: {LIFE:5, ATTACK:2},
+            reward: {
+                '0': {LIFE:5, ATTACK:2}
+                '1': {LIFE:5, ATTACK:2}
+            },
             next_scene: 'action_battleSkilos_to_battleResultsSkilos'
         }"
     </string>

@@ -85,6 +85,9 @@ class BattleResultsFragment: androidx.fragment.app.Fragment(), BattleResults.Vie
 
     private fun rewardForBattle(rewardJson: String) {
         val reward = JSONObject(rewardJson)
+        for (index in arrayOf(Consts.KITTARO_INDEX, Consts.ZOI_INDEX, Consts.ZOI_INDEX)) {
+
+        }
         presenter.getCell(Consts.KITTARO_INDEX)?.let { cell ->
             val bucket = cell.data.hexBucket
             for (type in Hex.Type.values().filter { it != Hex.Type.REMOVE })
@@ -101,6 +104,7 @@ class BattleResultsFragment: androidx.fragment.app.Fragment(), BattleResults.Vie
         const val CELL_INDEXES = "cell_indexes"
         const val IS_BATTLE_WON = "is_battle_won"
         private const val PREVIOUS_SCENE = "previous_scene"
+        const val GAME_STATE = "gameState"
 
         fun newInstance(bundle: Bundle?): BattleResultsFragment {
             val fragment = BattleResultsFragment()
