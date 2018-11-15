@@ -120,11 +120,13 @@ class HexMath {
     //  |  |
     // 2 \/ 0
     //   1
-    fun poligonCorners(layout: Layout, h: Hex): ArrayList<Point> {
+    fun poligonCorners(layout: Layout, h: Hex, scale: Float = 1f): ArrayList<Point> {
         val corners: ArrayList<Point> = arrayListOf()
         val center: Point = hexToPixel(layout, h)
         for (i in 0..5) {
             val offset: Point = hexCornerOffset(layout, i)
+            offset.x *= scale
+            offset.y *= scale
             corners.add(Point(center.x + offset.x, center.y + offset.y))
         }
         return corners

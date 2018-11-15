@@ -237,7 +237,7 @@
         <!-- Main heroes -->
         <item>
             "{
-                hexBucket: {0:1, 1:2, 2:3, 3:4},
+                hexBucket: {0:100,1:100,2:100,3:100,4:100},
                 direction: 'N',
                 hexes: [[{"first":0,"second":0},{"type":"LIFE","q":0,"r":0,"s":0}]],
                 groupId: 0,
@@ -249,7 +249,7 @@
         </item>
         <item>
             "{
-                hexBucket: {0:5, 1:6, 2:7, 3:8},
+                hexBucket: {0:100,1:100,2:100,3:100,4:100},
                 direction: 'N',
                 hexes: [[{"first":0,"second":0},{"type":"LIFE","q":0,"r":0,"s":0}]],
                 groupId: 0,
@@ -261,7 +261,7 @@
         </item>
         <item>
             "{
-                hexBucket: {0:9,1:10,2:11,3:12},
+                hexBucket: {0:100,1:100,2:100,3:100,4:100},
                 direction: 'N',
                 hexes: [[{"first":0,"second":0},{"type":"LIFE","q":0,"r":0,"s":0}]],
                 groupId: 0,
@@ -274,7 +274,7 @@
         <!-- Gopniks -->
         <item>
             "{
-                hexBucket: {0:0,1:0,2:0,3:0},
+                hexBucket: {0:100,1:100,2:100,3:100,4:100},
                 direction: 'N',
                 hexes: [[{"first":0,"second":0},{"type":"LIFE","q":0,"r":0,"s":0}]],
                 groupId: 1,
@@ -286,7 +286,7 @@
         </item>
         <item>
             "{
-                hexBucket: {0:0,1:0,2:0,3:0},
+                hexBucket: {0:100,1:100,2:100,3:100,4:100},
                 direction: 'N',
                 hexes: [[{"first":0,"second":0},{"type":"LIFE","q":0,"r":0,"s":0}]],
                 groupId: 1,
@@ -298,7 +298,7 @@
         </item>
         <item>
             "{
-                hexBucket: {0:0,1:0,2:0,3:0},
+                hexBucket: {0:100,1:100,2:100,3:100,4:100},
                 direction: 'N',
                 hexes: [[{"first":0,"second":0},{"type":"LIFE","q":0,"r":0,"s":0}]],
                 groupId: 1,
@@ -311,7 +311,7 @@
         <!-- Skiloses -->
         <item>
             "{
-                hexBucket: {0:0,1:0,2:0,3:0},
+                hexBucket: {0:100,1:100,2:100,3:100,4:100},
                 direction: 'N',
                 hexes: [[{"first":0,"second":0},{"type":"LIFE","q":0,"r":0,"s":0}]],
                 groupId: 2,
@@ -323,7 +323,7 @@
         </item>
         <item>
             "{
-                hexBucket: {0:0,1:0,2:0,3:0},
+                hexBucket: {0:100,1:100,2:100,3:100,4:100},
                 direction: 'N',
                 hexes: [[{"first":0,"second":0},{"type":"LIFE","q":0,"r":0,"s":0}]],
                 groupId: 2,
@@ -335,7 +335,7 @@
         </item>
         <item>
             "{
-                hexBucket: {0:0,1:0,2:0,3:0},
+                hexBucket: {0:100,1:100,2:100,3:100,4:100},
                 direction: 'N',
                 hexes: [[{"first":0,"second":0},{"type":"LIFE","q":0,"r":0,"s":0}]],
                 groupId: 2,
@@ -347,7 +347,7 @@
         </item>
         <item>
             "{
-                hexBucket: {0:0,1:0,2:0,3:0},
+                hexBucket: {0:100,1:100,2:100,3:100,4:100},
                 direction: 'N',
                 hexes: [[{"first":0,"second":0},{"type":"LIFE","q":0,"r":0,"s":0}]],
                 groupId: 2,
@@ -359,7 +359,7 @@
         </item>
         <item>
             "{
-                hexBucket: {0:0,1:0,2:0,3:0},
+                hexBucket: {0:100,1:100,2:100,3:100,4:100},
                 direction: 'N',
                 hexes: [[{"first":0,"second":0},{"type":"LIFE","q":0,"r":0,"s":0}]],
                 groupId: 2,

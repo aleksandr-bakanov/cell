@@ -136,21 +136,21 @@ class DrawUtils(private val hexMath: HexMath, context: Context) {
                     Hex.Type.OMNI_BULLET -> oPaint
                     else -> gridPaint
                 }
-                val path: Path = getHexPath(layout, hexMath.add(hex, it.data.origin), originPoint,
-                                            it.animationData.rotation, it.animationData.moveDirection,
-                                            it.animationData.movingFraction)
 
-                val oldPaintAlpha = paint.alpha
+                var fadeScale = 1.0f
                 it.animationData.hexHashesToRemove?.let { hexHashesToRemove ->
                     if (hexHashesToRemove.contains(hex.mapKey)) {
-                        paint.alpha = 255 - (it.animationData.fadeFraction * 255f).toInt()
+                        fadeScale = 1.0f - it.animationData.fadeFraction
                     }
                 }
 
+                val path: Path = getHexPath(layout, hexMath.add(hex, it.data.origin), originPoint,
+                                            it.animationData.rotation, it.animationData.moveDirection,
+                                            it.animationData.movingFraction, scale = fadeScale)
+
                 path.fillType = Path.FillType.EVEN_ODD
                 canvas?.drawPath(path, paint)
-                canvas?.drawPath(path, strokePaint)
-                paint.alpha = oldPaintAlpha
+                //canvas?.drawPath(path, strokePaint)
             }
             // Draw origin marker
             drawOriginMarker(canvas, it, layout)
@@ -170,15 +170,15 @@ class DrawUtils(private val hexMath: HexMath, context: Context) {
     fun drawBullet(canvas: Canvas?, bullet: Bullet, paint: Paint = omniBulletHexPaint, outlinePaint: Paint = cellOutlinePaint,
                    layout: Layout = Layout.DUMMY) {
         val path: Path = getHexPath(layout, bullet.origin, movingDirection = bullet.direction,
-                                    movingFraction = bullet.movingFraction)
+                                    movingFraction = bullet.movingFraction, scale = 0.5f)
         path.fillType = Path.FillType.EVEN_ODD
         canvas?.drawPath(path, paint)
         canvas?.drawPath(path, outlinePaint)
     }
 
     private fun getHexPath(layout: Layout, hex: Hex, rotateAround: Point? = null, rotation: Float = 0f,
-                           movingDirection: Int = 0, movingFraction: Float = 0f): Path {
-        val hexCorners: ArrayList<Point> = hexMath.poligonCorners(layout, hex)
+                           movingDirection: Int = 0, movingFraction: Float = 0f, scale: Float = 1f): Path {
+        val hexCorners: ArrayList<Point> = hexMath.poligonCorners(layout, hex, scale)
 
         // Rotation and moving offset
         rotateAround?.let { rotatePoints(hexCorners, it, rotation) }
