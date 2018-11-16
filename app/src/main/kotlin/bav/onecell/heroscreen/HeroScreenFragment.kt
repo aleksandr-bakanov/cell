@@ -21,6 +21,7 @@ import bav.onecell.celllogic.picker.PickerRecyclerViewAdapter
 import bav.onecell.celllogic.rules.RulesRecyclerViewAdapter
 import bav.onecell.common.Common
 import bav.onecell.common.Consts
+import bav.onecell.common.GameStateImpl
 import bav.onecell.common.extensions.visible
 import bav.onecell.common.view.DrawUtils
 import bav.onecell.common.view.HexPicker
@@ -65,6 +66,7 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
     @Inject lateinit var hexMath: HexMath
     @Inject lateinit var drawUtils: DrawUtils
     @Inject lateinit var resourceProvider: Common.ResourceProvider
+    @Inject lateinit var gameState: Common.GameState
 
     private val disposables = CompositeDisposable()
     private var isCellLogicViewsShown = false
@@ -186,9 +188,11 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
 
         buttonRotateCellLeft.setOnClickListener { onCellRotateButtonClicked(it) }
         buttonRotateCellRight.setOnClickListener { onCellRotateButtonClicked(it) }
-        buttonSwitchScreen.setOnClickListener { switchCellLogicEditorViews() }
         buttonIncreaseRulePriority.setOnClickListener { presenter.increaseSelectedRulePriority() }
         buttonDecreaseRulePriority.setOnClickListener { presenter.decreaseSelectedRulePriority() }
+
+        buttonSwitchScreen.visible = gameState.getDecision(Common.GameState.BATTLE_LOGIC_AVAILABLE) == Common.GameState.Decision.YES
+        buttonSwitchScreen.setOnClickListener { switchCellLogicEditorViews() }
 
         buttonTransformHexes.setOnClickListener { switchHexesTransformViews() }
         buttonTransformLifeToAttackHex.setOnClickListener { presenter.transformLifeHexToAttack() }

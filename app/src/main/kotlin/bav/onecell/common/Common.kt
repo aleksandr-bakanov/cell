@@ -48,6 +48,7 @@ interface Common {
         fun getCurrentFrame(): Int
 
         companion object {
+            const val BATTLE_LOGIC_AVAILABLE = "battle_logic_available"
             const val HELP_GONATO = "help_gonato"
         }
 
