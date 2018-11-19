@@ -70,27 +70,16 @@ class HeroScreenPresenter(
     }
 
     //region Picker.Presenter methods
-    override fun pickerOptionsCount(): Int = pickerOptionsSource?.size ?: 0
-
-    override fun pickerOptionOnClick(position: Int) {
+    override fun pickerOptionOnClick(id: Int) {
         pickerOptionsSource?.let {
-            if (position >= 0 && position < it.size) {
-                it[position].second()
+            it.find { item -> item.first == id }?.second?.let { func ->
+                func()
                 /// TODO: notify only necessary recycler views
                 rulesNotifier.onNext(Unit)
                 conditionsNotifier.onNext(Unit)
             }
         }
     }
-
-    override fun getPickerOptionTitle(position: Int): Int {
-        pickerOptionsSource?.let {
-            if (position >= 0 && position < it.size) return it[position].first
-        }
-        return 0
-    }
-
-    override fun optionsUpdateNotifier(): Observable<Unit> = pickerOptionsNotifier
     //endregion
 
     //region Conditions.Presenter methods
@@ -109,6 +98,7 @@ class HeroScreenPresenter(
             it.addCondition(Condition())
             conditionsNotifier.onNext(Unit)
             rulesNotifier.onNext(Unit)
+            // TODO: open popup for edit field to check immediately
         }
     }
 
@@ -128,37 +118,29 @@ class HeroScreenPresenter(
             }
             conditionsNotifier.onNext(Unit)
             rulesNotifier.onNext(Unit)
+            // TODO: close currently opened popup menu
         }
     }
-
-    override fun openConditionEditor(conditionIndex: Int, whatToEdit: Int) {
-        // Do nothing, planned to remove
-    }
-
-    private val directionValues: Array<String> = arrayOf(
-            Cell.Direction.N.toString(),
-            Cell.Direction.NE.toString(),
-            Cell.Direction.SE.toString(),
-            Cell.Direction.S.toString(),
-            Cell.Direction.SW.toString(),
-            Cell.Direction.NW.toString()
-    )
-
-    override fun provideActionDialogValues(): Array<String> = directionValues
 
     override fun chooseFieldToCheck(conditionIndex: Int) {
         if (setCurrentCondition(conditionIndex))
             setPickerOptionsSource(cellRuleConditionFieldsToCheck)
     }
 
-    override fun chooseOperation(conditionIndex: Int) {
-        if (setCurrentCondition(conditionIndex))
+    override fun chooseOperation(conditionIndex: Int): Int {
+        return if (setCurrentCondition(conditionIndex)) {
             setPickerOptionsSource(getCellRuleConditionOperations())
+            getCellRuleConditionOperationsMenu()
+        }
+        else 0
     }
 
-    override fun chooseExpectedValue(conditionIndex: Int) {
-        if (setCurrentCondition(conditionIndex))
+    override fun chooseExpectedValue(conditionIndex: Int): Int {
+        return if (setCurrentCondition(conditionIndex)) {
             setPickerOptionsSource(getCellRuleConditionExpectedValue())
+            getCellRuleConditionExpectedValueMenu()
+        }
+        else 0
     }
 
     override fun getCondition(index: Int): Condition? = currentlyEditedRule?.getCondition(index)
@@ -392,20 +374,7 @@ class HeroScreenPresenter(
 
     private fun setPickerOptionsSource(source: List<Pair<Int, () -> Unit? >>?) {
         pickerOptionsSource = source
-        updatePickerBackground(source)
         pickerOptionsNotifier.onNext(Unit)
-    }
-
-    private fun updatePickerBackground(source: List<Pair<Int, () -> Unit? >>?) {
-        view.setPickerBackground(
-                when (source) {
-                    cellRuleActions -> R.color.heroScreenSelectedRuleBackgroundColor
-                    cellRuleConditionFieldsToCheck,
-                    cellRuleConditionOperationsDirectionToNearestEnemy,
-                    cellRuleConditionExpectedValuesDirectionToNearestEnemy -> R.color.heroScreenSelectedConditionBackgroundColor
-                    else -> R.color.heroScreenUnselectedRuleBackgroundColor
-                }
-        )
     }
 
     private fun setCurrentRule(ruleIndex: Int) {
@@ -449,51 +418,51 @@ class HeroScreenPresenter(
 
     //region Picker options
     private val cellRuleActions = arrayListOf(
-            Pair(R.string.utf_icon_north_direction, { currentlyEditedRule?.action?.let { it.act = Action.Act.CHANGE_DIRECTION; it.value = Cell.Direction.N.ordinal }}),
-            Pair(R.string.utf_icon_north_east_direction, { currentlyEditedRule?.action?.let { it.act = Action.Act.CHANGE_DIRECTION; it.value = Cell.Direction.NE.ordinal }}),
-            Pair(R.string.utf_icon_south_east_direction, { currentlyEditedRule?.action?.let { it.act = Action.Act.CHANGE_DIRECTION; it.value = Cell.Direction.SE.ordinal }}),
-            Pair(R.string.utf_icon_south_direction, { currentlyEditedRule?.action?.let { it.act = Action.Act.CHANGE_DIRECTION; it.value = Cell.Direction.S.ordinal }}),
-            Pair(R.string.utf_icon_south_west_direction, { currentlyEditedRule?.action?.let { it.act = Action.Act.CHANGE_DIRECTION; it.value = Cell.Direction.SW.ordinal }}),
-            Pair(R.string.utf_icon_north_west_direction, { currentlyEditedRule?.action?.let { it.act = Action.Act.CHANGE_DIRECTION; it.value = Cell.Direction.NW.ordinal }})
+            Pair(R.id.action_rotate_north, { currentlyEditedRule?.action?.let { it.act = Action.Act.CHANGE_DIRECTION; it.value = Cell.Direction.N.ordinal }}),
+            Pair(R.id.action_rotate_north_east, { currentlyEditedRule?.action?.let { it.act = Action.Act.CHANGE_DIRECTION; it.value = Cell.Direction.NE.ordinal }}),
+            Pair(R.id.action_rotate_south_east, { currentlyEditedRule?.action?.let { it.act = Action.Act.CHANGE_DIRECTION; it.value = Cell.Direction.SE.ordinal }}),
+            Pair(R.id.action_rotate_south, { currentlyEditedRule?.action?.let { it.act = Action.Act.CHANGE_DIRECTION; it.value = Cell.Direction.S.ordinal }}),
+            Pair(R.id.action_rotate_south_west, { currentlyEditedRule?.action?.let { it.act = Action.Act.CHANGE_DIRECTION; it.value = Cell.Direction.SW.ordinal }}),
+            Pair(R.id.action_rotate_north_west, { currentlyEditedRule?.action?.let { it.act = Action.Act.CHANGE_DIRECTION; it.value = Cell.Direction.NW.ordinal }})
     )
 
     private val cellRuleConditionFieldsToCheck = arrayListOf(
-            Pair(R.string.utf_icon_direction_to_nearest_enemy, { currentlyEditedCondition?.let { it.setToDefault(); it.fieldToCheck = Condition.FieldToCheck.DIRECTION_TO_NEAREST_ENEMY }}),
-            Pair(R.string.utf_icon_distance_to_nearest_enemy, { currentlyEditedCondition?.let { it.setToDefault(); it.fieldToCheck = Condition.FieldToCheck.DISTANCE_TO_NEAREST_ENEMY }})
+            Pair(R.id.field_to_check_direction_to_nearest_enemy, { currentlyEditedCondition?.let { it.setToDefault(); it.fieldToCheck = Condition.FieldToCheck.DIRECTION_TO_NEAREST_ENEMY }}),
+            Pair(R.id.field_to_check_distance_to_nearest_enemy, { currentlyEditedCondition?.let { it.setToDefault(); it.fieldToCheck = Condition.FieldToCheck.DISTANCE_TO_NEAREST_ENEMY }})
     )
 
     private val cellRuleConditionOperationsDirectionToNearestEnemy = arrayListOf(
-            Pair(R.string.utf_icon_equality, {
+            Pair(R.id.operation_direction_to_nearest_enemy_equals, {
                 currentlyEditedCondition?.let { it.operation = Condition.Operation.EQUALS }
             })
     )
 
     private val cellRuleConditionOperationsDistanceToNearestEnemy = arrayListOf(
-            Pair(R.string.utf_icon_equality, { currentlyEditedCondition?.let { it.operation = Condition.Operation.EQUALS }}),
-            Pair(R.string.utf_icon_less_than, { currentlyEditedCondition?.let { it.operation = Condition.Operation.LESS_THAN }}),
-            Pair(R.string.utf_icon_greater_than, { currentlyEditedCondition?.let { it.operation = Condition.Operation.GREATER_THAN }})
+            Pair(R.id.operation_distance_to_nearest_enemy_equals, { currentlyEditedCondition?.let { it.operation = Condition.Operation.EQUALS }}),
+            Pair(R.id.operation_distance_to_nearest_enemy_less_than, { currentlyEditedCondition?.let { it.operation = Condition.Operation.LESS_THAN }}),
+            Pair(R.id.operation_distance_to_nearest_enemy_greater_than, { currentlyEditedCondition?.let { it.operation = Condition.Operation.GREATER_THAN }})
     )
 
     private val cellRuleConditionExpectedValuesDirectionToNearestEnemy = arrayListOf(
-            Pair(R.string.utf_icon_north_direction, { currentlyEditedCondition?.let { it.expected = Cell.Direction.N.ordinal }}),
-            Pair(R.string.utf_icon_north_east_direction, { currentlyEditedCondition?.let { it.expected = Cell.Direction.NE.ordinal }}),
-            Pair(R.string.utf_icon_south_east_direction, { currentlyEditedCondition?.let { it.expected = Cell.Direction.SE.ordinal }}),
-            Pair(R.string.utf_icon_south_direction, { currentlyEditedCondition?.let { it.expected = Cell.Direction.S.ordinal }}),
-            Pair(R.string.utf_icon_south_west_direction, { currentlyEditedCondition?.let { it.expected = Cell.Direction.SW.ordinal }}),
-            Pair(R.string.utf_icon_north_west_direction, { currentlyEditedCondition?.let { it.expected = Cell.Direction.NW.ordinal }})
+            Pair(R.id.expected_value_direction_to_nearest_enemy_north, { currentlyEditedCondition?.let { it.expected = Cell.Direction.N.ordinal }}),
+            Pair(R.id.expected_value_direction_to_nearest_enemy_north_east, { currentlyEditedCondition?.let { it.expected = Cell.Direction.NE.ordinal }}),
+            Pair(R.id.expected_value_direction_to_nearest_enemy_south_east, { currentlyEditedCondition?.let { it.expected = Cell.Direction.SE.ordinal }}),
+            Pair(R.id.expected_value_direction_to_nearest_enemy_south, { currentlyEditedCondition?.let { it.expected = Cell.Direction.S.ordinal }}),
+            Pair(R.id.expected_value_direction_to_nearest_enemy_south_west, { currentlyEditedCondition?.let { it.expected = Cell.Direction.SW.ordinal }}),
+            Pair(R.id.expected_value_direction_to_nearest_enemy_north_west, { currentlyEditedCondition?.let { it.expected = Cell.Direction.NW.ordinal }})
     )
 
     private val cellRuleConditionExpectedValuesDistanceToNearestEnemy = arrayListOf(
-            Pair(R.string.utf_icon_digit_zero, { currentlyEditedCondition?.let { it.expected = 0 }}),
-            Pair(R.string.utf_icon_digit_one, { currentlyEditedCondition?.let { it.expected = 1 }}),
-            Pair(R.string.utf_icon_digit_two, { currentlyEditedCondition?.let { it.expected = 2 }}),
-            Pair(R.string.utf_icon_digit_three, { currentlyEditedCondition?.let { it.expected = 3 }}),
-            Pair(R.string.utf_icon_digit_four, { currentlyEditedCondition?.let { it.expected = 4 }}),
-            Pair(R.string.utf_icon_digit_five, { currentlyEditedCondition?.let { it.expected = 5 }}),
-            Pair(R.string.utf_icon_digit_six, { currentlyEditedCondition?.let { it.expected = 6 }}),
-            Pair(R.string.utf_icon_digit_seven, { currentlyEditedCondition?.let { it.expected = 7 }}),
-            Pair(R.string.utf_icon_digit_eight, { currentlyEditedCondition?.let { it.expected = 8 }}),
-            Pair(R.string.utf_icon_digit_nine, { currentlyEditedCondition?.let { it.expected = 9 }})
+            Pair(R.id.expected_value_distance_to_nearest_enemy_zero, { currentlyEditedCondition?.let { it.expected = 0 }}),
+            Pair(R.id.expected_value_distance_to_nearest_enemy_one, { currentlyEditedCondition?.let { it.expected = 1 }}),
+            Pair(R.id.expected_value_distance_to_nearest_enemy_two, { currentlyEditedCondition?.let { it.expected = 2 }}),
+            Pair(R.id.expected_value_distance_to_nearest_enemy_three, { currentlyEditedCondition?.let { it.expected = 3 }}),
+            Pair(R.id.expected_value_distance_to_nearest_enemy_four, { currentlyEditedCondition?.let { it.expected = 4 }}),
+            Pair(R.id.expected_value_distance_to_nearest_enemy_five, { currentlyEditedCondition?.let { it.expected = 5 }}),
+            Pair(R.id.expected_value_distance_to_nearest_enemy_six, { currentlyEditedCondition?.let { it.expected = 6 }}),
+            Pair(R.id.expected_value_distance_to_nearest_enemy_seven, { currentlyEditedCondition?.let { it.expected = 7 }}),
+            Pair(R.id.expected_value_distance_to_nearest_enemy_eight, { currentlyEditedCondition?.let { it.expected = 8 }}),
+            Pair(R.id.expected_value_distance_to_nearest_enemy_nine, { currentlyEditedCondition?.let { it.expected = 9 }})
     )
 
     private fun getCellRuleConditionOperations(): List<Pair<Int, () -> Unit? >>? {
@@ -505,6 +474,15 @@ class HeroScreenPresenter(
         }
     }
 
+    private fun getCellRuleConditionOperationsMenu(): Int {
+        return currentlyEditedCondition?.let { condition ->
+            when (condition.fieldToCheck) {
+                Condition.FieldToCheck.DIRECTION_TO_NEAREST_ENEMY -> R.menu.condition_operations_direction_to_nearest_enemy
+                Condition.FieldToCheck.DISTANCE_TO_NEAREST_ENEMY -> R.menu.condition_operations_distance_to_nearest_enemy
+            }
+        } ?: 0
+    }
+
     private fun getCellRuleConditionExpectedValue(): List<Pair<Int, () -> Unit? >>? {
         return currentlyEditedCondition?.let { condition ->
             when (condition.fieldToCheck) {
@@ -512,6 +490,15 @@ class HeroScreenPresenter(
                 Condition.FieldToCheck.DISTANCE_TO_NEAREST_ENEMY -> cellRuleConditionExpectedValuesDistanceToNearestEnemy
             }
         }
+    }
+
+    private fun getCellRuleConditionExpectedValueMenu(): Int {
+        return currentlyEditedCondition?.let { condition ->
+            when (condition.fieldToCheck) {
+                Condition.FieldToCheck.DIRECTION_TO_NEAREST_ENEMY -> R.menu.condition_expected_values_direction_to_nearest_enemy
+                Condition.FieldToCheck.DISTANCE_TO_NEAREST_ENEMY -> R.menu.condition_expected_values_distance_to_nearest_enemy
+            }
+        } ?: 0
     }
     //endregion
 }

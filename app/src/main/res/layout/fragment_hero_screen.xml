@@ -278,7 +278,7 @@
         android:layout_height="0dp"
         android:layout_margin="@dimen/hero_screen_cell_logic_margin"
         android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@id/recyclerViewCellLogicPicker"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/recyclerViewConditionsList"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@id/guideline_hero_screen_avatars_end"
@@ -290,23 +290,11 @@
         android:layout_height="0dp"
         android:layout_margin="@dimen/hero_screen_cell_logic_margin"
         android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@id/recyclerViewCellLogicPicker"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@id/recyclerViewRulesList"
         app:layout_constraintTop_toBottomOf="@id/cellName" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewCellLogicPicker"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/hero_screen_cell_logic_picker_height"
-        android:layout_marginEnd="@dimen/hero_screen_cell_logic_margin"
-        android:layout_marginStart="@dimen/hero_screen_cell_logic_margin"
-        android:layout_marginTop="@dimen/hero_screen_cell_logic_margin"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/guideline_hero_screen_avatars_end" />
 
     <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/buttonSwitchScreen"

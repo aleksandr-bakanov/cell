@@ -70,6 +70,11 @@ class MainActivity : FragmentActivity(), Main.NavigationInfoProvider {
         navController.popBackStack(R.id.mainFragment, false)
     }
 
+    override fun onWindowFocusChanged(hasFocus: Boolean) {
+        super.onWindowFocusChanged(hasFocus)
+        hideSystemUi()
+    }
+
     override fun provideLastDestination(): Observable<Int> = lastNavDestinationProvider
     //endregion
 

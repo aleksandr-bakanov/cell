@@ -6,8 +6,10 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.PopupMenu
 import bav.onecell.R
 import bav.onecell.common.Common
+import bav.onecell.heroscreen.HeroScreen
 import bav.onecell.model.cell.logic.Condition
 import kotlinx.android.synthetic.main.item_row_add_new_rule.view.buttonAddNewRule
 import kotlinx.android.synthetic.main.item_row_rule.view.buttonChooseRuleAction
@@ -16,7 +18,7 @@ import kotlinx.android.synthetic.main.item_row_rule.view.ruleRow
 import kotlinx.android.synthetic.main.item_row_rule.view.title
 
 class RulesRecyclerViewAdapter(
-        private val presenter: Rules.Presenter,
+        private val presenter: HeroScreen.Presenter,
         private val resourceProvider: Common.ResourceProvider) : androidx.recyclerview.widget.RecyclerView.Adapter<RulesRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -56,7 +58,7 @@ class RulesRecyclerViewAdapter(
             else ContextCompat.getColor(context, R.color.heroScreenUnselectedRuleBackgroundColor)
     }
 
-    class ViewHolder(val view: View, private val presenter: Rules.Presenter, viewType: Int) : androidx.recyclerview.widget.RecyclerView.ViewHolder(view) {
+    class ViewHolder(val view: View, private val presenter: HeroScreen.Presenter, viewType: Int) : androidx.recyclerview.widget.RecyclerView.ViewHolder(view) {
         init {
             when (viewType) {
                 R.layout.item_row_add_new_rule -> {
@@ -65,9 +67,24 @@ class RulesRecyclerViewAdapter(
                 R.layout.item_row_rule -> {
                     view.buttonRemoveRule.setOnClickListener { presenter.removeRule(adapterPosition) }
                     view.ruleRow.setOnClickListener { presenter.openConditionsList(adapterPosition) }
-                    view.buttonChooseRuleAction.setOnClickListener { presenter.openActionEditor(adapterPosition) }
+                    view.buttonChooseRuleAction.setOnClickListener {
+                        presenter.openActionEditor(adapterPosition)
+                        showPopupMenu(view.context, view, R.menu.rules_actions)
+                    }
                 }
             }
+        }
+
+        private fun showPopupMenu(context: Context, view: View, menuLayout: Int) {
+            val popupMenu = PopupMenu(context, view)
+            popupMenu.inflate(menuLayout)
+            popupMenu.setOnMenuItemClickListener(menuItemClickListener)
+            popupMenu.show()
+        }
+
+        private val menuItemClickListener = PopupMenu.OnMenuItemClickListener {
+            presenter.pickerOptionOnClick(it.itemId)
+            true
         }
     }
 }

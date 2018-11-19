@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/operation_distance_to_nearest_enemy_equals"
+        android:title="@string/utf_icon_equality"/>
+    <item
+        android:id="@+id/operation_distance_to_nearest_enemy_greater_than"
+        android:title="@string/utf_icon_greater_than"/>
+    <item
+        android:id="@+id/operation_distance_to_nearest_enemy_less_than"
+        android:title="@string/utf_icon_less_than"/>
+</menu>

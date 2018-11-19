@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/expected_value_distance_to_nearest_enemy_zero"
+        android:title="@string/utf_icon_digit_zero"/>
+    <item
+        android:id="@+id/expected_value_distance_to_nearest_enemy_one"
+        android:title="@string/utf_icon_digit_one"/>
+    <item
+        android:id="@+id/expected_value_distance_to_nearest_enemy_two"
+        android:title="@string/utf_icon_digit_two"/>
+    <item
+        android:id="@+id/expected_value_distance_to_nearest_enemy_three"
+        android:title="@string/utf_icon_digit_three"/>
+    <item
+        android:id="@+id/expected_value_distance_to_nearest_enemy_four"
+        android:title="@string/utf_icon_digit_four"/>
+    <item
+        android:id="@+id/expected_value_distance_to_nearest_enemy_five"
+        android:title="@string/utf_icon_digit_five"/>
+    <item
+        android:id="@+id/expected_value_distance_to_nearest_enemy_six"
+        android:title="@string/utf_icon_digit_six"/>
+    <item
+        android:id="@+id/expected_value_distance_to_nearest_enemy_seven"
+        android:title="@string/utf_icon_digit_seven"/>
+    <item
+        android:id="@+id/expected_value_distance_to_nearest_enemy_eight"
+        android:title="@string/utf_icon_digit_eight"/>
+    <item
+        android:id="@+id/expected_value_distance_to_nearest_enemy_nine"
+        android:title="@string/utf_icon_digit_nine"/>
+</menu>

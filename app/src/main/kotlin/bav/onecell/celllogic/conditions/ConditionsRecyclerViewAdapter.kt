@@ -2,12 +2,13 @@ package bav.onecell.celllogic.conditions
 
 import android.content.Context
 import androidx.core.content.ContextCompat
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.PopupMenu
 import bav.onecell.R
 import bav.onecell.common.Common
+import bav.onecell.heroscreen.HeroScreen
 import kotlinx.android.synthetic.main.item_row_add_new_condition.view.buttonAddNewCondition
 import kotlinx.android.synthetic.main.item_row_rule_condition.view.buttonExpectedValue
 import kotlinx.android.synthetic.main.item_row_rule_condition.view.buttonFieldToCheck
@@ -16,7 +17,7 @@ import kotlinx.android.synthetic.main.item_row_rule_condition.view.buttonRemoveC
 import kotlinx.android.synthetic.main.item_row_rule_condition.view.conditionRow
 
 class ConditionsRecyclerViewAdapter(
-        private val presenter: Conditions.Presenter,
+        private val presenter: HeroScreen.Presenter,
         private val resourceProvider: Common.ResourceProvider) : androidx.recyclerview.widget.RecyclerView.Adapter<ConditionsRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -53,19 +54,41 @@ class ConditionsRecyclerViewAdapter(
         else ContextCompat.getColor(context, R.color.heroScreenUnselectedConditionBackgroundColor)
     }
 
-    class ViewHolder(val view: View, private val presenter: Conditions.Presenter, viewType: Int) : androidx.recyclerview.widget.RecyclerView.ViewHolder(view) {
+    class ViewHolder(val view: View, private val presenter: HeroScreen.Presenter, viewType: Int) :
+            androidx.recyclerview.widget.RecyclerView.ViewHolder(view) {
         init {
             when (viewType) {
                 R.layout.item_row_add_new_condition -> {
                     view.buttonAddNewCondition.setOnClickListener { presenter.createNewCondition() }
                 }
                 R.layout.item_row_rule_condition -> {
-                    view.buttonRemoveCondition.setOnClickListener { presenter.removeCondition(adapterPosition) }
-                    view.buttonFieldToCheck.setOnClickListener { presenter.chooseFieldToCheck(adapterPosition) }
-                    view.buttonOperation.setOnClickListener { presenter.chooseOperation(adapterPosition) }
-                    view.buttonExpectedValue.setOnClickListener { presenter.chooseExpectedValue(adapterPosition) }
+                    view.buttonRemoveCondition.setOnClickListener {
+                        presenter.removeCondition(adapterPosition)
+                    }
+                    view.buttonFieldToCheck.setOnClickListener {
+                        presenter.chooseFieldToCheck(adapterPosition)
+                        showPopupMenu(view.context, view, R.menu.condition_field_to_check)
+                    }
+                    view.buttonOperation.setOnClickListener {
+                        showPopupMenu(view.context, view, presenter.chooseOperation(adapterPosition))
+                    }
+                    view.buttonExpectedValue.setOnClickListener {
+                        showPopupMenu(view.context, view, presenter.chooseExpectedValue(adapterPosition))
+                    }
                 }
             }
+        }
+
+        private fun showPopupMenu(context: Context, view: View, menuLayout: Int) {
+            val popupMenu = PopupMenu(context, view)
+            popupMenu.inflate(menuLayout)
+            popupMenu.setOnMenuItemClickListener(menuItemClickListener)
+            popupMenu.show()
+        }
+
+        private val menuItemClickListener = PopupMenu.OnMenuItemClickListener {
+            presenter.pickerOptionOnClick(it.itemId)
+            true
         }
     }
 }

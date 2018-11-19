@@ -17,7 +17,6 @@ import androidx.navigation.findNavController
 import bav.onecell.OneCellApplication
 import bav.onecell.R
 import bav.onecell.celllogic.conditions.ConditionsRecyclerViewAdapter
-import bav.onecell.celllogic.picker.PickerRecyclerViewAdapter
 import bav.onecell.celllogic.rules.RulesRecyclerViewAdapter
 import bav.onecell.common.Common
 import bav.onecell.common.Consts
@@ -51,7 +50,6 @@ import kotlinx.android.synthetic.main.fragment_hero_screen.radioButtonLifeHex
 import kotlinx.android.synthetic.main.fragment_hero_screen.radioButtonOmniBulletHex
 import kotlinx.android.synthetic.main.fragment_hero_screen.radioButtonRemoveHex
 import kotlinx.android.synthetic.main.fragment_hero_screen.recyclerViewAvatars
-import kotlinx.android.synthetic.main.fragment_hero_screen.recyclerViewCellLogicPicker
 import kotlinx.android.synthetic.main.fragment_hero_screen.recyclerViewConditionsList
 import kotlinx.android.synthetic.main.fragment_hero_screen.recyclerViewRulesList
 import kotlinx.android.synthetic.main.fragment_hero_screen.textHeroHistory
@@ -95,9 +93,6 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
         recyclerViewConditionsList.layoutManager = LinearLayoutManager(context)
         recyclerViewConditionsList.adapter = ConditionsRecyclerViewAdapter(presenter, resourceProvider)
 
-        recyclerViewCellLogicPicker.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        recyclerViewCellLogicPicker.adapter = PickerRecyclerViewAdapter(presenter)
-
         disposables.addAll(
                 presenter.getCellProvider().subscribe {
                     editorCanvasView.cell = it
@@ -112,9 +107,6 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
                 },
                 presenter.conditionsUpdateNotifier().subscribe {
                     recyclerViewConditionsList.adapter?.notifyDataSetChanged()
-                },
-                presenter.optionsUpdateNotifier().subscribe {
-                    recyclerViewCellLogicPicker.adapter?.notifyDataSetChanged()
                 }
         )
         presenter.initialize(Consts.KITTARO_INDEX)
@@ -146,10 +138,6 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
     //endregion
 
     //region HeroScreen.View methods
-    override fun setPickerBackground(colorId: Int) {
-        recyclerViewCellLogicPicker.setBackgroundColor(ContextCompat.getColor(requireContext(), colorId))
-    }
-
     override fun setCellName(name: String) {
         cellName.text = name
     }
@@ -395,7 +383,7 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
             view.visible = editorVisibility
         }
 
-        for (view in arrayListOf<View>(recyclerViewRulesList, recyclerViewConditionsList, recyclerViewCellLogicPicker,
+        for (view in arrayListOf<View>(recyclerViewRulesList, recyclerViewConditionsList,
                                        buttonIncreaseRulePriority, buttonDecreaseRulePriority))
             view.visible = cellLogicVisibility
 
