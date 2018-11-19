@@ -18,6 +18,7 @@
         android:id="@+id/buttonChooseRuleAction"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textAllCaps="false"
         android:textSize="@dimen/hero_screen_cell_logic_utf_icons_size"
         app:layout_constraintEnd_toStartOf="@id/buttonRemoveRule"
         app:layout_constraintTop_toTopOf="parent"

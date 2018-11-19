@@ -55,10 +55,10 @@
     <!-- UTF icons -->
     <string name="utf_icon_north_direction" translatable="false">^</string>
     <string name="utf_icon_north_east_direction" translatable="false">/^</string>
-    <string name="utf_icon_south_east_direction" translatable="false">\v</string>
+    <string name="utf_icon_south_east_direction" translatable="false">\\v</string>
     <string name="utf_icon_south_direction" translatable="false">v</string>
     <string name="utf_icon_south_west_direction" translatable="false">v/</string>
-    <string name="utf_icon_north_west_direction" translatable="false">^\</string>
+    <string name="utf_icon_north_west_direction" translatable="false">^\\</string>
     <string name="utf_icon_direction_to_nearest_enemy" translatable="false">-> :)</string>
     <string name="utf_icon_distance_to_nearest_enemy" translatable="false">|-| :)</string>
     <string name="utf_icon_equality" translatable="false">=</string>
