@@ -43,12 +43,18 @@ interface Common {
 
         fun setDecision(field: String, value: Boolean)
         fun getDecision(field: String): Decision
+        fun isDecisionPositive(field: String): Boolean
 
         fun setCurrentFrame(index: Int)
         fun getCurrentFrame(): Int
 
         companion object {
             const val BATTLE_LOGIC_AVAILABLE = "battle_logic_available"
+            const val ATTACK_HEXES_AVAILABLE = "attack_hexes_available"
+            const val ENERGY_HEXES_AVAILABLE = "energy_hexes_available"
+            const val DEATH_RAY_HEXES_AVAILABLE = "death_ray_hexes_available"
+            const val OMNI_BULLET_HEXES_AVAILABLE = "omni_bullet_hexes_available"
+            const val HEX_TRANSFORMATION_AVAILABLE = "hex_transformation_available"
             const val HELP_GONATO = "help_gonato"
         }
 

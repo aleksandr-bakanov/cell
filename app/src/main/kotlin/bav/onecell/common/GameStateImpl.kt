@@ -34,6 +34,8 @@ class GameStateImpl(private val context: Context,
         }
     }
 
+    override fun isDecisionPositive(field: String): Boolean = getDecision(field) == Common.GameState.Decision.YES
+
     override fun setCurrentFrame(index: Int) = preferences.edit().putInt(CURRENT_FRAME_INDEX, index).apply()
 
     override fun getCurrentFrame(): Int = preferences.getInt(CURRENT_FRAME_INDEX, 0)

@@ -185,7 +185,10 @@
                 }
             },
             reward: {
-                '0': {LIFE:5, ATTACK:2}
+                '0': {LIFE:5, ATTACK:2},
+                'gameStateChanges': {
+                    'attack_hexes_available': true
+                }
             },
             next_scene: 'action_battleGopniks_to_battleResultsGopniks'
         }"

@@ -21,7 +21,6 @@ import bav.onecell.celllogic.picker.PickerRecyclerViewAdapter
 import bav.onecell.celllogic.rules.RulesRecyclerViewAdapter
 import bav.onecell.common.Common
 import bav.onecell.common.Consts
-import bav.onecell.common.GameStateImpl
 import bav.onecell.common.extensions.visible
 import bav.onecell.common.view.DrawUtils
 import bav.onecell.common.view.HexPicker
@@ -173,6 +172,20 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
             presenter.openMainMenu()
         }
 
+        initiateHexesButtons()
+
+        buttonRotateCellLeft.setOnClickListener { onCellRotateButtonClicked(it) }
+        buttonRotateCellRight.setOnClickListener { onCellRotateButtonClicked(it) }
+        buttonIncreaseRulePriority.setOnClickListener { presenter.increaseSelectedRulePriority() }
+        buttonDecreaseRulePriority.setOnClickListener { presenter.decreaseSelectedRulePriority() }
+
+        buttonSwitchScreen.visible = gameState.isDecisionPositive(Common.GameState.BATTLE_LOGIC_AVAILABLE)
+        buttonSwitchScreen.setOnClickListener { switchCellLogicEditorViews() }
+
+        initiateTransformHexesButtons()
+    }
+
+    private fun initiateHexesButtons() {
         for (view in arrayListOf<HexPicker>(radioButtonLifeHex, radioButtonAttackHex, radioButtonEnergyHex,
                                             radioButtonDeathRayHex, radioButtonOmniBulletHex, radioButtonRemoveHex)) {
             view.setButtonClickListener { onHexTypeButtonClicked(it) }
@@ -186,14 +199,17 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
         radioButtonOmniBulletHex.buttonHex.setImageResource(R.drawable.ic_hex_omni_bullet)
         radioButtonRemoveHex.buttonHex.setImageResource(R.drawable.ic_hex_life)
 
-        buttonRotateCellLeft.setOnClickListener { onCellRotateButtonClicked(it) }
-        buttonRotateCellRight.setOnClickListener { onCellRotateButtonClicked(it) }
-        buttonIncreaseRulePriority.setOnClickListener { presenter.increaseSelectedRulePriority() }
-        buttonDecreaseRulePriority.setOnClickListener { presenter.decreaseSelectedRulePriority() }
+        setHexButtonsVisibilityBasedOnGameState()
+    }
 
-        buttonSwitchScreen.visible = gameState.getDecision(Common.GameState.BATTLE_LOGIC_AVAILABLE) == Common.GameState.Decision.YES
-        buttonSwitchScreen.setOnClickListener { switchCellLogicEditorViews() }
+    private fun setHexButtonsVisibilityBasedOnGameState() {
+        radioButtonAttackHex.visible = gameState.isDecisionPositive(Common.GameState.ATTACK_HEXES_AVAILABLE)
+        radioButtonEnergyHex.visible = gameState.isDecisionPositive(Common.GameState.ENERGY_HEXES_AVAILABLE)
+        radioButtonDeathRayHex.visible = gameState.isDecisionPositive(Common.GameState.DEATH_RAY_HEXES_AVAILABLE)
+        radioButtonOmniBulletHex.visible = gameState.isDecisionPositive(Common.GameState.OMNI_BULLET_HEXES_AVAILABLE)
+    }
 
+    private fun initiateTransformHexesButtons() {
         buttonTransformHexes.setOnClickListener { switchHexesTransformViews() }
         buttonTransformLifeToAttackHex.setOnClickListener { presenter.transformLifeHexToAttack() }
         buttonTransformLifeToEnergyHex.setOnClickListener { presenter.transformLifeHexToEnergy() }
@@ -203,6 +219,32 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
         buttonTransformEnergyToLifeHex.setOnClickListener { presenter.transformEnergyHexToLife() }
         buttonTransformDeathRayToLifeHex.setOnClickListener { presenter.transformDeathRayHexToLife() }
         buttonTransformOmniBulletToLifeHex.setOnClickListener { presenter.transformOmniBulletHexToLife() }
+
+        setTransformHexesButtonsVisibilityBasedOnGameState()
+    }
+
+    private fun setTransformHexesButtonsVisibilityBasedOnGameState() {
+        buttonTransformHexes.visible = gameState.isDecisionPositive(Common.GameState.HEX_TRANSFORMATION_AVAILABLE)
+        val buttons = arrayListOf<View>(buttonTransformAttackToLifeHex, buttonTransformDeathRayToLifeHex,
+                                        buttonTransformEnergyToLifeHex, buttonTransformLifeToAttackHex,
+                                        buttonTransformLifeToDeathRayHex, buttonTransformLifeToEnergyHex,
+                                        buttonTransformOmniBulletToLifeHex, buttonTransformLifeToOmniBulletHex)
+        if (!buttonTransformHexes.visible) {
+            for (view in buttons) view.visible = false
+        }
+        else if (isHexesTransformShown) {
+            buttonTransformAttackToLifeHex.visible = gameState.isDecisionPositive(Common.GameState.ATTACK_HEXES_AVAILABLE)
+            buttonTransformLifeToAttackHex.visible = gameState.isDecisionPositive(Common.GameState.ATTACK_HEXES_AVAILABLE)
+
+            buttonTransformLifeToEnergyHex.visible = gameState.isDecisionPositive(Common.GameState.ENERGY_HEXES_AVAILABLE)
+            buttonTransformEnergyToLifeHex.visible = gameState.isDecisionPositive(Common.GameState.ENERGY_HEXES_AVAILABLE)
+
+            buttonTransformLifeToDeathRayHex.visible = gameState.isDecisionPositive(Common.GameState.DEATH_RAY_HEXES_AVAILABLE)
+            buttonTransformDeathRayToLifeHex.visible = gameState.isDecisionPositive(Common.GameState.DEATH_RAY_HEXES_AVAILABLE)
+
+            buttonTransformLifeToOmniBulletHex.visible = gameState.isDecisionPositive(Common.GameState.OMNI_BULLET_HEXES_AVAILABLE)
+            buttonTransformOmniBulletToLifeHex.visible = gameState.isDecisionPositive(Common.GameState.OMNI_BULLET_HEXES_AVAILABLE)
+        }
     }
 
     private fun initiateCanvasView() {
@@ -349,14 +391,16 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
                                        buttonTransformHexes, buttonTransformAttackToLifeHex, buttonTransformDeathRayToLifeHex,
                                        buttonTransformOmniBulletToLifeHex, buttonTransformLifeToOmniBulletHex,
                                        buttonTransformEnergyToLifeHex, buttonTransformLifeToAttackHex,
-                                       buttonTransformLifeToDeathRayHex, buttonTransformLifeToEnergyHex))
+                                       buttonTransformLifeToDeathRayHex, buttonTransformLifeToEnergyHex)) {
             view.visible = editorVisibility
+        }
 
         for (view in arrayListOf<View>(recyclerViewRulesList, recyclerViewConditionsList, recyclerViewCellLogicPicker,
                                        buttonIncreaseRulePriority, buttonDecreaseRulePriority))
             view.visible = cellLogicVisibility
 
         if (editorVisibility) {
+            setHexButtonsVisibilityBasedOnGameState()
             showHexesTransformOrEditorView()
         }
     }
@@ -375,6 +419,9 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
                                        buttonTransformLifeToDeathRayHex, buttonTransformLifeToEnergyHex,
                                        buttonTransformOmniBulletToLifeHex, buttonTransformLifeToOmniBulletHex))
             view.visible = isHexesTransformShown
+
+        if (isHexesTransformShown)
+            setTransformHexesButtonsVisibilityBasedOnGameState()
     }
     //endregion
 
