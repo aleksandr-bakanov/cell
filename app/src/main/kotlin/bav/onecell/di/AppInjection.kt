@@ -5,8 +5,6 @@ import bav.onecell.battle.BattleModule
 import bav.onecell.battle.BattleSubcomponent
 import bav.onecell.battle.results.BattleResultsModule
 import bav.onecell.battle.results.BattleResultsSubcomponent
-import bav.onecell.celllogic.CellLogicModule
-import bav.onecell.celllogic.CellLogicSubcomponent
 import bav.onecell.cellslist.CellsListModule
 import bav.onecell.cellslist.CellsListSubcomponent
 import bav.onecell.common.CommonModule
@@ -30,7 +28,6 @@ interface AppComponent {
     fun plus(mainModule: MainModule): MainSubcomponent
     fun plus(battleModule: BattleModule): BattleSubcomponent
     fun plus(cellsListModule: CellsListModule): CellsListSubcomponent
-    fun plus(cellLogicModule: CellLogicModule): CellLogicSubcomponent
     fun plus(cutSceneModule: CutSceneModule): CutSceneSubcomponent
     fun plus(battleResultsModule: BattleResultsModule): BattleResultsSubcomponent
     fun plus(heroScreenModule: HeroScreenModule): HeroScreenSubcomponent
