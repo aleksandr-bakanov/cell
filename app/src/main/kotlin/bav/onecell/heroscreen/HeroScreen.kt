@@ -40,6 +40,9 @@ interface HeroScreen {
         fun chooseExpectedValue(conditionIndex: Int): Int
         fun getCondition(index: Int): Condition?
         fun getCurrentConditionIndex(): Int?
+        fun setFieldToCheckForCurrentCondition(fieldToCheckId: Int)
+        fun setOperationForCurrentCondition(operationId: Int)
+        fun setExpectedValueForCurrentCondition(expectedValueId: Int)
 
         // Picker
         fun pickerOptionOnClick(id: Int)

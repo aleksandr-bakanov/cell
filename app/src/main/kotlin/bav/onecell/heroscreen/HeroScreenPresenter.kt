@@ -96,6 +96,7 @@ class HeroScreenPresenter(
     override fun createNewCondition() {
         currentlyEditedRule?.let {
             it.addCondition(Condition())
+            setCurrentCondition(it.size() - 1)
             conditionsNotifier.onNext(Unit)
             rulesNotifier.onNext(Unit)
             // TODO: open popup for edit field to check immediately
@@ -146,6 +147,45 @@ class HeroScreenPresenter(
     override fun getCondition(index: Int): Condition? = currentlyEditedRule?.getCondition(index)
 
     override fun getCurrentConditionIndex(): Int? = currentConditionIndex
+
+    override fun setFieldToCheckForCurrentCondition(fieldToCheckId: Int) {
+        currentlyEditedCondition?.let {
+            cellRuleConditionFieldsToCheck.find { item -> item.first == fieldToCheckId }?.second?.let { func ->
+                func()
+                /// TODO: notify only necessary recycler views
+                rulesNotifier.onNext(Unit)
+                conditionsNotifier.onNext(Unit)
+            }
+        }
+    }
+
+    override fun setOperationForCurrentCondition(operationId: Int) {
+        currentlyEditedCondition?.let {
+            for (operations in arrayListOf(cellRuleConditionOperationsDirectionToNearestEnemy,
+                                           cellRuleConditionOperationsDistanceToNearestEnemy)) {
+                operations.find { item -> item.first == operationId }?.second?.let { func ->
+                    func()
+                    /// TODO: notify only necessary recycler views
+                    rulesNotifier.onNext(Unit)
+                    conditionsNotifier.onNext(Unit)
+                }
+            }
+        }
+    }
+
+    override fun setExpectedValueForCurrentCondition(expectedValueId: Int) {
+        currentlyEditedCondition?.let {
+            for (operations in arrayListOf(cellRuleConditionExpectedValuesDirectionToNearestEnemy,
+                                           cellRuleConditionExpectedValuesDistanceToNearestEnemy)) {
+                operations.find { item -> item.first == expectedValueId }?.second?.let { func ->
+                    func()
+                    /// TODO: notify only necessary recycler views
+                    rulesNotifier.onNext(Unit)
+                    conditionsNotifier.onNext(Unit)
+                }
+            }
+        }
+    }
     //endregion
 
     //region Rules.Presenter methods

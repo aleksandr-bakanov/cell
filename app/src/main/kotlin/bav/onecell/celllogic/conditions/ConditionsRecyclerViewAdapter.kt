@@ -59,7 +59,10 @@ class ConditionsRecyclerViewAdapter(
         init {
             when (viewType) {
                 R.layout.item_row_add_new_condition -> {
-                    view.buttonAddNewCondition.setOnClickListener { presenter.createNewCondition() }
+                    view.buttonAddNewCondition.setOnClickListener {
+                        presenter.createNewCondition()
+                        showConditionCreationPopupMenu(it)
+                    }
                 }
                 R.layout.item_row_rule_condition -> {
                     view.buttonRemoveCondition.setOnClickListener {
@@ -67,20 +70,20 @@ class ConditionsRecyclerViewAdapter(
                     }
                     view.buttonFieldToCheck.setOnClickListener {
                         presenter.chooseFieldToCheck(adapterPosition)
-                        showPopupMenu(view.context, view, R.menu.condition_field_to_check)
+                        showPopupMenu(it, R.menu.condition_field_to_check)
                     }
                     view.buttonOperation.setOnClickListener {
-                        showPopupMenu(view.context, view, presenter.chooseOperation(adapterPosition))
+                        showPopupMenu(it, presenter.chooseOperation(adapterPosition))
                     }
                     view.buttonExpectedValue.setOnClickListener {
-                        showPopupMenu(view.context, view, presenter.chooseExpectedValue(adapterPosition))
+                        showPopupMenu(it, presenter.chooseExpectedValue(adapterPosition))
                     }
                 }
             }
         }
 
-        private fun showPopupMenu(context: Context, view: View, menuLayout: Int) {
-            val popupMenu = PopupMenu(context, view)
+        private fun showPopupMenu(view: View, menuLayout: Int) {
+            val popupMenu = PopupMenu(view.context, view)
             popupMenu.inflate(menuLayout)
             popupMenu.setOnMenuItemClickListener(menuItemClickListener)
             popupMenu.show()
@@ -88,6 +91,22 @@ class ConditionsRecyclerViewAdapter(
 
         private val menuItemClickListener = PopupMenu.OnMenuItemClickListener {
             presenter.pickerOptionOnClick(it.itemId)
+            true
+        }
+
+        private fun showConditionCreationPopupMenu(view: View) {
+            val popupMenu = PopupMenu(view.context, view)
+            popupMenu.inflate(R.menu.condition_creation)
+            popupMenu.setOnMenuItemClickListener(conditionCreationMenuItemClickListener)
+            popupMenu.show()
+        }
+
+        private val conditionCreationMenuItemClickListener = PopupMenu.OnMenuItemClickListener {
+            when (it.groupId) {
+                R.id.group_field_to_check -> presenter.setFieldToCheckForCurrentCondition(it.itemId)
+                R.id.group_operation -> presenter.setOperationForCurrentCondition(it.itemId)
+                R.id.group_expected_value -> presenter.setExpectedValueForCurrentCondition(it.itemId)
+            }
             true
         }
     }
