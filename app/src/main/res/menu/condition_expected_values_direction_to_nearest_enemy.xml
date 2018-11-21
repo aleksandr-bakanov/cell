@@ -2,20 +2,26 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/expected_value_direction_to_nearest_enemy_north"
-        android:title="@string/utf_icon_north_direction"/>
+        android:title="@string/utf_icon_north_direction"
+        android:icon="@drawable/ic_expected_value_direction_north"/>
     <item
         android:id="@+id/expected_value_direction_to_nearest_enemy_north_east"
-        android:title="@string/utf_icon_north_east_direction"/>
+        android:title="@string/utf_icon_north_east_direction"
+        android:icon="@drawable/ic_expected_value_direction_north_east"/>
     <item
         android:id="@+id/expected_value_direction_to_nearest_enemy_south_east"
-        android:title="@string/utf_icon_south_east_direction"/>
+        android:title="@string/utf_icon_south_east_direction"
+        android:icon="@drawable/ic_expected_value_direction_south_east"/>
     <item
         android:id="@+id/expected_value_direction_to_nearest_enemy_south"
-        android:title="@string/utf_icon_south_direction"/>
+        android:title="@string/utf_icon_south_direction"
+        android:icon="@drawable/ic_expected_value_direction_south"/>
     <item
         android:id="@+id/expected_value_direction_to_nearest_enemy_south_west"
-        android:title="@string/utf_icon_south_west_direction"/>
+        android:title="@string/utf_icon_south_west_direction"
+        android:icon="@drawable/ic_expected_value_direction_south_west"/>
     <item
         android:id="@+id/expected_value_direction_to_nearest_enemy_north_west"
-        android:title="@string/utf_icon_north_west_direction"/>
+        android:title="@string/utf_icon_north_west_direction"
+        android:icon="@drawable/ic_expected_value_direction_north_west"/>
 </menu>

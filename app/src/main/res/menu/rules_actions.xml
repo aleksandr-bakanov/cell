@@ -2,20 +2,26 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/action_rotate_north"
-        android:title="@string/utf_icon_north_direction"/>
+        android:title="@string/utf_icon_north_direction"
+        android:icon="@drawable/ic_action_rotation_north"/>
     <item
         android:id="@+id/action_rotate_north_east"
-        android:title="@string/utf_icon_north_east_direction"/>
+        android:title="@string/utf_icon_north_east_direction"
+        android:icon="@drawable/ic_action_rotation_north_east"/>
     <item
         android:id="@+id/action_rotate_south_east"
-        android:title="@string/utf_icon_south_east_direction"/>
+        android:title="@string/utf_icon_south_east_direction"
+        android:icon="@drawable/ic_action_rotation_south_east"/>
     <item
         android:id="@+id/action_rotate_south"
-        android:title="@string/utf_icon_south_direction"/>
+        android:title="@string/utf_icon_south_direction"
+        android:icon="@drawable/ic_action_rotation_south"/>
     <item
         android:id="@+id/action_rotate_south_west"
-        android:title="@string/utf_icon_south_west_direction"/>
+        android:title="@string/utf_icon_south_west_direction"
+        android:icon="@drawable/ic_action_rotation_south_west"/>
     <item
         android:id="@+id/action_rotate_north_west"
-        android:title="@string/utf_icon_north_west_direction"/>
+        android:title="@string/utf_icon_north_west_direction"
+        android:icon="@drawable/ic_action_rotation_north_west"/>
 </menu>

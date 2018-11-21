@@ -53,29 +53,29 @@
     <string name="condition_representation" translatable="false">(%1$s %2$s %3$s)</string>
 
     <!-- UTF icons -->
-    <string name="utf_icon_north_direction" translatable="false">^</string>
-    <string name="utf_icon_north_east_direction" translatable="false">/^</string>
-    <string name="utf_icon_south_east_direction" translatable="false">\\v</string>
-    <string name="utf_icon_south_direction" translatable="false">v</string>
-    <string name="utf_icon_south_west_direction" translatable="false">v/</string>
-    <string name="utf_icon_north_west_direction" translatable="false">^\\</string>
-    <string name="utf_icon_direction_to_nearest_enemy" translatable="false">-> :)</string>
-    <string name="utf_icon_distance_to_nearest_enemy" translatable="false">|-| :)</string>
-    <string name="utf_icon_equality" translatable="false">=</string>
-    <string name="utf_icon_less_than" translatable="false">&lt;</string>
-    <string name="utf_icon_greater_than" translatable="false">&gt;</string>
-    <string name="utf_icon_increase_priority" translatable="false">^</string>
-    <string name="utf_icon_decrease_priority" translatable="false">v</string>
-    <string name="utf_icon_digit_zero" translatable="false">0</string>
-    <string name="utf_icon_digit_one" translatable="false">1</string>
-    <string name="utf_icon_digit_two" translatable="false">2</string>
-    <string name="utf_icon_digit_three" translatable="false">3</string>
-    <string name="utf_icon_digit_four" translatable="false">4</string>
-    <string name="utf_icon_digit_five" translatable="false">5</string>
-    <string name="utf_icon_digit_six" translatable="false">6</string>
-    <string name="utf_icon_digit_seven" translatable="false">7</string>
-    <string name="utf_icon_digit_eight" translatable="false">8</string>
-    <string name="utf_icon_digit_nine" translatable="false">9</string>
+    <string name="utf_icon_north_direction">North</string>
+    <string name="utf_icon_north_east_direction">North-east</string>
+    <string name="utf_icon_south_east_direction">South-east</string>
+    <string name="utf_icon_south_direction">South</string>
+    <string name="utf_icon_south_west_direction">South-west</string>
+    <string name="utf_icon_north_west_direction">North-west</string>
+    <string name="utf_icon_direction_to_nearest_enemy">Direction to the enemy</string>
+    <string name="utf_icon_distance_to_nearest_enemy">Distance to the enemy</string>
+    <string name="utf_icon_equality">Equal</string>
+    <string name="utf_icon_less_than">Less than</string>
+    <string name="utf_icon_greater_than">Greater than</string>
+    <string name="utf_icon_increase_priority">Increase</string>
+    <string name="utf_icon_decrease_priority">Decrease</string>
+    <string name="utf_icon_digit_zero">Zero</string>
+    <string name="utf_icon_digit_one">One</string>
+    <string name="utf_icon_digit_two">Two</string>
+    <string name="utf_icon_digit_three">Three</string>
+    <string name="utf_icon_digit_four">Four</string>
+    <string name="utf_icon_digit_five">Five</string>
+    <string name="utf_icon_digit_six">Six</string>
+    <string name="utf_icon_digit_seven">Seven</string>
+    <string name="utf_icon_digit_eight">Eight</string>
+    <string name="utf_icon_digit_nine">Nine</string>
 
     <!-- Cut scene view -->
     <string name="image_description_cut_scene_background" translatable="false">Cut scene background</string>

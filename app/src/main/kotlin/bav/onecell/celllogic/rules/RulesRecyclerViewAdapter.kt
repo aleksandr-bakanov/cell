@@ -1,8 +1,8 @@
 package bav.onecell.celllogic.rules
 
 import android.content.Context
+import android.view.Gravity
 import androidx.core.content.ContextCompat
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -42,7 +42,7 @@ class RulesRecyclerViewAdapter(
                 holder.view.ruleRow.setBackgroundColor(getRowBackgroundColor(holder.view.context, position))
                 presenter.getRule(position)?.let {
                     holder.view.title.text = getConditionsRepresentation(it.getConditions())
-                    holder.view.buttonChooseRuleAction.text = resourceProvider.getActionRepresentation(it.action)
+                    holder.view.buttonChooseRuleAction.setImageResource(resourceProvider.getActionRepresentationId(it.action))
                 }
             }
         }
@@ -77,9 +77,32 @@ class RulesRecyclerViewAdapter(
 
         private fun showPopupMenu(context: Context, view: View, menuLayout: Int) {
             val popupMenu = PopupMenu(context, view)
+            forceIconsShow(popupMenu)
+            popupMenu.gravity = Gravity.LEFT
             popupMenu.inflate(menuLayout)
             popupMenu.setOnMenuItemClickListener(menuItemClickListener)
             popupMenu.show()
+        }
+
+        // From here: https://readyandroid.wordpress.com/popup-menu-with-icon/
+        private fun forceIconsShow(popup: PopupMenu) {
+            try {
+                val fields = popup.javaClass.declaredFields
+                for (field in fields) {
+                    if ("mPopup" == field.name) {
+                        field.isAccessible = true
+                        val menuPopupHelper = field.get(popup)
+                        val classPopupHelper = Class.forName(menuPopupHelper.javaClass.name)
+                        val setForceIcons = classPopupHelper.getMethod("setForceShowIcon",
+                                                                       Boolean::class.javaPrimitiveType)
+                        setForceIcons.invoke(menuPopupHelper, true)
+                        break
+                    }
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+
         }
 
         private val menuItemClickListener = PopupMenu.OnMenuItemClickListener {

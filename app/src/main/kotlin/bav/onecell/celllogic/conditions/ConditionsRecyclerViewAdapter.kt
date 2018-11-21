@@ -1,6 +1,7 @@
 package bav.onecell.celllogic.conditions
 
 import android.content.Context
+import android.view.Gravity
 import androidx.core.content.ContextCompat
 import android.view.LayoutInflater
 import android.view.View
@@ -40,9 +41,9 @@ class ConditionsRecyclerViewAdapter(
             R.layout.item_row_rule_condition -> {
                 presenter.getCondition(position)?.let {
                     holder.view.conditionRow.setBackgroundColor(getRowBackgroundColor(holder.view.context, position))
-                    holder.view.buttonFieldToCheck.text = resourceProvider.getFieldToCheckRepresentation(it.fieldToCheck)
-                    holder.view.buttonOperation.text = resourceProvider.getOperationRepresentation(it.operation)
-                    holder.view.buttonExpectedValue.text = resourceProvider.getExpectedValueRepresentation(it.fieldToCheck, it.expected)
+                    holder.view.buttonFieldToCheck.setImageResource(resourceProvider.getFieldToCheckRepresentationId(it.fieldToCheck))
+                    holder.view.buttonOperation.setImageResource(resourceProvider.getOperationRepresentationId(it.operation))
+                    holder.view.buttonExpectedValue.setImageResource(resourceProvider.getExpectedValueRepresentationId(it.fieldToCheck, it.expected))
                 }
             }
         }
@@ -83,10 +84,35 @@ class ConditionsRecyclerViewAdapter(
         }
 
         private fun showPopupMenu(view: View, menuLayout: Int) {
-            val popupMenu = PopupMenu(view.context, view)
-            popupMenu.inflate(menuLayout)
-            popupMenu.setOnMenuItemClickListener(menuItemClickListener)
-            popupMenu.show()
+            if (menuLayout != 0) {
+                val popupMenu = PopupMenu(view.context, view)
+                forceIconsShow(popupMenu)
+                popupMenu.gravity = Gravity.LEFT
+                popupMenu.inflate(menuLayout)
+                popupMenu.setOnMenuItemClickListener(menuItemClickListener)
+                popupMenu.show()
+            }
+        }
+
+        // From here: https://readyandroid.wordpress.com/popup-menu-with-icon/
+        private fun forceIconsShow(popup: PopupMenu) {
+            try {
+                val fields = popup.javaClass.declaredFields
+                for (field in fields) {
+                    if ("mPopup" == field.name) {
+                        field.isAccessible = true
+                        val menuPopupHelper = field.get(popup)
+                        val classPopupHelper = Class.forName(menuPopupHelper.javaClass.name)
+                        val setForceIcons = classPopupHelper.getMethod("setForceShowIcon",
+                                                                       Boolean::class.javaPrimitiveType)
+                        setForceIcons.invoke(menuPopupHelper, true)
+                        break
+                    }
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+
         }
 
         private val menuItemClickListener = PopupMenu.OnMenuItemClickListener {
@@ -96,6 +122,8 @@ class ConditionsRecyclerViewAdapter(
 
         private fun showConditionCreationPopupMenu(view: View) {
             val popupMenu = PopupMenu(view.context, view)
+            forceIconsShow(popupMenu)
+            popupMenu.gravity = Gravity.LEFT
             popupMenu.inflate(R.menu.condition_creation)
             popupMenu.setOnMenuItemClickListener(conditionCreationMenuItemClickListener)
             popupMenu.show()

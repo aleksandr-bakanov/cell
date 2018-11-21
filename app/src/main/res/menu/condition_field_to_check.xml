@@ -2,8 +2,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/field_to_check_direction_to_nearest_enemy"
-        android:title="@string/utf_icon_direction_to_nearest_enemy"/>
+        android:title="@string/utf_icon_direction_to_nearest_enemy"
+        android:icon="@drawable/ic_field_to_check_direction_to_nearest_enemy"/>
     <item
         android:id="@+id/field_to_check_distance_to_nearest_enemy"
-        android:title="@string/utf_icon_distance_to_nearest_enemy"/>
+        android:title="@string/utf_icon_distance_to_nearest_enemy"
+        android:icon="@drawable/ic_field_to_check_distance_to_nearest_enemy"/>
 </menu>

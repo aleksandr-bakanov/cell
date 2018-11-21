@@ -1,5 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="utf_icon_north_direction">Север</string>
+    <string name="utf_icon_north_east_direction">Северо-восток</string>
+    <string name="utf_icon_south_east_direction">Юго-восток</string>
+    <string name="utf_icon_south_direction">Юг</string>
+    <string name="utf_icon_south_west_direction">Юго-запад</string>
+    <string name="utf_icon_north_west_direction">Северо-запад</string>
+    <string name="utf_icon_direction_to_nearest_enemy">Направление на врага</string>
+    <string name="utf_icon_distance_to_nearest_enemy">Расстояние до врага</string>
+    <string name="utf_icon_equality">Равно</string>
+    <string name="utf_icon_less_than">Меньше</string>
+    <string name="utf_icon_greater_than">Больше</string>
+    <string name="utf_icon_increase_priority">Повысить</string>
+    <string name="utf_icon_decrease_priority">Понизить</string>
+    <string name="utf_icon_digit_zero">Ноль</string>
+    <string name="utf_icon_digit_one">Один</string>
+    <string name="utf_icon_digit_two">Два</string>
+    <string name="utf_icon_digit_three">Три</string>
+    <string name="utf_icon_digit_four">Четыре</string>
+    <string name="utf_icon_digit_five">Пять</string>
+    <string name="utf_icon_digit_six">Шесть</string>
+    <string name="utf_icon_digit_seven">Семь</string>
+    <string name="utf_icon_digit_eight">Восемь</string>
+    <string name="utf_icon_digit_nine">Девять</string>
+
     <!-- Introduction scene -->
     <string name="cs_introduction_0">Киттаро, ты должен срочно доставить это сообщение королю! Поспеши, от тебя зависит судьба общины!</string>
     <string name="cs_introduction_1">Эй, Китти, куда это ты намылился? Что это ты там такое прячешь?</string>

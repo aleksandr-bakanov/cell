@@ -4,32 +4,40 @@
         <!-- Direction to the nearest enemy -->
         <item
             android:id="@+id/field_to_check_direction_to_nearest_enemy"
-            android:title="@string/utf_icon_direction_to_nearest_enemy">
+            android:title="@string/utf_icon_direction_to_nearest_enemy"
+            android:icon="@drawable/ic_field_to_check_direction_to_nearest_enemy">
             <menu>
                 <group android:id="@+id/group_operation">
                     <item
                         android:id="@+id/operation_direction_to_nearest_enemy_equals"
-                        android:title="@string/utf_icon_equality">
+                        android:title="@string/utf_icon_equality"
+                        android:icon="@drawable/ic_operation_equals">
                         <menu>
                             <group android:id="@+id/group_expected_value">
                                 <item
                                     android:id="@+id/expected_value_direction_to_nearest_enemy_north"
-                                    android:title="@string/utf_icon_north_direction"/>
+                                    android:title="@string/utf_icon_north_direction"
+                                    android:icon="@drawable/ic_expected_value_direction_north"/>
                                 <item
                                     android:id="@+id/expected_value_direction_to_nearest_enemy_north_east"
-                                    android:title="@string/utf_icon_north_east_direction"/>
+                                    android:title="@string/utf_icon_north_east_direction"
+                                    android:icon="@drawable/ic_expected_value_direction_north_east"/>
                                 <item
                                     android:id="@+id/expected_value_direction_to_nearest_enemy_south_east"
-                                    android:title="@string/utf_icon_south_east_direction"/>
+                                    android:title="@string/utf_icon_south_east_direction"
+                                    android:icon="@drawable/ic_expected_value_direction_south_east"/>
                                 <item
                                     android:id="@+id/expected_value_direction_to_nearest_enemy_south"
-                                    android:title="@string/utf_icon_south_direction"/>
+                                    android:title="@string/utf_icon_south_direction"
+                                    android:icon="@drawable/ic_expected_value_direction_south"/>
                                 <item
                                     android:id="@+id/expected_value_direction_to_nearest_enemy_south_west"
-                                    android:title="@string/utf_icon_south_west_direction"/>
+                                    android:title="@string/utf_icon_south_west_direction"
+                                    android:icon="@drawable/ic_expected_value_direction_south_west"/>
                                 <item
                                     android:id="@+id/expected_value_direction_to_nearest_enemy_north_west"
-                                    android:title="@string/utf_icon_north_west_direction"/>
+                                    android:title="@string/utf_icon_north_west_direction"
+                                    android:icon="@drawable/ic_expected_value_direction_north_west"/>
                             </group>
                         </menu>
                     </item>
@@ -40,120 +48,154 @@
         <!-- Distance to the nearest enemy -->
         <item
             android:id="@+id/field_to_check_distance_to_nearest_enemy"
-            android:title="@string/utf_icon_distance_to_nearest_enemy">
+            android:title="@string/utf_icon_distance_to_nearest_enemy"
+            android:icon="@drawable/ic_field_to_check_distance_to_nearest_enemy">
             <menu>
                 <group android:id="@id/group_operation">
                     <item
                         android:id="@+id/operation_distance_to_nearest_enemy_equals"
-                        android:title="@string/utf_icon_equality">
+                        android:title="@string/utf_icon_equality"
+                        android:icon="@drawable/ic_operation_equals">
                         <menu>
                             <group android:id="@id/group_expected_value">
                                 <item
                                     android:id="@+id/expected_value_distance_to_nearest_enemy_zero"
-                                    android:title="@string/utf_icon_digit_zero"/>
+                                    android:title="@string/utf_icon_digit_zero"
+                                    android:icon="@drawable/ic_expected_value_0"/>
                                 <item
                                     android:id="@+id/expected_value_distance_to_nearest_enemy_one"
-                                    android:title="@string/utf_icon_digit_one"/>
+                                    android:title="@string/utf_icon_digit_one"
+                                    android:icon="@drawable/ic_expected_value_1"/>
                                 <item
                                     android:id="@+id/expected_value_distance_to_nearest_enemy_two"
-                                    android:title="@string/utf_icon_digit_two"/>
+                                    android:title="@string/utf_icon_digit_two"
+                                    android:icon="@drawable/ic_expected_value_2"/>
                                 <item
                                     android:id="@+id/expected_value_distance_to_nearest_enemy_three"
-                                    android:title="@string/utf_icon_digit_three"/>
+                                    android:title="@string/utf_icon_digit_three"
+                                    android:icon="@drawable/ic_expected_value_3"/>
                                 <item
                                     android:id="@+id/expected_value_distance_to_nearest_enemy_four"
-                                    android:title="@string/utf_icon_digit_four"/>
+                                    android:title="@string/utf_icon_digit_four"
+                                    android:icon="@drawable/ic_expected_value_4"/>
                                 <item
                                     android:id="@+id/expected_value_distance_to_nearest_enemy_five"
-                                    android:title="@string/utf_icon_digit_five"/>
+                                    android:title="@string/utf_icon_digit_five"
+                                    android:icon="@drawable/ic_expected_value_5"/>
                                 <item
                                     android:id="@+id/expected_value_distance_to_nearest_enemy_six"
-                                    android:title="@string/utf_icon_digit_six"/>
+                                    android:title="@string/utf_icon_digit_six"
+                                    android:icon="@drawable/ic_expected_value_6"/>
                                 <item
                                     android:id="@+id/expected_value_distance_to_nearest_enemy_seven"
-                                    android:title="@string/utf_icon_digit_seven"/>
+                                    android:title="@string/utf_icon_digit_seven"
+                                    android:icon="@drawable/ic_expected_value_7"/>
                                 <item
                                     android:id="@+id/expected_value_distance_to_nearest_enemy_eight"
-                                    android:title="@string/utf_icon_digit_eight"/>
+                                    android:title="@string/utf_icon_digit_eight"
+                                    android:icon="@drawable/ic_expected_value_8"/>
                                 <item
                                     android:id="@+id/expected_value_distance_to_nearest_enemy_nine"
-                                    android:title="@string/utf_icon_digit_nine"/>
+                                    android:title="@string/utf_icon_digit_nine"
+                                    android:icon="@drawable/ic_expected_value_9"/>
                             </group>
                         </menu>
                     </item>
                     <item
                         android:id="@+id/operation_distance_to_nearest_enemy_greater_than"
-                        android:title="@string/utf_icon_greater_than">
+                        android:title="@string/utf_icon_greater_than"
+                        android:icon="@drawable/ic_operation_greater_than">
                         <menu>
                             <group android:id="@id/group_expected_value">
                                 <item
                                     android:id="@id/expected_value_distance_to_nearest_enemy_zero"
-                                    android:title="@string/utf_icon_digit_zero"/>
+                                    android:title="@string/utf_icon_digit_zero"
+                                    android:icon="@drawable/ic_expected_value_0"/>
                                 <item
                                     android:id="@id/expected_value_distance_to_nearest_enemy_one"
-                                    android:title="@string/utf_icon_digit_one"/>
+                                    android:title="@string/utf_icon_digit_one"
+                                    android:icon="@drawable/ic_expected_value_1"/>
                                 <item
                                     android:id="@id/expected_value_distance_to_nearest_enemy_two"
-                                    android:title="@string/utf_icon_digit_two"/>
+                                    android:title="@string/utf_icon_digit_two"
+                                    android:icon="@drawable/ic_expected_value_2"/>
                                 <item
                                     android:id="@id/expected_value_distance_to_nearest_enemy_three"
-                                    android:title="@string/utf_icon_digit_three"/>
+                                    android:title="@string/utf_icon_digit_three"
+                                    android:icon="@drawable/ic_expected_value_3"/>
                                 <item
                                     android:id="@id/expected_value_distance_to_nearest_enemy_four"
-                                    android:title="@string/utf_icon_digit_four"/>
+                                    android:title="@string/utf_icon_digit_four"
+                                    android:icon="@drawable/ic_expected_value_4"/>
                                 <item
                                     android:id="@id/expected_value_distance_to_nearest_enemy_five"
-                                    android:title="@string/utf_icon_digit_five"/>
+                                    android:title="@string/utf_icon_digit_five"
+                                    android:icon="@drawable/ic_expected_value_5"/>
                                 <item
                                     android:id="@id/expected_value_distance_to_nearest_enemy_six"
-                                    android:title="@string/utf_icon_digit_six"/>
+                                    android:title="@string/utf_icon_digit_six"
+                                    android:icon="@drawable/ic_expected_value_6"/>
                                 <item
                                     android:id="@id/expected_value_distance_to_nearest_enemy_seven"
-                                    android:title="@string/utf_icon_digit_seven"/>
+                                    android:title="@string/utf_icon_digit_seven"
+                                    android:icon="@drawable/ic_expected_value_7"/>
                                 <item
                                     android:id="@id/expected_value_distance_to_nearest_enemy_eight"
-                                    android:title="@string/utf_icon_digit_eight"/>
+                                    android:title="@string/utf_icon_digit_eight"
+                                    android:icon="@drawable/ic_expected_value_8"/>
                                 <item
                                     android:id="@id/expected_value_distance_to_nearest_enemy_nine"
-                                    android:title="@string/utf_icon_digit_nine"/>
+                                    android:title="@string/utf_icon_digit_nine"
+                                    android:icon="@drawable/ic_expected_value_9"/>
                             </group>
                         </menu>
                     </item>
                     <item
-                        android:id="@+id/operation_distance_to_nearest_enemy_less_than"
-                        android:title="@string/utf_icon_less_than">
+                        android:id="@id/operation_distance_to_nearest_enemy_less_than"
+                        android:title="@string/utf_icon_less_than"
+                        android:icon="@drawable/ic_operation_less_than">
                         <menu>
                             <group android:id="@id/group_expected_value">
                                 <item
                                     android:id="@id/expected_value_distance_to_nearest_enemy_zero"
-                                    android:title="@string/utf_icon_digit_zero"/>
+                                    android:title="@string/utf_icon_digit_zero"
+                                    android:icon="@drawable/ic_expected_value_0"/>
                                 <item
                                     android:id="@id/expected_value_distance_to_nearest_enemy_one"
-                                    android:title="@string/utf_icon_digit_one"/>
+                                    android:title="@string/utf_icon_digit_one"
+                                    android:icon="@drawable/ic_expected_value_1"/>
                                 <item
                                     android:id="@id/expected_value_distance_to_nearest_enemy_two"
-                                    android:title="@string/utf_icon_digit_two"/>
+                                    android:title="@string/utf_icon_digit_two"
+                                    android:icon="@drawable/ic_expected_value_2"/>
                                 <item
                                     android:id="@id/expected_value_distance_to_nearest_enemy_three"
-                                    android:title="@string/utf_icon_digit_three"/>
+                                    android:title="@string/utf_icon_digit_three"
+                                    android:icon="@drawable/ic_expected_value_3"/>
                                 <item
                                     android:id="@id/expected_value_distance_to_nearest_enemy_four"
-                                    android:title="@string/utf_icon_digit_four"/>
+                                    android:title="@string/utf_icon_digit_four"
+                                    android:icon="@drawable/ic_expected_value_4"/>
                                 <item
                                     android:id="@id/expected_value_distance_to_nearest_enemy_five"
-                                    android:title="@string/utf_icon_digit_five"/>
+                                    android:title="@string/utf_icon_digit_five"
+                                    android:icon="@drawable/ic_expected_value_5"/>
                                 <item
                                     android:id="@id/expected_value_distance_to_nearest_enemy_six"
-                                    android:title="@string/utf_icon_digit_six"/>
+                                    android:title="@string/utf_icon_digit_six"
+                                    android:icon="@drawable/ic_expected_value_6"/>
                                 <item
                                     android:id="@id/expected_value_distance_to_nearest_enemy_seven"
-                                    android:title="@string/utf_icon_digit_seven"/>
+                                    android:title="@string/utf_icon_digit_seven"
+                                    android:icon="@drawable/ic_expected_value_7"/>
                                 <item
                                     android:id="@id/expected_value_distance_to_nearest_enemy_eight"
-                                    android:title="@string/utf_icon_digit_eight"/>
+                                    android:title="@string/utf_icon_digit_eight"
+                                    android:icon="@drawable/ic_expected_value_8"/>
                                 <item
                                     android:id="@id/expected_value_distance_to_nearest_enemy_nine"
-                                    android:title="@string/utf_icon_digit_nine"/>
+                                    android:title="@string/utf_icon_digit_nine"
+                                    android:icon="@drawable/ic_expected_value_9"/>
                             </group>
                         </menu>
                     </item>

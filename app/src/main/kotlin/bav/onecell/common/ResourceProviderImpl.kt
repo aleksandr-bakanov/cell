@@ -10,72 +10,72 @@ import bav.onecell.model.cell.logic.Condition
 
 class ResourceProviderImpl(private val context: Context): Common.ResourceProvider {
 
-    override fun getActionRepresentation(action: Action): String {
+    override fun getActionRepresentationId(action: Action): Int {
         return when (action.act) {
             Action.Act.CHANGE_DIRECTION -> {
                 when (action.value) {
-                    Cell.Direction.N.ordinal -> context.resources.getString(R.string.utf_icon_north_direction)
-                    Cell.Direction.NE.ordinal -> context.resources.getString(R.string.utf_icon_north_east_direction)
-                    Cell.Direction.SE.ordinal -> context.resources.getString(R.string.utf_icon_south_east_direction)
-                    Cell.Direction.S.ordinal -> context.resources.getString(R.string.utf_icon_south_direction)
-                    Cell.Direction.SW.ordinal -> context.resources.getString(R.string.utf_icon_south_west_direction)
-                    Cell.Direction.NW.ordinal -> context.resources.getString(R.string.utf_icon_north_west_direction)
-                    else -> ""
+                    Cell.Direction.N.ordinal -> R.drawable.ic_action_rotation_north
+                    Cell.Direction.NE.ordinal -> R.drawable.ic_action_rotation_north_east
+                    Cell.Direction.SE.ordinal -> R.drawable.ic_action_rotation_south_east
+                    Cell.Direction.S.ordinal -> R.drawable.ic_action_rotation_south
+                    Cell.Direction.SW.ordinal -> R.drawable.ic_action_rotation_south_west
+                    Cell.Direction.NW.ordinal -> R.drawable.ic_action_rotation_north_west
+                    else -> TRANSPARENT_HEX
                 }
             }
         }
     }
 
-    override fun getFieldToCheckRepresentation(fieldToCheck: Condition.FieldToCheck): String {
+    override fun getFieldToCheckRepresentationId(fieldToCheck: Condition.FieldToCheck): Int {
         return when (fieldToCheck) {
-            Condition.FieldToCheck.DIRECTION_TO_NEAREST_ENEMY -> context.resources.getString(R.string.utf_icon_direction_to_nearest_enemy)
-            Condition.FieldToCheck.DISTANCE_TO_NEAREST_ENEMY -> context.resources.getString(R.string.utf_icon_distance_to_nearest_enemy)
-            else -> EMPTY_STRING
+            Condition.FieldToCheck.DIRECTION_TO_NEAREST_ENEMY -> R.drawable.ic_field_to_check_direction_to_nearest_enemy
+            Condition.FieldToCheck.DISTANCE_TO_NEAREST_ENEMY -> R.drawable.ic_field_to_check_distance_to_nearest_enemy
+            else -> TRANSPARENT_HEX
         }
     }
 
-    override fun getOperationRepresentation(operation: Condition.Operation): String {
+    override fun getOperationRepresentationId(operation: Condition.Operation): Int {
         return when (operation) {
-            Condition.Operation.EQUALS -> context.resources.getString(R.string.utf_icon_equality)
-            Condition.Operation.LESS_THAN -> context.resources.getString(R.string.utf_icon_less_than)
-            Condition.Operation.GREATER_THAN -> context.resources.getString(R.string.utf_icon_greater_than)
-            else -> EMPTY_STRING
+            Condition.Operation.EQUALS -> R.drawable.ic_operation_equals
+            Condition.Operation.LESS_THAN -> R.drawable.ic_operation_less_than
+            Condition.Operation.GREATER_THAN -> R.drawable.ic_operation_greater_than
+            else -> TRANSPARENT_HEX
         }
     }
 
-    override fun getExpectedValueRepresentation(fieldToCheck: Condition.FieldToCheck, expected: Int): String {
+    override fun getExpectedValueRepresentationId(fieldToCheck: Condition.FieldToCheck, expected: Int): Int {
         return when (fieldToCheck) {
             Condition.FieldToCheck.DIRECTION_TO_NEAREST_ENEMY -> when (expected) {
-                Cell.Direction.N.ordinal -> context.resources.getString(R.string.utf_icon_north_direction)
-                Cell.Direction.NE.ordinal -> context.resources.getString(R.string.utf_icon_north_east_direction)
-                Cell.Direction.SE.ordinal -> context.resources.getString(R.string.utf_icon_south_east_direction)
-                Cell.Direction.S.ordinal -> context.resources.getString(R.string.utf_icon_south_direction)
-                Cell.Direction.SW.ordinal -> context.resources.getString(R.string.utf_icon_south_west_direction)
-                Cell.Direction.NW.ordinal -> context.resources.getString(R.string.utf_icon_north_west_direction)
-                else -> EMPTY_STRING
+                Cell.Direction.N.ordinal -> R.drawable.ic_expected_value_direction_north
+                Cell.Direction.NE.ordinal -> R.drawable.ic_expected_value_direction_north_east
+                Cell.Direction.SE.ordinal -> R.drawable.ic_expected_value_direction_south_east
+                Cell.Direction.S.ordinal -> R.drawable.ic_expected_value_direction_south
+                Cell.Direction.SW.ordinal -> R.drawable.ic_expected_value_direction_south_west
+                Cell.Direction.NW.ordinal -> R.drawable.ic_expected_value_direction_north_west
+                else -> TRANSPARENT_HEX
             }
             Condition.FieldToCheck.DISTANCE_TO_NEAREST_ENEMY -> when (expected) {
-                0 -> context.resources.getString(R.string.utf_icon_digit_zero)
-                1 -> context.resources.getString(R.string.utf_icon_digit_one)
-                2 -> context.resources.getString(R.string.utf_icon_digit_two)
-                3 -> context.resources.getString(R.string.utf_icon_digit_three)
-                4 -> context.resources.getString(R.string.utf_icon_digit_four)
-                5 -> context.resources.getString(R.string.utf_icon_digit_five)
-                6 -> context.resources.getString(R.string.utf_icon_digit_six)
-                7 -> context.resources.getString(R.string.utf_icon_digit_seven)
-                8 -> context.resources.getString(R.string.utf_icon_digit_eight)
-                9 -> context.resources.getString(R.string.utf_icon_digit_nine)
-                else -> EMPTY_STRING
+                0 -> R.drawable.ic_expected_value_0
+                1 -> R.drawable.ic_expected_value_1
+                2 -> R.drawable.ic_expected_value_2
+                3 -> R.drawable.ic_expected_value_3
+                4 -> R.drawable.ic_expected_value_4
+                5 -> R.drawable.ic_expected_value_5
+                6 -> R.drawable.ic_expected_value_6
+                7 -> R.drawable.ic_expected_value_7
+                8 -> R.drawable.ic_expected_value_8
+                9 -> R.drawable.ic_expected_value_9
+                else -> TRANSPARENT_HEX
             }
-            else -> EMPTY_STRING
+            else -> TRANSPARENT_HEX
         }
     }
 
     override fun getConditionRepresentation(condition: Condition): String {
-        val ftc = getFieldToCheckRepresentation(condition.fieldToCheck)
-        val op = getOperationRepresentation(condition.operation)
-        val exp = getExpectedValueRepresentation(condition.fieldToCheck, condition.expected)
-        return context.resources.getString(R.string.condition_representation, ftc, op, exp)
+        val ftc = getFieldToCheckRepresentationId(condition.fieldToCheck)
+        val op = getOperationRepresentationId(condition.operation)
+        val exp = getExpectedValueRepresentationId(condition.fieldToCheck, condition.expected)
+        return context.resources.getString(R.string.condition_representation, ftc.toString(), op.toString(), exp.toString())
     }
 
     override fun getAvatarDrawable(index: Int): Drawable? {
@@ -112,5 +112,6 @@ class ResourceProviderImpl(private val context: Context): Common.ResourceProvide
 
     companion object {
         private const val EMPTY_STRING = ""
+        private const val TRANSPARENT_HEX = R.drawable.ic_semi_transparent_hex
     }
 }

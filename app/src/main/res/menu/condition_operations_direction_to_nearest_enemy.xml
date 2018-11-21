@@ -2,5 +2,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/operation_direction_to_nearest_enemy_equals"
-        android:title="@string/utf_icon_equality"/>
+        android:title="@string/utf_icon_equality"
+        android:icon="@drawable/ic_operation_equals"/>
 </menu>

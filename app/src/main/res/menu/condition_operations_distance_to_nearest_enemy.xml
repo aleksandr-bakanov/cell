@@ -2,11 +2,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/operation_distance_to_nearest_enemy_equals"
-        android:title="@string/utf_icon_equality"/>
+        android:title="@string/utf_icon_equality"
+        android:icon="@drawable/ic_operation_equals"/>
     <item
         android:id="@+id/operation_distance_to_nearest_enemy_greater_than"
-        android:title="@string/utf_icon_greater_than"/>
+        android:title="@string/utf_icon_greater_than"
+        android:icon="@drawable/ic_operation_greater_than"/>
     <item
         android:id="@+id/operation_distance_to_nearest_enemy_less_than"
-        android:title="@string/utf_icon_less_than"/>
+        android:title="@string/utf_icon_less_than"
+        android:icon="@drawable/ic_operation_less_than"/>
 </menu>

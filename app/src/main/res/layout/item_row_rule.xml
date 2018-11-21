@@ -14,12 +14,13 @@
         app:layout_constraintEnd_toStartOf="@id/buttonChooseRuleAction"
         android:textSize="@dimen/hero_screen_cell_logic_rule_representation_size" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/buttonChooseRuleAction"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAllCaps="false"
-        android:textSize="@dimen/hero_screen_cell_logic_utf_icons_size"
+        android:layout_width="@dimen/hero_screen_cell_logic_condition_picture_size"
+        android:layout_height="@dimen/hero_screen_cell_logic_condition_picture_size"
+        android:padding="0dp"
+        android:scaleType="fitCenter"
+        android:background="@android:color/transparent"
         app:layout_constraintEnd_toStartOf="@id/buttonRemoveRule"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent" />

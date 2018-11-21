@@ -5,28 +5,31 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <Button
+    <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/buttonFieldToCheck"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAllCaps="false"
-        android:textSize="@dimen/hero_screen_cell_logic_utf_icons_size"
+        android:layout_width="@dimen/hero_screen_cell_logic_condition_picture_size"
+        android:layout_height="@dimen/hero_screen_cell_logic_condition_picture_size"
+        android:padding="0dp"
+        android:scaleType="fitCenter"
+        android:background="@android:color/transparent"
         app:layout_constraintStart_toEndOf="@id/title" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/buttonOperation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAllCaps="false"
-        android:textSize="@dimen/hero_screen_cell_logic_utf_icons_size"
+        android:layout_width="@dimen/hero_screen_cell_logic_condition_picture_size"
+        android:layout_height="@dimen/hero_screen_cell_logic_condition_picture_size"
+        android:padding="0dp"
+        android:scaleType="fitCenter"
+        android:background="@android:color/transparent"
         app:layout_constraintStart_toEndOf="@id/buttonFieldToCheck" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/buttonExpectedValue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAllCaps="false"
-        android:textSize="@dimen/hero_screen_cell_logic_utf_icons_size"
+        android:layout_width="@dimen/hero_screen_cell_logic_condition_picture_size"
+        android:layout_height="@dimen/hero_screen_cell_logic_condition_picture_size"
+        android:padding="0dp"
+        android:scaleType="fitCenter"
+        android:background="@android:color/transparent"
         app:layout_constraintStart_toEndOf="@id/buttonOperation" />
 
     <androidx.appcompat.widget.AppCompatImageButton

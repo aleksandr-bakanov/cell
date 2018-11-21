@@ -6,13 +6,13 @@ import bav.onecell.model.cell.logic.Condition
 
 interface Common {
     interface ResourceProvider {
-        fun getActionRepresentation(action: Action): String
+        fun getActionRepresentationId(action: Action): Int
 
-        fun getFieldToCheckRepresentation(fieldToCheck: Condition.FieldToCheck): String
+        fun getFieldToCheckRepresentationId(fieldToCheck: Condition.FieldToCheck): Int
 
-        fun getOperationRepresentation(operation: Condition.Operation): String
+        fun getOperationRepresentationId(operation: Condition.Operation): Int
 
-        fun getExpectedValueRepresentation(fieldToCheck: Condition.FieldToCheck, expected: Int): String
+        fun getExpectedValueRepresentationId(fieldToCheck: Condition.FieldToCheck, expected: Int): Int
 
         fun getConditionRepresentation(condition: Condition): String
 
