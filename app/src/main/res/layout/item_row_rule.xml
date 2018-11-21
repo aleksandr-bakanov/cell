@@ -5,14 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/title"
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/conditions"
+        android:orientation="vertical"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:textColor="@android:color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/buttonChooseRuleAction"
-        android:textSize="@dimen/hero_screen_cell_logic_rule_representation_size" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
     <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/buttonChooseRuleAction"

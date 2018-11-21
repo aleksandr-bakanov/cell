@@ -1,11 +1,11 @@
 package bav.onecell.celllogic.rules
 
 import android.content.Context
-import android.view.Gravity
 import androidx.core.content.ContextCompat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.appcompat.widget.PopupMenu
 import bav.onecell.R
 import bav.onecell.common.Common
@@ -14,8 +14,11 @@ import bav.onecell.model.cell.logic.Condition
 import kotlinx.android.synthetic.main.item_row_add_new_rule.view.buttonAddNewRule
 import kotlinx.android.synthetic.main.item_row_rule.view.buttonChooseRuleAction
 import kotlinx.android.synthetic.main.item_row_rule.view.buttonRemoveRule
+import kotlinx.android.synthetic.main.item_row_rule.view.conditions
 import kotlinx.android.synthetic.main.item_row_rule.view.ruleRow
-import kotlinx.android.synthetic.main.item_row_rule.view.title
+import kotlinx.android.synthetic.main.view_conditions_list.view.ruleConditionListItemExpectedValue
+import kotlinx.android.synthetic.main.view_conditions_list.view.ruleConditionListItemFieldToCheck
+import kotlinx.android.synthetic.main.view_conditions_list.view.ruleConditionListItemOperation
 
 class RulesRecyclerViewAdapter(
         private val presenter: HeroScreen.Presenter,
@@ -41,15 +44,23 @@ class RulesRecyclerViewAdapter(
             R.layout.item_row_rule -> {
                 holder.view.ruleRow.setBackgroundColor(getRowBackgroundColor(holder.view.context, position))
                 presenter.getRule(position)?.let {
-                    holder.view.title.text = getConditionsRepresentation(it.getConditions())
+                    inflateConditions(holder.view.conditions, it.getConditions())
                     holder.view.buttonChooseRuleAction.setImageResource(resourceProvider.getActionRepresentationId(it.action))
                 }
             }
         }
     }
 
-    private fun getConditionsRepresentation(conditions: List<Condition>): String {
-        return conditions.joinToString(" ") { resourceProvider.getConditionRepresentation(it) }
+    private fun inflateConditions(container: LinearLayoutCompat, conditions: List<Condition>) {
+        container.removeAllViews()
+        val inflater = LayoutInflater.from(container.context)
+        for (condition in conditions) {
+            val layout = inflater.inflate(R.layout.view_conditions_list, null, false)
+            layout.ruleConditionListItemFieldToCheck.setImageResource(resourceProvider.getFieldToCheckRepresentationId(condition.fieldToCheck))
+            layout.ruleConditionListItemOperation.setImageResource(resourceProvider.getOperationRepresentationId(condition.operation))
+            layout.ruleConditionListItemExpectedValue.setImageResource(resourceProvider.getExpectedValueRepresentationId(condition.fieldToCheck, condition.expected))
+            container.addView(layout)
+        }
     }
 
     private fun getRowBackgroundColor(context: Context, position: Int): Int {
