@@ -51,6 +51,7 @@ interface HeroScreen {
         fun rulesCount(): Int
         fun createNewRule()
         fun removeRule(index: Int)
+        fun swapRules(first: Int, second: Int)
         fun rulesUpdateNotifier(): Observable<Unit>
         fun openConditionsList(ruleIndex: Int)
         fun openActionEditor(ruleIndex: Int)

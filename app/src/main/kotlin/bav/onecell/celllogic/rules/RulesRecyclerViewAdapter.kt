@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.appcompat.widget.PopupMenu
+import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.RecyclerView
 import bav.onecell.R
 import bav.onecell.common.Common
 import bav.onecell.heroscreen.HeroScreen
@@ -22,7 +24,9 @@ import kotlinx.android.synthetic.main.view_conditions_list.view.ruleConditionLis
 
 class RulesRecyclerViewAdapter(
         private val presenter: HeroScreen.Presenter,
-        private val resourceProvider: Common.ResourceProvider) : androidx.recyclerview.widget.RecyclerView.Adapter<RulesRecyclerViewAdapter.ViewHolder>() {
+        private val resourceProvider: Common.ResourceProvider)
+    : androidx.recyclerview.widget.RecyclerView.Adapter<RulesRecyclerViewAdapter.ViewHolder>(),
+      ItemTouchHelperAdapter {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(viewType, parent, false)
@@ -67,6 +71,25 @@ class RulesRecyclerViewAdapter(
         return if (position == presenter.getCurrentlySelectedRuleIndex())
             ContextCompat.getColor(context, R.color.heroScreenSelectedRuleBackgroundColor)
             else ContextCompat.getColor(context, R.color.heroScreenUnselectedRuleBackgroundColor)
+    }
+
+    override fun onItemMove(fromPosition: Int, toPosition: Int): Boolean {
+        if (fromPosition < toPosition) {
+            for (i in fromPosition until toPosition) {
+                presenter.swapRules(i, i + 1)
+            }
+        } else {
+            for (i in fromPosition downTo toPosition + 1) {
+                presenter.swapRules(i, i - 1)
+            }
+        }
+        notifyItemMoved(fromPosition, toPosition)
+        return true
+    }
+
+    override fun onItemDismiss(position: Int) {
+        presenter.removeRule(position)
+        notifyItemRemoved(position)
     }
 
     class ViewHolder(val view: View, private val presenter: HeroScreen.Presenter, viewType: Int) : androidx.recyclerview.widget.RecyclerView.ViewHolder(view) {
@@ -120,4 +143,31 @@ class RulesRecyclerViewAdapter(
             true
         }
     }
+
+    class SimpleItemTouchHelperCallback(private val adapter: ItemTouchHelperAdapter): ItemTouchHelper.Callback() {
+
+        override fun getMovementFlags(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder): Int {
+            val dragFlags = ItemTouchHelper.UP or ItemTouchHelper.DOWN
+            val swipeFlags = ItemTouchHelper.START or ItemTouchHelper.END
+            return makeMovementFlags(dragFlags, swipeFlags)
+        }
+
+        override fun isLongPressDragEnabled(): Boolean = true
+
+        override fun isItemViewSwipeEnabled(): Boolean = true
+
+        override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean {
+            adapter.onItemMove(viewHolder.adapterPosition, target.adapterPosition)
+            return true
+        }
+
+        override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+            adapter.onItemDismiss(viewHolder.adapterPosition)
+        }
+    }
+}
+
+interface ItemTouchHelperAdapter {
+    fun onItemMove(fromPosition: Int, toPosition: Int): Boolean
+    fun onItemDismiss(position: Int)
 }

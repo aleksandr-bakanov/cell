@@ -14,6 +14,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.findNavController
+import androidx.recyclerview.widget.ItemTouchHelper
 import bav.onecell.OneCellApplication
 import bav.onecell.R
 import bav.onecell.celllogic.conditions.ConditionsRecyclerViewAdapter
@@ -88,7 +89,11 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
         recyclerViewAvatars.adapter = HeroIconsRecyclerViewAdapter(presenter, resourceProvider)
 
         recyclerViewRulesList.layoutManager = LinearLayoutManager(context)
-        recyclerViewRulesList.adapter = RulesRecyclerViewAdapter(presenter, resourceProvider)
+        val rulesAdapter = RulesRecyclerViewAdapter(presenter, resourceProvider)
+        recyclerViewRulesList.adapter = rulesAdapter
+        val itemTouchHelperCallback = RulesRecyclerViewAdapter.SimpleItemTouchHelperCallback(rulesAdapter)
+        val touchHelper = ItemTouchHelper(itemTouchHelperCallback)
+        touchHelper.attachToRecyclerView(recyclerViewRulesList)
 
         recyclerViewConditionsList.layoutManager = LinearLayoutManager(context)
         recyclerViewConditionsList.adapter = ConditionsRecyclerViewAdapter(presenter, resourceProvider)

@@ -218,6 +218,15 @@ class HeroScreenPresenter(
         }
     }
 
+    override fun swapRules(first: Int, second: Int) {
+        rules?.let {
+            val tmp = it[first]
+            it[first] = it[second]
+            it[second] = tmp
+            rulesNotifier.onNext(Unit)
+        }
+    }
+
     override fun rulesUpdateNotifier(): Observable<Unit> = rulesNotifier
 
     override fun openConditionsList(ruleIndex: Int) {
