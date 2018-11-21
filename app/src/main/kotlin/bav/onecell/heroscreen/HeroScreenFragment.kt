@@ -5,15 +5,17 @@ import android.animation.AnimatorListenerAdapter
 import android.animation.ValueAnimator
 import android.content.ClipData
 import android.content.ClipDescription
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.DragEvent
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.PopupMenu
+import androidx.core.view.GravityCompat
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import bav.onecell.OneCellApplication
@@ -30,8 +32,6 @@ import bav.onecell.model.hexes.HexMath
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_hero_screen.buttonAddNewCondition
 import kotlinx.android.synthetic.main.fragment_hero_screen.buttonAddNewRule
-import kotlinx.android.synthetic.main.fragment_hero_screen.buttonDecreaseRulePriority
-import kotlinx.android.synthetic.main.fragment_hero_screen.buttonIncreaseRulePriority
 import kotlinx.android.synthetic.main.fragment_hero_screen.buttonNextScene
 import kotlinx.android.synthetic.main.fragment_hero_screen.buttonRotateCellLeft
 import kotlinx.android.synthetic.main.fragment_hero_screen.buttonRotateCellRight
@@ -172,15 +172,13 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
 
         buttonRotateCellLeft.setOnClickListener { onCellRotateButtonClicked(it) }
         buttonRotateCellRight.setOnClickListener { onCellRotateButtonClicked(it) }
-        buttonIncreaseRulePriority.setOnClickListener { presenter.increaseSelectedRulePriority() }
-        buttonDecreaseRulePriority.setOnClickListener { presenter.decreaseSelectedRulePriority() }
 
         buttonSwitchScreen.visible = gameState.isDecisionPositive(Common.GameState.BATTLE_LOGIC_AVAILABLE)
         buttonSwitchScreen.setOnClickListener { switchCellLogicEditorViews() }
 
         buttonAddNewCondition.setOnClickListener {
-            presenter.createNewCondition()
-            showConditionCreationPopupMenu(it)
+            if (presenter.createNewCondition())
+                showConditionCreationPopupMenu(it)
         }
         buttonAddNewRule.setOnClickListener { presenter.createNewRule() }
 
@@ -188,7 +186,7 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
     }
 
     private fun showConditionCreationPopupMenu(view: View) {
-        val popupMenu = PopupMenu(view.context, view)
+        val popupMenu = PopupMenu(view.context, view, Gravity.TOP)
         forceIconsShow(popupMenu)
         popupMenu.inflate(R.menu.condition_creation)
         popupMenu.setOnMenuItemClickListener(conditionCreationMenuItemClickListener)
@@ -435,7 +433,6 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
         }
 
         for (view in arrayListOf<View>(recyclerViewRulesList, recyclerViewConditionsList,
-                                       buttonIncreaseRulePriority, buttonDecreaseRulePriority,
                                        buttonAddNewRule, buttonAddNewCondition))
             view.visible = cellLogicVisibility
 

@@ -14,7 +14,6 @@ import bav.onecell.common.Common
 import bav.onecell.heroscreen.HeroScreen
 import bav.onecell.model.cell.logic.Condition
 import kotlinx.android.synthetic.main.item_row_rule.view.buttonChooseRuleAction
-import kotlinx.android.synthetic.main.item_row_rule.view.buttonRemoveRule
 import kotlinx.android.synthetic.main.item_row_rule.view.conditions
 import kotlinx.android.synthetic.main.item_row_rule.view.ruleRow
 import kotlinx.android.synthetic.main.view_conditions_list.view.ruleConditionListItemExpectedValue
@@ -91,7 +90,6 @@ class RulesRecyclerViewAdapter(
         init {
             when (viewType) {
                 R.layout.item_row_rule -> {
-                    view.buttonRemoveRule.setOnClickListener { presenter.removeRule(adapterPosition) }
                     view.ruleRow.setOnClickListener { presenter.openConditionsList(adapterPosition) }
                     view.buttonChooseRuleAction.setOnClickListener {
                         presenter.openActionEditor(adapterPosition)

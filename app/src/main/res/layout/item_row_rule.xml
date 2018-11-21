@@ -22,15 +22,6 @@
         android:padding="0dp"
         android:scaleType="fitCenter"
         android:background="@android:color/transparent"
-        app:layout_constraintEnd_toStartOf="@id/buttonRemoveRule"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
-
-    <androidx.appcompat.widget.AppCompatImageButton
-        android:id="@+id/buttonRemoveRule"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/ic_delete_black_24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent" />

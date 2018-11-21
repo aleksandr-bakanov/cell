@@ -16,8 +16,6 @@ interface HeroScreen {
         // Hero screen
         override fun initialize(cellIndex: Int)
         fun openMainMenu()
-        fun increaseSelectedRulePriority()
-        fun decreaseSelectedRulePriority()
         fun getCellCount(): Int
 
         fun transformLifeHexToAttack()
@@ -33,7 +31,7 @@ interface HeroScreen {
         fun initializeConditionList(cellIndex: Int, ruleIndex: Int)
         fun conditionsUpdateNotifier(): Observable<Unit>
         fun conditionsCount(): Int
-        fun createNewCondition()
+        fun createNewCondition(): Boolean
         fun removeCondition(index: Int)
         fun chooseFieldToCheck(conditionIndex: Int)
         fun chooseOperation(conditionIndex: Int): Int

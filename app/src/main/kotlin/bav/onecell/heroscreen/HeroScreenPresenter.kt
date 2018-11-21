@@ -93,14 +93,14 @@ class HeroScreenPresenter(
 
     override fun conditionsCount(): Int = currentlyEditedRule?.size() ?: -1
 
-    override fun createNewCondition() {
+    override fun createNewCondition(): Boolean {
         currentlyEditedRule?.let {
             it.addCondition(Condition())
             setCurrentCondition(it.size() - 1)
             conditionsNotifier.onNext(Unit)
             rulesNotifier.onNext(Unit)
-            // TODO: open popup for edit field to check immediately
         }
+        return currentlyEditedRule != null
     }
 
     override fun removeCondition(index: Int) {
@@ -251,34 +251,6 @@ class HeroScreenPresenter(
             }
         }
         return null
-    }
-
-    override fun increaseSelectedRulePriority() {
-        rules?.let { rules ->
-            currentRuleIndex?.let { index ->
-                if (index > 0) {
-                    val tmp = rules[index]
-                    rules[index] = rules[index - 1]
-                    rules[index - 1] = tmp
-                    currentRuleIndex = index - 1
-                    rulesNotifier.onNext(Unit)
-                }
-            }
-        }
-    }
-
-    override fun decreaseSelectedRulePriority() {
-        rules?.let { rules ->
-            currentRuleIndex?.let { index ->
-                if (index < rules.size - 1) {
-                    val tmp = rules[index]
-                    rules[index] = rules[index + 1]
-                    rules[index + 1] = tmp
-                    currentRuleIndex = index + 1
-                    rulesNotifier.onNext(Unit)
-                }
-            }
-        }
     }
     //endregion
 
