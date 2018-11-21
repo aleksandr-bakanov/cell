@@ -58,6 +58,7 @@ import kotlinx.android.synthetic.main.fragment_hero_screen.recyclerViewCondition
 import kotlinx.android.synthetic.main.fragment_hero_screen.recyclerViewRulesList
 import kotlinx.android.synthetic.main.fragment_hero_screen.textHeroHistory
 import kotlinx.android.synthetic.main.view_hex_picker.view.buttonHex
+import kotlinx.android.synthetic.main.view_hex_picker.view.textViewHexCount
 import javax.inject.Inject
 import kotlin.math.PI
 
@@ -234,7 +235,9 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
         radioButtonEnergyHex.buttonHex.setImageResource(R.drawable.ic_hex_energy)
         radioButtonDeathRayHex.buttonHex.setImageResource(R.drawable.ic_hex_death_ray)
         radioButtonOmniBulletHex.buttonHex.setImageResource(R.drawable.ic_hex_omni_bullet)
-        radioButtonRemoveHex.buttonHex.setImageResource(R.drawable.ic_hex_life)
+
+        radioButtonRemoveHex.buttonHex.setImageResource(R.drawable.ic_remove_icon)
+        radioButtonRemoveHex.textViewHexCount.visible = false
 
         setHexButtonsVisibilityBasedOnGameState()
     }

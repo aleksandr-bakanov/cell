@@ -73,8 +73,8 @@
 
     <bav.onecell.common.view.HexPicker
         android:id="@+id/radioButtonRemoveHex"
-        android:layout_width="@dimen/hero_screen_hex_type_size"
-        android:layout_height="@dimen/hero_screen_hex_type_size"
+        android:layout_width="@dimen/hero_screen_hex_remove_size"
+        android:layout_height="@dimen/hero_screen_hex_remove_size"
         android:padding="5dp"
         app:layout_constraintBottom_toTopOf="@id/guideline_hero_screen_cellname_bottom"
         app:layout_constraintEnd_toEndOf="@id/guideline_hero_screen_center_vertical"
