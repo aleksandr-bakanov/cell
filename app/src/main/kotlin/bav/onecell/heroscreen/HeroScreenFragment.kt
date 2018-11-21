@@ -13,6 +13,7 @@ import android.view.DragEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.PopupMenu
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import bav.onecell.OneCellApplication
@@ -27,6 +28,8 @@ import bav.onecell.common.view.HexPicker
 import bav.onecell.model.hexes.Hex
 import bav.onecell.model.hexes.HexMath
 import io.reactivex.disposables.CompositeDisposable
+import kotlinx.android.synthetic.main.fragment_hero_screen.buttonAddNewCondition
+import kotlinx.android.synthetic.main.fragment_hero_screen.buttonAddNewRule
 import kotlinx.android.synthetic.main.fragment_hero_screen.buttonDecreaseRulePriority
 import kotlinx.android.synthetic.main.fragment_hero_screen.buttonIncreaseRulePriority
 import kotlinx.android.synthetic.main.fragment_hero_screen.buttonNextScene
@@ -175,7 +178,50 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
         buttonSwitchScreen.visible = gameState.isDecisionPositive(Common.GameState.BATTLE_LOGIC_AVAILABLE)
         buttonSwitchScreen.setOnClickListener { switchCellLogicEditorViews() }
 
+        buttonAddNewCondition.setOnClickListener {
+            presenter.createNewCondition()
+            showConditionCreationPopupMenu(it)
+        }
+        buttonAddNewRule.setOnClickListener { presenter.createNewRule() }
+
         initiateTransformHexesButtons()
+    }
+
+    private fun showConditionCreationPopupMenu(view: View) {
+        val popupMenu = PopupMenu(view.context, view)
+        forceIconsShow(popupMenu)
+        popupMenu.inflate(R.menu.condition_creation)
+        popupMenu.setOnMenuItemClickListener(conditionCreationMenuItemClickListener)
+        popupMenu.show()
+    }
+
+    private val conditionCreationMenuItemClickListener = PopupMenu.OnMenuItemClickListener {
+        when (it.groupId) {
+            R.id.group_field_to_check -> presenter.setFieldToCheckForCurrentCondition(it.itemId)
+            R.id.group_operation -> presenter.setOperationForCurrentCondition(it.itemId)
+            R.id.group_expected_value -> presenter.setExpectedValueForCurrentCondition(it.itemId)
+        }
+        true
+    }
+
+    // From here: https://readyandroid.wordpress.com/popup-menu-with-icon/
+    private fun forceIconsShow(popup: PopupMenu) {
+        try {
+            val fields = popup.javaClass.declaredFields
+            for (field in fields) {
+                if ("mPopup" == field.name) {
+                    field.isAccessible = true
+                    val menuPopupHelper = field.get(popup)
+                    val classPopupHelper = Class.forName(menuPopupHelper.javaClass.name)
+                    val setForceIcons = classPopupHelper.getMethod("setForceShowIcon",
+                                                                   Boolean::class.javaPrimitiveType)
+                    setForceIcons.invoke(menuPopupHelper, true)
+                    break
+                }
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 
     private fun initiateHexesButtons() {
@@ -389,7 +435,8 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
         }
 
         for (view in arrayListOf<View>(recyclerViewRulesList, recyclerViewConditionsList,
-                                       buttonIncreaseRulePriority, buttonDecreaseRulePriority))
+                                       buttonIncreaseRulePriority, buttonDecreaseRulePriority,
+                                       buttonAddNewRule, buttonAddNewCondition))
             view.visible = cellLogicVisibility
 
         if (editorVisibility) {

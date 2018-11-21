@@ -10,7 +10,6 @@ import androidx.appcompat.widget.PopupMenu
 import bav.onecell.R
 import bav.onecell.common.Common
 import bav.onecell.heroscreen.HeroScreen
-import kotlinx.android.synthetic.main.item_row_add_new_condition.view.buttonAddNewCondition
 import kotlinx.android.synthetic.main.item_row_rule_condition.view.buttonExpectedValue
 import kotlinx.android.synthetic.main.item_row_rule_condition.view.buttonFieldToCheck
 import kotlinx.android.synthetic.main.item_row_rule_condition.view.buttonOperation
@@ -27,17 +26,13 @@ class ConditionsRecyclerViewAdapter(
     }
 
     override fun getItemViewType(position: Int): Int {
-        return if (position == presenter.conditionsCount()) R.layout.item_row_add_new_condition
-        else R.layout.item_row_rule_condition
+        return R.layout.item_row_rule_condition
     }
 
-    override fun getItemCount(): Int = if (presenter.conditionsCount() == -1) 0 else presenter.conditionsCount() + 1
+    override fun getItemCount(): Int = if (presenter.conditionsCount() == -1) 0 else presenter.conditionsCount()
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         when (getItemViewType(position)) {
-            R.layout.item_row_add_new_condition -> {
-                // Do nothing
-            }
             R.layout.item_row_rule_condition -> {
                 presenter.getCondition(position)?.let {
                     holder.view.conditionRow.setBackgroundColor(getRowBackgroundColor(holder.view.context, position))
@@ -59,12 +54,6 @@ class ConditionsRecyclerViewAdapter(
             androidx.recyclerview.widget.RecyclerView.ViewHolder(view) {
         init {
             when (viewType) {
-                R.layout.item_row_add_new_condition -> {
-                    view.buttonAddNewCondition.setOnClickListener {
-                        presenter.createNewCondition()
-                        showConditionCreationPopupMenu(it)
-                    }
-                }
                 R.layout.item_row_rule_condition -> {
                     view.buttonRemoveCondition.setOnClickListener {
                         presenter.removeCondition(adapterPosition)
@@ -111,28 +100,10 @@ class ConditionsRecyclerViewAdapter(
             } catch (e: Exception) {
                 e.printStackTrace()
             }
-
         }
 
         private val menuItemClickListener = PopupMenu.OnMenuItemClickListener {
             presenter.pickerOptionOnClick(it.itemId)
-            true
-        }
-
-        private fun showConditionCreationPopupMenu(view: View) {
-            val popupMenu = PopupMenu(view.context, view)
-            forceIconsShow(popupMenu)
-            popupMenu.inflate(R.menu.condition_creation)
-            popupMenu.setOnMenuItemClickListener(conditionCreationMenuItemClickListener)
-            popupMenu.show()
-        }
-
-        private val conditionCreationMenuItemClickListener = PopupMenu.OnMenuItemClickListener {
-            when (it.groupId) {
-                R.id.group_field_to_check -> presenter.setFieldToCheckForCurrentCondition(it.itemId)
-                R.id.group_operation -> presenter.setOperationForCurrentCondition(it.itemId)
-                R.id.group_expected_value -> presenter.setExpectedValueForCurrentCondition(it.itemId)
-            }
             true
         }
     }

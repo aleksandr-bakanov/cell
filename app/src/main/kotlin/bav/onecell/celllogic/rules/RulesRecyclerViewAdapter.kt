@@ -13,7 +13,6 @@ import bav.onecell.R
 import bav.onecell.common.Common
 import bav.onecell.heroscreen.HeroScreen
 import bav.onecell.model.cell.logic.Condition
-import kotlinx.android.synthetic.main.item_row_add_new_rule.view.buttonAddNewRule
 import kotlinx.android.synthetic.main.item_row_rule.view.buttonChooseRuleAction
 import kotlinx.android.synthetic.main.item_row_rule.view.buttonRemoveRule
 import kotlinx.android.synthetic.main.item_row_rule.view.conditions
@@ -34,17 +33,13 @@ class RulesRecyclerViewAdapter(
     }
 
     override fun getItemViewType(position: Int): Int {
-        return if (position == presenter.rulesCount()) R.layout.item_row_add_new_rule
-               else R.layout.item_row_rule
+        return R.layout.item_row_rule
     }
 
-    override fun getItemCount(): Int = presenter.rulesCount() + 1
+    override fun getItemCount(): Int = presenter.rulesCount()
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         when (getItemViewType(position)) {
-            R.layout.item_row_add_new_rule -> {
-                // Do nothing
-            }
             R.layout.item_row_rule -> {
                 holder.view.ruleRow.setBackgroundColor(getRowBackgroundColor(holder.view.context, position))
                 presenter.getRule(position)?.let {
@@ -95,9 +90,6 @@ class RulesRecyclerViewAdapter(
     class ViewHolder(val view: View, private val presenter: HeroScreen.Presenter, viewType: Int) : androidx.recyclerview.widget.RecyclerView.ViewHolder(view) {
         init {
             when (viewType) {
-                R.layout.item_row_add_new_rule -> {
-                    view.buttonAddNewRule.setOnClickListener { presenter.createNewRule() }
-                }
                 R.layout.item_row_rule -> {
                     view.buttonRemoveRule.setOnClickListener { presenter.removeRule(adapterPosition) }
                     view.ruleRow.setOnClickListener { presenter.openConditionsList(adapterPosition) }

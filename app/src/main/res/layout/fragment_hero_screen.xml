@@ -278,11 +278,22 @@
         android:layout_height="0dp"
         android:layout_margin="@dimen/hero_screen_cell_logic_margin"
         android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/buttonAddNewRule"
         app:layout_constraintEnd_toStartOf="@id/recyclerViewConditionsList"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@id/guideline_hero_screen_avatars_end"
         app:layout_constraintTop_toBottomOf="@id/cellName" />
+
+    <Button
+        android:id="@+id/buttonAddNewRule"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_add_new_rule_title"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="@id/recyclerViewRulesList"
+        app:layout_constraintStart_toStartOf="@id/recyclerViewRulesList"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/recyclerViewRulesList" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewConditionsList"
@@ -290,11 +301,22 @@
         android:layout_height="0dp"
         android:layout_margin="@dimen/hero_screen_cell_logic_margin"
         android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/buttonAddNewCondition"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@id/recyclerViewRulesList"
         app:layout_constraintTop_toBottomOf="@id/cellName" />
+
+    <Button
+        android:id="@+id/buttonAddNewCondition"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_add_new_condition_title"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="@id/recyclerViewConditionsList"
+        app:layout_constraintStart_toStartOf="@id/recyclerViewConditionsList"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/recyclerViewConditionsList" />
 
     <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/buttonSwitchScreen"

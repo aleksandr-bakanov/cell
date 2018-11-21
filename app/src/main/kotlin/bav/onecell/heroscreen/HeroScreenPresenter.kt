@@ -223,7 +223,6 @@ class HeroScreenPresenter(
             val tmp = it[first]
             it[first] = it[second]
             it[second] = tmp
-            rulesNotifier.onNext(Unit)
         }
     }
 
