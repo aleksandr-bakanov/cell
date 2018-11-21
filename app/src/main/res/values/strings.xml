@@ -48,8 +48,8 @@
     <string name="button_cancel" translatable="false">Cancel</string>
 
     <!-- Rules editor view -->
-    <string name="button_add_new_rule_title" translatable="false">Add rule</string>
-    <string name="button_add_new_condition_title" translatable="false">Add condition</string>
+    <string name="button_add_new_rule_title">Add rule</string>
+    <string name="button_add_new_condition_title">Add condition</string>
     <string name="condition_representation" translatable="false">(%1$s %2$s %3$s)</string>
 
     <!-- UTF icons -->

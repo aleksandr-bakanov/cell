@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Rules editor view -->
+    <string name="button_add_new_rule_title">Добавить правило</string>
+    <string name="button_add_new_condition_title">Добавить условие</string>
+
+    <!-- Rules descriptions -->
     <string name="utf_icon_north_direction">Север</string>
     <string name="utf_icon_north_east_direction">Северо-восток</string>
     <string name="utf_icon_south_east_direction">Юго-восток</string>

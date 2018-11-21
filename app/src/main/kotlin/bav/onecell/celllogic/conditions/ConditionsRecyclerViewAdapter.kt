@@ -87,7 +87,6 @@ class ConditionsRecyclerViewAdapter(
             if (menuLayout != 0) {
                 val popupMenu = PopupMenu(view.context, view)
                 forceIconsShow(popupMenu)
-                popupMenu.gravity = Gravity.LEFT
                 popupMenu.inflate(menuLayout)
                 popupMenu.setOnMenuItemClickListener(menuItemClickListener)
                 popupMenu.show()
@@ -123,7 +122,6 @@ class ConditionsRecyclerViewAdapter(
         private fun showConditionCreationPopupMenu(view: View) {
             val popupMenu = PopupMenu(view.context, view)
             forceIconsShow(popupMenu)
-            popupMenu.gravity = Gravity.LEFT
             popupMenu.inflate(R.menu.condition_creation)
             popupMenu.setOnMenuItemClickListener(conditionCreationMenuItemClickListener)
             popupMenu.show()

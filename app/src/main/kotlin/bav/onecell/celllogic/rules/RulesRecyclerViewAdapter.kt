@@ -78,7 +78,6 @@ class RulesRecyclerViewAdapter(
         private fun showPopupMenu(context: Context, view: View, menuLayout: Int) {
             val popupMenu = PopupMenu(context, view)
             forceIconsShow(popupMenu)
-            popupMenu.gravity = Gravity.LEFT
             popupMenu.inflate(menuLayout)
             popupMenu.setOnMenuItemClickListener(menuItemClickListener)
             popupMenu.show()
