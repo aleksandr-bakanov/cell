@@ -30,6 +30,7 @@ class ResourceProviderImpl(private val context: Context): Common.ResourceProvide
         return when (fieldToCheck) {
             Condition.FieldToCheck.DIRECTION_TO_NEAREST_ENEMY -> context.resources.getString(R.string.utf_icon_direction_to_nearest_enemy)
             Condition.FieldToCheck.DISTANCE_TO_NEAREST_ENEMY -> context.resources.getString(R.string.utf_icon_distance_to_nearest_enemy)
+            else -> EMPTY_STRING
         }
     }
 
@@ -38,6 +39,7 @@ class ResourceProviderImpl(private val context: Context): Common.ResourceProvide
             Condition.Operation.EQUALS -> context.resources.getString(R.string.utf_icon_equality)
             Condition.Operation.LESS_THAN -> context.resources.getString(R.string.utf_icon_less_than)
             Condition.Operation.GREATER_THAN -> context.resources.getString(R.string.utf_icon_greater_than)
+            else -> EMPTY_STRING
         }
     }
 
@@ -50,7 +52,7 @@ class ResourceProviderImpl(private val context: Context): Common.ResourceProvide
                 Cell.Direction.S.ordinal -> context.resources.getString(R.string.utf_icon_south_direction)
                 Cell.Direction.SW.ordinal -> context.resources.getString(R.string.utf_icon_south_west_direction)
                 Cell.Direction.NW.ordinal -> context.resources.getString(R.string.utf_icon_north_west_direction)
-                else -> ""
+                else -> EMPTY_STRING
             }
             Condition.FieldToCheck.DISTANCE_TO_NEAREST_ENEMY -> when (expected) {
                 0 -> context.resources.getString(R.string.utf_icon_digit_zero)
@@ -63,8 +65,9 @@ class ResourceProviderImpl(private val context: Context): Common.ResourceProvide
                 7 -> context.resources.getString(R.string.utf_icon_digit_seven)
                 8 -> context.resources.getString(R.string.utf_icon_digit_eight)
                 9 -> context.resources.getString(R.string.utf_icon_digit_nine)
-                else -> ""
+                else -> EMPTY_STRING
             }
+            else -> EMPTY_STRING
         }
     }
 
@@ -106,4 +109,8 @@ class ResourceProviderImpl(private val context: Context): Common.ResourceProvide
 
     override fun getString(name: String?): String? = getString(getStringIdentifier(name))
     override fun getDrawable(name: String?): Drawable? = getDrawable(getDrawableIdentifier(name))
+
+    companion object {
+        private const val EMPTY_STRING = ""
+    }
 }

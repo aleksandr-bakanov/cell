@@ -91,7 +91,7 @@ class HeroScreenPresenter(
 
     override fun conditionsUpdateNotifier(): Observable<Unit> = conditionsNotifier
 
-    override fun conditionsCount(): Int = currentlyEditedRule?.size() ?: 0
+    override fun conditionsCount(): Int = currentlyEditedRule?.size() ?: -1
 
     override fun createNewCondition() {
         currentlyEditedRule?.let {
@@ -510,6 +510,7 @@ class HeroScreenPresenter(
             when (condition.fieldToCheck) {
                 Condition.FieldToCheck.DIRECTION_TO_NEAREST_ENEMY -> cellRuleConditionOperationsDirectionToNearestEnemy
                 Condition.FieldToCheck.DISTANCE_TO_NEAREST_ENEMY -> cellRuleConditionOperationsDistanceToNearestEnemy
+                else -> null
             }
         }
     }
@@ -519,6 +520,7 @@ class HeroScreenPresenter(
             when (condition.fieldToCheck) {
                 Condition.FieldToCheck.DIRECTION_TO_NEAREST_ENEMY -> R.menu.condition_operations_direction_to_nearest_enemy
                 Condition.FieldToCheck.DISTANCE_TO_NEAREST_ENEMY -> R.menu.condition_operations_distance_to_nearest_enemy
+                else -> 0
             }
         } ?: 0
     }
@@ -528,6 +530,7 @@ class HeroScreenPresenter(
             when (condition.fieldToCheck) {
                 Condition.FieldToCheck.DIRECTION_TO_NEAREST_ENEMY -> cellRuleConditionExpectedValuesDirectionToNearestEnemy
                 Condition.FieldToCheck.DISTANCE_TO_NEAREST_ENEMY -> cellRuleConditionExpectedValuesDistanceToNearestEnemy
+                else -> null
             }
         }
     }
@@ -537,6 +540,7 @@ class HeroScreenPresenter(
             when (condition.fieldToCheck) {
                 Condition.FieldToCheck.DIRECTION_TO_NEAREST_ENEMY -> R.menu.condition_expected_values_direction_to_nearest_enemy
                 Condition.FieldToCheck.DISTANCE_TO_NEAREST_ENEMY -> R.menu.condition_expected_values_distance_to_nearest_enemy
+                else -> 0
             }
         } ?: 0
     }

@@ -30,7 +30,7 @@ class ConditionsRecyclerViewAdapter(
         else R.layout.item_row_rule_condition
     }
 
-    override fun getItemCount(): Int = presenter.conditionsCount() + 1
+    override fun getItemCount(): Int = if (presenter.conditionsCount() == -1) 0 else presenter.conditionsCount() + 1
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         when (getItemViewType(position)) {
