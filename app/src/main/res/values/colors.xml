@@ -7,7 +7,12 @@
     <!-- Cell editor view -->
     <color name="cellEditorBackground">#cccccc</color>
     <color name="cellEditorGrid">#888888</color>
-    <color name="cellEditorTip">#b3b3b3</color>
+    <color name="cellEditorTip">#98000000</color>
+    <color name="cellEditorTipLife">#985aba17</color>
+    <color name="cellEditorTipEnergy">#98c1d214</color>
+    <color name="cellEditorTipAttack">#98d41313</color>
+    <color name="cellEditorTipDeathRay">#989c27b0</color>
+    <color name="cellEditorTipOmniBullet">#982ad4ff</color>
     <color name="cellEditorLife">#5aba17</color>
     <color name="cellEditorEnergy">#c1d214</color>
     <color name="cellEditorDeathRay">#9c27b0</color>

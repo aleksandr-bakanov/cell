@@ -18,8 +18,8 @@
     <!-- Hex types buttons -->
     <bav.onecell.common.view.HexPicker
         android:id="@+id/radioButtonLifeHex"
-        android:layout_width="@dimen/hero_screen_hex_type_size"
-        android:layout_height="@dimen/hero_screen_hex_type_size"
+        android:layout_width="@dimen/hero_screen_hex_type_width"
+        android:layout_height="@dimen/hero_screen_hex_type_height"
         android:padding="5dp"
         app:layout_constraintBottom_toTopOf="@id/guideline_hero_screen_cellname_bottom"
         app:layout_constraintEnd_toStartOf="@+id/radioButtonAttackHex"
@@ -29,8 +29,8 @@
 
     <bav.onecell.common.view.HexPicker
         android:id="@+id/radioButtonAttackHex"
-        android:layout_width="@dimen/hero_screen_hex_type_size"
-        android:layout_height="@dimen/hero_screen_hex_type_size"
+        android:layout_width="@dimen/hero_screen_hex_type_width"
+        android:layout_height="@dimen/hero_screen_hex_type_height"
         android:padding="5dp"
         app:layout_constraintBottom_toTopOf="@id/guideline_hero_screen_cellname_bottom"
         app:layout_constraintEnd_toStartOf="@id/radioButtonEnergyHex"
@@ -40,8 +40,8 @@
 
     <bav.onecell.common.view.HexPicker
         android:id="@+id/radioButtonEnergyHex"
-        android:layout_width="@dimen/hero_screen_hex_type_size"
-        android:layout_height="@dimen/hero_screen_hex_type_size"
+        android:layout_width="@dimen/hero_screen_hex_type_width"
+        android:layout_height="@dimen/hero_screen_hex_type_height"
         android:padding="5dp"
         app:layout_constraintBottom_toTopOf="@id/guideline_hero_screen_cellname_bottom"
         app:layout_constraintEnd_toStartOf="@id/radioButtonDeathRayHex"
@@ -51,8 +51,8 @@
 
     <bav.onecell.common.view.HexPicker
         android:id="@+id/radioButtonDeathRayHex"
-        android:layout_width="@dimen/hero_screen_hex_type_size"
-        android:layout_height="@dimen/hero_screen_hex_type_size"
+        android:layout_width="@dimen/hero_screen_hex_type_width"
+        android:layout_height="@dimen/hero_screen_hex_type_height"
         android:padding="5dp"
         app:layout_constraintBottom_toTopOf="@id/guideline_hero_screen_cellname_bottom"
         app:layout_constraintEnd_toStartOf="@id/radioButtonOmniBulletHex"
@@ -62,8 +62,8 @@
 
     <bav.onecell.common.view.HexPicker
         android:id="@+id/radioButtonOmniBulletHex"
-        android:layout_width="@dimen/hero_screen_hex_type_size"
-        android:layout_height="@dimen/hero_screen_hex_type_size"
+        android:layout_width="@dimen/hero_screen_hex_type_width"
+        android:layout_height="@dimen/hero_screen_hex_type_height"
         android:padding="5dp"
         app:layout_constraintBottom_toTopOf="@id/guideline_hero_screen_cellname_bottom"
         app:layout_constraintEnd_toStartOf="@id/radioButtonRemoveHex"
@@ -73,8 +73,8 @@
 
     <bav.onecell.common.view.HexPicker
         android:id="@+id/radioButtonRemoveHex"
-        android:layout_width="@dimen/hero_screen_hex_remove_size"
-        android:layout_height="@dimen/hero_screen_hex_remove_size"
+        android:layout_width="@dimen/hero_screen_hex_remove_width"
+        android:layout_height="@dimen/hero_screen_hex_remove_height"
         android:padding="5dp"
         app:layout_constraintBottom_toTopOf="@id/guideline_hero_screen_cellname_bottom"
         app:layout_constraintEnd_toEndOf="@id/guideline_hero_screen_center_vertical"

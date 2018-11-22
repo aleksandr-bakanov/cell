@@ -23,11 +23,24 @@ class EditorCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
     lateinit var presenter: Editor.Presenter
     var selectedCellType: Hex.Type = Hex.Type.LIFE
     var tipHexes: Collection<Hex>? = null
+
     private val tipPaint = Paint()
+    private val tipPaintLife = Paint()
+    private val tipPaintAttack = Paint()
+    private val tipPaintEnergy = Paint()
+    private val tipPaintDeathRay = Paint()
+    private val tipPaintOmniBullet = Paint()
 
     init {
-        tipPaint.style = Paint.Style.FILL
+        for (p in arrayListOf(tipPaint, tipPaintLife, tipPaintAttack, tipPaintEnergy, tipPaintDeathRay, tipPaintOmniBullet))
+            p.style = Paint.Style.FILL
+
         tipPaint.color = ContextCompat.getColor(context, R.color.cellEditorTip)
+        tipPaintLife.color = ContextCompat.getColor(context, R.color.cellEditorTipLife)
+        tipPaintAttack.color = ContextCompat.getColor(context, R.color.cellEditorTipAttack)
+        tipPaintEnergy.color = ContextCompat.getColor(context, R.color.cellEditorTipEnergy)
+        tipPaintDeathRay.color = ContextCompat.getColor(context, R.color.cellEditorTipDeathRay)
+        tipPaintOmniBullet.color = ContextCompat.getColor(context, R.color.cellEditorTipOmniBullet)
 
         setOnTouchListener { view: View?, event: MotionEvent? ->
             super.onTouchListener(view, event)
@@ -51,10 +64,25 @@ class EditorCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
         super.onDraw(canvas)
         cell?.let {
             it.evaluateCellHexesPower()
-            drawUtils.drawHexes(canvas, it.data.origin, tipHexes, tipPaint, layout)
-            drawUtils.drawCell(canvas, it, layout = layout)
+            if (selectedCellType == Hex.Type.REMOVE) {
+                drawUtils.drawCell(canvas, it, layout = layout)
+                drawUtils.drawHexes(canvas, it.data.origin, tipHexes, getTipPaint(selectedCellType), layout)
+            }
+            else {
+                drawUtils.drawHexes(canvas, it.data.origin, tipHexes, getTipPaint(selectedCellType), layout)
+                drawUtils.drawCell(canvas, it, layout = layout)
+            }
             drawUtils.drawCellPower(canvas, it, layout)
         }
+    }
+
+    private fun getTipPaint(type: Hex.Type): Paint = when (type) {
+        Hex.Type.LIFE -> tipPaintLife
+        Hex.Type.ENERGY -> tipPaintEnergy
+        Hex.Type.ATTACK -> tipPaintAttack
+        Hex.Type.DEATH_RAY -> tipPaintDeathRay
+        Hex.Type.OMNI_BULLET -> tipPaintOmniBullet
+        else -> tipPaint
     }
 
     fun pointToHex(x: Float, y: Float): Hex {

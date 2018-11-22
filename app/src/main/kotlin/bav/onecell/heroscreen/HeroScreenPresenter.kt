@@ -273,6 +273,7 @@ class HeroScreenPresenter(
                 increaseHexesInBucket(hexType)
                 it.removeHex(hex)
                 it.evaluateCellHexesPower()
+                view.highlightTips(Hex.Type.REMOVE)
             }
         }
     }
@@ -297,7 +298,11 @@ class HeroScreenPresenter(
     override fun getTipHexes(type: Hex.Type): Collection<Hex> {
         cell?.let { c ->
             c.updateOutlineHexes()
-            return c.getOutlineHexes().filter { hex -> gameRules.isAllowedToAddHexIntoCell(c, hex.withType(type)) }
+            return when (type) {
+                Hex.Type.REMOVE -> c.data.hexes.values.filter { hex -> !gameRules.isAllowedToRemoveHexFromCell(c, hex) }
+                else -> c.getOutlineHexes().filter { hex -> gameRules.isAllowedToAddHexIntoCell(c, hex.withType(type)) }
+            }
+
         }
         return mutableSetOf()
     }
