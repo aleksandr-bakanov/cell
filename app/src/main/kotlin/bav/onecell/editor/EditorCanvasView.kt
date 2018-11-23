@@ -5,6 +5,7 @@ import android.graphics.Canvas
 import android.graphics.Paint
 import androidx.core.content.ContextCompat
 import android.util.AttributeSet
+import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import bav.onecell.R
@@ -45,7 +46,7 @@ class EditorCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
         setOnTouchListener { view: View?, event: MotionEvent? ->
             super.onTouchListener(view, event)
             if (event?.action == MotionEvent.ACTION_UP) {
-                if (event.pointerCount == 1) {
+                if (event.pointerCount == 1 && !touchMoved) {
                     val hex = pointToHex(event.x, event.y)
                     if (selectedCellType == Hex.Type.REMOVE) {
                         presenter.removeHexFromCell(hex)
@@ -55,6 +56,7 @@ class EditorCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
                     }
                     invalidate()
                 }
+                touchMoved = false
             }
             true
         }

@@ -7,6 +7,7 @@ import android.graphics.Paint
 import android.graphics.Path
 import androidx.core.content.ContextCompat
 import android.util.AttributeSet
+import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import bav.onecell.R
@@ -17,11 +18,13 @@ import bav.onecell.model.hexes.Layout
 import bav.onecell.model.hexes.Orientation
 import bav.onecell.model.hexes.Point
 import kotlin.math.min
+import kotlin.math.sqrt
 
 open class CanvasView(context: Context, attributeSet: AttributeSet) : View(context, attributeSet) {
 
     companion object {
         private const val TAG = "CanvasView"
+        private const val DISTANCE_TO_BEGIN_LAYOUT_MOVING = 20f
     }
 
     var backgroundFieldRadius: Int = 3
@@ -35,6 +38,8 @@ open class CanvasView(context: Context, attributeSet: AttributeSet) : View(conte
 
     protected var lastTouchX = 0f
     protected var lastTouchY = 0f
+    protected var touchMoved = false
+
     protected var layout = Layout(Orientation.LAYOUT_POINTY, Point(Layout.DUMMY.size.x, Layout.DUMMY.size.y), Point())
 
     private val gridPaint = Paint()
@@ -64,9 +69,10 @@ open class CanvasView(context: Context, attributeSet: AttributeSet) : View(conte
             lastTouchX = event.getX(event.getPointerId(0))
             lastTouchY = event.getY(event.getPointerId(0))
         } else if (event?.action == MotionEvent.ACTION_MOVE) {
-            if (event.pointerCount > 1) {
-                val curX = event.getX(event.getPointerId(0))
-                val curY = event.getY(event.getPointerId(0))
+            val curX = event.getX(event.getPointerId(0))
+            val curY = event.getY(event.getPointerId(0))
+            if (touchMoved or isTouchMovedEnough(curX, curY)) {
+                touchMoved = true
                 val dx = curX - lastTouchX
                 val dy = curY - lastTouchY
                 lastTouchX = curX
@@ -81,6 +87,12 @@ open class CanvasView(context: Context, attributeSet: AttributeSet) : View(conte
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
         super.onSizeChanged(w, h, oldw, oldh)
         initializeLayout(w, h)
+    }
+
+    private fun isTouchMovedEnough(x: Float, y: Float): Boolean {
+        val dx = x - lastTouchX
+        val dy = y - lastTouchY
+        return sqrt(dx * dx + dy * dy) > DISTANCE_TO_BEGIN_LAYOUT_MOVING
     }
 
     private fun initializeLayout(width: Int, height: Int) {
