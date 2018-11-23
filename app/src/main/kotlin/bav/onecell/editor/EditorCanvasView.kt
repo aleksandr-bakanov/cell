@@ -46,7 +46,7 @@ class EditorCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
         setOnTouchListener { view: View?, event: MotionEvent? ->
             super.onTouchListener(view, event)
             if (event?.action == MotionEvent.ACTION_UP) {
-                if (event.pointerCount == 1 && !touchMoved) {
+                if (!touchMoved) {
                     val hex = pointToHex(event.x, event.y)
                     if (selectedCellType == Hex.Type.REMOVE) {
                         presenter.removeHexFromCell(hex)

@@ -69,17 +69,19 @@ open class CanvasView(context: Context, attributeSet: AttributeSet) : View(conte
             lastTouchX = event.getX(event.getPointerId(0))
             lastTouchY = event.getY(event.getPointerId(0))
         } else if (event?.action == MotionEvent.ACTION_MOVE) {
-            val curX = event.getX(event.getPointerId(0))
-            val curY = event.getY(event.getPointerId(0))
-            if (touchMoved or isTouchMovedEnough(curX, curY)) {
-                touchMoved = true
-                val dx = curX - lastTouchX
-                val dy = curY - lastTouchY
-                lastTouchX = curX
-                lastTouchY = curY
-                layout.origin = Point(layout.origin.x + dx, layout.origin.y + dy)
-                invalidate()
-            }
+            try {
+                val curX = event.getX(event.getPointerId(0))
+                val curY = event.getY(event.getPointerId(0))
+                if (touchMoved or isTouchMovedEnough(curX, curY)) {
+                    touchMoved = true
+                    val dx = curX - lastTouchX
+                    val dy = curY - lastTouchY
+                    lastTouchX = curX
+                    lastTouchY = curY
+                    layout.origin = Point(layout.origin.x + dx, layout.origin.y + dy)
+                    invalidate()
+                }
+            } catch (e: IllegalArgumentException) { /* Prevent 'pointerIndex out of range' on multi-touch */ }
         }
         return true
     }
