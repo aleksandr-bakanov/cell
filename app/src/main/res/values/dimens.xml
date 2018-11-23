@@ -12,6 +12,8 @@
     <dimen name="hero_screen_hex_remove_width">53dp</dimen>
     <dimen name="hero_screen_hex_remove_height">60dp</dimen>
 
+    <dimen name="hero_screen_rotation_button_horizontal_margin">8dp</dimen>
+
     <dimen name="hero_screen_cell_logic_picker_height">52dp</dimen>
     <dimen name="hero_screen_cell_logic_utf_icons_size">28sp</dimen>
     <dimen name="hero_screen_cell_logic_margin">4dp</dimen>

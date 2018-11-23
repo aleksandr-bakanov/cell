@@ -136,16 +136,18 @@
         android:id="@+id/buttonRotateCellLeft"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/hero_screen_rotation_button_horizontal_margin"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@id/guideline_hero_screen_avatars_end"
+        app:layout_constraintEnd_toStartOf="@+id/buttonTransformHexes"
         app:srcCompat="@drawable/ic_rotate_left_black_24dp" />
 
     <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/buttonRotateCellRight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/hero_screen_rotation_button_horizontal_margin"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@id/guideline_hero_screen_center_vertical"
+        app:layout_constraintStart_toEndOf="@id/buttonTransformHexes"
         app:srcCompat="@drawable/ic_rotate_right_black_24dp" />
 
     <!-- Transform hexes button -->
@@ -154,7 +156,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@id/guideline_hero_screen_center_vertical"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/guideline_hero_screen_avatars_end"
         app:srcCompat="@drawable/ic_account_balance_black_24dp" />
 
@@ -197,20 +199,19 @@
         android:layout_height="wrap_content"
         android:text="@string/button_transform_life_to_omni_bullet_hex_title"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/buttonTransformHexes"
+        app:layout_constraintEnd_toStartOf="@id/buttonTransformOmniBulletToLifeHex"
         app:layout_constraintStart_toStartOf="@id/guideline_hero_screen_avatars_end"
-        app:layout_constraintTop_toBottomOf="@id/buttonTransformLifeToDeathRayHex"
-        app:layout_constraintEnd_toStartOf="@id/buttonTransformOmniBulletToLifeHex"/>
+        app:layout_constraintTop_toBottomOf="@id/buttonTransformLifeToDeathRayHex" />
 
     <Button
         android:id="@+id/buttonTransformAttackToLifeHex"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
         android:text="@string/button_transform_attack_to_life_hex_title"
         android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@id/buttonTransformEnergyToLifeHex"
-        app:layout_constraintEnd_toEndOf="@id/guideline_hero_screen_center_vertical"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/buttonTransformLifeToAttackHex"
         app:layout_constraintTop_toTopOf="@id/guideline_hero_screen_cellname_bottom" />
 
@@ -221,7 +222,7 @@
         android:text="@string/button_transform_energy_to_life_hex_title"
         android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@id/buttonTransformDeathRayToLifeHex"
-        app:layout_constraintEnd_toEndOf="@id/guideline_hero_screen_center_vertical"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/buttonTransformAttackToLifeHex"
         app:layout_constraintStart_toEndOf="@+id/buttonTransformLifeToEnergyHex"
         />
@@ -233,7 +234,7 @@
         android:text="@string/button_transform_death_ray_to_life_hex_title"
         android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@id/buttonTransformOmniBulletToLifeHex"
-        app:layout_constraintEnd_toEndOf="@id/guideline_hero_screen_center_vertical"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/buttonTransformEnergyToLifeHex"
         app:layout_constraintStart_toEndOf="@+id/buttonTransformLifeToDeathRayHex"
         />
@@ -244,8 +245,8 @@
         android:layout_height="wrap_content"
         android:text="@string/button_transform_omni_bullet_to_life_hex_title"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@id/guideline_hero_screen_center_vertical"
+        app:layout_constraintBottom_toTopOf="@id/buttonTransformHexes"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/buttonTransformDeathRayToLifeHex"
         app:layout_constraintStart_toEndOf="@+id/buttonTransformLifeToOmniBulletHex"
         />
@@ -301,7 +302,6 @@
         android:id="@+id/buttonSwitchScreen"
         android:layout_width="@dimen/hero_screen_avatar_size"
         android:layout_height="@dimen/hero_screen_avatar_size"
-        android:layout_margin="@dimen/hero_screen_avatar_margin"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/ic_memory_black_24dp" />
