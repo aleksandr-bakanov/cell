@@ -102,6 +102,10 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
         recyclerViewConditionsList.layoutManager = LinearLayoutManager(context)
         recyclerViewConditionsList.adapter = ConditionsRecyclerViewAdapter(presenter, resourceProvider)
 
+        cellName.setOnClickListener {
+            textHeroHistory.visible = !textHeroHistory.visible
+        }
+
         disposables.addAll(
                 presenter.getCellProvider().subscribe {
                     editorCanvasView.cell = it
@@ -425,7 +429,7 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
 
         /// TODO: energy hex is available not from the beginning
         for (view in arrayListOf<View>(radioButtonLifeHex, radioButtonAttackHex, radioButtonEnergyHex,
-                                       radioButtonRemoveHex, editorCanvasView, textHeroHistory,
+                                       radioButtonRemoveHex, editorCanvasView,
                                        buttonRotateCellLeft, buttonRotateCellRight, radioButtonDeathRayHex,
                                        radioButtonOmniBulletHex,
                                        buttonTransformHexes, buttonTransformAttackToLifeHex, buttonTransformDeathRayToLifeHex,
@@ -434,6 +438,8 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
                                        buttonTransformLifeToDeathRayHex, buttonTransformLifeToEnergyHex)) {
             view.visible = editorVisibility
         }
+
+        textHeroHistory.visible = !cellLogicVisibility and textHeroHistory.visible
 
         for (view in arrayListOf<View>(recyclerViewRulesList, recyclerViewConditionsList,
                                        buttonAddNewRule, buttonAddNewCondition))

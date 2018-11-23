@@ -4,6 +4,8 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
+    <color name="applicationBackground">#ffcc80</color>
+
     <!-- Cell editor view -->
     <color name="cellEditorBackground">#cccccc</color>
     <color name="cellEditorGrid">#888888</color>
