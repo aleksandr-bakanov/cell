@@ -7,9 +7,12 @@
 
     <Button
         android:id="@+id/buttonNewGame"
+        android:background="@drawable/button_main_menu_background"
+        android:textColor="@color/buttonMainMenu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/bromine"
+        android:layout_margin="2dp"
         android:text="@string/button_new_game_title"
         app:layout_constraintBottom_toTopOf="@id/buttonContinueGame"
         app:layout_constraintEnd_toEndOf="parent"
@@ -19,9 +22,12 @@
 
     <Button
         android:id="@+id/buttonContinueGame"
+        android:background="@drawable/button_main_menu_background"
+        android:textColor="@color/buttonMainMenu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/bromine"
+        android:layout_margin="2dp"
         android:text="@string/button_continue_game_title"
         app:layout_constraintBottom_toTopOf="@id/buttonGoToBattle"
         app:layout_constraintEnd_toEndOf="parent"
@@ -30,9 +36,12 @@
 
     <Button
         android:id="@+id/buttonGoToBattle"
+        android:background="@drawable/button_main_menu_background"
+        android:textColor="@color/buttonMainMenu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/bromine"
+        android:layout_margin="2dp"
         android:text="@string/button_go_to_battle_title"
         app:layout_constraintBottom_toTopOf="@id/buttonHeroScreen"
         app:layout_constraintEnd_toEndOf="parent"
@@ -41,8 +50,11 @@
 
     <Button
         android:id="@+id/buttonHeroScreen"
+        android:background="@drawable/button_main_menu_background"
+        android:textColor="@color/buttonMainMenu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="2dp"
         android:fontFamily="@font/bromine"
         android:text="@string/button_hero_screen_title"
         app:layout_constraintBottom_toTopOf="@id/buttonExitGame"
@@ -52,11 +64,13 @@
 
     <Button
         android:id="@+id/buttonExitGame"
+        android:background="@drawable/button_main_menu_background"
+        android:textColor="@color/buttonMainMenu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/bromine"
+        android:layout_margin="2dp"
         android:text="@string/button_exit_game_title"
-        android:textAllCaps="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
