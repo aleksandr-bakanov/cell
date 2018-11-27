@@ -15,7 +15,6 @@ import bav.onecell.common.Consts
 import bav.onecell.common.extensions.visible
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_cut_scene.background
-import kotlinx.android.synthetic.main.fragment_cut_scene.buttonNextFrame
 import kotlinx.android.synthetic.main.fragment_cut_scene.buttonNo
 import kotlinx.android.synthetic.main.fragment_cut_scene.buttonPreviousFrame
 import kotlinx.android.synthetic.main.fragment_cut_scene.buttonYes
@@ -52,7 +51,7 @@ class CutSceneFragment : Fragment(), CutScene.View {
         super.onActivityCreated(savedInstanceState)
         inject()
 
-        buttonNextFrame.setOnClickListener { showNextFrame() }
+        background.setOnClickListener { showNextFrame() }
         buttonPreviousFrame.setOnClickListener { showPreviousFrame() }
         buttonYes.setOnClickListener { makeDecision(true) }
         buttonNo.setOnClickListener { makeDecision(false) }
@@ -120,7 +119,6 @@ class CutSceneFragment : Fragment(), CutScene.View {
             textView.text = resourceProvider.getString(it.text)
 
             // TODO: don't give a choice if decision has been taken already
-            buttonNextFrame.visible = it.decisionField.isEmpty()
             buttonPreviousFrame.visible = it.decisionField.isEmpty()
             buttonYes.visible = it.decisionField.isNotEmpty()
             buttonNo.visible = it.decisionField.isNotEmpty()

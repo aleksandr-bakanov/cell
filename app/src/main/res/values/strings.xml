@@ -8,6 +8,7 @@
     <string name="button_hero_screen_title" translatable="false">Heroes</string>
     <string name="button_exit_game_title" translatable="false">Exit game</string>
     <string name="button_continue_game_title" translatable="false">Continue</string>
+    <string name="image_description_main_menu_background" translatable="false">Main menu background</string>
 
     <string name="button_start_battle_title" translatable="false">Start battle</string>
     <string name="button_create_new_cell_title" translatable="false">Create new cell</string>
@@ -107,7 +108,7 @@
       -->
     <string name="cut_scene_introduction" translatable="false">
         "{
-            background: 'wallpaper_01',
+            background: 'ic_cs_introduction_0',
             left: 'left_character',
             right: 'left_character',
             frames: {
