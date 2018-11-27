@@ -55,9 +55,6 @@ class BattleFragment : Fragment(), Battle.View {
     private var reward: String = ""
     private var battleDuration: Long = 0
     private var currentTimestamp: Long = 0
-    private val TIMESTAMP_STEP: Long = 100
-    private val TIMESTAMP_ANIMATION_STEP: Long = 16 // For ~60 fps
-    private val ANIMATION_TIMER_THREAD_NAME = "animation_timer_thread"
     private var animationTimer: Timer? = null
 
     private val seekBarListener = object : SeekBar.OnSeekBarChangeListener {
@@ -295,6 +292,9 @@ class BattleFragment : Fragment(), Battle.View {
     companion object {
         private const val TAG = "BattleFragment"
         const val EXTRA_PARAMS = "params"
+        private const val TIMESTAMP_STEP: Long = 100
+        private const val TIMESTAMP_ANIMATION_STEP: Long = 16 // For ~60 fps
+        private const val ANIMATION_TIMER_THREAD_NAME = "animation_timer_thread"
 
         fun newInstance(bundle: Bundle?): BattleFragment {
             val fragment = BattleFragment()

@@ -13,7 +13,11 @@ import bav.onecell.R
 import bav.onecell.common.Common
 import bav.onecell.common.Consts
 import bav.onecell.common.extensions.visible
+import io.reactivex.Observable
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.disposables.Disposable
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_cut_scene.background
 import kotlinx.android.synthetic.main.fragment_cut_scene.buttonNo
 import kotlinx.android.synthetic.main.fragment_cut_scene.buttonPreviousFrame
@@ -23,6 +27,7 @@ import kotlinx.android.synthetic.main.fragment_cut_scene.rightCharacter
 import kotlinx.android.synthetic.main.fragment_cut_scene.textView
 import org.json.JSONException
 import org.json.JSONObject
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 class CutSceneFragment : Fragment(), CutScene.View {
@@ -41,6 +46,10 @@ class CutSceneFragment : Fragment(), CutScene.View {
     private var noNextScene: Int = 0
     private var currentFrameIndex: Int = 0
     private var decisionMade: String = ""
+
+    private var animationTimer: Disposable? = null
+    private var currentFrameTextIndex: Int = 0
+    private var currentFrameText: String? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -67,12 +76,17 @@ class CutSceneFragment : Fragment(), CutScene.View {
 
     override fun onPause() {
         gameState.setCurrentFrame(currentFrameIndex)
+        stopTextTimer()
         super.onPause()
     }
 
     override fun onDestroyView() {
         disposables.dispose()
         super.onDestroyView()
+    }
+
+    private fun stopTextTimer() {
+        animationTimer?.let { if (!it.isDisposed) it.dispose() }
     }
 
     private fun inject() {
@@ -116,12 +130,30 @@ class CutSceneFragment : Fragment(), CutScene.View {
             background.setImageDrawable(ContextCompat.getDrawable(requireContext(), getBackground(it.background)))
             leftCharacter.setImageDrawable(ContextCompat.getDrawable(requireContext(), getLeftCharacter(it.left)))
             rightCharacter.setImageDrawable(ContextCompat.getDrawable(requireContext(), getRightCharacter(it.right)))
-            textView.text = resourceProvider.getString(it.text)
 
             // TODO: don't give a choice if decision has been taken already
             buttonPreviousFrame.visible = it.decisionField.isEmpty()
             buttonYes.visible = it.decisionField.isNotEmpty()
             buttonNo.visible = it.decisionField.isNotEmpty()
+
+            currentFrameText = resourceProvider.getString(it.text)
+            currentFrameTextIndex = 0
+            stopTextTimer()
+            animationTimer = Observable.interval(0L, TEXT_ANIMATION_STEP, TimeUnit.MILLISECONDS)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe {
+                        currentFrameText?.let { text ->
+                            if (text.isNotEmpty()) {
+                                textView.text = text.substring(0, currentFrameTextIndex + 1)
+                                if (currentFrameTextIndex < text.length - 1) currentFrameTextIndex++
+                                else stopTextTimer()
+                            }
+                            else {
+                                stopTextTimer()
+                            }
+                        }
+                    }
         }
     }
 
@@ -179,6 +211,9 @@ class CutSceneFragment : Fragment(), CutScene.View {
         const val NO_NEXT_FRAME = "noNextFrame"
 
         const val DEFAULT_NEXT_FRAME = -1
+
+        private const val TEXT_ANIMATION_STEP: Long = 50L
+        private const val TEXT_ANIMATION_TIMER_THREAD_NAME = "text_animation_timer_thread"
 
         @JvmStatic
         fun newInstance(bundle: Bundle?): CutSceneFragment {
