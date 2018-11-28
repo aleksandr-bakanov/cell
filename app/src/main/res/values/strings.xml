@@ -115,15 +115,88 @@
                 '0': { text: 'cs_introduction_0' },
                 '1': { text: 'cs_introduction_1' },
                 '2': { text: 'cs_introduction_2' },
-                '3': { text: 'cs_introduction_3' }
+                '3': { text: 'cs_introduction_3' },
+                '4': { text: 'cs_introduction_4' },
+                '5': { text: 'cs_introduction_5' },
+                '6': { text: 'cs_introduction_6' },
+                '7': { text: 'cs_introduction_7' },
+                '8': { text: 'cs_introduction_8' },
+                '9': { text: 'cs_introduction_9' },
+                '10': { text: 'cs_introduction_10' },
+                '11': { text: 'cs_introduction_11' },
+                '12': { text: 'cs_introduction_12' },
+                '13': { text: 'cs_introduction_13' },
+                '14': { text: 'cs_introduction_14' },
+                '15': { text: 'cs_introduction_15' },
+                '16': { text: 'cs_introduction_16' },
+                '17': { text: 'cs_introduction_17' },
+                '18': { text: 'cs_introduction_18' },
+                '19': { text: 'cs_introduction_19' },
+                '20': { text: 'cs_introduction_20' },
+                '21': { text: 'cs_introduction_21' },
+                '22': { text: 'cs_introduction_22' },
+                '23': { text: 'cs_introduction_23' },
+                '24': { text: 'cs_introduction_24' },
+                '25': { text: 'cs_introduction_25' },
+                '26': { text: 'cs_introduction_26' },
+                '27': { text: 'cs_introduction_27' },
+                '28': { text: 'cs_introduction_28' },
+                '29': { text: 'cs_introduction_29' },
+                '30': { text: 'cs_introduction_30' },
+                '31': { text: 'cs_introduction_31' },
+                '32': { text: 'cs_introduction_32' },
+                '33': { text: 'cs_introduction_33' },
+                '34': { text: 'cs_introduction_34' },
+                '35': { text: 'cs_introduction_35' },
+                '36': { text: 'cs_introduction_36' },
+                '37': { text: 'cs_introduction_37' },
+                '38': { text: 'cs_introduction_38' },
+                '39': { text: 'cs_introduction_39' }
             },
             next_scene: 'action_cutSceneIntroduction_to_battleGopniks'
         }"
     </string>
-    <string name="cs_introduction_0">Hello world!</string>
-    <string name="cs_introduction_1">Do you want to help?</string>
-    <string name="cs_introduction_2">You\'ve helped us :-)</string>
-    <string name="cs_introduction_3">You DIDN\'T help us :-(</string>
+    <string name="cs_introduction_0">cs_introduction_0</string>
+    <string name="cs_introduction_1">cs_introduction_1</string>
+    <string name="cs_introduction_2">cs_introduction_2</string>
+    <string name="cs_introduction_3">cs_introduction_3</string>
+    <string name="cs_introduction_4">cs_introduction_4</string>
+    <string name="cs_introduction_5">cs_introduction_5</string>
+    <string name="cs_introduction_6">cs_introduction_6</string>
+    <string name="cs_introduction_7">cs_introduction_7</string>
+    <string name="cs_introduction_8">cs_introduction_8</string>
+    <string name="cs_introduction_9">cs_introduction_9</string>
+    <string name="cs_introduction_10">cs_introduction_10</string>
+    <string name="cs_introduction_11">cs_introduction_11</string>
+    <string name="cs_introduction_12">cs_introduction_12</string>
+    <string name="cs_introduction_13">cs_introduction_13</string>
+    <string name="cs_introduction_14">cs_introduction_14</string>
+    <string name="cs_introduction_15">cs_introduction_15</string>
+    <string name="cs_introduction_16">cs_introduction_16</string>
+    <string name="cs_introduction_17">cs_introduction_17</string>
+    <string name="cs_introduction_18">cs_introduction_18</string>
+    <string name="cs_introduction_19">cs_introduction_19</string>
+    <string name="cs_introduction_20">cs_introduction_20</string>
+    <string name="cs_introduction_21">cs_introduction_21</string>
+    <string name="cs_introduction_22">cs_introduction_22</string>
+    <string name="cs_introduction_23">cs_introduction_23</string>
+    <string name="cs_introduction_24">cs_introduction_24</string>
+    <string name="cs_introduction_25">cs_introduction_25</string>
+    <string name="cs_introduction_26">cs_introduction_26</string>
+    <string name="cs_introduction_27">cs_introduction_27</string>
+    <string name="cs_introduction_28">cs_introduction_28</string>
+    <string name="cs_introduction_29">cs_introduction_29</string>
+    <string name="cs_introduction_30">cs_introduction_30</string>
+    <string name="cs_introduction_31">cs_introduction_31</string>
+    <string name="cs_introduction_32">cs_introduction_32</string>
+    <string name="cs_introduction_33">cs_introduction_33</string>
+    <string name="cs_introduction_34">cs_introduction_34</string>
+    <string name="cs_introduction_35">cs_introduction_35</string>
+    <string name="cs_introduction_36">cs_introduction_36</string>
+    <string name="cs_introduction_37">cs_introduction_37</string>
+    <string name="cs_introduction_38">cs_introduction_38</string>
+    <string name="cs_introduction_39">cs_introduction_39</string>
+
     <!--
       - Cut scene after gopniks contains description of the hero screen interface. At this moment only Kittaro
       - is available. Also the button for switching between editor and logic screens should be hidden.

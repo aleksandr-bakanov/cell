@@ -30,10 +30,46 @@
     <string name="utf_icon_digit_nine">Девять</string>
 
     <!-- Introduction scene -->
-    <string name="cs_introduction_0">Киттаро, ты должен срочно доставить это сообщение королю! Поспеши, от тебя зависит судьба общины!</string>
-    <string name="cs_introduction_1">Эй, Китти, куда это ты намылился? Что это ты там такое прячешь?</string>
-    <string name="cs_introduction_2">Не ваше дело, пропустите&#9230;</string>
-    <string name="cs_introduction_3">Посмотрите-ка котик рвется в бой, жми его, пацаны!</string>
+    <string name="cs_introduction_0">Поселок Фтерна, отдаленная провинция</string>
+    <string name="cs_introduction_1">Наш поселок жил мирно многие поколения. Всего было вдоволь, мы не жаловались.</string>
+    <string name="cs_introduction_2">Бывало к нам забредали артисты, которые веселили нас, бывало - разбойники, которые грабили нас.</string>
+    <string name="cs_introduction_3">Но поселок всегда выживал, несмотря ни на что.</string>
+    <string name="cs_introduction_4">Так было долгое время.</string>
+    <string name="cs_introduction_5">До прошлой ночи…</string>
+    <string name="cs_introduction_6">ночной пейзаж поселка</string>
+    <string name="cs_introduction_7">молния в небе</string>
+    <string name="cs_introduction_8">длинный тонкий цилиндр мчится к земле</string>
+    <string name="cs_introduction_9">вонзается в землю сея разрушение</string>
+    <string name="cs_introduction_10">деревня в огне</string>
+    <string name="cs_introduction_11">Проснись, Киттаро!</string>
+    <string name="cs_introduction_12">Проснись же!</string>
+    <string name="cs_introduction_13">Киттаро, собирайся, ты должен срочно доставить это сообщение во дворец!</string>
+    <string name="cs_introduction_14">Пророчество исполнилось!</string>
+    <string name="cs_introduction_15">Дед, отстань, ты бредишь…</string>
+    <string name="cs_introduction_16">Нет времени! Собирайся я сказал!</string>
+    <string name="cs_introduction_17">Что за пророчество? Какого черта… ладно-ладно, иду…</string>
+    <string name="cs_introduction_18">киттаро выходит из дома</string>
+    <string name="cs_introduction_19">его поджимают гопники</string>
+    <string name="cs_introduction_20">Эй, Китти, куда это ты намылился? Что это ты там такое прячешь?</string>
+    <string name="cs_introduction_21">Башка, Гречка, Костыль, не ожидал вас здесь встретить!</string>
+    <string name="cs_introduction_22">Некогда мне с вами болтать, пропустите…</string>
+    <string name="cs_introduction_23">Посмотрите-ка котик рвется в бой, жми его, пацаны!</string>
+    <string name="cs_introduction_24">Правила боя</string>
+    <string name="cs_introduction_25">Бой происходит на поле из шестигранников.</string>
+    <string name="cs_introduction_26">Твой персонаж - клетка, также как и другие персонажи.</string>
+    <string name="cs_introduction_27">Клетка состоит из ячеек (хексов).</string>
+    <string name="cs_introduction_28">Ячейки бывают разных типов, каждый тип ведет себя по-разному.</string>
+    <string name="cs_introduction_29">Сейчас тебе доступны только жизненные (зеленые) ячейки.</string>
+    <string name="cs_introduction_30">Каждая жизненная ячейка обладает силой равной двум.</string>
+    <string name="cs_introduction_31">Каждый ход клетки сближаются на расстояние одного хекса по направлению к ближайшему врагу.</string>
+    <string name="cs_introduction_32">При столкновении клеток сравниваются силы соседствующих вражеских ячеек.</string>
+    <string name="cs_introduction_33">Более слабая ячейка погибает и удаляется из клетки.</string>
+    <string name="cs_introduction_34">У более мощной ячейки отнимается сила соответствующая силе погибшей ячейки.</string>
+    <string name="cs_introduction_35">Если силы ячеек равны - обе погибают.</string>
+    <string name="cs_introduction_36">Клетка погибает если у нее не осталось жизненных ячеек.</string>
+    <string name="cs_introduction_37">Также клетка погибает если связь жизненных ячеек разорвана.</string>
+    <string name="cs_introduction_38">Бой завершается, когда в живых остаются только клетки принадлежащие одной группе.</string>
+    <string name="cs_introduction_39">Давай разберемся с этой гопотой!</string>
 
     <!-- Character names -->
     <string name="character_name_kittaro">Киттаро</string>

@@ -147,9 +147,7 @@ class BattleFragment : Fragment(), Battle.View {
             bundle.putString(Consts.BATTLE_REWARD, reward)
             view.findNavController().navigate(nextScene, bundle)
         }
-        activity?.runOnUiThread {
-            buttonFinishBattle.visibility = View.VISIBLE
-        }
+        buttonFinishBattle.visibility = View.VISIBLE
     }
 
     private fun startAnimation() {

@@ -212,8 +212,7 @@ class CutSceneFragment : Fragment(), CutScene.View {
 
         const val DEFAULT_NEXT_FRAME = -1
 
-        private const val TEXT_ANIMATION_STEP: Long = 50L
-        private const val TEXT_ANIMATION_TIMER_THREAD_NAME = "text_animation_timer_thread"
+        private const val TEXT_ANIMATION_STEP: Long = 30L
 
         @JvmStatic
         fun newInstance(bundle: Bundle?): CutSceneFragment {
