@@ -20,7 +20,6 @@
         android:background="@android:color/transparent"
         app:srcCompat="@drawable/ic_skip_previous_black_24dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
     <Button
@@ -40,8 +39,7 @@
         android:scaleType="fitCenter"
         android:background="@android:color/transparent"
         app:srcCompat="@drawable/ic_skip_next_black_24dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@id/buttonPlay"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
     <androidx.appcompat.widget.AppCompatImageButton
@@ -52,7 +50,7 @@
         android:scaleType="fitCenter"
         android:background="@android:color/transparent"
         app:srcCompat="@drawable/ic_play_arrow_black_24dp"
-        app:layout_constraintStart_toEndOf="@id/buttonPause"
+        app:layout_constraintStart_toEndOf="@id/buttonPreviousStep"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
     <androidx.appcompat.widget.AppCompatImageButton
@@ -62,27 +60,20 @@
         android:padding="0dp"
         android:scaleType="fitCenter"
         android:background="@android:color/transparent"
+        android:visibility="gone"
         app:srcCompat="@drawable/ic_pause_black_24dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@id/buttonStop"/>
-
-    <androidx.appcompat.widget.AppCompatImageButton
-        android:id="@+id/buttonStop"
-        android:layout_width="@dimen/hero_screen_avatar_size"
-        android:layout_height="@dimen/hero_screen_avatar_size"
-        android:padding="0dp"
-        android:scaleType="fitCenter"
-        android:background="@android:color/transparent"
-        app:srcCompat="@drawable/ic_stop_black_24dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintStart_toEndOf="@id/buttonPreviousStep"/>
 
     <SeekBar
         android:id="@+id/seekBar"
         style="@style/Widget.AppCompat.SeekBar.Discrete"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        android:layout_margin="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/buttonNextStep"
+        app:layout_constraintEnd_toStartOf="@id/buttonFinishBattle"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

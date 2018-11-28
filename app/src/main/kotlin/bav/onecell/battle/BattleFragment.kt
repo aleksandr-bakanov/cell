@@ -15,6 +15,7 @@ import bav.onecell.common.Common
 import bav.onecell.common.Consts
 import bav.onecell.common.Consts.Companion.BATTLE_PARAMS
 import bav.onecell.common.Consts.Companion.NEXT_SCENE
+import bav.onecell.common.extensions.visible
 import bav.onecell.common.view.DrawUtils
 import bav.onecell.model.BattleInfo
 import bav.onecell.model.hexes.HexMath
@@ -31,7 +32,6 @@ import kotlinx.android.synthetic.main.fragment_battle.buttonNextStep
 import kotlinx.android.synthetic.main.fragment_battle.buttonPause
 import kotlinx.android.synthetic.main.fragment_battle.buttonPlay
 import kotlinx.android.synthetic.main.fragment_battle.buttonPreviousStep
-import kotlinx.android.synthetic.main.fragment_battle.buttonStop
 import kotlinx.android.synthetic.main.fragment_battle.seekBar
 import org.json.JSONObject
 import java.util.concurrent.TimeUnit
@@ -53,7 +53,7 @@ class BattleFragment : Fragment(), Battle.View {
     private val seekBarListener = object : SeekBar.OnSeekBarChangeListener {
         override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
             if (fromUser) {
-                currentTimestamp = TIMESTAMP_STEP * progress
+                currentTimestamp = TIMESTAMP_ANIMATION_STEP * progress
                 if (currentTimestamp > battleDuration) currentTimestamp = battleDuration
                 if (currentTimestamp < 0) currentTimestamp = 0
                 drawFrame(currentTimestamp)
@@ -76,15 +76,16 @@ class BattleFragment : Fragment(), Battle.View {
             currentTimestamp += TIMESTAMP_STEP
             if (currentTimestamp > battleDuration) currentTimestamp = battleDuration
             drawFrame(currentTimestamp)
+            setSeekBarProgress(currentTimestamp)
         }
         buttonPreviousStep.setOnClickListener {
             currentTimestamp -= TIMESTAMP_STEP
             if (currentTimestamp < 0) currentTimestamp = 0
             drawFrame(currentTimestamp)
+            setSeekBarProgress(currentTimestamp)
         }
 
         buttonPlay.setOnClickListener { startAnimation() }
-        buttonStop.setOnClickListener { stopAnimation() }
         buttonPause.setOnClickListener { pauseAnimation() }
 
         seekBar.setOnSeekBarChangeListener(seekBarListener)
@@ -100,7 +101,7 @@ class BattleFragment : Fragment(), Battle.View {
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe { battleInfo ->
                             battleDuration = battleInfo.snapshots.sumBy { it.duration() }.toLong()
-                            seekBar.max = (battleDuration / TIMESTAMP_STEP).toInt()
+                            seekBar.max = (battleDuration / TIMESTAMP_ANIMATION_STEP).toInt()
                             battleCanvasView.snapshots = battleInfo.snapshots
                             battleCanvasView.isFog = battleInfo.isFog
                             battleCanvasView.invalidate()
@@ -132,6 +133,10 @@ class BattleFragment : Fragment(), Battle.View {
                 .inject(this)
     }
 
+    private fun setSeekBarProgress(timestamp: Long) {
+        seekBar.progress = (timestamp / TIMESTAMP_ANIMATION_STEP).toInt()
+    }
+
     private fun reportBattleEnd(battleInfo: BattleInfo) {
         buttonFinishBattle.setOnClickListener { view ->
             // TODO: clear animations before leaving the screen
@@ -159,22 +164,22 @@ class BattleFragment : Fragment(), Battle.View {
                     if (currentTimestamp > battleDuration) {
                         currentTimestamp = battleDuration
                         drawFrame(currentTimestamp)
+                        setSeekBarProgress(currentTimestamp)
                         pauseAnimation()
                     }
                     else {
                         drawFrame(currentTimestamp)
+                        setSeekBarProgress(currentTimestamp)
                     }
                 }
+        buttonPause.visibility = View.VISIBLE
+        buttonPlay.visibility = View.INVISIBLE
     }
 
     private fun pauseAnimation() {
         animationTimer?.let { if (!it.isDisposed) it.dispose() }
-    }
-
-    private fun stopAnimation() {
-        pauseAnimation()
-        currentTimestamp = 0
-        drawFrame(currentTimestamp)
+        buttonPause.visibility = View.INVISIBLE
+        buttonPlay.visibility = View.VISIBLE
     }
 
     data class FrameState(val snapshotIndex: Int, val actionFraction: Float, val movingFraction: Float,
