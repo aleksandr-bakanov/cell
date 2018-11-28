@@ -1,15 +1,11 @@
 package bav.onecell.battle
 
-import android.animation.Animator
-import android.animation.AnimatorListenerAdapter
-import android.animation.ValueAnimator
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.animation.AnimatorSet
 import android.widget.SeekBar
 import androidx.navigation.findNavController
 import bav.onecell.OneCellApplication
@@ -20,18 +16,15 @@ import bav.onecell.common.Consts
 import bav.onecell.common.Consts.Companion.BATTLE_PARAMS
 import bav.onecell.common.Consts.Companion.NEXT_SCENE
 import bav.onecell.common.view.DrawUtils
-import bav.onecell.model.BattleFieldSnapshot
 import bav.onecell.model.BattleInfo
-import bav.onecell.model.battle.Bullet
-import bav.onecell.model.cell.Cell
 import bav.onecell.model.hexes.HexMath
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 import bav.onecell.model.cell.logic.Action
-import bav.onecell.model.hexes.Hex
-import kotlin.concurrent.fixedRateTimer
+import io.reactivex.Observable
+import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.fragment_battle.battleCanvasView
 import kotlinx.android.synthetic.main.fragment_battle.buttonFinishBattle
 import kotlinx.android.synthetic.main.fragment_battle.buttonNextStep
@@ -41,7 +34,7 @@ import kotlinx.android.synthetic.main.fragment_battle.buttonPreviousStep
 import kotlinx.android.synthetic.main.fragment_battle.buttonStop
 import kotlinx.android.synthetic.main.fragment_battle.seekBar
 import org.json.JSONObject
-import java.util.Timer
+import java.util.concurrent.TimeUnit
 
 class BattleFragment : Fragment(), Battle.View {
 
@@ -55,7 +48,7 @@ class BattleFragment : Fragment(), Battle.View {
     private var reward: String = ""
     private var battleDuration: Long = 0
     private var currentTimestamp: Long = 0
-    private var animationTimer: Timer? = null
+    private var animationTimer: Disposable? = null
 
     private val seekBarListener = object : SeekBar.OnSeekBarChangeListener {
         override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
@@ -127,8 +120,7 @@ class BattleFragment : Fragment(), Battle.View {
 
     override fun onDestroyView() {
         disposables.dispose()
-        animationTimer?.cancel()
-        animationTimer?.purge()
+        pauseAnimation()
         super.onDestroyView()
     }
     //endregion
@@ -161,29 +153,28 @@ class BattleFragment : Fragment(), Battle.View {
     }
 
     private fun startAnimation() {
-        animationTimer = fixedRateTimer(ANIMATION_TIMER_THREAD_NAME, false, 0L, TIMESTAMP_ANIMATION_STEP)
-        {
-            currentTimestamp += TIMESTAMP_ANIMATION_STEP
-            if (currentTimestamp > battleDuration) {
-                currentTimestamp = battleDuration
-                requireActivity().runOnUiThread { drawFrame(currentTimestamp) }
-                animationTimer?.cancel()
-                animationTimer?.purge()
-            }
-            else {
-                requireActivity().runOnUiThread { drawFrame(currentTimestamp) }
-            }
-        }
+        animationTimer = Observable.interval(0L, TIMESTAMP_ANIMATION_STEP, TimeUnit.MILLISECONDS)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe {
+                    currentTimestamp += TIMESTAMP_ANIMATION_STEP
+                    if (currentTimestamp > battleDuration) {
+                        currentTimestamp = battleDuration
+                        drawFrame(currentTimestamp)
+                        pauseAnimation()
+                    }
+                    else {
+                        drawFrame(currentTimestamp)
+                    }
+                }
     }
 
     private fun pauseAnimation() {
-        animationTimer?.cancel()
-        animationTimer?.purge()
+        animationTimer?.let { if (!it.isDisposed) it.dispose() }
     }
 
     private fun stopAnimation() {
-        animationTimer?.cancel()
-        animationTimer?.purge()
+        pauseAnimation()
         currentTimestamp = 0
         drawFrame(currentTimestamp)
     }
@@ -294,7 +285,6 @@ class BattleFragment : Fragment(), Battle.View {
         const val EXTRA_PARAMS = "params"
         private const val TIMESTAMP_STEP: Long = 100
         private const val TIMESTAMP_ANIMATION_STEP: Long = 16 // For ~60 fps
-        private const val ANIMATION_TIMER_THREAD_NAME = "animation_timer_thread"
 
         fun newInstance(bundle: Bundle?): BattleFragment {
             val fragment = BattleFragment()
