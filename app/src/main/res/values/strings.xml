@@ -151,7 +151,8 @@
                 '36': { text: 'cs_introduction_36' },
                 '37': { text: 'cs_introduction_37' },
                 '38': { text: 'cs_introduction_38' },
-                '39': { text: 'cs_introduction_39' }
+                '39': { text: 'cs_introduction_39' },
+                '40': { text: 'cs_introduction_40' }
             },
             next_scene: 'action_cutSceneIntroduction_to_battleGopniks'
         }"
@@ -196,6 +197,7 @@
     <string name="cs_introduction_37">cs_introduction_37</string>
     <string name="cs_introduction_38">cs_introduction_38</string>
     <string name="cs_introduction_39">cs_introduction_39</string>
+    <string name="cs_introduction_40">cs_introduction_40</string>
 
     <!--
       - Cut scene after gopniks contains description of the hero screen interface. At this moment only Kittaro
