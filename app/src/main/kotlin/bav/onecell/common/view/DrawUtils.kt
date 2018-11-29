@@ -29,20 +29,22 @@ class DrawUtils(private val hexMath: HexMath, context: Context) {
     }
 
     private val gridPaint = Paint()
-    private val lifePaint = Paint()
-    private val energyPaint = Paint()
-    private val attackPaint = Paint()
-    private val deathRayHexPaint = Paint()
-    private val omniBulletHexPaint = Paint()
+    private val lifePaint = Paint(Paint.ANTI_ALIAS_FLAG)
+    private val energyPaint = Paint(Paint.ANTI_ALIAS_FLAG)
+    private val attackPaint = Paint(Paint.ANTI_ALIAS_FLAG)
+    private val deathRayHexPaint = Paint(Paint.ANTI_ALIAS_FLAG)
+    private val omniBulletHexPaint = Paint(Paint.ANTI_ALIAS_FLAG)
     val strokePaint = Paint()
-    private val cellOutlinePaint = Paint()
+    private val cellOutlinePaint = Paint(Paint.ANTI_ALIAS_FLAG)
+    private val groupAffiliationFriendPaint = Paint(Paint.ANTI_ALIAS_FLAG)
+    private val groupAffiliationEnemyPaint = Paint(Paint.ANTI_ALIAS_FLAG)
     private val powerTextPaint = Paint()
     private val powerLifeTextPaint = Paint()
     private val powerEnergyTextPaint = Paint()
     private val powerAttackTextPaint = Paint()
     private val powerDeathRayTextPaint = Paint()
     private val powerOmniBulletTextPaint = Paint()
-    private val deathRayPaint = Paint()
+    private val deathRayPaint = Paint(Paint.ANTI_ALIAS_FLAG)
 
     init {
         gridPaint.style = Paint.Style.STROKE
@@ -77,6 +79,18 @@ class DrawUtils(private val hexMath: HexMath, context: Context) {
         cellOutlinePaint.strokeWidth = 5.0f
         cellOutlinePaint.strokeJoin = Paint.Join.ROUND
         cellOutlinePaint.strokeCap = Paint.Cap.ROUND
+
+        groupAffiliationFriendPaint.style = Paint.Style.STROKE
+        groupAffiliationFriendPaint.color = ContextCompat.getColor(context, R.color.battleFriendOutline)
+        groupAffiliationFriendPaint.strokeWidth = 15.0f
+        groupAffiliationFriendPaint.strokeJoin = Paint.Join.ROUND
+        groupAffiliationFriendPaint.strokeCap = Paint.Cap.ROUND
+
+        groupAffiliationEnemyPaint.style = Paint.Style.STROKE
+        groupAffiliationEnemyPaint.color = ContextCompat.getColor(context, R.color.battleEnemyOutline)
+        groupAffiliationEnemyPaint.strokeWidth = 15.0f
+        groupAffiliationEnemyPaint.strokeJoin = Paint.Join.ROUND
+        groupAffiliationEnemyPaint.strokeCap = Paint.Cap.ROUND
 
         powerLifeTextPaint.color = ContextCompat.getColor(context, R.color.battleViewPowerTextLife)
         powerLifeTextPaint.typeface = Typeface.DEFAULT_BOLD
@@ -125,6 +139,11 @@ class DrawUtils(private val hexMath: HexMath, context: Context) {
                  aPaint: Paint = attackPaint, dPaint: Paint = deathRayHexPaint, oPaint: Paint = omniBulletHexPaint,
                  layout: Layout = Layout.DUMMY) {
         cell?.let {
+            // Draw depiction of group
+            val groupAffiliationPaint = if (it.data.groupId == 0) groupAffiliationFriendPaint else groupAffiliationEnemyPaint
+            val outline = getCellOutline(cell, layout)
+            drawCellOutline(canvas, it, layout, groupAffiliationPaint, outline)
+
             var paint: Paint
             val originPoint = hexMath.hexToPixel(layout, it.data.origin)
             for (hex in it.data.hexes.values) {
@@ -155,7 +174,7 @@ class DrawUtils(private val hexMath: HexMath, context: Context) {
             // Draw origin marker
             drawOriginMarker(canvas, it, layout)
             // Draw outline
-            drawCellOutline(canvas, it, layout)
+            drawCellOutline(canvas, it, layout, cellOutlinePaint, outline)
         }
     }
 
@@ -254,11 +273,12 @@ class DrawUtils(private val hexMath: HexMath, context: Context) {
                          hp.x.toFloat() + oxf, hp.y.toFloat() + oyf, strokePaint)
     }
 
-    private fun drawCellOutline(canvas: Canvas?, cell: Cell, layout: Layout) {
-        val outline = getCellOutline(cell, layout)
+    private fun drawCellOutline(canvas: Canvas?, cell: Cell, layout: Layout, paint: Paint = cellOutlinePaint,
+                                lines: List<Pair<Point, Point>>? = null) {
+        val outline = lines ?: getCellOutline(cell, layout)
         outline.forEach {
             canvas?.drawLine(it.first.x.toFloat(), it.first.y.toFloat(), it.second.x.toFloat(), it.second.y.toFloat(),
-                             cellOutlinePaint)
+                             paint)
         }
     }
 

@@ -41,7 +41,6 @@ class BattleCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
     private val clipPath = Path()
     var snapshots: List<BattleFieldSnapshot>? = null
     var currentSnapshotIndex: Int = 0
-    var fallBackToPreviousSnapshot = false
     var isFog: Boolean = false
     var deathRayFraction: Float = 0f
     private val scaleGestureDetector = ScaleGestureDetector(context, ScaleListener(this))
@@ -142,10 +141,6 @@ class BattleCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
                     c.drawLine((width / 2).toFloat(), (height / 2 - 50).toFloat(), (width / 2).toFloat(), (height / 2 + 50).toFloat(), drawUtils.strokePaint)
                 }*/
             }
-        }
-        if (fallBackToPreviousSnapshot) {
-            currentSnapshotIndex--
-            fallBackToPreviousSnapshot = false
         }
     }
 
