@@ -37,7 +37,6 @@ class BattleCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
     private val corpseAttackPaint = Paint()
     private val corpseDeathRayHexPaint = Paint()
     private val corpseOmniBulletHexPaint = Paint()
-    private val groundPaint = Paint()
     private val clipPath = Path()
     var snapshots: List<BattleFieldSnapshot>? = null
     var currentSnapshotIndex: Int = 0
@@ -64,9 +63,6 @@ class BattleCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
 
         corpseOmniBulletHexPaint.style = Paint.Style.FILL
         corpseOmniBulletHexPaint.color = ContextCompat.getColor(context, R.color.battleViewCorpseOmniBullet)
-
-        groundPaint.style = Paint.Style.FILL
-        groundPaint.color = ContextCompat.getColor(context, R.color.battleViewGround)
 
         setOnTouchListener { view: View?, event: MotionEvent? ->
             var ret = false
@@ -121,14 +117,13 @@ class BattleCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
                     canvas?.drawColor(Color.DKGRAY)
                     canvas?.clipPath(observableAreaToPath(getObservableArea(snapshot.cells)))
                 }
-                canvas?.drawColor(groundPaint.color)
+                canvas?.drawColor(drawUtils.groundPaint.color)
                 snapshot.corpses.forEach { corpse ->
                     drawUtils.drawCell(canvas, corpse, corpseLifePaint, corpseEnergyPaint,
                                        corpseAttackPaint, corpseDeathRayHexPaint, corpseOmniBulletHexPaint, layout)
                 }
                 snapshot.cells.forEach { cell ->
-                    drawUtils.drawCell(canvas, cell, layout = layout)
-                    //drawUtils.drawCellPower(canvas, cell, layout)
+                    drawUtils.drawCell(canvas, cell, layout = layout, drawAffiliation = true)
                 }
                 drawUtils.drawDeathRays(canvas, snapshot.deathRays, deathRayFraction, layout)
 

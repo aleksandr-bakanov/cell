@@ -35,6 +35,7 @@ class DrawUtils(private val hexMath: HexMath, context: Context) {
     private val deathRayHexPaint = Paint(Paint.ANTI_ALIAS_FLAG)
     private val omniBulletHexPaint = Paint(Paint.ANTI_ALIAS_FLAG)
     val strokePaint = Paint()
+    val groundPaint = Paint()
     private val cellOutlinePaint = Paint(Paint.ANTI_ALIAS_FLAG)
     private val groupAffiliationFriendPaint = Paint(Paint.ANTI_ALIAS_FLAG)
     private val groupAffiliationEnemyPaint = Paint(Paint.ANTI_ALIAS_FLAG)
@@ -121,6 +122,9 @@ class DrawUtils(private val hexMath: HexMath, context: Context) {
         powerTextPaint.typeface = Typeface.DEFAULT_BOLD
         powerTextPaint.textSize = POWER_TEXT_SIZE
         powerTextPaint.textAlign = Paint.Align.CENTER
+
+        groundPaint.style = Paint.Style.FILL
+        groundPaint.color = ContextCompat.getColor(context, R.color.battleViewGround)
     }
 
     fun provideLayout(canvas: Canvas?, cellSize: Int): Layout {
@@ -137,12 +141,14 @@ class DrawUtils(private val hexMath: HexMath, context: Context) {
 
     fun drawCell(canvas: Canvas?, cell: Cell?, lPaint: Paint = lifePaint, ePaint: Paint = energyPaint,
                  aPaint: Paint = attackPaint, dPaint: Paint = deathRayHexPaint, oPaint: Paint = omniBulletHexPaint,
-                 layout: Layout = Layout.DUMMY) {
+                 layout: Layout = Layout.DUMMY, drawAffiliation: Boolean = false, gPaint: Paint = groundPaint) {
         cell?.let {
-            // Draw depiction of group
-            val groupAffiliationPaint = if (it.data.groupId == 0) groupAffiliationFriendPaint else groupAffiliationEnemyPaint
             val outline = getCellOutline(cell, layout)
-            drawCellOutline(canvas, it, layout, groupAffiliationPaint, outline)
+            // Draw depiction of group
+            if (drawAffiliation) {
+                val groupAffiliationPaint = if (it.data.groupId == 0) groupAffiliationFriendPaint else groupAffiliationEnemyPaint
+                drawCellOutline(canvas, it, layout, groupAffiliationPaint, outline)
+            }
 
             var paint: Paint
             val originPoint = hexMath.hexToPixel(layout, it.data.origin)
@@ -167,9 +173,16 @@ class DrawUtils(private val hexMath: HexMath, context: Context) {
                                             it.animationData.rotation, it.animationData.moveDirection,
                                             it.animationData.movingFraction, scale = fadeScale)
 
+                if (fadeScale != 1.0f) {
+                    val groundPath: Path = getHexPath(layout, hexMath.add(hex, it.data.origin), originPoint,
+                                                it.animationData.rotation, it.animationData.moveDirection,
+                                                it.animationData.movingFraction)
+                    groundPath.fillType = Path.FillType.EVEN_ODD
+                    canvas?.drawPath(groundPath, gPaint)
+                }
+
                 path.fillType = Path.FillType.EVEN_ODD
                 canvas?.drawPath(path, paint)
-                //canvas?.drawPath(path, strokePaint)
             }
             // Draw origin marker
             drawOriginMarker(canvas, it, layout)

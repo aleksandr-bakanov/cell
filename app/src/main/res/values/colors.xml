@@ -36,8 +36,8 @@
     <color name="battleViewPowerTextDeathRay">#812191</color>
     <color name="battleViewPowerTextOmniBullet">#186962</color>
     <color name="battleViewGround">#e9b673</color>
-    <color name="battleFriendOutline">#8bc34a</color>
-    <color name="battleEnemyOutline">#ef5350</color>
+    <color name="battleFriendOutline">#448aff</color>
+    <color name="battleEnemyOutline">#dd2c00</color>
 
     <!-- Hero screen view -->
     <color name="heroScreenSelectedRuleBackgroundColor">#f57f17</color>

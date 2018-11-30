@@ -101,7 +101,7 @@ class BattleFragment : Fragment(), Battle.View {
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe { battleInfo ->
                             battleDuration = battleInfo.snapshots.sumBy { it.duration() }.toLong()
-                            seekBar.max = (battleDuration / TIMESTAMP_ANIMATION_STEP).toInt()
+                            seekBar.max = (battleDuration / TIMESTAMP_ANIMATION_STEP).toInt() + 1
                             battleCanvasView.snapshots = battleInfo.snapshots
                             battleCanvasView.isFog = battleInfo.isFog
                             battleCanvasView.invalidate()
