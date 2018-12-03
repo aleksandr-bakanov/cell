@@ -117,21 +117,21 @@
                 '2': { text: 'cs_introduction_2', background: 'ic_cs_introduction_2' },
                 '3': { text: 'cs_introduction_3', background: 'ic_cs_introduction_3' },
                 '4': { text: 'cs_introduction_4', background: 'ic_cs_introduction_4' },
-                '5': { text: 'cs_introduction_5' },
-                '6': { text: 'cs_introduction_6' },
-                '7': { text: 'cs_introduction_7' },
-                '8': { text: 'cs_introduction_8' },
-                '9': { text: 'cs_introduction_9' },
-                '10': { text: 'cs_introduction_10' },
-                '11': { text: 'cs_introduction_11' },
-                '12': { text: 'cs_introduction_12' },
-                '13': { text: 'cs_introduction_13' },
-                '14': { text: 'cs_introduction_14' },
-                '15': { text: 'cs_introduction_15' },
-                '16': { text: 'cs_introduction_16' },
-                '17': { text: 'cs_introduction_17' },
-                '18': { text: 'cs_introduction_18' },
-                '19': { text: 'cs_introduction_19' },
+                '5': { text: 'cs_introduction_5', background: 'ic_cs_introduction_4' },
+                '6': { text: 'cs_introduction_6', background: 'ic_cs_introduction_4' },
+                '7': { text: 'cs_introduction_7', background: 'ic_cs_introduction_7' },
+                '8': { text: 'cs_introduction_8', background: 'ic_cs_introduction_8' },
+                '9': { text: 'cs_introduction_9', background: 'ic_cs_introduction_9' },
+                '10': { text: 'cs_introduction_10', background: 'ic_cs_introduction_10' },
+                '11': { text: 'cs_introduction_11', background: 'ic_cs_introduction_11' },
+                '12': { text: 'cs_introduction_12', background: 'ic_cs_introduction_12' },
+                '13': { text: 'cs_introduction_13', background: 'ic_cs_introduction_12' },
+                '14': { text: 'cs_introduction_14', background: 'ic_cs_introduction_12' },
+                '15': { text: 'cs_introduction_15', background: 'ic_cs_introduction_12' },
+                '16': { text: 'cs_introduction_16', background: 'ic_cs_introduction_12' },
+                '17': { text: 'cs_introduction_17', background: 'ic_cs_introduction_12' },
+                '18': { text: 'cs_introduction_18', background: 'ic_cs_introduction_12' },
+                '19': { text: 'cs_introduction_19', background: 'ic_cs_introduction_12' },
                 '20': { text: 'cs_introduction_20' },
                 '21': { text: 'cs_introduction_21' },
                 '22': { text: 'cs_introduction_22' },
@@ -152,7 +152,8 @@
                 '37': { text: 'cs_introduction_37' },
                 '38': { text: 'cs_introduction_38' },
                 '39': { text: 'cs_introduction_39' },
-                '40': { text: 'cs_introduction_40' }
+                '40': { text: 'cs_introduction_40' },
+                '41': { text: 'cs_introduction_41' }
             },
             next_scene: 'action_cutSceneIntroduction_to_battleGopniks'
         }"
@@ -198,6 +199,7 @@
     <string name="cs_introduction_38">cs_introduction_38</string>
     <string name="cs_introduction_39">cs_introduction_39</string>
     <string name="cs_introduction_40">cs_introduction_40</string>
+    <string name="cs_introduction_41">cs_introduction_40</string>
 
     <!--
       - Cut scene after gopniks contains description of the hero screen interface. At this moment only Kittaro

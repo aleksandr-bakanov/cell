@@ -66,6 +66,7 @@ class EditorCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
         super.onDraw(canvas)
         cell?.let {
             it.evaluateCellHexesPower()
+            //canvas?.drawRect(0f, 0f, width.toFloat(), height.toFloat(), drawUtils.groundPaint)
             if (selectedCellType == Hex.Type.REMOVE) {
                 drawUtils.drawCell(canvas, it, layout = layout)
                 drawUtils.drawHexes(canvas, it.data.origin, tipHexes, getTipPaint(selectedCellType), layout)

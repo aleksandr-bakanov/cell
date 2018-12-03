@@ -24,6 +24,7 @@
 
     <Button
         android:id="@+id/buttonFinishBattle"
+        android:background="@drawable/button_main_menu_background"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/button_finish_battle_title"

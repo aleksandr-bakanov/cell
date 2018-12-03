@@ -117,7 +117,8 @@ class BattleCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
                     canvas?.drawColor(Color.DKGRAY)
                     canvas?.clipPath(observableAreaToPath(getObservableArea(snapshot.cells)))
                 }
-                canvas?.drawColor(drawUtils.groundPaint.color)
+                canvas?.drawRect(0f, 0f, width.toFloat(), height.toFloat(), drawUtils.groundPaint)
+
                 snapshot.corpses.forEach { corpse ->
                     drawUtils.drawCell(canvas, corpse, corpseLifePaint, corpseEnergyPaint,
                                        corpseAttackPaint, corpseDeathRayHexPaint, corpseOmniBulletHexPaint, layout)

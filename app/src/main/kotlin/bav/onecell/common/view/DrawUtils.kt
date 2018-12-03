@@ -1,10 +1,13 @@
 package bav.onecell.common.view
 
 import android.content.Context
+import android.graphics.BitmapFactory
+import android.graphics.BitmapShader
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Path
+import android.graphics.Shader
 import android.graphics.Typeface
 import android.util.Log
 import androidx.core.content.ContextCompat
@@ -35,7 +38,7 @@ class DrawUtils(private val hexMath: HexMath, context: Context) {
     private val deathRayHexPaint = Paint(Paint.ANTI_ALIAS_FLAG)
     private val omniBulletHexPaint = Paint(Paint.ANTI_ALIAS_FLAG)
     val strokePaint = Paint()
-    val groundPaint = Paint()
+    val groundPaint = Paint(Paint.ANTI_ALIAS_FLAG)
     private val cellOutlinePaint = Paint(Paint.ANTI_ALIAS_FLAG)
     private val groupAffiliationFriendPaint = Paint(Paint.ANTI_ALIAS_FLAG)
     private val groupAffiliationEnemyPaint = Paint(Paint.ANTI_ALIAS_FLAG)
@@ -124,7 +127,9 @@ class DrawUtils(private val hexMath: HexMath, context: Context) {
         powerTextPaint.textAlign = Paint.Align.CENTER
 
         groundPaint.style = Paint.Style.FILL
-        groundPaint.color = ContextCompat.getColor(context, R.color.battleViewGround)
+        val groundBitmap = BitmapFactory.decodeResource(context.resources, R.drawable.seamless_ground_sand_dirt_crack_texture_2)
+        val groundShader = BitmapShader(groundBitmap, Shader.TileMode.REPEAT, Shader.TileMode.REPEAT)
+        groundPaint.shader = groundShader
     }
 
     fun provideLayout(canvas: Canvas?, cellSize: Int): Layout {
