@@ -25,10 +25,10 @@ class BattleResultsRecyclerViewAdapter(private val presenter: BattleResults.Pres
         return ViewHolder(view, presenter)
     }
 
-    override fun getItemCount() = presenter.cellsCount()
+    override fun getItemCount() = presenter.cellsCount(groupId)
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        presenter.getCell(position)?.let {
+        presenter.getCell(groupId, position)?.let {
             holder.previewBitmap.eraseColor(Color.TRANSPARENT)
             val canvas = Canvas(holder.previewBitmap)
             val layout = drawUtils.provideLayout(canvas, it.size() * 2)
@@ -37,8 +37,8 @@ class BattleResultsRecyclerViewAdapter(private val presenter: BattleResults.Pres
 
             holder.view.cellName.text = presenter.getCellName(it.data.name)
         }
-        holder.view.dealtDamage.text = presenter.getDealtDamage(position).toString()
-        holder.view.deadOrAlive.isChecked = presenter.getDeadOrAlive(position)
+        holder.view.dealtDamage.text = presenter.getDealtDamage(groupId, position).toString()
+        holder.view.deadOrAlive.isChecked = presenter.getDeadOrAlive(groupId, position)
     }
 
     class ViewHolder(val view: View, private val presenter: BattleResults.Presenter,

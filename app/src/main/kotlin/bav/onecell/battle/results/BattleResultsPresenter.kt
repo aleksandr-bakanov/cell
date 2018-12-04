@@ -2,6 +2,7 @@ package bav.onecell.battle.results
 
 import android.util.Log
 import bav.onecell.common.Common
+import bav.onecell.common.Consts
 import bav.onecell.common.router.Router
 import bav.onecell.model.RepositoryContract
 import bav.onecell.model.cell.Cell
@@ -11,36 +12,39 @@ class BattleResultsPresenter(
         private val router: Router,
         private val cellRepo: RepositoryContract.CellRepo,
         private val resourceProvider: Common.ResourceProvider,
-        private val dealtDamage: MutableMap<Int, Int> = mutableMapOf(),
-        private val deadOrAliveCells: MutableMap<Int, Boolean> = mutableMapOf(),
-        private val cellIndexes: MutableMap<Int, MutableList<Int>> = mutableMapOf()) : BattleResults.Presenter {
+        private val results: MutableMap<Int, List<CellResults>> = mutableMapOf()) : BattleResults.Presenter {
 
     override fun initialize(dealtDamage: Map<Int, Int>, deadOrAliveCells: Map<Int, Boolean>) {
-        dealtDamage.keys.groupBy { cellRepo.getCell(it)?.data?.groupId }.forEach { entry ->
-            entry.key?.let { groupId ->
-                val indexes = mutableListOf<Int>()
-                indexes.addAll(entry.value.sorted())
-                cellIndexes[groupId] = indexes
-            }
+        val cellsResults = mutableListOf<CellResults>()
+        dealtDamage.keys.forEach { index ->
+            cellsResults.add(CellResults(index, deadOrAliveCells[index] ?: false, dealtDamage[index] ?: 0))
         }
-        this.dealtDamage.putAll(dealtDamage)
-        this.deadOrAliveCells.putAll(deadOrAliveCells)
-        // TODO: convert dealt damage to money for each cell
+        cellsResults.groupBy { cellRepo.getCell(it.index)?.data?.groupId }.forEach { entry ->
+            entry.key?.let { groupId -> results[groupId] = entry.value.sortedBy { it.index } }
+        }
     }
 
-    override fun cellsCount(groupId: Int): Int = deadOrAliveCells.size
+    override fun cellsCount(groupId: Int): Int = results[groupId]?.size ?: 0
 
-    override fun getCell(groupId: Int, position: Int): Cell? = cellRepo.getCell(cellIndexes[groupId]?.get(position) ?: -1)
+    override fun getCell(index: Int): Cell? = cellRepo.getCell(index)
 
-    override fun getDealtDamage(groupId: Int, position: Int): Int = dealtDamage[cellIndexes[groupId]?.get(position) ?: -1] ?: 0
+    override fun getCell(groupId: Int, position: Int): Cell? = cellRepo.getCell(results[groupId]?.get(position)?.index ?: -1)
 
-    override fun getDeadOrAlive(groupId: Int, position: Int): Boolean = deadOrAliveCells[cellIndexes[groupId]?.get(position) ?: -1] ?: false
+    override fun getDealtDamage(groupId: Int, position: Int): Int = results[groupId]?.get(position)?.dealtDamage ?: 0
+
+    override fun getDeadOrAlive(groupId: Int, position: Int): Boolean = results[groupId]?.get(position)?.isAlive ?: false
 
     override fun goToHeroesScreen() {
         router.goToMain()
     }
 
     override fun getCellName(resourceId: String): String = resourceProvider.getString(resourceId) ?: ""
+
+    override fun getEnemiesGroupId(): Int = results.keys.filter { it != Consts.MAIN_CHARACTERS_GROUP_ID }.let {
+        if (it.isNotEmpty()) it[0] else Consts.MAIN_CHARACTERS_GROUP_ID
+    }
+
+    data class CellResults(val index: Int, val isAlive: Boolean, val dealtDamage: Int)
 
     companion object {
         private const val TAG = "BattleResultsPresenter"
