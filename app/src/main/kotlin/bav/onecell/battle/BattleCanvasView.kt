@@ -11,6 +11,7 @@ import android.view.MotionEvent
 import android.view.ScaleGestureDetector
 import android.view.View
 import bav.onecell.R
+import bav.onecell.common.Consts
 import bav.onecell.common.view.CanvasView
 import bav.onecell.model.BattleFieldSnapshot
 import bav.onecell.model.cell.Cell
@@ -152,7 +153,7 @@ class BattleCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
         // Get area observed by cells with group id = 0 only, i.e. main heroes
         val commonArea = mutableSetOf<Hex>()
         cells.forEach { cell ->
-            if (cell.data.groupId == 0) {
+            if (cell.data.groupId == Consts.MAIN_CHARACTERS_GROUP_ID) {
                 val cellViewArea = mutableSetOf<Hex>()
                 cell.data.hexes.values.forEach { hex -> cellViewArea.add(hexMath.add(hex, cell.data.origin)) }
                 for (i in 0 until cell.data.viewDistance) {

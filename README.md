@@ -11,6 +11,10 @@ Learn Android deeply while having fun.
 * Change edition screen. Pick and place different hexes whether from cell or from buckets.
   Pick by long press (only from cell?).
 * Wolowolowolowolo - turning enemies to friendly cells
+* Обрамление игры, правил и условий
+* Анимация кадров в кат-сценах (несколько кадров, повторяющихся по кругу с заданным интервалом)
+* Финальная сцена с косым разделением экрана, как в анимехах при всеобщем удивлении
+* Титры
 
 # Future features
 * Multi-player

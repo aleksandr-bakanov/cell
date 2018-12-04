@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import bav.onecell.R
+import bav.onecell.common.Consts
 import bav.onecell.common.view.DrawUtils
 import kotlinx.android.synthetic.main.item_row_cell_in_battle_results.view.preview
 import kotlinx.android.synthetic.main.item_row_cell_in_battle_results.view.cellName
@@ -14,7 +15,8 @@ import kotlinx.android.synthetic.main.item_row_cell_in_battle_results.view.deadO
 import kotlinx.android.synthetic.main.item_row_cell_in_battle_results.view.dealtDamage
 
 class BattleResultsRecyclerViewAdapter(private val presenter: BattleResults.Presenter,
-                                       private val drawUtils: DrawUtils) :
+                                       private val drawUtils: DrawUtils,
+                                       private val groupId: Int = Consts.MAIN_CHARACTERS_GROUP_ID) :
         androidx.recyclerview.widget.RecyclerView.Adapter<BattleResultsRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

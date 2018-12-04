@@ -13,6 +13,8 @@ class Consts {
         const val ZOI_INDEX = 1
         const val AIMA_INDEX = 2
 
+        const val MAIN_CHARACTERS_GROUP_ID = 0
+
         val ZERO: () -> Int = {0}
     }
 }

@@ -12,6 +12,7 @@ import android.graphics.Typeface
 import android.util.Log
 import androidx.core.content.ContextCompat
 import bav.onecell.R
+import bav.onecell.common.Consts
 import bav.onecell.model.battle.Bullet
 import bav.onecell.model.cell.Cell
 import bav.onecell.model.hexes.Hex
@@ -151,7 +152,7 @@ class DrawUtils(private val hexMath: HexMath, context: Context) {
             val outline = getCellOutline(cell, layout)
             // Draw depiction of group
             if (drawAffiliation) {
-                val groupAffiliationPaint = if (it.data.groupId == 0) groupAffiliationFriendPaint else groupAffiliationEnemyPaint
+                val groupAffiliationPaint = if (it.data.groupId == Consts.MAIN_CHARACTERS_GROUP_ID) groupAffiliationFriendPaint else groupAffiliationEnemyPaint
                 drawCellOutline(canvas, it, layout, groupAffiliationPaint, outline)
             }
 
