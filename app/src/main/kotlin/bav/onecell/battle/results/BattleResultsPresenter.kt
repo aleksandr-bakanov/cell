@@ -12,37 +12,27 @@ class BattleResultsPresenter(
         private val router: Router,
         private val cellRepo: RepositoryContract.CellRepo,
         private val resourceProvider: Common.ResourceProvider,
-        private val results: MutableMap<Int, List<CellResults>> = mutableMapOf()) : BattleResults.Presenter {
+        private val results: MutableList<CellResults> = mutableListOf()) : BattleResults.Presenter {
 
     override fun initialize(dealtDamage: Map<Int, Int>, deadOrAliveCells: Map<Int, Boolean>) {
-        val cellsResults = mutableListOf<CellResults>()
         dealtDamage.keys.forEach { index ->
-            cellsResults.add(CellResults(index, deadOrAliveCells[index] ?: false, dealtDamage[index] ?: 0))
-        }
-        cellsResults.groupBy { cellRepo.getCell(it.index)?.data?.groupId }.forEach { entry ->
-            entry.key?.let { groupId -> results[groupId] = entry.value.sortedBy { it.index } }
+            results.add(CellResults(index, deadOrAliveCells[index] ?: false, dealtDamage[index] ?: 0))
         }
     }
 
-    override fun cellsCount(groupId: Int): Int = results[groupId]?.size ?: 0
+    override fun cellsCount(): Int = results.size
 
-    override fun getCell(index: Int): Cell? = cellRepo.getCell(index)
+    override fun getCell(position: Int): Cell? = cellRepo.getCell(results[position].index)
 
-    override fun getCell(groupId: Int, position: Int): Cell? = cellRepo.getCell(results[groupId]?.get(position)?.index ?: -1)
+    override fun getDealtDamage(position: Int): Int = results[position].dealtDamage
 
-    override fun getDealtDamage(groupId: Int, position: Int): Int = results[groupId]?.get(position)?.dealtDamage ?: 0
-
-    override fun getDeadOrAlive(groupId: Int, position: Int): Boolean = results[groupId]?.get(position)?.isAlive ?: false
+    override fun getDeadOrAlive(position: Int): Boolean = results[position].isAlive
 
     override fun goToHeroesScreen() {
         router.goToMain()
     }
 
     override fun getCellName(resourceId: String): String = resourceProvider.getString(resourceId) ?: ""
-
-    override fun getEnemiesGroupId(): Int = results.keys.filter { it != Consts.MAIN_CHARACTERS_GROUP_ID }.let {
-        if (it.isNotEmpty()) it[0] else Consts.MAIN_CHARACTERS_GROUP_ID
-    }
 
     data class CellResults(val index: Int, val isAlive: Boolean, val dealtDamage: Int)
 

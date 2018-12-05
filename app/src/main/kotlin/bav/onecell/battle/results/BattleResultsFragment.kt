@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import androidx.navigation.findNavController
 import bav.onecell.OneCellApplication
 import bav.onecell.R
@@ -14,8 +15,7 @@ import bav.onecell.common.view.DrawUtils
 import bav.onecell.model.hexes.Hex
 import kotlinx.android.synthetic.main.fragment_battle_results.buttonToHeroesScreen
 import kotlinx.android.synthetic.main.fragment_battle_results.buttonTryAgain
-import kotlinx.android.synthetic.main.fragment_battle_results.recyclerViewBattleResultsEnemies
-import kotlinx.android.synthetic.main.fragment_battle_results.recyclerViewBattleResultsFriends
+import kotlinx.android.synthetic.main.fragment_battle_results.recyclerViewBattleResults
 import org.json.JSONObject
 import javax.inject.Inject
 
@@ -38,10 +38,8 @@ class BattleResultsFragment: androidx.fragment.app.Fragment(), BattleResults.Vie
         initializePresenter(arguments)
         initializeButtons(arguments)
 
-        recyclerViewBattleResultsFriends.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(context)
-        recyclerViewBattleResultsFriends.adapter = BattleResultsRecyclerViewAdapter(presenter, drawUtils)
-        recyclerViewBattleResultsEnemies.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(context)
-        recyclerViewBattleResultsEnemies.adapter = BattleResultsRecyclerViewAdapter(presenter, drawUtils, presenter.getEnemiesGroupId())
+        recyclerViewBattleResults.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(context, LinearLayout.HORIZONTAL, false)
+        recyclerViewBattleResults.adapter = BattleResultsRecyclerViewAdapter(presenter, drawUtils, resourceProvider)
     }
     //endregion
 

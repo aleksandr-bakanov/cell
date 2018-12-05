@@ -2,35 +2,34 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/linearLayout"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content">
-
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/preview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/cell100x100" />
 
     <TextView
         android:id="@+id/cellName"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/battle_result_avatar_size"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@id/preview"
-        android:textSize="36sp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@id/preview"
+        android:textSize="@dimen/battle_result_text_size" />
 
-    <TextView
-        android:id="@+id/dealtDamage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toStartOf="@id/deadOrAlive"
-        android:textSize="36sp" />
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/preview"
+        android:layout_width="@dimen/battle_result_avatar_size"
+        android:layout_height="@dimen/battle_result_avatar_size"
+        app:layout_constraintTop_toBottomOf="@id/cellName"
+        app:layout_constraintBottom_toTopOf="@id/deadOrAlive"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/ic_avatar_kittaro" />
 
-    <CheckBox
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/deadOrAlive"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:enabled="false"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        android:layout_width="@dimen/battle_result_avatar_size"
+        android:layout_height="@dimen/battle_result_avatar_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/preview"
+        app:srcCompat="@drawable/ic_semi_transparent_hex"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
