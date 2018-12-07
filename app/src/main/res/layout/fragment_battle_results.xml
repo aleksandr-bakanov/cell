@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <!-- Battle participants -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewBattleResults"
         android:layout_width="wrap_content"
@@ -11,16 +12,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintBottom_toTopOf="@id/buttonTryAgain" />
 
+    <!-- Buttons -->
     <Button
         android:background="@drawable/button_main_menu_background"
         android:id="@+id/buttonToHeroesScreen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:padding="@dimen/button_padding"
         android:text="@string/button_to_heroes_screen"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent" />
 
     <Button
@@ -28,8 +31,11 @@
         android:id="@+id/buttonTryAgain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:padding="@dimen/button_padding"
         android:text="@string/button_try_again"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

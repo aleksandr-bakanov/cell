@@ -149,7 +149,7 @@ class BattleFragment : Fragment(), Battle.View {
             dealtDamage.keys.forEach { doa.add(deadOrAliveCells[it] ?: false) }
             bundle.putBooleanArray(BattleResultsFragment.DEAD_OR_ALIVE, doa.toBooleanArray())
             bundle.putBoolean(BattleResultsFragment.IS_BATTLE_WON, battleInfo.winnerGroupId == Consts.HERO_GROUP_ID)
-            bundle.putString(Consts.BATTLE_REWARD, reward)
+            bundle.putString(Consts.BATTLE_REWARD, /*reward*/ "{'0':{LIFE:2, ATTACK:3},'1':{ENERGY:4},'2':{LIFE:5,OMNI_BULLET:1,DEATH_RAY:3}}")
             view.findNavController().navigate(nextScene, bundle)
         }
         buttonFinishBattle.visibility = View.VISIBLE

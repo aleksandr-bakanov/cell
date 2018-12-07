@@ -34,4 +34,60 @@
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/ic_dead_cell_avatar_overlay"/>
 
+    <!-- Rewards -->
+    <bav.onecell.common.view.HexPicker
+        android:id="@+id/lifeHexReward"
+        android:layout_width="@dimen/battle_result_reward_hex_size"
+        android:layout_height="@dimen/battle_result_reward_hex_size"
+        android:padding="5dp"
+        android:visibility="gone"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@id/preview"
+        app:layout_constraintEnd_toStartOf="@id/attackHexReward"
+        app:layout_constraintTop_toTopOf="@id/preview" />
+
+    <bav.onecell.common.view.HexPicker
+        android:id="@+id/attackHexReward"
+        android:layout_width="@dimen/battle_result_reward_hex_size"
+        android:layout_height="@dimen/battle_result_reward_hex_size"
+        android:padding="5dp"
+        android:visibility="gone"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@id/lifeHexReward"
+        app:layout_constraintEnd_toStartOf="@id/energyHexReward"
+        app:layout_constraintTop_toTopOf="@id/preview" />
+
+    <bav.onecell.common.view.HexPicker
+        android:id="@+id/energyHexReward"
+        android:layout_width="@dimen/battle_result_reward_hex_size"
+        android:layout_height="@dimen/battle_result_reward_hex_size"
+        android:padding="5dp"
+        android:visibility="gone"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@id/attackHexReward"
+        app:layout_constraintEnd_toStartOf="@id/deathRayHexReward"
+        app:layout_constraintTop_toTopOf="@id/preview" />
+
+    <bav.onecell.common.view.HexPicker
+        android:id="@+id/deathRayHexReward"
+        android:layout_width="@dimen/battle_result_reward_hex_size"
+        android:layout_height="@dimen/battle_result_reward_hex_size"
+        android:padding="5dp"
+        android:visibility="gone"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@id/energyHexReward"
+        app:layout_constraintEnd_toStartOf="@id/omniBulletHexReward"
+        app:layout_constraintTop_toTopOf="@id/preview" />
+
+    <bav.onecell.common.view.HexPicker
+        android:id="@+id/omniBulletHexReward"
+        android:layout_width="@dimen/battle_result_reward_hex_size"
+        android:layout_height="@dimen/battle_result_reward_hex_size"
+        android:padding="5dp"
+        android:visibility="gone"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@id/deathRayHexReward"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/preview" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

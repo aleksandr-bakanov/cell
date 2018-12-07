@@ -12,9 +12,16 @@ import bav.onecell.common.Common
 import bav.onecell.common.Consts
 import bav.onecell.common.extensions.visible
 import bav.onecell.common.view.DrawUtils
+import bav.onecell.model.hexes.Hex
+import kotlinx.android.synthetic.main.item_row_cell_in_battle_results.view.attackHexReward
 import kotlinx.android.synthetic.main.item_row_cell_in_battle_results.view.preview
 import kotlinx.android.synthetic.main.item_row_cell_in_battle_results.view.cellName
 import kotlinx.android.synthetic.main.item_row_cell_in_battle_results.view.deadOrAlive
+import kotlinx.android.synthetic.main.item_row_cell_in_battle_results.view.deathRayHexReward
+import kotlinx.android.synthetic.main.item_row_cell_in_battle_results.view.energyHexReward
+import kotlinx.android.synthetic.main.item_row_cell_in_battle_results.view.lifeHexReward
+import kotlinx.android.synthetic.main.item_row_cell_in_battle_results.view.omniBulletHexReward
+import kotlinx.android.synthetic.main.view_hex_picker.view.buttonHex
 
 class BattleResultsColumnRecyclerViewAdapter(private val presenter: BattleResults.Presenter,
                                              private val drawUtils: DrawUtils,
@@ -37,10 +44,32 @@ class BattleResultsColumnRecyclerViewAdapter(private val presenter: BattleResult
             holder.view.cellName.text = presenter.getCellName(it.data.name)
         }
         holder.view.deadOrAlive.visibility = if (!presenter.getDeadOrAlive(groupId, position)) View.VISIBLE else View.INVISIBLE
+        
+        for (type in arrayOf(Hex.Type.LIFE, Hex.Type.ATTACK, Hex.Type.ENERGY, Hex.Type.DEATH_RAY, Hex.Type.OMNI_BULLET)) {
+            val reward = presenter.getRewardByType(groupId, position, type.ordinal)
+            val rewardView = when (type) {
+                Hex.Type.LIFE -> holder.view.lifeHexReward
+                Hex.Type.ATTACK -> holder.view.attackHexReward
+                Hex.Type.ENERGY -> holder.view.energyHexReward
+                Hex.Type.DEATH_RAY -> holder.view.deathRayHexReward
+                Hex.Type.OMNI_BULLET -> holder.view.omniBulletHexReward
+                else -> null
+            }
+            rewardView?.visible = reward > 0
+            rewardView?.setHexCount(reward)
+        }
     }
 
     class ViewHolder(val view: View, private val presenter: BattleResults.Presenter)
-        : androidx.recyclerview.widget.RecyclerView.ViewHolder(view)
+        : androidx.recyclerview.widget.RecyclerView.ViewHolder(view) {
+        init {
+            view.lifeHexReward.buttonHex.setImageResource(R.drawable.ic_hex_life)
+            view.attackHexReward.buttonHex.setImageResource(R.drawable.ic_hex_attack)
+            view.energyHexReward.buttonHex.setImageResource(R.drawable.ic_hex_energy)
+            view.deathRayHexReward.buttonHex.setImageResource(R.drawable.ic_hex_death_ray)
+            view.omniBulletHexReward.buttonHex.setImageResource(R.drawable.ic_hex_omni_bullet)
+        }
+    }
 
     companion object {
         private const val TAG = "ColumnAdapter"

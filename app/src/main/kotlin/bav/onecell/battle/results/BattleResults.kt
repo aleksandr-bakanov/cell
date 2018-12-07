@@ -7,7 +7,7 @@ interface BattleResults {
 
     }
     interface Presenter {
-        fun initialize(dealtDamage: Map<Int, Int>, deadOrAliveCells: Map<Int, Boolean>)
+        fun initialize(dealtDamage: Map<Int, Int>, deadOrAliveCells: Map<Int, Boolean>, rewardJson: String)
         fun cellsCount(groupId: Int): Int
         fun getCell(index: Int): Cell?
         fun getCell(groupId: Int, position: Int): Cell?
@@ -17,5 +17,6 @@ interface BattleResults {
         fun getCellName(resourceId: String): String
         fun groupsCount(): Int
         fun getGroupId(position: Int): Int
+        fun getRewardByType(groupId: Int, position: Int, type: Int): Int
     }
 }

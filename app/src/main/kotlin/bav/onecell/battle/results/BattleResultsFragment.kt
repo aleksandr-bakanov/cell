@@ -10,7 +10,6 @@ import bav.onecell.OneCellApplication
 import bav.onecell.R
 import bav.onecell.common.Common
 import bav.onecell.common.Consts
-import bav.onecell.common.extensions.visible
 import bav.onecell.common.view.DrawUtils
 import bav.onecell.model.hexes.Hex
 import kotlinx.android.synthetic.main.fragment_battle_results.buttonToHeroesScreen
@@ -24,7 +23,6 @@ class BattleResultsFragment: androidx.fragment.app.Fragment(), BattleResults.Vie
     @Inject lateinit var presenter: BattleResults.Presenter
     @Inject lateinit var drawUtils: DrawUtils
     @Inject lateinit var resourceProvider: Common.ResourceProvider
-    @Inject lateinit var gameState: Common.GameState
 
     //region Lifecycle methods
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -61,7 +59,7 @@ class BattleResultsFragment: androidx.fragment.app.Fragment(), BattleResults.Vie
                 dd[id] = dealtDamage[i]
                 doa[id] = deadOrAlive[i]
             }
-            presenter.initialize(dd, doa)
+            presenter.initialize(dd, doa, it.getString(Consts.BATTLE_REWARD, ""))
         }
     }
 
@@ -70,13 +68,12 @@ class BattleResultsFragment: androidx.fragment.app.Fragment(), BattleResults.Vie
             val nextScene = resourceProvider.getIdIdentifier(it.getString(Consts.NEXT_SCENE))
             val prevScene = resourceProvider.getIdIdentifier(it.getString(PREVIOUS_SCENE))
             val isBattleWon = it.getBoolean(IS_BATTLE_WON)
-            buttonToHeroesScreen.visible = isBattleWon
-            buttonTryAgain.visible = !isBattleWon
+            buttonToHeroesScreen.visibility = if (isBattleWon) View.VISIBLE else View.INVISIBLE
+            buttonTryAgain.visibility = if (!isBattleWon) View.VISIBLE else View.INVISIBLE
             if (isBattleWon) {
                 buttonToHeroesScreen.setOnClickListener { view ->
                     view.findNavController().navigate(nextScene)
                 }
-                rewardForBattle(it.getString(Consts.BATTLE_REWARD, ""))
             }
             else {
                 buttonTryAgain.setOnClickListener { view ->
@@ -86,26 +83,7 @@ class BattleResultsFragment: androidx.fragment.app.Fragment(), BattleResults.Vie
         }
     }
 
-    private fun rewardForBattle(rewardJson: String) {
-        val reward = JSONObject(rewardJson)
-        for (index in arrayOf(Consts.KITTARO_INDEX, Consts.ZOI_INDEX, Consts.AIMA_INDEX)) {
-            val hexReward = reward.optJSONObject(index.toString())
-            if (hexReward != null) {
-                presenter.getCell(index)?.let { cell ->
-                    val bucket = cell.data.hexBucket
-                    for (type in Hex.Type.values().filter { it != Hex.Type.REMOVE })
-                        bucket[type.ordinal] = bucket.getOrElse(type.ordinal, Consts.ZERO) + hexReward.optInt(
-                                type.toString())
-                }
-            }
-        }
-        reward.optJSONObject(GAME_STATE_CHANGES)?.let { gameStateChanges ->
-            // Changes should contain booleans
-            for (decision in gameStateChanges.keys()) {
-                gameState.setDecision(decision, gameStateChanges.getBoolean(decision))
-            }
-        }
-    }
+
     //endregion
 
     companion object {
@@ -116,7 +94,6 @@ class BattleResultsFragment: androidx.fragment.app.Fragment(), BattleResults.Vie
         const val CELL_INDEXES = "cell_indexes"
         const val IS_BATTLE_WON = "is_battle_won"
         private const val PREVIOUS_SCENE = "previous_scene"
-        const val GAME_STATE_CHANGES = "gameStateChanges"
 
         fun newInstance(bundle: Bundle?): BattleResultsFragment {
             val fragment = BattleResultsFragment()

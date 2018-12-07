@@ -2,6 +2,8 @@
 <resources>
     <dimen name="text_margin">16dp</dimen>
 
+    <dimen name="button_padding">16dp</dimen>
+
     <dimen name="hero_screen_avatar_size">52dp</dimen>
     <dimen name="hero_screen_avatar_margin">4dp</dimen>
     <dimen name="hero_screen_avatar_list_width">56dp</dimen> <!-- size + margin -->
@@ -26,4 +28,5 @@
     <dimen name="battle_result_text_size">12sp</dimen>
     <dimen name="battle_result_group_margin">16dp</dimen>
     <dimen name="battle_result_avatars_in_group_margin">8dp</dimen>
+    <dimen name="battle_result_reward_hex_size">32dp</dimen>
 </resources>

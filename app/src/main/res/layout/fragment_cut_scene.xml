@@ -60,6 +60,7 @@
         android:id="@+id/buttonPreviousFrame"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:padding="@dimen/button_padding"
         android:text="@string/button_previous_frame_title"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -70,6 +71,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/button_no_title"
+        android:padding="@dimen/button_padding"
         android:visibility="gone"
         app:layout_constraintStart_toEndOf="@id/leftCharacter"
         app:layout_constraintBottom_toTopOf="@id/textView" />
@@ -80,6 +82,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/button_yes_title"
+        android:padding="@dimen/button_padding"
         android:visibility="gone"
         app:layout_constraintEnd_toStartOf="@id/rightCharacter"
         app:layout_constraintBottom_toTopOf="@id/textView" />

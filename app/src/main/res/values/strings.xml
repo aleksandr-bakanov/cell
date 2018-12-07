@@ -41,6 +41,7 @@
     <string name="button_finish_battle_title" translatable="false">View results</string>
 
     <!-- Battle results view -->
+    <string name="reward_title" translatable="false">Reward:</string>
     <string name="button_to_heroes_screen" translatable="false">To heroes screen</string>
     <string name="button_try_again" translatable="false">Try again</string>
 

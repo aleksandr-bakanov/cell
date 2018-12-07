@@ -19,7 +19,8 @@ class BattleResultsModule(val view: BattleResults.View) {
     @Provides
     @FragmentScope
     fun provideBattleResultsPresenter(router: Router, cellRepo: RepositoryContract.CellRepo,
-                                      resourceProvider: Common.ResourceProvider): BattleResults.Presenter {
-        return BattleResultsPresenter(view, router, cellRepo, resourceProvider)
+                                      resourceProvider: Common.ResourceProvider, gameState: Common.GameState)
+            : BattleResults.Presenter {
+        return BattleResultsPresenter(view, router, cellRepo, resourceProvider, gameState)
     }
 }
