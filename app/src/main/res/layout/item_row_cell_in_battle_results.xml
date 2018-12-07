@@ -9,6 +9,7 @@
         android:id="@+id/cellName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/battle_result_avatars_in_group_margin"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="@id/deadOrAlive"
@@ -28,9 +29,9 @@
         android:id="@+id/deadOrAlive"
         android:layout_width="@dimen/battle_result_avatar_size"
         android:layout_height="@dimen/battle_result_avatar_size"
-        app:layout_constraintStart_toEndOf="@id/preview"
-        app:layout_constraintTop_toTopOf="@id/preview"
-        app:layout_constraintBottom_toBottomOf="@id/preview"
-        app:srcCompat="@drawable/ic_semi_transparent_hex"/>
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/cellName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/ic_dead_cell_avatar_overlay"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

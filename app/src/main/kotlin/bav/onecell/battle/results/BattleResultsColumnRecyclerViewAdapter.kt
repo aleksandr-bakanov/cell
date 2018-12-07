@@ -10,6 +10,7 @@ import android.util.Log
 import bav.onecell.R
 import bav.onecell.common.Common
 import bav.onecell.common.Consts
+import bav.onecell.common.extensions.visible
 import bav.onecell.common.view.DrawUtils
 import kotlinx.android.synthetic.main.item_row_cell_in_battle_results.view.preview
 import kotlinx.android.synthetic.main.item_row_cell_in_battle_results.view.cellName
@@ -35,10 +36,7 @@ class BattleResultsColumnRecyclerViewAdapter(private val presenter: BattleResult
             holder.view.preview.setImageResource(resourceProvider.getAvatarDrawableId(it.data.id.toInt()))
             holder.view.cellName.text = presenter.getCellName(it.data.name)
         }
-        holder.view.deadOrAlive.setImageDrawable(
-                if (presenter.getDeadOrAlive(groupId, position)) resourceProvider.getDrawable(R.drawable.ic_semi_transparent_hex)
-                else resourceProvider.getDrawable(R.drawable.ic_remove_icon)
-        )
+        holder.view.deadOrAlive.visibility = if (!presenter.getDeadOrAlive(groupId, position)) View.VISIBLE else View.INVISIBLE
     }
 
     class ViewHolder(val view: View, private val presenter: BattleResults.Presenter)

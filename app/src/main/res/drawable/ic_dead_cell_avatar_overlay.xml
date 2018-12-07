@@ -1,0 +1,52 @@
+<!--
+  ~ Copyright (c) 2018 Disney ABC Television Group
+  ~
+  ~ cell
+  ~ ic_dead_cell_avatar_overlay.xml
+  ~
+  ~ Author: Aleksandr Bakanov <aleksandr_bakanov@epam.com>
+  ~ Date:   December 07, 2018
+  -->
+
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="128dp"
+    android:height="128dp"
+    android:viewportWidth="128"
+    android:viewportHeight="128">
+  <path
+      android:pathData="m27.958,7.742c-2.137,0.007 -4.464,0.668 -6.956,2.281 -10.441,6.756 0.519,20.33 0.519,20.33l19.167,26.152c-19.01,16.442 -33.102,33.067 -35.652,36.467 -4.424,5.898 -4.055,8.108 -2.58,10.688 4.977,4.424 8.109,-0.369 15.666,-6.82 3.538,-2.762 17.903,-13.113 34.979,-23.401l29.938,40.846c0,0 5.733,8.081 9.383,5.474 3.649,-2.607 0,-9.123 0,-9.123L67.595,65.167c15.481,-8.332 31.354,-15.087 42.5,-15.324 17.326,-0.369 17.326,-18.8 15.852,-22.118 -0.922,-2.074 -4.29,-6.741 -13.708,-7.159 -5.65,-0.251 -13.479,1.029 -24.262,5.314 -10.889,4.274 -21.746,10.858 -31.857,18.266L42.897,19.927c0,0 -5.679,-12.217 -14.939,-12.185z"
+      android:strokeAlpha="1"
+      android:strokeLineJoin="miter"
+      android:strokeWidth="2.55999994"
+      android:fillColor="#ff0000"
+      android:strokeColor="#000000"
+      android:fillType="evenOdd"
+      android:strokeLineCap="butt"/>
+  <path
+      android:pathData="m119.311,26.986c-6.267,-5.161 -32.682,0.112 -58.032,18.085"
+      android:strokeAlpha="0.59607843"
+      android:strokeLineJoin="round"
+      android:strokeWidth="3.83942938"
+      android:fillColor="#00000000"
+      android:strokeColor="#ffffff"
+      android:fillType="evenOdd"
+      android:strokeLineCap="round"/>
+  <path
+      android:pathData="m41.345,60.348c0,0 -33.546,30.412 -37.232,38.891"
+      android:strokeAlpha="0.59607843"
+      android:strokeLineJoin="round"
+      android:strokeWidth="1.91971469"
+      android:fillColor="#00000000"
+      android:strokeColor="#ffffff"
+      android:fillType="evenOdd"
+      android:strokeLineCap="round"/>
+  <path
+      android:pathData="m19.412,19.061c0.369,-5.714 6.104,-9.66 11.612,-7.557"
+      android:strokeAlpha="0.59607843"
+      android:strokeLineJoin="round"
+      android:strokeWidth="2.55961967"
+      android:fillColor="#00000000"
+      android:strokeColor="#ffffff"
+      android:fillType="evenOdd"
+      android:strokeLineCap="round"/>
+</vector>
