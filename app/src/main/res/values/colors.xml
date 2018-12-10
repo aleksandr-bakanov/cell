@@ -47,4 +47,5 @@
 
     <!-- Cut scene view -->
     <color name="cutSceneTextFieldShadow">#000000</color>
+    <color name="cutSceneTextFieldBackground">#5a000000</color>
 </resources>

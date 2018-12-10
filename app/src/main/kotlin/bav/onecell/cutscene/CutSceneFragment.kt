@@ -1,5 +1,6 @@
 package bav.onecell.cutscene
 
+import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -154,6 +155,10 @@ class CutSceneFragment : Fragment(), CutScene.View {
                             }
                         }
                     }
+            currentFrameText?.let { frameText ->
+                if (frameText.isBlank()) textView.setBackgroundColor(Color.TRANSPARENT)
+                else textView.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.cutSceneTextFieldBackground))
+            }
         }
     }
 

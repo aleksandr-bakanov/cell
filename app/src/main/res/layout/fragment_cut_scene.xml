@@ -21,26 +21,24 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:contentDescription="@string/image_description_cut_scene_left_character"
-        app:srcCompat="@mipmap/ic_launcher_round"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="@id/leftCharacterGuideline"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:srcCompat="@drawable/ic_character_kittaro_normal" />
 
     <ImageView
         android:id="@+id/rightCharacter"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:contentDescription="@string/image_description_cut_scene_right_character"
-        app:srcCompat="@mipmap/ic_launcher_round"
+        app:srcCompat="@drawable/ic_character_kittaro_normal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/rightCharacterGuideline"
         app:layout_constraintBottom_toBottomOf="parent" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@android:color/transparent"
+        android:layout_height="wrap_content"
+        android:background="@color/cutSceneTextFieldBackground"
         android:textColor="@android:color/white"
         android:shadowColor="@color/cutSceneTextFieldShadow"
         android:shadowDx="@dimen/cut_scene_text_shadow_offset"
@@ -50,7 +48,6 @@
         android:textAlignment="textStart"
         android:textSize="24sp"
         android:text="@string/text_history_stub"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="@id/textFieldGuideline"
         app:layout_constraintEnd_toEndOf="@id/rightCharacterGuideline"
         app:layout_constraintStart_toStartOf="@id/leftCharacterGuideline" />
