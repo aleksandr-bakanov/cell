@@ -133,18 +133,18 @@
                 '17': { text: 'cs_introduction_17', background: 'ic_cs_introduction_12', left: 'ic_character_old_man_scream', right: 'ic_character_kittaro_sleep' },
                 '18': { text: 'cs_introduction_18', background: 'ic_cs_introduction_12', left: 'ic_character_old_man_scream_out_loud', right: 'ic_character_kittaro_awaken' },
                 '19': { text: 'cs_introduction_19', background: 'ic_cs_introduction_12', left: 'ic_character_old_man_scream', right: 'ic_character_kittaro_unhappy' },
-                '20': { text: 'cs_introduction_20' },
-                '21': { text: 'cs_introduction_21' },
-                '22': { text: 'cs_introduction_22' },
-                '23': { text: 'cs_introduction_23' },
-                '24': { text: 'cs_introduction_24' },
-                '25': { text: 'cs_introduction_25' },
-                '26': { text: 'cs_introduction_26' },
-                '27': { text: 'cs_introduction_27' },
-                '28': { text: 'cs_introduction_28' },
-                '29': { text: 'cs_introduction_29' },
-                '30': { text: 'cs_introduction_30' },
-                '31': { text: 'cs_introduction_31' },
+                '20': { text: 'cs_introduction_20', background: 'ic_cs_introduction_20' },
+                '21': { text: 'cs_introduction_21', background: 'ic_cs_introduction_21' },
+                '22': { text: 'cs_introduction_22', background: 'ic_cs_introduction_22' },
+                '23': { text: 'cs_introduction_23', background: 'ic_cs_introduction_23' },
+                '24': { text: 'cs_introduction_24', background: 'ic_cs_introduction_24' },
+                '25': { text: 'cs_introduction_25', background: 'ic_cs_introduction_25' },
+                '26': { text: 'cs_introduction_26', background: 'ic_cs_introduction_26' },
+                '27': { text: 'cs_introduction_27', background: 'ic_cs_introduction_27' },
+                '28': { text: 'cs_introduction_28', background: 'ic_cs_introduction_27' },
+                '29': { text: 'cs_introduction_29', background: 'ic_cs_introduction_27' },
+                '30': { text: 'cs_introduction_30', background: 'ic_cs_introduction_27' },
+                '31': { text: 'cs_introduction_31', background: 'ic_cs_introduction_27' },
                 '32': { text: 'cs_introduction_32' },
                 '33': { text: 'cs_introduction_33' },
                 '34': { text: 'cs_introduction_34' },
@@ -154,7 +154,13 @@
                 '38': { text: 'cs_introduction_38' },
                 '39': { text: 'cs_introduction_39' },
                 '40': { text: 'cs_introduction_40' },
-                '41': { text: 'cs_introduction_41' }
+                '41': { text: 'cs_introduction_41' },
+                '41': { text: 'cs_introduction_42' },
+                '41': { text: 'cs_introduction_43' },
+                '41': { text: 'cs_introduction_44' },
+                '41': { text: 'cs_introduction_45' },
+                '41': { text: 'cs_introduction_46' },
+                '41': { text: 'cs_introduction_47' }
             },
             next_scene: 'action_cutSceneIntroduction_to_battleGopniks'
         }"
@@ -200,7 +206,13 @@
     <string name="cs_introduction_38">cs_introduction_38</string>
     <string name="cs_introduction_39">cs_introduction_39</string>
     <string name="cs_introduction_40">cs_introduction_40</string>
-    <string name="cs_introduction_41">cs_introduction_40</string>
+    <string name="cs_introduction_41">cs_introduction_41</string>
+    <string name="cs_introduction_42">cs_introduction_42</string>
+    <string name="cs_introduction_43">cs_introduction_43</string>
+    <string name="cs_introduction_44">cs_introduction_44</string>
+    <string name="cs_introduction_45">cs_introduction_45</string>
+    <string name="cs_introduction_46">cs_introduction_46</string>
+    <string name="cs_introduction_47">cs_introduction_47</string>
 
     <!--
       - Cut scene after gopniks contains description of the hero screen interface. At this moment only Kittaro
