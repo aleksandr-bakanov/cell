@@ -137,6 +137,8 @@ class BattleCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
                     c.drawLine((width / 2 - 50).toFloat(), (height / 2).toFloat(), (width / 2 + 50).toFloat(), (height / 2).toFloat(), drawUtils.strokePaint)
                     c.drawLine((width / 2).toFloat(), (height / 2 - 50).toFloat(), (width / 2).toFloat(), (height / 2 + 50).toFloat(), drawUtils.strokePaint)
                 }*/
+
+                //drawCoordinates(canvas)
             }
         }
     }

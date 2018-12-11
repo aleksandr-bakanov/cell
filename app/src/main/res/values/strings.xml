@@ -269,14 +269,14 @@
                 cellIndexes: [0,3,4,5],
                 isFog: false,
                 origins: {
-                    '0': {q:5, r:-5, s:0},
-                    '3': {q:-5, r:5, s:0},
-                    '4': {q:0, r:-5, s:5},
-                    '5': {q:0, r:5, s:-5}
+                    '0': {q:-5, r:0, s:5},
+                    '3': {q:4, r:-5, s:1},
+                    '4': {q:4, r:0, s:-4},
+                    '5': {q:-3, r:5, s:-2}
                 }
             },
             reward: {
-                '0': {LIFE:5, ATTACK:2},
+                '0': {ATTACK:4},
                 'gameStateChanges': {
                     'attack_hexes_available': true
                 }
@@ -340,7 +340,7 @@
             "{
                 hexBucket: {0:100,1:100,2:100,3:100,4:100},
                 direction: 'N',
-                hexes: [[{"first":0,"second":0},{"type":"LIFE","q":0,"r":0,"s":0}]],
+                hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":0,"second":-1},{"q":0,"r":-1,"s":1,"type":"LIFE"}],[{"first":-1,"second":0},{"q":-1,"r":0,"s":1,"type":"LIFE"}],[{"first":-1,"second":1},{"q":-1,"r":1,"s":0,"type":"LIFE"}],[{"first":0,"second":1},{"q":0,"r":1,"s":-1,"type":"LIFE"}],[{"first":1,"second":0},{"q":1,"r":0,"s":-1,"type":"LIFE"}],[{"first":1,"second":-1},{"q":1,"r":-1,"s":0,"type":"LIFE"}],[{"first":2,"second":0},{"q":2,"r":0,"s":-2,"type":"LIFE"}],[{"first":-2,"second":0},{"q":-2,"r":0,"s":2,"type":"LIFE"}],[{"first":1,"second":-2},{"q":1,"r":-2,"s":1,"type":"LIFE"}],[{"first":1,"second":1},{"q":1,"r":1,"s":-2,"type":"LIFE"}],[{"first":2,"second":-2},{"q":2,"r":-2,"s":0,"type":"LIFE"}],[{"first":-2,"second":1},{"q":-2,"r":1,"s":1,"type":"LIFE"}],[{"first":-1,"second":2},{"q":-1,"r":2,"s":-1,"type":"LIFE"}]],
                 groupId: 0,
                 id: 0,
                 name: 'character_name_kittaro',
@@ -377,7 +377,7 @@
             "{
                 hexBucket: {0:100,1:100,2:100,3:100,4:100},
                 direction: 'N',
-                hexes: [[{"first":0,"second":0},{"type":"LIFE","q":0,"r":0,"s":0}]],
+                hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":1,"second":-1},{"q":1,"r":-1,"s":0,"type":"LIFE"}],[{"first":0,"second":-1},{"q":0,"r":-1,"s":1,"type":"ATTACK"}],[{"first":1,"second":-2},{"q":1,"r":-2,"s":1,"type":"LIFE"}]],
                 groupId: 1,
                 id: 3,
                 name: 'character_name_gopnik_1',
@@ -389,7 +389,7 @@
             "{
                 hexBucket: {0:100,1:100,2:100,3:100,4:100},
                 direction: 'N',
-                hexes: [[{"first":0,"second":0},{"type":"LIFE","q":0,"r":0,"s":0}]],
+                hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":0,"second":1},{"q":0,"r":1,"s":-1,"type":"ATTACK"}],[{"first":1,"second":-1},{"q":1,"r":-1,"s":0,"type":"ATTACK"}],[{"first":1,"second":0},{"q":1,"r":0,"s":-1,"type":"LIFE"}],[{"first":2,"second":-1},{"q":2,"r":-1,"s":-1,"type":"LIFE"}],[{"first":1,"second":1},{"q":1,"r":1,"s":-2,"type":"LIFE"}]],
                 groupId: 1,
                 id: 4,
                 name: 'character_name_gopnik_2',
@@ -401,7 +401,7 @@
             "{
                 hexBucket: {0:100,1:100,2:100,3:100,4:100},
                 direction: 'N',
-                hexes: [[{"first":0,"second":0},{"type":"LIFE","q":0,"r":0,"s":0}]],
+                hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":1,"second":0},{"q":1,"r":0,"s":-1,"type":"ATTACK"}],[{"first":1,"second":-1},{"q":1,"r":-1,"s":0,"type":"LIFE"}],[{"first":0,"second":1},{"q":0,"r":1,"s":-1,"type":"LIFE"}]],
                 groupId: 1,
                 id: 5,
                 name: 'character_name_gopnik_3',

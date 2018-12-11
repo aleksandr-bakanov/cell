@@ -18,6 +18,7 @@ import bav.onecell.common.Consts
 import bav.onecell.model.InitialBattleParams
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_choose_cells_for_battle.buttonStartBattle
+import kotlinx.android.synthetic.main.fragment_choose_cells_for_battle.buttonStartBattleWithGopniks
 import kotlinx.android.synthetic.main.fragment_choose_cells_for_battle.recyclerViewCellList
 import javax.inject.Inject
 
@@ -39,6 +40,9 @@ class CellsForBattleFragment : Fragment(), CellsForBattle.View {
         inject()
 
         buttonStartBattle.setOnClickListener { openBattleView(it) }
+        buttonStartBattleWithGopniks.setOnClickListener { view ->
+            view.findNavController().navigate(R.id.battleGopniks)
+        }
 
         recyclerViewCellList.layoutManager = LinearLayoutManager(context)
         recyclerViewCellList.adapter = CellForBattleRecyclerViewAdapter(presenter, resourceProvider)

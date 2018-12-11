@@ -22,4 +22,12 @@
         android:layout_margin="8dp"
         app:srcCompat="@drawable/ic_arrow_forward_black_24dp" />
 
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/buttonStartBattleWithGopniks"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Gopniks"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
