@@ -23,6 +23,7 @@
     <dimen name="hero_screen_cell_logic_condition_picture_size">64dp</dimen>
     <dimen name="cut_scene_text_shadow_offset">2</dimen>
     <dimen name="cut_scene_text_shadow_radius">4</dimen>
+    <dimen name="cut_scene_text_padding">4dp</dimen>
 
     <dimen name="battle_result_avatar_size">52dp</dimen>
     <dimen name="battle_result_text_size">12sp</dimen>

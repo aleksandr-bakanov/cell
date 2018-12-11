@@ -45,6 +45,7 @@
         android:shadowDy="@dimen/cut_scene_text_shadow_offset"
         android:shadowRadius="@dimen/cut_scene_text_shadow_radius"
         android:fontFamily="@font/bromine"
+        android:padding="@dimen/cut_scene_text_padding"
         android:textAlignment="textStart"
         android:textSize="24sp"
         android:text="@string/text_history_stub"
