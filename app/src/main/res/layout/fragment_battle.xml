@@ -74,6 +74,8 @@
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
         android:layout_margin="8dp"
+        android:progressDrawable="@drawable/battle_view_seek_bar"
+        android:thumb="@drawable/battle_view_seek_thumb"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@id/buttonNextStep"
         app:layout_constraintEnd_toStartOf="@id/buttonFinishBattle"/>

@@ -30,4 +30,6 @@
     <dimen name="battle_result_group_margin">16dp</dimen>
     <dimen name="battle_result_avatars_in_group_margin">8dp</dimen>
     <dimen name="battle_result_reward_hex_size">32dp</dimen>
+    <dimen name="seek_bar_thickness">8dp</dimen>
+    <dimen name="seek_bar_thumb_size">20dp</dimen>
 </resources>
