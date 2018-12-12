@@ -105,7 +105,6 @@ class BattleEngine(
         // Make copy of cells
         for (i in cellIndexes) cellRepository.getCell(i)?.let {
             val clone = it.clone()
-            clone.battleData.battleId = i
             clone.battleData.isAlive = true
             damageDealtByCells[i] = 0
             clone.evaluateCellHexesPower()
@@ -123,8 +122,8 @@ class BattleEngine(
     //region Private methods
     private fun getDeadOrAliveCells(snapshot: BattleFieldSnapshot): Map<Int, Boolean> {
         val deadOrAliveCells = mutableMapOf<Int, Boolean>()
-        for (cell in snapshot.cells) deadOrAliveCells[cell.battleData.battleId] = cell.battleData.isAlive
-        for (corpse in snapshot.corpses) deadOrAliveCells[corpse.battleData.battleId] = corpse.battleData.isAlive
+        for (cell in snapshot.cells) deadOrAliveCells[cell.data.id.toInt()] = cell.battleData.isAlive
+        for (corpse in snapshot.corpses) deadOrAliveCells[corpse.data.id.toInt()] = corpse.battleData.isAlive
         return deadOrAliveCells
     }
 
@@ -181,8 +180,9 @@ class BattleEngine(
     }
 
     private fun saveCellsAndCorpsesToSnapshot() {
-        // TODO: save only viewable data (i.e. rules aren't need to be cloned)
+        // TODO: save only viewable data (i.e. rules don't need to be cloned)
         for (c in cells) {
+            c.battleData.cellIdInCurrentSnapshot = currentSnapshot.cells.size
             currentSnapshot.cells.add(c.clone())
         }
         for (c in corpses) {
@@ -213,7 +213,7 @@ class BattleEngine(
         }
         else {
             cells.forEach { cell ->
-                val id = cell.battleData.battleId.toString()
+                val id = cell.data.id.toString()
                 origins[id]?.let { cell.data.origin = Hex(it.q, it.r, it.s) }
             }
         }
@@ -421,8 +421,8 @@ class BattleEngine(
                 cell.data.hexes[hexMath.subtract(intersected, cell.data.origin).mapKey]?.let {
                     // Each hex, if it is in intersection, receives damage equals to maximum of damages within
                     // enemy's groups.
-                    val currentDamage = damageDealtByCells[cell.battleData.battleId] ?: 0
-                    damageDealtByCells[cell.battleData.battleId] = currentDamage + it.power
+                    val currentDamage = damageDealtByCells[cell.data.id.toInt()] ?: 0
+                    damageDealtByCells[cell.data.id.toInt()] = currentDamage + it.power
                     it.power -= maxDamageOfGroup
                             .filter { entry -> entry.key != cell.data.groupId }
                             .maxBy { entry -> entry.value }?.value ?: 0
@@ -440,7 +440,7 @@ class BattleEngine(
             // Get all enemy hexes which are neighbors to us
             val neighboringEnemyHexesByBattleId = mutableMapOf<Int, MutableSet<Hex>>()
             cells.filter { it.data.groupId != cell.data.groupId }.forEach { enemy ->
-                neighboringEnemyHexesByBattleId.getOrPut(enemy.battleData.battleId) { mutableSetOf() }.addAll(
+                neighboringEnemyHexesByBattleId.getOrPut(enemy.data.id.toInt()) { mutableSetOf() }.addAll(
                         enemy.data.hexes.values.map { hexMath.add(enemy.data.origin, it).withPower(it.power) }
                                 .intersect(cellOutline))
             }
@@ -485,7 +485,7 @@ class BattleEngine(
                 }
             }
 
-            currentSnapshot.hexesToRemove[index].addAll(correctHexesToRemoveForSnapshot(hexesToRemove, index))
+            currentSnapshot.hexesToRemove[cell.battleData.cellIdInCurrentSnapshot].addAll(correctHexesToRemoveForSnapshot(hexesToRemove, index))
 
             if (hexesToRemove.isNotEmpty()) {
                 hexesToRemove.forEach { cell.data.hexes.remove(it.mapKey) }

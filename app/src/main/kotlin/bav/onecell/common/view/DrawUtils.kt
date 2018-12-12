@@ -77,7 +77,7 @@ class DrawUtils(private val hexMath: HexMath, context: Context) {
 
         strokePaint.style = Paint.Style.STROKE
         strokePaint.color = ContextCompat.getColor(context, R.color.cellEditorStroke)
-        strokePaint.strokeWidth = 1.0f
+        strokePaint.strokeWidth = 2.0f
 
         cellOutlinePaint.style = Paint.Style.STROKE
         cellOutlinePaint.color = Color.BLACK

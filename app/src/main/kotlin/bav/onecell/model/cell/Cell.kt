@@ -30,10 +30,10 @@ class Cell(private val hexMath: HexMath,
                              var hexHashesToRemove: List<Pair<Int, Int>>? = null, var fadeFraction: Float = 0f)
     val animationData = AnimationData()
 
-    data class BattleData(var battleId: Int = 0,
+    data class BattleData(var cellIdInCurrentSnapshot: Int = 0,
                           var isAlive: Boolean = true,
                           var omniBulletTimeout: Int = OMNI_BULLET_TIMEOUT) {
-        fun clone(): BattleData = BattleData(battleId, isAlive, omniBulletTimeout)
+        fun clone(): BattleData = BattleData(cellIdInCurrentSnapshot, isAlive, omniBulletTimeout)
     }
 
     companion object {
