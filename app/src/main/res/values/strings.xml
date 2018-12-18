@@ -221,9 +221,9 @@
       -->
     <string name="cut_scene_after_gopniks" translatable="false">
         "{
-            background: 'wallpaper_01',
-            left: 'left_character',
-            right: 'left_character',
+            background: 'ic_cs_introduction_0',
+            left: 'ic_character_kittaro_normal',
+            right: 'ic_character_kittaro_normal',
             frames: {
                 '0': { text: 'cs_after_gopniks_0' }
             },
@@ -236,9 +236,9 @@
       -->
     <string name="cut_scene_before_skilos" translatable="false">
         "{
-            background: 'wallpaper_01',
-            left: 'left_character',
-            right: 'left_character',
+            background: 'ic_cs_introduction_0',
+            left: 'ic_character_kittaro_normal',
+            right: 'ic_character_kittaro_normal',
             frames: {
                 '0': { text: 'cs_before_skilos_0' }
             },
@@ -251,9 +251,9 @@
       -->
     <string name="cut_scene_after_skilos" translatable="false">
         "{
-            background: 'wallpaper_01',
-            left: 'left_character',
-            right: 'left_character',
+            background: 'ic_cs_introduction_0',
+            left: 'ic_character_kittaro_normal',
+            right: 'ic_character_kittaro_normal',
             frames: {
                 '0': { text: 'cs_after_skilos_0' }
             },
