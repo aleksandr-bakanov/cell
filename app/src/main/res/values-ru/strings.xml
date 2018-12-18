@@ -77,7 +77,7 @@
     <string name="cs_introduction_44">Клетка погибает если у нее не осталось жизненных ячеек.</string>
     <string name="cs_introduction_45">Также клетка погибает если связь жизненных ячеек разорвана.</string>
     <string name="cs_introduction_46">Бой завершается, когда в живых остаются только клетки принадлежащие одной группе.</string>
-    <string name="cs_introduction_47">Давай разберемся с этой гопотой!</string>
+    <string name="cs_introduction_47">\u0020</string>
 
     <!-- Character names -->
     <string name="character_name_kittaro">Киттаро</string>

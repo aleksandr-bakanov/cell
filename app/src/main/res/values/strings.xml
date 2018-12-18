@@ -160,7 +160,7 @@
                 '44': { text: 'cs_introduction_44', background: 'ic_cs_introduction_44' },
                 '45': { text: 'cs_introduction_45', background: 'ic_cs_introduction_45' },
                 '46': { text: 'cs_introduction_46', background: 'ic_cs_introduction_45' },
-                '47': { text: 'cs_introduction_47', background: 'ic_cs_introduction_45' }
+                '47': { text: 'cs_introduction_47', background: 'ic_cs_introduction_47' }
             },
             next_scene: 'action_cutSceneIntroduction_to_battleGopniks'
         }"
