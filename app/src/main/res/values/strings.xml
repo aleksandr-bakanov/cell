@@ -225,12 +225,37 @@
             left: 'ic_character_kittaro_normal',
             right: 'ic_character_kittaro_normal',
             frames: {
-                '0': { text: 'cs_after_gopniks_0' }
+                '0': { text: 'cs_after_gopniks_0' },
+                '1': { text: 'cs_after_gopniks_1' },
+                '2': { text: 'cs_after_gopniks_2' },
+                '3': { text: 'cs_after_gopniks_3' },
+                '4': { text: 'cs_after_gopniks_4' },
+                '5': { text: 'cs_after_gopniks_5' },
+                '6': { text: 'cs_after_gopniks_6' },
+                '7': { text: 'cs_after_gopniks_7' },
+                '8': { text: 'cs_after_gopniks_8' },
+                '9': { text: 'cs_after_gopniks_9' },
+                '10': { text: 'cs_after_gopniks_10' },
+                '11': { text: 'cs_after_gopniks_11' },
+                '12': { text: 'cs_after_gopniks_12' }
             },
             next_scene: 'action_cutSceneAfterGopniks_to_heroScreenAfterGopniks'
         }"
     </string>
-    <string name="cs_after_gopniks_0" translatable="false">cut_scene_after_gopniks 1</string>
+    <string name="cs_after_gopniks_0">cs_after_gopniks_0</string>
+    <string name="cs_after_gopniks_1">cs_after_gopniks_1</string>
+    <string name="cs_after_gopniks_2">cs_after_gopniks_2</string>
+    <string name="cs_after_gopniks_3">cs_after_gopniks_3</string>
+    <string name="cs_after_gopniks_4">cs_after_gopniks_4</string>
+    <string name="cs_after_gopniks_5">cs_after_gopniks_5</string>
+    <string name="cs_after_gopniks_6">cs_after_gopniks_6</string>
+    <string name="cs_after_gopniks_7">cs_after_gopniks_7</string>
+    <string name="cs_after_gopniks_8">cs_after_gopniks_8</string>
+    <string name="cs_after_gopniks_9">cs_after_gopniks_9</string>
+    <string name="cs_after_gopniks_10">cs_after_gopniks_10</string>
+    <string name="cs_after_gopniks_11">cs_after_gopniks_11</string>
+    <string name="cs_after_gopniks_12">cs_after_gopniks_12</string>
+
     <!--
       - Cut scene before encounter with skiloses.
       -->
@@ -240,12 +265,23 @@
             left: 'ic_character_kittaro_normal',
             right: 'ic_character_kittaro_normal',
             frames: {
-                '0': { text: 'cs_before_skilos_0' }
+                '0': { text: 'cs_before_skilos_0' },
+                '1': { text: 'cs_before_skilos_1' },
+                '2': { text: 'cs_before_skilos_2' },
+                '3': { text: 'cs_before_skilos_3' },
+                '4': { text: 'cs_before_skilos_4' },
+                '5': { text: 'cs_before_skilos_5' }
             },
             next_scene: 'action_cutSceneBeforeSkilos_to_battleSkilos'
         }"
     </string>
-    <string name="cs_before_skilos_0" translatable="false">cut_scene_before_skilos 1</string>
+    <string name="cs_before_skilos_0">cs_before_skilos_0</string>
+    <string name="cs_before_skilos_1">cs_before_skilos_1</string>
+    <string name="cs_before_skilos_2">cs_before_skilos_2</string>
+    <string name="cs_before_skilos_3">cs_before_skilos_3</string>
+    <string name="cs_before_skilos_4">cs_before_skilos_4</string>
+    <string name="cs_before_skilos_5">cs_before_skilos_5</string>
+
     <!--
       - Cut scene after encounter with skiloses.
       -->
@@ -255,12 +291,54 @@
             left: 'ic_character_kittaro_normal',
             right: 'ic_character_kittaro_normal',
             frames: {
-                '0': { text: 'cs_after_skilos_0' }
+                '0': { text: 'cs_after_skilos_0' },
+                '1': { text: 'cs_after_skilos_1' },
+                '2': { text: 'cs_after_skilos_2' },
+                '3': { text: 'cs_after_skilos_3' },
+                '4': { text: 'cs_after_skilos_4' },
+                '5': { text: 'cs_after_skilos_5' },
+                '6': { text: 'cs_after_skilos_6' },
+                '7': { text: 'cs_after_skilos_7' },
+                '8': { text: 'cs_after_skilos_8' },
+                '9': { text: 'cs_after_skilos_9' },
+                '10': { text: 'cs_after_skilos_10' },
+                '11': { text: 'cs_after_skilos_11' },
+                '12': { text: 'cs_after_skilos_12' },
+                '13': { text: 'cs_after_skilos_13' },
+                '14': { text: 'cs_after_skilos_14' },
+                '15': { text: 'cs_after_skilos_15' },
+                '16': { text: 'cs_after_skilos_16' },
+                '17': { text: 'cs_after_skilos_17' },
+                '18': { text: 'cs_after_skilos_18' },
+                '19': { text: 'cs_after_skilos_19' },
+                '20': { text: 'cs_after_skilos_20' },
+                '21': { text: 'cs_after_skilos_21' }
             },
             next_scene: 'action_cutSceneAfterSkilos_to_heroScreenAfterSkilos'
         }"
     </string>
-    <string name="cs_after_skilos_0" translatable="false">cut_scene_after_skilos 1</string>
+    <string name="cs_after_skilos_0">cs_after_skilos_0</string>
+    <string name="cs_after_skilos_1">cs_after_skilos_1</string>
+    <string name="cs_after_skilos_2">cs_after_skilos_1</string>
+    <string name="cs_after_skilos_3">cs_after_skilos_1</string>
+    <string name="cs_after_skilos_4">cs_after_skilos_1</string>
+    <string name="cs_after_skilos_5">cs_after_skilos_1</string>
+    <string name="cs_after_skilos_6">cs_after_skilos_1</string>
+    <string name="cs_after_skilos_7">cs_after_skilos_1</string>
+    <string name="cs_after_skilos_8">cs_after_skilos_1</string>
+    <string name="cs_after_skilos_9">cs_after_skilos_1</string>
+    <string name="cs_after_skilos_10">cs_after_skilos_1</string>
+    <string name="cs_after_skilos_11">cs_after_skilos_1</string>
+    <string name="cs_after_skilos_12">cs_after_skilos_1</string>
+    <string name="cs_after_skilos_13">cs_after_skilos_1</string>
+    <string name="cs_after_skilos_14">cs_after_skilos_1</string>
+    <string name="cs_after_skilos_15">cs_after_skilos_1</string>
+    <string name="cs_after_skilos_16">cs_after_skilos_1</string>
+    <string name="cs_after_skilos_17">cs_after_skilos_1</string>
+    <string name="cs_after_skilos_18">cs_after_skilos_1</string>
+    <string name="cs_after_skilos_19">cs_after_skilos_1</string>
+    <string name="cs_after_skilos_20">cs_after_skilos_1</string>
+    <string name="cs_after_skilos_21">cs_after_skilos_1</string>
 
     <!-- Battle scenes params -->
     <string name="battle_with_gopniks_params" translatable="false">

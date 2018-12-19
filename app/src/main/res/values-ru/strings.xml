@@ -79,6 +79,53 @@
     <string name="cs_introduction_46">Бой завершается, когда в живых остаются только клетки принадлежащие одной группе.</string>
     <string name="cs_introduction_47">\u0020</string>
 
+    <!-- Cut scene after gopniks -->
+    <string name="cs_after_gopniks_0">Ну что хватит с вас?</string>
+    <string name="cs_after_gopniks_1">Ай, мля-я-а-а!</string>
+    <string name="cs_after_gopniks_2">Костыль, не вопи!</string>
+    <string name="cs_after_gopniks_3">Маслина-а-а-а-а-а-а!</string>
+    <string name="cs_after_gopniks_4">За победу в бою ты получаешь награду - ячейки и, иногда, способности.</string>
+    <string name="cs_after_gopniks_5">Полученные ячейки можно добавить в свою клетку, усилив её.</string>
+    <string name="cs_after_gopniks_6">Клетку можно перестраивать как угодно, добавляя и удаляя из нее ячейки.</string>
+    <string name="cs_after_gopniks_7">Главное не нарушать связанность жизненных ячеек.</string>
+    <string name="cs_after_gopniks_8">Ты открыл новый тип ячейки - атакующую (красную).</string>
+    <string name="cs_after_gopniks_9">Атакующие ячейки не обладают собственной силой.</string>
+    <string name="cs_after_gopniks_10">Они черпают её из окружающих их ячеек.</string>
+    <string name="cs_after_gopniks_11">Каждая соседняя жизненная ячейка добавляет единицу силы атакующей.</string>
+    <string name="cs_after_gopniks_12">Усиль клетку и отправляйся дальше.</string>
+
+    <!-- Cut scene before encounter with skiloses -->
+    <string name="cs_before_skilos_0">Вдали от дома</string>
+    <string name="cs_before_skilos_1">Так далеко от дома я ещё не забирался...</string>
+    <string name="cs_before_skilos_2">Что это за запах?</string>
+    <string name="cs_before_skilos_3">Рррррррр!</string>
+    <string name="cs_before_skilos_4">Скилосы?! Кого только не встретишь вдали от поселений.</string>
+    <string name="cs_before_skilos_5">Рррррррррррррррр!!!</string>
+
+    <!-- Cut scene after skiloses -->
+    <string name="cs_after_skilos_0">Черт, ну и потрепали же меня проклятые скилосы!</string>
+    <string name="cs_after_skilos_1">В следующий раз надо быть внимательней и лучше уворачиваться.</string>
+    <string name="cs_after_skilos_2">Кстати, насчёт уворотов.</string>
+    <string name="cs_after_skilos_3">У тебя появилась возможность задать поведение клетки (запрограммировать её).</string>
+    <string name="cs_after_skilos_4">Так чтобы она реагировала на обстановку в бою.</string>
+    <string name="cs_after_skilos_5">Давай разберемся с этим. Итак,</string>
+    <string name="cs_after_skilos_6">Существуют правила, условия и действия.</string>
+    <string name="cs_after_skilos_7">Одно правило содержит в себе набор условий и одно действие.</string>
+    <string name="cs_after_skilos_8">Если все условия, содержащиеся в правиле, выполнены, то действие исполняется.</string>
+    <string name="cs_after_skilos_9">Клетка содержит набор правил.</string>
+    <string name="cs_after_skilos_10">Каждый ход клетка перебирает свои правила по-порядку.</string>
+    <string name="cs_after_skilos_11">Если для какого-нибудь правила выполняются ВСЕ условия,</string>
+    <string name="cs_after_skilos_12">то клетка исполняет действие, описанное в данном правиле и перебор заканчивается.</string>
+    <string name="cs_after_skilos_13">Если ни одно из правил не удовлетворило условиям на поле боя, то ничего не происходит.</string>
+    <string name="cs_after_skilos_14">Приоритет правил можно изменять перетаскивая их. Перебор идет сверху вниз.</string>
+    <string name="cs_after_skilos_15">Удалять правила и условия можно смахивая их влево или вправо.</string>
+    <string name="cs_after_skilos_16">На данный момент можно проверять два условия:</string>
+    <string name="cs_after_skilos_17">Направление на ближайшего врага - север, северо-восток, юго-восток, юг, юго-запад, северо-запад</string>
+    <string name="cs_after_skilos_18">Расстояние до ближайшего врага - можно указать больше, меньше либо равно числу от 0 до 9</string>
+    <string name="cs_after_skilos_19">На данный момент можно исполнять одно действие:</string>
+    <string name="cs_after_skilos_20">Поворот в указанном направлении - север, северо-восток, юго-восток, юг, юго-запад, северо-запад</string>
+    <string name="cs_after_skilos_21">Попробуй создать набор правил, при котором твоя клетка всегда будет направлена на ближайшего врага.</string>
+
     <!-- Character names -->
     <string name="character_name_kittaro">Киттаро</string>
     <string name="character_name_zoi">Зои</string>

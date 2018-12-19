@@ -37,7 +37,7 @@
     <TextView
         android:id="@+id/textView"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:background="@color/cutSceneTextFieldBackground"
         android:textColor="@android:color/white"
         android:shadowColor="@color/cutSceneTextFieldShadow"
@@ -49,6 +49,9 @@
         android:textAlignment="textStart"
         android:textSize="24sp"
         android:text="@string/text_history_stub"
+        android:maxLines="3"
+        android:scrollbars="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="@id/textFieldGuideline"
         app:layout_constraintEnd_toEndOf="@id/rightCharacterGuideline"
         app:layout_constraintStart_toStartOf="@id/leftCharacterGuideline" />

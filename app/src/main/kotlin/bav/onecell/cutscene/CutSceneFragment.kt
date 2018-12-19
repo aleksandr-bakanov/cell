@@ -2,6 +2,7 @@ package bav.onecell.cutscene
 
 import android.graphics.Color
 import android.os.Bundle
+import android.text.method.ScrollingMovementMethod
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -65,6 +66,7 @@ class CutSceneFragment : Fragment(), CutScene.View {
         buttonPreviousFrame.setOnClickListener { showPreviousFrame() }
         buttonYes.setOnClickListener { makeDecision(true) }
         buttonNo.setOnClickListener { makeDecision(false) }
+        textView.movementMethod = ScrollingMovementMethod()
 
         parseArguments(arguments)
     }

@@ -287,7 +287,7 @@ class BattleFragment : Fragment(), Battle.View {
         private const val TAG = "BattleFragment"
         const val EXTRA_PARAMS = "params"
         private const val TIMESTAMP_STEP: Long = 100
-        private const val TIMESTAMP_ANIMATION_STEP: Long = 16 // For ~60 fps
+        private const val TIMESTAMP_ANIMATION_STEP: Long = 20 // 16 for ~60 fps; 25 for 40 fps; 20 for 50 fps
 
         fun newInstance(bundle: Bundle?): BattleFragment {
             val fragment = BattleFragment()
