@@ -176,7 +176,7 @@
     <fragment
         android:id="@+id/battleSkilos"
         android:name="bav.onecell.battle.BattleFragment"
-        android:label="Battle with gopniks"
+        android:label="Battle with skiloses"
         tools:layout="@layout/fragment_battle">
         <argument
             android:name="params"
@@ -229,12 +229,90 @@
         tools:layout="@layout/fragment_hero_screen">
         <argument
             android:name="@string/next_scene"
-            android:defaultValue="TBD"
+            android:defaultValue="cutSceneGonato"
             app:argType="string" />
+        <action
+            android:id="@+id/action_heroScreenAfterSkilos_to_cutSceneGonato"
+            app:destination="@id/cutSceneGonato" />
     </fragment>
 
     <!--
       - Chapter 3
       -->
+    <!-- Cut scene Gonato village -->
+    <fragment
+        android:id="@+id/cutSceneGonato"
+        android:name="bav.onecell.cutscene.CutSceneFragment"
+        android:label="Cut scene Gonato"
+        tools:layout="@layout/fragment_cut_scene">
+        <argument
+            android:name="cutSceneInfo"
+            android:defaultValue="@string/cut_scene_gonato"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_cutSceneGonato_to_battleBelos"
+            app:destination="@id/battleBelos" />
+    </fragment>
+
+    <!-- Battle with Belos -->
+    <fragment
+        android:id="@+id/battleBelos"
+        android:name="bav.onecell.battle.BattleFragment"
+        android:label="Battle with Belos"
+        tools:layout="@layout/fragment_battle">
+        <argument
+            android:name="params"
+            android:defaultValue="@string/battle_with_belos"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_battleBelos_to_battleResultsBelos"
+            app:destination="@id/battleResultsBelos" />
+    </fragment>
+
+    <!-- Results of the battle with Belos -->
+    <fragment
+        android:id="@+id/battleResultsBelos"
+        android:name="bav.onecell.battle.results.BattleResultsFragment"
+        android:label="BattleResulResult of battle with Belos"
+        tools:layout="@layout/fragment_battle_results">
+        <argument
+            android:name="@string/next_scene"
+            android:defaultValue="cutSceneAfterSkilos"
+            app:argType="string" />
+        <argument
+            android:name="@string/previous_scene"
+            android:defaultValue="heroScreenAfterSkilos"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_battleResultsBelos_to_cutSceneAfterBelos"
+            app:destination="@id/cutSceneAfterBelos" />
+    </fragment>
+
+    <!-- Cut scene after Belos -->
+    <fragment
+        android:id="@+id/cutSceneAfterBelos"
+        android:name="bav.onecell.cutscene.CutSceneFragment"
+        android:label="Cut scene after Belos"
+        tools:layout="@layout/fragment_cut_scene">
+        <argument
+            android:name="cutSceneInfo"
+            android:defaultValue="@string/cut_scene_after_skilos"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_cutSceneAfterBelos_to_heroScreenAfterBelos"
+            app:destination="@id/heroScreenAfterBelos" />
+    </fragment>
+
+    <!-- Hero screen after battle with Belos -->
+    <fragment
+        android:id="@+id/heroScreenAfterBelos"
+        android:name="bav.onecell.heroscreen.HeroScreenFragment"
+        android:label="Hero screen after Belos"
+        tools:layout="@layout/fragment_hero_screen">
+        <argument
+            android:name="@string/next_scene"
+            android:defaultValue="cutSceneGonato"
+            app:argType="string" />
+    </fragment>
 
 </navigation>

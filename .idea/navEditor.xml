@@ -8,6 +8,26 @@
             <LayoutPositions>
               <option name="myPositions">
                 <map>
+                  <entry key="battleBelos">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="y" value="764" />
+                          </Point>
+                        </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_battleBelos_to_battleResultsBelos">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
                   <entry key="battleFragment">
                     <value>
                       <LayoutPositions>
@@ -41,6 +61,27 @@
                         <option name="myPositions">
                           <map>
                             <entry key="action_battleGopniks_to_battleResultsGopniks">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="battleResultsBelos">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="270" />
+                            <option name="y" value="768" />
+                          </Point>
+                        </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_battleResultsBelos_to_cutSceneAfterBelos">
                               <value>
                                 <LayoutPositions />
                               </value>
@@ -155,6 +196,27 @@
                       </LayoutPositions>
                     </value>
                   </entry>
+                  <entry key="cutSceneAfterBelos">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="516" />
+                            <option name="y" value="769" />
+                          </Point>
+                        </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_cutSceneAfterSkilos_to_heroScreenAfterSkilos">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
                   <entry key="cutSceneAfterGopniks">
                     <value>
                       <LayoutPositions>
@@ -209,6 +271,27 @@
                         <option name="myPositions">
                           <map>
                             <entry key="action_cutSceneBeforeSkilos_to_battleSkilos">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="cutSceneGonato">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="-281" />
+                            <option name="y" value="763" />
+                          </Point>
+                        </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_cutSceneGonato_to_battleBelos">
                               <value>
                                 <LayoutPositions />
                               </value>
@@ -288,6 +371,27 @@
                           <Point>
                             <option name="x" value="758" />
                             <option name="y" value="448" />
+                          </Point>
+                        </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_heroScreenAfterSkilos_to_cutSceneGonato">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="heroScreenFragment">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="759" />
+                            <option name="y" value="771" />
                           </Point>
                         </option>
                       </LayoutPositions>

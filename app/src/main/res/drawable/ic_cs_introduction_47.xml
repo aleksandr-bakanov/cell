@@ -1,13 +1,3 @@
-<!--
-  ~ Copyright (c) 2018 Disney ABC Television Group
-  ~
-  ~ cell
-  ~ ic_cs_introduction_47.xml
-  ~
-  ~ Author: Aleksandr Bakanov <aleksandr_bakanov@epam.com>
-  ~ Date:   December 18, 2018
-  -->
-
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:width="1920dp"
     android:height="1080dp"

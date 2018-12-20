@@ -126,6 +126,12 @@
     <string name="cs_after_skilos_20">Поворот в указанном направлении - север, северо-восток, юго-восток, юг, юго-запад, северо-запад</string>
     <string name="cs_after_skilos_21">Попробуй создать набор правил, при котором твоя клетка всегда будет направлена на ближайшего врага.</string>
 
+    <!-- Cut scene Gonato village -->
+    <string name="cs_gonato_0">cs_gonato_0</string>
+
+    <!-- Cut scene after Belos -->
+    <string name="cs_after_belos_0">cs_after_belos_0</string>
+
     <!-- Character names -->
     <string name="character_name_kittaro">Киттаро</string>
     <string name="character_name_zoi">Зои</string>

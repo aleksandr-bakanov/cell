@@ -340,7 +340,41 @@
     <string name="cs_after_skilos_20">cs_after_skilos_1</string>
     <string name="cs_after_skilos_21">cs_after_skilos_1</string>
 
-    <!-- Battle scenes params -->
+    <!--
+      - Cut scene Gonato village
+      -->
+    <string name="cut_scene_gonato" translatable="false">
+        "{
+            background: 'ic_cs_introduction_0',
+            left: 'ic_character_kittaro_normal',
+            right: 'ic_character_kittaro_normal',
+            frames: {
+                '0': { text: 'cs_gonato_0' }
+            },
+            next_scene: 'action_cutSceneGonato_to_battleBelos'
+        }"
+    </string>
+    <string name="cs_gonato_0">cs_gonato_0</string>
+
+    <!--
+      - Cut scene after Belos
+      -->
+    <string name="cut_scene_after_belos" translatable="false">
+        "{
+            background: 'ic_cs_introduction_0',
+            left: 'ic_character_kittaro_normal',
+            right: 'ic_character_kittaro_normal',
+            frames: {
+                '0': { text: 'cs_after_belos_0' }
+            },
+            next_scene: 'action_cutSceneAfterBelos_to_heroScreenAfterBelos'
+        }"
+    </string>
+    <string name="cs_after_belos_0">cs_after_belos_0</string>
+
+    <!--
+      - Battle scenes params
+      -->
     <string name="battle_with_gopniks_params" translatable="false">
         "{
             battleParams: {
@@ -377,6 +411,21 @@
             next_scene: 'action_battleSkilos_to_battleResultsSkilos'
         }"
     </string>
+    <string name="battle_with_belos" translatable="false">
+        "{
+            battleParams: {
+                cellIndexes: [0,11],
+                isFog: false
+            },
+            reward: {
+                '0': {LIFE:2, ATTACK:3, ENERGY:2},
+                'gameStateChanges': {
+                    'energy_hexes_available': true
+                }
+            },
+            next_scene: 'action_battleBelos_to_battleResultsBelos'
+        }"
+    </string>
 
     <!-- Character names -->
     <string name="character_name_kittaro">Kittaro</string>
@@ -411,7 +460,9 @@
     <string name="character_name_drunkard_4">Drunkard #4</string>
     <string name="character_name_drunkard_5">Drunkard #5</string>
 
-    <!-- Initial cell descriptions -->
+    <!--
+      - Initial cell descriptions
+      -->
     <string-array name="cell_descriptions" translatable="false">
         <!-- Main heroes -->
         <item>
