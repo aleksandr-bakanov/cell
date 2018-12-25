@@ -397,7 +397,7 @@
             left: 'ic_character_kittaro_normal',
             right: 'ic_character_kittaro_normal',
             frames: {
-                '0': { text: 'cs_after_belos_0' }
+                '0': { text: 'cs_after_omikhli_0' }
             },
             next_scene: 'action_cutSceneAfterOmikhli_to_heroScreenAfterOmikhli'
         }"
@@ -609,7 +609,7 @@
                 '0': {LIFE:2, ATTACK:3, ENERGY:2},
                 'gameStateChanges': {}
             },
-            next_scene: 'action_battleResultsNikhteribs_to_cutSceneAfterNikhteribs'
+            next_scene: 'action_battleNikhteribs_to_battleResultsNikhteribs'
         }"
     </string>
     <string name="battle_with_drunkards" translatable="false">

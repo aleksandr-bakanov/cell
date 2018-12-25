@@ -449,7 +449,7 @@
             app:argType="string" />
         <action
             android:id="@+id/action_battleResultsNikhteribs_to_cutSceneAfterNikhteribs"
-            app:destination="@id/cutSceneAfterNikhteribs" />
+            app:destination="@+id/cutSceneAfterNikhteribs" />
     </fragment>
 
     <!-- Cut scene after nikhteribs -->
@@ -637,6 +637,10 @@
         android:name="bav.onecell.heroscreen.HeroScreenFragment"
         android:label="Hero screen after Katofi Ponu"
         tools:layout="@layout/fragment_hero_screen">
+        <argument
+            android:name="@string/next_scene"
+            android:defaultValue="cutSceneEnkefalio"
+            app:argType="string" />
         <action
             android:id="@+id/action_heroScreenAfterKatofiPonu_to_cutSceneEnkefalio"
             app:destination="@id/cutSceneEnkefalio" />
