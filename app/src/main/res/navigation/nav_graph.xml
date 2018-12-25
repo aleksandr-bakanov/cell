@@ -390,6 +390,88 @@
         android:id="@+id/heroScreenAfterOmikhli"
         android:name="bav.onecell.heroscreen.HeroScreenFragment"
         android:label="Hero screen after Omikhli"
-        tools:layout="@layout/fragment_hero_screen" />
+        tools:layout="@layout/fragment_hero_screen" >
+        <argument
+            android:name="@string/next_scene"
+            android:defaultValue="cutSceneKilia"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_heroScreenAfterOmikhli_to_cutSceneKilia"
+            app:destination="@id/cutSceneKilia" />
+    </fragment>
+
+    <!--
+      - Chapter 5
+      -->
+    <!-- Cut scene Kilia -->
+    <fragment
+        android:id="@+id/cutSceneKilia"
+        android:name="bav.onecell.cutscene.CutSceneFragment"
+        android:label="Cut scene Kilia"
+        tools:layout="@layout/fragment_cut_scene">
+        <argument
+            android:name="cutSceneInfo"
+            android:defaultValue="@string/cut_scene_kilia"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_cutSceneKilia_to_battleNikhteribs"
+            app:destination="@id/battleNikhteribs" />
+    </fragment>
+
+    <!-- Battle with nikhteribs -->
+    <fragment
+        android:id="@+id/battleNikhteribs"
+        android:name="bav.onecell.battle.BattleFragment"
+        android:label="Battle with nikhteribs"
+        tools:layout="@layout/fragment_battle">
+        <argument
+            android:name="params"
+            android:defaultValue="@string/battle_with_nikhteribs"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_battleNikhteribs_to_battleResultsNikhteribs"
+            app:destination="@id/battleResultsNikhteribs" />
+    </fragment>
+
+    <!-- Result of battle with nikhteribs -->
+    <fragment
+        android:id="@+id/battleResultsNikhteribs"
+        android:name="bav.onecell.battle.results.BattleResultsFragment"
+        android:label="Result of battle with nikhteribs"
+        tools:layout="@layout/fragment_battle_results">
+        <argument
+            android:name="@string/next_scene"
+            android:defaultValue="cutSceneAfterNikhteribs"
+            app:argType="string" />
+        <argument
+            android:name="@string/previous_scene"
+            android:defaultValue="heroScreenAfterOmikhli"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_battleResultsNikhteribs_to_cutSceneAfterNikhteribs"
+            app:destination="@id/cutSceneAfterNikhteribs" />
+    </fragment>
+
+    <!-- Cut scene after nikhteribs -->
+    <fragment
+        android:id="@+id/cutSceneAfterNikhteribs"
+        android:name="bav.onecell.cutscene.CutSceneFragment"
+        android:label="Cut scene after nikhteribs"
+        tools:layout="@layout/fragment_cut_scene">
+        <argument
+            android:name="cutSceneInfo"
+            android:defaultValue="@string/cut_scene_after_nikhteribs"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_cutSceneAfterNikhteribs_to_heroScreenAfterNikhteribs"
+            app:destination="@id/heroScreenAfterNikhteribs" />
+    </fragment>
+
+    <!-- Hero screen after Nikhteribs -->
+    <fragment
+        android:id="@+id/heroScreenAfterNikhteribs"
+        android:name="bav.onecell.heroscreen.HeroScreenFragment"
+        android:label="Hero screen after nikhteribs"
+        tools:layout="@layout/fragment_hero_screen"/>
 
 </navigation>

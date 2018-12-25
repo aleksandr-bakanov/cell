@@ -70,6 +70,18 @@
                       </LayoutPositions>
                     </value>
                   </entry>
+                  <entry key="battleNikhteribs">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="2" />
+                            <option name="y" value="1392" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
                   <entry key="battleOmikhli">
                     <value>
                       <LayoutPositions>
@@ -78,6 +90,15 @@
                             <option name="x" value="-1" />
                             <option name="y" value="1085" />
                           </Point>
+                        </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_battleOmikhli_to_battleResultsOmikhli">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
                         </option>
                       </LayoutPositions>
                     </value>
@@ -145,6 +166,18 @@
                       </LayoutPositions>
                     </value>
                   </entry>
+                  <entry key="battleResultsNikhteribs">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="277" />
+                            <option name="y" value="1393" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
                   <entry key="battleResultsOmikhli">
                     <value>
                       <LayoutPositions>
@@ -153,6 +186,15 @@
                             <option name="x" value="275" />
                             <option name="y" value="1082" />
                           </Point>
+                        </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_battleResultsOmikhli_to_cutSceneAfterOmikhli">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
                         </option>
                       </LayoutPositions>
                     </value>
@@ -262,6 +304,18 @@
                       </LayoutPositions>
                     </value>
                   </entry>
+                  <entry key="cutSceneAfterNikhteribs">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="519" />
+                            <option name="y" value="1395" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
                   <entry key="cutSceneAfterOmikhli">
                     <value>
                       <LayoutPositions>
@@ -270,6 +324,15 @@
                             <option name="x" value="517" />
                             <option name="y" value="1082" />
                           </Point>
+                        </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_cutSceneAfterOmikhli_to_heroScreenAfterOmikhli">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
                         </option>
                       </LayoutPositions>
                     </value>
@@ -303,6 +366,15 @@
                             <option name="x" value="-275" />
                             <option name="y" value="1080" />
                           </Point>
+                        </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_cutSceneAnalafro_to_battleOmikhli">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
                         </option>
                       </LayoutPositions>
                     </value>
@@ -370,6 +442,18 @@
                       </LayoutPositions>
                     </value>
                   </entry>
+                  <entry key="cutSceneKilia">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="-272" />
+                            <option name="y" value="1389" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
                   <entry key="heroScreen">
                     <value>
                       <LayoutPositions>
@@ -400,6 +484,15 @@
                             <option name="y" value="781" />
                           </Point>
                         </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_heroScreenAfterBelos_to_cutSceneAnalafro">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
+                        </option>
                       </LayoutPositions>
                     </value>
                   </entry>
@@ -420,6 +513,18 @@
                               </value>
                             </entry>
                           </map>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="heroScreenAfterOmikhli">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="764" />
+                            <option name="y" value="1086" />
+                          </Point>
                         </option>
                       </LayoutPositions>
                     </value>
@@ -445,13 +550,13 @@
                       </LayoutPositions>
                     </value>
                   </entry>
-                  <entry key="heroScreenFragment">
+                  <entry key="heroScreenFragment2">
                     <value>
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="764" />
-                            <option name="y" value="1086" />
+                            <option name="x" value="763" />
+                            <option name="y" value="1401" />
                           </Point>
                         </option>
                       </LayoutPositions>

@@ -138,6 +138,12 @@
     <!-- Cut scene after Omikhli -->
     <string name="cs_after_omikhli_0">cs_after_omikhli_0</string>
 
+    <!-- Cut scene Kilia -->
+    <string name="cs_kilia_0">cs_kilia_0</string>
+
+    <!-- Cut scene after nikhteribs -->
+    <string name="cs_after_nikhteribs_0">cs_after_nikhteribs_0</string>
+
     <!-- Character names -->
     <string name="character_name_kittaro">Киттаро</string>
     <string name="character_name_zoi">Зои</string>
