@@ -28,6 +28,26 @@
                       </LayoutPositions>
                     </value>
                   </entry>
+                  <entry key="battleDrunkards">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="y" value="1701" />
+                          </Point>
+                        </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_battleDrunkards_to_battleResultsDrunkards">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
                   <entry key="battleFragment">
                     <value>
                       <LayoutPositions>
@@ -79,6 +99,15 @@
                             <option name="y" value="1392" />
                           </Point>
                         </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_battleNikhteribs_to_battleResultsNikhteribs">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
+                        </option>
                       </LayoutPositions>
                     </value>
                   </entry>
@@ -115,6 +144,27 @@
                         <option name="myPositions">
                           <map>
                             <entry key="action_battleResultsBelos_to_cutSceneAfterBelos">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="battleResultsDrunkards">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="277" />
+                            <option name="y" value="1704" />
+                          </Point>
+                        </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_battleResultsDrunkards_to_cutSceneAfterDrunkards">
                               <value>
                                 <LayoutPositions />
                               </value>
@@ -174,6 +224,15 @@
                             <option name="x" value="277" />
                             <option name="y" value="1393" />
                           </Point>
+                        </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_battleResultsNikhteribs_to_cutSceneAfterNikhteribs">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
                         </option>
                       </LayoutPositions>
                     </value>
@@ -283,6 +342,27 @@
                       </LayoutPositions>
                     </value>
                   </entry>
+                  <entry key="cutSceneAfterDrunkards">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="522" />
+                            <option name="y" value="1708" />
+                          </Point>
+                        </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_cutSceneAfterDrunkards_to_heroScreenAfterDrunkards">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
                   <entry key="cutSceneAfterGopniks">
                     <value>
                       <LayoutPositions>
@@ -312,6 +392,15 @@
                             <option name="x" value="519" />
                             <option name="y" value="1395" />
                           </Point>
+                        </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_cutSceneAfterNikhteribs_to_heroScreenAfterNikhteribs">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
                         </option>
                       </LayoutPositions>
                     </value>
@@ -442,6 +531,27 @@
                       </LayoutPositions>
                     </value>
                   </entry>
+                  <entry key="cutSceneKardia">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="-271" />
+                            <option name="y" value="1697" />
+                          </Point>
+                        </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_cutSceneKardia_to_battleDrunkards">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
                   <entry key="cutSceneKilia">
                     <value>
                       <LayoutPositions>
@@ -450,6 +560,15 @@
                             <option name="x" value="-272" />
                             <option name="y" value="1389" />
                           </Point>
+                        </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_cutSceneKilia_to_battleNikhteribs">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
                         </option>
                       </LayoutPositions>
                     </value>
@@ -496,6 +615,18 @@
                       </LayoutPositions>
                     </value>
                   </entry>
+                  <entry key="heroScreenAfterDrunkards">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="767" />
+                            <option name="y" value="1713" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
                   <entry key="heroScreenAfterGopniks">
                     <value>
                       <LayoutPositions>
@@ -517,6 +648,27 @@
                       </LayoutPositions>
                     </value>
                   </entry>
+                  <entry key="heroScreenAfterNikhteribs">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="763" />
+                            <option name="y" value="1401" />
+                          </Point>
+                        </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_heroScreenAfterNikhteribs_to_cutSceneKardia">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
                   <entry key="heroScreenAfterOmikhli">
                     <value>
                       <LayoutPositions>
@@ -525,6 +677,15 @@
                             <option name="x" value="764" />
                             <option name="y" value="1086" />
                           </Point>
+                        </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_heroScreenAfterOmikhli_to_cutSceneKilia">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
                         </option>
                       </LayoutPositions>
                     </value>
@@ -546,18 +707,6 @@
                               </value>
                             </entry>
                           </map>
-                        </option>
-                      </LayoutPositions>
-                    </value>
-                  </entry>
-                  <entry key="heroScreenFragment2">
-                    <value>
-                      <LayoutPositions>
-                        <option name="myPosition">
-                          <Point>
-                            <option name="x" value="763" />
-                            <option name="y" value="1401" />
-                          </Point>
                         </option>
                       </LayoutPositions>
                     </value>

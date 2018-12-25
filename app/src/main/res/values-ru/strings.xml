@@ -144,6 +144,12 @@
     <!-- Cut scene after nikhteribs -->
     <string name="cs_after_nikhteribs_0">cs_after_nikhteribs_0</string>
 
+    <!-- Cut scene Kardia -->
+    <string name="cs_kardia_0">cs_kardia_0</string>
+
+    <!-- Cut scene after drunkards -->
+    <string name="cs_after_drunkards_0">cs_after_drunkards_0</string>
+
     <!-- Character names -->
     <string name="character_name_kittaro">Киттаро</string>
     <string name="character_name_zoi">Зои</string>

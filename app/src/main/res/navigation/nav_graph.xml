@@ -472,6 +472,84 @@
         android:id="@+id/heroScreenAfterNikhteribs"
         android:name="bav.onecell.heroscreen.HeroScreenFragment"
         android:label="Hero screen after nikhteribs"
+        tools:layout="@layout/fragment_hero_screen">
+        <action
+            android:id="@+id/action_heroScreenAfterNikhteribs_to_cutSceneKardia"
+            app:destination="@id/cutSceneKardia" />
+    </fragment>
+
+    <!--
+      - Chapter 6
+      -->
+    <!-- Cut scene Kardia -->
+    <fragment
+        android:id="@+id/cutSceneKardia"
+        android:name="bav.onecell.cutscene.CutSceneFragment"
+        android:label="Cut scene Kardia"
+        tools:layout="@layout/fragment_cut_scene">
+        <argument
+            android:name="cutSceneInfo"
+            android:defaultValue="@string/cut_scene_kardia"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_cutSceneKardia_to_battleDrunkards"
+            app:destination="@id/battleDrunkards" />
+    </fragment>
+
+    <!-- Battle with drunkards -->
+    <fragment
+        android:id="@+id/battleDrunkards"
+        android:name="bav.onecell.battle.BattleFragment"
+        android:label="Battle with drunkards"
+        tools:layout="@layout/fragment_battle">
+        <argument
+            android:name="params"
+            android:defaultValue="@string/battle_with_drunkards"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_battleDrunkards_to_battleResultsDrunkards"
+            app:destination="@id/battleResultsDrunkards" />
+    </fragment>
+
+    <!-- Result of battle with drunkards -->
+    <fragment
+        android:id="@+id/battleResultsDrunkards"
+        android:name="bav.onecell.battle.results.BattleResultsFragment"
+        android:label="Result of battle with drunkards"
+        tools:layout="@layout/fragment_battle_results">
+        <argument
+            android:name="@string/next_scene"
+            android:defaultValue="cutSceneAfterDrunkards"
+            app:argType="string" />
+        <argument
+            android:name="@string/previous_scene"
+            android:defaultValue="heroScreenAfterNikhteribs"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_battleResultsDrunkards_to_cutSceneAfterDrunkards"
+            app:destination="@id/cutSceneAfterDrunkards" />
+    </fragment>
+
+    <!-- Cut scene after drunkards -->
+    <fragment
+        android:id="@+id/cutSceneAfterDrunkards"
+        android:name="bav.onecell.cutscene.CutSceneFragment"
+        android:label="Cut scene after drunkards"
+        tools:layout="@layout/fragment_cut_scene">
+        <argument
+            android:name="cutSceneInfo"
+            android:defaultValue="@string/cut_scene_after_drunkards"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_cutSceneAfterDrunkards_to_heroScreenAfterDrunkards"
+            app:destination="@id/heroScreenAfterDrunkards" />
+    </fragment>
+
+    <!-- Hero screen after drunkards -->
+    <fragment
+        android:id="@+id/heroScreenAfterDrunkards"
+        android:name="bav.onecell.heroscreen.HeroScreenFragment"
+        android:label="Hero screen after drunkards"
         tools:layout="@layout/fragment_hero_screen"/>
 
 </navigation>
