@@ -48,6 +48,18 @@
                       </LayoutPositions>
                     </value>
                   </entry>
+                  <entry key="battleEnkefalio">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="-2" />
+                            <option name="y" value="2338" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
                   <entry key="battleFragment">
                     <value>
                       <LayoutPositions>
@@ -191,6 +203,18 @@
                               </value>
                             </entry>
                           </map>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="battleResultsEnkefalio">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="287" />
+                            <option name="y" value="2341" />
+                          </Point>
                         </option>
                       </LayoutPositions>
                     </value>
@@ -552,6 +576,30 @@
                       </LayoutPositions>
                     </value>
                   </entry>
+                  <entry key="cutSceneEnkefalio">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="-272" />
+                            <option name="y" value="2333" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="cutSceneFragment2">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="528" />
+                            <option name="y" value="2348" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
                   <entry key="cutSceneGonato">
                     <value>
                       <LayoutPositions>
@@ -746,8 +794,8 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="12" />
-                            <option name="y" value="12" />
+                            <option name="x" value="770" />
+                            <option name="y" value="2025" />
                           </Point>
                         </option>
                       </LayoutPositions>

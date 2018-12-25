@@ -501,6 +501,38 @@
     <string name="cs_after_katofi_ponu_0">cs_after_katofi_ponu_0</string>
 
     <!--
+      - Cut scene Enkefalio
+      -->
+    <string name="cut_scene_enkefalio" translatable="false">
+        "{
+            background: 'ic_cs_introduction_0',
+            left: 'ic_character_kittaro_normal',
+            right: 'ic_character_kittaro_normal',
+            frames: {
+                '0': { text: 'cs_enkefalio_0' }
+            },
+            next_scene: 'action_cutSceneEnkefalio_to_battleEnkefalio'
+        }"
+    </string>
+    <string name="cs_enkefalio_0">cs_enkefalio_0</string>
+
+    <!--
+      - Cut scene final act
+      -->
+    <string name="cut_scene_final_act" translatable="false">
+        "{
+            background: 'ic_cs_introduction_0',
+            left: 'ic_character_kittaro_normal',
+            right: 'ic_character_kittaro_normal',
+            frames: {
+                '0': { text: 'cs_final_act_0' }
+            },
+            next_scene: 'mainFragment'
+        }"
+    </string>
+    <string name="cs_final_act_0">cs_final_act_0</string>
+
+    <!--
       - Battle scenes params
       -->
     <string name="battle_with_gopniks_params" translatable="false">
@@ -606,6 +638,19 @@
             next_scene: 'action_battleKatofiPonu_to_battleResultsKatofiPonu'
         }"
     </string>
+    <string name="battle_in_enkefalio" translatable="false">
+        "{
+            battleParams: {
+                cellIndexes: [0,1,2,39,40,41,42,43,44],
+                isFog: false
+            },
+            reward: {
+                '0': {LIFE:2, ATTACK:3, ENERGY:2},
+                'gameStateChanges': {}
+            },
+            next_scene: 'action_battleEnkefalio_to_battleResultsEnkefalio'
+        }"
+    </string>
 
     <!-- Character names -->
     <string name="character_name_kittaro">Kittaro</string>
@@ -647,6 +692,12 @@
     <string name="character_name_guardsman_6">Guardsman #6</string>
     <string name="character_name_guardsman_7">Guardsman #7</string>
     <string name="character_name_guardsman_8">Guardsman #8</string>
+    <string name="character_name_guardsman_9">Guardsman #9</string>
+    <string name="character_name_guardsman_10">Guardsman #10</string>
+    <string name="character_name_guardsman_11">Guardsman #11</string>
+    <string name="character_name_guardsman_12">Guardsman #12</string>
+    <string name="character_name_guardsman_13">Guardsman #13</string>
+    <string name="character_name_mage">Mage</string>
 
     <!--
       - Initial cell descriptions
@@ -1124,6 +1175,78 @@
                 groupId: 7,
                 id: 38,
                 name: 'character_name_guardsman_8',
+                origin: {q:0,r:0,s:0,type:'REMOVE'},
+                rules: []
+            }"
+        </item>
+        <item>
+            "{
+                hexBucket: {0:50,1:50,2:50,3:50},
+                direction: 'N',
+                hexes: [[{"first":0,"second":0},{"type":"LIFE","q":0,"r":0,"s":0}]],
+                groupId: 8,
+                id: 39,
+                name: 'character_name_guardsman_9',
+                origin: {q:0,r:0,s:0,type:'REMOVE'},
+                rules: []
+            }"
+        </item>
+        <item>
+            "{
+                hexBucket: {0:50,1:50,2:50,3:50},
+                direction: 'N',
+                hexes: [[{"first":0,"second":0},{"type":"LIFE","q":0,"r":0,"s":0}]],
+                groupId: 8,
+                id: 40,
+                name: 'character_name_guardsman_10',
+                origin: {q:0,r:0,s:0,type:'REMOVE'},
+                rules: []
+            }"
+        </item>
+        <item>
+            "{
+                hexBucket: {0:50,1:50,2:50,3:50},
+                direction: 'N',
+                hexes: [[{"first":0,"second":0},{"type":"LIFE","q":0,"r":0,"s":0}]],
+                groupId: 8,
+                id: 41,
+                name: 'character_name_guardsman_11',
+                origin: {q:0,r:0,s:0,type:'REMOVE'},
+                rules: []
+            }"
+        </item>
+        <item>
+            "{
+                hexBucket: {0:50,1:50,2:50,3:50},
+                direction: 'N',
+                hexes: [[{"first":0,"second":0},{"type":"LIFE","q":0,"r":0,"s":0}]],
+                groupId: 8,
+                id: 42,
+                name: 'character_name_guardsman_12',
+                origin: {q:0,r:0,s:0,type:'REMOVE'},
+                rules: []
+            }"
+        </item>
+        <item>
+            "{
+                hexBucket: {0:50,1:50,2:50,3:50},
+                direction: 'N',
+                hexes: [[{"first":0,"second":0},{"type":"LIFE","q":0,"r":0,"s":0}]],
+                groupId: 8,
+                id: 43,
+                name: 'character_name_guardsman_13',
+                origin: {q:0,r:0,s:0,type:'REMOVE'},
+                rules: []
+            }"
+        </item>
+        <item>
+            "{
+                hexBucket: {0:50,1:50,2:50,3:50},
+                direction: 'N',
+                hexes: [[{"first":0,"second":0},{"type":"LIFE","q":0,"r":0,"s":0}]],
+                groupId: 8,
+                id: 44,
+                name: 'character_name_mage',
                 origin: {q:0,r:0,s:0,type:'REMOVE'},
                 rules: []
             }"

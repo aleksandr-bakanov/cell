@@ -636,6 +636,74 @@
         android:id="@+id/heroScreenAfterKatofiPonu"
         android:name="bav.onecell.heroscreen.HeroScreenFragment"
         android:label="Hero screen after Katofi Ponu"
-        tools:layout="@layout/fragment_hero_screen"/>
+        tools:layout="@layout/fragment_hero_screen">
+        <action
+            android:id="@+id/action_heroScreenAfterKatofiPonu_to_cutSceneEnkefalio"
+            app:destination="@id/cutSceneEnkefalio" />
+    </fragment>
+
+    <!--
+      - Chapter 8
+      -->
+    <!-- Cut scene Enkefalio -->
+    <fragment
+        android:id="@+id/cutSceneEnkefalio"
+        android:name="bav.onecell.cutscene.CutSceneFragment"
+        android:label="Cut scene Enkefalio"
+        tools:layout="@layout/fragment_cut_scene">
+        <argument
+            android:name="cutSceneInfo"
+            android:defaultValue="@string/cut_scene_enkefalio"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_cutSceneEnkefalio_to_battleEnkefalio"
+            app:destination="@id/battleEnkefalio" />
+    </fragment>
+
+    <!-- Battle in Enkefalio -->
+    <fragment
+        android:id="@+id/battleEnkefalio"
+        android:name="bav.onecell.battle.BattleFragment"
+        android:label="Battle in Enkefalio"
+        tools:layout="@layout/fragment_battle">
+        <argument
+            android:name="params"
+            android:defaultValue="@string/battle_in_enkefalio"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_battleEnkefalio_to_battleResultsEnkefalio"
+            app:destination="@id/battleResultsEnkefalio" />
+    </fragment>
+
+    <!-- Results of the battle in Enkefalio -->
+    <fragment
+        android:id="@+id/battleResultsEnkefalio"
+        android:name="bav.onecell.battle.results.BattleResultsFragment"
+        android:label="Results of the battle in Enkefalio"
+        tools:layout="@layout/fragment_battle_results">
+        <argument
+            android:name="@string/next_scene"
+            android:defaultValue="cutSceneFinalAct"
+            app:argType="string" />
+        <argument
+            android:name="@string/previous_scene"
+            android:defaultValue="heroScreenAfterKatofiPonu"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_battleResultsEnkefalio_to_cutSceneFinalAct"
+            app:destination="@id/cutSceneFinalAct" />
+    </fragment>
+
+    <!-- Cut scene final act -->
+    <fragment
+        android:id="@+id/cutSceneFinalAct"
+        android:name="bav.onecell.cutscene.CutSceneFragment"
+        android:label="Cut scene final act"
+        tools:layout="@layout/fragment_cut_scene">
+        <argument
+            android:name="cutSceneInfo"
+            android:defaultValue="@string/cut_scene_final_act"
+            app:argType="string" />
+    </fragment>
 
 </navigation>

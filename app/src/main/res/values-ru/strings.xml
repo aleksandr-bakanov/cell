@@ -156,6 +156,12 @@
     <!-- Cut scene after Katofi Ponu -->
     <string name="cs_after_katofi_ponu_0">cs_after_katofi_ponu_0</string>
 
+    <!-- Cut scene Enkefalio -->
+    <string name="cs_enkefalio_0">cs_enkefalio_0</string>
+
+    <!-- Cut scene final act -->
+    <string name="cs_final_act_0">cs_final_act_0</string>
+
     <!-- Character names -->
     <string name="character_name_kittaro">Киттаро</string>
     <string name="character_name_zoi">Зои</string>
@@ -196,4 +202,10 @@
     <string name="character_name_guardsman_6">Гвардеец #6</string>
     <string name="character_name_guardsman_7">Гвардеец #7</string>
     <string name="character_name_guardsman_8">Гвардеец #8</string>
+    <string name="character_name_guardsman_9">Гвардеец #9</string>
+    <string name="character_name_guardsman_10">Гвардеец #10</string>
+    <string name="character_name_guardsman_11">Гвардеец #11</string>
+    <string name="character_name_guardsman_12">Гвардеец #12</string>
+    <string name="character_name_guardsman_13">Гвардеец #13</string>
+    <string name="character_name_mage">Придворный маг</string>
 </resources>
