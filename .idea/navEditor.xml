@@ -90,6 +90,27 @@
                       </LayoutPositions>
                     </value>
                   </entry>
+                  <entry key="battleKatofiPonu">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="1" />
+                            <option name="y" value="2023" />
+                          </Point>
+                        </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_battleKatofiPonu_to_battleResultsKatofiPonu">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
                   <entry key="battleNikhteribs">
                     <value>
                       <LayoutPositions>
@@ -207,6 +228,27 @@
                         <option name="myPositions">
                           <map>
                             <entry key="action_battleResultsGopniks_to_cutSceneAfterGopniks">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="battleResultsKatofiPonu">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="280" />
+                            <option name="y" value="2022" />
+                          </Point>
+                        </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_battleResultsKatofiPonu_to_cutSceneAfterKatofiPonu">
                               <value>
                                 <LayoutPositions />
                               </value>
@@ -375,6 +417,27 @@
                         <option name="myPositions">
                           <map>
                             <entry key="action_cutSceneAfterGopniks_to_heroScreenAfterGopniks">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="cutSceneAfterKatofiPonu">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="524" />
+                            <option name="y" value="2021" />
+                          </Point>
+                        </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_cutSceneAfterKatofiPonu_to_heroScreenAfterKatofiPonu">
                               <value>
                                 <LayoutPositions />
                               </value>
@@ -573,6 +636,27 @@
                       </LayoutPositions>
                     </value>
                   </entry>
+                  <entry key="cutSceneLaimo">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="-270" />
+                            <option name="y" value="2012" />
+                          </Point>
+                        </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_cutSceneLaimo_to_battleKatofiPonu">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
                   <entry key="heroScreen">
                     <value>
                       <LayoutPositions>
@@ -624,6 +708,15 @@
                             <option name="y" value="1713" />
                           </Point>
                         </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_heroScreenAfterDrunkards_to_cutSceneLaimo">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
+                        </option>
                       </LayoutPositions>
                     </value>
                   </entry>
@@ -644,6 +737,18 @@
                               </value>
                             </entry>
                           </map>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="heroScreenAfterKatofiPonu">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="12" />
+                            <option name="y" value="12" />
+                          </Point>
                         </option>
                       </LayoutPositions>
                     </value>

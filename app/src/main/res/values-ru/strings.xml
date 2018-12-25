@@ -150,6 +150,12 @@
     <!-- Cut scene after drunkards -->
     <string name="cs_after_drunkards_0">cs_after_drunkards_0</string>
 
+    <!-- Cut scene Laimo -->
+    <string name="cs_laimo_0">cs_laimo_0</string>
+
+    <!-- Cut scene after Katofi Ponu -->
+    <string name="cs_after_katofi_ponu_0">cs_after_katofi_ponu_0</string>
+
     <!-- Character names -->
     <string name="character_name_kittaro">Киттаро</string>
     <string name="character_name_zoi">Зои</string>
@@ -182,4 +188,12 @@
     <string name="character_name_drunkard_3">Пьяница #3</string>
     <string name="character_name_drunkard_4">Пьяница #4</string>
     <string name="character_name_drunkard_5">Пьяница #5</string>
+    <string name="character_name_guardsman_1">Гвардеец #1</string>
+    <string name="character_name_guardsman_2">Гвардеец #2</string>
+    <string name="character_name_guardsman_3">Гвардеец #3</string>
+    <string name="character_name_guardsman_4">Гвардеец #4</string>
+    <string name="character_name_guardsman_5">Гвардеец #5</string>
+    <string name="character_name_guardsman_6">Гвардеец #6</string>
+    <string name="character_name_guardsman_7">Гвардеец #7</string>
+    <string name="character_name_guardsman_8">Гвардеец #8</string>
 </resources>

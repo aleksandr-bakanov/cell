@@ -473,6 +473,10 @@
         android:name="bav.onecell.heroscreen.HeroScreenFragment"
         android:label="Hero screen after nikhteribs"
         tools:layout="@layout/fragment_hero_screen">
+        <argument
+            android:name="@string/next_scene"
+            android:defaultValue="cutSceneKardia"
+            app:argType="string" />
         <action
             android:id="@+id/action_heroScreenAfterNikhteribs_to_cutSceneKardia"
             app:destination="@id/cutSceneKardia" />
@@ -550,6 +554,88 @@
         android:id="@+id/heroScreenAfterDrunkards"
         android:name="bav.onecell.heroscreen.HeroScreenFragment"
         android:label="Hero screen after drunkards"
+        tools:layout="@layout/fragment_hero_screen">
+        <argument
+            android:name="@string/next_scene"
+            android:defaultValue="cutSceneLaimo"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_heroScreenAfterDrunkards_to_cutSceneLaimo"
+            app:destination="@id/cutSceneLaimo" />
+    </fragment>
+
+    <!--
+      - Chapter 7
+      -->
+    <!-- Cut scene Laimo -->
+    <fragment
+        android:id="@+id/cutSceneLaimo"
+        android:name="bav.onecell.cutscene.CutSceneFragment"
+        android:label="Cut scene Laimo"
+        tools:layout="@layout/fragment_cut_scene">
+        <argument
+            android:name="cutSceneInfo"
+            android:defaultValue="@string/cut_scene_laimo"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_cutSceneLaimo_to_battleKatofiPonu"
+            app:destination="@id/battleKatofiPonu" />
+    </fragment>
+
+    <!-- Battle with Katofi Ponu -->
+    <fragment
+        android:id="@+id/battleKatofiPonu"
+        android:name="bav.onecell.battle.BattleFragment"
+        android:label="Battle with Katofi Ponu"
+        tools:layout="@layout/fragment_battle">
+        <argument
+            android:name="params"
+            android:defaultValue="@string/battle_with_katofi_ponu"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_battleKatofiPonu_to_battleResultsKatofiPonu"
+            app:destination="@id/battleResultsKatofiPonu" />
+    </fragment>
+
+    <!-- Result of battle with Katofi Ponu -->
+    <fragment
+        android:id="@+id/battleResultsKatofiPonu"
+        android:name="bav.onecell.battle.results.BattleResultsFragment"
+        android:label="Result of battle with Katofi Ponu"
+        tools:layout="@layout/fragment_battle_results">
+        <argument
+            android:name="@string/next_scene"
+            android:defaultValue="cutSceneAfterKatofiPonu"
+            app:argType="string" />
+        <argument
+            android:name="@string/previous_scene"
+            android:defaultValue="heroScreenAfterDrunkards"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_battleResultsKatofiPonu_to_cutSceneAfterKatofiPonu"
+            app:destination="@id/cutSceneAfterKatofiPonu" />
+    </fragment>
+
+    <!-- Cut scene after Katofi Ponu -->
+    <fragment
+        android:id="@+id/cutSceneAfterKatofiPonu"
+        android:name="bav.onecell.cutscene.CutSceneFragment"
+        android:label="Cut scene after Katofi Ponu"
+        tools:layout="@layout/fragment_cut_scene">
+        <argument
+            android:name="cutSceneInfo"
+            android:defaultValue="@string/cut_scene_after_katofi_ponu"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_cutSceneAfterKatofiPonu_to_heroScreenAfterKatofiPonu"
+            app:destination="@id/heroScreenAfterKatofiPonu" />
+    </fragment>
+
+    <!-- Hero screen after Katofi Ponu -->
+    <fragment
+        android:id="@+id/heroScreenAfterKatofiPonu"
+        android:name="bav.onecell.heroscreen.HeroScreenFragment"
+        android:label="Hero screen after Katofi Ponu"
         tools:layout="@layout/fragment_hero_screen"/>
 
 </navigation>
