@@ -70,6 +70,18 @@
                       </LayoutPositions>
                     </value>
                   </entry>
+                  <entry key="battleOmikhli">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="-1" />
+                            <option name="y" value="1085" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
                   <entry key="battleResultsBelos">
                     <value>
                       <LayoutPositions>
@@ -129,6 +141,18 @@
                               </value>
                             </entry>
                           </map>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="battleResultsOmikhli">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="275" />
+                            <option name="y" value="1082" />
+                          </Point>
                         </option>
                       </LayoutPositions>
                     </value>
@@ -207,7 +231,7 @@
                         </option>
                         <option name="myPositions">
                           <map>
-                            <entry key="action_cutSceneAfterSkilos_to_heroScreenAfterSkilos">
+                            <entry key="action_cutSceneAfterBelos_to_heroScreenAfterBelos">
                               <value>
                                 <LayoutPositions />
                               </value>
@@ -238,6 +262,18 @@
                       </LayoutPositions>
                     </value>
                   </entry>
+                  <entry key="cutSceneAfterOmikhli">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="517" />
+                            <option name="y" value="1082" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
                   <entry key="cutSceneAfterSkilos">
                     <value>
                       <LayoutPositions>
@@ -255,6 +291,18 @@
                               </value>
                             </entry>
                           </map>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="cutSceneAnalafro">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="-275" />
+                            <option name="y" value="1080" />
+                          </Point>
                         </option>
                       </LayoutPositions>
                     </value>
@@ -343,6 +391,18 @@
                       </LayoutPositions>
                     </value>
                   </entry>
+                  <entry key="heroScreenAfterBelos">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="766" />
+                            <option name="y" value="781" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
                   <entry key="heroScreenAfterGopniks">
                     <value>
                       <LayoutPositions>
@@ -390,8 +450,8 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="759" />
-                            <option name="y" value="771" />
+                            <option name="x" value="764" />
+                            <option name="y" value="1086" />
                           </Point>
                         </option>
                       </LayoutPositions>

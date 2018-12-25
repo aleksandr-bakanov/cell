@@ -273,11 +273,11 @@
     <fragment
         android:id="@+id/battleResultsBelos"
         android:name="bav.onecell.battle.results.BattleResultsFragment"
-        android:label="BattleResulResult of battle with Belos"
+        android:label="Result of battle with Belos"
         tools:layout="@layout/fragment_battle_results">
         <argument
             android:name="@string/next_scene"
-            android:defaultValue="cutSceneAfterSkilos"
+            android:defaultValue="cutSceneAfterBelos"
             app:argType="string" />
         <argument
             android:name="@string/previous_scene"
@@ -296,7 +296,7 @@
         tools:layout="@layout/fragment_cut_scene">
         <argument
             android:name="cutSceneInfo"
-            android:defaultValue="@string/cut_scene_after_skilos"
+            android:defaultValue="@string/cut_scene_after_belos"
             app:argType="string" />
         <action
             android:id="@+id/action_cutSceneAfterBelos_to_heroScreenAfterBelos"
@@ -311,8 +311,85 @@
         tools:layout="@layout/fragment_hero_screen">
         <argument
             android:name="@string/next_scene"
-            android:defaultValue="cutSceneGonato"
+            android:defaultValue="cutSceneAnalafro"
             app:argType="string" />
+        <action
+            android:id="@+id/action_heroScreenAfterBelos_to_cutSceneAnalafro"
+            app:destination="@id/cutSceneAnalafro" />
     </fragment>
+
+    <!--
+      - Chapter 4
+      -->
+    <!-- Cut scene Analafro -->
+    <fragment
+        android:id="@+id/cutSceneAnalafro"
+        android:name="bav.onecell.cutscene.CutSceneFragment"
+        android:label="Cut scene Analafro"
+        tools:layout="@layout/fragment_cut_scene">
+        <argument
+            android:name="cutSceneInfo"
+            android:defaultValue="@string/cut_scene_analafro"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_cutSceneAnalafro_to_battleOmikhli"
+            app:destination="@id/battleOmikhli" />
+    </fragment>
+
+    <!-- Battle with Omikhli -->
+    <fragment
+        android:id="@+id/battleOmikhli"
+        android:name="bav.onecell.battle.BattleFragment"
+        android:label="Battle with Omikhli"
+        tools:layout="@layout/fragment_battle">
+        <argument
+            android:name="params"
+            android:defaultValue="@string/battle_with_omikhli"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_battleOmikhli_to_battleResultsOmikhli"
+            app:destination="@id/battleResultsOmikhli" />
+    </fragment>
+
+    <!-- Result of battle with Omikhli -->
+    <fragment
+        android:id="@+id/battleResultsOmikhli"
+        android:name="bav.onecell.battle.results.BattleResultsFragment"
+        android:label="Result of battle with Omikhli"
+        tools:layout="@layout/fragment_battle_results">
+        <argument
+            android:name="@string/next_scene"
+            android:defaultValue="cutSceneAfterOmikhli"
+            app:argType="string" />
+        <argument
+            android:name="@string/previous_scene"
+            android:defaultValue="heroScreenAfterBelos"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_battleResultsOmikhli_to_cutSceneAfterOmikhli"
+            app:destination="@id/cutSceneAfterOmikhli" />
+    </fragment>
+
+    <!-- Cut scene after Omikhli -->
+    <fragment
+        android:id="@+id/cutSceneAfterOmikhli"
+        android:name="bav.onecell.cutscene.CutSceneFragment"
+        android:label="Cut scene after Omikhli"
+        tools:layout="@layout/fragment_cut_scene">
+        <argument
+            android:name="cutSceneInfo"
+            android:defaultValue="@string/cut_scene_after_omikhli"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_cutSceneAfterOmikhli_to_heroScreenAfterOmikhli"
+            app:destination="@id/heroScreenAfterOmikhli" />
+    </fragment>
+
+    <!-- Hero screen after Omikhli -->
+    <fragment
+        android:id="@+id/heroScreenAfterOmikhli"
+        android:name="bav.onecell.heroscreen.HeroScreenFragment"
+        android:label="Hero screen after Omikhli"
+        tools:layout="@layout/fragment_hero_screen" />
 
 </navigation>

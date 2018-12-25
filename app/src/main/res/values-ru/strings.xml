@@ -132,6 +132,12 @@
     <!-- Cut scene after Belos -->
     <string name="cs_after_belos_0">cs_after_belos_0</string>
 
+    <!-- Cut scene Analafro -->
+    <string name="cs_analafro_0">cs_analafro_0</string>
+
+    <!-- Cut scene after Omikhli -->
+    <string name="cs_after_omikhli_0">cs_after_omikhli_0</string>
+
     <!-- Character names -->
     <string name="character_name_kittaro">Киттаро</string>
     <string name="character_name_zoi">Зои</string>
