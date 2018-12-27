@@ -8,6 +8,7 @@ class Consts {
         const val BATTLE_PARAMS = "battleParams"
         const val BATTLE_REWARD = "reward"
         const val HERO_GROUP_ID = 0
+        const val GAME_STATE_CHANGES = "gameStateChanges"
 
         const val KITTARO_INDEX = 0
         const val ZOI_INDEX = 1

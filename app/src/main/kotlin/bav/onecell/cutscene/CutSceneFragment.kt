@@ -14,6 +14,7 @@ import bav.onecell.OneCellApplication
 import bav.onecell.R
 import bav.onecell.common.Common
 import bav.onecell.common.Consts
+import bav.onecell.common.Consts.Companion.GAME_STATE_CHANGES
 import bav.onecell.common.extensions.visible
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -121,6 +122,12 @@ class CutSceneFragment : Fragment(), CutScene.View {
                                           decisionField = data.optString(DECISION_FIELD),
                                           yesNextFrame = data.optInt(YES_NEXT_FRAME, DEFAULT_NEXT_FRAME),
                                           noNextFrame = data.optInt(NO_NEXT_FRAME, DEFAULT_NEXT_FRAME))
+                }
+                info.optJSONObject(GAME_STATE_CHANGES)?.let { gameStateChanges ->
+                    // Changes should contain booleans
+                    for (decision in gameStateChanges.keys()) {
+                        gameState.setDecision(decision, gameStateChanges.getBoolean(decision))
+                    }
                 }
             } catch (e: JSONException) {
                 Log.e(TAG, "wrong json: $e")

@@ -349,12 +349,59 @@
             left: 'ic_character_kittaro_normal',
             right: 'ic_character_kittaro_normal',
             frames: {
-                '0': { text: 'cs_gonato_0' }
+                '0': { text: 'cs_gonato_0' },
+                '1': { text: 'cs_gonato_1' },
+                '2': { text: 'cs_gonato_2' },
+                '3': { text: 'cs_gonato_3' },
+                '4': { text: 'cs_gonato_4' },
+                '5': { text: 'cs_gonato_5' },
+                '6': { text: 'cs_gonato_6' },
+                '7': { text: 'cs_gonato_7' },
+                '8': { text: 'cs_gonato_8' },
+                '9': { text: 'cs_gonato_9' },
+                '10': { text: 'cs_gonato_10' },
+                '11': { text: 'cs_gonato_11' },
+                '12': { text: 'cs_gonato_12' },
+                '13': { text: 'cs_gonato_13' },
+                '14': { text: 'cs_gonato_14' },
+                '15': { text: 'cs_gonato_15' },
+                '16': { text: 'cs_gonato_16' },
+                '17': { text: 'cs_gonato_17' },
+                '18': { text: 'cs_gonato_18' },
+                '19': { text: 'cs_gonato_19', decisionField: 'help_gonato', yesNextFrame: 20, noNextFrame: 21 },
+                '20': { text: 'cs_gonato_20', nextFrame: 22 },
+                '21': { text: 'cs_gonato_21' },
+                '22': { text: 'cs_gonato_22' }
             },
-            next_scene: 'action_cutSceneGonato_to_battleBelos'
+            next_scene: 'action_cutSceneGonato_to_battleBelos',
+            yes_next_scene: 'action_cutSceneGonato_to_battleBelos',
+            no_next_scene: 'cutSceneAnalafro',
+            gameStateChanges: { 'energy_hexes_available': true }
         }"
     </string>
     <string name="cs_gonato_0">cs_gonato_0</string>
+    <string name="cs_gonato_1">cs_gonato_1</string>
+    <string name="cs_gonato_2">cs_gonato_2</string>
+    <string name="cs_gonato_3">cs_gonato_3</string>
+    <string name="cs_gonato_4">cs_gonato_4</string>
+    <string name="cs_gonato_5">cs_gonato_5</string>
+    <string name="cs_gonato_6">cs_gonato_6</string>
+    <string name="cs_gonato_7">cs_gonato_7</string>
+    <string name="cs_gonato_8">cs_gonato_8</string>
+    <string name="cs_gonato_9">cs_gonato_9</string>
+    <string name="cs_gonato_10">cs_gonato_10</string>
+    <string name="cs_gonato_11">cs_gonato_11</string>
+    <string name="cs_gonato_12">cs_gonato_12</string>
+    <string name="cs_gonato_13">cs_gonato_13</string>
+    <string name="cs_gonato_14">cs_gonato_14</string>
+    <string name="cs_gonato_15">cs_gonato_15</string>
+    <string name="cs_gonato_16">cs_gonato_16</string>
+    <string name="cs_gonato_17">cs_gonato_17</string>
+    <string name="cs_gonato_18">cs_gonato_18</string>
+    <string name="cs_gonato_19">cs_gonato_19</string>
+    <string name="cs_gonato_20">cs_gonato_20</string>
+    <string name="cs_gonato_21">cs_gonato_21</string>
+    <string name="cs_gonato_22">cs_gonato_22</string>
 
     <!--
       - Cut scene after Belos
@@ -580,7 +627,7 @@
             reward: {
                 '0': {LIFE:2, ATTACK:3, ENERGY:2},
                 'gameStateChanges': {
-                    'energy_hexes_available': true
+                    'hex_transformation_available': true
                 }
             },
             next_scene: 'action_battleBelos_to_battleResultsBelos'

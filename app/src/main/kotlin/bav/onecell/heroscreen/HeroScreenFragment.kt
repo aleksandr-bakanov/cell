@@ -446,6 +446,7 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
             view.visible = cellLogicVisibility
 
         if (editorVisibility) {
+            setTransformHexesButtonsVisibilityBasedOnGameState()
             setHexButtonsVisibilityBasedOnGameState()
             showHexesTransformOrEditorView()
         }

@@ -3,6 +3,7 @@ package bav.onecell.battle.results
 import android.util.Log
 import bav.onecell.common.Common
 import bav.onecell.common.Consts
+import bav.onecell.common.Consts.Companion.GAME_STATE_CHANGES
 import bav.onecell.common.router.Router
 import bav.onecell.model.RepositoryContract
 import bav.onecell.model.cell.Cell
@@ -88,6 +89,5 @@ class BattleResultsPresenter(
 
     companion object {
         private const val TAG = "BattleResultsPresenter"
-        const val GAME_STATE_CHANGES = "gameStateChanges"
     }
 }

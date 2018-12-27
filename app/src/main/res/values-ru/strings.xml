@@ -127,7 +127,30 @@
     <string name="cs_after_skilos_21">Попробуй создать набор правил, при котором твоя клетка всегда будет направлена на ближайшего врага.</string>
 
     <!-- Cut scene Gonato village -->
-    <string name="cs_gonato_0">cs_gonato_0</string>
+    <string name="cs_gonato_0">Поселок Гонато, не столь отдаленная провинция</string>
+    <string name="cs_gonato_1">Пожалуй здесь можно отдохнуть</string>
+    <string name="cs_gonato_2">Приветствую тебя, путник, куда путь держишь?</string>
+    <string name="cs_gonato_3">В столицу, мне надо...</string>
+    <string name="cs_gonato_4">В столицу?! Далековато... А сам-то откуда?</string>
+    <string name="cs_gonato_5">Из Фтерны, это...</string>
+    <string name="cs_gonato_6">Фтерна, говоришь?! У меня свояк из Фтерны, задолжал мне три овцы</string>
+    <string name="cs_gonato_7">Ты если его встретишь так и скажи ему, мол,</string>
+    <string name="cs_gonato_8">Старейшина Гонато овец своих не забывает, так ему и передай.</string>
+    <string name="cs_gonato_9">Эээ... хорошо..</string>
+    <string name="cs_gonato_10">Раз уж мы заговорили об овцах, ты не поможешь нам?</string>
+    <string name="cs_gonato_11">Выглядишь ты вполне воинственно, не то что наши крестьяне.</string>
+    <string name="cs_gonato_12">А в чем дело?</string>
+    <string name="cs_gonato_13">Давно уже у нас такого не случалось, но вот беда.</string>
+    <string name="cs_gonato_14">Повадился к нам Белос, овец воровать.</string>
+    <string name="cs_gonato_15">Мы бы с ним справились, да дел по горло,</string>
+    <string name="cs_gonato_16">да и здоровый он, жуткий такой, наши-то все его боятся!</string>
+    <string name="cs_gonato_17">Вообще-то я тороплюсь, очень важно добраться до столицы как можно быстрей.</string>
+    <string name="cs_gonato_18">Я пойму если ты торопишься...</string>
+    <string name="cs_gonato_19">Ну так как, поможешь?</string>
+    <string name="cs_gonato_20">Вот и славно, славно, порадовал старика, спасибо тебе!</string>
+    <string name="cs_gonato_21">Что ж, дело твое, мы не в обиде... удачи тебе в твоем путешествии!</string>
+    <string name="cs_gonato_22">Береги себя!</string>
+
 
     <!-- Cut scene after Belos -->
     <string name="cs_after_belos_0">cs_after_belos_0</string>

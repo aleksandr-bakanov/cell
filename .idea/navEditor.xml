@@ -57,6 +57,15 @@
                             <option name="y" value="2338" />
                           </Point>
                         </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_battleEnkefalio_to_battleResultsEnkefalio">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
+                        </option>
                       </LayoutPositions>
                     </value>
                   </entry>
@@ -215,6 +224,15 @@
                             <option name="x" value="287" />
                             <option name="y" value="2341" />
                           </Point>
+                        </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_battleResultsEnkefalio_to_cutSceneFinalAct">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
                         </option>
                       </LayoutPositions>
                     </value>
@@ -585,10 +603,19 @@
                             <option name="y" value="2333" />
                           </Point>
                         </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_cutSceneEnkefalio_to_battleEnkefalio">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
+                        </option>
                       </LayoutPositions>
                     </value>
                   </entry>
-                  <entry key="cutSceneFragment2">
+                  <entry key="cutSceneFinalAct">
                     <value>
                       <LayoutPositions>
                         <option name="myPosition">
@@ -797,6 +824,15 @@
                             <option name="x" value="770" />
                             <option name="y" value="2025" />
                           </Point>
+                        </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_heroScreenAfterKatofiPonu_to_cutSceneEnkefalio">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
                         </option>
                       </LayoutPositions>
                     </value>
