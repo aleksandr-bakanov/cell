@@ -1,0 +1,38 @@
+    <string name="cs_after_belos_0">Ну и зверюга, чуть не сожрал меня!</string>
+    <string name="cs_after_belos_1">Надо рассказать старейшине что дело сделано.</string>
+    <string name="cs_after_belos_2">О, ты вернулся.</string>
+    <string name="cs_after_belos_3">И с хорошими новостями! Белос вас больше не побеспокоит.</string>
+    <string name="cs_after_belos_4">Вот радость! Эй, народ, напасть ушла!</string>
+    <string name="cs_after_belos_5">Ну парень, молодец! Вот что, я тебя с пустыми руками не отпущу.</string>
+    <string name="cs_after_belos_6">А лучший дар – это знания. У меня от бабки осталась книга одна.</string>
+    <string name="cs_after_belos_7">Сам-то я ни бум-бум в этой писанине, а вот бабка говорила,</string>
+    <string name="cs_after_belos_8">что по этой книге можно выучится превращать одни хексы в другие.</string>
+    <string name="cs_after_belos_9">Держи, тебе это уж точно пригодится больше чем мне.</string>
+    <string name="cs_after_belos_10">Теперь ты можешь превращать одни хексы в другие и обратно.</string>
+    <string name="cs_after_belos_11">Проверь новую кнопку на экране героя.</string>
+
+    <string name="cs_after_belos_0">cs_after_belos_0</string>
+    <string name="cs_after_belos_1">cs_after_belos_1</string>
+    <string name="cs_after_belos_2">cs_after_belos_2</string>
+    <string name="cs_after_belos_3">cs_after_belos_3</string>
+    <string name="cs_after_belos_4">cs_after_belos_4</string>
+    <string name="cs_after_belos_5">cs_after_belos_5</string>
+    <string name="cs_after_belos_6">cs_after_belos_6</string>
+    <string name="cs_after_belos_7">cs_after_belos_7</string>
+    <string name="cs_after_belos_8">cs_after_belos_8</string>
+    <string name="cs_after_belos_9">cs_after_belos_9</string>
+    <string name="cs_after_belos_10">cs_after_belos_10</string>
+    <string name="cs_after_belos_11">cs_after_belos_11</string>
+
+                '0': { text: 'cs_after_belos_0' },
+                '1': { text: 'cs_after_belos_1' },
+                '2': { text: 'cs_after_belos_2' },
+                '3': { text: 'cs_after_belos_3' },
+                '4': { text: 'cs_after_belos_4' },
+                '5': { text: 'cs_after_belos_5' },
+                '6': { text: 'cs_after_belos_6' },
+                '7': { text: 'cs_after_belos_7' },
+                '8': { text: 'cs_after_belos_8' },
+                '9': { text: 'cs_after_belos_9' },
+                '10': { text: 'cs_after_belos_10' },
+                '11': { text: 'cs_after_belos_11' },

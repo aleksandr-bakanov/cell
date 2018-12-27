@@ -151,9 +151,19 @@
     <string name="cs_gonato_21">Что ж, дело твое, мы не в обиде... удачи тебе в твоем путешествии!</string>
     <string name="cs_gonato_22">Береги себя!</string>
 
-
     <!-- Cut scene after Belos -->
-    <string name="cs_after_belos_0">cs_after_belos_0</string>
+    <string name="cs_after_belos_0">Ну и зверюга, чуть не сожрал меня!</string>
+    <string name="cs_after_belos_1">Надо рассказать старейшине что дело сделано.</string>
+    <string name="cs_after_belos_2">О, ты вернулся.</string>
+    <string name="cs_after_belos_3">И с хорошими новостями! Белос вас больше не побеспокоит.</string>
+    <string name="cs_after_belos_4">Вот радость! Эй, народ, напасть ушла!</string>
+    <string name="cs_after_belos_5">Ну парень, молодец! Вот что, я тебя с пустыми руками не отпущу.</string>
+    <string name="cs_after_belos_6">А лучший дар – это знания. У меня от бабки осталась книга одна.</string>
+    <string name="cs_after_belos_7">Сам-то я ни бум-бум в этой писанине, а вот бабка говорила,</string>
+    <string name="cs_after_belos_8">что по этой книге можно выучится превращать одни хексы в другие.</string>
+    <string name="cs_after_belos_9">Держи, тебе это уж точно пригодится больше чем мне.</string>
+    <string name="cs_after_belos_10">Теперь ты можешь превращать одни хексы в другие и обратно.</string>
+    <string name="cs_after_belos_11">Проверь новую кнопку на экране героя.</string>
 
     <!-- Cut scene Analafro -->
     <string name="cs_analafro_0">cs_analafro_0</string>

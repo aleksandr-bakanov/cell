@@ -1,0 +1,71 @@
+    <string name="cs_gonato_0">Поселок Гонато, не столь отдаленная провинция</string>
+    <string name="cs_gonato_1">Пожалуй здесь можно отдохнуть</string>
+    <string name="cs_gonato_2">Приветствую тебя, путник, куда путь держишь?</string>
+    <string name="cs_gonato_3">В столицу, мне надо...</string>
+    <string name="cs_gonato_4">В столицу?! Далековато... А сам-то откуда?</string>
+    <string name="cs_gonato_5">Из Фтерны, это...</string>
+    <string name="cs_gonato_6">Фтерна, говоришь?! У меня свояк из Фтерны, задолжал мне три овцы</string>
+    <string name="cs_gonato_7">Ты если его встретишь так и скажи ему, мол,</string>
+    <string name="cs_gonato_8">Старейшина Гонато овец своих не забывает, так ему и передай.</string>
+    <string name="cs_gonato_9">Эээ... хорошо..</string>
+    <string name="cs_gonato_10">Раз уж мы заговорили об овцах, ты не поможешь нам?</string>
+    <string name="cs_gonato_11">Выглядишь ты вполне воинственно, не то что наши крестьяне.</string>
+    <string name="cs_gonato_12">А в чем дело?</string>
+    <string name="cs_gonato_13">Давно уже у нас такого не случалось, но вот беда.</string>
+    <string name="cs_gonato_14">Повадился к нам Белос, овец воровать.</string>
+    <string name="cs_gonato_15">Мы бы с ним справились, да дел по горло,</string>
+    <string name="cs_gonato_16">да и здоровый он, жуткий такой, наши-то все его боятся!</string>
+    <string name="cs_gonato_17">Вообще-то я тороплюсь, очень важно добраться до столицы как можно быстрей.</string>
+    <string name="cs_gonato_18">Я пойму если ты торопишься...</string>
+    <string name="cs_gonato_19">Ну так как, поможешь?</string>
+    <string name="cs_gonato_20">Вот и славно, славно, порадовал старика, спасибо тебе!</string>
+    <string name="cs_gonato_21">Что ж, дело твое, мы не в обиде... удачи тебе в твоем путешествии!</string>
+    <string name="cs_gonato_22">Береги себя!</string>
+
+    <string name="cs_gonato_0">cs_gonato_0</string>
+    <string name="cs_gonato_1">cs_gonato_1</string>
+    <string name="cs_gonato_2">cs_gonato_2</string>
+    <string name="cs_gonato_3">cs_gonato_3</string>
+    <string name="cs_gonato_4">cs_gonato_4</string>
+    <string name="cs_gonato_5">cs_gonato_5</string>
+    <string name="cs_gonato_6">cs_gonato_6</string>
+    <string name="cs_gonato_7">cs_gonato_7</string>
+    <string name="cs_gonato_8">cs_gonato_8</string>
+    <string name="cs_gonato_9">cs_gonato_9</string>
+    <string name="cs_gonato_10">cs_gonato_10</string>
+    <string name="cs_gonato_11">cs_gonato_11</string>
+    <string name="cs_gonato_12">cs_gonato_12</string>
+    <string name="cs_gonato_13">cs_gonato_13</string>
+    <string name="cs_gonato_14">cs_gonato_14</string>
+    <string name="cs_gonato_15">cs_gonato_15</string>
+    <string name="cs_gonato_16">cs_gonato_16</string>
+    <string name="cs_gonato_17">cs_gonato_17</string>
+    <string name="cs_gonato_18">cs_gonato_18</string>
+    <string name="cs_gonato_19">cs_gonato_19</string>
+    <string name="cs_gonato_20">cs_gonato_20</string>
+    <string name="cs_gonato_21">cs_gonato_21</string>
+    <string name="cs_gonato_22">cs_gonato_22</string>
+
+                '0': { text: 'cs_gonato_0' },
+                '1': { text: 'cs_gonato_1' },
+                '2': { text: 'cs_gonato_2' },
+                '3': { text: 'cs_gonato_3' },
+                '4': { text: 'cs_gonato_4' },
+                '5': { text: 'cs_gonato_5' },
+                '6': { text: 'cs_gonato_6' },
+                '7': { text: 'cs_gonato_7' },
+                '8': { text: 'cs_gonato_8' },
+                '9': { text: 'cs_gonato_9' },
+                '10': { text: 'cs_gonato_10' },
+                '11': { text: 'cs_gonato_11' },
+                '12': { text: 'cs_gonato_12' },
+                '13': { text: 'cs_gonato_13' },
+                '14': { text: 'cs_gonato_14' },
+                '15': { text: 'cs_gonato_15' },
+                '16': { text: 'cs_gonato_16' },
+                '17': { text: 'cs_gonato_17' },
+                '18': { text: 'cs_gonato_18' },
+                '19': { text: 'cs_gonato_19' },
+                '20': { text: 'cs_gonato_20' },
+                '21': { text: 'cs_gonato_21' },
+                '22': { text: 'cs_gonato_22' },
