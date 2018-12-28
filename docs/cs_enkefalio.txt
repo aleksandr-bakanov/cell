@@ -1,0 +1,26 @@
+    <string name="cs_enkefalio_0">Ворота замка Энкефальо – столицы империи</string>
+    <string name="cs_enkefalio_1">А вот и замок, наконец-то...</string>
+    <string name="cs_enkefalio_2">Ох не нравятся мне те ребята у ворот.</string>
+    <string name="cs_enkefalio_3">Это придворный маг и элитные гвардейцы.</string>
+    <string name="cs_enkefalio_4">Ты имеешь в виду как Пальмос?</string>
+    <string name="cs_enkefalio_5">Да, как он, только хуже.</string>
+    <string name="cs_enkefalio_6">Гораздо хуже...</string>
+    <string name="cs_enkefalio_7">Я же велел вам убираться! Стража, убейте этих наглецов!</string>
+
+    <string name="cs_enkefalio_0">cs_enkefalio_0</string>
+    <string name="cs_enkefalio_1">cs_enkefalio_1</string>
+    <string name="cs_enkefalio_2">cs_enkefalio_2</string>
+    <string name="cs_enkefalio_3">cs_enkefalio_3</string>
+    <string name="cs_enkefalio_4">cs_enkefalio_4</string>
+    <string name="cs_enkefalio_5">cs_enkefalio_5</string>
+    <string name="cs_enkefalio_6">cs_enkefalio_6</string>
+    <string name="cs_enkefalio_7">cs_enkefalio_7</string>
+
+                '0': { text: 'cs_enkefalio_0' },
+                '1': { text: 'cs_enkefalio_1' },
+                '2': { text: 'cs_enkefalio_2' },
+                '3': { text: 'cs_enkefalio_3' },
+                '4': { text: 'cs_enkefalio_4' },
+                '5': { text: 'cs_enkefalio_5' },
+                '6': { text: 'cs_enkefalio_6' },
+                '7': { text: 'cs_enkefalio_7' },

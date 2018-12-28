@@ -1,0 +1,38 @@
+    <string name="cs_after_nikhteribs_0">Откуда их там так много?</string>
+    <string name="cs_after_nikhteribs_1">Зло крепнет на закате мира.</string>
+    <string name="cs_after_nikhteribs_2">Зои, ты можешь изъясняться понятней?</string>
+    <string name="cs_after_nikhteribs_3">Нет, видишь ли в языке духов отсутствует прямота, свойственная вашему языку.</string>
+    <string name="cs_after_nikhteribs_4">Эх, ладно, идем, мы уже близко к столице.</string>
+    <string name="cs_after_nikhteribs_5">Ты хотел сказать к бывшей столице?</string>
+    <string name="cs_after_nikhteribs_6">В смысле?</string>
+    <string name="cs_after_nikhteribs_7">О... я не ожидал, что вести распространяются настолько медленно.</string>
+    <string name="cs_after_nikhteribs_8">Видишь ли, столицу недавно перенесли из Кардьи.</string>
+    <string name="cs_after_nikhteribs_9">Так значит королевский замок теперь еще дальше?</string>
+    <string name="cs_after_nikhteribs_10">Боюсь что так.</string>
+    <string name="cs_after_nikhteribs_11">Тогда тем более надо поторапливаться. Вперед!</string>
+
+    <string name="cs_after_nikhteribs_0">cs_after_nikhteribs_0</string>
+    <string name="cs_after_nikhteribs_1">cs_after_nikhteribs_1</string>
+    <string name="cs_after_nikhteribs_2">cs_after_nikhteribs_2</string>
+    <string name="cs_after_nikhteribs_3">cs_after_nikhteribs_3</string>
+    <string name="cs_after_nikhteribs_4">cs_after_nikhteribs_4</string>
+    <string name="cs_after_nikhteribs_5">cs_after_nikhteribs_5</string>
+    <string name="cs_after_nikhteribs_6">cs_after_nikhteribs_6</string>
+    <string name="cs_after_nikhteribs_7">cs_after_nikhteribs_7</string>
+    <string name="cs_after_nikhteribs_8">cs_after_nikhteribs_8</string>
+    <string name="cs_after_nikhteribs_9">cs_after_nikhteribs_9</string>
+    <string name="cs_after_nikhteribs_10">cs_after_nikhteribs_10</string>
+    <string name="cs_after_nikhteribs_11">cs_after_nikhteribs_11</string>
+
+                '0': { text: 'cs_after_nikhteribs_0' },
+                '1': { text: 'cs_after_nikhteribs_1' },
+                '2': { text: 'cs_after_nikhteribs_2' },
+                '3': { text: 'cs_after_nikhteribs_3' },
+                '4': { text: 'cs_after_nikhteribs_4' },
+                '5': { text: 'cs_after_nikhteribs_5' },
+                '6': { text: 'cs_after_nikhteribs_6' },
+                '7': { text: 'cs_after_nikhteribs_7' },
+                '8': { text: 'cs_after_nikhteribs_8' },
+                '9': { text: 'cs_after_nikhteribs_9' },
+                '10': { text: 'cs_after_nikhteribs_10' },
+                '11': { text: 'cs_after_nikhteribs_11' },

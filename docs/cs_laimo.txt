@@ -1,0 +1,26 @@
+    <string name="cs_laimo_0">Лаймо, поселок близ столицы</string>
+    <string name="cs_laimo_1">Вас не должно быть здесь, возвращайтесь откуда пришли.</string>
+    <string name="cs_laimo_2">С кем имею честь?</string>
+    <string name="cs_laimo_3">Вы что из деревни?</string>
+    <string name="cs_laimo_4">Ну да.</string>
+    <string name="cs_laimo_5">Королевская гвардия Катофи Пону.</string>
+    <string name="cs_laimo_6">А, ну так мне как раз к королю надо, может вы проводите меня?</string>
+    <string name="cs_laimo_7">Скорее мы проводим тебя взашей!</string>
+
+    <string name="cs_laimo_0">cs_laimo_0</string>
+    <string name="cs_laimo_1">cs_laimo_1</string>
+    <string name="cs_laimo_2">cs_laimo_2</string>
+    <string name="cs_laimo_3">cs_laimo_3</string>
+    <string name="cs_laimo_4">cs_laimo_4</string>
+    <string name="cs_laimo_5">cs_laimo_5</string>
+    <string name="cs_laimo_6">cs_laimo_6</string>
+    <string name="cs_laimo_7">cs_laimo_7</string>
+
+                '0': { text: 'cs_laimo_0' },
+                '1': { text: 'cs_laimo_1' },
+                '2': { text: 'cs_laimo_2' },
+                '3': { text: 'cs_laimo_3' },
+                '4': { text: 'cs_laimo_4' },
+                '5': { text: 'cs_laimo_5' },
+                '6': { text: 'cs_laimo_6' },
+                '7': { text: 'cs_laimo_7' },

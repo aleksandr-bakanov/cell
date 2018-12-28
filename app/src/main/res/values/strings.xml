@@ -492,12 +492,18 @@
             left: 'ic_character_kittaro_normal',
             right: 'ic_character_kittaro_normal',
             frames: {
-                '0': { text: 'cs_after_omikhli_0' }
+                '0': { text: 'cs_after_omikhli_0' },
+                '1': { text: 'cs_after_omikhli_1' },
+                '2': { text: 'cs_after_omikhli_2' },
+                '3': { text: 'cs_after_omikhli_3' }
             },
             next_scene: 'action_cutSceneAfterOmikhli_to_heroScreenAfterOmikhli'
         }"
     </string>
     <string name="cs_after_omikhli_0">cs_after_omikhli_0</string>
+    <string name="cs_after_omikhli_1">cs_after_omikhli_1</string>
+    <string name="cs_after_omikhli_2">cs_after_omikhli_2</string>
+    <string name="cs_after_omikhli_3">cs_after_omikhli_3</string>
 
     <!--
       - Cut scene Kilia
@@ -508,12 +514,40 @@
             left: 'ic_character_kittaro_normal',
             right: 'ic_character_kittaro_normal',
             frames: {
-                '0': { text: 'cs_kilia_0' }
+                '0': { text: 'cs_kilia_0' },
+                '1': { text: 'cs_kilia_1' },
+                '2': { text: 'cs_kilia_2' },
+                '3': { text: 'cs_kilia_3' },
+                '4': { text: 'cs_kilia_4' },
+                '5': { text: 'cs_kilia_5' },
+                '6': { text: 'cs_kilia_6' },
+                '7': { text: 'cs_kilia_7' },
+                '8': { text: 'cs_kilia_8' },
+                '9': { text: 'cs_kilia_9' },
+                '10': { text: 'cs_kilia_10' },
+                '11': { text: 'cs_kilia_11' },
+                '12': { text: 'cs_kilia_12' },
+                '13': { text: 'cs_kilia_13' },
+                '14': { text: 'cs_kilia_14' }
             },
             next_scene: 'action_cutSceneKilia_to_battleNikhteribs'
         }"
     </string>
     <string name="cs_kilia_0">cs_kilia_0</string>
+    <string name="cs_kilia_1">cs_kilia_1</string>
+    <string name="cs_kilia_2">cs_kilia_2</string>
+    <string name="cs_kilia_3">cs_kilia_3</string>
+    <string name="cs_kilia_4">cs_kilia_4</string>
+    <string name="cs_kilia_5">cs_kilia_5</string>
+    <string name="cs_kilia_6">cs_kilia_6</string>
+    <string name="cs_kilia_7">cs_kilia_7</string>
+    <string name="cs_kilia_8">cs_kilia_8</string>
+    <string name="cs_kilia_9">cs_kilia_9</string>
+    <string name="cs_kilia_10">cs_kilia_10</string>
+    <string name="cs_kilia_11">cs_kilia_11</string>
+    <string name="cs_kilia_12">cs_kilia_12</string>
+    <string name="cs_kilia_13">cs_kilia_13</string>
+    <string name="cs_kilia_14">cs_kilia_14</string>
 
     <!--
       - Cut scene after nikhteribs
@@ -524,12 +558,34 @@
             left: 'ic_character_kittaro_normal',
             right: 'ic_character_kittaro_normal',
             frames: {
-                '0': { text: 'cs_after_nikhteribs_0' }
+                '0': { text: 'cs_after_nikhteribs_0' },
+                '1': { text: 'cs_after_nikhteribs_1' },
+                '2': { text: 'cs_after_nikhteribs_2' },
+                '3': { text: 'cs_after_nikhteribs_3' },
+                '4': { text: 'cs_after_nikhteribs_4' },
+                '5': { text: 'cs_after_nikhteribs_5' },
+                '6': { text: 'cs_after_nikhteribs_6' },
+                '7': { text: 'cs_after_nikhteribs_7' },
+                '8': { text: 'cs_after_nikhteribs_8' },
+                '9': { text: 'cs_after_nikhteribs_9' },
+                '10': { text: 'cs_after_nikhteribs_10' },
+                '11': { text: 'cs_after_nikhteribs_11' }
             },
             next_scene: 'action_cutSceneAfterNikhteribs_to_heroScreenAfterNikhteribs'
         }"
     </string>
     <string name="cs_after_nikhteribs_0">cs_after_nikhteribs_0</string>
+    <string name="cs_after_nikhteribs_1">cs_after_nikhteribs_1</string>
+    <string name="cs_after_nikhteribs_2">cs_after_nikhteribs_2</string>
+    <string name="cs_after_nikhteribs_3">cs_after_nikhteribs_3</string>
+    <string name="cs_after_nikhteribs_4">cs_after_nikhteribs_4</string>
+    <string name="cs_after_nikhteribs_5">cs_after_nikhteribs_5</string>
+    <string name="cs_after_nikhteribs_6">cs_after_nikhteribs_6</string>
+    <string name="cs_after_nikhteribs_7">cs_after_nikhteribs_7</string>
+    <string name="cs_after_nikhteribs_8">cs_after_nikhteribs_8</string>
+    <string name="cs_after_nikhteribs_9">cs_after_nikhteribs_9</string>
+    <string name="cs_after_nikhteribs_10">cs_after_nikhteribs_10</string>
+    <string name="cs_after_nikhteribs_11">cs_after_nikhteribs_11</string>
 
     <!--
       - Cut scene Kardia
@@ -540,12 +596,32 @@
             left: 'ic_character_kittaro_normal',
             right: 'ic_character_kittaro_normal',
             frames: {
-                '0': { text: 'cs_kardia_0' }
+                '0': { text: 'cs_kardia_0' },
+                '1': { text: 'cs_kardia_1' },
+                '2': { text: 'cs_kardia_2' },
+                '3': { text: 'cs_kardia_3' },
+                '4': { text: 'cs_kardia_4' },
+                '5': { text: 'cs_kardia_5' },
+                '6': { text: 'cs_kardia_6' },
+                '7': { text: 'cs_kardia_7' },
+                '8': { text: 'cs_kardia_8' },
+                '9': { text: 'cs_kardia_9' },
+                '10': { text: 'cs_kardia_10' }
             },
             next_scene: 'action_cutSceneKardia_to_battleDrunkards'
         }"
     </string>
     <string name="cs_kardia_0">cs_kardia_0</string>
+    <string name="cs_kardia_1">cs_kardia_1</string>
+    <string name="cs_kardia_2">cs_kardia_2</string>
+    <string name="cs_kardia_3">cs_kardia_3</string>
+    <string name="cs_kardia_4">cs_kardia_4</string>
+    <string name="cs_kardia_5">cs_kardia_5</string>
+    <string name="cs_kardia_6">cs_kardia_6</string>
+    <string name="cs_kardia_7">cs_kardia_7</string>
+    <string name="cs_kardia_8">cs_kardia_8</string>
+    <string name="cs_kardia_9">cs_kardia_9</string>
+    <string name="cs_kardia_10">cs_kardia_10</string>
 
     <!--
       - Cut scene after drunkards
@@ -556,12 +632,66 @@
             left: 'ic_character_kittaro_normal',
             right: 'ic_character_kittaro_normal',
             frames: {
-                '0': { text: 'cs_after_drunkards_0' }
+                '0': { text: 'cs_after_drunkards_0' },
+                '1': { text: 'cs_after_drunkards_1' },
+                '2': { text: 'cs_after_drunkards_2' },
+                '3': { text: 'cs_after_drunkards_3' },
+                '4': { text: 'cs_after_drunkards_4' },
+                '5': { text: 'cs_after_drunkards_5' },
+                '6': { text: 'cs_after_drunkards_6' },
+                '7': { text: 'cs_after_drunkards_7' },
+                '8': { text: 'cs_after_drunkards_8' },
+                '9': { text: 'cs_after_drunkards_9' },
+                '10': { text: 'cs_after_drunkards_10' },
+                '11': { text: 'cs_after_drunkards_11' },
+                '12': { text: 'cs_after_drunkards_12' },
+                '13': { text: 'cs_after_drunkards_13' },
+                '14': { text: 'cs_after_drunkards_14' },
+                '15': { text: 'cs_after_drunkards_15' },
+                '16': { text: 'cs_after_drunkards_16' },
+                '17': { text: 'cs_after_drunkards_17' },
+                '18': { text: 'cs_after_drunkards_18' },
+                '19': { text: 'cs_after_drunkards_19' },
+                '20': { text: 'cs_after_drunkards_20' },
+                '21': { text: 'cs_after_drunkards_21' },
+                '22': { text: 'cs_after_drunkards_22' },
+                '23': { text: 'cs_after_drunkards_23' },
+                '24': { text: 'cs_after_drunkards_24' },
+                '25': { text: 'cs_after_drunkards_25' },
+                '26': { text: 'cs_after_drunkards_26' },
+                '27': { text: 'cs_after_drunkards_27' }
             },
             next_scene: 'action_cutSceneAfterDrunkards_to_heroScreenAfterDrunkards'
         }"
     </string>
     <string name="cs_after_drunkards_0">cs_after_drunkards_0</string>
+    <string name="cs_after_drunkards_1">cs_after_drunkards_1</string>
+    <string name="cs_after_drunkards_2">cs_after_drunkards_2</string>
+    <string name="cs_after_drunkards_3">cs_after_drunkards_3</string>
+    <string name="cs_after_drunkards_4">cs_after_drunkards_4</string>
+    <string name="cs_after_drunkards_5">cs_after_drunkards_5</string>
+    <string name="cs_after_drunkards_6">cs_after_drunkards_6</string>
+    <string name="cs_after_drunkards_7">cs_after_drunkards_7</string>
+    <string name="cs_after_drunkards_8">cs_after_drunkards_8</string>
+    <string name="cs_after_drunkards_9">cs_after_drunkards_9</string>
+    <string name="cs_after_drunkards_10">cs_after_drunkards_10</string>
+    <string name="cs_after_drunkards_11">cs_after_drunkards_11</string>
+    <string name="cs_after_drunkards_12">cs_after_drunkards_12</string>
+    <string name="cs_after_drunkards_13">cs_after_drunkards_13</string>
+    <string name="cs_after_drunkards_14">cs_after_drunkards_14</string>
+    <string name="cs_after_drunkards_15">cs_after_drunkards_15</string>
+    <string name="cs_after_drunkards_16">cs_after_drunkards_16</string>
+    <string name="cs_after_drunkards_17">cs_after_drunkards_17</string>
+    <string name="cs_after_drunkards_18">cs_after_drunkards_18</string>
+    <string name="cs_after_drunkards_19">cs_after_drunkards_19</string>
+    <string name="cs_after_drunkards_20">cs_after_drunkards_20</string>
+    <string name="cs_after_drunkards_21">cs_after_drunkards_21</string>
+    <string name="cs_after_drunkards_22">cs_after_drunkards_22</string>
+    <string name="cs_after_drunkards_23">cs_after_drunkards_23</string>
+    <string name="cs_after_drunkards_24">cs_after_drunkards_24</string>
+    <string name="cs_after_drunkards_25">cs_after_drunkards_25</string>
+    <string name="cs_after_drunkards_26">cs_after_drunkards_26</string>
+    <string name="cs_after_drunkards_27">cs_after_drunkards_27</string>
 
     <!--
       - Cut scene Laimo
@@ -572,12 +702,26 @@
             left: 'ic_character_kittaro_normal',
             right: 'ic_character_kittaro_normal',
             frames: {
-                '0': { text: 'cs_laimo_0' }
+                '0': { text: 'cs_laimo_0' },
+                '1': { text: 'cs_laimo_1' },
+                '2': { text: 'cs_laimo_2' },
+                '3': { text: 'cs_laimo_3' },
+                '4': { text: 'cs_laimo_4' },
+                '5': { text: 'cs_laimo_5' },
+                '6': { text: 'cs_laimo_6' },
+                '7': { text: 'cs_laimo_7' }
             },
             next_scene: 'action_cutSceneLaimo_to_battleKatofiPonu'
         }"
     </string>
     <string name="cs_laimo_0">cs_laimo_0</string>
+    <string name="cs_laimo_1">cs_laimo_1</string>
+    <string name="cs_laimo_2">cs_laimo_2</string>
+    <string name="cs_laimo_3">cs_laimo_3</string>
+    <string name="cs_laimo_4">cs_laimo_4</string>
+    <string name="cs_laimo_5">cs_laimo_5</string>
+    <string name="cs_laimo_6">cs_laimo_6</string>
+    <string name="cs_laimo_7">cs_laimo_7</string>
 
     <!--
       - Cut scene after Katofi Ponu
@@ -588,12 +732,26 @@
             left: 'ic_character_kittaro_normal',
             right: 'ic_character_kittaro_normal',
             frames: {
-                '0': { text: 'cs_after_katofi_ponu_0' }
+                '0': { text: 'cs_after_katofi_ponu_0' },
+                '1': { text: 'cs_after_katofi_ponu_1' },
+                '2': { text: 'cs_after_katofi_ponu_2' },
+                '3': { text: 'cs_after_katofi_ponu_3' },
+                '4': { text: 'cs_after_katofi_ponu_4' },
+                '5': { text: 'cs_after_katofi_ponu_5' },
+                '6': { text: 'cs_after_katofi_ponu_6' },
+                '7': { text: 'cs_after_katofi_ponu_7' }
             },
             next_scene: 'action_cutSceneAfterKatofiPonu_to_heroScreenAfterKatofiPonu'
         }"
     </string>
     <string name="cs_after_katofi_ponu_0">cs_after_katofi_ponu_0</string>
+    <string name="cs_after_katofi_ponu_1">cs_after_katofi_ponu_1</string>
+    <string name="cs_after_katofi_ponu_2">cs_after_katofi_ponu_2</string>
+    <string name="cs_after_katofi_ponu_3">cs_after_katofi_ponu_3</string>
+    <string name="cs_after_katofi_ponu_4">cs_after_katofi_ponu_4</string>
+    <string name="cs_after_katofi_ponu_5">cs_after_katofi_ponu_5</string>
+    <string name="cs_after_katofi_ponu_6">cs_after_katofi_ponu_6</string>
+    <string name="cs_after_katofi_ponu_7">cs_after_katofi_ponu_7</string>
 
     <!--
       - Cut scene Enkefalio
@@ -604,12 +762,26 @@
             left: 'ic_character_kittaro_normal',
             right: 'ic_character_kittaro_normal',
             frames: {
-                '0': { text: 'cs_enkefalio_0' }
+                '0': { text: 'cs_enkefalio_0' },
+                '1': { text: 'cs_enkefalio_1' },
+                '2': { text: 'cs_enkefalio_2' },
+                '3': { text: 'cs_enkefalio_3' },
+                '4': { text: 'cs_enkefalio_4' },
+                '5': { text: 'cs_enkefalio_5' },
+                '6': { text: 'cs_enkefalio_6' },
+                '7': { text: 'cs_enkefalio_7' }
             },
             next_scene: 'action_cutSceneEnkefalio_to_battleEnkefalio'
         }"
     </string>
     <string name="cs_enkefalio_0">cs_enkefalio_0</string>
+    <string name="cs_enkefalio_1">cs_enkefalio_1</string>
+    <string name="cs_enkefalio_2">cs_enkefalio_2</string>
+    <string name="cs_enkefalio_3">cs_enkefalio_3</string>
+    <string name="cs_enkefalio_4">cs_enkefalio_4</string>
+    <string name="cs_enkefalio_5">cs_enkefalio_5</string>
+    <string name="cs_enkefalio_6">cs_enkefalio_6</string>
+    <string name="cs_enkefalio_7">cs_enkefalio_7</string>
 
     <!--
       - Cut scene final act
@@ -620,12 +792,30 @@
             left: 'ic_character_kittaro_normal',
             right: 'ic_character_kittaro_normal',
             frames: {
-                '0': { text: 'cs_final_act_0' }
+                '0': { text: 'cs_final_act_0' },
+                '1': { text: 'cs_final_act_1' },
+                '2': { text: 'cs_final_act_2' },
+                '3': { text: 'cs_final_act_3' },
+                '4': { text: 'cs_final_act_4' },
+                '5': { text: 'cs_final_act_5' },
+                '6': { text: 'cs_final_act_6' },
+                '7': { text: 'cs_final_act_7' },
+                '8': { text: 'cs_final_act_8' },
+                '9': { text: 'cs_final_act_9' }
             },
             next_scene: 'mainFragment'
         }"
     </string>
     <string name="cs_final_act_0">cs_final_act_0</string>
+    <string name="cs_final_act_1">cs_final_act_1</string>
+    <string name="cs_final_act_2">cs_final_act_2</string>
+    <string name="cs_final_act_3">cs_final_act_3</string>
+    <string name="cs_final_act_4">cs_final_act_4</string>
+    <string name="cs_final_act_5">cs_final_act_5</string>
+    <string name="cs_final_act_6">cs_final_act_6</string>
+    <string name="cs_final_act_7">cs_final_act_7</string>
+    <string name="cs_final_act_8">cs_final_act_8</string>
+    <string name="cs_final_act_9">cs_final_act_9</string>
 
     <!--
       - Battle scenes params

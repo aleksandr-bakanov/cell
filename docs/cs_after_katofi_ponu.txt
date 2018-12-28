@@ -1,0 +1,26 @@
+    <string name="cs_after_katofi_ponu_0">Что это было, чем они в нас стреляли?</string>
+    <string name="cs_after_katofi_ponu_1">Это петалюбы активированные с помощью магии.</string>
+    <string name="cs_after_katofi_ponu_2">Не знала что они довели исследования до опытных образцов...</string>
+    <string name="cs_after_katofi_ponu_3">Ты знаешь как ими управлять.</string>
+    <string name="cs_after_katofi_ponu_4">Да, это просто, так же как и Актинами.</string>
+    <string name="cs_after_katofi_ponu_5">Просто повесь их куда-нибудь, а работать они будут сами.</string>
+    <string name="cs_after_katofi_ponu_6">Звучит и впрямь просто.</string>
+    <string name="cs_after_katofi_ponu_7">Ну вперед, мы почти у цели!</string>
+
+    <string name="cs_after_katofi_ponu_0">cs_after_katofi_ponu_0</string>
+    <string name="cs_after_katofi_ponu_1">cs_after_katofi_ponu_1</string>
+    <string name="cs_after_katofi_ponu_2">cs_after_katofi_ponu_2</string>
+    <string name="cs_after_katofi_ponu_3">cs_after_katofi_ponu_3</string>
+    <string name="cs_after_katofi_ponu_4">cs_after_katofi_ponu_4</string>
+    <string name="cs_after_katofi_ponu_5">cs_after_katofi_ponu_5</string>
+    <string name="cs_after_katofi_ponu_6">cs_after_katofi_ponu_6</string>
+    <string name="cs_after_katofi_ponu_7">cs_after_katofi_ponu_7</string>
+
+                '0': { text: 'cs_after_katofi_ponu_0' },
+                '1': { text: 'cs_after_katofi_ponu_1' },
+                '2': { text: 'cs_after_katofi_ponu_2' },
+                '3': { text: 'cs_after_katofi_ponu_3' },
+                '4': { text: 'cs_after_katofi_ponu_4' },
+                '5': { text: 'cs_after_katofi_ponu_5' },
+                '6': { text: 'cs_after_katofi_ponu_6' },
+                '7': { text: 'cs_after_katofi_ponu_7' },

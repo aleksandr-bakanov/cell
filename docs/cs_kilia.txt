@@ -1,0 +1,47 @@
+    <string name="cs_kilia_0">Пещеры Килия</string>
+    <string name="cs_kilia_1">А вот и ты...</string>
+    <string name="cs_kilia_2">Эй, ты что очередной демон?</string>
+    <string name="cs_kilia_3">Отнюдь, отнюдь. Я Зои, а это мое обиталище.</string>
+    <string name="cs_kilia_4">А похож на демона</string>
+    <string name="cs_kilia_5">Да нас, духов, часто с ними путают.</string>
+    <string name="cs_kilia_6">Что ты здесь делаешь?</string>
+    <string name="cs_kilia_7">Собираюсь отправится с тобой в свое последнее путешествие.</string>
+    <string name="cs_kilia_8">Эээ... последнее?</string>
+    <string name="cs_kilia_9">......</string>
+    <string name="cs_kilia_10">Почему последнее?</string>
+    <string name="cs_kilia_11">......</string>
+    <string name="cs_kilia_12">В пещерах темно, возьми этот светоч. Нам пора.</string>
+    <string name="cs_kilia_13">Черт, здесь в правдо темно, что это за писк?</string>
+    <string name="cs_kilia_14">О, они всегда здесь жили, обычно они не очень рады гостям...</string>
+
+    <string name="cs_kilia_0">cs_kilia_0</string>
+    <string name="cs_kilia_1">cs_kilia_1</string>
+    <string name="cs_kilia_2">cs_kilia_2</string>
+    <string name="cs_kilia_3">cs_kilia_3</string>
+    <string name="cs_kilia_4">cs_kilia_4</string>
+    <string name="cs_kilia_5">cs_kilia_5</string>
+    <string name="cs_kilia_6">cs_kilia_6</string>
+    <string name="cs_kilia_7">cs_kilia_7</string>
+    <string name="cs_kilia_8">cs_kilia_8</string>
+    <string name="cs_kilia_9">cs_kilia_9</string>
+    <string name="cs_kilia_10">cs_kilia_10</string>
+    <string name="cs_kilia_11">cs_kilia_11</string>
+    <string name="cs_kilia_12">cs_kilia_12</string>
+    <string name="cs_kilia_13">cs_kilia_13</string>
+    <string name="cs_kilia_14">cs_kilia_14</string>
+
+                '0': { text: 'cs_kilia_0' },
+                '1': { text: 'cs_kilia_1' },
+                '2': { text: 'cs_kilia_2' },
+                '3': { text: 'cs_kilia_3' },
+                '4': { text: 'cs_kilia_4' },
+                '5': { text: 'cs_kilia_5' },
+                '6': { text: 'cs_kilia_6' },
+                '7': { text: 'cs_kilia_7' },
+                '8': { text: 'cs_kilia_8' },
+                '9': { text: 'cs_kilia_9' },
+                '10': { text: 'cs_kilia_10' },
+                '11': { text: 'cs_kilia_11' },
+                '12': { text: 'cs_kilia_12' },
+                '13': { text: 'cs_kilia_13' },
+                '14': { text: 'cs_kilia_14' },

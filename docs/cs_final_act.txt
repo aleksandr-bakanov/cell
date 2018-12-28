@@ -1,0 +1,32 @@
+    <string name="cs_final_act_0">Тронный зал, заключительный акт</string>
+    <string name="cs_final_act_1">Кто вы и что вам нужно?</string>
+    <string name="cs_final_act_2">Ваше Величество, меня зовут Киттаро, я прибыл из деревни Фтерна, провинции Поди.</string>
+    <string name="cs_final_act_3">Наш старейшина просил доставить вам это послание.</string>
+    <string name="cs_final_act_4">Пусть прочтет мой летописец.</string>
+    <string name="cs_final_act_5">Этого не может быть...</string>
+    <string name="cs_final_act_6">Что там? Живее, у меня нет на это времени!</string>
+    <string name="cs_final_act_7">Ваше Величество...</string>
+    <string name="cs_final_act_8">Ну же!</string>
+    <string name="cs_final_act_9">"Ты мертв, Ахилл"</string>
+
+    <string name="cs_final_act_0">cs_final_act_0</string>
+    <string name="cs_final_act_1">cs_final_act_1</string>
+    <string name="cs_final_act_2">cs_final_act_2</string>
+    <string name="cs_final_act_3">cs_final_act_3</string>
+    <string name="cs_final_act_4">cs_final_act_4</string>
+    <string name="cs_final_act_5">cs_final_act_5</string>
+    <string name="cs_final_act_6">cs_final_act_6</string>
+    <string name="cs_final_act_7">cs_final_act_7</string>
+    <string name="cs_final_act_8">cs_final_act_8</string>
+    <string name="cs_final_act_9">cs_final_act_9</string>
+
+                '0': { text: 'cs_final_act_0' },
+                '1': { text: 'cs_final_act_1' },
+                '2': { text: 'cs_final_act_2' },
+                '3': { text: 'cs_final_act_3' },
+                '4': { text: 'cs_final_act_4' },
+                '5': { text: 'cs_final_act_5' },
+                '6': { text: 'cs_final_act_6' },
+                '7': { text: 'cs_final_act_7' },
+                '8': { text: 'cs_final_act_8' },
+                '9': { text: 'cs_final_act_9' },

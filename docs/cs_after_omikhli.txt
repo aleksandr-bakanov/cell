@@ -1,0 +1,14 @@
+    <string name="cs_after_omikhli_0">Туман рассеивается</string>
+    <string name="cs_after_omikhli_1">Ага вон и пещеры, так все это время я был так близко!</string>
+    <string name="cs_after_omikhli_2">Чертов демон, запутать меня хотел</string>
+    <string name="cs_after_omikhli_3">Ладно, время подлечится и идти дальше</string>
+
+    <string name="cs_after_omikhli_0">cs_after_omikhli_0</string>
+    <string name="cs_after_omikhli_1">cs_after_omikhli_1</string>
+    <string name="cs_after_omikhli_2">cs_after_omikhli_2</string>
+    <string name="cs_after_omikhli_3">cs_after_omikhli_3</string>
+
+                '0': { text: 'cs_after_omikhli_0' },
+                '1': { text: 'cs_after_omikhli_1' },
+                '2': { text: 'cs_after_omikhli_2' },
+                '3': { text: 'cs_after_omikhli_3' },

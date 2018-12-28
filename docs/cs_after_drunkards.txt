@@ -1,0 +1,86 @@
+    <string name="cs_after_drunkards_0">Господа, если вы не бросите пить, то очень скоро умрете.</string>
+    <string name="cs_after_drunkards_1">Запомните, слово "ром" и слово "смерть" для вас означают одно и тоже.</string>
+    <string name="cs_after_drunkards_2">Киттаро, Зои! Вам надо спешить, напряжение в городе нарастает.</string>
+    <string name="cs_after_drunkards_3">Да откуда все знают, что мне куда-то надо?</string>
+    <string name="cs_after_drunkards_4">Пара магических трюков, только и всего.</string>
+    <string name="cs_after_drunkards_5">Здравствуй, Пальмос.</string>
+    <string name="cs_after_drunkards_6">Здравствуй, Зои.</string>
+    <string name="cs_after_drunkards_7">Киттаро, познакомься с бывшим придворным чародеем.</string>
+    <string name="cs_after_drunkards_8">Да уж вид у вас неважный. Я вижу слухи находят подтверждение...</string>
+    <string name="cs_after_drunkards_9">Какие еще слухи?</string>
+    <string name="cs_after_drunkards_10">Слишком неопределенные, чтобы делать из них какие-либо выводы.</string>
+    <string name="cs_after_drunkards_11">Что ж, в таком случае пойдём с нами, нам пригодился бы такой чародей как ты.</string>
+    <string name="cs_after_drunkards_12">Не могу, у меня слишком много дел, да и должен же кто-то следить здесь за порядком!</string>
+    <string name="cs_after_drunkards_13">Я пойду с ними.</string>
+    <string name="cs_after_drunkards_14">Айма! Это слишком опасно, ты нужна мне здесь!</string>
+    <string name="cs_after_drunkards_15">Уверена, ты сам со всем справишься, кроме того ты сам говорил,</string>
+    <string name="cs_after_drunkards_16">что появление духа это событие, которое происходит один раз в жизни и такой опыт нельзя упускать.</string>
+    <string name="cs_after_drunkards_17">Да, говорил...</string>
+    <string name="cs_after_drunkards_18">Киттаро, познакомься, моя ученица Айма.</string>
+    <string name="cs_after_drunkards_19">Тебе, Зои, её представлять нет смысла.</string>
+    <string name="cs_after_drunkards_20">Нет. Так как я дух, я почти вездесущ, а это значит что мне известно многое и я знаю многих.</string>
+    <string name="cs_after_drunkards_21">Я помню её ещё девочкой, в те времена по моим пещерах ещё можно было безбоязненно гулять и собирать петалюбы...</string>
+    <string name="cs_after_drunkards_22">Ладно, ладно, знаем мы историю.</string>
+    <string name="cs_after_drunkards_23">сли духа вовремя не остановить, он вам всю свою жизнь расскажет, уж поверьте.</string>
+    <string name="cs_after_drunkards_24">Киттаро возьми эти артефакты - это Актины, у меня их как раз три, Айма объяснит как ими пользоваться.</string>
+    <string name="cs_after_drunkards_25">Актины - это хексы, которые можно ставить в любое место клетки.</string>
+    <string name="cs_after_drunkards_26">Если два актина из дружественных клеток сближаются на расстояние 10 или меньше,</string>
+    <string name="cs_after_drunkards_27">между ними возникает луч, поражающий врагов на 5 единиц.</string>
+
+    <string name="cs_after_drunkards_0">cs_after_drunkards_0</string>
+    <string name="cs_after_drunkards_1">cs_after_drunkards_1</string>
+    <string name="cs_after_drunkards_2">cs_after_drunkards_2</string>
+    <string name="cs_after_drunkards_3">cs_after_drunkards_3</string>
+    <string name="cs_after_drunkards_4">cs_after_drunkards_4</string>
+    <string name="cs_after_drunkards_5">cs_after_drunkards_5</string>
+    <string name="cs_after_drunkards_6">cs_after_drunkards_6</string>
+    <string name="cs_after_drunkards_7">cs_after_drunkards_7</string>
+    <string name="cs_after_drunkards_8">cs_after_drunkards_8</string>
+    <string name="cs_after_drunkards_9">cs_after_drunkards_9</string>
+    <string name="cs_after_drunkards_10">cs_after_drunkards_10</string>
+    <string name="cs_after_drunkards_11">cs_after_drunkards_11</string>
+    <string name="cs_after_drunkards_12">cs_after_drunkards_12</string>
+    <string name="cs_after_drunkards_13">cs_after_drunkards_13</string>
+    <string name="cs_after_drunkards_14">cs_after_drunkards_14</string>
+    <string name="cs_after_drunkards_15">cs_after_drunkards_15</string>
+    <string name="cs_after_drunkards_16">cs_after_drunkards_16</string>
+    <string name="cs_after_drunkards_17">cs_after_drunkards_17</string>
+    <string name="cs_after_drunkards_18">cs_after_drunkards_18</string>
+    <string name="cs_after_drunkards_19">cs_after_drunkards_19</string>
+    <string name="cs_after_drunkards_20">cs_after_drunkards_20</string>
+    <string name="cs_after_drunkards_21">cs_after_drunkards_21</string>
+    <string name="cs_after_drunkards_22">cs_after_drunkards_22</string>
+    <string name="cs_after_drunkards_23">cs_after_drunkards_23</string>
+    <string name="cs_after_drunkards_24">cs_after_drunkards_24</string>
+    <string name="cs_after_drunkards_25">cs_after_drunkards_25</string>
+    <string name="cs_after_drunkards_26">cs_after_drunkards_26</string>
+    <string name="cs_after_drunkards_27">cs_after_drunkards_27</string>
+
+                '0': { text: 'cs_after_drunkards_0' },
+                '1': { text: 'cs_after_drunkards_1' },
+                '2': { text: 'cs_after_drunkards_2' },
+                '3': { text: 'cs_after_drunkards_3' },
+                '4': { text: 'cs_after_drunkards_4' },
+                '5': { text: 'cs_after_drunkards_5' },
+                '6': { text: 'cs_after_drunkards_6' },
+                '7': { text: 'cs_after_drunkards_7' },
+                '8': { text: 'cs_after_drunkards_8' },
+                '9': { text: 'cs_after_drunkards_9' },
+                '10': { text: 'cs_after_drunkards_10' },
+                '11': { text: 'cs_after_drunkards_11' },
+                '12': { text: 'cs_after_drunkards_12' },
+                '13': { text: 'cs_after_drunkards_13' },
+                '14': { text: 'cs_after_drunkards_14' },
+                '15': { text: 'cs_after_drunkards_15' },
+                '16': { text: 'cs_after_drunkards_16' },
+                '17': { text: 'cs_after_drunkards_17' },
+                '18': { text: 'cs_after_drunkards_18' },
+                '19': { text: 'cs_after_drunkards_19' },
+                '20': { text: 'cs_after_drunkards_20' },
+                '21': { text: 'cs_after_drunkards_21' },
+                '22': { text: 'cs_after_drunkards_22' },
+                '23': { text: 'cs_after_drunkards_23' },
+                '24': { text: 'cs_after_drunkards_24' },
+                '25': { text: 'cs_after_drunkards_25' },
+                '26': { text: 'cs_after_drunkards_26' },
+                '27': { text: 'cs_after_drunkards_27' },

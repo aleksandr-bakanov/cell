@@ -182,31 +182,126 @@
     <string name="cs_analafro_13">........</string>
 
     <!-- Cut scene after Omikhli -->
-    <string name="cs_after_omikhli_0">cs_after_omikhli_0</string>
+    <string name="cs_after_omikhli_0">Туман рассеивается</string>
+    <string name="cs_after_omikhli_1">Ага вон и пещеры, так все это время я был так близко!</string>
+    <string name="cs_after_omikhli_2">Чертов демон, запутать меня хотел</string>
+    <string name="cs_after_omikhli_3">Ладно, время подлечится и идти дальше</string>
 
     <!-- Cut scene Kilia -->
-    <string name="cs_kilia_0">cs_kilia_0</string>
+    <string name="cs_kilia_0">Пещеры Килия</string>
+    <string name="cs_kilia_1">А вот и ты...</string>
+    <string name="cs_kilia_2">Эй, ты что очередной демон?</string>
+    <string name="cs_kilia_3">Отнюдь, отнюдь. Я Зои, а это мое обиталище.</string>
+    <string name="cs_kilia_4">А похож на демона</string>
+    <string name="cs_kilia_5">Да нас, духов, часто с ними путают.</string>
+    <string name="cs_kilia_6">Что ты здесь делаешь?</string>
+    <string name="cs_kilia_7">Собираюсь отправится с тобой в свое последнее путешествие.</string>
+    <string name="cs_kilia_8">Эээ... последнее?</string>
+    <string name="cs_kilia_9">......</string>
+    <string name="cs_kilia_10">Почему последнее?</string>
+    <string name="cs_kilia_11">......</string>
+    <string name="cs_kilia_12">В пещерах темно, возьми этот светоч. Нам пора.</string>
+    <string name="cs_kilia_13">Черт, здесь в правдо темно, что это за писк?</string>
+    <string name="cs_kilia_14">О, они всегда здесь жили, обычно они не очень рады гостям...</string>
 
     <!-- Cut scene after nikhteribs -->
-    <string name="cs_after_nikhteribs_0">cs_after_nikhteribs_0</string>
+    <string name="cs_after_nikhteribs_0">Откуда их там так много?</string>
+    <string name="cs_after_nikhteribs_1">Зло крепнет на закате мира.</string>
+    <string name="cs_after_nikhteribs_2">Зои, ты можешь изъясняться понятней?</string>
+    <string name="cs_after_nikhteribs_3">Нет, видишь ли в языке духов отсутствует прямота, свойственная вашему языку.</string>
+    <string name="cs_after_nikhteribs_4">Эх, ладно, идем, мы уже близко к столице.</string>
+    <string name="cs_after_nikhteribs_5">Ты хотел сказать к бывшей столице?</string>
+    <string name="cs_after_nikhteribs_6">В смысле?</string>
+    <string name="cs_after_nikhteribs_7">О... я не ожидал, что вести распространяются настолько медленно.</string>
+    <string name="cs_after_nikhteribs_8">Видишь ли, столицу недавно перенесли из Кардьи.</string>
+    <string name="cs_after_nikhteribs_9">Так значит королевский замок теперь еще дальше?</string>
+    <string name="cs_after_nikhteribs_10">Боюсь что так.</string>
+    <string name="cs_after_nikhteribs_11">Тогда тем более надо поторапливаться. Вперед!</string>
 
     <!-- Cut scene Kardia -->
-    <string name="cs_kardia_0">cs_kardia_0</string>
+    <string name="cs_kardia_0">Бывшая столица Кардья.</string>
+    <string name="cs_kardia_1">Ух-ты, ты только глянь на эти дома!</string>
+    <string name="cs_kardia_2">Нам лучше здесь не задерживаться.</string>
+    <string name="cs_kardia_3">Почему?</string>
+    <string name="cs_kardia_4">Местные недолюбливают чужаков, особенно таких как мы.</string>
+    <string name="cs_kardia_5">А что с нами не так?</string>
+    <string name="cs_kardia_6">Эээ, салаги, вы откуда взялись?</string>
+    <string name="cs_kardia_7">Так вот что ты имел в виду.</string>
+    <string name="cs_kardia_8">От вас провинциалов одни беды!</string>
+    <string name="cs_kardia_9">Это просто пьянь, идем Киттаро.</string>
+    <string name="cs_kardia_10">Ну уж нет, никуда вы не пойдете, пока на заплатите королевскую пошлину!</string>
 
     <!-- Cut scene after drunkards -->
-    <string name="cs_after_drunkards_0">cs_after_drunkards_0</string>
+    <string name="cs_after_drunkards_0">Господа, если вы не бросите пить, то очень скоро умрете.</string>
+    <string name="cs_after_drunkards_1">Запомните, слово "ром" и слово "смерть" для вас означают одно и тоже.</string>
+    <string name="cs_after_drunkards_2">Киттаро, Зои! Вам надо спешить, напряжение в городе нарастает.</string>
+    <string name="cs_after_drunkards_3">Да откуда все знают, что мне куда-то надо?</string>
+    <string name="cs_after_drunkards_4">Пара магических трюков, только и всего.</string>
+    <string name="cs_after_drunkards_5">Здравствуй, Пальмос.</string>
+    <string name="cs_after_drunkards_6">Здравствуй, Зои.</string>
+    <string name="cs_after_drunkards_7">Киттаро, познакомься с бывшим придворным чародеем.</string>
+    <string name="cs_after_drunkards_8">Да уж вид у вас неважный. Я вижу слухи находят подтверждение...</string>
+    <string name="cs_after_drunkards_9">Какие еще слухи?</string>
+    <string name="cs_after_drunkards_10">Слишком неопределенные, чтобы делать из них какие-либо выводы.</string>
+    <string name="cs_after_drunkards_11">Что ж, в таком случае пойдём с нами, нам пригодился бы такой чародей как ты.</string>
+    <string name="cs_after_drunkards_12">Не могу, у меня слишком много дел, да и должен же кто-то следить здесь за порядком!</string>
+    <string name="cs_after_drunkards_13">Я пойду с ними.</string>
+    <string name="cs_after_drunkards_14">Айма! Это слишком опасно, ты нужна мне здесь!</string>
+    <string name="cs_after_drunkards_15">Уверена, ты сам со всем справишься, кроме того ты сам говорил,</string>
+    <string name="cs_after_drunkards_16">что появление духа это событие, которое происходит один раз в жизни и такой опыт нельзя упускать.</string>
+    <string name="cs_after_drunkards_17">Да, говорил...</string>
+    <string name="cs_after_drunkards_18">Киттаро, познакомься, моя ученица Айма.</string>
+    <string name="cs_after_drunkards_19">Тебе, Зои, её представлять нет смысла.</string>
+    <string name="cs_after_drunkards_20">Нет. Так как я дух, я почти вездесущ, а это значит что мне известно многое и я знаю многих.</string>
+    <string name="cs_after_drunkards_21">Я помню её ещё девочкой, в те времена по моим пещерах ещё можно было безбоязненно гулять и собирать петалюбы...</string>
+    <string name="cs_after_drunkards_22">Ладно, ладно, знаем мы историю.</string>
+    <string name="cs_after_drunkards_23">сли духа вовремя не остановить, он вам всю свою жизнь расскажет, уж поверьте.</string>
+    <string name="cs_after_drunkards_24">Киттаро возьми эти артефакты - это Актины, у меня их как раз три, Айма объяснит как ими пользоваться.</string>
+    <string name="cs_after_drunkards_25">Актины - это хексы, которые можно ставить в любое место клетки.</string>
+    <string name="cs_after_drunkards_26">Если два актина из дружественных клеток сближаются на расстояние 10 или меньше,</string>
+    <string name="cs_after_drunkards_27">между ними возникает луч, поражающий врагов на 5 единиц.</string>
 
     <!-- Cut scene Laimo -->
-    <string name="cs_laimo_0">cs_laimo_0</string>
+    <string name="cs_laimo_0">Лаймо, поселок близ столицы</string>
+    <string name="cs_laimo_1">Вас не должно быть здесь, возвращайтесь откуда пришли.</string>
+    <string name="cs_laimo_2">С кем имею честь?</string>
+    <string name="cs_laimo_3">Вы что из деревни?</string>
+    <string name="cs_laimo_4">Ну да.</string>
+    <string name="cs_laimo_5">Королевская гвардия Катофи Пону.</string>
+    <string name="cs_laimo_6">А, ну так мне как раз к королю надо, может вы проводите меня?</string>
+    <string name="cs_laimo_7">Скорее мы проводим тебя взашей!</string>
 
     <!-- Cut scene after Katofi Ponu -->
-    <string name="cs_after_katofi_ponu_0">cs_after_katofi_ponu_0</string>
+    <string name="cs_after_katofi_ponu_0">Что это было, чем они в нас стреляли?</string>
+    <string name="cs_after_katofi_ponu_1">Это петалюбы активированные с помощью магии.</string>
+    <string name="cs_after_katofi_ponu_2">Не знала что они довели исследования до опытных образцов...</string>
+    <string name="cs_after_katofi_ponu_3">Ты знаешь как ими управлять.</string>
+    <string name="cs_after_katofi_ponu_4">Да, это просто, так же как и Актинами.</string>
+    <string name="cs_after_katofi_ponu_5">Просто повесь их куда-нибудь, а работать они будут сами.</string>
+    <string name="cs_after_katofi_ponu_6">Звучит и впрямь просто.</string>
+    <string name="cs_after_katofi_ponu_7">Ну вперед, мы почти у цели!</string>
 
     <!-- Cut scene Enkefalio -->
-    <string name="cs_enkefalio_0">cs_enkefalio_0</string>
+    <string name="cs_enkefalio_0">Ворота замка Энкефальо – столицы империи</string>
+    <string name="cs_enkefalio_1">А вот и замок, наконец-то...</string>
+    <string name="cs_enkefalio_2">Ох не нравятся мне те ребята у ворот.</string>
+    <string name="cs_enkefalio_3">Это придворный маг и элитные гвардейцы.</string>
+    <string name="cs_enkefalio_4">Ты имеешь в виду как Пальмос?</string>
+    <string name="cs_enkefalio_5">Да, как он, только хуже.</string>
+    <string name="cs_enkefalio_6">Гораздо хуже...</string>
+    <string name="cs_enkefalio_7">Я же велел вам убираться! Стража, убейте этих наглецов!</string>
 
     <!-- Cut scene final act -->
-    <string name="cs_final_act_0">cs_final_act_0</string>
+    <string name="cs_final_act_0">Тронный зал, заключительный акт</string>
+    <string name="cs_final_act_1">Кто вы и что вам нужно?</string>
+    <string name="cs_final_act_2">Ваше Величество, меня зовут Киттаро, я прибыл из деревни Фтерна, провинции Поди.</string>
+    <string name="cs_final_act_3">Наш старейшина просил доставить вам это послание.</string>
+    <string name="cs_final_act_4">Пусть прочтет мой летописец.</string>
+    <string name="cs_final_act_5">Этого не может быть...</string>
+    <string name="cs_final_act_6">Что там? Живее, у меня нет на это времени!</string>
+    <string name="cs_final_act_7">Ваше Величество...</string>
+    <string name="cs_final_act_8">Ну же!</string>
+    <string name="cs_final_act_9">"Ты мертв, Ахилл"</string>
 
     <!-- Character names -->
     <string name="character_name_kittaro">Киттаро</string>
