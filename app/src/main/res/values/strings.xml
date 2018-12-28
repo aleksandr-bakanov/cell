@@ -450,12 +450,38 @@
             left: 'ic_character_kittaro_normal',
             right: 'ic_character_kittaro_normal',
             frames: {
-                '0': { text: 'cs_analafro_0' }
+                '0': { text: 'cs_analafro_0' },
+                '1': { text: 'cs_analafro_1' },
+                '2': { text: 'cs_analafro_2' },
+                '3': { text: 'cs_analafro_3' },
+                '4': { text: 'cs_analafro_4' },
+                '5': { text: 'cs_analafro_5' },
+                '6': { text: 'cs_analafro_6' },
+                '7': { text: 'cs_analafro_7' },
+                '8': { text: 'cs_analafro_8' },
+                '9': { text: 'cs_analafro_9' },
+                '10': { text: 'cs_analafro_10' },
+                '11': { text: 'cs_analafro_11' },
+                '12': { text: 'cs_analafro_12' },
+                '13': { text: 'cs_analafro_13' }
             },
             next_scene: 'action_cutSceneAnalafro_to_battleOmikhli'
         }"
     </string>
     <string name="cs_analafro_0">cs_analafro_0</string>
+    <string name="cs_analafro_1">cs_analafro_1</string>
+    <string name="cs_analafro_2">cs_analafro_2</string>
+    <string name="cs_analafro_3">cs_analafro_3</string>
+    <string name="cs_analafro_4">cs_analafro_4</string>
+    <string name="cs_analafro_5">cs_analafro_5</string>
+    <string name="cs_analafro_6">cs_analafro_6</string>
+    <string name="cs_analafro_7">cs_analafro_7</string>
+    <string name="cs_analafro_8">cs_analafro_8</string>
+    <string name="cs_analafro_9">cs_analafro_9</string>
+    <string name="cs_analafro_10">cs_analafro_10</string>
+    <string name="cs_analafro_11">cs_analafro_11</string>
+    <string name="cs_analafro_12">cs_analafro_12</string>
+    <string name="cs_analafro_13">cs_analafro_13</string>
 
     <!--
       - Cut scene after Omikhli

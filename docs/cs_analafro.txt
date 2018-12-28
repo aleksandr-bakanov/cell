@@ -1,0 +1,44 @@
+    <string name="cs_analafro_0">Холмы Аналафро</string>
+    <string name="cs_analafro_1">Да уж, с погодой невезет, третий день висит этот проклятый туман.</string>
+    <string name="cs_analafro_2">И с каждым днем он все гуще и гуще</string>
+    <string name="cs_analafro_3">Ох не к добру это...</string>
+    <string name="cs_analafro_4">........</string>
+    <string name="cs_analafro_5">....хсс-с....</string>
+    <string name="cs_analafro_6">Кто здесь?</string>
+    <string name="cs_analafro_7">Ты спрашиваешь кто здесь, даже не зная где ты находишься?</string>
+    <string name="cs_analafro_8">Что ж, позволь представится</string>
+    <string name="cs_analafro_9">Я – великий демон Омихли, а ты кто такой и что ты делаешь в моих владениях?</string>
+    <string name="cs_analafro_10">Я Киттаро и мне надо как можно скорей добраться до столицы.</string>
+    <string name="cs_analafro_11">Этого не случится, еще никто не проходил сквозь мои земли, не заплатив за это!</string>
+    <string name="cs_analafro_12">....хсс-с....</string>
+    <string name="cs_analafro_13">........</string>
+
+    <string name="cs_analafro_0">cs_analafro_0</string>
+    <string name="cs_analafro_1">cs_analafro_1</string>
+    <string name="cs_analafro_2">cs_analafro_2</string>
+    <string name="cs_analafro_3">cs_analafro_3</string>
+    <string name="cs_analafro_4">cs_analafro_4</string>
+    <string name="cs_analafro_5">cs_analafro_5</string>
+    <string name="cs_analafro_6">cs_analafro_6</string>
+    <string name="cs_analafro_7">cs_analafro_7</string>
+    <string name="cs_analafro_8">cs_analafro_8</string>
+    <string name="cs_analafro_9">cs_analafro_9</string>
+    <string name="cs_analafro_10">cs_analafro_10</string>
+    <string name="cs_analafro_11">cs_analafro_11</string>
+    <string name="cs_analafro_12">cs_analafro_12</string>
+    <string name="cs_analafro_13">cs_analafro_13</string>
+
+                '0': { text: 'cs_analafro_0' },
+                '1': { text: 'cs_analafro_1' },
+                '2': { text: 'cs_analafro_2' },
+                '3': { text: 'cs_analafro_3' },
+                '4': { text: 'cs_analafro_4' },
+                '5': { text: 'cs_analafro_5' },
+                '6': { text: 'cs_analafro_6' },
+                '7': { text: 'cs_analafro_7' },
+                '8': { text: 'cs_analafro_8' },
+                '9': { text: 'cs_analafro_9' },
+                '10': { text: 'cs_analafro_10' },
+                '11': { text: 'cs_analafro_11' },
+                '12': { text: 'cs_analafro_12' },
+                '13': { text: 'cs_analafro_13' },

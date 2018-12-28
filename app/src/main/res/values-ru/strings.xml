@@ -166,7 +166,20 @@
     <string name="cs_after_belos_11">Проверь новую кнопку на экране героя.</string>
 
     <!-- Cut scene Analafro -->
-    <string name="cs_analafro_0">cs_analafro_0</string>
+    <string name="cs_analafro_0">Холмы Аналафро</string>
+    <string name="cs_analafro_1">Да уж, с погодой невезет, третий день висит этот проклятый туман.</string>
+    <string name="cs_analafro_2">И с каждым днем он все гуще и гуще</string>
+    <string name="cs_analafro_3">Ох не к добру это...</string>
+    <string name="cs_analafro_4">........</string>
+    <string name="cs_analafro_5">....хсс-с....</string>
+    <string name="cs_analafro_6">Кто здесь?</string>
+    <string name="cs_analafro_7">Ты спрашиваешь кто здесь, даже не зная где ты находишься?</string>
+    <string name="cs_analafro_8">Что ж, позволь представится</string>
+    <string name="cs_analafro_9">Я – великий демон Омихли, а ты кто такой и что ты делаешь в моих владениях?</string>
+    <string name="cs_analafro_10">Я Киттаро и мне надо как можно скорей добраться до столицы.</string>
+    <string name="cs_analafro_11">Этого не случится, еще никто не проходил сквозь мои земли, не заплатив за это!</string>
+    <string name="cs_analafro_12">....хсс-с....</string>
+    <string name="cs_analafro_13">........</string>
 
     <!-- Cut scene after Omikhli -->
     <string name="cs_after_omikhli_0">cs_after_omikhli_0</string>
