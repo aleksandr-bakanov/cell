@@ -1,14 +1,29 @@
-    <string name="cs_after_omikhli_0">“уман рассеиваетс€</string>
-    <string name="cs_after_omikhli_1">јга вон и пещеры, так все это врем€ € был так близко!</string>
-    <string name="cs_after_omikhli_2">„ертов демон, запутать мен€ хотел</string>
-    <string name="cs_after_omikhli_3">Ћадно, врем€ подлечитс€ и идти дальше</string>
+    <string name="cs_after_omikhli_0">Туман рассеивается</string>
+    <string name="cs_after_omikhli_1">Ага вон и пещеры, так все это время я был так близко!</string>
+    <string name="cs_after_omikhli_2">Чертов демон, запутать меня хотел</string>
+    <string name="cs_after_omikhli_3">Ладно, время подлечится и идти дальше</string>
+    <string name="cs_after_omikhli_4">Ты открыл новый тип ячеек - энергетические (желтые)</string>
+    <string name="cs_after_omikhli_5">Они обладают силой 1, но что самое главное, дают силу атакующим ячейкам.</string>
+    <string name="cs_after_omikhli_6">+2 каждой соседней, и +1 атакующим, находящимся на расстоянии 2.</string>
+    <string name="cs_after_omikhli_7">Жизненные ячейки не могут соседствовать с двумя и более энергетическими.</string>
+    <string name="cs_after_omikhli_8">Энергетические ячейки могут использоваться для связи жизненных.</string>
 
     <string name="cs_after_omikhli_0">cs_after_omikhli_0</string>
     <string name="cs_after_omikhli_1">cs_after_omikhli_1</string>
     <string name="cs_after_omikhli_2">cs_after_omikhli_2</string>
     <string name="cs_after_omikhli_3">cs_after_omikhli_3</string>
+    <string name="cs_after_omikhli_4">cs_after_omikhli_4</string>
+    <string name="cs_after_omikhli_5">cs_after_omikhli_5</string>
+    <string name="cs_after_omikhli_6">cs_after_omikhli_6</string>
+    <string name="cs_after_omikhli_7">cs_after_omikhli_7</string>
+    <string name="cs_after_omikhli_8">cs_after_omikhli_8</string>
 
                 '0': { text: 'cs_after_omikhli_0' },
                 '1': { text: 'cs_after_omikhli_1' },
                 '2': { text: 'cs_after_omikhli_2' },
                 '3': { text: 'cs_after_omikhli_3' },
+                '4': { text: 'cs_after_omikhli_4' },
+                '5': { text: 'cs_after_omikhli_5' },
+                '6': { text: 'cs_after_omikhli_6' },
+                '7': { text: 'cs_after_omikhli_7' },
+                '8': { text: 'cs_after_omikhli_8' },

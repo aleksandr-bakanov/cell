@@ -345,38 +345,37 @@
       -->
     <string name="cut_scene_gonato" translatable="false">
         "{
-            background: 'ic_cs_introduction_0',
-            left: 'ic_character_kittaro_normal',
-            right: 'ic_character_kittaro_normal',
+            background: 'ic_cs_gonato_0',
+            left: 'ic_character_empty',
+            right: 'ic_character_empty',
             frames: {
                 '0': { text: 'cs_gonato_0' },
-                '1': { text: 'cs_gonato_1' },
-                '2': { text: 'cs_gonato_2' },
-                '3': { text: 'cs_gonato_3' },
-                '4': { text: 'cs_gonato_4' },
-                '5': { text: 'cs_gonato_5' },
-                '6': { text: 'cs_gonato_6' },
-                '7': { text: 'cs_gonato_7' },
-                '8': { text: 'cs_gonato_8' },
-                '9': { text: 'cs_gonato_9' },
-                '10': { text: 'cs_gonato_10' },
-                '11': { text: 'cs_gonato_11' },
-                '12': { text: 'cs_gonato_12' },
-                '13': { text: 'cs_gonato_13' },
-                '14': { text: 'cs_gonato_14' },
-                '15': { text: 'cs_gonato_15' },
-                '16': { text: 'cs_gonato_16' },
-                '17': { text: 'cs_gonato_17' },
-                '18': { text: 'cs_gonato_18' },
-                '19': { text: 'cs_gonato_19', decisionField: 'help_gonato', yesNextFrame: 20, noNextFrame: 21 },
-                '20': { text: 'cs_gonato_20', nextFrame: 22 },
-                '21': { text: 'cs_gonato_21' },
-                '22': { text: 'cs_gonato_22' }
+                '1': { text: 'cs_gonato_1', left: 'ic_character_kittaro_normal_speak' },
+                '2': { text: 'cs_gonato_2', left: 'ic_character_kittaro_normal', right: 'ic_character_gonato_old_man_speak' },
+                '3': { text: 'cs_gonato_3', left: 'ic_character_kittaro_normal_speak', right: 'ic_character_gonato_old_man' },
+                '4': { text: 'cs_gonato_4', left: 'ic_character_kittaro_normal', right: 'ic_character_gonato_old_man_speak' },
+                '5': { text: 'cs_gonato_5', left: 'ic_character_kittaro_normal_speak', right: 'ic_character_gonato_old_man' },
+                '6': { text: 'cs_gonato_6', left: 'ic_character_kittaro_normal', right: 'ic_character_gonato_old_man_speak' },
+                '7': { text: 'cs_gonato_7', left: 'ic_character_kittaro_normal', right: 'ic_character_gonato_old_man_speak' },
+                '8': { text: 'cs_gonato_8', left: 'ic_character_kittaro_normal', right: 'ic_character_gonato_old_man_speak' },
+                '9': { text: 'cs_gonato_9', left: 'ic_character_kittaro_normal_speak', right: 'ic_character_gonato_old_man' },
+                '10': { text: 'cs_gonato_10', left: 'ic_character_kittaro_normal', right: 'ic_character_gonato_old_man_speak' },
+                '11': { text: 'cs_gonato_11', left: 'ic_character_kittaro_normal', right: 'ic_character_gonato_old_man_speak' },
+                '12': { text: 'cs_gonato_12', left: 'ic_character_kittaro_normal_speak', right: 'ic_character_gonato_old_man' },
+                '13': { text: 'cs_gonato_13', left: 'ic_character_kittaro_normal', right: 'ic_character_gonato_old_man_speak' },
+                '14': { text: 'cs_gonato_14', left: 'ic_character_kittaro_normal', right: 'ic_character_gonato_old_man_speak' },
+                '15': { text: 'cs_gonato_15', left: 'ic_character_kittaro_normal', right: 'ic_character_gonato_old_man_speak' },
+                '16': { text: 'cs_gonato_16', left: 'ic_character_kittaro_normal', right: 'ic_character_gonato_old_man_speak' },
+                '17': { text: 'cs_gonato_17', left: 'ic_character_kittaro_normal_speak', right: 'ic_character_gonato_old_man' },
+                '18': { text: 'cs_gonato_18', left: 'ic_character_kittaro_normal', right: 'ic_character_gonato_old_man_speak' },
+                '19': { text: 'cs_gonato_19', left: 'ic_character_kittaro_normal', right: 'ic_character_gonato_old_man_speak', decisionField: 'help_gonato', yesNextFrame: 20, noNextFrame: 21 },
+                '20': { text: 'cs_gonato_20', left: 'ic_character_kittaro_normal', right: 'ic_character_gonato_old_man_speak', nextFrame: 22 },
+                '21': { text: 'cs_gonato_21', left: 'ic_character_kittaro_normal', right: 'ic_character_gonato_old_man_speak' },
+                '22': { text: 'cs_gonato_22', left: 'ic_character_kittaro_normal', right: 'ic_character_gonato_old_man_speak' }
             },
             next_scene: 'action_cutSceneGonato_to_battleBelos',
             yes_next_scene: 'action_cutSceneGonato_to_battleBelos',
-            no_next_scene: 'cutSceneAnalafro',
-            gameStateChanges: { 'energy_hexes_available': true }
+            no_next_scene: 'cutSceneAnalafro'
         }"
     </string>
     <string name="cs_gonato_0">cs_gonato_0</string>
@@ -495,7 +494,12 @@
                 '0': { text: 'cs_after_omikhli_0' },
                 '1': { text: 'cs_after_omikhli_1' },
                 '2': { text: 'cs_after_omikhli_2' },
-                '3': { text: 'cs_after_omikhli_3' }
+                '3': { text: 'cs_after_omikhli_3' },
+                '4': { text: 'cs_after_omikhli_4' },
+                '5': { text: 'cs_after_omikhli_5' },
+                '6': { text: 'cs_after_omikhli_6' },
+                '7': { text: 'cs_after_omikhli_7' },
+                '8': { text: 'cs_after_omikhli_8' }
             },
             next_scene: 'action_cutSceneAfterOmikhli_to_heroScreenAfterOmikhli'
         }"
@@ -504,6 +508,11 @@
     <string name="cs_after_omikhli_1">cs_after_omikhli_1</string>
     <string name="cs_after_omikhli_2">cs_after_omikhli_2</string>
     <string name="cs_after_omikhli_3">cs_after_omikhli_3</string>
+    <string name="cs_after_omikhli_4">cs_after_omikhli_4</string>
+    <string name="cs_after_omikhli_5">cs_after_omikhli_5</string>
+    <string name="cs_after_omikhli_6">cs_after_omikhli_6</string>
+    <string name="cs_after_omikhli_7">cs_after_omikhli_7</string>
+    <string name="cs_after_omikhli_8">cs_after_omikhli_8</string>
 
     <!--
       - Cut scene Kilia
@@ -879,7 +888,7 @@
             },
             reward: {
                 '0': {LIFE:2, ATTACK:3, ENERGY:2},
-                'gameStateChanges': {}
+                'gameStateChanges': { 'energy_hexes_available': true }
             },
             next_scene: 'action_battleOmikhli_to_battleResultsOmikhli'
         }"

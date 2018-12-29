@@ -186,6 +186,11 @@
     <string name="cs_after_omikhli_1">Ага вон и пещеры, так все это время я был так близко!</string>
     <string name="cs_after_omikhli_2">Чертов демон, запутать меня хотел</string>
     <string name="cs_after_omikhli_3">Ладно, время подлечится и идти дальше</string>
+    <string name="cs_after_omikhli_4">Ты открыл новый тип ячеек - энергетические (желтые)</string>
+    <string name="cs_after_omikhli_5">Они обладают силой 1, но что самое главное, дают силу атакующим ячейкам.</string>
+    <string name="cs_after_omikhli_6">+2 каждой соседней, и +1 атакующим, находящимся на расстоянии 2.</string>
+    <string name="cs_after_omikhli_7">Жизненные ячейки не могут соседствовать с двумя и более энергетическими.</string>
+    <string name="cs_after_omikhli_8">Энергетические ячейки могут использоваться для связи жизненных.</string>
 
     <!-- Cut scene Kilia -->
     <string name="cs_kilia_0">Пещеры Килия</string>
