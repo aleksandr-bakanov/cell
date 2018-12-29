@@ -407,20 +407,20 @@
       -->
     <string name="cut_scene_after_belos" translatable="false">
         "{
-            background: 'ic_cs_introduction_0',
-            left: 'ic_character_kittaro_normal',
-            right: 'ic_character_kittaro_normal',
+            background: 'ic_cs_after_belos_0',
+            left: 'ic_character_empty',
+            right: 'ic_character_empty',
             frames: {
-                '0': { text: 'cs_after_belos_0' },
-                '1': { text: 'cs_after_belos_1' },
-                '2': { text: 'cs_after_belos_2' },
-                '3': { text: 'cs_after_belos_3' },
-                '4': { text: 'cs_after_belos_4' },
-                '5': { text: 'cs_after_belos_5' },
-                '6': { text: 'cs_after_belos_6' },
-                '7': { text: 'cs_after_belos_7' },
-                '8': { text: 'cs_after_belos_8' },
-                '9': { text: 'cs_after_belos_9' },
+                '0': { text: 'cs_after_belos_0', left: 'ic_character_kittaro_normal_speak' },
+                '1': { text: 'cs_after_belos_1', left: 'ic_character_kittaro_normal_speak' },
+                '2': { text: 'cs_after_belos_2', left: 'ic_character_kittaro_normal', right: 'ic_character_gonato_old_man_speak' },
+                '3': { text: 'cs_after_belos_3', left: 'ic_character_kittaro_normal_speak', right: 'ic_character_gonato_old_man' },
+                '4': { text: 'cs_after_belos_4', left: 'ic_character_kittaro_normal', right: 'ic_character_gonato_old_man_speak' },
+                '5': { text: 'cs_after_belos_5', left: 'ic_character_kittaro_normal', right: 'ic_character_gonato_old_man_speak' },
+                '6': { text: 'cs_after_belos_6', left: 'ic_character_kittaro_normal', right: 'ic_character_gonato_old_man_speak' },
+                '7': { text: 'cs_after_belos_7', left: 'ic_character_kittaro_normal', right: 'ic_character_gonato_old_man_speak' },
+                '8': { text: 'cs_after_belos_8', left: 'ic_character_kittaro_normal', right: 'ic_character_gonato_old_man_speak' },
+                '9': { text: 'cs_after_belos_9', left: 'ic_character_kittaro_normal', right: 'ic_character_gonato_old_man_speak' },
                 '10': { text: 'cs_after_belos_10' },
                 '11': { text: 'cs_after_belos_11' }
             },
