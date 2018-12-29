@@ -563,24 +563,25 @@
       -->
     <string name="cut_scene_after_nikhteribs" translatable="false">
         "{
-            background: 'ic_cs_introduction_0',
-            left: 'ic_character_kittaro_normal',
-            right: 'ic_character_kittaro_normal',
+            background: 'ic_cs_after_nikhteribs_0',
+            left: 'ic_character_empty',
+            right: 'ic_character_empty',
             frames: {
-                '0': { text: 'cs_after_nikhteribs_0' },
-                '1': { text: 'cs_after_nikhteribs_1' },
-                '2': { text: 'cs_after_nikhteribs_2' },
-                '3': { text: 'cs_after_nikhteribs_3' },
-                '4': { text: 'cs_after_nikhteribs_4' },
-                '5': { text: 'cs_after_nikhteribs_5' },
-                '6': { text: 'cs_after_nikhteribs_6' },
-                '7': { text: 'cs_after_nikhteribs_7' },
-                '8': { text: 'cs_after_nikhteribs_8' },
-                '9': { text: 'cs_after_nikhteribs_9' },
-                '10': { text: 'cs_after_nikhteribs_10' },
-                '11': { text: 'cs_after_nikhteribs_11' }
+                '0': { text: 'cs_after_nikhteribs_0', left: 'ic_character_kittaro_normal_speak', right: 'ic_character_zoi' },
+                '1': { text: 'cs_after_nikhteribs_1', left: 'ic_character_kittaro_normal', right: 'ic_character_zoi_speak' },
+                '2': { text: 'cs_after_nikhteribs_2', left: 'ic_character_kittaro_normal_speak', right: 'ic_character_zoi' },
+                '3': { text: 'cs_after_nikhteribs_3', left: 'ic_character_kittaro_normal', right: 'ic_character_zoi_speak' },
+                '4': { text: 'cs_after_nikhteribs_4', left: 'ic_character_kittaro_normal_speak', right: 'ic_character_zoi' },
+                '5': { text: 'cs_after_nikhteribs_5', left: 'ic_character_kittaro_normal', right: 'ic_character_zoi_speak' },
+                '6': { text: 'cs_after_nikhteribs_6', left: 'ic_character_kittaro_normal_speak', right: 'ic_character_zoi' },
+                '7': { text: 'cs_after_nikhteribs_7', left: 'ic_character_kittaro_normal', right: 'ic_character_zoi_speak' },
+                '8': { text: 'cs_after_nikhteribs_8', left: 'ic_character_kittaro_normal', right: 'ic_character_zoi_speak' },
+                '9': { text: 'cs_after_nikhteribs_9', left: 'ic_character_kittaro_normal_speak', right: 'ic_character_zoi' },
+                '10': { text: 'cs_after_nikhteribs_10', left: 'ic_character_kittaro_normal', right: 'ic_character_zoi_speak' },
+                '11': { text: 'cs_after_nikhteribs_11', left: 'ic_character_kittaro_normal_speak', right: 'ic_character_zoi' }
             },
-            next_scene: 'action_cutSceneAfterNikhteribs_to_heroScreenAfterNikhteribs'
+            next_scene: 'action_cutSceneAfterNikhteribs_to_heroScreenAfterNikhteribs',
+            gameStateChanges: { 'zoi_available': true }
         }"
     </string>
     <string name="cs_after_nikhteribs_0">cs_after_nikhteribs_0</string>

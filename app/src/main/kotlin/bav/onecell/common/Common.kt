@@ -55,6 +55,9 @@ interface Common {
             const val DEATH_RAY_HEXES_AVAILABLE = "death_ray_hexes_available"
             const val OMNI_BULLET_HEXES_AVAILABLE = "omni_bullet_hexes_available"
             const val HEX_TRANSFORMATION_AVAILABLE = "hex_transformation_available"
+            const val ZOI_AVAILABLE = "zoi_available"
+            const val AIMA_AVAILABLE = "aima_available"
+            const val ALL_CHARACTERS_AVAILABLE = "all_characters_available"
             const val HELP_GONATO = "help_gonato"
         }
 

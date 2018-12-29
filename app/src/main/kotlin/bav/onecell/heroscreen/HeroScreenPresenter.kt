@@ -21,6 +21,7 @@ import io.reactivex.subjects.PublishSubject
 class HeroScreenPresenter(
         private val view: HeroScreen.View,
         private val gameRules: GameRules,
+        private val gameState: Common.GameState,
         private val cellRepository: RepositoryContract.CellRepo,
         private val router: Router,
         private val resourceProvider: Common.ResourceProvider) : HeroScreen.Presenter {
@@ -318,7 +319,12 @@ class HeroScreenPresenter(
 
     override fun getCurrentlySelectedRuleIndex(): Int? = currentRuleIndex
 
-    override fun getCellCount(): Int = cellRepository.cellsCount()
+    override fun getCellCount(): Int {
+        return if (gameState.isDecisionPositive(Common.GameState.ALL_CHARACTERS_AVAILABLE)) cellRepository.cellsCount()
+        else if (gameState.isDecisionPositive(Common.GameState.AIMA_AVAILABLE)) 3
+        else if (gameState.isDecisionPositive(Common.GameState.ZOI_AVAILABLE)) 2
+        else 1
+    }
 
     override fun transformLifeHexToAttack() {
         transformHexes(Hex.Type.LIFE, Hex.Type.ATTACK, Hex.TransformPrice.LIFE_TO_ATTACK.value, 1)

@@ -19,8 +19,9 @@ interface HeroScreenSubcomponent {
 class HeroScreenModule(val view: HeroScreen.View) {
     @Provides
     @FragmentScope
-    fun provideHeroScreenPresenter(gameRules: GameRules, cellRepo: RepositoryContract.CellRepo, router: Router,
+    fun provideHeroScreenPresenter(gameRules: GameRules, gameState: Common.GameState,
+                                   cellRepo: RepositoryContract.CellRepo, router: Router,
                                    resourceProvider: Common.ResourceProvider) : HeroScreen.Presenter {
-        return HeroScreenPresenter(view, gameRules, cellRepo, router, resourceProvider)
+        return HeroScreenPresenter(view, gameRules, gameState, cellRepo, router, resourceProvider)
     }
 }
