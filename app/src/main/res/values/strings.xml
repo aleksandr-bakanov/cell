@@ -261,16 +261,16 @@
       -->
     <string name="cut_scene_before_skilos" translatable="false">
         "{
-            background: 'ic_cs_introduction_0',
-            left: 'ic_character_kittaro_normal',
-            right: 'ic_character_kittaro_normal',
+            background: 'ic_cs_before_skilos_0',
+            left: 'ic_character_empty',
+            right: 'ic_character_empty',
             frames: {
                 '0': { text: 'cs_before_skilos_0' },
-                '1': { text: 'cs_before_skilos_1' },
-                '2': { text: 'cs_before_skilos_2' },
-                '3': { text: 'cs_before_skilos_3' },
-                '4': { text: 'cs_before_skilos_4' },
-                '5': { text: 'cs_before_skilos_5' }
+                '1': { text: 'cs_before_skilos_1', left: 'ic_character_kittaro_normal_speak' },
+                '2': { text: 'cs_before_skilos_2', left: 'ic_character_kittaro_normal_speak' },
+                '3': { text: 'cs_before_skilos_3', left: 'ic_character_kittaro_normal', right: 'ic_character_skilos_speak' },
+                '4': { text: 'cs_before_skilos_4', left: 'ic_character_kittaro_normal_speak', right: 'ic_character_skilos_speak' },
+                '5': { text: 'cs_before_skilos_5', left: 'ic_character_kittaro_normal', right: 'ic_character_skilos_speak_agressive' }
             },
             next_scene: 'action_cutSceneBeforeSkilos_to_battleSkilos'
         }"
