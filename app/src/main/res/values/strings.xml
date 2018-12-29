@@ -487,19 +487,19 @@
       -->
     <string name="cut_scene_after_omikhli" translatable="false">
         "{
-            background: 'ic_cs_introduction_0',
-            left: 'ic_character_kittaro_normal',
-            right: 'ic_character_kittaro_normal',
+            background: 'ic_cs_after_omikhli_0',
+            left: 'ic_character_empty',
+            right: 'ic_character_empty',
             frames: {
-                '0': { text: 'cs_after_omikhli_0' },
-                '1': { text: 'cs_after_omikhli_1' },
-                '2': { text: 'cs_after_omikhli_2' },
-                '3': { text: 'cs_after_omikhli_3' },
-                '4': { text: 'cs_after_omikhli_4' },
-                '5': { text: 'cs_after_omikhli_5' },
-                '6': { text: 'cs_after_omikhli_6' },
-                '7': { text: 'cs_after_omikhli_7' },
-                '8': { text: 'cs_after_omikhli_8' }
+                '0': { text: 'cs_after_omikhli_0', left: 'ic_character_kittaro_normal_speak' },
+                '1': { text: 'cs_after_omikhli_1', left: 'ic_character_kittaro_normal_speak' },
+                '2': { text: 'cs_after_omikhli_2', left: 'ic_character_kittaro_normal_speak' },
+                '3': { text: 'cs_after_omikhli_3', left: 'ic_character_kittaro_normal_speak' },
+                '4': { text: 'cs_after_omikhli_4', background: 'ic_cs_after_omikhli_4' },
+                '5': { text: 'cs_after_omikhli_5', background: 'ic_cs_after_omikhli_5' },
+                '6': { text: 'cs_after_omikhli_6', background: 'ic_cs_after_omikhli_6' },
+                '7': { text: 'cs_after_omikhli_7', background: 'ic_cs_after_omikhli_7' },
+                '8': { text: 'cs_after_omikhli_8', background: 'ic_cs_after_omikhli_8' }
             },
             next_scene: 'action_cutSceneAfterOmikhli_to_heroScreenAfterOmikhli'
         }"
