@@ -602,21 +602,21 @@
       -->
     <string name="cut_scene_kardia" translatable="false">
         "{
-            background: 'ic_cs_introduction_0',
-            left: 'ic_character_kittaro_normal',
-            right: 'ic_character_kittaro_normal',
+            background: 'ic_cs_kardia_0',
+            left: 'ic_character_empty',
+            right: 'ic_character_empty',
             frames: {
                 '0': { text: 'cs_kardia_0' },
-                '1': { text: 'cs_kardia_1' },
-                '2': { text: 'cs_kardia_2' },
-                '3': { text: 'cs_kardia_3' },
-                '4': { text: 'cs_kardia_4' },
-                '5': { text: 'cs_kardia_5' },
-                '6': { text: 'cs_kardia_6' },
-                '7': { text: 'cs_kardia_7' },
-                '8': { text: 'cs_kardia_8' },
-                '9': { text: 'cs_kardia_9' },
-                '10': { text: 'cs_kardia_10' }
+                '1': { text: 'cs_kardia_1', left: 'ic_character_kittaro_normal_speak' },
+                '2': { text: 'cs_kardia_2', left: 'ic_character_kittaro_normal', right: 'ic_character_zoi_speak' },
+                '3': { text: 'cs_kardia_3', left: 'ic_character_kittaro_normal_speak', right: 'ic_character_zoi' },
+                '4': { text: 'cs_kardia_4', left: 'ic_character_kittaro_normal', right: 'ic_character_zoi_speak' },
+                '5': { text: 'cs_kardia_5', left: 'ic_character_kittaro_normal_speak', right: 'ic_character_zoi' },
+                '6': { text: 'cs_kardia_6', left: 'ic_character_kittaro_normal', right: 'ic_character_drunkards_angry' },
+                '7': { text: 'cs_kardia_7', left: 'ic_character_kittaro_normal_speak', right: 'ic_character_drunkards' },
+                '8': { text: 'cs_kardia_8', left: 'ic_character_kittaro_normal', right: 'ic_character_drunkards_angry' },
+                '9': { text: 'cs_kardia_9', left: 'ic_character_kittaro_normal', right: 'ic_character_zoi_speak' },
+                '10': { text: 'cs_kardia_10', left: 'ic_character_kittaro_normal', right: 'ic_character_drunkards_angry' }
             },
             next_scene: 'action_cutSceneKardia_to_battleDrunkards'
         }"
