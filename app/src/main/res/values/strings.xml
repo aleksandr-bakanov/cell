@@ -799,20 +799,20 @@
       -->
     <string name="cut_scene_final_act" translatable="false">
         "{
-            background: 'ic_cs_introduction_0',
-            left: 'ic_character_kittaro_normal',
-            right: 'ic_character_kittaro_normal',
+            background: 'ic_cs_final_act_0',
+            left: 'ic_character_empty',
+            right: 'ic_character_empty',
             frames: {
                 '0': { text: 'cs_final_act_0' },
-                '1': { text: 'cs_final_act_1' },
-                '2': { text: 'cs_final_act_2' },
-                '3': { text: 'cs_final_act_3' },
-                '4': { text: 'cs_final_act_4' },
-                '5': { text: 'cs_final_act_5' },
-                '6': { text: 'cs_final_act_6' },
-                '7': { text: 'cs_final_act_7' },
-                '8': { text: 'cs_final_act_8' },
-                '9': { text: 'cs_final_act_9' }
+                '1': { text: 'cs_final_act_1', right: 'ic_character_king_speak' },
+                '2': { text: 'cs_final_act_2', left: 'ic_character_kittaro_normal_speak', right: 'ic_character_king' },
+                '3': { text: 'cs_final_act_3', left: 'ic_character_kittaro_normal_speak', right: 'ic_character_king' },
+                '4': { text: 'cs_final_act_4', left: 'ic_character_kittaro_normal', right: 'ic_character_king_speak' },
+                '5': { text: 'cs_final_act_5', left: 'ic_character_kittaro_normal', right: 'ic_character_chronicler_speak' },
+                '6': { text: 'cs_final_act_6', left: 'ic_character_kittaro_normal', right: 'ic_character_king_speak' },
+                '7': { text: 'cs_final_act_7', left: 'ic_character_kittaro_normal', right: 'ic_character_chronicler_speak' },
+                '8': { text: 'cs_final_act_8', left: 'ic_character_kittaro_normal', right: 'ic_character_king_speak' },
+                '9': { text: 'cs_final_act_9', background: 'ic_cs_final_act_9', left: 'ic_character_chronicler_speak' }
             },
             next_scene: 'mainFragment'
         }"
