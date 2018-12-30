@@ -743,14 +743,14 @@
             left: 'ic_character_empty',
             right: 'ic_character_empty',
             frames: {
-                '0': { text: 'cs_after_katofi_ponu_0' },
-                '1': { text: 'cs_after_katofi_ponu_1' },
-                '2': { text: 'cs_after_katofi_ponu_2' },
-                '3': { text: 'cs_after_katofi_ponu_3' },
-                '4': { text: 'cs_after_katofi_ponu_4' },
-                '5': { text: 'cs_after_katofi_ponu_5' },
-                '6': { text: 'cs_after_katofi_ponu_6' },
-                '7': { text: 'cs_after_katofi_ponu_7' }
+                '0': { text: 'cs_after_katofi_ponu_0', left: 'ic_character_kittaro_normal_speak' },
+                '1': { text: 'cs_after_katofi_ponu_1', left: 'ic_character_kittaro_normal', right: 'ic_character_aima_speak' },
+                '2': { text: 'cs_after_katofi_ponu_2', left: 'ic_character_kittaro_normal', right: 'ic_character_aima_speak' },
+                '3': { text: 'cs_after_katofi_ponu_3', left: 'ic_character_kittaro_normal_speak', right: 'ic_character_aima' },
+                '4': { text: 'cs_after_katofi_ponu_4', left: 'ic_character_kittaro_normal', right: 'ic_character_aima_speak' },
+                '5': { text: 'cs_after_katofi_ponu_5', left: 'ic_character_kittaro_normal', right: 'ic_character_aima_speak' },
+                '6': { text: 'cs_after_katofi_ponu_6', left: 'ic_character_kittaro_normal_speak', right: 'ic_character_aima' },
+                '7': { text: 'cs_after_katofi_ponu_7', left: 'ic_character_kittaro_normal_speak', right: 'ic_character_aima' }
             },
             next_scene: 'action_cutSceneAfterKatofiPonu_to_heroScreenAfterKatofiPonu'
         }"
@@ -916,7 +916,7 @@
             },
             reward: {
                 '0': {LIFE:2, ATTACK:3, ENERGY:2},
-                'gameStateChanges': {}
+                'gameStateChanges': { 'death_ray_hexes_available': true }
             },
             next_scene: 'action_battleDrunkards_to_battleResultsDrunkards'
         }"
@@ -929,7 +929,7 @@
             },
             reward: {
                 '0': {LIFE:2, ATTACK:3, ENERGY:2},
-                'gameStateChanges': {}
+                'gameStateChanges': { 'omni_bullet_hexes_available': true }
             },
             next_scene: 'action_battleKatofiPonu_to_battleResultsKatofiPonu'
         }"
