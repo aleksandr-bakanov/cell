@@ -102,9 +102,9 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
         recyclerViewConditionsList.layoutManager = LinearLayoutManager(context)
         recyclerViewConditionsList.adapter = ConditionsRecyclerViewAdapter(presenter, resourceProvider)
 
-        cellName.setOnClickListener {
+        /*cellName.setOnClickListener {
             textHeroHistory.visible = !textHeroHistory.visible
-        }
+        }*/
 
         disposables.addAll(
                 presenter.getCellProvider().subscribe {

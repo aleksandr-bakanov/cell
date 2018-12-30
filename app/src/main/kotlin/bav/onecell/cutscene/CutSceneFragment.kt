@@ -149,24 +149,30 @@ class CutSceneFragment : Fragment(), CutScene.View {
             currentFrameText = resourceProvider.getString(it.text)
             currentFrameTextIndex = 0
             stopTextTimer()
-            animationTimer = Observable.interval(0L, TEXT_ANIMATION_STEP, TimeUnit.MILLISECONDS)
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe {
-                        currentFrameText?.let { text ->
-                            if (text.isNotEmpty()) {
-                                textView.text = text.substring(0, currentFrameTextIndex + 1)
-                                if (currentFrameTextIndex < text.length - 1) currentFrameTextIndex++
-                                else stopTextTimer()
-                            }
-                            else {
-                                stopTextTimer()
+            if (currentFrameText?.length == 1) {
+                textView.visibility = View.INVISIBLE
+            }
+            else {
+                textView.visibility = View.VISIBLE
+                animationTimer = Observable.interval(0L, TEXT_ANIMATION_STEP, TimeUnit.MILLISECONDS)
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe {
+                            currentFrameText?.let { text ->
+                                if (text.isNotEmpty()) {
+                                    textView.text = text.substring(0, currentFrameTextIndex + 1)
+                                    if (currentFrameTextIndex < text.length - 1) currentFrameTextIndex++
+                                    else stopTextTimer()
+                                } else {
+                                    stopTextTimer()
+                                }
                             }
                         }
-                    }
-            currentFrameText?.let { frameText ->
-                if (frameText.isBlank()) textView.setBackgroundColor(Color.TRANSPARENT)
-                else textView.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.cutSceneTextFieldBackground))
+                currentFrameText?.let { frameText ->
+                    if (frameText.isBlank()) textView.setBackgroundColor(Color.TRANSPARENT)
+                    else textView.setBackgroundColor(
+                            ContextCompat.getColor(requireContext(), R.color.cutSceneTextFieldBackground))
+                }
             }
         }
     }

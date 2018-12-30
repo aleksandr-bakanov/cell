@@ -19,7 +19,7 @@
     <string name="text_cell_name" translatable="false">Name</string>
     <string name="text_main_menu" translatable="false">Main menu</string>
     <string name="text_next_scene" translatable="false">Go</string>
-    <string name="text_history_stub" translatable="false">Lorem ipsum dolor sit amet, اللغة العربية. 한국어, 조선어, 韓國語, Русский язык. 日本語 カタカナ. Ελληνικ</string>
+    <string name="text_history_stub" translatable="false">\u0020</string>
     <string name="button_transform_life_to_energy_hex_title" translatable="false">5L -> 1E</string>
     <string name="button_transform_life_to_attack_hex_title" translatable="false">3L -> 1A</string>
     <string name="button_transform_life_to_death_ray_hex_title" translatable="false">10L -> 1D</string>
