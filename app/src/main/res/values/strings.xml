@@ -856,7 +856,15 @@
         "{
             battleParams: {
                 cellIndexes: [0,6,7,8,9,10],
-                isFog: false
+                isFog: false,
+                origins: {
+                    '0': {q:0, r:0, s:0},
+                    '6': {q:1, r:-8, s:7},
+                    '7': {q:3, r:5, s:-8},
+                    '8': {q:-10, r:6, s:4},
+                    '9': {q:-3, r:8, s:-5},
+                    '10': {q:7, r:0, s:-7}
+                }
             },
             reward: {
                 '0': {LIFE:5, ATTACK:2},
@@ -1002,7 +1010,7 @@
         <!-- Main heroes -->
         <item>
             "{
-                hexBucket: {0:100,1:100,2:100,3:100,4:100},
+                hexBucket: {0:0,1:0,2:0,3:0,4:0},
                 direction: 'N',
                 hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":0,"second":-1},{"q":0,"r":-1,"s":1,"type":"LIFE"}],[{"first":-1,"second":0},{"q":-1,"r":0,"s":1,"type":"LIFE"}],[{"first":-1,"second":1},{"q":-1,"r":1,"s":0,"type":"LIFE"}],[{"first":0,"second":1},{"q":0,"r":1,"s":-1,"type":"LIFE"}],[{"first":1,"second":0},{"q":1,"r":0,"s":-1,"type":"LIFE"}],[{"first":1,"second":-1},{"q":1,"r":-1,"s":0,"type":"LIFE"}],[{"first":2,"second":0},{"q":2,"r":0,"s":-2,"type":"LIFE"}],[{"first":-2,"second":0},{"q":-2,"r":0,"s":2,"type":"LIFE"}],[{"first":1,"second":-2},{"q":1,"r":-2,"s":1,"type":"LIFE"}],[{"first":1,"second":1},{"q":1,"r":1,"s":-2,"type":"LIFE"}],[{"first":2,"second":-2},{"q":2,"r":-2,"s":0,"type":"LIFE"}],[{"first":-2,"second":1},{"q":-2,"r":1,"s":1,"type":"LIFE"}],[{"first":-1,"second":2},{"q":-1,"r":2,"s":-1,"type":"LIFE"}]],
                 groupId: 0,
@@ -1014,7 +1022,7 @@
         </item>
         <item>
             "{
-                hexBucket: {0:100,1:100,2:100,3:100,4:100},
+                hexBucket: {0:0,1:0,2:0,3:0,4:0},
                 direction: 'N',
                 hexes: [[{"first":0,"second":0},{"type":"LIFE","q":0,"r":0,"s":0}]],
                 groupId: 0,
@@ -1026,7 +1034,7 @@
         </item>
         <item>
             "{
-                hexBucket: {0:100,1:100,2:100,3:100,4:100},
+                hexBucket: {0:0,1:0,2:0,3:0,4:0},
                 direction: 'N',
                 hexes: [[{"first":0,"second":0},{"type":"LIFE","q":0,"r":0,"s":0}]],
                 groupId: 0,
@@ -1078,7 +1086,7 @@
             "{
                 hexBucket: {0:100,1:100,2:100,3:100,4:100},
                 direction: 'N',
-                hexes: [[{"first":0,"second":0},{"type":"LIFE","q":0,"r":0,"s":0}]],
+                hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":1,"second":-1},{"q":1,"r":-1,"s":0,"type":"LIFE"}],[{"first":0,"second":1},{"q":0,"r":1,"s":-1,"type":"LIFE"}],[{"first":-1,"second":1},{"q":-1,"r":1,"s":0,"type":"LIFE"}],[{"first":0,"second":-1},{"q":0,"r":-1,"s":1,"type":"ATTACK"}],[{"first":-1,"second":0},{"q":-1,"r":0,"s":1,"type":"LIFE"}]],
                 groupId: 2,
                 id: 6,
                 name: 'character_name_skilos_1',
@@ -1090,7 +1098,7 @@
             "{
                 hexBucket: {0:100,1:100,2:100,3:100,4:100},
                 direction: 'N',
-                hexes: [[{"first":0,"second":0},{"type":"LIFE","q":0,"r":0,"s":0}]],
+                hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":-1,"second":1},{"q":-1,"r":1,"s":0,"type":"LIFE"}],[{"first":0,"second":1},{"q":0,"r":1,"s":-1,"type":"LIFE"}],[{"first":-1,"second":2},{"q":-1,"r":2,"s":-1,"type":"ATTACK"}]],
                 groupId: 2,
                 id: 7,
                 name: 'character_name_skilos_2',
@@ -1102,7 +1110,7 @@
             "{
                 hexBucket: {0:100,1:100,2:100,3:100,4:100},
                 direction: 'N',
-                hexes: [[{"first":0,"second":0},{"type":"LIFE","q":0,"r":0,"s":0}]],
+                hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":-1,"second":1},{"q":-1,"r":1,"s":0,"type":"ATTACK"}],[{"first":0,"second":1},{"q":0,"r":1,"s":-1,"type":"ATTACK"}],[{"first":1,"second":-1},{"q":1,"r":-1,"s":0,"type":"ATTACK"}],[{"first":0,"second":-1},{"q":0,"r":-1,"s":1,"type":"ATTACK"}]],
                 groupId: 2,
                 id: 8,
                 name: 'character_name_skilos_3',
@@ -1114,7 +1122,7 @@
             "{
                 hexBucket: {0:100,1:100,2:100,3:100,4:100},
                 direction: 'N',
-                hexes: [[{"first":0,"second":0},{"type":"LIFE","q":0,"r":0,"s":0}]],
+                hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":-1,"second":0},{"q":-1,"r":0,"s":1,"type":"LIFE"}],[{"first":1,"second":-1},{"q":1,"r":-1,"s":0,"type":"LIFE"}],[{"first":0,"second":1},{"q":0,"r":1,"s":-1,"type":"LIFE"}],[{"first":0,"second":-1},{"q":0,"r":-1,"s":1,"type":"ATTACK"}],[{"first":-1,"second":1},{"q":-1,"r":1,"s":0,"type":"ATTACK"}],[{"first":1,"second":0},{"q":1,"r":0,"s":-1,"type":"ATTACK"}]],
                 groupId: 2,
                 id: 9,
                 name: 'character_name_skilos_4',
@@ -1126,7 +1134,7 @@
             "{
                 hexBucket: {0:100,1:100,2:100,3:100,4:100},
                 direction: 'N',
-                hexes: [[{"first":0,"second":0},{"type":"LIFE","q":0,"r":0,"s":0}]],
+                hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":0,"second":-1},{"q":0,"r":-1,"s":1,"type":"ATTACK"}],[{"first":-1,"second":0},{"q":-1,"r":0,"s":1,"type":"ATTACK"}],[{"first":-1,"second":1},{"q":-1,"r":1,"s":0,"type":"ATTACK"}],[{"first":0,"second":1},{"q":0,"r":1,"s":-1,"type":"ATTACK"}],[{"first":1,"second":0},{"q":1,"r":0,"s":-1,"type":"ATTACK"}],[{"first":1,"second":-1},{"q":1,"r":-1,"s":0,"type":"ATTACK"}]],
                 groupId: 2,
                 id: 10,
                 name: 'character_name_skilos_5',

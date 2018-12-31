@@ -56,7 +56,7 @@ class MainFragment : Fragment(), Main.View {
             })
         }
 
-        //setDebugDecisions()
+        setDebugDecisions()
     }
 
     override fun onDestroyView() {
@@ -77,6 +77,7 @@ class MainFragment : Fragment(), Main.View {
         gameState.setDecision(Common.GameState.DEATH_RAY_HEXES_AVAILABLE, true)
         gameState.setDecision(Common.GameState.OMNI_BULLET_HEXES_AVAILABLE, true)
         gameState.setDecision(Common.GameState.HEX_TRANSFORMATION_AVAILABLE, true)
+        gameState.setDecision(Common.GameState.ALL_CHARACTERS_AVAILABLE, true)
     }
 
     companion object {

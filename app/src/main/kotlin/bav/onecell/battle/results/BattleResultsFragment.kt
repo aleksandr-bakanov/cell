@@ -59,7 +59,9 @@ class BattleResultsFragment: androidx.fragment.app.Fragment(), BattleResults.Vie
                 dd[id] = dealtDamage[i]
                 doa[id] = deadOrAlive[i]
             }
-            presenter.initialize(dd, doa, it.getString(Consts.BATTLE_REWARD, ""))
+            val isBattleWon = it.getBoolean(IS_BATTLE_WON)
+            val reward = if (isBattleWon) it.getString(Consts.BATTLE_REWARD, "") else "{}"
+            presenter.initialize(dd, doa, reward)
         }
     }
 
@@ -82,8 +84,6 @@ class BattleResultsFragment: androidx.fragment.app.Fragment(), BattleResults.Vie
             }
         }
     }
-
-
     //endregion
 
     companion object {

@@ -18,7 +18,14 @@ import bav.onecell.common.Consts
 import bav.onecell.model.InitialBattleParams
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_choose_cells_for_battle.buttonStartBattle
+import kotlinx.android.synthetic.main.fragment_choose_cells_for_battle.buttonStartBattleWithBelos
+import kotlinx.android.synthetic.main.fragment_choose_cells_for_battle.buttonStartBattleWithDrunkards
+import kotlinx.android.synthetic.main.fragment_choose_cells_for_battle.buttonStartBattleWithEnkefalio
 import kotlinx.android.synthetic.main.fragment_choose_cells_for_battle.buttonStartBattleWithGopniks
+import kotlinx.android.synthetic.main.fragment_choose_cells_for_battle.buttonStartBattleWithKatofiPonu
+import kotlinx.android.synthetic.main.fragment_choose_cells_for_battle.buttonStartBattleWithNikhteribs
+import kotlinx.android.synthetic.main.fragment_choose_cells_for_battle.buttonStartBattleWithOmikhli
+import kotlinx.android.synthetic.main.fragment_choose_cells_for_battle.buttonStartBattleWithSkilos
 import kotlinx.android.synthetic.main.fragment_choose_cells_for_battle.recyclerViewCellList
 import javax.inject.Inject
 
@@ -40,8 +47,30 @@ class CellsForBattleFragment : Fragment(), CellsForBattle.View {
         inject()
 
         buttonStartBattle.setOnClickListener { openBattleView(it) }
+
         buttonStartBattleWithGopniks.setOnClickListener { view ->
             view.findNavController().navigate(R.id.battleGopniks)
+        }
+        buttonStartBattleWithSkilos.setOnClickListener { view ->
+            view.findNavController().navigate(R.id.battleSkilos)
+        }
+        buttonStartBattleWithBelos.setOnClickListener { view ->
+            view.findNavController().navigate(R.id.battleBelos)
+        }
+        buttonStartBattleWithOmikhli.setOnClickListener { view ->
+            view.findNavController().navigate(R.id.battleOmikhli)
+        }
+        buttonStartBattleWithNikhteribs.setOnClickListener { view ->
+            view.findNavController().navigate(R.id.battleNikhteribs)
+        }
+        buttonStartBattleWithDrunkards.setOnClickListener { view ->
+            view.findNavController().navigate(R.id.battleDrunkards)
+        }
+        buttonStartBattleWithKatofiPonu.setOnClickListener { view ->
+            view.findNavController().navigate(R.id.battleKatofiPonu)
+        }
+        buttonStartBattleWithEnkefalio.setOnClickListener { view ->
+            view.findNavController().navigate(R.id.battleEnkefalio)
         }
 
         recyclerViewCellList.layoutManager = LinearLayoutManager(context)

@@ -30,4 +30,60 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/buttonStartBattleWithSkilos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Skilos"
+        app:layout_constraintTop_toBottomOf="@id/buttonStartBattleWithGopniks"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/buttonStartBattleWithBelos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Belos"
+        app:layout_constraintTop_toBottomOf="@id/buttonStartBattleWithSkilos"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/buttonStartBattleWithOmikhli"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Omikhli"
+        app:layout_constraintTop_toBottomOf="@id/buttonStartBattleWithBelos"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/buttonStartBattleWithNikhteribs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nikhteribs"
+        app:layout_constraintTop_toBottomOf="@id/buttonStartBattleWithOmikhli"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/buttonStartBattleWithDrunkards"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Drunkards"
+        app:layout_constraintTop_toBottomOf="@id/buttonStartBattleWithNikhteribs"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/buttonStartBattleWithKatofiPonu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Katofi Ponu"
+        app:layout_constraintTop_toBottomOf="@id/buttonStartBattleWithDrunkards"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/buttonStartBattleWithEnkefalio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enkefalio"
+        app:layout_constraintTop_toBottomOf="@id/buttonStartBattleWithKatofiPonu"
+        app:layout_constraintEnd_toEndOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
