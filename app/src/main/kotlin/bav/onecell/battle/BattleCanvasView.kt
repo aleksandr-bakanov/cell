@@ -7,6 +7,7 @@ import android.graphics.Paint
 import android.graphics.Path
 import androidx.core.content.ContextCompat
 import android.util.AttributeSet
+import android.util.Log
 import android.view.MotionEvent
 import android.view.ScaleGestureDetector
 import android.view.View
@@ -117,6 +118,8 @@ class BattleCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
                 if (isFog) {
                     canvas?.drawColor(Color.DKGRAY)
                     canvas?.clipPath(observableAreaToPath(getObservableArea(snapshot.cells)))
+                } else {
+                    canvas?.clipRect(0f, 0f, width.toFloat(), height.toFloat())
                 }
                 canvas?.drawRect(0f, 0f, width.toFloat(), height.toFloat(), drawUtils.groundPaint)
 

@@ -49,18 +49,36 @@ class BattleFragment : Fragment(), Battle.View {
     private var battleDuration: Long = 0
     private var currentTimestamp: Long = 0
     private var animationTimer: Disposable? = null
+    private var isBattleWon = false
+    private var isFog = false
 
     private val seekBarListener = object : SeekBar.OnSeekBarChangeListener {
         override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
             if (fromUser) {
-                currentTimestamp = TIMESTAMP_ANIMATION_STEP * progress
-                if (currentTimestamp > battleDuration) currentTimestamp = battleDuration
-                if (currentTimestamp < 0) currentTimestamp = 0
-                drawFrame(currentTimestamp)
+                setTimestampAndDrawFrame(TIMESTAMP_ANIMATION_STEP * progress)
             }
         }
         override fun onStartTrackingTouch(seekBar: SeekBar?) {}
         override fun onStopTrackingTouch(seekBar: SeekBar?) {}
+    }
+
+    private fun setTimestampAndDrawFrame(timestamp: Long) {
+        currentTimestamp = timestamp
+        if (currentTimestamp > battleDuration) {
+            currentTimestamp = battleDuration
+        }
+        if (currentTimestamp < 0) currentTimestamp = 0
+
+        if (isFog && isBattleWon && currentTimestamp == battleDuration) {
+            battleCanvasView.isFog = false
+        }
+        if (isFog && isBattleWon && currentTimestamp != battleDuration) {
+            battleCanvasView.isFog = true
+        }
+        if (isFog && !isBattleWon) {
+            battleCanvasView.isFog = true
+        }
+        drawFrame(currentTimestamp)
     }
 
     //region Lifecycle methods
@@ -73,15 +91,11 @@ class BattleFragment : Fragment(), Battle.View {
         inject()
 
         buttonNextStep.setOnClickListener {
-            currentTimestamp += TIMESTAMP_STEP
-            if (currentTimestamp > battleDuration) currentTimestamp = battleDuration
-            drawFrame(currentTimestamp)
+            setTimestampAndDrawFrame(currentTimestamp + TIMESTAMP_STEP)
             setSeekBarProgress(currentTimestamp)
         }
         buttonPreviousStep.setOnClickListener {
-            currentTimestamp -= TIMESTAMP_STEP
-            if (currentTimestamp < 0) currentTimestamp = 0
-            drawFrame(currentTimestamp)
+            setTimestampAndDrawFrame(currentTimestamp - TIMESTAMP_STEP)
             setSeekBarProgress(currentTimestamp)
         }
 
@@ -104,6 +118,8 @@ class BattleFragment : Fragment(), Battle.View {
                             seekBar.max = (battleDuration / TIMESTAMP_ANIMATION_STEP).toInt() + 1
                             battleCanvasView.snapshots = battleInfo.snapshots
                             battleCanvasView.isFog = battleInfo.isFog
+                            isFog = battleInfo.isFog
+                            isBattleWon = battleInfo.winnerGroupId == Consts.HERO_GROUP_ID
                             battleCanvasView.invalidate()
                             drawFrame(currentTimestamp)
                             reportBattleEnd(battleInfo)
@@ -161,15 +177,10 @@ class BattleFragment : Fragment(), Battle.View {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe {
                     currentTimestamp += TIMESTAMP_ANIMATION_STEP
-                    if (currentTimestamp > battleDuration) {
-                        currentTimestamp = battleDuration
-                        drawFrame(currentTimestamp)
-                        setSeekBarProgress(currentTimestamp)
+                    setTimestampAndDrawFrame(currentTimestamp)
+                    setSeekBarProgress(currentTimestamp)
+                    if (currentTimestamp >= battleDuration) {
                         pauseAnimation()
-                    }
-                    else {
-                        drawFrame(currentTimestamp)
-                        setSeekBarProgress(currentTimestamp)
                     }
                 }
         buttonPause.visibility = View.VISIBLE

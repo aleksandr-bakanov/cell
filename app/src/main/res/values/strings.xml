@@ -915,7 +915,7 @@
         "{
             battleParams: {
                 cellIndexes: [0,1,13,14,15,16,17,18,19,20,21,22,23,24,25,25],
-                isFog: true
+                isFog: false
             },
             reward: {
                 '0': {LIFE:2, ATTACK:3, ENERGY:2},
