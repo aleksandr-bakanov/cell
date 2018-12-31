@@ -132,7 +132,7 @@ class BattleFragment : Fragment(), Battle.View {
             reward = info.optString(Consts.BATTLE_REWARD)
             presenter.initialize(battleParams)
         }
-        battleCanvasView.backgroundFieldRadius = 20
+        battleCanvasView.backgroundFieldRadius = 10
     }
 
     override fun onDestroyView() {

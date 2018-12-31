@@ -49,6 +49,7 @@ class CutSceneFragment : Fragment(), CutScene.View {
     private var noNextScene: Int = 0
     private var currentFrameIndex: Int = 0
     private var decisionMade: String = ""
+    private var isDecisionFrame = false
 
     private var animationTimer: Disposable? = null
     private var currentFrameTextIndex: Int = 0
@@ -142,9 +143,10 @@ class CutSceneFragment : Fragment(), CutScene.View {
             rightCharacter.setImageDrawable(ContextCompat.getDrawable(requireContext(), getRightCharacter(it.right)))
 
             // TODO: don't give a choice if decision has been taken already
-            buttonPreviousFrame.visible = it.decisionField.isEmpty()
+            //buttonPreviousFrame.visible = it.decisionField.isEmpty()
             buttonYes.visible = it.decisionField.isNotEmpty()
             buttonNo.visible = it.decisionField.isNotEmpty()
+            isDecisionFrame = it.decisionField.isNotEmpty()
 
             currentFrameText = resourceProvider.getString(it.text)
             currentFrameTextIndex = 0
@@ -178,6 +180,8 @@ class CutSceneFragment : Fragment(), CutScene.View {
     }
 
     private fun showNextFrame() {
+        if (isDecisionFrame) return
+
         if (currentFrameIndex == frames.size - 1) {
             currentFrameIndex = 0
             val toScene = if (decisionMade.isNotEmpty()) {

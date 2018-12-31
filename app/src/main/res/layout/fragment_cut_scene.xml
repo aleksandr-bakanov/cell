@@ -63,6 +63,7 @@
         android:layout_height="wrap_content"
         android:padding="@dimen/button_padding"
         android:text="@string/button_previous_frame_title"
+        android:visibility="gone"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
