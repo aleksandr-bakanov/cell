@@ -376,8 +376,16 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
     private fun onCellRotateButtonClicked(view: View) {
         editorCanvasView.tipHexes = null
         when (view.id) {
-            R.id.buttonRotateCellLeft -> animateCellRotationLeft()
-            R.id.buttonRotateCellRight -> animateCellRotationRight()
+            R.id.buttonRotateCellLeft -> {
+                presenter.rotateCellLeft()
+                editorCanvasView.tipHexes = presenter.getTipHexes(editorCanvasView.selectedCellType)
+                editorCanvasView.invalidate()
+            }
+            R.id.buttonRotateCellRight -> {
+                presenter.rotateCellRight()
+                editorCanvasView.tipHexes = presenter.getTipHexes(editorCanvasView.selectedCellType)
+                editorCanvasView.invalidate()
+            }
         }
     }
 

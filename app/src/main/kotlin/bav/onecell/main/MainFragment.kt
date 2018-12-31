@@ -56,7 +56,7 @@ class MainFragment : Fragment(), Main.View {
             })
         }
 
-        setDebugDecisions()
+        //setDebugDecisions()
     }
 
     override fun onDestroyView() {
