@@ -49,6 +49,9 @@ class MainFragment : Fragment(), Main.View {
             if (lastNavDestination != 0) it.findNavController().navigate(lastNavDestination)
         }
 
+        lastNavDestination = gameState.getLastNavDestinationId()
+        buttonContinueGame.visible = lastNavDestination != 0
+
         (requireActivity() as? Main.NavigationInfoProvider)?.let {
             disposables.add(it.provideLastDestination().subscribe { destination ->
                 lastNavDestination = destination

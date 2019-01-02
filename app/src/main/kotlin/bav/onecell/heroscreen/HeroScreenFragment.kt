@@ -17,6 +17,7 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.PopupMenu
 import androidx.core.view.GravityCompat
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import bav.onecell.OneCellApplication
 import bav.onecell.R
@@ -123,6 +124,11 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
                 }
         )
         presenter.initialize(Consts.KITTARO_INDEX)
+    }
+
+    override fun onPause() {
+        gameState.setLastNavDestinationId(findNavController().currentDestination?.id ?: 0)
+        super.onPause()
     }
 
     override fun onDestroyView() {

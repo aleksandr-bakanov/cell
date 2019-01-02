@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import bav.onecell.OneCellApplication
 import bav.onecell.R
 import bav.onecell.common.Common
@@ -23,6 +24,7 @@ class BattleResultsFragment: androidx.fragment.app.Fragment(), BattleResults.Vie
     @Inject lateinit var presenter: BattleResults.Presenter
     @Inject lateinit var drawUtils: DrawUtils
     @Inject lateinit var resourceProvider: Common.ResourceProvider
+    @Inject lateinit var gameState: Common.GameState
 
     //region Lifecycle methods
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -38,6 +40,11 @@ class BattleResultsFragment: androidx.fragment.app.Fragment(), BattleResults.Vie
 
         recyclerViewBattleResults.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(context, LinearLayout.HORIZONTAL, false)
         recyclerViewBattleResults.adapter = BattleResultsRecyclerViewAdapter(presenter, drawUtils, resourceProvider)
+    }
+
+    override fun onPause() {
+        gameState.setLastNavDestinationId(findNavController().currentDestination?.id ?: 0)
+        super.onPause()
     }
     //endregion
 

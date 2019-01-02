@@ -81,6 +81,7 @@ class CutSceneFragment : Fragment(), CutScene.View {
 
     override fun onPause() {
         gameState.setCurrentFrame(currentFrameIndex)
+        gameState.setLastNavDestinationId(findNavController().currentDestination?.id ?: 0)
         stopTextTimer()
         super.onPause()
     }
@@ -143,7 +144,6 @@ class CutSceneFragment : Fragment(), CutScene.View {
             rightCharacter.setImageDrawable(ContextCompat.getDrawable(requireContext(), getRightCharacter(it.right)))
 
             // TODO: don't give a choice if decision has been taken already
-            //buttonPreviousFrame.visible = it.decisionField.isEmpty()
             buttonYes.visible = it.decisionField.isNotEmpty()
             buttonNo.visible = it.decisionField.isNotEmpty()
             isDecisionFrame = it.decisionField.isNotEmpty()

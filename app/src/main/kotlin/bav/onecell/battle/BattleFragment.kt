@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.SeekBar
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import bav.onecell.OneCellApplication
 import bav.onecell.R
 import bav.onecell.battle.results.BattleResultsFragment
@@ -42,6 +43,7 @@ class BattleFragment : Fragment(), Battle.View {
     @Inject lateinit var presenter: Battle.Presenter
     @Inject lateinit var drawUtils: DrawUtils
     @Inject lateinit var resourceProvider: Common.ResourceProvider
+    @Inject lateinit var gameState: Common.GameState
 
     private val disposables = CompositeDisposable()
     private var nextScene: Int = 0
@@ -133,6 +135,11 @@ class BattleFragment : Fragment(), Battle.View {
             presenter.initialize(battleParams)
         }
         battleCanvasView.backgroundFieldRadius = 10
+    }
+
+    override fun onPause() {
+        gameState.setLastNavDestinationId(findNavController().currentDestination?.id ?: 0)
+        super.onPause()
     }
 
     override fun onDestroyView() {
