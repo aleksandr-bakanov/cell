@@ -263,6 +263,7 @@ class HeroScreenPresenter(
                 it.addHex(hex)
                 it.evaluateCellHexesPower()
                 view.highlightTips(hex.type)
+                view.setNextSceneButtonVisibility(it.data.hexes.isNotEmpty())
             }
         }
     }
@@ -275,6 +276,7 @@ class HeroScreenPresenter(
                 it.removeHex(hex)
                 it.evaluateCellHexesPower()
                 view.highlightTips(Hex.Type.REMOVE)
+                view.setNextSceneButtonVisibility(it.data.hexes.isNotEmpty())
             }
         }
     }

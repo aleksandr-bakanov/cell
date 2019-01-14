@@ -11,6 +11,7 @@ interface HeroScreen {
         fun setCellName(name: String)
         fun updateAvatars()
         fun updateHexesInBucket(type: Hex.Type, count: Int)
+        fun setNextSceneButtonVisibility(visible: Boolean)
     }
     interface Presenter: Editor.Presenter {
         // Hero screen

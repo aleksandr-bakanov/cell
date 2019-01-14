@@ -111,6 +111,7 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
                 presenter.getCellProvider().subscribe {
                     editorCanvasView.cell = it
                     highlightTips(editorCanvasView.selectedCellType)
+                    setNextSceneButtonVisibility(it.data.hexes.isNotEmpty())
                 },
                 presenter.getBackgroundCellRadiusProvider().subscribe {
                     editorCanvasView.backgroundFieldRadius = it
@@ -142,6 +143,16 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
         editorCanvasView.tipHexes = presenter.getTipHexes(type)
         editorCanvasView.invalidate()
     }
+    //endregion
+
+    //region HeroScreen.View methods
+    override fun setCellName(name: String) {
+        cellName.text = name
+    }
+
+    override fun updateAvatars() {
+        recyclerViewAvatars.adapter?.notifyDataSetChanged()
+    }
 
     override fun updateHexesInBucket(type: Hex.Type, count: Int) {
         val hexPicker = when (type) {
@@ -154,15 +165,9 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
         }
         hexPicker.setHexCount(count)
     }
-    //endregion
 
-    //region HeroScreen.View methods
-    override fun setCellName(name: String) {
-        cellName.text = name
-    }
-
-    override fun updateAvatars() {
-        recyclerViewAvatars.adapter?.notifyDataSetChanged()
+    override fun setNextSceneButtonVisibility(visible: Boolean) {
+        buttonNextScene.visibility = if (visible) View.VISIBLE else View.INVISIBLE
     }
     //endregion
 
