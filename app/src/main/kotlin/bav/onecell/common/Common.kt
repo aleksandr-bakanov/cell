@@ -37,7 +37,7 @@ interface Common {
         fun dropGameState()
 
         fun getLastNavDestinationId(): Int
-        fun setLastNavDestinationId(id: Int)
+        fun setLastNavDestinationId(id: Int, skipNext: Boolean = false)
 
         fun isFirstLaunch(): Boolean
 

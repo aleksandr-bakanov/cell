@@ -7,12 +7,22 @@ import android.preference.PreferenceManager
 class GameStateImpl(private val context: Context,
                     private val preferences: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)): Common.GameState {
 
+    private var skipSaveLastNavDestination = false
+
     override fun dropGameState() {
         preferences.edit().clear().putBoolean(FIRST_TIME_APP_LAUNCH, false).apply()
     }
 
     override fun getLastNavDestinationId(): Int = preferences.getInt(LAST_NAV_DESTINATION_ID, 0)
-    override fun setLastNavDestinationId(id: Int) = preferences.edit().putInt(LAST_NAV_DESTINATION_ID, id).apply()
+    override fun setLastNavDestinationId(id: Int, skipNext: Boolean) {
+        if (!skipSaveLastNavDestination) {
+            preferences.edit().putInt(LAST_NAV_DESTINATION_ID, id).apply()
+        }
+        else {
+            skipSaveLastNavDestination = false
+        }
+        skipSaveLastNavDestination = skipNext
+    }
 
     override fun isFirstLaunch(): Boolean {
         val firstLaunch = preferences.getBoolean(FIRST_TIME_APP_LAUNCH, true)

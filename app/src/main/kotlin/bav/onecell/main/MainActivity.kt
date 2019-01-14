@@ -64,10 +64,12 @@ class MainActivity : FragmentActivity(), Main.NavigationInfoProvider {
     override fun onBackPressed() {
         val navController = findNavController(R.id.nav_host_fragment)
         navController.currentDestination?.let {
-            gameState.setLastNavDestinationId(it.id)
-            lastNavDestinationProvider.onNext(it.id)
+            if (it.id != R.id.mainFragment) {
+                gameState.setLastNavDestinationId(it.id, true)
+                lastNavDestinationProvider.onNext(it.id)
+                navController.popBackStack(R.id.mainFragment, false)
+            }
         }
-        navController.popBackStack(R.id.mainFragment, false)
     }
 
     override fun onWindowFocusChanged(hasFocus: Boolean) {
