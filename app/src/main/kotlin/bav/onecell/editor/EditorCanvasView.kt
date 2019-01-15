@@ -33,8 +33,14 @@ class EditorCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
     private val tipPaintOmniBullet = Paint()
 
     init {
-        for (p in arrayListOf(tipPaint, tipPaintLife, tipPaintAttack, tipPaintEnergy, tipPaintDeathRay, tipPaintOmniBullet))
-            p.style = Paint.Style.FILL
+        for (p in arrayListOf(tipPaintLife, tipPaintAttack, tipPaintEnergy, tipPaintDeathRay, tipPaintOmniBullet)) {
+            p.style = Paint.Style.STROKE
+            p.strokeWidth = 10.0f
+            p.strokeCap = Paint.Cap.ROUND
+            p.strokeJoin = Paint.Join.ROUND
+        }
+
+        tipPaint.style = Paint.Style.FILL
 
         tipPaint.color = ContextCompat.getColor(context, R.color.cellEditorTip)
         tipPaintLife.color = ContextCompat.getColor(context, R.color.cellEditorTipLife)
@@ -75,7 +81,7 @@ class EditorCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
                 drawUtils.drawHexes(canvas, it.data.origin, tipHexes, getTipPaint(selectedCellType), layout)
             }
             else {
-                drawUtils.drawHexes(canvas, it.data.origin, tipHexes, getTipPaint(selectedCellType), layout)
+                drawUtils.drawHexes(canvas, it.data.origin, tipHexes, getTipPaint(selectedCellType), layout, scale = 0.7f)
                 drawUtils.drawCell(canvas, it, layout = layout)
             }
             drawUtils.drawCellPower(canvas, it, layout)

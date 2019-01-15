@@ -197,9 +197,10 @@ class DrawUtils(private val hexMath: HexMath, context: Context) {
         }
     }
 
-    fun drawHexes(canvas: Canvas?, origin: Hex, hexes: Collection<Hex>?, paint: Paint, layout: Layout = Layout.DUMMY) {
+    fun drawHexes(canvas: Canvas?, origin: Hex, hexes: Collection<Hex>?, paint: Paint, layout: Layout = Layout.DUMMY,
+                  scale: Float = 1.0f) {
         hexes?.forEach { hex ->
-            val path: Path = getHexPath(layout, hexMath.add(hex, origin))
+            val path: Path = getHexPath(layout, hexMath.add(hex, origin), scale = scale)
             path.fillType = Path.FillType.EVEN_ODD
             canvas?.drawPath(path, paint)
         }
