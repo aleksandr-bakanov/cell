@@ -123,7 +123,8 @@ class CutSceneFragment : Fragment(), CutScene.View {
                                           nextFrame = data.optInt(NEXT_FRAME, DEFAULT_NEXT_FRAME),
                                           decisionField = data.optString(DECISION_FIELD),
                                           yesNextFrame = data.optInt(YES_NEXT_FRAME, DEFAULT_NEXT_FRAME),
-                                          noNextFrame = data.optInt(NO_NEXT_FRAME, DEFAULT_NEXT_FRAME))
+                                          noNextFrame = data.optInt(NO_NEXT_FRAME, DEFAULT_NEXT_FRAME),
+                                          showPrevFrameButton = data.optBoolean(SHOW_PREV_FRAME_BUTTON, false))
                 }
                 info.optJSONObject(GAME_STATE_CHANGES)?.let { gameStateChanges ->
                     // Changes should contain booleans
@@ -147,6 +148,8 @@ class CutSceneFragment : Fragment(), CutScene.View {
             buttonYes.visible = it.decisionField.isNotEmpty()
             buttonNo.visible = it.decisionField.isNotEmpty()
             isDecisionFrame = it.decisionField.isNotEmpty()
+
+            buttonPreviousFrame.visibility = if (it.showPrevFrameButton) View.VISIBLE else View.GONE
 
             currentFrameText = resourceProvider.getString(it.text)
             currentFrameTextIndex = 0
@@ -233,6 +236,7 @@ class CutSceneFragment : Fragment(), CutScene.View {
         const val DECISION_FIELD = "decisionField"
         const val YES_NEXT_FRAME = "yesNextFrame"
         const val NO_NEXT_FRAME = "noNextFrame"
+        const val SHOW_PREV_FRAME_BUTTON = "showPrevFrameButton"
 
         const val DEFAULT_NEXT_FRAME = -1
 
@@ -253,5 +257,6 @@ class CutSceneFragment : Fragment(), CutScene.View {
                                  val nextFrame: Int = DEFAULT_NEXT_FRAME,
                                  val decisionField: String = "",
                                  val yesNextFrame: Int = DEFAULT_NEXT_FRAME,
-                                 val noNextFrame: Int = DEFAULT_NEXT_FRAME)
+                                 val noNextFrame: Int = DEFAULT_NEXT_FRAME,
+                                 val showPrevFrameButton: Boolean = false)
 }
