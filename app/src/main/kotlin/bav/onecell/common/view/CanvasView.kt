@@ -28,10 +28,10 @@ open class CanvasView(context: Context, attributeSet: AttributeSet) : View(conte
     }
 
     var backgroundFieldRadius: Int = 3
-        set(value) {
+        /*set(value) {
             field = value
-            backgroundHexes = hexMath.getNeighborsWithinRadius(hexMath.ZERO_HEX, value)
-        }
+            //backgroundHexes = hexMath.getNeighborsWithinRadius(hexMath.ZERO_HEX, value)
+        }*/
 
     lateinit var hexMath: HexMath
     lateinit var drawUtils: DrawUtils
@@ -48,12 +48,12 @@ open class CanvasView(context: Context, attributeSet: AttributeSet) : View(conte
 
     private var coordinateTextVerticalOffset = (layout.size.x / 10).toFloat()
 
-    private lateinit var backgroundHexes: Set<Hex>
+    private var backgroundHexes: MutableSet<Hex> = mutableSetOf()
 
     init {
         gridPaint.style = Paint.Style.STROKE
         gridPaint.color = ContextCompat.getColor(context, R.color.cellEditorGrid)
-        gridPaint.strokeWidth = 1.0f
+        gridPaint.strokeWidth = 2.0f
 
         coordinateTextPaint.color = Color.BLACK
         coordinateTextPaint.textSize = 32f
@@ -78,7 +78,8 @@ open class CanvasView(context: Context, attributeSet: AttributeSet) : View(conte
                     val dy = curY - lastTouchY
                     lastTouchX = curX
                     lastTouchY = curY
-                    layout.origin = Point(layout.origin.x + dx, layout.origin.y + dy)
+                    layout.origin.x += dx
+                    layout.origin.y += dy
                     invalidate()
                 }
             }
@@ -107,7 +108,19 @@ open class CanvasView(context: Context, attributeSet: AttributeSet) : View(conte
         coordinateTextVerticalOffset = (layout.size.x / 10).toFloat()
     }
 
-    private fun drawBackgroundGrid(canvas: Canvas?) {
+    protected fun drawBackgroundGrid(canvas: Canvas?) {
+        // TODO: optimise here, don't recreate a tons of hexes on each onDraw
+        backgroundHexes.clear()
+
+        val columns: Int = (width / layout.size.x).toInt()
+        val rows: Int = (height / layout.size.y).toInt()
+
+        for (i in 0 until columns) {
+            for (j in 0 until rows) {
+                backgroundHexes.add(pointToHex((i * layout.size.x).toFloat(), (j * layout.size.y).toFloat()))
+            }
+        }
+
         for (hex in backgroundHexes) {
             canvas?.drawPath(getHexPath(hex), gridPaint)
         }
@@ -188,5 +201,11 @@ open class CanvasView(context: Context, attributeSet: AttributeSet) : View(conte
     open fun setLayoutSize(size: Double) {
         layout.size.x = size
         layout.size.y = size
+    }
+
+    fun pointToHex(x: Float, y: Float): Hex {
+        val point = Point(x.toDouble(), y.toDouble())
+        val fHex = hexMath.pixelToHex(layout, point)
+        return hexMath.round(fHex)
     }
 }

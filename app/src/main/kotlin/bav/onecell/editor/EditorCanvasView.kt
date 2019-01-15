@@ -66,7 +66,10 @@ class EditorCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
         super.onDraw(canvas)
         cell?.let {
             it.evaluateCellHexesPower()
+
             //canvas?.drawRect(0f, 0f, width.toFloat(), height.toFloat(), drawUtils.groundPaint)
+            drawBackgroundGrid(canvas)
+
             if (selectedCellType == Hex.Type.REMOVE) {
                 drawUtils.drawCell(canvas, it, layout = layout)
                 drawUtils.drawHexes(canvas, it.data.origin, tipHexes, getTipPaint(selectedCellType), layout)
@@ -86,11 +89,5 @@ class EditorCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
         Hex.Type.DEATH_RAY -> tipPaintDeathRay
         Hex.Type.OMNI_BULLET -> tipPaintOmniBullet
         else -> tipPaint
-    }
-
-    fun pointToHex(x: Float, y: Float): Hex {
-        val point = Point(x.toDouble(), y.toDouble())
-        val fHex = hexMath.pixelToHex(layout, point)
-        return hexMath.round(fHex)
     }
 }
