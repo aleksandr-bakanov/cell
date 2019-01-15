@@ -50,6 +50,7 @@ class CutSceneFragment : Fragment(), CutScene.View {
     private var currentFrameIndex: Int = 0
     private var decisionMade: String = ""
     private var isDecisionFrame = false
+    private var cutSceneId: String = ""
 
     private var animationTimer: Disposable? = null
     private var currentFrameTextIndex: Int = 0
@@ -71,6 +72,13 @@ class CutSceneFragment : Fragment(), CutScene.View {
         textView.movementMethod = ScrollingMovementMethod()
 
         parseArguments(arguments)
+    }
+
+    override fun onStart() {
+        super.onStart()
+        if (gameState.isCutSceneAlreadyShown(cutSceneId)) {
+            findNavController().navigate(takeNextScene())
+        }
     }
 
     override fun onResume() {
@@ -112,6 +120,7 @@ class CutSceneFragment : Fragment(), CutScene.View {
                 defaultBackground = resourceProvider.getDrawableIdentifier(info.optString(BACKGROUND))
                 defaultLeftCharacter = resourceProvider.getDrawableIdentifier(info.optString(LEFT))
                 defaultRightCharacter = resourceProvider.getDrawableIdentifier(info.optString(RIGHT))
+                cutSceneId = info.optString(CUT_SCENE_ID)
                 nextScene = resourceProvider.getIdIdentifier(info.optString(Consts.NEXT_SCENE))
                 yesNextScene = resourceProvider.getIdIdentifier(info.optString(Consts.YES_NEXT_SCENE))
                 noNextScene = resourceProvider.getIdIdentifier(info.optString(Consts.NO_NEXT_SCENE))
@@ -182,18 +191,23 @@ class CutSceneFragment : Fragment(), CutScene.View {
         }
     }
 
+    private fun takeNextScene(): Int {
+        return if (decisionMade.isNotEmpty()) {
+            when (gameState.getDecision(decisionMade)) {
+                Common.GameState.Decision.YES -> yesNextScene
+                Common.GameState.Decision.NO -> noNextScene
+                else -> nextScene
+            }
+        } else nextScene
+    }
+
     private fun showNextFrame() {
         if (isDecisionFrame) return
 
         if (currentFrameIndex == frames.size - 1) {
             currentFrameIndex = 0
-            val toScene = if (decisionMade.isNotEmpty()) {
-                              when (gameState.getDecision(decisionMade)) {
-                                  Common.GameState.Decision.YES -> yesNextScene
-                                  Common.GameState.Decision.NO -> noNextScene
-                                  else -> nextScene
-                              }
-                          } else nextScene
+            val toScene = takeNextScene()
+            gameState.setCutSceneShown(cutSceneId)
             findNavController().navigate(toScene)
         }
         else {
@@ -226,6 +240,7 @@ class CutSceneFragment : Fragment(), CutScene.View {
         private const val TAG = "CutSceneFragment"
 
         const val CUT_SCENE_INFO = "cutSceneInfo"
+        const val CUT_SCENE_ID = "id"
         const val BACKGROUND = "background"
         const val LEFT = "left"
         const val RIGHT = "right"

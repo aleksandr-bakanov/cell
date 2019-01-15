@@ -48,6 +48,9 @@ interface Common {
         fun setCurrentFrame(index: Int)
         fun getCurrentFrame(): Int
 
+        fun setCutSceneShown(cutSceneId: String)
+        fun isCutSceneAlreadyShown(cutSceneId: String): Boolean
+
         companion object {
             const val BATTLE_LOGIC_AVAILABLE = "battle_logic_available"
             const val ATTACK_HEXES_AVAILABLE = "attack_hexes_available"

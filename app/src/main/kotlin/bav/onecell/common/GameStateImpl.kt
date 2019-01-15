@@ -47,8 +47,10 @@ class GameStateImpl(private val context: Context,
     override fun isDecisionPositive(field: String): Boolean = getDecision(field) == Common.GameState.Decision.YES
 
     override fun setCurrentFrame(index: Int) = preferences.edit().putInt(CURRENT_FRAME_INDEX, index).apply()
-
     override fun getCurrentFrame(): Int = preferences.getInt(CURRENT_FRAME_INDEX, 0)
+
+    override fun setCutSceneShown(cutSceneId: String) = preferences.edit().putBoolean(cutSceneId, true).apply()
+    override fun isCutSceneAlreadyShown(cutSceneId: String): Boolean = preferences.getBoolean(cutSceneId, false)
 
     companion object {
         private const val FIRST_TIME_APP_LAUNCH = "first_time_app_launch"

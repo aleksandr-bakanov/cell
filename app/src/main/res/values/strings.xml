@@ -109,6 +109,7 @@
       -->
     <string name="cut_scene_introduction" translatable="false">
         "{
+            id: 'cut_scene_introduction',
             background: 'ic_cs_introduction_0',
             left: 'ic_character_empty',
             right: 'ic_character_empty',
@@ -221,6 +222,7 @@
       -->
     <string name="cut_scene_after_gopniks" translatable="false">
         "{
+            id: 'cut_scene_after_gopniks',
             background: 'ic_cs_after_gopniks_0',
             left: 'ic_character_empty',
             right: 'ic_character_empty',
@@ -261,6 +263,7 @@
       -->
     <string name="cut_scene_before_skilos" translatable="false">
         "{
+            id: 'cut_scene_before_skilos',
             background: 'ic_cs_before_skilos_0',
             left: 'ic_character_empty',
             right: 'ic_character_empty',
@@ -287,6 +290,7 @@
       -->
     <string name="cut_scene_after_skilos" translatable="false">
         "{
+            id: 'cut_scene_after_skilos',
             background: 'ic_cs_introduction_0',
             left: 'ic_character_empty',
             right: 'ic_character_empty',
@@ -345,6 +349,7 @@
       -->
     <string name="cut_scene_gonato" translatable="false">
         "{
+            id: 'cut_scene_gonato',
             background: 'ic_cs_gonato_0',
             left: 'ic_character_empty',
             right: 'ic_character_empty',
@@ -407,6 +412,7 @@
       -->
     <string name="cut_scene_after_belos" translatable="false">
         "{
+            id: 'cut_scene_after_belos',
             background: 'ic_cs_after_belos_0',
             left: 'ic_character_empty',
             right: 'ic_character_empty',
@@ -445,6 +451,7 @@
       -->
     <string name="cut_scene_analafro" translatable="false">
         "{
+            id: 'cut_scene_analafro',
             background: 'ic_cs_analafro_0',
             left: 'ic_character_empty',
             right: 'ic_character_empty',
@@ -487,6 +494,7 @@
       -->
     <string name="cut_scene_after_omikhli" translatable="false">
         "{
+            id: 'cut_scene_after_omikhli',
             background: 'ic_cs_after_omikhli_0',
             left: 'ic_character_empty',
             right: 'ic_character_empty',
@@ -519,6 +527,7 @@
       -->
     <string name="cut_scene_kilia" translatable="false">
         "{
+            id: 'cut_scene_kilia',
             background: 'ic_cs_kilia_0',
             left: 'ic_character_empty',
             right: 'ic_character_empty',
@@ -564,6 +573,7 @@
       -->
     <string name="cut_scene_after_nikhteribs" translatable="false">
         "{
+            id: 'cut_scene_after_nikhteribs',
             background: 'ic_cs_after_nikhteribs_0',
             left: 'ic_character_empty',
             right: 'ic_character_empty',
@@ -602,6 +612,7 @@
       -->
     <string name="cut_scene_kardia" translatable="false">
         "{
+            id: 'cut_scene_kardia',
             background: 'ic_cs_kardia_0',
             left: 'ic_character_empty',
             right: 'ic_character_empty',
@@ -638,6 +649,7 @@
       -->
     <string name="cut_scene_after_drunkards" translatable="false">
         "{
+            id: 'cut_scene_after_drunkards',
             background: 'ic_cs_kardia_0',
             left: 'ic_character_empty',
             right: 'ic_character_empty',
@@ -709,6 +721,7 @@
       -->
     <string name="cut_scene_laimo" translatable="false">
         "{
+            id: 'cut_scene_laimo',
             background: 'ic_cs_laimo_0',
             left: 'ic_character_empty',
             right: 'ic_character_empty',
@@ -739,6 +752,7 @@
       -->
     <string name="cut_scene_after_katofi_ponu" translatable="false">
         "{
+            id: 'cut_scene_after_katofi_ponu',
             background: 'ic_cs_laimo_0',
             left: 'ic_character_empty',
             right: 'ic_character_empty',
@@ -769,6 +783,7 @@
       -->
     <string name="cut_scene_enkefalio" translatable="false">
         "{
+            id: 'cut_scene_enkefalio',
             background: 'ic_cs_enkefalio_0',
             left: 'ic_character_empty',
             right: 'ic_character_empty',
@@ -799,6 +814,7 @@
       -->
     <string name="cut_scene_final_act" translatable="false">
         "{
+            id: 'cut_scene_final_act',
             background: 'ic_cs_final_act_0',
             left: 'ic_character_empty',
             right: 'ic_character_empty',
