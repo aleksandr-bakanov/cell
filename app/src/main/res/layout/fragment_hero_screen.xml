@@ -23,7 +23,6 @@
         android:padding="5dp"
         app:layout_constraintBottom_toTopOf="@id/guideline_hero_screen_cellname_bottom"
         app:layout_constraintEnd_toStartOf="@+id/radioButtonAttackHex"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@id/guideline_hero_screen_avatars_end"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -34,7 +33,6 @@
         android:padding="5dp"
         app:layout_constraintBottom_toTopOf="@id/guideline_hero_screen_cellname_bottom"
         app:layout_constraintEnd_toStartOf="@id/radioButtonEnergyHex"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@id/radioButtonLifeHex"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -45,7 +43,6 @@
         android:padding="5dp"
         app:layout_constraintBottom_toTopOf="@id/guideline_hero_screen_cellname_bottom"
         app:layout_constraintEnd_toStartOf="@id/radioButtonDeathRayHex"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@id/radioButtonAttackHex"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -56,7 +53,6 @@
         android:padding="5dp"
         app:layout_constraintBottom_toTopOf="@id/guideline_hero_screen_cellname_bottom"
         app:layout_constraintEnd_toStartOf="@id/radioButtonOmniBulletHex"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@id/radioButtonEnergyHex"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -67,7 +63,6 @@
         android:padding="5dp"
         app:layout_constraintBottom_toTopOf="@id/guideline_hero_screen_cellname_bottom"
         app:layout_constraintEnd_toStartOf="@id/radioButtonRemoveHex"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@id/radioButtonDeathRayHex"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -77,8 +72,6 @@
         android:layout_height="@dimen/hero_screen_hex_remove_height"
         android:padding="5dp"
         app:layout_constraintBottom_toTopOf="@id/guideline_hero_screen_cellname_bottom"
-        app:layout_constraintEnd_toEndOf="@id/guideline_hero_screen_center_vertical"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@id/radioButtonOmniBulletHex"
         app:layout_constraintTop_toTopOf="parent" />
 
