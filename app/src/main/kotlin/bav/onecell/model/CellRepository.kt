@@ -1,5 +1,6 @@
 package bav.onecell.model
 
+import android.util.Log
 import bav.onecell.common.storage.Storage
 import bav.onecell.model.cell.Cell
 import bav.onecell.model.hexes.HexMath
@@ -52,5 +53,9 @@ class CellRepository(
 
     override fun storeCell(cell: Cell) {
         storage.storeCell(cell)
+    }
+
+    companion object {
+        private const val TAG = "CellRepository"
     }
 }
