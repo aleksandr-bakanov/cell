@@ -25,6 +25,7 @@ open class CanvasView(context: Context, attributeSet: AttributeSet) : View(conte
     companion object {
         private const val TAG = "CanvasView"
         private const val DISTANCE_TO_BEGIN_LAYOUT_MOVING = 20f
+        private const val BACKGROUND_GRID_RADIUS = 10
     }
 
     var backgroundFieldRadius: Int = 3
@@ -48,7 +49,7 @@ open class CanvasView(context: Context, attributeSet: AttributeSet) : View(conte
 
     private var coordinateTextVerticalOffset = (layout.size.x / 10).toFloat()
 
-    private var backgroundHexes: MutableSet<Hex> = mutableSetOf()
+    private val backgroundGridPaths: MutableList<Path> = mutableListOf()
 
     init {
         gridPaint.style = Paint.Style.STROKE
@@ -62,6 +63,11 @@ open class CanvasView(context: Context, attributeSet: AttributeSet) : View(conte
         indexTextPaint.color = Color.RED
         indexTextPaint.textSize = 48f
         indexTextPaint.textAlign = Paint.Align.CENTER
+
+        val backgroundGridHexes = hexMath.getNeighborsWithinRadius(hexMath.ZERO_HEX, BACKGROUND_GRID_RADIUS)
+        for (hex in backgroundGridHexes) {
+            backgroundGridPaths.add(getHexPath(hex, Layout.UNIT))
+        }
     }
 
     protected fun onTouchListener(view: View?, event: MotionEvent?): Boolean {
@@ -110,9 +116,8 @@ open class CanvasView(context: Context, attributeSet: AttributeSet) : View(conte
 
     protected fun drawBackgroundGrid(canvas: Canvas?) {
         // TODO: optimise here, don't recreate a tons of hexes on each onDraw
-        backgroundHexes.clear()
 
-        val columns: Int = (width / layout.size.x).toInt()
+        /*val columns: Int = (width / layout.size.x).toInt()
         val rows: Int = (height / layout.size.y).toInt()
 
         for (i in 0 until columns) {
@@ -123,6 +128,11 @@ open class CanvasView(context: Context, attributeSet: AttributeSet) : View(conte
 
         for (hex in backgroundHexes) {
             canvas?.drawPath(getHexPath(hex), gridPaint)
+        }*/
+        val modifiedPath: Path = Path()
+
+        for (path in backgroundGridPaths) {
+            path.transform(, modifiedPath)
         }
     }
 
@@ -167,7 +177,7 @@ open class CanvasView(context: Context, attributeSet: AttributeSet) : View(conte
         canvas?.drawText(hex.s.toString() + "s", sOrigin.x.toFloat(), sOrigin.y.toFloat(), coordinateTextPaint)
     }
 
-    protected fun getHexPath(hex: Hex): Path {
+    protected fun getHexPath(hex: Hex, layout: Layout = this.layout): Path {
         val hexCorners: ArrayList<Point> = hexMath.poligonCorners(layout, hex)
         val path = Path()
         path.moveTo(hexCorners[0].x.toFloat(), hexCorners[0].y.toFloat())
