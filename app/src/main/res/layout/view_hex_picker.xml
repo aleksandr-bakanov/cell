@@ -31,4 +31,14 @@
         app:layout_constraintStart_toStartOf="@id/buttonHex"
         app:layout_constraintTop_toTopOf="@id/buttonHex" />
 
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/selection"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="0dp"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/ic_hex_picker_selection"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
 </merge>

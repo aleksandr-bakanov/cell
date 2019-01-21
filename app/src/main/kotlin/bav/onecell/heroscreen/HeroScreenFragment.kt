@@ -59,6 +59,7 @@ import kotlinx.android.synthetic.main.fragment_hero_screen.recyclerViewCondition
 import kotlinx.android.synthetic.main.fragment_hero_screen.recyclerViewRulesList
 import kotlinx.android.synthetic.main.fragment_hero_screen.textHeroHistory
 import kotlinx.android.synthetic.main.view_hex_picker.view.buttonHex
+import kotlinx.android.synthetic.main.view_hex_picker.view.selection
 import kotlinx.android.synthetic.main.view_hex_picker.view.textViewHexCount
 import javax.inject.Inject
 import kotlin.math.PI
@@ -243,6 +244,7 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
                                             radioButtonDeathRayHex, radioButtonOmniBulletHex, radioButtonRemoveHex)) {
             view.setButtonClickListener { onHexTypeButtonClicked(it) }
             view.setButtonLongClickListener { onHexTypeButtonLongClicked(it) }
+            view.selection.visibility = View.INVISIBLE
         }
 
         radioButtonLifeHex.buttonHex.setImageResource(R.drawable.ic_hex_life)
@@ -250,6 +252,8 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
         radioButtonEnergyHex.buttonHex.setImageResource(R.drawable.ic_hex_energy)
         radioButtonDeathRayHex.buttonHex.setImageResource(R.drawable.ic_hex_death_ray)
         radioButtonOmniBulletHex.buttonHex.setImageResource(R.drawable.ic_hex_omni_bullet)
+
+        radioButtonLifeHex.selection.visibility = View.VISIBLE
 
         radioButtonRemoveHex.buttonHex.setImageResource(R.drawable.ic_remove_icon)
         radioButtonRemoveHex.textViewHexCount.visible = false
@@ -318,6 +322,11 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
     }
 
     private fun onHexTypeButtonClicked(view: View) {
+        for (picker in arrayListOf<HexPicker>(radioButtonLifeHex, radioButtonAttackHex, radioButtonEnergyHex,
+                                            radioButtonDeathRayHex, radioButtonOmniBulletHex, radioButtonRemoveHex)) {
+            picker.selection.visibility = View.INVISIBLE
+        }
+        view.selection.visibility = View.VISIBLE
         highlightEditorTips(getHexTypeBasedOnHexButtonId(view.id))
     }
 
