@@ -1,41 +1,146 @@
-Поселок Фтерна, отдаленная провинция
-Наш поселок жил мирно многие поколения. Всего было вдоволь, мы не жаловались.
-Бывало к нам забредали артисты, которые веселили нас.
-А бывало - разбойники, которые грабили нас.
-Но поселок всегда выживал, несмотря ни на что.
-Так было долгое время.
-До прошлой ночи…
-ночной пейзаж поселка
-молния в небе
-длинный тонкий цилиндр мчится к земле
-вонзается в землю сея разрушение
-деревня в огне
-Проснись, Киттаро!
-Проснись же!
-Киттаро, собирайся, ты должен срочно доставить это сообщение во дворец!
-Пророчество исполнилось!
-Дед, отстань, ты бредишь…
-Нет времени! Собирайся я сказал!
-Что за пророчество? Какого черта… ладно-ладно, иду…
-киттаро выходит из дома
-его поджимают гопники
-Эй, Китти, куда это ты намылился? Что это ты там такое прячешь?
-Башка, Гречка, Костыль, не ожидал вас здесь встретить!
-Некогда мне с вами болтать, пропустите…
-Посмотрите-ка котик рвется в бой, жми его, пацаны!
-Правила боя
-Бой происходит на поле из шестигранников.
-Твой персонаж - клетка, также как и другие персонажи.
-Клетка состоит из ячеек (хексов).
-Ячейки бывают разных типов, каждый тип ведет себя по-разному.
-Сейчас тебе доступны только жизненные (зеленые) ячейки.
-Каждая жизненная ячейка обладает силой равной двум.
-Каждый ход клетки сближаются на расстояние одного хекса по направлению к ближайшему врагу.
-При столкновении клеток сравниваются силы соседствующих вражеских ячеек.
-Более слабая ячейка погибает и удаляется из клетки.
-У более мощной ячейки отнимается сила соответствующая силе погибшей ячейки.
-Если силы ячеек равны - обе погибают.
-Клетка погибает если у нее не осталось жизненных ячеек.
-Также клетка погибает если связь жизненных ячеек разорвана.
-Бой завершается, когда в живых остаются только клетки принадлежащие одной группе.
-Давай разберемся с этой гопотой!
+    <string name="cs_introduction_0">Fterna settlement, remote province</string>
+    <string name="cs_introduction_1">Our village has lived peacefully for many generations. Everything was enough, we did not complain.</string>
+    <string name="cs_introduction_2">Artists who used to make fun of us wandered to us.</string>
+    <string name="cs_introduction_3">And it happened - robbers who robbed us.</string>
+    <string name="cs_introduction_4">But the village has always survived, no matter what.</string>
+    <string name="cs_introduction_5">So it was a long time.</string>
+    <string name="cs_introduction_6">Until last night ...</string>
+    <string name="cs_introduction_7">\ u0020</string>
+    <string name="cs_introduction_8">\ u0020</string>
+    <string name="cs_introduction_9">\ u0020</string>
+    <string name="cs_introduction_10">\ u0020</string>
+    <string name="cs_introduction_11">\ u0020</string>
+    <string name="cs_introduction_12">\ u0020</string>
+    <string name="cs_introduction_13">Wake up, Kittaro!</string>
+    <string name="cs_introduction_14">Wake up now</string>
+    <string name="cs_introduction_15">Kittaro, get ready, you must urgently deliver this message to the palace!</string>
+    <string name="cs_introduction_16">The prophecy is fulfilled!</string>
+    <string name="cs_introduction_17">Grandfather, leave me alone, you are raving ...</string>
+    <string name="cs_introduction_18">No time! Get ready I said!</string>
+    <string name="cs_introduction_19">What kind of prophecy? What the hell ... okay, okay, I'm coming ...</string>
+    <string name="cs_introduction_20">\ u0020</string>
+    <string name="cs_introduction_21">\ u0020</string>
+    <string name="cs_introduction_22">\ u0020</string>
+    <string name="cs_introduction_23">\ u0020</string>
+    <string name="cs_introduction_24">\ u0020</string>
+    <string name="cs_introduction_25">\ u0020</string>
+    <string name="cs_introduction_26">\ u0020</string>
+    <string name="cs_introduction_27">\ u0020</string>
+    <string name="cs_introduction_28">Hey Kitty, where have you soaped this? What are you hiding there?</string>
+    <string name="cs_introduction_29">Baska, Buckwheat, Crutch, did not expect to meet you here!</string>
+    <string name="cs_introduction_30">There is no time for me to chat with you, skip ...</string>
+    <string name="cs_introduction_31">Look, the cat is rushing into battle, press him, boys!</string>
+    <string name="cs_introduction_32">Battle rules</string>
+    <string name="cs_introduction_33">The battle takes place on the field of hexagons.</string>
+    <string name="cs_introduction_34">Your character is a cage, as well as other characters.</string>
+    <string name="cs_introduction_35">The cell consists of cells (hexes).</string>
+    <string name="cs_introduction_36">Cells are of different types, each type behaves differently.</string>
+    <string name="cs_introduction_37">Now only vital (green) cells are available to you.</string>
+    <string name="cs_introduction_38">Each vital cell has a power equal to two.</string>
+    <string name="cs_introduction_39">Every turn, the cells approach one hex at a distance to the nearest enemy.</string>
+    <string name="cs_introduction_40">When a cell collision compares the strength of neighboring enemy cells.</string>
+    <string name="cs_introduction_41">The weaker cell dies and is removed from the cell.</string>
+    <string name="cs_introduction_42">The power corresponding to the strength of the dead cell is subtracted from the more powerful cell.</string>
+    <string name="cs_introduction_43">If the cell forces are equal, both die.</string>
+    <string name="cs_introduction_44">A cell dies if it has no life cells left.</string>
+    <string name="cs_introduction_45">Also the cell dies if the connection of the vital cells is broken.</string>
+    <string name="cs_introduction_46">The fight ends when only cells belonging to the same group remain alive.</string>
+    <string name="cs_introduction_47">\ u0020</string>
+
+    <string name="cs_introduction_0">cs_introduction_0</string>
+    <string name="cs_introduction_1">cs_introduction_1</string>
+    <string name="cs_introduction_2">cs_introduction_2</string>
+    <string name="cs_introduction_3">cs_introduction_3</string>
+    <string name="cs_introduction_4">cs_introduction_4</string>
+    <string name="cs_introduction_5">cs_introduction_5</string>
+    <string name="cs_introduction_6">cs_introduction_6</string>
+    <string name="cs_introduction_7">cs_introduction_7</string>
+    <string name="cs_introduction_8">cs_introduction_8</string>
+    <string name="cs_introduction_9">cs_introduction_9</string>
+    <string name="cs_introduction_10">cs_introduction_10</string>
+    <string name="cs_introduction_11">cs_introduction_11</string>
+    <string name="cs_introduction_12">cs_introduction_12</string>
+    <string name="cs_introduction_13">cs_introduction_13</string>
+    <string name="cs_introduction_14">cs_introduction_14</string>
+    <string name="cs_introduction_15">cs_introduction_15</string>
+    <string name="cs_introduction_16">cs_introduction_16</string>
+    <string name="cs_introduction_17">cs_introduction_17</string>
+    <string name="cs_introduction_18">cs_introduction_18</string>
+    <string name="cs_introduction_19">cs_introduction_19</string>
+    <string name="cs_introduction_20">cs_introduction_20</string>
+    <string name="cs_introduction_21">cs_introduction_21</string>
+    <string name="cs_introduction_22">cs_introduction_22</string>
+    <string name="cs_introduction_23">cs_introduction_23</string>
+    <string name="cs_introduction_24">cs_introduction_24</string>
+    <string name="cs_introduction_25">cs_introduction_25</string>
+    <string name="cs_introduction_26">cs_introduction_26</string>
+    <string name="cs_introduction_27">cs_introduction_27</string>
+    <string name="cs_introduction_28">cs_introduction_28</string>
+    <string name="cs_introduction_29">cs_introduction_29</string>
+    <string name="cs_introduction_30">cs_introduction_30</string>
+    <string name="cs_introduction_31">cs_introduction_31</string>
+    <string name="cs_introduction_32">cs_introduction_32</string>
+    <string name="cs_introduction_33">cs_introduction_33</string>
+    <string name="cs_introduction_34">cs_introduction_34</string>
+    <string name="cs_introduction_35">cs_introduction_35</string>
+    <string name="cs_introduction_36">cs_introduction_36</string>
+    <string name="cs_introduction_37">cs_introduction_37</string>
+    <string name="cs_introduction_38">cs_introduction_38</string>
+    <string name="cs_introduction_39">cs_introduction_39</string>
+    <string name="cs_introduction_40">cs_introduction_40</string>
+    <string name="cs_introduction_41">cs_introduction_41</string>
+    <string name="cs_introduction_42">cs_introduction_42</string>
+    <string name="cs_introduction_43">cs_introduction_43</string>
+    <string name="cs_introduction_44">cs_introduction_44</string>
+    <string name="cs_introduction_45">cs_introduction_45</string>
+    <string name="cs_introduction_46">cs_introduction_46</string>
+    <string name="cs_introduction_47">cs_introduction_47</string>
+
+                '0': { text: 'cs_introduction_0' },
+                '1': { text: 'cs_introduction_1' },
+                '2': { text: 'cs_introduction_2' },
+                '3': { text: 'cs_introduction_3' },
+                '4': { text: 'cs_introduction_4' },
+                '5': { text: 'cs_introduction_5' },
+                '6': { text: 'cs_introduction_6' },
+                '7': { text: 'cs_introduction_7' },
+                '8': { text: 'cs_introduction_8' },
+                '9': { text: 'cs_introduction_9' },
+                '10': { text: 'cs_introduction_10' },
+                '11': { text: 'cs_introduction_11' },
+                '12': { text: 'cs_introduction_12' },
+                '13': { text: 'cs_introduction_13' },
+                '14': { text: 'cs_introduction_14' },
+                '15': { text: 'cs_introduction_15' },
+                '16': { text: 'cs_introduction_16' },
+                '17': { text: 'cs_introduction_17' },
+                '18': { text: 'cs_introduction_18' },
+                '19': { text: 'cs_introduction_19' },
+                '20': { text: 'cs_introduction_20' },
+                '21': { text: 'cs_introduction_21' },
+                '22': { text: 'cs_introduction_22' },
+                '23': { text: 'cs_introduction_23' },
+                '24': { text: 'cs_introduction_24' },
+                '25': { text: 'cs_introduction_25' },
+                '26': { text: 'cs_introduction_26' },
+                '27': { text: 'cs_introduction_27' },
+                '28': { text: 'cs_introduction_28' },
+                '29': { text: 'cs_introduction_29' },
+                '30': { text: 'cs_introduction_30' },
+                '31': { text: 'cs_introduction_31' },
+                '32': { text: 'cs_introduction_32' },
+                '33': { text: 'cs_introduction_33' },
+                '34': { text: 'cs_introduction_34' },
+                '35': { text: 'cs_introduction_35' },
+                '36': { text: 'cs_introduction_36' },
+                '37': { text: 'cs_introduction_37' },
+                '38': { text: 'cs_introduction_38' },
+                '39': { text: 'cs_introduction_39' },
+                '40': { text: 'cs_introduction_40' },
+                '41': { text: 'cs_introduction_41' },
+                '42': { text: 'cs_introduction_42' },
+                '43': { text: 'cs_introduction_43' },
+                '44': { text: 'cs_introduction_44' },
+                '45': { text: 'cs_introduction_45' },
+                '46': { text: 'cs_introduction_46' },
+                '47': { text: 'cs_introduction_47' },

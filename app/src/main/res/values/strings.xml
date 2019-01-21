@@ -166,54 +166,54 @@
             next_scene: 'action_cutSceneIntroduction_to_battleGopniks'
         }"
     </string>
-    <string name="cs_introduction_0">cs_introduction_0</string>
-    <string name="cs_introduction_1">cs_introduction_1</string>
-    <string name="cs_introduction_2">cs_introduction_2</string>
-    <string name="cs_introduction_3">cs_introduction_3</string>
-    <string name="cs_introduction_4">cs_introduction_4</string>
-    <string name="cs_introduction_5">cs_introduction_5</string>
-    <string name="cs_introduction_6">cs_introduction_6</string>
-    <string name="cs_introduction_7">cs_introduction_7</string>
-    <string name="cs_introduction_8">cs_introduction_8</string>
-    <string name="cs_introduction_9">cs_introduction_9</string>
-    <string name="cs_introduction_10">cs_introduction_10</string>
-    <string name="cs_introduction_11">cs_introduction_11</string>
-    <string name="cs_introduction_12">cs_introduction_12</string>
-    <string name="cs_introduction_13">cs_introduction_13</string>
-    <string name="cs_introduction_14">cs_introduction_14</string>
-    <string name="cs_introduction_15">cs_introduction_15</string>
-    <string name="cs_introduction_16">cs_introduction_16</string>
-    <string name="cs_introduction_17">cs_introduction_17</string>
-    <string name="cs_introduction_18">cs_introduction_18</string>
-    <string name="cs_introduction_19">cs_introduction_19</string>
-    <string name="cs_introduction_20">cs_introduction_20</string>
-    <string name="cs_introduction_21">cs_introduction_21</string>
-    <string name="cs_introduction_22">cs_introduction_22</string>
-    <string name="cs_introduction_23">cs_introduction_23</string>
-    <string name="cs_introduction_24">cs_introduction_24</string>
-    <string name="cs_introduction_25">cs_introduction_25</string>
-    <string name="cs_introduction_26">cs_introduction_26</string>
-    <string name="cs_introduction_27">cs_introduction_27</string>
-    <string name="cs_introduction_28">cs_introduction_28</string>
-    <string name="cs_introduction_29">cs_introduction_29</string>
-    <string name="cs_introduction_30">cs_introduction_30</string>
-    <string name="cs_introduction_31">cs_introduction_31</string>
-    <string name="cs_introduction_32">cs_introduction_32</string>
-    <string name="cs_introduction_33">cs_introduction_33</string>
-    <string name="cs_introduction_34">cs_introduction_34</string>
-    <string name="cs_introduction_35">cs_introduction_35</string>
-    <string name="cs_introduction_36">cs_introduction_36</string>
-    <string name="cs_introduction_37">cs_introduction_37</string>
-    <string name="cs_introduction_38">cs_introduction_38</string>
-    <string name="cs_introduction_39">cs_introduction_39</string>
-    <string name="cs_introduction_40">cs_introduction_40</string>
-    <string name="cs_introduction_41">cs_introduction_41</string>
-    <string name="cs_introduction_42">cs_introduction_42</string>
-    <string name="cs_introduction_43">cs_introduction_43</string>
-    <string name="cs_introduction_44">cs_introduction_44</string>
-    <string name="cs_introduction_45">cs_introduction_45</string>
-    <string name="cs_introduction_46">cs_introduction_46</string>
-    <string name="cs_introduction_47">cs_introduction_47</string>
+    <string name="cs_introduction_0">Fterna settlement, distant province</string>
+    <string name="cs_introduction_1">Our village has lived peacefully for many generations. We had enough for living. Nothing to complain about.</string>
+    <string name="cs_introduction_2">Sometimes artists used to visit us to make us happy.</string>
+    <string name="cs_introduction_3">Sometimes - robbers who robbed us.</string>
+    <string name="cs_introduction_4">But the village has always survived, no matter what.</string>
+    <string name="cs_introduction_5">For a long time.</string>
+    <string name="cs_introduction_6">Until last night...</string>
+    <string name="cs_introduction_7">\u0020</string>
+    <string name="cs_introduction_8">\u0020</string>
+    <string name="cs_introduction_9">\u0020</string>
+    <string name="cs_introduction_10">\u0020</string>
+    <string name="cs_introduction_11">\u0020</string>
+    <string name="cs_introduction_12">\u0020</string>
+    <string name="cs_introduction_13">Wake up, Kittaro!</string>
+    <string name="cs_introduction_14">Wake up now!</string>
+    <string name="cs_introduction_15">Kittaro, get ready, you must urgently deliver this message to the palace!</string>
+    <string name="cs_introduction_16">The prophecy is fulfilled!</string>
+    <string name="cs_introduction_17">Grandpa, leave me alone, you are raving...</string>
+    <string name="cs_introduction_18">No time! Get ready I said!</string>
+    <string name="cs_introduction_19">What kind of prophecy? What the hell... okay, okay, I\'m coming...</string>
+    <string name="cs_introduction_20">\u0020</string>
+    <string name="cs_introduction_21">\u0020</string>
+    <string name="cs_introduction_22">\u0020</string>
+    <string name="cs_introduction_23">\u0020</string>
+    <string name="cs_introduction_24">\u0020</string>
+    <string name="cs_introduction_25">\u0020</string>
+    <string name="cs_introduction_26">\u0020</string>
+    <string name="cs_introduction_27">\u0020</string>
+    <string name="cs_introduction_28">Hey Kitty, where are you going? What are you hiding there?</string>
+    <string name="cs_introduction_29">Baska, Buckwheat, Crutch, I did not expect to meet you here!</string>
+    <string name="cs_introduction_30">Anyway I have no time to chat with you, let me go...</string>
+    <string name="cs_introduction_31">Look, Kitty is rushing into battle, take him, boys!</string>
+    <string name="cs_introduction_32">Battle rules</string>
+    <string name="cs_introduction_33">The battle takes place on the field of hexagons.</string>
+    <string name="cs_introduction_34">Your character is a cell, as well as other characters.</string>
+    <string name="cs_introduction_35">The cell consists of hexes.</string>
+    <string name="cs_introduction_36">Hexes are of different types, each type behaves differently.</string>
+    <string name="cs_introduction_37">Now only vital (green) hexes are available to you.</string>
+    <string name="cs_introduction_38">Each vital hex has a power equal to two.</string>
+    <string name="cs_introduction_39">Every turn, the cells approach the nearest enemy by one hex.</string>
+    <string name="cs_introduction_40">When cells collide the strength of neighboring enemy hexes compares.</string>
+    <string name="cs_introduction_41">The weaker hex dies and is removed from the cell.</string>
+    <string name="cs_introduction_42">The power corresponding to the strength of the dead hex is subtracted from the more powerful hex.</string>
+    <string name="cs_introduction_43">If the hex forces are equal, both die.</string>
+    <string name="cs_introduction_44">A cell dies if it has no vital hexes left.</string>
+    <string name="cs_introduction_45">Also the cell dies if the connection of the vital hexes is broken.</string>
+    <string name="cs_introduction_46">The fight ends when only cells belonging to the same group remain alive.</string>
+    <string name="cs_introduction_47">\u0020</string>
 
     <!--
       - Cut scene after gopniks contains description of the hero screen interface. At this moment only Kittaro
@@ -244,19 +244,19 @@
             next_scene: 'action_cutSceneAfterGopniks_to_heroScreenAfterGopniks'
         }"
     </string>
-    <string name="cs_after_gopniks_0">cs_after_gopniks_0</string>
-    <string name="cs_after_gopniks_1">cs_after_gopniks_1</string>
-    <string name="cs_after_gopniks_2">cs_after_gopniks_2</string>
-    <string name="cs_after_gopniks_3">cs_after_gopniks_3</string>
-    <string name="cs_after_gopniks_4">cs_after_gopniks_4</string>
-    <string name="cs_after_gopniks_5">cs_after_gopniks_5</string>
-    <string name="cs_after_gopniks_6">cs_after_gopniks_6</string>
-    <string name="cs_after_gopniks_7">cs_after_gopniks_7</string>
-    <string name="cs_after_gopniks_8">cs_after_gopniks_8</string>
-    <string name="cs_after_gopniks_9">cs_after_gopniks_9</string>
-    <string name="cs_after_gopniks_10">cs_after_gopniks_10</string>
-    <string name="cs_after_gopniks_11">cs_after_gopniks_11</string>
-    <string name="cs_after_gopniks_12">cs_after_gopniks_12</string>
+    <string name="cs_after_gopniks_0">Is this enough?</string>
+    <string name="cs_after_gopniks_1">Aw, blah-aa!</string>
+    <string name="cs_after_gopniks_2">Crutch, shut up!</string>
+    <string name="cs_after_gopniks_3">Olive-aaaaaaa!</string>
+    <string name="cs_after_gopniks_4">You get a reward for a battle you won - hexes and, sometimes, abilities.</string>
+    <string name="cs_after_gopniks_5">Received hexes can be added to your cell, strengthening it.</string>
+    <string name="cs_after_gopniks_6">You can rebuild a cell as you like, adding and removing hexes from it.</string>
+    <string name="cs_after_gopniks_7">The main thing is not to break the connection between the vital hexes.</string>
+    <string name="cs_after_gopniks_8">You have discovered a new type of hexes - attacking (red).</string>
+    <string name="cs_after_gopniks_9">Attacking hexes do not have their own power.</string>
+    <string name="cs_after_gopniks_10">They draw it from the hexes around them.</string>
+    <string name="cs_after_gopniks_11">Each adjacent vital hex adds an attacking force equals to 1.</string>
+    <string name="cs_after_gopniks_12">Strengthen your cell and go on.</string>
 
     <!--
       - Cut scene before encounter with skiloses.
@@ -278,12 +278,12 @@
             next_scene: 'action_cutSceneBeforeSkilos_to_battleSkilos'
         }"
     </string>
-    <string name="cs_before_skilos_0">cs_before_skilos_0</string>
-    <string name="cs_before_skilos_1">cs_before_skilos_1</string>
-    <string name="cs_before_skilos_2">cs_before_skilos_2</string>
-    <string name="cs_before_skilos_3">cs_before_skilos_3</string>
-    <string name="cs_before_skilos_4">cs_before_skilos_4</string>
-    <string name="cs_before_skilos_5">cs_before_skilos_5</string>
+    <string name="cs_before_skilos_0">Away from home</string>
+    <string name="cs_before_skilos_1">I\'ve never got so far away from home...</string>
+    <string name="cs_before_skilos_2">What is that smell?</string>
+    <string name="cs_before_skilos_3">Rrrrrrrr!</string>
+    <string name="cs_before_skilos_4">Skiloses?! I wonder who else can be found far from the settlements.</string>
+    <string name="cs_before_skilos_5">Rrrrrrrrrrrrrrrr!!!</string>
 
     <!--
       - Cut scene after encounter with skiloses.

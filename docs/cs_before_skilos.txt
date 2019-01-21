@@ -1,0 +1,20 @@
+    <string name="cs_before_skilos_0">Away from home</string>
+    <string name="cs_before_skilos_1">I have never got so far away from home...</string>
+    <string name="cs_before_skilos_2">What is that smell?</string>
+    <string name="cs_before_skilos_3">Rrrrrrrr!</string>
+    <string name="cs_before_skilos_4">Skiloses?! I wonder who else can be found far from the settlements.</string>
+    <string name="cs_before_skilos_5">Rrrrrrrrrrrrrrrr!!!</string>
+
+    <string name="cs_before_skilos_0">cs_before_skilos_0</string>
+    <string name="cs_before_skilos_1">cs_before_skilos_1</string>
+    <string name="cs_before_skilos_2">cs_before_skilos_2</string>
+    <string name="cs_before_skilos_3">cs_before_skilos_3</string>
+    <string name="cs_before_skilos_4">cs_before_skilos_4</string>
+    <string name="cs_before_skilos_5">cs_before_skilos_5</string>
+
+                '0': { text: 'cs_before_skilos_0' },
+                '1': { text: 'cs_before_skilos_1' },
+                '2': { text: 'cs_before_skilos_2' },
+                '3': { text: 'cs_before_skilos_3' },
+                '4': { text: 'cs_before_skilos_4' },
+                '5': { text: 'cs_before_skilos_5' },
