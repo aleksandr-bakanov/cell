@@ -106,8 +106,7 @@ class BattleFragment : Fragment(), Battle.View {
 
         seekBar.setOnSeekBarChangeListener(seekBarListener)
 
-        battleCanvasView.hexMath = hexMath
-        battleCanvasView.drawUtils = drawUtils
+        battleCanvasView.inject(hexMath, drawUtils)
         battleCanvasView.presenter = presenter
 
         seekBar.max = 0

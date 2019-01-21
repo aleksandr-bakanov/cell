@@ -74,7 +74,7 @@ class EditorCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
             it.evaluateCellHexesPower()
 
             //canvas?.drawRect(0f, 0f, width.toFloat(), height.toFloat(), drawUtils.groundPaint)
-            drawBackgroundGrid(canvas)
+            //drawBackgroundGrid(canvas)
 
             if (selectedCellType == Hex.Type.REMOVE) {
                 drawUtils.drawCell(canvas, it, layout = layout)

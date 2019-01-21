@@ -303,8 +303,7 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
     }
 
     private fun initiateCanvasView() {
-        editorCanvasView.hexMath = hexMath
-        editorCanvasView.drawUtils = drawUtils
+        editorCanvasView.inject(hexMath, drawUtils)
         editorCanvasView.presenter = presenter
         editorCanvasView.setOnDragListener(mDragListen)
     }

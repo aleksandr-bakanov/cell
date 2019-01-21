@@ -3,11 +3,11 @@ package bav.onecell.common.view
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
+import android.graphics.Matrix
 import android.graphics.Paint
 import android.graphics.Path
 import androidx.core.content.ContextCompat
 import android.util.AttributeSet
-import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import bav.onecell.R
@@ -25,14 +25,10 @@ open class CanvasView(context: Context, attributeSet: AttributeSet) : View(conte
     companion object {
         private const val TAG = "CanvasView"
         private const val DISTANCE_TO_BEGIN_LAYOUT_MOVING = 20f
-        private const val BACKGROUND_GRID_RADIUS = 10
+        private const val BACKGROUND_GRID_RADIUS = 20
     }
 
     var backgroundFieldRadius: Int = 3
-        /*set(value) {
-            field = value
-            //backgroundHexes = hexMath.getNeighborsWithinRadius(hexMath.ZERO_HEX, value)
-        }*/
 
     lateinit var hexMath: HexMath
     lateinit var drawUtils: DrawUtils
@@ -63,6 +59,11 @@ open class CanvasView(context: Context, attributeSet: AttributeSet) : View(conte
         indexTextPaint.color = Color.RED
         indexTextPaint.textSize = 48f
         indexTextPaint.textAlign = Paint.Align.CENTER
+    }
+
+    fun inject(hexMath: HexMath, drawUtils: DrawUtils) {
+        this.hexMath = hexMath
+        this.drawUtils = drawUtils
 
         val backgroundGridHexes = hexMath.getNeighborsWithinRadius(hexMath.ZERO_HEX, BACKGROUND_GRID_RADIUS)
         for (hex in backgroundGridHexes) {
@@ -115,37 +116,30 @@ open class CanvasView(context: Context, attributeSet: AttributeSet) : View(conte
     }
 
     protected fun drawBackgroundGrid(canvas: Canvas?) {
-        // TODO: optimise here, don't recreate a tons of hexes on each onDraw
+        val modifiedPath = Path()
+        val scaleMatrix = Matrix()
+        scaleMatrix.setScale(layout.size.x.toFloat(), layout.size.y.toFloat())
 
-        /*val columns: Int = (width / layout.size.x).toInt()
-        val rows: Int = (height / layout.size.y).toInt()
-
-        for (i in 0 until columns) {
-            for (j in 0 until rows) {
-                backgroundHexes.add(pointToHex((i * layout.size.x).toFloat(), (j * layout.size.y).toFloat()))
-            }
-        }
-
-        for (hex in backgroundHexes) {
-            canvas?.drawPath(getHexPath(hex), gridPaint)
-        }*/
-        val modifiedPath: Path = Path()
+        val translateMatrix = Matrix()
+        translateMatrix.setTranslate(layout.origin.x.toFloat(), layout.origin.y.toFloat())
 
         for (path in backgroundGridPaths) {
-            path.transform(, modifiedPath)
+            path.transform(scaleMatrix, modifiedPath)
+            modifiedPath.transform(translateMatrix)
+            canvas?.drawPath(modifiedPath, gridPaint)
         }
     }
 
     protected fun drawCoordinates(canvas: Canvas?) {
-        for (hex in backgroundHexes) {
+        /*for (hex in backgroundHexes) {
             drawCoordinatesOnHex(canvas, hex)
-        }
+        }*/
     }
 
     protected fun drawCornersIndexes(canvas: Canvas?) {
-        for (hex in backgroundHexes) {
+        /*for (hex in backgroundHexes) {
             drawHexCornerIndexes(canvas, hex)
-        }
+        }*/
     }
 
     private fun drawCellIndex(canvas: Canvas?, cell: Cell, index: Int = 0) {

@@ -123,7 +123,7 @@ class BattleCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
                 }
                 canvas?.drawRect(0f, 0f, width.toFloat(), height.toFloat(), drawUtils.groundPaint)
 
-                drawBackgroundGrid(canvas)
+                //drawBackgroundGrid(canvas)
 
                 snapshot.corpses.forEach { corpse ->
                     drawUtils.drawCell(canvas, corpse, corpseLifePaint, corpseEnergyPaint,
