@@ -14,6 +14,7 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.appcompat.widget.PopupMenu
 import androidx.core.view.GravityCompat
 import androidx.navigation.findNavController
@@ -63,6 +64,8 @@ import kotlinx.android.synthetic.main.view_hex_picker.view.selection
 import kotlinx.android.synthetic.main.view_hex_picker.view.textViewHexCount
 import javax.inject.Inject
 import kotlin.math.PI
+import kotlinx.android.synthetic.main.fragment_hero_screen.newCharacterAvatar
+
 
 class HeroScreenFragment: Fragment(), HeroScreen.View {
 
@@ -93,6 +96,7 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
         recyclerViewAvatars.layoutManager = LinearLayoutManager(context)
         recyclerViewAvatars.addItemDecoration(HeroIconsRecyclerViewAdapter.VerticalSpaceItemDecoration())
         recyclerViewAvatars.adapter = HeroIconsRecyclerViewAdapter(presenter, resourceProvider)
+        checkLastCellsCount()
 
         recyclerViewRulesList.layoutManager = LinearLayoutManager(context)
         val rulesAdapter = RulesRecyclerViewAdapter(presenter, resourceProvider)
@@ -177,6 +181,23 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
         (requireActivity().application as OneCellApplication).appComponent
                 .plus(HeroScreenModule(this))
                 .inject(this)
+    }
+
+    private fun checkLastCellsCount() {
+        if (presenter.getCellCount() > lastCellsCount) {
+            val newCharacterIndex = lastCellsCount
+            lastCellsCount = presenter.getCellCount()
+            newCharacterAvatar.setImageResource(
+                    when (newCharacterIndex) {
+                        Consts.ZOI_INDEX -> R.drawable.ic_avatar_zoi
+                        Consts.AIMA_INDEX -> R.drawable.ic_avatar_aima
+                        else -> R.drawable.ic_hex_picker_selection
+                    }
+            )
+            AnimationUtils.loadAnimation(context, R.anim.new_character_appears).also { newCharacterAppearsAnimation ->
+                newCharacterAvatar.startAnimation(newCharacterAppearsAnimation)
+            }
+        }
     }
 
     private fun initiateButtons() {
@@ -501,6 +522,8 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
 
     companion object {
         private const val TAG = "HeroScreenFragment"
+
+        private var lastCellsCount = 1
 
         @JvmStatic
         fun newInstance(bundle: Bundle?): HeroScreenFragment {

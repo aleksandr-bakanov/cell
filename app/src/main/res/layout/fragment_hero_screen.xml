@@ -363,4 +363,16 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_begin="@dimen/hero_screen_avatar_list_width" />
 
+    <!-- New character avatar for animation -->
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/newCharacterAvatar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ic_hex_picker_selection"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="invisible"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
