@@ -24,6 +24,5 @@ class MainPresenter(
     override fun openHeroScreen() {
         router.goToHeroesScreen()
     }
-
     //endregion
 }

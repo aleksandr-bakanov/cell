@@ -8,8 +8,8 @@ import bav.onecell.model.cell.Cell
 import bav.onecell.model.RepositoryContract
 import bav.onecell.model.cell.Data
 import bav.onecell.model.hexes.HexMath
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.runBlocking
 
 class StorageImpl(
         private val context: Context,
@@ -18,19 +18,19 @@ class StorageImpl(
         private val gameState: Common.GameState): Storage {
 
     override fun storeCellRepository(repo: RepositoryContract.CellRepo) {
-        GlobalScope.launch {
+        runBlocking(Dispatchers.IO) {
             val dao = dataBase.cellDataDao()
             // TODO: optimise persistence
             for (i in 0 until repo.cellsCount()) {
-                Log.d(TAG, "${repo.getCell(i)?.data?.toJson()}")
+                //Log.d(TAG, "${repo.getCell(i)?.data?.toJson()}")
                 repo.getCell(i)?.let { dao.insert(it.data) }
             }
         }
     }
 
-    override fun storeCell(cell: Cell) {
-        Log.d(TAG, cell.data.toJson())
-        GlobalScope.launch { dataBase.cellDataDao().insert(cell.data) }
+    override fun storeCell(cellData: Data) {
+        Log.d(TAG, cellData.toJson())
+        runBlocking(Dispatchers.IO) { dataBase.cellDataDao().insert(cellData) }
     }
 
     override fun restoreCellRepository(): List<Cell> {
@@ -40,7 +40,7 @@ class StorageImpl(
             val cellJsons = context.resources.getStringArray(R.array.cell_descriptions)
             dao.deleteAll()
             for (json in cellJsons) {
-                Log.d(TAG, "restore: $json")
+                //Log.d(TAG, "restore: $json")
                 dao.insert(Data.fromJson(json))
             }
         }

@@ -39,7 +39,7 @@ class MainFragment : Fragment(), Main.View {
             view.findNavController().navigate(R.id.action_mainFragment_to_cellsForBattleFragment)
         }
         buttonNewGame.setOnClickListener { view ->
-            view.findNavController().navigate(R.id.action_mainFragment_to_cutSceneIntroduction)
+            view.findNavController().navigate(R.id.action_mainFragment_to_newGameFragment)
         }
         buttonHeroScreen.setOnClickListener { view ->
             view.findNavController().navigate(R.id.action_mainFragment_to_heroScreen)
@@ -59,7 +59,7 @@ class MainFragment : Fragment(), Main.View {
             })
         }
 
-        setDebugDecisions()
+        //setDebugDecisions()
     }
 
     override fun onDestroyView() {

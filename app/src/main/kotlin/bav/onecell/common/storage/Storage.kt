@@ -2,6 +2,7 @@ package bav.onecell.common.storage
 
 import bav.onecell.model.cell.Cell
 import bav.onecell.model.RepositoryContract
+import bav.onecell.model.cell.Data
 
 interface Storage {
     /**
@@ -10,6 +11,6 @@ interface Storage {
      * @param repo
      */
     fun storeCellRepository(repo: RepositoryContract.CellRepo)
-    fun storeCell(cell: Cell)
+    fun storeCell(cellData: Data)
     fun restoreCellRepository(): List<Cell>
 }

@@ -10,7 +10,7 @@ class GameStateImpl(private val context: Context,
     private var skipSaveLastNavDestination = false
 
     override fun dropGameState() {
-        preferences.edit().clear().putBoolean(FIRST_TIME_APP_LAUNCH, false).apply()
+        preferences.edit().clear().apply()
     }
 
     override fun getLastNavDestinationId(): Int = preferences.getInt(LAST_NAV_DESTINATION_ID, 0)

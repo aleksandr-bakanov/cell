@@ -14,11 +14,20 @@
             android:id="@+id/action_mainFragment_to_heroScreen"
             app:destination="@id/heroScreen" />
         <action
-            android:id="@+id/action_mainFragment_to_cutSceneIntroduction"
-            app:destination="@id/cutSceneIntroduction" />
+            android:id="@+id/action_mainFragment_to_newGameFragment"
+            app:destination="@id/newGameFragment" />
         <action
             android:id="@+id/action_mainFragment_to_cellsForBattleFragment"
             app:destination="@id/cellsForBattleFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/newGameFragment"
+        android:name="bav.onecell.main.NewGameFragment"
+        android:label="New game fragment"
+        tools:layout="@layout/fragment_new_game" >
+        <action
+            android:id="@+id/action_newGameFragment_to_cutSceneIntroduction"
+            app:destination="@id/cutSceneIntroduction" />
     </fragment>
     <fragment
         android:id="@+id/heroScreen"

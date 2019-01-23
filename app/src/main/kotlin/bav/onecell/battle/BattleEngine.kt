@@ -18,8 +18,8 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.PublishSubject
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.runBlocking
 import java.util.LinkedList
 import java.util.Queue
 import kotlin.math.PI
@@ -93,11 +93,14 @@ class BattleEngine(
     fun initialize(params: InitialBattleParams) {
         isFog = params.isFog
         clearEngine()
-        cellRepositoryDisposable?.dispose()
+        cellRepositoryDisposable?.let { if (!it.isDisposed) it.dispose() }
         cellRepositoryDisposable = cellRepository.loadFromStore()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe { startCalculation(params) }
+                .subscribe {
+                    startCalculation(params)
+                    cellRepositoryDisposable?.dispose()
+                }
     }
 
     private fun startCalculation(params: InitialBattleParams) {
@@ -148,7 +151,7 @@ class BattleEngine(
     }
 
     private fun evaluateBattle() {
-        GlobalScope.launch {
+        runBlocking(Dispatchers.IO) {
             while (!isBattleOver()) {
                 doFullStep()
             }

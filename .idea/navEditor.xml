@@ -905,8 +905,8 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="-427" />
-                            <option name="y" value="-302" />
+                            <option name="x" value="-561" />
+                            <option name="y" value="-299" />
                           </Point>
                         </option>
                         <option name="myPositions">
@@ -927,6 +927,18 @@
                               </value>
                             </entry>
                           </map>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="newGameFragment">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="-561" />
+                            <option name="y" value="103" />
+                          </Point>
                         </option>
                       </LayoutPositions>
                     </value>

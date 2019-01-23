@@ -47,12 +47,12 @@ class HeroScreenPresenter(
 
     override fun initialize(cellIndex: Int) {
         if (cellIndex != currentCellIndex) {
-            cellDisposable?.dispose()
+            cellDisposable?.let { if (!it.isDisposed) it.dispose() }
             cellDisposable = cellRepository.loadFromStore()
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe {
-                        cell?.let { currentCell -> cellRepository.storeCell(currentCell) }
+                        cell?.let { currentCell -> cellRepository.storeCell(currentCell.data) }
                         cell = cellRepository.getCell(cellIndex)
                         cell?.let { c -> view.setCellName(resourceProvider.getString(c.data.name) ?: "") }
                         updateHexBucketCounts()
@@ -66,6 +66,7 @@ class HeroScreenPresenter(
                         backgroundFieldRadiusProvider.onNext(4)
                         cellProvider.onNext(cell!!)
                         view.updateAvatars()
+                        cellDisposable?.dispose()
                     }
         }
     }
@@ -315,7 +316,7 @@ class HeroScreenPresenter(
 
     //region HeroScreen.Presenter methods
     override fun openMainMenu() {
-        cell?.let { cellRepository.storeCell(it) }
+        cell?.let { cellRepository.storeCell(it.data) }
         //router.goToMain()
     }
 

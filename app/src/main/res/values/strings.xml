@@ -15,6 +15,11 @@
     <string name="button_edit_cell_title" translatable="false">Edit</string>
     <string name="button_remove_cell_title" translatable="false">Remove</string>
 
+    <!-- New game view -->
+    <string name="button_confirm_title" translatable="false">Confirm</string>
+    <string name="button_deny_title" translatable="false">Deny</string>
+    <string name="text_warning_message">New game will erase any progress done so far.\nAre you sure?</string>
+
     <!-- Heroes view -->
     <string name="text_cell_name" translatable="false">Name</string>
     <string name="text_main_menu" translatable="false">Main menu</string>
