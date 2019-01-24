@@ -4,7 +4,6 @@ import android.util.Log
 import bav.onecell.common.Common
 import bav.onecell.common.Consts
 import bav.onecell.common.Consts.Companion.GAME_STATE_CHANGES
-import bav.onecell.common.router.Router
 import bav.onecell.model.RepositoryContract
 import bav.onecell.model.cell.Cell
 import bav.onecell.model.hexes.Hex
@@ -12,7 +11,6 @@ import org.json.JSONObject
 
 class BattleResultsPresenter(
         private val view: BattleResults.View,
-        private val router: Router,
         private val cellRepo: RepositoryContract.CellRepo,
         private val resourceProvider: Common.ResourceProvider,
         private val gameState: Common.GameState,
@@ -46,10 +44,6 @@ class BattleResultsPresenter(
     override fun groupsCount(): Int = results.size
 
     override fun getGroupId(position: Int): Int = groupIndexes?.get(position) ?: -1
-
-    override fun goToHeroesScreen() {
-        router.goToMain()
-    }
 
     override fun getCellName(resourceId: String): String = resourceProvider.getString(resourceId) ?: ""
 

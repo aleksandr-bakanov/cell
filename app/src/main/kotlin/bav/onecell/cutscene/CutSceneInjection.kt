@@ -1,12 +1,11 @@
 package bav.onecell.cutscene
 
-import bav.onecell.common.router.SceneManager
-import bav.onecell.di.scopes.ActivityScope
+import bav.onecell.di.scopes.FragmentScope
 import dagger.Module
 import dagger.Provides
 import dagger.Subcomponent
 
-@ActivityScope
+@FragmentScope
 @Subcomponent(modules = [CutSceneModule::class])
 interface CutSceneSubcomponent {
     fun inject(view: CutSceneFragment)
@@ -15,8 +14,8 @@ interface CutSceneSubcomponent {
 @Module
 class CutSceneModule {
     @Provides
-    @ActivityScope
-    fun provideCutScenePresenter(sceneManager: SceneManager): CutScene.Presenter {
-        return CutScenePresenter(sceneManager)
+    @FragmentScope
+    fun provideCutScenePresenter(): CutScene.Presenter {
+        return CutScenePresenter()
     }
 }

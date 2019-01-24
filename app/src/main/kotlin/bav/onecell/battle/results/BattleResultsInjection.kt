@@ -1,7 +1,6 @@
 package bav.onecell.battle.results
 
 import bav.onecell.common.Common
-import bav.onecell.common.router.Router
 import bav.onecell.di.scopes.FragmentScope
 import bav.onecell.model.RepositoryContract
 import dagger.Module
@@ -18,9 +17,9 @@ interface BattleResultsSubcomponent {
 class BattleResultsModule(val view: BattleResults.View) {
     @Provides
     @FragmentScope
-    fun provideBattleResultsPresenter(router: Router, cellRepo: RepositoryContract.CellRepo,
+    fun provideBattleResultsPresenter(cellRepo: RepositoryContract.CellRepo,
                                       resourceProvider: Common.ResourceProvider, gameState: Common.GameState)
             : BattleResults.Presenter {
-        return BattleResultsPresenter(view, router, cellRepo, resourceProvider, gameState)
+        return BattleResultsPresenter(view, cellRepo, resourceProvider, gameState)
     }
 }

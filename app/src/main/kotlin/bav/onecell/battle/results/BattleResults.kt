@@ -13,7 +13,6 @@ interface BattleResults {
         fun getCell(groupId: Int, position: Int): Cell?
         fun getDealtDamage(groupId: Int, position: Int): Int
         fun getDeadOrAlive(groupId: Int, position: Int): Boolean
-        fun goToHeroesScreen()
         fun getCellName(resourceId: String): String
         fun groupsCount(): Int
         fun getGroupId(position: Int): Int

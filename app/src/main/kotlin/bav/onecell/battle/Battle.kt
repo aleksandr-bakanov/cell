@@ -17,8 +17,6 @@ interface Battle {
          */
         fun initialize(params: String)
 
-        fun finishBattle(battleInfo: BattleInfo)
-
         fun battleResultsProvider(): Observable<BattleInfo>
     }
 }

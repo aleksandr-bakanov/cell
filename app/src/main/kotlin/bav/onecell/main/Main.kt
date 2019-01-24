@@ -9,14 +9,7 @@ interface Main {
     }
 
     interface Presenter {
-        /**
-         * Opens battle window.
-         */
-        fun openPreBattleView()
 
-        fun startNewGame(info: String)
-
-        fun openHeroScreen()
     }
 
     interface NavigationInfoProvider {

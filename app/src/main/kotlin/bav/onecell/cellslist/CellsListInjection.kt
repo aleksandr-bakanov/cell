@@ -3,7 +3,6 @@ package bav.onecell.cellslist
 import bav.onecell.cellslist.cellselection.CellsForBattle
 import bav.onecell.cellslist.cellselection.CellsForBattleFragment
 import bav.onecell.cellslist.cellselection.CellsForBattlePresenter
-import bav.onecell.common.router.Router
 import bav.onecell.di.scopes.FragmentScope
 import bav.onecell.model.RepositoryContract
 import dagger.Module
@@ -20,8 +19,7 @@ interface CellsListSubcomponent {
 class CellsListModule {
     @Provides
     @FragmentScope
-    fun provideCellsForBattlePresenter(router: Router, cellRepository: RepositoryContract.CellRepo):
-            CellsForBattle.Presenter {
-        return CellsForBattlePresenter(cellRepository, router)
+    fun provideCellsForBattlePresenter(cellRepository: RepositoryContract.CellRepo): CellsForBattle.Presenter {
+        return CellsForBattlePresenter(cellRepository)
     }
 }

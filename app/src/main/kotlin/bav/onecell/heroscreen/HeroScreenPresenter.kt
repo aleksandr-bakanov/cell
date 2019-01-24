@@ -3,7 +3,6 @@ package bav.onecell.heroscreen
 import bav.onecell.R
 import bav.onecell.common.Common
 import bav.onecell.common.Consts
-import bav.onecell.common.router.Router
 import bav.onecell.model.GameRules
 import bav.onecell.model.RepositoryContract
 import bav.onecell.model.cell.Cell
@@ -23,7 +22,6 @@ class HeroScreenPresenter(
         private val gameRules: GameRules,
         private val gameState: Common.GameState,
         private val cellRepository: RepositoryContract.CellRepo,
-        private val router: Router,
         private val resourceProvider: Common.ResourceProvider) : HeroScreen.Presenter {
 
     companion object {

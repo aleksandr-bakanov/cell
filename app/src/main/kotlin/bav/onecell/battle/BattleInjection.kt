@@ -1,6 +1,5 @@
 package bav.onecell.battle
 
-import bav.onecell.common.router.Router
 import bav.onecell.di.scopes.FragmentScope
 import dagger.Module
 import dagger.Provides
@@ -16,7 +15,7 @@ interface BattleSubcomponent {
 class BattleModule(val view: Battle.View) {
     @Provides
     @FragmentScope
-    fun provideBattlePresenter(battleEngine: BattleEngine, router: Router): Battle.Presenter {
-        return BattlePresenter(view, battleEngine, router)
+    fun provideBattlePresenter(battleEngine: BattleEngine): Battle.Presenter {
+        return BattlePresenter(view, battleEngine)
     }
 }

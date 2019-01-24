@@ -1,6 +1,5 @@
 package bav.onecell.cellslist.cellselection
 
-import bav.onecell.common.router.Router
 import bav.onecell.model.RepositoryContract
 import bav.onecell.model.cell.Cell
 import io.reactivex.Observable
@@ -8,9 +7,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.PublishSubject
 
-class CellsForBattlePresenter(
-        private val cellRepository: RepositoryContract.CellRepo,
-        private val router: Router) : CellsForBattle.Presenter {
+class CellsForBattlePresenter(private val cellRepository: RepositoryContract.CellRepo) : CellsForBattle.Presenter {
 
     companion object {
         private const val TAG = "CellsForBattlePresenter"
@@ -33,10 +30,6 @@ class CellsForBattlePresenter(
     }
 
     override fun cellRepoUpdateNotifier(): Observable<Unit> = cellRepoNotifier
-
-    override fun startBattle(cellIndexes: List<Int>) {
-        router.goToBattle(cellIndexes)
-    }
 
     override fun cellSelected(index: Int, selected: Boolean) {
         if (selected) selectedCells.add(index)
