@@ -199,7 +199,7 @@ class BattleFragment : Fragment(), Battle.View {
         buttonPlay.visibility = View.VISIBLE
     }
 
-    data class FrameState(val snapshotIndex: Int, val actionFraction: Float, val movingFraction: Float,
+    data class FrameState(val snapshotIndex: Int, /*val actionFraction: Float,*/ val movingFraction: Float,
                           val deathRayFraction: Float, val hexRemovalFraction: Float)
 
     private fun getFrameState(timestamp: Long): FrameState {
@@ -216,9 +216,9 @@ class BattleFragment : Fragment(), Battle.View {
 
         val snapshot = battleCanvasView.snapshots?.get(snapshotIndex)!!
 
-        val actionTime = timestamp - acc
+        /*val actionTime = timestamp - acc
         val actionFraction = animationTimeFraction(actionTime, snapshot.actionsDuration())
-        acc += snapshot.actionsDuration()
+        acc += snapshot.actionsDuration()*/
 
         val movingTime = timestamp - acc
         val movingFraction = animationTimeFraction(movingTime, snapshot.movementDuration())
@@ -231,7 +231,7 @@ class BattleFragment : Fragment(), Battle.View {
         val hexRemovalTime = timestamp - acc
         val hexRemovalFraction = animationTimeFraction(hexRemovalTime, snapshot.hexRemovalDuration())
 
-        return FrameState(snapshotIndex, actionFraction, movingFraction, deathRayFraction, hexRemovalFraction)
+        return FrameState(snapshotIndex, /*actionFraction,*/ movingFraction, deathRayFraction, hexRemovalFraction)
     }
 
     private fun animationTimeFraction(time: Long, animationDuration: Int): Float {
@@ -256,7 +256,7 @@ class BattleFragment : Fragment(), Battle.View {
                             Action.Act.CHANGE_DIRECTION -> {
                                 val angle = cell.getRotationAngle(action.value)
                                 cell.animationData.rotation = if (angle == 0f) 0f else {
-                                    cell.getRotationAngle(action.value) * frameState.actionFraction
+                                    cell.getRotationAngle(action.value) * /*frameState.actionFraction*/ frameState.movingFraction
                                 }
                             }
                         }

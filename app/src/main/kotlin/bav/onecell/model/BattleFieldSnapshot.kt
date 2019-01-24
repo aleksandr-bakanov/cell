@@ -22,7 +22,7 @@ data class BattleFieldSnapshot(
         // Bullets
         val bullets: MutableList<Bullet> = mutableListOf()) {
 
-    fun duration(): Int = movementDuration() + hexRemovalDuration() + actionsDuration() + deathRaysDuration()
+    fun duration(): Int = /*actionsDuration() + */movementDuration() + deathRaysDuration() + hexRemovalDuration()
 
     fun movementDuration(): Int = if (movingDirections.isNotEmpty()) CELL_MOVING_DURATION_MS else 0
     fun hexRemovalDuration(): Int = if (hexesToRemove.sumBy { it.size } > 0) HEX_FADING_DURATION_MS else 0
