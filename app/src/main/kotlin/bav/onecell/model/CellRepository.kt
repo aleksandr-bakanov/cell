@@ -6,9 +6,9 @@ import bav.onecell.model.cell.Cell
 import bav.onecell.model.cell.Data
 import bav.onecell.model.hexes.HexMath
 import io.reactivex.subjects.BehaviorSubject
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.launch
 
 class CellRepository(
         private val hexMath: HexMath,
@@ -22,7 +22,7 @@ class CellRepository(
     }
 
     override fun restoreCellRepository() {
-        runBlocking(Dispatchers.IO) {
+        GlobalScope.launch {
             Log.d(TAG, "restoreCellRepository: CoroutineScope = $this")
             val cellsFromStorage = async { storage.restoreCellRepository() }.await()
             cells.clear()

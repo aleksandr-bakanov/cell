@@ -18,8 +18,8 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.PublishSubject
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import java.util.LinkedList
 import java.util.Queue
 import kotlin.math.PI
@@ -151,7 +151,7 @@ class BattleEngine(
     }
 
     private fun evaluateBattle() {
-        runBlocking(Dispatchers.IO) {
+        GlobalScope.launch {
             while (!isBattleOver()) {
                 doFullStep()
             }
