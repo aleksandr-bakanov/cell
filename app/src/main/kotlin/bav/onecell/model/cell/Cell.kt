@@ -133,7 +133,7 @@ class Cell(private val hexMath: HexMath,
             Direction.N -> Direction.NW
             else -> Direction.fromInt(data.direction.ordinal - 1)
         }
-        rotate(newDir)
+        rotate(newDir, false)
     }
 
     fun rotateRight() {
@@ -141,13 +141,13 @@ class Cell(private val hexMath: HexMath,
             Direction.NW -> Direction.N
             else -> Direction.fromInt(data.direction.ordinal + 1)
         }
-        rotate(newDir)
+        rotate(newDir, false)
     }
 
     /**
      * Simple formula has been provided by Danil Bogaevsky.
      */
-    fun rotate(newDirection: Direction) {
+    fun rotate(newDirection: Direction, updateDirection: Boolean = true) {
         var r = (data.direction.ordinal - newDirection.ordinal) % 6
         if (r < 0) r += 6
         when (r) {
@@ -158,7 +158,7 @@ class Cell(private val hexMath: HexMath,
             5 -> rotateHexesRight()
             else -> Unit
         }
-        data.direction = newDirection
+        if (updateDirection) data.direction = newDirection
     }
 
     private fun rotateHexesFlip() {
