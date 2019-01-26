@@ -1,11 +1,11 @@
-    <string name="cs_after_katofi_ponu_0">Что это было, чем они в нас стреляли?</string>
-    <string name="cs_after_katofi_ponu_1">Это петалюбы активированные с помощью магии.</string>
-    <string name="cs_after_katofi_ponu_2">Не знала что они довели исследования до опытных образцов...</string>
-    <string name="cs_after_katofi_ponu_3">Ты знаешь как ими управлять.</string>
-    <string name="cs_after_katofi_ponu_4">Да, это просто, так же как и Актинами.</string>
-    <string name="cs_after_katofi_ponu_5">Просто повесь их куда-нибудь, а работать они будут сами.</string>
-    <string name="cs_after_katofi_ponu_6">Звучит и впрямь просто.</string>
-    <string name="cs_after_katofi_ponu_7">Ну вперед, мы почти у цели!</string>
+    <string name="cs_after_katofi_ponu_0">What was it, what did they shoot at us with?</string>
+    <string name="cs_after_katofi_ponu_1">This petaluby activated by magic.</string>
+    <string name="cs_after_katofi_ponu_2">I did not know that they brought the research to the prototypes ...</string>
+    <string name="cs_after_katofi_ponu_3">You know how to manage them.</string>
+    <string name="cs_after_katofi_ponu_4">Yes, it's simple, just like Actinas.</string>
+    <string name="cs_after_katofi_ponu_5">Just hang them somewhere, and they will work themselves.</string>
+    <string name="cs_after_katofi_ponu_6">It sounds really simple.</string>
+    <string name="cs_after_katofi_ponu_7">Well, go ahead, we are almost there!</string>
 
     <string name="cs_after_katofi_ponu_0">cs_after_katofi_ponu_0</string>
     <string name="cs_after_katofi_ponu_1">cs_after_katofi_ponu_1</string>

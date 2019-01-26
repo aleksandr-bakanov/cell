@@ -1,28 +1,9 @@
-Gentlemen, if you do not stop drinking, you will die very soon.
-Remember, the word "rum" and the word "death" mean the same thing to you.
-Kittaro, Zoe! You have to hurry, the tension in the city is increasing.
-Yes, how do everyone know that I need somewhere?
-A couple of magic tricks, that's all.
-Hello, Palmos.
-Hello, Zoe.
-Kittaro, meet the former court magician.
-Yeah, you look unimportant. I see rumors are confirmed ...
-What other rumors?
-Too vague to draw any conclusions from them.
-Well, in that case, let's go with us, such a magician like you would be useful to us.
-I can not, I have too much to do, and there must be someone to keep order here!
-I will go with them.
-Ayma! It's too dangerous, I need you here!
-I'm sure you will cope with everything yourself, besides you yourself said
-that the appearance of the spirit is an event that occurs once in a lifetime and such an experience cannot be missed.
-Yes, he said ...
-Kittaro, meet my student Ayma.
-You, Zoe, it makes no sense to represent her.
-Not. Since I am a spirit, I am almost omnipresent, which means that I know a lot and I know many.
-I remember her as a girl, in those days it was still possible to walk and collect petalubas without fear in my caves ...
-Okay, okay, we know the story.
-If the spirit does not stop in time, he will tell you his whole life, believe me.
-Kittaro take these artifacts - these are Actinas, I have just three of them, Ayma will explain how to use them.
-Actins are hexes that can be placed anywhere in the cell.
-If two actin from friendly cells come together at a distance of 10 or less,
-between them there is a beam, hitting enemies by 5 units.
+Throne Room, Final Act
+Who are you and what do you need?
+Your Majesty, my name is Kittaro, I come from the village of Fterna, the province of Podi.
+Our elder asked you to deliver this message to you.
+Let my chronicler read it.
+It can not be ...
+What is there? Alive, I have no time for this!
+Your Majesty ...
+Come on!

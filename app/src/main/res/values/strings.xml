@@ -445,7 +445,7 @@
     <string name="cs_after_belos_4">Here is a joy! Hey people, the beast is gone!</string>
     <string name="cs_after_belos_5">Well boy, well done! Tell you what, you won\'t go empty-handed.</string>
     <string name="cs_after_belos_6">And the best gift is knowledge. I have one book from my grandmother.</string>
-    <string name="cs_after_belos_7">I\'m not so clever with all this writing, but my grandmother said,</string>
+    <string name="cs_after_belos_7">I\'m not good enough for all this writing, but my grandmother said,</string>
     <string name="cs_after_belos_8">that this book can teach you turn one hexes into others.</string>
     <string name="cs_after_belos_9">Take it, this is surely more useful to you than me.</string>
     <string name="cs_after_belos_10">Now you can turn some hexes into others and back.</string>
@@ -743,14 +743,14 @@
             next_scene: 'action_cutSceneLaimo_to_battleKatofiPonu'
         }"
     </string>
-    <string name="cs_laimo_0">cs_laimo_0</string>
-    <string name="cs_laimo_1">cs_laimo_1</string>
-    <string name="cs_laimo_2">cs_laimo_2</string>
-    <string name="cs_laimo_3">cs_laimo_3</string>
-    <string name="cs_laimo_4">cs_laimo_4</string>
-    <string name="cs_laimo_5">cs_laimo_5</string>
-    <string name="cs_laimo_6">cs_laimo_6</string>
-    <string name="cs_laimo_7">cs_laimo_7</string>
+    <string name="cs_laimo_0">Laimo, a village near the capital</string>
+    <string name="cs_laimo_1">You should not be here, come back where you came from.</string>
+    <string name="cs_laimo_2">Who am I speaking to?</string>
+    <string name="cs_laimo_3">You what from a village or something?</string>
+    <string name="cs_laimo_4">Well yes.</string>
+    <string name="cs_laimo_5">Royal Guard Katofi Ponu.</string>
+    <string name="cs_laimo_6">Ah, well, I just need the king, can you guide me?</string>
+    <string name="cs_laimo_7">Rather, we are holding you back!</string>
 
     <!--
       - Cut scene after Katofi Ponu
@@ -774,14 +774,14 @@
             next_scene: 'action_cutSceneAfterKatofiPonu_to_heroScreenAfterKatofiPonu'
         }"
     </string>
-    <string name="cs_after_katofi_ponu_0">cs_after_katofi_ponu_0</string>
-    <string name="cs_after_katofi_ponu_1">cs_after_katofi_ponu_1</string>
-    <string name="cs_after_katofi_ponu_2">cs_after_katofi_ponu_2</string>
-    <string name="cs_after_katofi_ponu_3">cs_after_katofi_ponu_3</string>
-    <string name="cs_after_katofi_ponu_4">cs_after_katofi_ponu_4</string>
-    <string name="cs_after_katofi_ponu_5">cs_after_katofi_ponu_5</string>
-    <string name="cs_after_katofi_ponu_6">cs_after_katofi_ponu_6</string>
-    <string name="cs_after_katofi_ponu_7">cs_after_katofi_ponu_7</string>
+    <string name="cs_after_katofi_ponu_0">What was that, what did they shoot at us with?</string>
+    <string name="cs_after_katofi_ponu_1">It was petalubs activated by magic.</string>
+    <string name="cs_after_katofi_ponu_2">I did not know that they brought the research to the prototypes...</string>
+    <string name="cs_after_katofi_ponu_3">You know how to manage them.</string>
+    <string name="cs_after_katofi_ponu_4">Yes, it\'s simple, just like Actins.</string>
+    <string name="cs_after_katofi_ponu_5">Just hang them somewhere, and they will work themselves.</string>
+    <string name="cs_after_katofi_ponu_6">It sounds really simple.</string>
+    <string name="cs_after_katofi_ponu_7">Well, go ahead, we are almost there!</string>
 
     <!--
       - Cut scene Enkefalio
@@ -805,14 +805,14 @@
             next_scene: 'action_cutSceneEnkefalio_to_battleEnkefalio'
         }"
     </string>
-    <string name="cs_enkefalio_0">cs_enkefalio_0</string>
-    <string name="cs_enkefalio_1">cs_enkefalio_1</string>
-    <string name="cs_enkefalio_2">cs_enkefalio_2</string>
-    <string name="cs_enkefalio_3">cs_enkefalio_3</string>
-    <string name="cs_enkefalio_4">cs_enkefalio_4</string>
-    <string name="cs_enkefalio_5">cs_enkefalio_5</string>
-    <string name="cs_enkefalio_6">cs_enkefalio_6</string>
-    <string name="cs_enkefalio_7">cs_enkefalio_7</string>
+    <string name="cs_enkefalio_0">The gate of the castle Enkefalio - the capital of the Empire</string>
+    <string name="cs_enkefalio_1">And here is the castle, finally...</string>
+    <string name="cs_enkefalio_2">Oh, I don\'t like those guys at the gate.</string>
+    <string name="cs_enkefalio_3">This is a court magician and elite guardsmen.</string>
+    <string name="cs_enkefalio_4">Do you mean like Palmos?</string>
+    <string name="cs_enkefalio_5">Yes, like him, only worse.</string>
+    <string name="cs_enkefalio_6">Much worse...</string>
+    <string name="cs_enkefalio_7">I told you to get out! Guard, kill these insolent!</string>
 
     <!--
       - Cut scene final act
@@ -838,16 +838,16 @@
             next_scene: 'mainFragment'
         }"
     </string>
-    <string name="cs_final_act_0">cs_final_act_0</string>
-    <string name="cs_final_act_1">cs_final_act_1</string>
-    <string name="cs_final_act_2">cs_final_act_2</string>
-    <string name="cs_final_act_3">cs_final_act_3</string>
-    <string name="cs_final_act_4">cs_final_act_4</string>
-    <string name="cs_final_act_5">cs_final_act_5</string>
-    <string name="cs_final_act_6">cs_final_act_6</string>
-    <string name="cs_final_act_7">cs_final_act_7</string>
-    <string name="cs_final_act_8">cs_final_act_8</string>
-    <string name="cs_final_act_9">cs_final_act_9</string>
+    <string name="cs_final_act_0">Throne Room, final act</string>
+    <string name="cs_final_act_1">Who are you and what do you need?</string>
+    <string name="cs_final_act_2">Your Majesty, my name is Kittaro, I come from the village of Fterna, the province of Podi.</string>
+    <string name="cs_final_act_3">Our elder asked me to deliver this message to you.</string>
+    <string name="cs_final_act_4">Let my chronicler read it.</string>
+    <string name="cs_final_act_5">It can not be...</string>
+    <string name="cs_final_act_6">What is there? Come on, I have no time for this!</string>
+    <string name="cs_final_act_7">Your Majesty...</string>
+    <string name="cs_final_act_8">Come on!</string>
+    <string name="cs_final_act_9">\u0020</string>
 
     <!--
       - Battle scenes params
