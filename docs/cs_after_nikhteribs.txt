@@ -1,15 +1,15 @@
-    <string name="cs_after_nikhteribs_0">Откуда их там так много?</string>
-    <string name="cs_after_nikhteribs_1">Зло крепнет на закате мира.</string>
-    <string name="cs_after_nikhteribs_2">Зои, ты можешь изъясняться понятней?</string>
-    <string name="cs_after_nikhteribs_3">Нет, видишь ли в языке духов отсутствует прямота, свойственная вашему языку.</string>
-    <string name="cs_after_nikhteribs_4">Эх, ладно, идем, мы уже близко к столице.</string>
-    <string name="cs_after_nikhteribs_5">Ты хотел сказать к бывшей столице?</string>
-    <string name="cs_after_nikhteribs_6">В смысле?</string>
-    <string name="cs_after_nikhteribs_7">О... я не ожидал, что вести распространяются настолько медленно.</string>
-    <string name="cs_after_nikhteribs_8">Видишь ли, столицу недавно перенесли из Кардьи.</string>
-    <string name="cs_after_nikhteribs_9">Так значит королевский замок теперь еще дальше?</string>
-    <string name="cs_after_nikhteribs_10">Боюсь что так.</string>
-    <string name="cs_after_nikhteribs_11">Тогда тем более надо поторапливаться. Вперед!</string>
+    <string name="cs_after_nikhteribs_0">Where are there so many of them?</string>
+    <string name="cs_after_nikhteribs_1">Evil is growing at the sunset of the world.</string>
+    <string name="cs_after_nikhteribs_2">Zoey, can you make things clearer?</string>
+    <string name="cs_after_nikhteribs_3">No, you see in the language of the spirits there is no directness inherent in your language.</string>
+    <string name="cs_after_nikhteribs_4">Oh, well, go, we are close to the capital.</string>
+    <string name="cs_after_nikhteribs_5">Did you want to say to the former capital?</string>
+    <string name="cs_after_nikhteribs_6">In the sense of?</string>
+    <string name="cs_after_nikhteribs_7">Oh ... I did not expect the news to spread so slowly.</string>
+    <string name="cs_after_nikhteribs_8">You see, the capital was recently moved from Cardea.</string>
+    <string name="cs_after_nikhteribs_9">So the royal castle is now even further?</string>
+    <string name="cs_after_nikhteribs_10">I'm afraid so.</string>
+    <string name="cs_after_nikhteribs_11">Then all the more you need to hurry. Forward!</string>
 
     <string name="cs_after_nikhteribs_0">cs_after_nikhteribs_0</string>
     <string name="cs_after_nikhteribs_1">cs_after_nikhteribs_1</string>

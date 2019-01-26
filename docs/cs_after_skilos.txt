@@ -1,0 +1,68 @@
+    <string name="cs_after_skilos_0">Damn, well, damned skilos patted me!</string>
+    <string name="cs_after_skilos_1">The next time you need to be more attentive and better to dodge.</string>
+    <string name="cs_after_skilos_2">By the way, about dodging.</string>
+    <string name="cs_after_skilos_3">You have the opportunity to set the behavior of cells (program it).</string>
+    <string name="cs_after_skilos_4">That she responded to the situation in battle.</string>
+    <string name="cs_after_skilos_5">Let's deal with this. So,</string>
+    <string name="cs_after_skilos_6">There are rules, conditions and actions.</string>
+    <string name="cs_after_skilos_7">One rule contains many conditions and one action.</string>
+    <string name="cs_after_skilos_8">If all conditions fulfilled in the rule are met.</string>
+    <string name="cs_after_skilos_9">The cell contains a set of rules.</string>
+    <string name="cs_after_skilos_10">Each turn the cell goes through its rules in order.</string>
+    <string name="cs_after_skilos_11">Conditions for fulfillment</string>
+    <string name="cs_after_skilos_12">That the cell performs the action is described in this rule and the search ends.</string>
+    <string name="cs_after_skilos_13">In the battlefield, nothing happens.</string>
+    <string name="cs_after_skilos_14">The priority of the rules can be changed by dragging and dropping them. Search goes from top to bottom.</string>
+    <string name="cs_after_skilos_15">Delete the terms and conditions you can swipe them left or right.</string>
+    <string name="cs_after_skilos_16">At the moment, you can check two conditions:</string>
+    <string name="cs_after_skilos_17">Direction to the nearest enemies - north, northeast, southeast, south, southwest, northwest</string>
+    <string name="cs_after_skilos_18">Distance to nearby enemies - from 0 to 9</string>
+    <string name="cs_after_skilos_19">At the moment, you can perform one action:</string>
+    <string name="cs_after_skilos_20">Turn in the indicated direction - north, northeast, southeast, south, southwest, northwest</string>
+    <string name="cs_after_skilos_21">Try to create a set of rules in which your cell will always be directed at the nearest enemies.</string>
+
+    <string name="cs_after_skilos_0">cs_after_skilos_0</string>
+    <string name="cs_after_skilos_1">cs_after_skilos_1</string>
+    <string name="cs_after_skilos_2">cs_after_skilos_2</string>
+    <string name="cs_after_skilos_3">cs_after_skilos_3</string>
+    <string name="cs_after_skilos_4">cs_after_skilos_4</string>
+    <string name="cs_after_skilos_5">cs_after_skilos_5</string>
+    <string name="cs_after_skilos_6">cs_after_skilos_6</string>
+    <string name="cs_after_skilos_7">cs_after_skilos_7</string>
+    <string name="cs_after_skilos_8">cs_after_skilos_8</string>
+    <string name="cs_after_skilos_9">cs_after_skilos_9</string>
+    <string name="cs_after_skilos_10">cs_after_skilos_10</string>
+    <string name="cs_after_skilos_11">cs_after_skilos_11</string>
+    <string name="cs_after_skilos_12">cs_after_skilos_12</string>
+    <string name="cs_after_skilos_13">cs_after_skilos_13</string>
+    <string name="cs_after_skilos_14">cs_after_skilos_14</string>
+    <string name="cs_after_skilos_15">cs_after_skilos_15</string>
+    <string name="cs_after_skilos_16">cs_after_skilos_16</string>
+    <string name="cs_after_skilos_17">cs_after_skilos_17</string>
+    <string name="cs_after_skilos_18">cs_after_skilos_18</string>
+    <string name="cs_after_skilos_19">cs_after_skilos_19</string>
+    <string name="cs_after_skilos_20">cs_after_skilos_20</string>
+    <string name="cs_after_skilos_21">cs_after_skilos_21</string>
+
+                '0': { text: 'cs_after_skilos_0' },
+                '1': { text: 'cs_after_skilos_1' },
+                '2': { text: 'cs_after_skilos_2' },
+                '3': { text: 'cs_after_skilos_3' },
+                '4': { text: 'cs_after_skilos_4' },
+                '5': { text: 'cs_after_skilos_5' },
+                '6': { text: 'cs_after_skilos_6' },
+                '7': { text: 'cs_after_skilos_7' },
+                '8': { text: 'cs_after_skilos_8' },
+                '9': { text: 'cs_after_skilos_9' },
+                '10': { text: 'cs_after_skilos_10' },
+                '11': { text: 'cs_after_skilos_11' },
+                '12': { text: 'cs_after_skilos_12' },
+                '13': { text: 'cs_after_skilos_13' },
+                '14': { text: 'cs_after_skilos_14' },
+                '15': { text: 'cs_after_skilos_15' },
+                '16': { text: 'cs_after_skilos_16' },
+                '17': { text: 'cs_after_skilos_17' },
+                '18': { text: 'cs_after_skilos_18' },
+                '19': { text: 'cs_after_skilos_19' },
+                '20': { text: 'cs_after_skilos_20' },
+                '21': { text: 'cs_after_skilos_21' },

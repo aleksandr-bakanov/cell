@@ -326,28 +326,28 @@
             next_scene: 'action_cutSceneAfterSkilos_to_heroScreenAfterSkilos'
         }"
     </string>
-    <string name="cs_after_skilos_0">cs_after_skilos_0</string>
-    <string name="cs_after_skilos_1">cs_after_skilos_1</string>
-    <string name="cs_after_skilos_2">cs_after_skilos_2</string>
-    <string name="cs_after_skilos_3">cs_after_skilos_3</string>
-    <string name="cs_after_skilos_4">cs_after_skilos_4</string>
-    <string name="cs_after_skilos_5">cs_after_skilos_5</string>
-    <string name="cs_after_skilos_6">cs_after_skilos_6</string>
-    <string name="cs_after_skilos_7">cs_after_skilos_7</string>
-    <string name="cs_after_skilos_8">cs_after_skilos_8</string>
-    <string name="cs_after_skilos_9">cs_after_skilos_9</string>
-    <string name="cs_after_skilos_10">cs_after_skilos_10</string>
-    <string name="cs_after_skilos_11">cs_after_skilos_11</string>
-    <string name="cs_after_skilos_12">cs_after_skilos_12</string>
-    <string name="cs_after_skilos_13">cs_after_skilos_13</string>
-    <string name="cs_after_skilos_14">cs_after_skilos_14</string>
-    <string name="cs_after_skilos_15">cs_after_skilos_15</string>
-    <string name="cs_after_skilos_16">cs_after_skilos_16</string>
-    <string name="cs_after_skilos_17">cs_after_skilos_17</string>
-    <string name="cs_after_skilos_18">cs_after_skilos_18</string>
-    <string name="cs_after_skilos_19">cs_after_skilos_19</string>
-    <string name="cs_after_skilos_20">cs_after_skilos_20</string>
-    <string name="cs_after_skilos_21">cs_after_skilos_21</string>
+    <string name="cs_after_skilos_0">Damn, well, damned skilos patted me!</string>
+    <string name="cs_after_skilos_1">The next time I have to be more attentive and better to dodge.</string>
+    <string name="cs_after_skilos_2">By the way, about dodging.</string>
+    <string name="cs_after_skilos_3">Now you can set the behavior of cells (program it).</string>
+    <string name="cs_after_skilos_4">So that it responds to the situation in battle.</string>
+    <string name="cs_after_skilos_5">Let\'s deal with it. So,</string>
+    <string name="cs_after_skilos_6">There are rules, conditions and actions.</string>
+    <string name="cs_after_skilos_7">One rule contains many conditions and one action.</string>
+    <string name="cs_after_skilos_8">If all conditions contained in the rule are fulfilled the action will be performed.</string>
+    <string name="cs_after_skilos_9">The cell contains a set of rules.</string>
+    <string name="cs_after_skilos_10">Each turn the cell goes through its rules one by one.</string>
+    <string name="cs_after_skilos_11">If for some rule ALL conditions are fulfilled,</string>
+    <string name="cs_after_skilos_12">Then the cell performs the action described in this rule and the search ends.</string>
+    <string name="cs_after_skilos_13">If none of the rules meets situation of battlefield, then nothing happens.</string>
+    <string name="cs_after_skilos_14">The priority of the rules can be changed by dragging and dropping them. Search goes from top to bottom.</string>
+    <string name="cs_after_skilos_15">To remove rule or condition you can swipe it left or right.</string>
+    <string name="cs_after_skilos_16">At this moment, you can check two conditions:</string>
+    <string name="cs_after_skilos_17">Direction to the nearest enemy - north, northeast, southeast, south, southwest, northwest</string>
+    <string name="cs_after_skilos_18">Distance to the nearest enemy - it might be from 0 to 9</string>
+    <string name="cs_after_skilos_19">At this moment, you can perform one action:</string>
+    <string name="cs_after_skilos_20">Turn in the indicated direction - north, northeast, southeast, south, southwest, northwest</string>
+    <string name="cs_after_skilos_21">Try to create a set of rules in which your cell will always be directed at the nearest enemy.</string>
 
     <!--
       - Cut scene Gonato village
@@ -388,29 +388,29 @@
             no_next_scene: 'cutSceneAnalafro'
         }"
     </string>
-    <string name="cs_gonato_0">cs_gonato_0</string>
-    <string name="cs_gonato_1">cs_gonato_1</string>
-    <string name="cs_gonato_2">cs_gonato_2</string>
-    <string name="cs_gonato_3">cs_gonato_3</string>
-    <string name="cs_gonato_4">cs_gonato_4</string>
-    <string name="cs_gonato_5">cs_gonato_5</string>
-    <string name="cs_gonato_6">cs_gonato_6</string>
-    <string name="cs_gonato_7">cs_gonato_7</string>
-    <string name="cs_gonato_8">cs_gonato_8</string>
-    <string name="cs_gonato_9">cs_gonato_9</string>
-    <string name="cs_gonato_10">cs_gonato_10</string>
-    <string name="cs_gonato_11">cs_gonato_11</string>
-    <string name="cs_gonato_12">cs_gonato_12</string>
-    <string name="cs_gonato_13">cs_gonato_13</string>
-    <string name="cs_gonato_14">cs_gonato_14</string>
-    <string name="cs_gonato_15">cs_gonato_15</string>
-    <string name="cs_gonato_16">cs_gonato_16</string>
-    <string name="cs_gonato_17">cs_gonato_17</string>
-    <string name="cs_gonato_18">cs_gonato_18</string>
-    <string name="cs_gonato_19">cs_gonato_19</string>
-    <string name="cs_gonato_20">cs_gonato_20</string>
-    <string name="cs_gonato_21">cs_gonato_21</string>
-    <string name="cs_gonato_22">cs_gonato_22</string>
+    <string name="cs_gonato_0">Gonato village, not so remote province</string>
+    <string name="cs_gonato_1">Perhaps I can relax here</string>
+    <string name="cs_gonato_2">Greetings, traveler, where are you going?</string>
+    <string name="cs_gonato_3">To the capital, I need...</string>
+    <string name="cs_gonato_4">To the capital?! That\'s far away... And where did you come from?</string>
+    <string name="cs_gonato_5">From Fterna, this is...</string>
+    <string name="cs_gonato_6">Fterna, you say?! I have a brother-in-law from Fterna, owed me three sheep</string>
+    <string name="cs_gonato_7">If you meet him, you tell him</string>
+    <string name="cs_gonato_8">Elder of Gonato does not forget his sheep, you\'ll tell him.</string>
+    <string name="cs_gonato_9">Uh... well..</string>
+    <string name="cs_gonato_10">Since we are talking about sheep, will you help us?</string>
+    <string name="cs_gonato_11">You look quite belligerent, not like our peasants.</string>
+    <string name="cs_gonato_12">What\'s the matter?</string>
+    <string name="cs_gonato_13">For a long time nothing bad happens to us, but the trouble.</string>
+    <string name="cs_gonato_14">Belos came to us, to steal sheep.</string>
+    <string name="cs_gonato_15">We would deal with him, but we\'re too busy,</string>
+    <string name="cs_gonato_16">and he is so terrible, ours are all afraid of him!</string>
+    <string name="cs_gonato_17">Actually, I\'m in a hurry, it\'s very important to get to the capital as quickly as possible.</string>
+    <string name="cs_gonato_18">I understand if you are in a hurry...</string>
+    <string name="cs_gonato_19">Well, will you help?</string>
+    <string name="cs_gonato_20">That\'s nice, nice, pleased the old man, thank you!</string>
+    <string name="cs_gonato_21">Well, your business, we are not offended... good luck to you on your journey!</string>
+    <string name="cs_gonato_22">Take care of yourself!</string>
 
     <!--
       - Cut scene after Belos
@@ -438,18 +438,18 @@
             next_scene: 'action_cutSceneAfterBelos_to_heroScreenAfterBelos'
         }"
     </string>
-    <string name="cs_after_belos_0">cs_after_belos_0</string>
-    <string name="cs_after_belos_1">cs_after_belos_1</string>
-    <string name="cs_after_belos_2">cs_after_belos_2</string>
-    <string name="cs_after_belos_3">cs_after_belos_3</string>
-    <string name="cs_after_belos_4">cs_after_belos_4</string>
-    <string name="cs_after_belos_5">cs_after_belos_5</string>
-    <string name="cs_after_belos_6">cs_after_belos_6</string>
-    <string name="cs_after_belos_7">cs_after_belos_7</string>
-    <string name="cs_after_belos_8">cs_after_belos_8</string>
-    <string name="cs_after_belos_9">cs_after_belos_9</string>
-    <string name="cs_after_belos_10">cs_after_belos_10</string>
-    <string name="cs_after_belos_11">cs_after_belos_11</string>
+    <string name="cs_after_belos_0">What the beast! It almost devoured me!</string>
+    <string name="cs_after_belos_1">I must tell the elder that the deed is done.</string>
+    <string name="cs_after_belos_2">Oh, you\'re back.</string>
+    <string name="cs_after_belos_3">And with good news! Belos will not bother you again.</string>
+    <string name="cs_after_belos_4">Here is a joy! Hey people, the beast is gone!</string>
+    <string name="cs_after_belos_5">Well boy, well done! Tell you what, you won\'t go empty-handed.</string>
+    <string name="cs_after_belos_6">And the best gift is knowledge. I have one book from my grandmother.</string>
+    <string name="cs_after_belos_7">I\'m not so clever with all this writing, but my grandmother said,</string>
+    <string name="cs_after_belos_8">that this book can teach you turn one hexes into others.</string>
+    <string name="cs_after_belos_9">Take it, this is surely more useful to you than me.</string>
+    <string name="cs_after_belos_10">Now you can turn some hexes into others and back.</string>
+    <string name="cs_after_belos_11">Check the new button on the hero screen.</string>
 
     <!--
       - Cut scene Analafro
@@ -479,20 +479,20 @@
             next_scene: 'action_cutSceneAnalafro_to_battleOmikhli'
         }"
     </string>
-    <string name="cs_analafro_0">cs_analafro_0</string>
-    <string name="cs_analafro_1">cs_analafro_1</string>
-    <string name="cs_analafro_2">cs_analafro_2</string>
-    <string name="cs_analafro_3">cs_analafro_3</string>
-    <string name="cs_analafro_4">cs_analafro_4</string>
-    <string name="cs_analafro_5">cs_analafro_5</string>
-    <string name="cs_analafro_6">cs_analafro_6</string>
-    <string name="cs_analafro_7">cs_analafro_7</string>
-    <string name="cs_analafro_8">cs_analafro_8</string>
-    <string name="cs_analafro_9">cs_analafro_9</string>
-    <string name="cs_analafro_10">cs_analafro_10</string>
-    <string name="cs_analafro_11">cs_analafro_11</string>
-    <string name="cs_analafro_12">cs_analafro_12</string>
-    <string name="cs_analafro_13">cs_analafro_13</string>
+    <string name="cs_analafro_0">Hills of Analafro</string>
+    <string name="cs_analafro_1">Yeah, the weather is bad, the third day hanging this damn fog.</string>
+    <string name="cs_analafro_2">And every day he is thicker and thicker</string>
+    <string name="cs_analafro_3">That\'s not good...</string>
+    <string name="cs_analafro_4">................</string>
+    <string name="cs_analafro_5">........ hss-s ........</string>
+    <string name="cs_analafro_6">Who is there?</string>
+    <string name="cs_analafro_7">You ask who is here, not even knowing where you are?</string>
+    <string name="cs_analafro_8">Well, let me introduce myself.</string>
+    <string name="cs_analafro_9">I am the great demon Omikhli, and who are you and what are you doing in my domain?</string>
+    <string name="cs_analafro_10">I am Kittaro and I need to get to the capital as soon as possible.</string>
+    <string name="cs_analafro_11">This will not happen, no one has yet passed through my lands without paying for it!</string>
+    <string name="cs_analafro_12">........ hss-s ........</string>
+    <string name="cs_analafro_13">................</string>
 
     <!--
       - Cut scene after Omikhli
@@ -517,15 +517,15 @@
             next_scene: 'action_cutSceneAfterOmikhli_to_heroScreenAfterOmikhli'
         }"
     </string>
-    <string name="cs_after_omikhli_0">cs_after_omikhli_0</string>
-    <string name="cs_after_omikhli_1">cs_after_omikhli_1</string>
-    <string name="cs_after_omikhli_2">cs_after_omikhli_2</string>
-    <string name="cs_after_omikhli_3">cs_after_omikhli_3</string>
-    <string name="cs_after_omikhli_4">cs_after_omikhli_4</string>
-    <string name="cs_after_omikhli_5">cs_after_omikhli_5</string>
-    <string name="cs_after_omikhli_6">cs_after_omikhli_6</string>
-    <string name="cs_after_omikhli_7">cs_after_omikhli_7</string>
-    <string name="cs_after_omikhli_8">cs_after_omikhli_8</string>
+    <string name="cs_after_omikhli_0">The fog clears</string>
+    <string name="cs_after_omikhli_1">And there are caves, so all this time I was so close!</string>
+    <string name="cs_after_omikhli_2">Bloody demon, wanted to confuse me</string>
+    <string name="cs_after_omikhli_3">Okay, time to heal and move on</string>
+    <string name="cs_after_omikhli_4">You discovered a new type of hexes - energy (yellow)</string>
+    <string name="cs_after_omikhli_5">They have the power of 1, but most importantly, give power to the attacking hexes.</string>
+    <string name="cs_after_omikhli_6">+2 each adjacent, and +1 attacking, located at a distance of 2.</string>
+    <string name="cs_after_omikhli_7">Vital hexes can not coexist with two or more energy ones.</string>
+    <string name="cs_after_omikhli_8">Energy hexes can be used for linking life ones.</string>
 
     <!--
       - Cut scene Kilia
@@ -557,21 +557,21 @@
             gameStateChanges: { 'zoi_available': true }
         }"
     </string>
-    <string name="cs_kilia_0">cs_kilia_0</string>
-    <string name="cs_kilia_1">cs_kilia_1</string>
-    <string name="cs_kilia_2">cs_kilia_2</string>
-    <string name="cs_kilia_3">cs_kilia_3</string>
-    <string name="cs_kilia_4">cs_kilia_4</string>
-    <string name="cs_kilia_5">cs_kilia_5</string>
-    <string name="cs_kilia_6">cs_kilia_6</string>
-    <string name="cs_kilia_7">cs_kilia_7</string>
-    <string name="cs_kilia_8">cs_kilia_8</string>
-    <string name="cs_kilia_9">cs_kilia_9</string>
-    <string name="cs_kilia_10">cs_kilia_10</string>
-    <string name="cs_kilia_11">cs_kilia_11</string>
-    <string name="cs_kilia_12">cs_kilia_12</string>
-    <string name="cs_kilia_13">cs_kilia_13</string>
-    <string name="cs_kilia_14">cs_kilia_14</string>
+    <string name="cs_kilia_0">Kilia caves</string>
+    <string name="cs_kilia_1">And here you are...</string>
+    <string name="cs_kilia_2">Hey, are you another demon?</string>
+    <string name="cs_kilia_3">Not at all, not at all. I am Zoi, and this is my abode.</string>
+    <string name="cs_kilia_4">You look like a demon</string>
+    <string name="cs_kilia_5">Yes, we, the spirits, are often confused with them.</string>
+    <string name="cs_kilia_6">What are you doing here?</string>
+    <string name="cs_kilia_7">Gonna go with you on my last trip.</string>
+    <string name="cs_kilia_8">Uh... the last one?</string>
+    <string name="cs_kilia_9">............</string>
+    <string name="cs_kilia_10">Why the last?</string>
+    <string name="cs_kilia_11">............</string>
+    <string name="cs_kilia_12">It is dark in the caves, take this torch. It is time.</string>
+    <string name="cs_kilia_13">Damn, it\'s really dark here, what\'s that squeak?</string>
+    <string name="cs_kilia_14">Oh, they\'ve always lived here, usually they are not very happy about guests...</string>
 
     <!--
       - Cut scene after nikhteribs
@@ -599,18 +599,18 @@
             next_scene: 'action_cutSceneAfterNikhteribs_to_heroScreenAfterNikhteribs'
         }"
     </string>
-    <string name="cs_after_nikhteribs_0">cs_after_nikhteribs_0</string>
-    <string name="cs_after_nikhteribs_1">cs_after_nikhteribs_1</string>
-    <string name="cs_after_nikhteribs_2">cs_after_nikhteribs_2</string>
-    <string name="cs_after_nikhteribs_3">cs_after_nikhteribs_3</string>
-    <string name="cs_after_nikhteribs_4">cs_after_nikhteribs_4</string>
-    <string name="cs_after_nikhteribs_5">cs_after_nikhteribs_5</string>
-    <string name="cs_after_nikhteribs_6">cs_after_nikhteribs_6</string>
-    <string name="cs_after_nikhteribs_7">cs_after_nikhteribs_7</string>
-    <string name="cs_after_nikhteribs_8">cs_after_nikhteribs_8</string>
-    <string name="cs_after_nikhteribs_9">cs_after_nikhteribs_9</string>
-    <string name="cs_after_nikhteribs_10">cs_after_nikhteribs_10</string>
-    <string name="cs_after_nikhteribs_11">cs_after_nikhteribs_11</string>
+    <string name="cs_after_nikhteribs_0">There were so many of them! Where are they came from?</string>
+    <string name="cs_after_nikhteribs_1">Evil is growing at the sunset of the world.</string>
+    <string name="cs_after_nikhteribs_2">Zoi, can you make things clearer?</string>
+    <string name="cs_after_nikhteribs_3">No, you see in the language of the spirits there is no directness inherent to your language.</string>
+    <string name="cs_after_nikhteribs_4">Oh, well, let\'s go, we are close to the capital.</string>
+    <string name="cs_after_nikhteribs_5">Do you mean to the former capital?</string>
+    <string name="cs_after_nikhteribs_6">In the sense of?</string>
+    <string name="cs_after_nikhteribs_7">Oh... I did not expect the news spread so slowly.</string>
+    <string name="cs_after_nikhteribs_8">You see, the capital was recently moved from Kardia.</string>
+    <string name="cs_after_nikhteribs_9">So the royal castle is now even further?</string>
+    <string name="cs_after_nikhteribs_10">I\'m afraid so.</string>
+    <string name="cs_after_nikhteribs_11">Then we have to hurry. Forward!</string>
 
     <!--
       - Cut scene Kardia
@@ -637,17 +637,17 @@
             next_scene: 'action_cutSceneKardia_to_battleDrunkards'
         }"
     </string>
-    <string name="cs_kardia_0">cs_kardia_0</string>
-    <string name="cs_kardia_1">cs_kardia_1</string>
-    <string name="cs_kardia_2">cs_kardia_2</string>
-    <string name="cs_kardia_3">cs_kardia_3</string>
-    <string name="cs_kardia_4">cs_kardia_4</string>
-    <string name="cs_kardia_5">cs_kardia_5</string>
-    <string name="cs_kardia_6">cs_kardia_6</string>
-    <string name="cs_kardia_7">cs_kardia_7</string>
-    <string name="cs_kardia_8">cs_kardia_8</string>
-    <string name="cs_kardia_9">cs_kardia_9</string>
-    <string name="cs_kardia_10">cs_kardia_10</string>
+    <string name="cs_kardia_0">Former capital of Kardia.</string>
+    <string name="cs_kardia_1">Wow, you just look at these houses!</string>
+    <string name="cs_kardia_2">We\'d better not stay here.</string>
+    <string name="cs_kardia_3">Why?</string>
+    <string name="cs_kardia_4">Local do not like strangers, especially those like us.</string>
+    <string name="cs_kardia_5">What\'s wrong with us?</string>
+    <string name="cs_kardia_6">Uh, salagi, where did you come from?</string>
+    <string name="cs_kardia_7">So that\'s what you meant.</string>
+    <string name="cs_kardia_8">From you provincials all misfortunes come!</string>
+    <string name="cs_kardia_9">There\'re just drunkards, let\'s go Kittaro.</string>
+    <string name="cs_kardia_10">Oh no, you won\'t go anywhere until you pay the royal fee!</string>
 
     <!--
       - Cut scene after drunkards
@@ -692,34 +692,34 @@
             gameStateChanges: { 'aima_available': true }
         }"
     </string>
-    <string name="cs_after_drunkards_0">cs_after_drunkards_0</string>
-    <string name="cs_after_drunkards_1">cs_after_drunkards_1</string>
-    <string name="cs_after_drunkards_2">cs_after_drunkards_2</string>
-    <string name="cs_after_drunkards_3">cs_after_drunkards_3</string>
-    <string name="cs_after_drunkards_4">cs_after_drunkards_4</string>
-    <string name="cs_after_drunkards_5">cs_after_drunkards_5</string>
-    <string name="cs_after_drunkards_6">cs_after_drunkards_6</string>
-    <string name="cs_after_drunkards_7">cs_after_drunkards_7</string>
-    <string name="cs_after_drunkards_8">cs_after_drunkards_8</string>
-    <string name="cs_after_drunkards_9">cs_after_drunkards_9</string>
-    <string name="cs_after_drunkards_10">cs_after_drunkards_10</string>
-    <string name="cs_after_drunkards_11">cs_after_drunkards_11</string>
-    <string name="cs_after_drunkards_12">cs_after_drunkards_12</string>
-    <string name="cs_after_drunkards_13">cs_after_drunkards_13</string>
-    <string name="cs_after_drunkards_14">cs_after_drunkards_14</string>
-    <string name="cs_after_drunkards_15">cs_after_drunkards_15</string>
-    <string name="cs_after_drunkards_16">cs_after_drunkards_16</string>
-    <string name="cs_after_drunkards_17">cs_after_drunkards_17</string>
-    <string name="cs_after_drunkards_18">cs_after_drunkards_18</string>
-    <string name="cs_after_drunkards_19">cs_after_drunkards_19</string>
-    <string name="cs_after_drunkards_20">cs_after_drunkards_20</string>
-    <string name="cs_after_drunkards_21">cs_after_drunkards_21</string>
-    <string name="cs_after_drunkards_22">cs_after_drunkards_22</string>
-    <string name="cs_after_drunkards_23">cs_after_drunkards_23</string>
-    <string name="cs_after_drunkards_24">cs_after_drunkards_24</string>
-    <string name="cs_after_drunkards_25">cs_after_drunkards_25</string>
-    <string name="cs_after_drunkards_26">cs_after_drunkards_26</string>
-    <string name="cs_after_drunkards_27">cs_after_drunkards_27</string>
+    <string name="cs_after_drunkards_0">Gentlemen, if you do not stop drinking, you will die very soon.</string>
+    <string name="cs_after_drunkards_1">Remember, the word "rum" and the word "death" mean the same thing to you.</string>
+    <string name="cs_after_drunkards_2">Kittaro, Zoi! You have to hurry, the tension in the city is increasing.</string>
+    <string name="cs_after_drunkards_3">Yes, how do everyone know that I need somewhere?</string>
+    <string name="cs_after_drunkards_4">A couple of magic tricks, that\'s all.</string>
+    <string name="cs_after_drunkards_5">Hello, Palmos.</string>
+    <string name="cs_after_drunkards_6">Hello, Zoi.</string>
+    <string name="cs_after_drunkards_7">Kittaro, meet the former court magician.</string>
+    <string name="cs_after_drunkards_8">Yeah, you don\'t look well. I see rumors are confirmed ...</string>
+    <string name="cs_after_drunkards_9">What rumors?</string>
+    <string name="cs_after_drunkards_10">Too vague to draw any conclusions from them.</string>
+    <string name="cs_after_drunkards_11">Well, in that case, let\'s go with us, such a magician like you would be useful to us.</string>
+    <string name="cs_after_drunkards_12">I can\'t, I have too much to do, and there must be someone to keep order here!</string>
+    <string name="cs_after_drunkards_13">I\'ll go with them.</string>
+    <string name="cs_after_drunkards_14">Aima! It\'s too dangerous, I need you here!</string>
+    <string name="cs_after_drunkards_15">I\'m sure you will cope with everything yourself, besides you said once</string>
+    <string name="cs_after_drunkards_16">that the appearance of the spirit is an event that occurs once in a lifetime and such an experience cannot be missed.</string>
+    <string name="cs_after_drunkards_17">Yes, I said...</string>
+    <string name="cs_after_drunkards_18">Kittaro, meet my student Aima.</string>
+    <string name="cs_after_drunkards_19">There is no need to represent her to you, Zoi.</string>
+    <string name="cs_after_drunkards_20">No. Since I am a spirit, I am almost omnipresent, which means that I know a lot and I know many.</string>
+    <string name="cs_after_drunkards_21">I remember her as a girl, in those days it was still possible to walk and collect petalubas without fear in my domain...</string>
+    <string name="cs_after_drunkards_22">Okay, okay, we know the story.</string>
+    <string name="cs_after_drunkards_23">If the spirit does not stop in time, he will tell you his whole life, believe me.</string>
+    <string name="cs_after_drunkards_24">Kittaro take these artifacts - these are Actines, I have just three of them, Ayma will explain how to use them.</string>
+    <string name="cs_after_drunkards_25">Actines are hexes that can be placed anywhere in the cell.</string>
+    <string name="cs_after_drunkards_26">If two actines from friendly cells come together at a distance of 10 or less,</string>
+    <string name="cs_after_drunkards_27">there is a beam between them, hitting enemies by 5 units.</string>
 
     <!--
       - Cut scene Laimo

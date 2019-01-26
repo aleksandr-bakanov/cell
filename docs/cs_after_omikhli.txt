@@ -1,12 +1,12 @@
-    <string name="cs_after_omikhli_0">Туман рассеивается</string>
-    <string name="cs_after_omikhli_1">Ага вон и пещеры, так все это время я был так близко!</string>
-    <string name="cs_after_omikhli_2">Чертов демон, запутать меня хотел</string>
-    <string name="cs_after_omikhli_3">Ладно, время подлечится и идти дальше</string>
-    <string name="cs_after_omikhli_4">Ты открыл новый тип ячеек - энергетические (желтые)</string>
-    <string name="cs_after_omikhli_5">Они обладают силой 1, но что самое главное, дают силу атакующим ячейкам.</string>
-    <string name="cs_after_omikhli_6">+2 каждой соседней, и +1 атакующим, находящимся на расстоянии 2.</string>
-    <string name="cs_after_omikhli_7">Жизненные ячейки не могут соседствовать с двумя и более энергетическими.</string>
-    <string name="cs_after_omikhli_8">Энергетические ячейки могут использоваться для связи жизненных.</string>
+    <string name="cs_after_omikhli_0">The fog clears</string>
+    <string name="cs_after_omikhli_1">Aha won and cave, so all this time I was so close!</string>
+    <string name="cs_after_omikhli_2">Bloody demon, wanted to confuse me</string>
+    <string name="cs_after_omikhli_3">Okay, time to heal and move on</string>
+    <string name="cs_after_omikhli_4">You discovered a new type of cells - energy (yellow)</string>
+    <string name="cs_after_omikhli_5">They have the power of 1, but most importantly, give power to the attacking cells.</string>
+    <string name="cs_after_omikhli_6">+2 each adjacent, and +1 attacking, located at a distance of 2.</string>
+    <string name="cs_after_omikhli_7">Vital cells can not coexist with two or more energy.</string>
+    <string name="cs_after_omikhli_8">Energy cells can be used for life communication.</string>
 
     <string name="cs_after_omikhli_0">cs_after_omikhli_0</string>
     <string name="cs_after_omikhli_1">cs_after_omikhli_1</string>

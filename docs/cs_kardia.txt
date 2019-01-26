@@ -1,14 +1,14 @@
-    <string name="cs_kardia_0">Бывшая столица Кардья.</string>
-    <string name="cs_kardia_1">Ух-ты, ты только глянь на эти дома!</string>
-    <string name="cs_kardia_2">Нам лучше здесь не задерживаться.</string>
-    <string name="cs_kardia_3">Почему?</string>
-    <string name="cs_kardia_4">Местные недолюбливают чужаков, особенно таких как мы.</string>
-    <string name="cs_kardia_5">А что с нами не так?</string>
-    <string name="cs_kardia_6">Эээ, салаги, вы откуда взялись?</string>
-    <string name="cs_kardia_7">Так вот что ты имел в виду.</string>
-    <string name="cs_kardia_8">От вас провинциалов одни беды!</string>
-    <string name="cs_kardia_9">Это просто пьянь, идем Киттаро.</string>
-    <string name="cs_kardia_10">Ну уж нет, никуда вы не пойдете, пока на заплатите королевскую пошлину!</string>
+    <string name="cs_kardia_0">Former capital of Cardea.</string>
+    <string name="cs_kardia_1">Wow, you just look at these houses!</string>
+    <string name="cs_kardia_2">We'd better not stay here.</string>
+    <string name="cs_kardia_3">Why?</string>
+    <string name="cs_kardia_4">Local do not like strangers, especially those like us.</string>
+    <string name="cs_kardia_5">What's wrong with us?</string>
+    <string name="cs_kardia_6">Uh, salagi, where did you come from?</string>
+    <string name="cs_kardia_7">So that's what you meant.</string>
+    <string name="cs_kardia_8">From you provincials alone misfortunes!</string>
+    <string name="cs_kardia_9">It's just drunk, let's go Kittaro.</string>
+    <string name="cs_kardia_10">Oh, no, you won't go anywhere until you pay the royal fee!</string>
 
     <string name="cs_kardia_0">cs_kardia_0</string>
     <string name="cs_kardia_1">cs_kardia_1</string>

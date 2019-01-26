@@ -916,12 +916,12 @@
                                 <LayoutPositions />
                               </value>
                             </entry>
-                            <entry key="action_mainFragment_to_cutSceneIntroduction">
+                            <entry key="action_mainFragment_to_heroScreen">
                               <value>
                                 <LayoutPositions />
                               </value>
                             </entry>
-                            <entry key="action_mainFragment_to_heroScreen">
+                            <entry key="action_mainFragment_to_newGameFragment">
                               <value>
                                 <LayoutPositions />
                               </value>
@@ -939,6 +939,15 @@
                             <option name="x" value="-561" />
                             <option name="y" value="103" />
                           </Point>
+                        </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_newGameFragment_to_cutSceneIntroduction">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
                         </option>
                       </LayoutPositions>
                     </value>

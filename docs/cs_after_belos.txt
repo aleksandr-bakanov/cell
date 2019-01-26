@@ -1,15 +1,17 @@
-    <string name="cs_after_belos_0">Ну и зверюга, чуть не сожрал меня!</string>
-    <string name="cs_after_belos_1">Надо рассказать старейшине что дело сделано.</string>
-    <string name="cs_after_belos_2">О, ты вернулся.</string>
-    <string name="cs_after_belos_3">И с хорошими новостями! Белос вас больше не побеспокоит.</string>
-    <string name="cs_after_belos_4">Вот радость! Эй, народ, напасть ушла!</string>
-    <string name="cs_after_belos_5">Ну парень, молодец! Вот что, я тебя с пустыми руками не отпущу.</string>
-    <string name="cs_after_belos_6">А лучший дар – это знания. У меня от бабки осталась книга одна.</string>
-    <string name="cs_after_belos_7">Сам-то я ни бум-бум в этой писанине, а вот бабка говорила,</string>
-    <string name="cs_after_belos_8">что по этой книге можно выучится превращать одни хексы в другие.</string>
-    <string name="cs_after_belos_9">Держи, тебе это уж точно пригодится больше чем мне.</string>
-    <string name="cs_after_belos_10">Теперь ты можешь превращать одни хексы в другие и обратно.</string>
-    <string name="cs_after_belos_11">Проверь новую кнопку на экране героя.</string>
+    <string name="cs_after_belos_0">Hills of Analafro</string>
+    <string name="cs_after_belos_1">Yeah, the weather is bad, the third day hanging this damn fog.</string>
+    <string name="cs_after_belos_2">And every day he is thicker and thicker</string>
+    <string name="cs_after_belos_3">Oh, not good for it ...</string>
+    <string name="cs_after_belos_4">................</string>
+    <string name="cs_after_belos_5">........ hss-s ........</string>
+    <string name="cs_after_belos_6">Who is there?</string>
+    <string name="cs_after_belos_7">You ask who is here, not even knowing where you are?</string>
+    <string name="cs_after_belos_8">Well, let me introduce myself.</string>
+    <string name="cs_after_belos_9">I am the great demon Omihli, and who are you and what are you doing in my domain?</string>
+    <string name="cs_after_belos_10">I am Kittaro and I need to get to the capital as soon as possible.</string>
+    <string name="cs_after_belos_11">This will not happen, no one has yet passed through my lands without paying for it!</string>
+    <string name="cs_after_belos_12">........ hss-s ........</string>
+    <string name="cs_after_belos_13">................</string>
 
     <string name="cs_after_belos_0">cs_after_belos_0</string>
     <string name="cs_after_belos_1">cs_after_belos_1</string>
@@ -23,6 +25,8 @@
     <string name="cs_after_belos_9">cs_after_belos_9</string>
     <string name="cs_after_belos_10">cs_after_belos_10</string>
     <string name="cs_after_belos_11">cs_after_belos_11</string>
+    <string name="cs_after_belos_12">cs_after_belos_12</string>
+    <string name="cs_after_belos_13">cs_after_belos_13</string>
 
                 '0': { text: 'cs_after_belos_0' },
                 '1': { text: 'cs_after_belos_1' },
@@ -36,3 +40,5 @@
                 '9': { text: 'cs_after_belos_9' },
                 '10': { text: 'cs_after_belos_10' },
                 '11': { text: 'cs_after_belos_11' },
+                '12': { text: 'cs_after_belos_12' },
+                '13': { text: 'cs_after_belos_13' },
