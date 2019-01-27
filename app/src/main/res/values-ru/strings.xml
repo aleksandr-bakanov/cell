@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">Послание Киттаро</string>
+
+    <!-- Main view -->
+    <string name="button_go_to_battle_title">Бой</string>
+    <string name="button_new_game_title">Новая игра</string>
+    <string name="button_hero_screen_title">Герои</string>
+    <string name="button_exit_game_title">Выход</string>
+    <string name="button_continue_game_title">Продолжить</string>
+
     <!-- New game view -->
+    <string name="button_confirm_title">Согласен</string>
+    <string name="button_deny_title">Назад</string>
     <string name="text_warning_message">Новая игра сбросит весь достигнутый прогресс. Вы уверены?</string>
 
     <!-- Rules editor view -->

@@ -1,28 +1,21 @@
 <resources>
-    <string name="app_name" translatable="false">One Cell</string>
+    <string name="app_name">Kittaro\'s message</string>
 
     <!-- Main view -->
-    <string name="button_show_cells_title" translatable="false">Cells</string>
-    <string name="button_go_to_battle_title" translatable="false">Battle</string>
-    <string name="button_new_game_title" translatable="false">New game</string>
-    <string name="button_hero_screen_title" translatable="false">Heroes</string>
-    <string name="button_exit_game_title" translatable="false">Exit game</string>
-    <string name="button_continue_game_title" translatable="false">Continue</string>
+    <string name="button_go_to_battle_title">Battle</string>
+    <string name="button_new_game_title">New game</string>
+    <string name="button_hero_screen_title">Heroes</string>
+    <string name="button_exit_game_title">Exit game</string>
+    <string name="button_continue_game_title">Continue</string>
     <string name="image_description_main_menu_background" translatable="false">Main menu background</string>
 
-    <string name="button_start_battle_title" translatable="false">Start battle</string>
-    <string name="button_create_new_cell_title" translatable="false">Create new cell</string>
-    <string name="button_edit_cell_title" translatable="false">Edit</string>
-    <string name="button_remove_cell_title" translatable="false">Remove</string>
-
     <!-- New game view -->
-    <string name="button_confirm_title" translatable="false">Confirm</string>
-    <string name="button_deny_title" translatable="false">Deny</string>
+    <string name="button_confirm_title">Confirm</string>
+    <string name="button_deny_title">Deny</string>
     <string name="text_warning_message">New game will erase any progress done so far.\nAre you sure?</string>
 
     <!-- Heroes view -->
     <string name="text_cell_name" translatable="false">Name</string>
-    <string name="text_main_menu" translatable="false">Main menu</string>
     <string name="text_next_scene" translatable="false">Go</string>
     <string name="text_history_stub" translatable="false">\u0020</string>
     <string name="button_transform_life_to_energy_hex_title" translatable="false">5L -> 1E</string>
@@ -41,8 +34,6 @@
     <string name="radio_button_remove_cell_title" translatable="false">Remove</string>
 
     <!-- Battle view -->
-    <string name="button_next_step_title" translatable="false">Full step</string>
-    <string name="button_partial_step_title" translatable="false">Partial step</string>
     <string name="button_finish_battle_title" translatable="false">View results</string>
 
     <!-- Battle results view -->
@@ -92,17 +83,6 @@
     <string name="button_next_frame_title" translatable="false">next</string>
     <string name="button_yes_title" translatable="false">yes</string>
     <string name="button_no_title" translatable="false">no</string>
-
-    <!-- Scenario -->
-    <string name="scene_manager_scenario" translatable="false">
-        {
-            scenes: {
-                main_menu: { window: \"MAIN\" },
-                introduction: { window: \"CUT_SCENE\", params: \"cut_scene_introduction\", next_scene: \"battle_with_gopniks\" },
-                battle_with_gopniks: { window: \"BATTLE\", params: [0, 2, 3], next_scene: \"main_menu\" }
-            }
-        }
-    </string>
 
     <!-- Navigation graph constants -->
     <string name="next_scene" translatable="false">next_scene</string>
