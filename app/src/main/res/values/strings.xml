@@ -1161,7 +1161,7 @@
         <!-- Belos -->
         <item>
             "{
-                hexBucket: {0:50,1:50,2:50,3:50},
+                hexBucket: {0:100,1:100,2:100,3:100},
                 direction: 'N',
                 hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":-1,"second":1},{"q":-1,"r":1,"s":0,"type":"LIFE"}],[{"first":0,"second":1},{"q":0,"r":1,"s":-1,"type":"LIFE"}],[{"first":-1,"second":2},{"q":-1,"r":2,"s":-1,"type":"LIFE"}],[{"first":0,"second":-1},{"q":0,"r":-1,"s":1,"type":"LIFE"}],[{"first":1,"second":-1},{"q":1,"r":-1,"s":0,"type":"LIFE"}],[{"first":1,"second":-2},{"q":1,"r":-2,"s":1,"type":"LIFE"}],[{"first":1,"second":-3},{"q":1,"r":-3,"s":2,"type":"LIFE"}],[{"first":2,"second":-3},{"q":2,"r":-3,"s":1,"type":"LIFE"}],[{"first":-2,"second":3},{"q":-2,"r":3,"s":-1,"type":"LIFE"}],[{"first":-1,"second":3},{"q":-1,"r":3,"s":-2,"type":"LIFE"}],[{"first":-2,"second":4},{"q":-2,"r":4,"s":-2,"type":"LIFE"}],[{"first":-3,"second":5},{"q":-3,"r":5,"s":-2,"type":"LIFE"}],[{"first":-2,"second":5},{"q":-2,"r":5,"s":-3,"type":"LIFE"}],[{"first":-3,"second":6},{"q":-3,"r":6,"s":-3,"type":"LIFE"}],[{"first":-4,"second":7},{"q":-4,"r":7,"s":-3,"type":"LIFE"}],[{"first":-3,"second":7},{"q":-3,"r":7,"s":-4,"type":"LIFE"}],[{"first":2,"second":-4},{"q":2,"r":-4,"s":2,"type":"LIFE"}],[{"first":2,"second":-5},{"q":2,"r":-5,"s":3,"type":"LIFE"}],[{"first":3,"second":-5},{"q":3,"r":-5,"s":2,"type":"LIFE"}],[{"first":-4,"second":8},{"q":-4,"r":8,"s":-4,"type":"ATTACK"}],[{"first":-4,"second":6},{"q":-4,"r":6,"s":-2,"type":"LIFE"}],[{"first":-5,"second":7},{"q":-5,"r":7,"s":-2,"type":"LIFE"}],[{"first":-5,"second":8},{"q":-5,"r":8,"s":-3,"type":"LIFE"}],[{"first":-3,"second":8},{"q":-3,"r":8,"s":-5,"type":"LIFE"}],[{"first":-2,"second":7},{"q":-2,"r":7,"s":-5,"type":"LIFE"}],[{"first":-2,"second":6},{"q":-2,"r":6,"s":-4,"type":"LIFE"}],[{"first":-5,"second":9},{"q":-5,"r":9,"s":-4,"type":"LIFE"}],[{"first":-4,"second":9},{"q":-4,"r":9,"s":-5,"type":"LIFE"}],[{"first":-5,"second":10},{"q":-5,"r":10,"s":-5,"type":"ATTACK"}],[{"first":3,"second":-6},{"q":3,"r":-6,"s":3,"type":"LIFE"}],[{"first":4,"second":-7},{"q":4,"r":-7,"s":3,"type":"LIFE"}],[{"first":4,"second":-8},{"q":4,"r":-8,"s":4,"type":"LIFE"}],[{"first":4,"second":-9},{"q":4,"r":-9,"s":5,"type":"LIFE"}],[{"first":5,"second":-10},{"q":5,"r":-10,"s":5,"type":"LIFE"}],[{"first":6,"second":-11},{"q":6,"r":-11,"s":5,"type":"LIFE"}],[{"first":5,"second":-9},{"q":5,"r":-9,"s":4,"type":"ATTACK"}],[{"first":3,"second":-7},{"q":3,"r":-7,"s":4,"type":"ATTACK"}],[{"first":5,"second":-11},{"q":5,"r":-11,"s":6,"type":"ATTACK"}],[{"first":6,"second":-12},{"q":6,"r":-12,"s":6,"type":"ATTACK"}]],
                 groupId: 3,
@@ -1174,9 +1174,9 @@
         <!-- Omikhli -->
         <item>
             "{
-                hexBucket: {0:50,1:50,2:50,3:50},
+                hexBucket: {0:100,1:100,2:100,3:100},
                 direction: 'N',
-                hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":0,"second":-1},{"q":0,"r":-1,"s":1,"type":"ATTACK"}],[{"first":-1,"second":1},{"q":-1,"r":1,"s":0,"type":"ATTACK"}],[{"first":1,"second":0},{"q":1,"r":0,"s":-1,"type":"ATTACK"}],[{"first":-1,"second":0},{"q":-1,"r":0,"s":1,"type":"LIFE"}],[{"first":-1,"second":-1},{"q":-1,"r":-1,"s":2,"type":"LIFE"}],[{"first":0,"second":-2},{"q":0,"r":-2,"s":2,"type":"LIFE"}],[{"first":1,"second":-2},{"q":1,"r":-2,"s":1,"type":"LIFE"}],[{"first":1,"second":-1},{"q":1,"r":-1,"s":0,"type":"LIFE"}],[{"first":2,"second":-1},{"q":2,"r":-1,"s":-1,"type":"LIFE"}],[{"first":2,"second":0},{"q":2,"r":0,"s":-2,"type":"LIFE"}],[{"first":1,"second":1},{"q":1,"r":1,"s":-2,"type":"LIFE"}],[{"first":0,"second":1},{"q":0,"r":1,"s":-1,"type":"LIFE"}],[{"first":-1,"second":2},{"q":-1,"r":2,"s":-1,"type":"LIFE"}],[{"first":-2,"second":2},{"q":-2,"r":2,"s":0,"type":"LIFE"}],[{"first":-2,"second":1},{"q":-2,"r":1,"s":1,"type":"LIFE"}],[{"first":3,"second":0},{"q":3,"r":0,"s":-3,"type":"LIFE"}],[{"first":4,"second":-1},{"q":4,"r":-1,"s":-3,"type":"LIFE"}],[{"first":5,"second":-1},{"q":5,"r":-1,"s":-4,"type":"LIFE"}],[{"first":0,"second":-4},{"q":0,"r":-4,"s":4,"type":"LIFE"}],[{"first":1,"second":-5},{"q":1,"r":-5,"s":4,"type":"LIFE"}],[{"first":-3,"second":4},{"q":-3,"r":4,"s":-1,"type":"LIFE"}],[{"first":-4,"second":5},{"q":-4,"r":5,"s":-1,"type":"LIFE"}],[{"first":1,"second":3},{"q":1,"r":3,"s":-4,"type":"LIFE"}],[{"first":0,"second":4},{"q":0,"r":4,"s":-4,"type":"LIFE"}],[{"first":-4,"second":1},{"q":-4,"r":1,"s":3,"type":"LIFE"}],[{"first":-4,"second":0},{"q":-4,"r":0,"s":4,"type":"LIFE"}],[{"first":-3,"second":0},{"q":-3,"r":0,"s":3,"type":"LIFE"}],[{"first":-5,"second":0},{"q":-5,"r":0,"s":5,"type":"LIFE"}],[{"first":1,"second":4},{"q":1,"r":4,"s":-5,"type":"LIFE"}],[{"first":0,"second":5},{"q":0,"r":5,"s":-5,"type":"LIFE"}],[{"first":-5,"second":6},{"q":-5,"r":6,"s":-1,"type":"LIFE"}],[{"first":-5,"second":5},{"q":-5,"r":5,"s":0,"type":"LIFE"}],[{"first":-5,"second":1},{"q":-5,"r":1,"s":4,"type":"ATTACK"}],[{"first":-6,"second":6},{"q":-6,"r":6,"s":0,"type":"ATTACK"}],[{"first":-4,"second":6},{"q":-4,"r":6,"s":-2,"type":"ATTACK"}],[{"first":-4,"second":4},{"q":-4,"r":4,"s":0,"type":"ATTACK"}],[{"first":4,"second":0},{"q":4,"r":0,"s":-4,"type":"ATTACK"}],[{"first":1,"second":-4},{"q":1,"r":-4,"s":3,"type":"ATTACK"}],[{"first":4,"second":-3},{"q":4,"r":-3,"s":-1,"type":"LIFE"}],[{"first":4,"second":-4},{"q":4,"r":-4,"s":0,"type":"LIFE"}],[{"first":5,"second":-5},{"q":5,"r":-5,"s":0,"type":"LIFE"}],[{"first":6,"second":-5},{"q":6,"r":-5,"s":-1,"type":"LIFE"}],[{"first":5,"second":-4},{"q":5,"r":-4,"s":-1,"type":"ATTACK"}],[{"first":2,"second":-2},{"q":2,"r":-2,"s":0,"type":"ATTACK"}],[{"first":-3,"second":3},{"q":-3,"r":3,"s":0,"type":"ENERGY"}],[{"first":-3,"second":1},{"q":-3,"r":1,"s":2,"type":"ENERGY"}],[{"first":1,"second":2},{"q":1,"r":2,"s":-3,"type":"ENERGY"}],[{"first":2,"second":3},{"q":2,"r":3,"s":-5,"type":"ATTACK"}],[{"first":0,"second":-3},{"q":0,"r":-3,"s":3,"type":"ENERGY"}],[{"first":3,"second":-2},{"q":3,"r":-2,"s":-1,"type":"ENERGY"}],[{"first":-2,"second":3},{"q":-2,"r":3,"s":-1,"type":"LIFE"}],[{"first":-2,"second":0},{"q":-2,"r":0,"s":2,"type":"LIFE"}],[{"first":0,"second":3},{"q":0,"r":3,"s":-3,"type":"LIFE"}],[{"first":3,"second":-3},{"q":3,"r":-3,"s":0,"type":"LIFE"}],[{"first":1,"second":-3},{"q":1,"r":-3,"s":2,"type":"LIFE"}]],
+                hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":0,"second":-1},{"q":0,"r":-1,"s":1,"type":"ATTACK"}],[{"first":-1,"second":1},{"q":-1,"r":1,"s":0,"type":"ATTACK"}],[{"first":1,"second":0},{"q":1,"r":0,"s":-1,"type":"ATTACK"}],[{"first":-1,"second":0},{"q":-1,"r":0,"s":1,"type":"LIFE"}],[{"first":-1,"second":-1},{"q":-1,"r":-1,"s":2,"type":"LIFE"}],[{"first":0,"second":-2},{"q":0,"r":-2,"s":2,"type":"LIFE"}],[{"first":1,"second":-2},{"q":1,"r":-2,"s":1,"type":"LIFE"}],[{"first":1,"second":-1},{"q":1,"r":-1,"s":0,"type":"LIFE"}],[{"first":2,"second":-1},{"q":2,"r":-1,"s":-1,"type":"LIFE"}],[{"first":2,"second":0},{"q":2,"r":0,"s":-2,"type":"LIFE"}],[{"first":1,"second":1},{"q":1,"r":1,"s":-2,"type":"LIFE"}],[{"first":0,"second":1},{"q":0,"r":1,"s":-1,"type":"LIFE"}],[{"first":-1,"second":2},{"q":-1,"r":2,"s":-1,"type":"LIFE"}],[{"first":-2,"second":2},{"q":-2,"r":2,"s":0,"type":"LIFE"}],[{"first":-2,"second":1},{"q":-2,"r":1,"s":1,"type":"LIFE"}],[{"first":3,"second":0},{"q":3,"r":0,"s":-3,"type":"LIFE"}],[{"first":4,"second":-1},{"q":4,"r":-1,"s":-3,"type":"LIFE"}],[{"first":5,"second":-1},{"q":5,"r":-1,"s":-4,"type":"LIFE"}],[{"first":0,"second":-4},{"q":0,"r":-4,"s":4,"type":"LIFE"}],[{"first":1,"second":-5},{"q":1,"r":-5,"s":4,"type":"LIFE"}],[{"first":-3,"second":4},{"q":-3,"r":4,"s":-1,"type":"LIFE"}],[{"first":-4,"second":5},{"q":-4,"r":5,"s":-1,"type":"LIFE"}],[{"first":1,"second":3},{"q":1,"r":3,"s":-4,"type":"LIFE"}],[{"first":0,"second":4},{"q":0,"r":4,"s":-4,"type":"LIFE"}],[{"first":-4,"second":1},{"q":-4,"r":1,"s":3,"type":"LIFE"}],[{"first":-4,"second":0},{"q":-4,"r":0,"s":4,"type":"LIFE"}],[{"first":-3,"second":0},{"q":-3,"r":0,"s":3,"type":"LIFE"}],[{"first":-5,"second":0},{"q":-5,"r":0,"s":5,"type":"LIFE"}],[{"first":1,"second":4},{"q":1,"r":4,"s":-5,"type":"LIFE"}],[{"first":0,"second":5},{"q":0,"r":5,"s":-5,"type":"LIFE"}],[{"first":-5,"second":6},{"q":-5,"r":6,"s":-1,"type":"LIFE"}],[{"first":-5,"second":5},{"q":-5,"r":5,"s":0,"type":"LIFE"}],[{"first":-5,"second":1},{"q":-5,"r":1,"s":4,"type":"ATTACK"}],[{"first":-6,"second":6},{"q":-6,"r":6,"s":0,"type":"ATTACK"}],[{"first":-4,"second":6},{"q":-4,"r":6,"s":-2,"type":"ATTACK"}],[{"first":-4,"second":4},{"q":-4,"r":4,"s":0,"type":"ATTACK"}],[{"first":4,"second":0},{"q":4,"r":0,"s":-4,"type":"ATTACK"}],[{"first":1,"second":-4},{"q":1,"r":-4,"s":3,"type":"ATTACK"}],[{"first":4,"second":-3},{"q":4,"r":-3,"s":-1,"type":"LIFE"}],[{"first":4,"second":-4},{"q":4,"r":-4,"s":0,"type":"LIFE"}],[{"first":5,"second":-5},{"q":5,"r":-5,"s":0,"type":"LIFE"}],[{"first":6,"second":-5},{"q":6,"r":-5,"s":-1,"type":"LIFE"}],[{"first":2,"second":-2},{"q":2,"r":-2,"s":0,"type":"ATTACK"}],[{"first":-3,"second":3},{"q":-3,"r":3,"s":0,"type":"ENERGY"}],[{"first":-3,"second":1},{"q":-3,"r":1,"s":2,"type":"ENERGY"}],[{"first":1,"second":2},{"q":1,"r":2,"s":-3,"type":"ENERGY"}],[{"first":2,"second":3},{"q":2,"r":3,"s":-5,"type":"ATTACK"}],[{"first":0,"second":-3},{"q":0,"r":-3,"s":3,"type":"ENERGY"}],[{"first":3,"second":-2},{"q":3,"r":-2,"s":-1,"type":"ENERGY"}],[{"first":-2,"second":3},{"q":-2,"r":3,"s":-1,"type":"LIFE"}],[{"first":-2,"second":0},{"q":-2,"r":0,"s":2,"type":"LIFE"}],[{"first":0,"second":3},{"q":0,"r":3,"s":-3,"type":"LIFE"}],[{"first":3,"second":-3},{"q":3,"r":-3,"s":0,"type":"LIFE"}],[{"first":1,"second":-3},{"q":1,"r":-3,"s":2,"type":"LIFE"}],[{"first":-6,"second":7},{"q":-6,"r":7,"s":-1,"type":"LIFE"}],[{"first":-7,"second":7},{"q":-7,"r":7,"s":0,"type":"LIFE"}],[{"first":-5,"second":7},{"q":-5,"r":7,"s":-2,"type":"LIFE"}],[{"first":-6,"second":8},{"q":-6,"r":8,"s":-2,"type":"LIFE"}],[{"first":-7,"second":8},{"q":-7,"r":8,"s":-1,"type":"LIFE"}],[{"first":0,"second":2},{"q":0,"r":2,"s":-2,"type":"LIFE"}],[{"first":-1,"second":3},{"q":-1,"r":3,"s":-2,"type":"LIFE"}],[{"first":2,"second":4},{"q":2,"r":4,"s":-6,"type":"LIFE"}],[{"first":1,"second":5},{"q":1,"r":5,"s":-6,"type":"LIFE"}],[{"first":1,"second":6},{"q":1,"r":6,"s":-7,"type":"LIFE"}],[{"first":2,"second":5},{"q":2,"r":5,"s":-7,"type":"LIFE"}],[{"first":3,"second":4},{"q":3,"r":4,"s":-7,"type":"LIFE"}],[{"first":3,"second":5},{"q":3,"r":5,"s":-8,"type":"LIFE"}],[{"first":4,"second":4},{"q":4,"r":4,"s":-8,"type":"LIFE"}],[{"first":4,"second":3},{"q":4,"r":3,"s":-7,"type":"LIFE"}],[{"first":5,"second":4},{"q":5,"r":4,"s":-9,"type":"LIFE"}],[{"first":5,"second":3},{"q":5,"r":3,"s":-8,"type":"LIFE"}],[{"first":-6,"second":0},{"q":-6,"r":0,"s":6,"type":"LIFE"}],[{"first":-6,"second":1},{"q":-6,"r":1,"s":5,"type":"LIFE"}],[{"first":-5,"second":-1},{"q":-5,"r":-1,"s":6,"type":"LIFE"}],[{"first":-6,"second":-1},{"q":-6,"r":-1,"s":7,"type":"LIFE"}],[{"first":-7,"second":0},{"q":-7,"r":0,"s":7,"type":"ATTACK"}],[{"first":-7,"second":-1},{"q":-7,"r":-1,"s":8,"type":"LIFE"}],[{"first":-8,"second":0},{"q":-8,"r":0,"s":8,"type":"LIFE"}],[{"first":-9,"second":0},{"q":-9,"r":0,"s":9,"type":"LIFE"}],[{"first":-8,"second":-1},{"q":-8,"r":-1,"s":9,"type":"LIFE"}],[{"first":-5,"second":-2},{"q":-5,"r":-2,"s":7,"type":"LIFE"}],[{"first":-5,"second":-3},{"q":-5,"r":-3,"s":8,"type":"LIFE"}],[{"first":-4,"second":-4},{"q":-4,"r":-4,"s":8,"type":"LIFE"}],[{"first":-4,"second":-5},{"q":-4,"r":-5,"s":9,"type":"LIFE"}],[{"first":-4,"second":-6},{"q":-4,"r":-6,"s":10,"type":"LIFE"}],[{"first":-5,"second":-5},{"q":-5,"r":-5,"s":10,"type":"LIFE"}],[{"first":-3,"second":-6},{"q":-3,"r":-6,"s":9,"type":"LIFE"}],[{"first":-5,"second":-4},{"q":-5,"r":-4,"s":9,"type":"LIFE"}],[{"first":-4,"second":-3},{"q":-4,"r":-3,"s":7,"type":"LIFE"}],[{"first":-4,"second":-2},{"q":-4,"r":-2,"s":6,"type":"LIFE"}],[{"first":-3,"second":-5},{"q":-3,"r":-5,"s":8,"type":"ATTACK"}],[{"first":-7,"second":9},{"q":-7,"r":9,"s":-2,"type":"ATTACK"}],[{"first":-8,"second":9},{"q":-8,"r":9,"s":-1,"type":"LIFE"}],[{"first":-8,"second":10},{"q":-8,"r":10,"s":-2,"type":"LIFE"}],[{"first":-9,"second":10},{"q":-9,"r":10,"s":-1,"type":"LIFE"}],[{"first":-8,"second":11},{"q":-8,"r":11,"s":-3,"type":"LIFE"}],[{"first":-7,"second":10},{"q":-7,"r":10,"s":-3,"type":"LIFE"}],[{"first":-8,"second":8},{"q":-8,"r":8,"s":0,"type":"LIFE"}],[{"first":-9,"second":9},{"q":-9,"r":9,"s":0,"type":"LIFE"}],[{"first":2,"second":-5},{"q":2,"r":-5,"s":3,"type":"LIFE"}],[{"first":3,"second":-6},{"q":3,"r":-6,"s":3,"type":"LIFE"}],[{"first":4,"second":-7},{"q":4,"r":-7,"s":3,"type":"LIFE"}],[{"first":3,"second":-7},{"q":3,"r":-7,"s":4,"type":"LIFE"}],[{"first":2,"second":-6},{"q":2,"r":-6,"s":4,"type":"ATTACK"}],[{"first":-2,"second":4},{"q":-2,"r":4,"s":-2,"type":"LIFE"}],[{"first":-3,"second":5},{"q":-3,"r":5,"s":-2,"type":"LIFE"}],[{"first":-6,"second":5},{"q":-6,"r":5,"s":1,"type":"ENERGY"}],[{"first":0,"second":6},{"q":0,"r":6,"s":-6,"type":"ATTACK"}],[{"first":-4,"second":-1},{"q":-4,"r":-1,"s":5,"type":"ATTACK"}],[{"first":-6,"second":-2},{"q":-6,"r":-2,"s":8,"type":"ATTACK"}],[{"first":-1,"second":-2},{"q":-1,"r":-2,"s":3,"type":"ATTACK"}],[{"first":2,"second":1},{"q":2,"r":1,"s":-3,"type":"ATTACK"}],[{"first":4,"second":5},{"q":4,"r":5,"s":-9,"type":"ATTACK"}],[{"first":4,"second":-5},{"q":4,"r":-5,"s":1,"type":"ENERGY"}],[{"first":5,"second":-6},{"q":5,"r":-6,"s":1,"type":"ATTACK"}],[{"first":4,"second":-6},{"q":4,"r":-6,"s":2,"type":"ATTACK"}],[{"first":5,"second":-7},{"q":5,"r":-7,"s":2,"type":"ATTACK"}],[{"first":5,"second":-8},{"q":5,"r":-8,"s":3,"type":"ATTACK"}],[{"first":4,"second":-8},{"q":4,"r":-8,"s":4,"type":"ATTACK"}],[{"first":5,"second":-2},{"q":5,"r":-2,"s":-3,"type":"ATTACK"}],[{"first":6,"second":-2},{"q":6,"r":-2,"s":-4,"type":"ATTACK"}],[{"first":5,"second":2},{"q":5,"r":2,"s":-7,"type":"ATTACK"}],[{"first":6,"second":3},{"q":6,"r":3,"s":-9,"type":"ATTACK"}],[{"first":6,"second":2},{"q":6,"r":2,"s":-8,"type":"ATTACK"}],[{"first":6,"second":4},{"q":6,"r":4,"s":-10,"type":"ATTACK"}],[{"first":-9,"second":11},{"q":-9,"r":11,"s":-2,"type":"ATTACK"}],[{"first":-9,"second":12},{"q":-9,"r":12,"s":-3,"type":"ATTACK"}],[{"first":-8,"second":12},{"q":-8,"r":12,"s":-4,"type":"ATTACK"}],[{"first":-7,"second":11},{"q":-7,"r":11,"s":-4,"type":"ATTACK"}],[{"first":-1,"second":-3},{"q":-1,"r":-3,"s":4,"type":"ATTACK"}],[{"first":-1,"second":-4},{"q":-1,"r":-4,"s":5,"type":"ATTACK"}],[{"first":1,"second":-6},{"q":1,"r":-6,"s":5,"type":"ATTACK"}],[{"first":0,"second":-5},{"q":0,"r":-5,"s":5,"type":"ATTACK"}],[{"first":7,"second":-5},{"q":7,"r":-5,"s":-2,"type":"ENERGY"}],[{"first":6,"second":-4},{"q":6,"r":-4,"s":-2,"type":"ATTACK"}],[{"first":8,"second":-6},{"q":8,"r":-6,"s":-2,"type":"ATTACK"}],[{"first":6,"second":-1},{"q":6,"r":-1,"s":-5,"type":"ATTACK"}],[{"first":5,"second":-4},{"q":5,"r":-4,"s":-1,"type":"LIFE"}],[{"first":6,"second":-6},{"q":6,"r":-6,"s":0,"type":"LIFE"}],[{"first":7,"second":-6},{"q":7,"r":-6,"s":-1,"type":"LIFE"}],[{"first":6,"second":-7},{"q":6,"r":-7,"s":1,"type":"LIFE"}],[{"first":7,"second":-8},{"q":7,"r":-8,"s":1,"type":"ENERGY"}],[{"first":7,"second":-7},{"q":7,"r":-7,"s":0,"type":"LIFE"}],[{"first":8,"second":-7},{"q":8,"r":-7,"s":-1,"type":"ATTACK"}],[{"first":8,"second":-8},{"q":8,"r":-8,"s":0,"type":"ATTACK"}],[{"first":8,"second":-9},{"q":8,"r":-9,"s":1,"type":"ATTACK"}],[{"first":7,"second":-9},{"q":7,"r":-9,"s":2,"type":"ATTACK"}],[{"first":8,"second":-5},{"q":8,"r":-5,"s":-3,"type":"ATTACK"}],[{"first":6,"second":-8},{"q":6,"r":-8,"s":2,"type":"ATTACK"}]],
                 groupId: 4,
                 id: 12,
                 name: 'character_name_omikhli',
@@ -1187,225 +1187,225 @@
         <!-- Nihteribs -->
         <item>
             "{
-                hexBucket: {0:50,1:50,2:50,3:50},
+                hexBucket: {0:100,1:100,2:100,3:100},
                 direction: 'N',
-                hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":-1,"second":1},{"q":-1,"r":1,"s":0,"type":"ATTACK"}]],
+                hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":0,"second":1},{"q":0,"r":1,"s":-1,"type":"ATTACK"}],[{"first":1,"second":0},{"q":1,"r":0,"s":-1,"type":"ENERGY"}],[{"first":1,"second":-1},{"q":1,"r":-1,"s":0,"type":"ATTACK"}]],
                 groupId: 5,
                 id: 13,
                 name: 'character_name_nihterib_1',
                 origin: {q:0,r:0,s:0,type:'REMOVE'},
-                rules: []
+                rules: [{"action":{"act":"CHANGE_DIRECTION","value":0},"conditions":[{"expected":0,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":1},"conditions":[{"expected":1,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":2},"conditions":[{"expected":2,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":3},"conditions":[{"expected":3,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":4},"conditions":[{"expected":4,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":5},"conditions":[{"expected":5,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]}]
             }"
         </item>
         <item>
             "{
-                hexBucket: {0:50,1:50,2:50,3:50},
+                hexBucket: {0:100,1:100,2:100,3:100},
                 direction: 'N',
-                hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":1,"second":-1},{"q":1,"r":-1,"s":0,"type":"LIFE"}],[{"first":1,"second":0},{"q":1,"r":0,"s":-1,"type":"ATTACK"}]],
+                hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":1,"second":-1},{"q":1,"r":-1,"s":0,"type":"LIFE"}],[{"first":1,"second":0},{"q":1,"r":0,"s":-1,"type":"ATTACK"}],[{"first":0,"second":1},{"q":0,"r":1,"s":-1,"type":"ENERGY"}]],
                 groupId: 5,
                 id: 14,
                 name: 'character_name_nihterib_2',
                 origin: {q:0,r:0,s:0,type:'REMOVE'},
-                rules: []
+                rules: [{"action":{"act":"CHANGE_DIRECTION","value":0},"conditions":[{"expected":0,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":1},"conditions":[{"expected":1,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":2},"conditions":[{"expected":2,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":3},"conditions":[{"expected":3,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":4},"conditions":[{"expected":4,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":5},"conditions":[{"expected":5,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]}]
             }"
         </item>
         <item>
             "{
-                hexBucket: {0:50,1:50,2:50,3:50},
+                hexBucket: {0:100,1:100,2:100,3:100},
                 direction: 'N',
-                hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":1,"second":0},{"q":1,"r":0,"s":-1,"type":"LIFE"}],[{"first":2,"second":0},{"q":2,"r":0,"s":-2,"type":"LIFE"}]],
+                hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":0,"second":1},{"q":0,"r":1,"s":-1,"type":"LIFE"}],[{"first":0,"second":2},{"q":0,"r":2,"s":-2,"type":"LIFE"}],[{"first":-1,"second":1},{"q":-1,"r":1,"s":0,"type":"ATTACK"}],[{"first":1,"second":1},{"q":1,"r":1,"s":-2,"type":"ATTACK"}]],
                 groupId: 5,
                 id: 15,
                 name: 'character_name_nihterib_3',
                 origin: {q:0,r:0,s:0,type:'REMOVE'},
-                rules: []
+                rules: [{"action":{"act":"CHANGE_DIRECTION","value":0},"conditions":[{"expected":0,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":1},"conditions":[{"expected":1,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":2},"conditions":[{"expected":2,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":3},"conditions":[{"expected":3,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":4},"conditions":[{"expected":4,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":5},"conditions":[{"expected":5,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]}]
             }"
         </item>
         <item>
             "{
-                hexBucket: {0:50,1:50,2:50,3:50},
+                hexBucket: {0:100,1:100,2:100,3:100},
                 direction: 'N',
-                hexes: [[{"first":0,"second":0},{"type":"LIFE","q":0,"r":0,"s":0}]],
+                hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":1,"second":0},{"q":1,"r":0,"s":-1,"type":"ENERGY"}],[{"first":1,"second":-1},{"q":1,"r":-1,"s":0,"type":"ATTACK"}]],
                 groupId: 5,
                 id: 16,
                 name: 'character_name_nihterib_4',
                 origin: {q:0,r:0,s:0,type:'REMOVE'},
-                rules: []
+                rules: [{"action":{"act":"CHANGE_DIRECTION","value":0},"conditions":[{"expected":0,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":1},"conditions":[{"expected":1,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":2},"conditions":[{"expected":2,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":3},"conditions":[{"expected":3,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":4},"conditions":[{"expected":4,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":5},"conditions":[{"expected":5,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]}]
             }"
         </item>
         <item>
             "{
-                hexBucket: {0:50,1:50,2:50,3:50},
+                hexBucket: {0:100,1:100,2:100,3:100},
                 direction: 'N',
-                hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":0,"second":-1},{"q":0,"r":-1,"s":1,"type":"ATTACK"}]],
+                hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":0,"second":-1},{"q":0,"r":-1,"s":1,"type":"ATTACK"}],[{"first":-1,"second":0},{"q":-1,"r":0,"s":1,"type":"ENERGY"}],[{"first":0,"second":1},{"q":0,"r":1,"s":-1,"type":"ATTACK"}]],
                 groupId: 5,
                 id: 17,
                 name: 'character_name_nihterib_5',
                 origin: {q:0,r:0,s:0,type:'REMOVE'},
-                rules: []
+                rules: [{"action":{"act":"CHANGE_DIRECTION","value":0},"conditions":[{"expected":0,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":1},"conditions":[{"expected":1,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":2},"conditions":[{"expected":2,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":3},"conditions":[{"expected":3,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":4},"conditions":[{"expected":4,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":5},"conditions":[{"expected":5,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]}]
             }"
         </item>
         <item>
             "{
-                hexBucket: {0:50,1:50,2:50,3:50},
+                hexBucket: {0:100,1:100,2:100,3:100},
                 direction: 'N',
-                hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":0,"second":-1},{"q":0,"r":-1,"s":1,"type":"ATTACK"}]],
+                hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":0,"second":-1},{"q":0,"r":-1,"s":1,"type":"ATTACK"}],[{"first":1,"second":-1},{"q":1,"r":-1,"s":0,"type":"ENERGY"}],[{"first":1,"second":0},{"q":1,"r":0,"s":-1,"type":"ATTACK"}],[{"first":0,"second":1},{"q":0,"r":1,"s":-1,"type":"ATTACK"}]],
                 groupId: 5,
                 id: 18,
                 name: 'character_name_nihterib_6',
                 origin: {q:0,r:0,s:0,type:'REMOVE'},
-                rules: []
+                rules: [{"action":{"act":"CHANGE_DIRECTION","value":0},"conditions":[{"expected":0,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":1},"conditions":[{"expected":1,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":2},"conditions":[{"expected":2,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":3},"conditions":[{"expected":3,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":4},"conditions":[{"expected":4,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":5},"conditions":[{"expected":5,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]}]
             }"
         </item>
         <item>
             "{
-                hexBucket: {0:50,1:50,2:50,3:50},
+                hexBucket: {0:100,1:100,2:100,3:100},
                 direction: 'N',
-                hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":0,"second":-1},{"q":0,"r":-1,"s":1,"type":"ATTACK"}]],
+                hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":0,"second":-1},{"q":0,"r":-1,"s":1,"type":"ATTACK"}],[{"first":-1,"second":0},{"q":-1,"r":0,"s":1,"type":"ATTACK"}],[{"first":-1,"second":1},{"q":-1,"r":1,"s":0,"type":"ATTACK"}],[{"first":0,"second":1},{"q":0,"r":1,"s":-1,"type":"ATTACK"}],[{"first":1,"second":0},{"q":1,"r":0,"s":-1,"type":"ATTACK"}],[{"first":1,"second":-1},{"q":1,"r":-1,"s":0,"type":"ATTACK"}]],
                 groupId: 5,
                 id: 19,
                 name: 'character_name_nihterib_7',
                 origin: {q:0,r:0,s:0,type:'REMOVE'},
-                rules: []
+                rules: [{"action":{"act":"CHANGE_DIRECTION","value":0},"conditions":[{"expected":0,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":1},"conditions":[{"expected":1,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":2},"conditions":[{"expected":2,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":3},"conditions":[{"expected":3,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":4},"conditions":[{"expected":4,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":5},"conditions":[{"expected":5,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]}]
             }"
         </item>
         <item>
             "{
-                hexBucket: {0:50,1:50,2:50,3:50},
+                hexBucket: {0:100,1:100,2:100,3:100},
                 direction: 'N',
-                hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":0,"second":-1},{"q":0,"r":-1,"s":1,"type":"ATTACK"}]],
+                hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":0,"second":-1},{"q":0,"r":-1,"s":1,"type":"ATTACK"}],[{"first":1,"second":-1},{"q":1,"r":-1,"s":0,"type":"ENERGY"}],[{"first":1,"second":-2},{"q":1,"r":-2,"s":1,"type":"ATTACK"}]],
                 groupId: 5,
                 id: 20,
                 name: 'character_name_nihterib_8',
                 origin: {q:0,r:0,s:0,type:'REMOVE'},
-                rules: []
+                rules: [{"action":{"act":"CHANGE_DIRECTION","value":0},"conditions":[{"expected":0,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":1},"conditions":[{"expected":1,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":2},"conditions":[{"expected":2,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":3},"conditions":[{"expected":3,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":4},"conditions":[{"expected":4,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":5},"conditions":[{"expected":5,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]}]
             }"
         </item>
         <item>
             "{
-                hexBucket: {0:50,1:50,2:50,3:50},
+                hexBucket: {0:100,1:100,2:100,3:100},
                 direction: 'N',
-                hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":0,"second":-1},{"q":0,"r":-1,"s":1,"type":"ATTACK"}]],
+                hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":0,"second":-1},{"q":0,"r":-1,"s":1,"type":"ATTACK"}],[{"first":-1,"second":0},{"q":-1,"r":0,"s":1,"type":"ENERGY"}],[{"first":1,"second":0},{"q":1,"r":0,"s":-1,"type":"LIFE"}],[{"first":2,"second":0},{"q":2,"r":0,"s":-2,"type":"ENERGY"}],[{"first":2,"second":-1},{"q":2,"r":-1,"s":-1,"type":"ATTACK"}],[{"first":0,"second":1},{"q":0,"r":1,"s":-1,"type":"ATTACK"}]],
                 groupId: 5,
                 id: 21,
                 name: 'character_name_nihterib_9',
                 origin: {q:0,r:0,s:0,type:'REMOVE'},
-                rules: []
+                rules: [{"action":{"act":"CHANGE_DIRECTION","value":0},"conditions":[{"expected":0,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":1},"conditions":[{"expected":1,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":2},"conditions":[{"expected":2,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":3},"conditions":[{"expected":3,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":4},"conditions":[{"expected":4,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":5},"conditions":[{"expected":5,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]}]
             }"
         </item>
         <item>
             "{
-                hexBucket: {0:50,1:50,2:50,3:50},
+                hexBucket: {0:100,1:100,2:100,3:100},
                 direction: 'N',
-                hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":0,"second":-1},{"q":0,"r":-1,"s":1,"type":"ATTACK"}]],
+                hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":0,"second":-1},{"q":0,"r":-1,"s":1,"type":"ATTACK"}],[{"first":0,"second":1},{"q":0,"r":1,"s":-1,"type":"ENERGY"}],[{"first":0,"second":2},{"q":0,"r":2,"s":-2,"type":"ATTACK"}],[{"first":-1,"second":1},{"q":-1,"r":1,"s":0,"type":"ATTACK"}],[{"first":1,"second":0},{"q":1,"r":0,"s":-1,"type":"ATTACK"}]],
                 groupId: 5,
                 id: 22,
                 name: 'character_name_nihterib_10',
                 origin: {q:0,r:0,s:0,type:'REMOVE'},
-                rules: []
+                rules: [{"action":{"act":"CHANGE_DIRECTION","value":0},"conditions":[{"expected":0,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":1},"conditions":[{"expected":1,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":2},"conditions":[{"expected":2,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":3},"conditions":[{"expected":3,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":4},"conditions":[{"expected":4,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":5},"conditions":[{"expected":5,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]}]
             }"
         </item>
         <item>
             "{
-                hexBucket: {0:50,1:50,2:50,3:50},
+                hexBucket: {0:100,1:100,2:100,3:100},
                 direction: 'N',
-                hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":0,"second":-1},{"q":0,"r":-1,"s":1,"type":"ATTACK"}]],
+                hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":0,"second":-1},{"q":0,"r":-1,"s":1,"type":"ATTACK"}],[{"first":-1,"second":1},{"q":-1,"r":1,"s":0,"type":"LIFE"}],[{"first":1,"second":0},{"q":1,"r":0,"s":-1,"type":"LIFE"}],[{"first":0,"second":1},{"q":0,"r":1,"s":-1,"type":"ATTACK"}]],
                 groupId: 5,
                 id: 23,
                 name: 'character_name_nihterib_11',
                 origin: {q:0,r:0,s:0,type:'REMOVE'},
-                rules: []
+                rules: [{"action":{"act":"CHANGE_DIRECTION","value":0},"conditions":[{"expected":0,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":1},"conditions":[{"expected":1,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":2},"conditions":[{"expected":2,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":3},"conditions":[{"expected":3,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":4},"conditions":[{"expected":4,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":5},"conditions":[{"expected":5,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]}]
             }"
         </item>
         <item>
             "{
-                hexBucket: {0:50,1:50,2:50,3:50},
+                hexBucket: {0:100,1:100,2:100,3:100},
                 direction: 'N',
-                hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":0,"second":-1},{"q":0,"r":-1,"s":1,"type":"ATTACK"}]],
+                hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":0,"second":-1},{"q":0,"r":-1,"s":1,"type":"ATTACK"}],[{"first":-1,"second":1},{"q":-1,"r":1,"s":0,"type":"ENERGY"}],[{"first":-2,"second":2},{"q":-2,"r":2,"s":0,"type":"ATTACK"}],[{"first":-1,"second":2},{"q":-1,"r":2,"s":-1,"type":"ATTACK"}],[{"first":-2,"second":1},{"q":-2,"r":1,"s":1,"type":"ATTACK"}]],
                 groupId: 5,
                 id: 24,
                 name: 'character_name_nihterib_12',
                 origin: {q:0,r:0,s:0,type:'REMOVE'},
-                rules: []
+                rules: [{"action":{"act":"CHANGE_DIRECTION","value":0},"conditions":[{"expected":0,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":1},"conditions":[{"expected":1,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":2},"conditions":[{"expected":2,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":3},"conditions":[{"expected":3,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":4},"conditions":[{"expected":4,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":5},"conditions":[{"expected":5,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]}]
             }"
         </item>
         <item>
             "{
-                hexBucket: {0:50,1:50,2:50,3:50},
+                hexBucket: {0:100,1:100,2:100,3:100},
                 direction: 'N',
-                hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":0,"second":-1},{"q":0,"r":-1,"s":1,"type":"ATTACK"}]],
+                hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":0,"second":-1},{"q":0,"r":-1,"s":1,"type":"ATTACK"}],[{"first":1,"second":0},{"q":1,"r":0,"s":-1,"type":"ENERGY"}],[{"first":1,"second":-1},{"q":1,"r":-1,"s":0,"type":"ATTACK"}],[{"first":2,"second":-1},{"q":2,"r":-1,"s":-1,"type":"ATTACK"}],[{"first":2,"second":0},{"q":2,"r":0,"s":-2,"type":"ATTACK"}],[{"first":0,"second":1},{"q":0,"r":1,"s":-1,"type":"ATTACK"}],[{"first":1,"second":1},{"q":1,"r":1,"s":-2,"type":"ATTACK"}]],
                 groupId: 5,
                 id: 25,
                 name: 'character_name_nihterib_13',
                 origin: {q:0,r:0,s:0,type:'REMOVE'},
-                rules: []
+                rules: [{"action":{"act":"CHANGE_DIRECTION","value":0},"conditions":[{"expected":0,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":1},"conditions":[{"expected":1,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":2},"conditions":[{"expected":2,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":3},"conditions":[{"expected":3,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":4},"conditions":[{"expected":4,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":5},"conditions":[{"expected":5,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]}]
             }"
         </item>
         <!-- Drunkards -->
         <item>
             "{
-                hexBucket: {0:50,1:50,2:50,3:50},
+                hexBucket: {0:100,1:100,2:100,3:100},
                 direction: 'N',
-                hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":1,"second":-1},{"q":1,"r":-1,"s":0,"type":"LIFE"}],[{"first":0,"second":-1},{"q":0,"r":-1,"s":1,"type":"ATTACK"}],[{"first":1,"second":-2},{"q":1,"r":-2,"s":1,"type":"LIFE"}]],
+                hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":1,"second":-1},{"q":1,"r":-1,"s":0,"type":"LIFE"}],[{"first":1,"second":-2},{"q":1,"r":-2,"s":1,"type":"LIFE"}],[{"first":0,"second":-1},{"q":0,"r":-1,"s":1,"type":"ENERGY"}],[{"first":0,"second":-2},{"q":0,"r":-2,"s":2,"type":"LIFE"}],[{"first":-1,"second":-1},{"q":-1,"r":-1,"s":2,"type":"LIFE"}],[{"first":-1,"second":0},{"q":-1,"r":0,"s":1,"type":"LIFE"}],[{"first":-2,"second":0},{"q":-2,"r":0,"s":2,"type":"ATTACK"}],[{"first":-2,"second":-1},{"q":-2,"r":-1,"s":3,"type":"ATTACK"}],[{"first":-1,"second":-2},{"q":-1,"r":-2,"s":3,"type":"ATTACK"}],[{"first":0,"second":-3},{"q":0,"r":-3,"s":3,"type":"ATTACK"}],[{"first":1,"second":-3},{"q":1,"r":-3,"s":2,"type":"ATTACK"}],[{"first":2,"second":-3},{"q":2,"r":-3,"s":1,"type":"ATTACK"}],[{"first":2,"second":-2},{"q":2,"r":-2,"s":0,"type":"ATTACK"}],[{"first":2,"second":-1},{"q":2,"r":-1,"s":-1,"type":"ATTACK"}],[{"first":1,"second":0},{"q":1,"r":0,"s":-1,"type":"ATTACK"}],[{"first":0,"second":1},{"q":0,"r":1,"s":-1,"type":"ATTACK"}],[{"first":-1,"second":1},{"q":-1,"r":1,"s":0,"type":"ATTACK"}],[{"first":-2,"second":1},{"q":-2,"r":1,"s":1,"type":"ATTACK"}]],
                 groupId: 6,
                 id: 26,
                 name: 'character_name_drunkard_1',
                 origin: {q:0,r:0,s:0,type:'REMOVE'},
-                rules: []
+                rules: [{"action":{"act":"CHANGE_DIRECTION","value":0},"conditions":[{"expected":0,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":1},"conditions":[{"expected":1,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":2},"conditions":[{"expected":2,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":3},"conditions":[{"expected":3,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":4},"conditions":[{"expected":4,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":5},"conditions":[{"expected":5,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]}]
             }"
         </item>
         <item>
             "{
-                hexBucket: {0:50,1:50,2:50,3:50},
+                hexBucket: {0:100,1:100,2:100,3:100},
                 direction: 'N',
-                hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":0,"second":1},{"q":0,"r":1,"s":-1,"type":"ATTACK"}],[{"first":1,"second":-1},{"q":1,"r":-1,"s":0,"type":"ATTACK"}],[{"first":1,"second":0},{"q":1,"r":0,"s":-1,"type":"LIFE"}],[{"first":2,"second":-1},{"q":2,"r":-1,"s":-1,"type":"LIFE"}],[{"first":1,"second":1},{"q":1,"r":1,"s":-2,"type":"LIFE"}]],
+                hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":-1,"second":0},{"q":-1,"r":0,"s":1,"type":"LIFE"}],[{"first":1,"second":-1},{"q":1,"r":-1,"s":0,"type":"LIFE"}],[{"first":0,"second":1},{"q":0,"r":1,"s":-1,"type":"LIFE"}],[{"first":-1,"second":-1},{"q":-1,"r":-1,"s":2,"type":"ENERGY"}],[{"first":-1,"second":2},{"q":-1,"r":2,"s":-1,"type":"ENERGY"}],[{"first":2,"second":-1},{"q":2,"r":-1,"s":-1,"type":"ENERGY"}],[{"first":1,"second":0},{"q":1,"r":0,"s":-1,"type":"ATTACK"}],[{"first":2,"second":0},{"q":2,"r":0,"s":-2,"type":"ATTACK"}],[{"first":3,"second":-1},{"q":3,"r":-1,"s":-2,"type":"ATTACK"}],[{"first":-1,"second":1},{"q":-1,"r":1,"s":0,"type":"ATTACK"}],[{"first":-2,"second":2},{"q":-2,"r":2,"s":0,"type":"ATTACK"}],[{"first":-2,"second":3},{"q":-2,"r":3,"s":-1,"type":"ATTACK"}],[{"first":0,"second":-1},{"q":0,"r":-1,"s":1,"type":"ATTACK"}],[{"first":0,"second":-2},{"q":0,"r":-2,"s":2,"type":"ATTACK"}],[{"first":-1,"second":-2},{"q":-1,"r":-2,"s":3,"type":"ATTACK"}]],
                 groupId: 6,
                 id: 27,
                 name: 'character_name_drunkard_2',
                 origin: {q:0,r:0,s:0,type:'REMOVE'},
-                rules: []
+                rules: [{"action":{"act":"CHANGE_DIRECTION","value":0},"conditions":[{"expected":0,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":1},"conditions":[{"expected":1,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":2},"conditions":[{"expected":2,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":3},"conditions":[{"expected":3,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":4},"conditions":[{"expected":4,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":5},"conditions":[{"expected":5,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]}]
             }"
         </item>
         <item>
             "{
-                hexBucket: {0:50,1:50,2:50,3:50},
+                hexBucket: {0:100,1:100,2:100,3:100},
                 direction: 'N',
-                hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":1,"second":0},{"q":1,"r":0,"s":-1,"type":"ATTACK"}],[{"first":1,"second":-1},{"q":1,"r":-1,"s":0,"type":"LIFE"}],[{"first":0,"second":1},{"q":0,"r":1,"s":-1,"type":"LIFE"}]],
+                hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":-1,"second":0},{"q":-1,"r":0,"s":1,"type":"LIFE"}],[{"first":0,"second":1},{"q":0,"r":1,"s":-1,"type":"LIFE"}],[{"first":1,"second":-1},{"q":1,"r":-1,"s":0,"type":"LIFE"}],[{"first":1,"second":-2},{"q":1,"r":-2,"s":1,"type":"LIFE"}],[{"first":0,"second":-2},{"q":0,"r":-2,"s":2,"type":"LIFE"}],[{"first":-1,"second":-1},{"q":-1,"r":-1,"s":2,"type":"LIFE"}],[{"first":-2,"second":0},{"q":-2,"r":0,"s":2,"type":"LIFE"}],[{"first":-2,"second":1},{"q":-2,"r":1,"s":1,"type":"LIFE"}],[{"first":-2,"second":2},{"q":-2,"r":2,"s":0,"type":"LIFE"}],[{"first":-1,"second":2},{"q":-1,"r":2,"s":-1,"type":"LIFE"}],[{"first":0,"second":2},{"q":0,"r":2,"s":-2,"type":"LIFE"}],[{"first":1,"second":1},{"q":1,"r":1,"s":-2,"type":"LIFE"}],[{"first":2,"second":0},{"q":2,"r":0,"s":-2,"type":"LIFE"}],[{"first":2,"second":-1},{"q":2,"r":-1,"s":-1,"type":"LIFE"}],[{"first":2,"second":-2},{"q":2,"r":-2,"s":0,"type":"LIFE"}],[{"first":0,"second":-1},{"q":0,"r":-1,"s":1,"type":"ATTACK"}],[{"first":-1,"second":1},{"q":-1,"r":1,"s":0,"type":"ATTACK"}],[{"first":1,"second":0},{"q":1,"r":0,"s":-1,"type":"ATTACK"}]],
                 groupId: 6,
                 id: 28,
                 name: 'character_name_drunkard_3',
                 origin: {q:0,r:0,s:0,type:'REMOVE'},
-                rules: []
+                rules: [{"action":{"act":"CHANGE_DIRECTION","value":0},"conditions":[{"expected":0,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":1},"conditions":[{"expected":1,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":2},"conditions":[{"expected":2,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":3},"conditions":[{"expected":3,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":4},"conditions":[{"expected":4,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":5},"conditions":[{"expected":5,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]}]
             }"
         </item>
         <item>
             "{
-                hexBucket: {0:50,1:50,2:50,3:50},
+                hexBucket: {0:100,1:100,2:100,3:100},
                 direction: 'N',
-                hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":0,"second":1},{"q":0,"r":1,"s":-1,"type":"ATTACK"}],[{"first":1,"second":-1},{"q":1,"r":-1,"s":0,"type":"ATTACK"}],[{"first":1,"second":0},{"q":1,"r":0,"s":-1,"type":"LIFE"}],[{"first":2,"second":-1},{"q":2,"r":-1,"s":-1,"type":"LIFE"}],[{"first":1,"second":1},{"q":1,"r":1,"s":-2,"type":"LIFE"}]],
+                hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":0,"second":1},{"q":0,"r":1,"s":-1,"type":"ATTACK"}],[{"first":1,"second":-1},{"q":1,"r":-1,"s":0,"type":"ATTACK"}],[{"first":1,"second":0},{"q":1,"r":0,"s":-1,"type":"LIFE"}],[{"first":2,"second":-1},{"q":2,"r":-1,"s":-1,"type":"LIFE"}],[{"first":1,"second":1},{"q":1,"r":1,"s":-2,"type":"LIFE"}],[{"first":-1,"second":0},{"q":-1,"r":0,"s":1,"type":"ENERGY"}],[{"first":0,"second":-1},{"q":0,"r":-1,"s":1,"type":"ATTACK"}],[{"first":-1,"second":-1},{"q":-1,"r":-1,"s":2,"type":"ATTACK"}],[{"first":-2,"second":0},{"q":-2,"r":0,"s":2,"type":"ATTACK"}],[{"first":-2,"second":1},{"q":-2,"r":1,"s":1,"type":"ATTACK"}],[{"first":-1,"second":1},{"q":-1,"r":1,"s":0,"type":"ATTACK"}],[{"first":2,"second":0},{"q":2,"r":0,"s":-2,"type":"ATTACK"}]],
                 groupId: 6,
                 id: 29,
                 name: 'character_name_drunkard_4',
                 origin: {q:0,r:0,s:0,type:'REMOVE'},
-                rules: []
+                rules: [{"action":{"act":"CHANGE_DIRECTION","value":0},"conditions":[{"expected":0,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":1},"conditions":[{"expected":1,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":2},"conditions":[{"expected":2,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":3},"conditions":[{"expected":3,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":4},"conditions":[{"expected":4,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":5},"conditions":[{"expected":5,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]}]
             }"
         </item>
         <item>
             "{
-                hexBucket: {0:50,1:50,2:50,3:50},
+                hexBucket: {0:100,1:100,2:100,3:100},
                 direction: 'N',
-                hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":1,"second":-1},{"q":1,"r":-1,"s":0,"type":"LIFE"}],[{"first":0,"second":-1},{"q":0,"r":-1,"s":1,"type":"ATTACK"}],[{"first":1,"second":-2},{"q":1,"r":-2,"s":1,"type":"LIFE"}]],
+                hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":0,"second":-1},{"q":0,"r":-1,"s":1,"type":"ATTACK"}],[{"first":-1,"second":0},{"q":-1,"r":0,"s":1,"type":"ATTACK"}],[{"first":0,"second":1},{"q":0,"r":1,"s":-1,"type":"ATTACK"}],[{"first":1,"second":0},{"q":1,"r":0,"s":-1,"type":"ATTACK"}],[{"first":1,"second":-1},{"q":1,"r":-1,"s":0,"type":"ENERGY"}],[{"first":-1,"second":1},{"q":-1,"r":1,"s":0,"type":"LIFE"}],[{"first":-2,"second":2},{"q":-2,"r":2,"s":0,"type":"ENERGY"}],[{"first":-2,"second":1},{"q":-2,"r":1,"s":1,"type":"ATTACK"}],[{"first":-1,"second":2},{"q":-1,"r":2,"s":-1,"type":"ATTACK"}]],
                 groupId: 6,
                 id: 30,
                 name: 'character_name_drunkard_5',
                 origin: {q:0,r:0,s:0,type:'REMOVE'},
-                rules: []
+                rules: [{"action":{"act":"CHANGE_DIRECTION","value":0},"conditions":[{"expected":0,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":1},"conditions":[{"expected":1,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":2},"conditions":[{"expected":2,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":3},"conditions":[{"expected":3,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":4},"conditions":[{"expected":4,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":5},"conditions":[{"expected":5,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]}]
             }"
         </item>
         <!-- Guardsmen -->
         <item>
             "{
-                hexBucket: {0:50,1:50,2:50,3:50},
+                hexBucket: {0:100,1:100,2:100,3:100},
                 direction: 'N',
                 hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":1,"second":-1},{"q":1,"r":-1,"s":0,"type":"LIFE"}],[{"first":0,"second":-1},{"q":0,"r":-1,"s":1,"type":"ATTACK"}],[{"first":1,"second":-2},{"q":1,"r":-2,"s":1,"type":"LIFE"}]],
                 groupId: 7,
@@ -1417,7 +1417,7 @@
         </item>
         <item>
             "{
-                hexBucket: {0:50,1:50,2:50,3:50,4:50},
+                hexBucket: {0:100,1:100,2:100,3:100,4:50},
                 direction: 'N',
                 hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":0,"second":1},{"q":0,"r":1,"s":-1,"type":"ATTACK"}],[{"first":1,"second":-1},{"q":1,"r":-1,"s":0,"type":"ATTACK"}],[{"first":1,"second":0},{"q":1,"r":0,"s":-1,"type":"LIFE"}],[{"first":2,"second":-1},{"q":2,"r":-1,"s":-1,"type":"LIFE"}],[{"first":1,"second":1},{"q":1,"r":1,"s":-2,"type":"LIFE"}],[{"first":2,"second":0},{"q":2,"r":0,"s":-2,"type":"OMNI_BULLET"}]],
                 groupId: 7,
@@ -1429,7 +1429,7 @@
         </item>
         <item>
             "{
-                hexBucket: {0:50,1:50,2:50,3:50},
+                hexBucket: {0:100,1:100,2:100,3:100},
                 direction: 'N',
                 hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":1,"second":0},{"q":1,"r":0,"s":-1,"type":"ATTACK"}],[{"first":1,"second":-1},{"q":1,"r":-1,"s":0,"type":"LIFE"}],[{"first":0,"second":1},{"q":0,"r":1,"s":-1,"type":"LIFE"}]],
                 groupId: 7,
@@ -1441,7 +1441,7 @@
         </item>
         <item>
             "{
-                hexBucket: {0:50,1:50,2:50,3:50},
+                hexBucket: {0:100,1:100,2:100,3:100},
                 direction: 'N',
                 hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":0,"second":1},{"q":0,"r":1,"s":-1,"type":"ATTACK"}],[{"first":1,"second":-1},{"q":1,"r":-1,"s":0,"type":"ATTACK"}],[{"first":1,"second":0},{"q":1,"r":0,"s":-1,"type":"LIFE"}],[{"first":2,"second":-1},{"q":2,"r":-1,"s":-1,"type":"LIFE"}],[{"first":1,"second":1},{"q":1,"r":1,"s":-2,"type":"LIFE"}]],
                 groupId: 7,
@@ -1453,7 +1453,7 @@
         </item>
         <item>
             "{
-                hexBucket: {0:50,1:50,2:50,3:50},
+                hexBucket: {0:100,1:100,2:100,3:100},
                 direction: 'N',
                 hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":1,"second":-1},{"q":1,"r":-1,"s":0,"type":"LIFE"}],[{"first":0,"second":-1},{"q":0,"r":-1,"s":1,"type":"ATTACK"}],[{"first":1,"second":-2},{"q":1,"r":-2,"s":1,"type":"LIFE"}]],
                 groupId: 7,
@@ -1465,7 +1465,7 @@
         </item>
         <item>
             "{
-                hexBucket: {0:50,1:50,2:50,3:50},
+                hexBucket: {0:100,1:100,2:100,3:100},
                 direction: 'N',
                 hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":0,"second":1},{"q":0,"r":1,"s":-1,"type":"ATTACK"}],[{"first":1,"second":-1},{"q":1,"r":-1,"s":0,"type":"ATTACK"}],[{"first":1,"second":0},{"q":1,"r":0,"s":-1,"type":"LIFE"}],[{"first":2,"second":-1},{"q":2,"r":-1,"s":-1,"type":"LIFE"}],[{"first":1,"second":1},{"q":1,"r":1,"s":-2,"type":"LIFE"}]],
                 groupId: 7,
@@ -1477,7 +1477,7 @@
         </item>
         <item>
             "{
-                hexBucket: {0:50,1:50,2:50,3:50},
+                hexBucket: {0:100,1:100,2:100,3:100},
                 direction: 'N',
                 hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":1,"second":0},{"q":1,"r":0,"s":-1,"type":"ATTACK"}],[{"first":1,"second":-1},{"q":1,"r":-1,"s":0,"type":"LIFE"}],[{"first":0,"second":1},{"q":0,"r":1,"s":-1,"type":"LIFE"}]],
                 groupId: 7,
@@ -1489,7 +1489,7 @@
         </item>
         <item>
             "{
-                hexBucket: {0:50,1:50,2:50,3:50},
+                hexBucket: {0:100,1:100,2:100,3:100},
                 direction: 'N',
                 hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":1,"second":0},{"q":1,"r":0,"s":-1,"type":"ATTACK"}],[{"first":1,"second":-1},{"q":1,"r":-1,"s":0,"type":"LIFE"}],[{"first":0,"second":1},{"q":0,"r":1,"s":-1,"type":"LIFE"}]],
                 groupId: 7,
@@ -1501,7 +1501,7 @@
         </item>
         <item>
             "{
-                hexBucket: {0:50,1:50,2:50,3:50},
+                hexBucket: {0:100,1:100,2:100,3:100},
                 direction: 'N',
                 hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":1,"second":0},{"q":1,"r":0,"s":-1,"type":"ATTACK"}],[{"first":1,"second":-1},{"q":1,"r":-1,"s":0,"type":"LIFE"}],[{"first":0,"second":1},{"q":0,"r":1,"s":-1,"type":"LIFE"}]],
                 groupId: 8,
@@ -1513,7 +1513,7 @@
         </item>
         <item>
             "{
-                hexBucket: {0:50,1:50,2:50,3:50},
+                hexBucket: {0:100,1:100,2:100,3:100},
                 direction: 'N',
                 hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":1,"second":0},{"q":1,"r":0,"s":-1,"type":"ATTACK"}],[{"first":1,"second":-1},{"q":1,"r":-1,"s":0,"type":"LIFE"}],[{"first":0,"second":1},{"q":0,"r":1,"s":-1,"type":"LIFE"}]],
                 groupId: 8,
@@ -1525,7 +1525,7 @@
         </item>
         <item>
             "{
-                hexBucket: {0:50,1:50,2:50,3:50},
+                hexBucket: {0:100,1:100,2:100,3:100},
                 direction: 'N',
                 hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":1,"second":0},{"q":1,"r":0,"s":-1,"type":"ATTACK"}],[{"first":1,"second":-1},{"q":1,"r":-1,"s":0,"type":"LIFE"}],[{"first":0,"second":1},{"q":0,"r":1,"s":-1,"type":"LIFE"}],[{"first":2,"second":-1},{"q":2,"r":-1,"s":-1,"type":"DEATH_RAY"}]],
                 groupId: 8,
@@ -1537,7 +1537,7 @@
         </item>
         <item>
             "{
-                hexBucket: {0:50,1:50,2:50,3:50,4:50},
+                hexBucket: {0:100,1:100,2:100,3:100,4:50},
                 direction: 'N',
                 hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":1,"second":0},{"q":1,"r":0,"s":-1,"type":"ATTACK"}],[{"first":1,"second":-1},{"q":1,"r":-1,"s":0,"type":"LIFE"}],[{"first":0,"second":1},{"q":0,"r":1,"s":-1,"type":"LIFE"}],[{"first":1,"second":1},{"q":1,"r":1,"s":-2,"type":"DEATH_RAY"}]],
                 groupId: 8,
@@ -1549,7 +1549,7 @@
         </item>
         <item>
             "{
-                hexBucket: {0:50,1:50,2:50,3:50,4:50},
+                hexBucket: {0:100,1:100,2:100,3:100,4:50},
                 direction: 'N',
                 hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":1,"second":0},{"q":1,"r":0,"s":-1,"type":"ATTACK"}],[{"first":1,"second":-1},{"q":1,"r":-1,"s":0,"type":"LIFE"}],[{"first":0,"second":1},{"q":0,"r":1,"s":-1,"type":"LIFE"}],[{"first":2,"second":0},{"q":2,"r":0,"s":-2,"type":"OMNI_BULLET"}]],
                 groupId: 8,
@@ -1561,7 +1561,7 @@
         </item>
         <item>
             "{
-                hexBucket: {0:50,1:50,2:50,3:50,4:50},
+                hexBucket: {0:100,1:100,2:100,3:100,4:50},
                 direction: 'N',
                 hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":1,"second":0},{"q":1,"r":0,"s":-1,"type":"ATTACK"}],[{"first":1,"second":-1},{"q":1,"r":-1,"s":0,"type":"LIFE"}],[{"first":0,"second":1},{"q":0,"r":1,"s":-1,"type":"LIFE"}],[{"first":2,"second":-1},{"q":2,"r":-1,"s":-1,"type":"OMNI_BULLET"}]],
                 groupId: 8,

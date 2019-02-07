@@ -1,6 +1,7 @@
 package bav.onecell.common.storage
 
 import android.content.Context
+import android.os.Environment
 import android.util.Log
 import bav.onecell.R
 import bav.onecell.common.Common
@@ -10,6 +11,8 @@ import bav.onecell.model.cell.Data
 import bav.onecell.model.hexes.HexMath
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import java.io.File
+import java.io.FileOutputStream
 
 class StorageImpl(
         private val context: Context,
@@ -29,7 +32,16 @@ class StorageImpl(
     }
 
     override fun storeCell(cellData: Data) {
-        Log.d(TAG, cellData.toJson())
+        if (isExternalStorageWritable()) {
+            val file = File(Environment.getExternalStoragePublicDirectory(
+                    Environment.DIRECTORY_DOWNLOADS), "${cellData.name}.txt")
+            file.createNewFile()
+            FileOutputStream(file).use {
+                it.write(cellData.toJson().toByteArray(Charsets.UTF_8))
+                it.close()
+            }
+        }
+
         GlobalScope.launch { dataBase.cellDataDao().insert(cellData) }
     }
 
@@ -51,6 +63,14 @@ class StorageImpl(
         }
         return cells
     }
+
+    //region private
+    /* Checks if external storage is available for read and write */
+    fun isExternalStorageWritable(): Boolean {
+        return Environment.getExternalStorageState() == Environment.MEDIA_MOUNTED
+    }
+
+    //endregion
 
     companion object {
         private const val TAG = "StorageImpl"
