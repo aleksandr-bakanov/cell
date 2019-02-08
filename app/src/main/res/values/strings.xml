@@ -954,12 +954,16 @@
         "{
             battleParams: {
                 cellIndexes: [0,1,26,27,28,29,30],
-                isFog: false
+                isFog: false,
+                origins: {
+                    '0': {q:-24, r:15, s:9},
+                    '1': {q:24, r:-15, s:-9}
+                }
             },
             reward: {
-                '0': {LIFE:2, ATTACK:3, ENERGY:2, DEATH_RAY:1},
-                '1': {LIFE:2, ATTACK:3, ENERGY:2, DEATH_RAY:1},
-                '2': {LIFE:2, ATTACK:3, ENERGY:2, DEATH_RAY:1},
+                '0': {LIFE:3, ATTACK:3, ENERGY:2, DEATH_RAY:1},
+                '1': {LIFE:3, ATTACK:3, ENERGY:2, DEATH_RAY:1},
+                '2': {LIFE:3, ATTACK:3, ENERGY:2, DEATH_RAY:1},
                 'gameStateChanges': { 'death_ray_hexes_available': true }
             },
             next_scene: 'action_battleDrunkards_to_battleResultsDrunkards'
@@ -1057,7 +1061,7 @@
                 id: 0,
                 name: 'character_name_kittaro',
                 origin: {q:0,r:0,s:0,type:'REMOVE'},
-                rules: []
+                rules: [{"action":{"act":"CHANGE_DIRECTION","value":0},"conditions":[{"expected":0,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":1},"conditions":[{"expected":1,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":2},"conditions":[{"expected":2,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":3},"conditions":[{"expected":3,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":4},"conditions":[{"expected":4,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":5},"conditions":[{"expected":5,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]}]
             }"
         </item>
         <item>
@@ -1069,7 +1073,7 @@
                 id: 1,
                 name: 'character_name_zoi',
                 origin: {q:0,r:0,s:0,type:'REMOVE'},
-                rules: []
+                rules: [{"action":{"act":"CHANGE_DIRECTION","value":0},"conditions":[{"expected":0,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":1},"conditions":[{"expected":1,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":2},"conditions":[{"expected":2,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":3},"conditions":[{"expected":3,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":4},"conditions":[{"expected":4,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":5},"conditions":[{"expected":5,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]}]
             }"
         </item>
         <item>
@@ -1081,7 +1085,7 @@
                 id: 2,
                 name: 'character_name_aima',
                 origin: {q:0,r:0,s:0,type:'REMOVE'},
-                rules: []
+                rules: [{"action":{"act":"CHANGE_DIRECTION","value":0},"conditions":[{"expected":0,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":1},"conditions":[{"expected":1,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":2},"conditions":[{"expected":2,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":3},"conditions":[{"expected":3,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":4},"conditions":[{"expected":4,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":5},"conditions":[{"expected":5,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]}]
             }"
         </item>
         <!-- Gopniks -->
@@ -1094,7 +1098,7 @@
                 id: 3,
                 name: 'character_name_gopnik_1',
                 origin: {q:0,r:0,s:0,type:'REMOVE'},
-                rules: []
+                rules: [{"action":{"act":"CHANGE_DIRECTION","value":0},"conditions":[{"expected":0,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":1},"conditions":[{"expected":1,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":2},"conditions":[{"expected":2,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":3},"conditions":[{"expected":3,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":4},"conditions":[{"expected":4,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":5},"conditions":[{"expected":5,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]}]
             }"
         </item>
         <item>
@@ -1106,7 +1110,7 @@
                 id: 4,
                 name: 'character_name_gopnik_2',
                 origin: {q:0,r:0,s:0,type:'REMOVE'},
-                rules: []
+                rules: [{"action":{"act":"CHANGE_DIRECTION","value":0},"conditions":[{"expected":0,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":1},"conditions":[{"expected":1,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":2},"conditions":[{"expected":2,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":3},"conditions":[{"expected":3,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":4},"conditions":[{"expected":4,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":5},"conditions":[{"expected":5,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]}]
             }"
         </item>
         <item>
@@ -1118,7 +1122,7 @@
                 id: 5,
                 name: 'character_name_gopnik_3',
                 origin: {q:0,r:0,s:0,type:'REMOVE'},
-                rules: []
+                rules: [{"action":{"act":"CHANGE_DIRECTION","value":0},"conditions":[{"expected":0,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":1},"conditions":[{"expected":1,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":2},"conditions":[{"expected":2,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":3},"conditions":[{"expected":3,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":4},"conditions":[{"expected":4,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":5},"conditions":[{"expected":5,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]}]
             }"
         </item>
         <!-- Skiloses -->
@@ -1131,7 +1135,7 @@
                 id: 6,
                 name: 'character_name_skilos_1',
                 origin: {q:0,r:0,s:0,type:'REMOVE'},
-                rules: []
+                rules: [{"action":{"act":"CHANGE_DIRECTION","value":0},"conditions":[{"expected":0,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":1},"conditions":[{"expected":1,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":2},"conditions":[{"expected":2,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":3},"conditions":[{"expected":3,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":4},"conditions":[{"expected":4,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":5},"conditions":[{"expected":5,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]}]
             }"
         </item>
         <item>
@@ -1143,7 +1147,7 @@
                 id: 7,
                 name: 'character_name_skilos_2',
                 origin: {q:0,r:0,s:0,type:'REMOVE'},
-                rules: []
+                rules: [{"action":{"act":"CHANGE_DIRECTION","value":0},"conditions":[{"expected":0,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":1},"conditions":[{"expected":1,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":2},"conditions":[{"expected":2,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":3},"conditions":[{"expected":3,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":4},"conditions":[{"expected":4,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":5},"conditions":[{"expected":5,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]}]
             }"
         </item>
         <item>
@@ -1155,7 +1159,7 @@
                 id: 8,
                 name: 'character_name_skilos_3',
                 origin: {q:0,r:0,s:0,type:'REMOVE'},
-                rules: []
+                rules: [{"action":{"act":"CHANGE_DIRECTION","value":0},"conditions":[{"expected":0,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":1},"conditions":[{"expected":1,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":2},"conditions":[{"expected":2,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":3},"conditions":[{"expected":3,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":4},"conditions":[{"expected":4,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":5},"conditions":[{"expected":5,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]}]
             }"
         </item>
         <item>
@@ -1167,7 +1171,7 @@
                 id: 9,
                 name: 'character_name_skilos_4',
                 origin: {q:0,r:0,s:0,type:'REMOVE'},
-                rules: []
+                rules: [{"action":{"act":"CHANGE_DIRECTION","value":0},"conditions":[{"expected":0,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":1},"conditions":[{"expected":1,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":2},"conditions":[{"expected":2,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":3},"conditions":[{"expected":3,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":4},"conditions":[{"expected":4,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":5},"conditions":[{"expected":5,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]}]
             }"
         </item>
         <item>
@@ -1179,7 +1183,7 @@
                 id: 10,
                 name: 'character_name_skilos_5',
                 origin: {q:0,r:0,s:0,type:'REMOVE'},
-                rules: []
+                rules: [{"action":{"act":"CHANGE_DIRECTION","value":0},"conditions":[{"expected":0,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":1},"conditions":[{"expected":1,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":2},"conditions":[{"expected":2,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":3},"conditions":[{"expected":3,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":4},"conditions":[{"expected":4,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":5},"conditions":[{"expected":5,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]}]
             }"
         </item>
         <!-- Belos -->
@@ -1431,168 +1435,168 @@
             "{
                 hexBucket: {0:100,1:100,2:100,3:100},
                 direction: 'N',
-                hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":1,"second":-1},{"q":1,"r":-1,"s":0,"type":"LIFE"}],[{"first":0,"second":-1},{"q":0,"r":-1,"s":1,"type":"ATTACK"}],[{"first":1,"second":-2},{"q":1,"r":-2,"s":1,"type":"LIFE"}]],
+                hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":1,"second":-1},{"q":1,"r":-1,"s":0,"type":"LIFE"}],[{"first":-1,"second":0},{"q":-1,"r":0,"s":1,"type":"LIFE"}],[{"first":0,"second":1},{"q":0,"r":1,"s":-1,"type":"LIFE"}],[{"first":-2,"second":0},{"q":-2,"r":0,"s":2,"type":"ENERGY"}],[{"first":2,"second":-2},{"q":2,"r":-2,"s":0,"type":"ENERGY"}],[{"first":0,"second":2},{"q":0,"r":2,"s":-2,"type":"ENERGY"}],[{"first":0,"second":-1},{"q":0,"r":-1,"s":1,"type":"ATTACK"}],[{"first":-1,"second":-1},{"q":-1,"r":-1,"s":2,"type":"ATTACK"}],[{"first":-2,"second":-1},{"q":-2,"r":-1,"s":3,"type":"ATTACK"}],[{"first":-3,"second":0},{"q":-3,"r":0,"s":3,"type":"ATTACK"}],[{"first":-3,"second":1},{"q":-3,"r":1,"s":2,"type":"ATTACK"}],[{"first":-2,"second":1},{"q":-2,"r":1,"s":1,"type":"ATTACK"}],[{"first":-1,"second":1},{"q":-1,"r":1,"s":0,"type":"ATTACK"}],[{"first":-1,"second":2},{"q":-1,"r":2,"s":-1,"type":"ATTACK"}],[{"first":-1,"second":3},{"q":-1,"r":3,"s":-2,"type":"ATTACK"}],[{"first":0,"second":3},{"q":0,"r":3,"s":-3,"type":"ATTACK"}],[{"first":1,"second":2},{"q":1,"r":2,"s":-3,"type":"ATTACK"}],[{"first":1,"second":1},{"q":1,"r":1,"s":-2,"type":"ATTACK"}],[{"first":1,"second":0},{"q":1,"r":0,"s":-1,"type":"ATTACK"}],[{"first":2,"second":-1},{"q":2,"r":-1,"s":-1,"type":"ATTACK"}],[{"first":3,"second":-2},{"q":3,"r":-2,"s":-1,"type":"ATTACK"}],[{"first":3,"second":-3},{"q":3,"r":-3,"s":0,"type":"ATTACK"}],[{"first":2,"second":-3},{"q":2,"r":-3,"s":1,"type":"ATTACK"}],[{"first":1,"second":-2},{"q":1,"r":-2,"s":1,"type":"ATTACK"}],[{"first":2,"second":0},{"q":2,"r":0,"s":-2,"type":"DEATH_RAY"}]],
                 groupId: 7,
                 id: 31,
                 name: 'character_name_guardsman_1',
                 origin: {q:0,r:0,s:0,type:'REMOVE'},
-                rules: []
+                rules: [{"action":{"act":"CHANGE_DIRECTION","value":0},"conditions":[{"expected":0,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":1},"conditions":[{"expected":1,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":2},"conditions":[{"expected":2,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":3},"conditions":[{"expected":3,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":4},"conditions":[{"expected":4,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":5},"conditions":[{"expected":5,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]}]
             }"
         </item>
         <item>
             "{
                 hexBucket: {0:100,1:100,2:100,3:100,4:50},
                 direction: 'N',
-                hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":0,"second":1},{"q":0,"r":1,"s":-1,"type":"ATTACK"}],[{"first":1,"second":-1},{"q":1,"r":-1,"s":0,"type":"ATTACK"}],[{"first":1,"second":0},{"q":1,"r":0,"s":-1,"type":"LIFE"}],[{"first":2,"second":-1},{"q":2,"r":-1,"s":-1,"type":"LIFE"}],[{"first":1,"second":1},{"q":1,"r":1,"s":-2,"type":"LIFE"}],[{"first":2,"second":0},{"q":2,"r":0,"s":-2,"type":"OMNI_BULLET"}]],
+                hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":-1,"second":0},{"q":-1,"r":0,"s":1,"type":"LIFE"}],[{"first":1,"second":0},{"q":1,"r":0,"s":-1,"type":"LIFE"}],[{"first":-2,"second":0},{"q":-2,"r":0,"s":2,"type":"LIFE"}],[{"first":2,"second":0},{"q":2,"r":0,"s":-2,"type":"LIFE"}],[{"first":-3,"second":0},{"q":-3,"r":0,"s":3,"type":"ENERGY"}],[{"first":3,"second":0},{"q":3,"r":0,"s":-3,"type":"ENERGY"}],[{"first":-4,"second":0},{"q":-4,"r":0,"s":4,"type":"OMNI_BULLET"}],[{"first":4,"second":0},{"q":4,"r":0,"s":-4,"type":"OMNI_BULLET"}],[{"first":-3,"second":-1},{"q":-3,"r":-1,"s":4,"type":"ATTACK"}],[{"first":-4,"second":1},{"q":-4,"r":1,"s":3,"type":"ATTACK"}],[{"first":-3,"second":1},{"q":-3,"r":1,"s":2,"type":"ATTACK"}],[{"first":-2,"second":-1},{"q":-2,"r":-1,"s":3,"type":"ATTACK"}],[{"first":4,"second":-1},{"q":4,"r":-1,"s":-3,"type":"ATTACK"}],[{"first":3,"second":-1},{"q":3,"r":-1,"s":-2,"type":"ATTACK"}],[{"first":2,"second":1},{"q":2,"r":1,"s":-3,"type":"ATTACK"}],[{"first":3,"second":1},{"q":3,"r":1,"s":-4,"type":"ATTACK"}],[{"first":-1,"second":-1},{"q":-1,"r":-1,"s":2,"type":"LIFE"}],[{"first":-2,"second":1},{"q":-2,"r":1,"s":1,"type":"LIFE"}],[{"first":2,"second":-1},{"q":2,"r":-1,"s":-1,"type":"LIFE"}],[{"first":1,"second":1},{"q":1,"r":1,"s":-2,"type":"LIFE"}]],
                 groupId: 7,
                 id: 32,
                 name: 'character_name_guardsman_2',
                 origin: {q:0,r:0,s:0,type:'REMOVE'},
-                rules: []
+                rules: [{"action":{"act":"CHANGE_DIRECTION","value":0},"conditions":[{"expected":0,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":1},"conditions":[{"expected":1,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":2},"conditions":[{"expected":2,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":3},"conditions":[{"expected":3,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":4},"conditions":[{"expected":4,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":5},"conditions":[{"expected":5,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]}]
             }"
         </item>
         <item>
             "{
                 hexBucket: {0:100,1:100,2:100,3:100},
                 direction: 'N',
-                hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":1,"second":0},{"q":1,"r":0,"s":-1,"type":"ATTACK"}],[{"first":1,"second":-1},{"q":1,"r":-1,"s":0,"type":"LIFE"}],[{"first":0,"second":1},{"q":0,"r":1,"s":-1,"type":"LIFE"}]],
+                hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":1,"second":-1},{"q":1,"r":-1,"s":0,"type":"LIFE"}],[{"first":0,"second":-1},{"q":0,"r":-1,"s":1,"type":"LIFE"}],[{"first":-1,"second":0},{"q":-1,"r":0,"s":1,"type":"LIFE"}],[{"first":1,"second":0},{"q":1,"r":0,"s":-1,"type":"LIFE"}],[{"first":-2,"second":1},{"q":-2,"r":1,"s":1,"type":"LIFE"}],[{"first":1,"second":1},{"q":1,"r":1,"s":-2,"type":"LIFE"}],[{"first":-2,"second":2},{"q":-2,"r":2,"s":0,"type":"ENERGY"}],[{"first":0,"second":2},{"q":0,"r":2,"s":-2,"type":"ENERGY"}],[{"first":-1,"second":1},{"q":-1,"r":1,"s":0,"type":"ATTACK"}],[{"first":0,"second":1},{"q":0,"r":1,"s":-1,"type":"ATTACK"}],[{"first":2,"second":1},{"q":2,"r":1,"s":-3,"type":"ATTACK"}],[{"first":2,"second":0},{"q":2,"r":0,"s":-2,"type":"ATTACK"}],[{"first":2,"second":-1},{"q":2,"r":-1,"s":-1,"type":"ATTACK"}],[{"first":1,"second":-2},{"q":1,"r":-2,"s":1,"type":"ATTACK"}],[{"first":-1,"second":-1},{"q":-1,"r":-1,"s":2,"type":"ATTACK"}],[{"first":-2,"second":0},{"q":-2,"r":0,"s":2,"type":"ATTACK"}],[{"first":-3,"second":1},{"q":-3,"r":1,"s":2,"type":"ATTACK"}],[{"first":1,"second":2},{"q":1,"r":2,"s":-3,"type":"ATTACK"}],[{"first":-3,"second":2},{"q":-3,"r":2,"s":1,"type":"ATTACK"}],[{"first":-1,"second":2},{"q":-1,"r":2,"s":-1,"type":"ATTACK"}],[{"first":2,"second":-2},{"q":2,"r":-2,"s":0,"type":"ATTACK"}],[{"first":0,"second":-2},{"q":0,"r":-2,"s":2,"type":"ATTACK"}],[{"first":-3,"second":3},{"q":-3,"r":3,"s":0,"type":"ATTACK"}],[{"first":-2,"second":3},{"q":-2,"r":3,"s":-1,"type":"ATTACK"}],[{"first":-1,"second":3},{"q":-1,"r":3,"s":-2,"type":"ATTACK"}],[{"first":0,"second":3},{"q":0,"r":3,"s":-3,"type":"ATTACK"}]],
                 groupId: 7,
                 id: 33,
                 name: 'character_name_guardsman_3',
                 origin: {q:0,r:0,s:0,type:'REMOVE'},
-                rules: []
+                rules: [{"action":{"act":"CHANGE_DIRECTION","value":0},"conditions":[{"expected":0,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":1},"conditions":[{"expected":1,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":2},"conditions":[{"expected":2,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":3},"conditions":[{"expected":3,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":4},"conditions":[{"expected":4,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":5},"conditions":[{"expected":5,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]}]
             }"
         </item>
         <item>
             "{
                 hexBucket: {0:100,1:100,2:100,3:100},
                 direction: 'N',
-                hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":0,"second":1},{"q":0,"r":1,"s":-1,"type":"ATTACK"}],[{"first":1,"second":-1},{"q":1,"r":-1,"s":0,"type":"ATTACK"}],[{"first":1,"second":0},{"q":1,"r":0,"s":-1,"type":"LIFE"}],[{"first":2,"second":-1},{"q":2,"r":-1,"s":-1,"type":"LIFE"}],[{"first":1,"second":1},{"q":1,"r":1,"s":-2,"type":"LIFE"}]],
+                hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":-1,"second":0},{"q":-1,"r":0,"s":1,"type":"LIFE"}],[{"first":1,"second":0},{"q":1,"r":0,"s":-1,"type":"LIFE"}],[{"first":2,"second":-1},{"q":2,"r":-1,"s":-1,"type":"LIFE"}],[{"first":1,"second":1},{"q":1,"r":1,"s":-2,"type":"LIFE"}],[{"first":-2,"second":1},{"q":-2,"r":1,"s":1,"type":"LIFE"}],[{"first":-1,"second":-1},{"q":-1,"r":-1,"s":2,"type":"LIFE"}],[{"first":0,"second":-2},{"q":0,"r":-2,"s":2,"type":"ENERGY"}],[{"first":2,"second":-2},{"q":2,"r":-2,"s":0,"type":"ENERGY"}],[{"first":-2,"second":2},{"q":-2,"r":2,"s":0,"type":"ENERGY"}],[{"first":0,"second":2},{"q":0,"r":2,"s":-2,"type":"ENERGY"}],[{"first":0,"second":-1},{"q":0,"r":-1,"s":1,"type":"ATTACK"}],[{"first":1,"second":-1},{"q":1,"r":-1,"s":0,"type":"ATTACK"}],[{"first":-1,"second":1},{"q":-1,"r":1,"s":0,"type":"ATTACK"}],[{"first":0,"second":1},{"q":0,"r":1,"s":-1,"type":"ATTACK"}],[{"first":-1,"second":2},{"q":-1,"r":2,"s":-1,"type":"ATTACK"}],[{"first":1,"second":-2},{"q":1,"r":-2,"s":1,"type":"ATTACK"}],[{"first":2,"second":0},{"q":2,"r":0,"s":-2,"type":"LIFE"}],[{"first":-2,"second":0},{"q":-2,"r":0,"s":2,"type":"LIFE"}],[{"first":1,"second":-3},{"q":1,"r":-3,"s":2,"type":"ATTACK"}],[{"first":2,"second":-3},{"q":2,"r":-3,"s":1,"type":"ATTACK"}],[{"first":3,"second":-3},{"q":3,"r":-3,"s":0,"type":"ATTACK"}],[{"first":3,"second":-2},{"q":3,"r":-2,"s":-1,"type":"ATTACK"}],[{"first":3,"second":-1},{"q":3,"r":-1,"s":-2,"type":"ATTACK"}],[{"first":0,"second":-3},{"q":0,"r":-3,"s":3,"type":"ATTACK"}],[{"first":-1,"second":-2},{"q":-1,"r":-2,"s":3,"type":"ATTACK"}],[{"first":-2,"second":-1},{"q":-2,"r":-1,"s":3,"type":"ATTACK"}],[{"first":-3,"second":1},{"q":-3,"r":1,"s":2,"type":"ATTACK"}],[{"first":-3,"second":2},{"q":-3,"r":2,"s":1,"type":"ATTACK"}],[{"first":-3,"second":3},{"q":-3,"r":3,"s":0,"type":"ATTACK"}],[{"first":-2,"second":3},{"q":-2,"r":3,"s":-1,"type":"ATTACK"}],[{"first":-1,"second":3},{"q":-1,"r":3,"s":-2,"type":"ATTACK"}],[{"first":0,"second":3},{"q":0,"r":3,"s":-3,"type":"ATTACK"}],[{"first":1,"second":2},{"q":1,"r":2,"s":-3,"type":"ATTACK"}],[{"first":2,"second":1},{"q":2,"r":1,"s":-3,"type":"ATTACK"}],[{"first":3,"second":0},{"q":3,"r":0,"s":-3,"type":"ATTACK"}],[{"first":-3,"second":0},{"q":-3,"r":0,"s":3,"type":"ATTACK"}]],
                 groupId: 7,
                 id: 34,
                 name: 'character_name_guardsman_4',
                 origin: {q:0,r:0,s:0,type:'REMOVE'},
-                rules: []
+                rules: [{"action":{"act":"CHANGE_DIRECTION","value":0},"conditions":[{"expected":0,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":1},"conditions":[{"expected":1,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":2},"conditions":[{"expected":2,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":3},"conditions":[{"expected":3,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":4},"conditions":[{"expected":4,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":5},"conditions":[{"expected":5,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]}]
             }"
         </item>
         <item>
             "{
                 hexBucket: {0:100,1:100,2:100,3:100},
                 direction: 'N',
-                hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":1,"second":-1},{"q":1,"r":-1,"s":0,"type":"LIFE"}],[{"first":0,"second":-1},{"q":0,"r":-1,"s":1,"type":"ATTACK"}],[{"first":1,"second":-2},{"q":1,"r":-2,"s":1,"type":"LIFE"}]],
+                hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":-1,"second":0},{"q":-1,"r":0,"s":1,"type":"DEATH_RAY"}],[{"first":0,"second":-1},{"q":0,"r":-1,"s":1,"type":"DEATH_RAY"}],[{"first":1,"second":-1},{"q":1,"r":-1,"s":0,"type":"DEATH_RAY"}],[{"first":1,"second":0},{"q":1,"r":0,"s":-1,"type":"DEATH_RAY"}],[{"first":0,"second":1},{"q":0,"r":1,"s":-1,"type":"DEATH_RAY"}],[{"first":-1,"second":1},{"q":-1,"r":1,"s":0,"type":"DEATH_RAY"}]],
                 groupId: 7,
                 id: 35,
                 name: 'character_name_guardsman_5',
                 origin: {q:0,r:0,s:0,type:'REMOVE'},
-                rules: []
+                rules: [{"action":{"act":"CHANGE_DIRECTION","value":0},"conditions":[{"expected":0,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":1},"conditions":[{"expected":1,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":2},"conditions":[{"expected":2,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":3},"conditions":[{"expected":3,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":4},"conditions":[{"expected":4,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":5},"conditions":[{"expected":5,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]}]
             }"
         </item>
         <item>
             "{
                 hexBucket: {0:100,1:100,2:100,3:100},
                 direction: 'N',
-                hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":0,"second":1},{"q":0,"r":1,"s":-1,"type":"ATTACK"}],[{"first":1,"second":-1},{"q":1,"r":-1,"s":0,"type":"ATTACK"}],[{"first":1,"second":0},{"q":1,"r":0,"s":-1,"type":"LIFE"}],[{"first":2,"second":-1},{"q":2,"r":-1,"s":-1,"type":"LIFE"}],[{"first":1,"second":1},{"q":1,"r":1,"s":-2,"type":"LIFE"}]],
+                hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":-1,"second":0},{"q":-1,"r":0,"s":1,"type":"ENERGY"}],[{"first":1,"second":-1},{"q":1,"r":-1,"s":0,"type":"LIFE"}],[{"first":2,"second":-2},{"q":2,"r":-2,"s":0,"type":"ENERGY"}],[{"first":3,"second":-2},{"q":3,"r":-2,"s":-1,"type":"ATTACK"}],[{"first":2,"second":-1},{"q":2,"r":-1,"s":-1,"type":"ATTACK"}],[{"first":3,"second":-3},{"q":3,"r":-3,"s":0,"type":"ATTACK"}],[{"first":2,"second":-3},{"q":2,"r":-3,"s":1,"type":"ATTACK"}],[{"first":1,"second":-2},{"q":1,"r":-2,"s":1,"type":"ATTACK"}],[{"first":0,"second":-1},{"q":0,"r":-1,"s":1,"type":"ATTACK"}],[{"first":-1,"second":-1},{"q":-1,"r":-1,"s":2,"type":"ATTACK"}],[{"first":-2,"second":0},{"q":-2,"r":0,"s":2,"type":"ATTACK"}],[{"first":-2,"second":1},{"q":-2,"r":1,"s":1,"type":"ATTACK"}],[{"first":-1,"second":1},{"q":-1,"r":1,"s":0,"type":"ATTACK"}],[{"first":1,"second":0},{"q":1,"r":0,"s":-1,"type":"LIFE"}],[{"first":1,"second":1},{"q":1,"r":1,"s":-2,"type":"ENERGY"}],[{"first":0,"second":1},{"q":0,"r":1,"s":-1,"type":"ATTACK"}],[{"first":0,"second":2},{"q":0,"r":2,"s":-2,"type":"ATTACK"}],[{"first":1,"second":2},{"q":1,"r":2,"s":-3,"type":"ATTACK"}],[{"first":2,"second":1},{"q":2,"r":1,"s":-3,"type":"ATTACK"}],[{"first":2,"second":0},{"q":2,"r":0,"s":-2,"type":"ATTACK"}]],
                 groupId: 7,
                 id: 36,
                 name: 'character_name_guardsman_6',
                 origin: {q:0,r:0,s:0,type:'REMOVE'},
-                rules: []
+                rules: [{"action":{"act":"CHANGE_DIRECTION","value":0},"conditions":[{"expected":0,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":1},"conditions":[{"expected":1,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":2},"conditions":[{"expected":2,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":3},"conditions":[{"expected":3,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":4},"conditions":[{"expected":4,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":5},"conditions":[{"expected":5,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]}]
             }"
         </item>
         <item>
             "{
                 hexBucket: {0:100,1:100,2:100,3:100},
                 direction: 'N',
-                hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":1,"second":0},{"q":1,"r":0,"s":-1,"type":"ATTACK"}],[{"first":1,"second":-1},{"q":1,"r":-1,"s":0,"type":"LIFE"}],[{"first":0,"second":1},{"q":0,"r":1,"s":-1,"type":"LIFE"}]],
+                hexes: [[{"first":-1,"second":0},{"q":-1,"r":0,"s":1,"type":"LIFE"}],[{"first":0,"second":-1},{"q":0,"r":-1,"s":1,"type":"LIFE"}],[{"first":1,"second":-1},{"q":1,"r":-1,"s":0,"type":"LIFE"}],[{"first":1,"second":0},{"q":1,"r":0,"s":-1,"type":"LIFE"}],[{"first":0,"second":1},{"q":0,"r":1,"s":-1,"type":"LIFE"}],[{"first":-1,"second":1},{"q":-1,"r":1,"s":0,"type":"LIFE"}],[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"ENERGY"}],[{"first":-1,"second":-1},{"q":-1,"r":-1,"s":2,"type":"ATTACK"}],[{"first":0,"second":-2},{"q":0,"r":-2,"s":2,"type":"ATTACK"}],[{"first":1,"second":-2},{"q":1,"r":-2,"s":1,"type":"ATTACK"}],[{"first":2,"second":-2},{"q":2,"r":-2,"s":0,"type":"ATTACK"}],[{"first":2,"second":-1},{"q":2,"r":-1,"s":-1,"type":"ATTACK"}],[{"first":2,"second":0},{"q":2,"r":0,"s":-2,"type":"ATTACK"}],[{"first":1,"second":1},{"q":1,"r":1,"s":-2,"type":"ATTACK"}],[{"first":0,"second":2},{"q":0,"r":2,"s":-2,"type":"ATTACK"}],[{"first":-1,"second":2},{"q":-1,"r":2,"s":-1,"type":"ATTACK"}],[{"first":-2,"second":2},{"q":-2,"r":2,"s":0,"type":"ATTACK"}],[{"first":-2,"second":1},{"q":-2,"r":1,"s":1,"type":"ATTACK"}],[{"first":-2,"second":0},{"q":-2,"r":0,"s":2,"type":"ATTACK"}]],
                 groupId: 7,
                 id: 37,
                 name: 'character_name_guardsman_7',
                 origin: {q:0,r:0,s:0,type:'REMOVE'},
-                rules: []
+                rules: [{"action":{"act":"CHANGE_DIRECTION","value":0},"conditions":[{"expected":0,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":1},"conditions":[{"expected":1,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":2},"conditions":[{"expected":2,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":3},"conditions":[{"expected":3,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":4},"conditions":[{"expected":4,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":5},"conditions":[{"expected":5,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]}]
             }"
         </item>
         <item>
             "{
                 hexBucket: {0:100,1:100,2:100,3:100},
                 direction: 'N',
-                hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":1,"second":0},{"q":1,"r":0,"s":-1,"type":"ATTACK"}],[{"first":1,"second":-1},{"q":1,"r":-1,"s":0,"type":"LIFE"}],[{"first":0,"second":1},{"q":0,"r":1,"s":-1,"type":"LIFE"}]],
+                hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":0,"second":-1},{"q":0,"r":-1,"s":1,"type":"DEATH_RAY"}],[{"first":0,"second":1},{"q":0,"r":1,"s":-1,"type":"DEATH_RAY"}],[{"first":-1,"second":0},{"q":-1,"r":0,"s":1,"type":"ATTACK"}],[{"first":-1,"second":1},{"q":-1,"r":1,"s":0,"type":"ATTACK"}],[{"first":1,"second":0},{"q":1,"r":0,"s":-1,"type":"ATTACK"}],[{"first":1,"second":-1},{"q":1,"r":-1,"s":0,"type":"ATTACK"}]],
                 groupId: 7,
                 id: 38,
                 name: 'character_name_guardsman_8',
                 origin: {q:0,r:0,s:0,type:'REMOVE'},
-                rules: []
+                rules: [{"action":{"act":"CHANGE_DIRECTION","value":0},"conditions":[{"expected":0,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":1},"conditions":[{"expected":1,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":2},"conditions":[{"expected":2,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":3},"conditions":[{"expected":3,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":4},"conditions":[{"expected":4,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":5},"conditions":[{"expected":5,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]}]
             }"
         </item>
         <item>
             "{
                 hexBucket: {0:100,1:100,2:100,3:100},
                 direction: 'N',
-                hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":1,"second":0},{"q":1,"r":0,"s":-1,"type":"ATTACK"}],[{"first":1,"second":-1},{"q":1,"r":-1,"s":0,"type":"LIFE"}],[{"first":0,"second":1},{"q":0,"r":1,"s":-1,"type":"LIFE"}]],
+                hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":0,"second":-1},{"q":0,"r":-1,"s":1,"type":"DEATH_RAY"}],[{"first":-1,"second":0},{"q":-1,"r":0,"s":1,"type":"DEATH_RAY"}],[{"first":-1,"second":1},{"q":-1,"r":1,"s":0,"type":"DEATH_RAY"}],[{"first":0,"second":1},{"q":0,"r":1,"s":-1,"type":"DEATH_RAY"}],[{"first":1,"second":0},{"q":1,"r":0,"s":-1,"type":"DEATH_RAY"}],[{"first":1,"second":-1},{"q":1,"r":-1,"s":0,"type":"DEATH_RAY"}]],
                 groupId: 8,
                 id: 39,
                 name: 'character_name_guardsman_9',
                 origin: {q:0,r:0,s:0,type:'REMOVE'},
-                rules: []
+                rules: [{"action":{"act":"CHANGE_DIRECTION","value":0},"conditions":[{"expected":0,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":1},"conditions":[{"expected":1,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":2},"conditions":[{"expected":2,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":3},"conditions":[{"expected":3,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":4},"conditions":[{"expected":4,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":5},"conditions":[{"expected":5,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]}]
             }"
         </item>
         <item>
             "{
                 hexBucket: {0:100,1:100,2:100,3:100},
                 direction: 'N',
-                hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":1,"second":0},{"q":1,"r":0,"s":-1,"type":"ATTACK"}],[{"first":1,"second":-1},{"q":1,"r":-1,"s":0,"type":"LIFE"}],[{"first":0,"second":1},{"q":0,"r":1,"s":-1,"type":"LIFE"}]],
+                hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":0,"second":-1},{"q":0,"r":-1,"s":1,"type":"DEATH_RAY"}],[{"first":-1,"second":0},{"q":-1,"r":0,"s":1,"type":"DEATH_RAY"}],[{"first":-1,"second":1},{"q":-1,"r":1,"s":0,"type":"DEATH_RAY"}],[{"first":0,"second":1},{"q":0,"r":1,"s":-1,"type":"DEATH_RAY"}],[{"first":1,"second":0},{"q":1,"r":0,"s":-1,"type":"DEATH_RAY"}],[{"first":1,"second":-1},{"q":1,"r":-1,"s":0,"type":"DEATH_RAY"}]],
                 groupId: 8,
                 id: 40,
                 name: 'character_name_guardsman_10',
                 origin: {q:0,r:0,s:0,type:'REMOVE'},
-                rules: []
+                rules: [{"action":{"act":"CHANGE_DIRECTION","value":0},"conditions":[{"expected":0,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":1},"conditions":[{"expected":1,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":2},"conditions":[{"expected":2,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":3},"conditions":[{"expected":3,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":4},"conditions":[{"expected":4,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":5},"conditions":[{"expected":5,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]}]
             }"
         </item>
         <item>
             "{
                 hexBucket: {0:100,1:100,2:100,3:100},
                 direction: 'N',
-                hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":1,"second":0},{"q":1,"r":0,"s":-1,"type":"ATTACK"}],[{"first":1,"second":-1},{"q":1,"r":-1,"s":0,"type":"LIFE"}],[{"first":0,"second":1},{"q":0,"r":1,"s":-1,"type":"LIFE"}],[{"first":2,"second":-1},{"q":2,"r":-1,"s":-1,"type":"DEATH_RAY"}]],
+                hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":0,"second":-1},{"q":0,"r":-1,"s":1,"type":"DEATH_RAY"}],[{"first":-1,"second":0},{"q":-1,"r":0,"s":1,"type":"DEATH_RAY"}],[{"first":-1,"second":1},{"q":-1,"r":1,"s":0,"type":"DEATH_RAY"}],[{"first":0,"second":1},{"q":0,"r":1,"s":-1,"type":"DEATH_RAY"}],[{"first":1,"second":0},{"q":1,"r":0,"s":-1,"type":"DEATH_RAY"}],[{"first":1,"second":-1},{"q":1,"r":-1,"s":0,"type":"DEATH_RAY"}]],
                 groupId: 8,
                 id: 41,
                 name: 'character_name_guardsman_11',
                 origin: {q:0,r:0,s:0,type:'REMOVE'},
-                rules: []
+                rules: [{"action":{"act":"CHANGE_DIRECTION","value":0},"conditions":[{"expected":0,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":1},"conditions":[{"expected":1,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":2},"conditions":[{"expected":2,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":3},"conditions":[{"expected":3,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":4},"conditions":[{"expected":4,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":5},"conditions":[{"expected":5,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]}]
             }"
         </item>
         <item>
             "{
                 hexBucket: {0:100,1:100,2:100,3:100,4:50},
                 direction: 'N',
-                hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":1,"second":0},{"q":1,"r":0,"s":-1,"type":"ATTACK"}],[{"first":1,"second":-1},{"q":1,"r":-1,"s":0,"type":"LIFE"}],[{"first":0,"second":1},{"q":0,"r":1,"s":-1,"type":"LIFE"}],[{"first":1,"second":1},{"q":1,"r":1,"s":-2,"type":"DEATH_RAY"}]],
+                hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":1,"second":-1},{"q":1,"r":-1,"s":0,"type":"DEATH_RAY"}],[{"first":0,"second":-1},{"q":0,"r":-1,"s":1,"type":"DEATH_RAY"}],[{"first":-1,"second":0},{"q":-1,"r":0,"s":1,"type":"DEATH_RAY"}],[{"first":-1,"second":1},{"q":-1,"r":1,"s":0,"type":"DEATH_RAY"}],[{"first":0,"second":1},{"q":0,"r":1,"s":-1,"type":"DEATH_RAY"}],[{"first":1,"second":0},{"q":1,"r":0,"s":-1,"type":"DEATH_RAY"}]],
                 groupId: 8,
                 id: 42,
                 name: 'character_name_guardsman_12',
                 origin: {q:0,r:0,s:0,type:'REMOVE'},
-                rules: []
+                rules: [{"action":{"act":"CHANGE_DIRECTION","value":0},"conditions":[{"expected":0,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":1},"conditions":[{"expected":1,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":2},"conditions":[{"expected":2,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":3},"conditions":[{"expected":3,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":4},"conditions":[{"expected":4,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":5},"conditions":[{"expected":5,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]}]
             }"
         </item>
         <item>
             "{
                 hexBucket: {0:100,1:100,2:100,3:100,4:50},
                 direction: 'N',
-                hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":1,"second":0},{"q":1,"r":0,"s":-1,"type":"ATTACK"}],[{"first":1,"second":-1},{"q":1,"r":-1,"s":0,"type":"LIFE"}],[{"first":0,"second":1},{"q":0,"r":1,"s":-1,"type":"LIFE"}],[{"first":2,"second":0},{"q":2,"r":0,"s":-2,"type":"OMNI_BULLET"}]],
+                hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":1,"second":-1},{"q":1,"r":-1,"s":0,"type":"DEATH_RAY"}],[{"first":0,"second":-1},{"q":0,"r":-1,"s":1,"type":"DEATH_RAY"}],[{"first":-1,"second":0},{"q":-1,"r":0,"s":1,"type":"DEATH_RAY"}],[{"first":-1,"second":1},{"q":-1,"r":1,"s":0,"type":"DEATH_RAY"}],[{"first":0,"second":1},{"q":0,"r":1,"s":-1,"type":"DEATH_RAY"}],[{"first":1,"second":0},{"q":1,"r":0,"s":-1,"type":"DEATH_RAY"}]],
                 groupId: 8,
                 id: 43,
                 name: 'character_name_guardsman_13',
                 origin: {q:0,r:0,s:0,type:'REMOVE'},
-                rules: []
+                rules: [{"action":{"act":"CHANGE_DIRECTION","value":0},"conditions":[{"expected":0,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":1},"conditions":[{"expected":1,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":2},"conditions":[{"expected":2,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":3},"conditions":[{"expected":3,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":4},"conditions":[{"expected":4,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":5},"conditions":[{"expected":5,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]}]
             }"
         </item>
         <item>
             "{
                 hexBucket: {0:100,1:100,2:100,3:100,4:50},
                 direction: 'N',
-                hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":1,"second":0},{"q":1,"r":0,"s":-1,"type":"ATTACK"}],[{"first":1,"second":-1},{"q":1,"r":-1,"s":0,"type":"LIFE"}],[{"first":0,"second":1},{"q":0,"r":1,"s":-1,"type":"LIFE"}],[{"first":2,"second":-1},{"q":2,"r":-1,"s":-1,"type":"OMNI_BULLET"}]],
+                hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":-1,"second":1},{"q":-1,"r":1,"s":0,"type":"LIFE"}],[{"first":1,"second":-1},{"q":1,"r":-1,"s":0,"type":"LIFE"}],[{"first":-2,"second":1},{"q":-2,"r":1,"s":1,"type":"ENERGY"}],[{"first":2,"second":-1},{"q":2,"r":-1,"s":-1,"type":"ENERGY"}],[{"first":-2,"second":0},{"q":-2,"r":0,"s":2,"type":"LIFE"}],[{"first":2,"second":0},{"q":2,"r":0,"s":-2,"type":"LIFE"}],[{"first":-2,"second":-1},{"q":-2,"r":-1,"s":3,"type":"LIFE"}],[{"first":2,"second":1},{"q":2,"r":1,"s":-3,"type":"LIFE"}],[{"first":-1,"second":-2},{"q":-1,"r":-2,"s":3,"type":"ENERGY"}],[{"first":1,"second":2},{"q":1,"r":2,"s":-3,"type":"ENERGY"}],[{"first":0,"second":-3},{"q":0,"r":-3,"s":3,"type":"LIFE"}],[{"first":1,"second":-3},{"q":1,"r":-3,"s":2,"type":"LIFE"}],[{"first":0,"second":3},{"q":0,"r":3,"s":-3,"type":"LIFE"}],[{"first":-1,"second":3},{"q":-1,"r":3,"s":-2,"type":"LIFE"}],[{"first":2,"second":-3},{"q":2,"r":-3,"s":1,"type":"OMNI_BULLET"}],[{"first":-2,"second":3},{"q":-2,"r":3,"s":-1,"type":"OMNI_BULLET"}],[{"first":0,"second":-4},{"q":0,"r":-4,"s":4,"type":"ATTACK"}],[{"first":-1,"second":-3},{"q":-1,"r":-3,"s":4,"type":"ATTACK"}],[{"first":-2,"second":-2},{"q":-2,"r":-2,"s":4,"type":"ATTACK"}],[{"first":-3,"second":-1},{"q":-3,"r":-1,"s":4,"type":"ATTACK"}],[{"first":-3,"second":0},{"q":-3,"r":0,"s":3,"type":"ATTACK"}],[{"first":-3,"second":1},{"q":-3,"r":1,"s":2,"type":"ATTACK"}],[{"first":-3,"second":2},{"q":-3,"r":2,"s":1,"type":"ATTACK"}],[{"first":-1,"second":4},{"q":-1,"r":4,"s":-3,"type":"ATTACK"}],[{"first":0,"second":4},{"q":0,"r":4,"s":-4,"type":"ATTACK"}],[{"first":1,"second":3},{"q":1,"r":3,"s":-4,"type":"ATTACK"}],[{"first":2,"second":2},{"q":2,"r":2,"s":-4,"type":"ATTACK"}],[{"first":3,"second":1},{"q":3,"r":1,"s":-4,"type":"ATTACK"}],[{"first":3,"second":0},{"q":3,"r":0,"s":-3,"type":"ATTACK"}],[{"first":3,"second":-1},{"q":3,"r":-1,"s":-2,"type":"ATTACK"}],[{"first":1,"second":-4},{"q":1,"r":-4,"s":3,"type":"ATTACK"}],[{"first":2,"second":-4},{"q":2,"r":-4,"s":2,"type":"ATTACK"}],[{"first":-1,"second":-1},{"q":-1,"r":-1,"s":2,"type":"OMNI_BULLET"}],[{"first":0,"second":2},{"q":0,"r":2,"s":-2,"type":"OMNI_BULLET"}],
                 groupId: 8,
                 id: 44,
                 name: 'character_name_mage',
                 origin: {q:0,r:0,s:0,type:'REMOVE'},
-                rules: []
+                rules: [{"action":{"act":"CHANGE_DIRECTION","value":0},"conditions":[{"expected":0,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":1},"conditions":[{"expected":1,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":2},"conditions":[{"expected":2,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":3},"conditions":[{"expected":3,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":4},"conditions":[{"expected":4,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]},{"action":{"act":"CHANGE_DIRECTION","value":5},"conditions":[{"expected":5,"fieldToCheck":"DIRECTION_TO_NEAREST_ENEMY","operation":"EQUALS"}]}]
             }"
         </item>
 
