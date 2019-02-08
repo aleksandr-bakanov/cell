@@ -197,7 +197,7 @@ class BattleCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
 
             view.scaleFactor *= factor
             view.scaleFactor = max(MIN_SCALE, min(view.scaleFactor, MAX_SCALE))
-            view.setLayoutSize(view.scaleFactor.toDouble() * Layout.DUMMY.size.x)
+            view.setLayoutSize(view.scaleFactor.toDouble())
 
             var layoutX = view.layout.origin.x
             var layoutY = view.layout.origin.y
