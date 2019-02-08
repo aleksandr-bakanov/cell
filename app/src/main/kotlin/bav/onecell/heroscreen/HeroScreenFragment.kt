@@ -66,7 +66,6 @@ import javax.inject.Inject
 import kotlin.math.PI
 import kotlinx.android.synthetic.main.fragment_hero_screen.newCharacterAvatar
 
-
 class HeroScreenFragment: Fragment(), HeroScreen.View {
 
     @Inject lateinit var presenter: HeroScreen.Presenter
@@ -89,7 +88,7 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
         super.onActivityCreated(savedInstanceState)
         inject()
 
-        nextScene = resourceProvider.getIdIdentifier(arguments?.getString(Consts.NEXT_SCENE))
+        nextScene = resourceProvider.getIdIdentifier(getString(arguments!!.getInt(Consts.NEXT_SCENE)))
         initiateCanvasView()
         initiateButtons()
 

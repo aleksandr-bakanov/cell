@@ -36,8 +36,8 @@
         tools:layout="@layout/fragment_hero_screen">
         <argument
             android:name="@string/next_scene"
-            android:defaultValue="mainFragment"
-            app:argType="string" />
+            android:defaultValue="@string/nav_id_main_fragment"
+            app:argType="reference" />
         <action
             android:id="@+id/action_heroScreen_to_mainFragment"
             app:destination="@id/mainFragment" />
@@ -67,12 +67,12 @@
         tools:layout="@layout/fragment_battle_results">
         <argument
             android:name="@string/next_scene"
-            android:defaultValue="heroScreen"
-            app:argType="string" />
+            android:defaultValue="@string/nav_id_heroScreen"
+            app:argType="reference" />
         <argument
             android:name="@string/previous_scene"
-            android:defaultValue="heroScreen"
-            app:argType="string" />
+            android:defaultValue="@string/nav_id_heroScreen"
+            app:argType="reference" />
         <action
             android:id="@+id/action_battleResultsFragment_to_heroScreen"
             app:destination="@id/heroScreen" />
@@ -93,7 +93,7 @@
         <argument
             android:name="cutSceneInfo"
             android:defaultValue="@string/cut_scene_introduction"
-            app:argType="string" />
+            app:argType="reference" />
         <action
             android:id="@+id/action_cutSceneIntroduction_to_battleGopniks"
             app:destination="@id/battleGopniks" />
@@ -108,7 +108,7 @@
         <argument
             android:name="params"
             android:defaultValue="@string/battle_with_gopniks_params"
-            app:argType="string" />
+            app:argType="reference" />
         <action
             android:id="@+id/action_battleGopniks_to_battleResultsGopniks"
             app:destination="@id/battleResultsGopniks" />
@@ -122,12 +122,12 @@
         tools:layout="@layout/fragment_battle_results">
         <argument
             android:name="@string/next_scene"
-            android:defaultValue="cutSceneAfterGopniks"
-            app:argType="string" />
+            android:defaultValue="@string/nav_id_cutSceneAfterGopniks"
+            app:argType="reference" />
         <argument
             android:name="@string/previous_scene"
-            android:defaultValue="cutSceneAfterGopniks"
-            app:argType="string" />
+            android:defaultValue="@string/nav_id_cutSceneAfterGopniks"
+            app:argType="reference" />
         <action
             android:id="@+id/action_battleResultsGopniks_to_cutSceneAfterGopniks"
             app:destination="@id/cutSceneAfterGopniks" />
@@ -142,7 +142,7 @@
         <argument
             android:name="cutSceneInfo"
             android:defaultValue="@string/cut_scene_after_gopniks"
-            app:argType="string" />
+            app:argType="reference" />
         <action
             android:id="@+id/action_cutSceneAfterGopniks_to_heroScreenAfterGopniks"
             app:destination="@id/heroScreenAfterGopniks" />
@@ -156,8 +156,8 @@
         tools:layout="@layout/fragment_hero_screen">
         <argument
             android:name="@string/next_scene"
-            android:defaultValue="cutSceneBeforeSkilos"
-            app:argType="string" />
+            android:defaultValue="@string/nav_id_cutSceneBeforeSkilos"
+            app:argType="reference" />
         <action
             android:id="@+id/action_heroScreenAfterGopniks_to_cutSceneBeforeSkilos"
             app:destination="@id/cutSceneBeforeSkilos" />
@@ -175,7 +175,7 @@
         <argument
             android:name="cutSceneInfo"
             android:defaultValue="@string/cut_scene_before_skilos"
-            app:argType="string" />
+            app:argType="reference" />
         <action
             android:id="@+id/action_cutSceneBeforeSkilos_to_battleSkilos"
             app:destination="@id/battleSkilos" />
@@ -190,7 +190,7 @@
         <argument
             android:name="params"
             android:defaultValue="@string/battle_with_skilos_params"
-            app:argType="string" />
+            app:argType="reference" />
         <action
             android:id="@+id/action_battleSkilos_to_battleResultsSkilos"
             app:destination="@id/battleResultsSkilos" />
@@ -204,12 +204,12 @@
         tools:layout="@layout/fragment_battle_results">
         <argument
             android:name="@string/next_scene"
-            android:defaultValue="cutSceneAfterSkilos"
-            app:argType="string" />
+            android:defaultValue="@string/nav_id_cutSceneAfterSkilos"
+            app:argType="reference" />
         <argument
             android:name="@string/previous_scene"
-            android:defaultValue="heroScreenAfterGopniks"
-            app:argType="string" />
+            android:defaultValue="@string/nav_id_heroScreenAfterGopniks"
+            app:argType="reference" />
         <action
             android:id="@+id/action_battleResultsSkilos_to_cutSceneAfterGopniks"
             app:destination="@id/cutSceneAfterSkilos" />
@@ -224,7 +224,7 @@
         <argument
             android:name="cutSceneInfo"
             android:defaultValue="@string/cut_scene_after_skilos"
-            app:argType="string" />
+            app:argType="reference" />
         <action
             android:id="@+id/action_cutSceneAfterSkilos_to_heroScreenAfterSkilos"
             app:destination="@id/heroScreenAfterSkilos" />
@@ -238,8 +238,8 @@
         tools:layout="@layout/fragment_hero_screen">
         <argument
             android:name="@string/next_scene"
-            android:defaultValue="cutSceneGonato"
-            app:argType="string" />
+            android:defaultValue="@string/nav_id_cutSceneGonato"
+            app:argType="reference" />
         <action
             android:id="@+id/action_heroScreenAfterSkilos_to_cutSceneGonato"
             app:destination="@id/cutSceneGonato" />
@@ -257,7 +257,7 @@
         <argument
             android:name="cutSceneInfo"
             android:defaultValue="@string/cut_scene_gonato"
-            app:argType="string" />
+            app:argType="reference" />
         <action
             android:id="@+id/action_cutSceneGonato_to_battleBelos"
             app:destination="@id/battleBelos" />
@@ -272,7 +272,7 @@
         <argument
             android:name="params"
             android:defaultValue="@string/battle_with_belos"
-            app:argType="string" />
+            app:argType="reference" />
         <action
             android:id="@+id/action_battleBelos_to_battleResultsBelos"
             app:destination="@id/battleResultsBelos" />
@@ -286,12 +286,12 @@
         tools:layout="@layout/fragment_battle_results">
         <argument
             android:name="@string/next_scene"
-            android:defaultValue="cutSceneAfterBelos"
-            app:argType="string" />
+            android:defaultValue="@string/nav_id_cutSceneAfterBelos"
+            app:argType="reference" />
         <argument
             android:name="@string/previous_scene"
-            android:defaultValue="heroScreenAfterSkilos"
-            app:argType="string" />
+            android:defaultValue="@string/nav_id_heroScreenAfterSkilos"
+            app:argType="reference" />
         <action
             android:id="@+id/action_battleResultsBelos_to_cutSceneAfterBelos"
             app:destination="@id/cutSceneAfterBelos" />
@@ -306,7 +306,7 @@
         <argument
             android:name="cutSceneInfo"
             android:defaultValue="@string/cut_scene_after_belos"
-            app:argType="string" />
+            app:argType="reference" />
         <action
             android:id="@+id/action_cutSceneAfterBelos_to_heroScreenAfterBelos"
             app:destination="@id/heroScreenAfterBelos" />
@@ -320,8 +320,8 @@
         tools:layout="@layout/fragment_hero_screen">
         <argument
             android:name="@string/next_scene"
-            android:defaultValue="cutSceneAnalafro"
-            app:argType="string" />
+            android:defaultValue="@string/nav_id_cutSceneAnalafro"
+            app:argType="reference" />
         <action
             android:id="@+id/action_heroScreenAfterBelos_to_cutSceneAnalafro"
             app:destination="@id/cutSceneAnalafro" />
@@ -339,7 +339,7 @@
         <argument
             android:name="cutSceneInfo"
             android:defaultValue="@string/cut_scene_analafro"
-            app:argType="string" />
+            app:argType="reference" />
         <action
             android:id="@+id/action_cutSceneAnalafro_to_battleOmikhli"
             app:destination="@id/battleOmikhli" />
@@ -354,7 +354,7 @@
         <argument
             android:name="params"
             android:defaultValue="@string/battle_with_omikhli"
-            app:argType="string" />
+            app:argType="reference" />
         <action
             android:id="@+id/action_battleOmikhli_to_battleResultsOmikhli"
             app:destination="@id/battleResultsOmikhli" />
@@ -368,12 +368,12 @@
         tools:layout="@layout/fragment_battle_results">
         <argument
             android:name="@string/next_scene"
-            android:defaultValue="cutSceneAfterOmikhli"
-            app:argType="string" />
+            android:defaultValue="@string/nav_id_cutSceneAfterOmikhli"
+            app:argType="reference" />
         <argument
             android:name="@string/previous_scene"
-            android:defaultValue="heroScreenAfterBelos"
-            app:argType="string" />
+            android:defaultValue="@string/nav_id_heroScreenAfterBelos"
+            app:argType="reference" />
         <action
             android:id="@+id/action_battleResultsOmikhli_to_cutSceneAfterOmikhli"
             app:destination="@id/cutSceneAfterOmikhli" />
@@ -388,7 +388,7 @@
         <argument
             android:name="cutSceneInfo"
             android:defaultValue="@string/cut_scene_after_omikhli"
-            app:argType="string" />
+            app:argType="reference" />
         <action
             android:id="@+id/action_cutSceneAfterOmikhli_to_heroScreenAfterOmikhli"
             app:destination="@id/heroScreenAfterOmikhli" />
@@ -402,8 +402,8 @@
         tools:layout="@layout/fragment_hero_screen" >
         <argument
             android:name="@string/next_scene"
-            android:defaultValue="cutSceneKilia"
-            app:argType="string" />
+            android:defaultValue="@string/nav_id_cutSceneKilia"
+            app:argType="reference" />
         <action
             android:id="@+id/action_heroScreenAfterOmikhli_to_cutSceneKilia"
             app:destination="@id/cutSceneKilia" />
@@ -421,7 +421,7 @@
         <argument
             android:name="cutSceneInfo"
             android:defaultValue="@string/cut_scene_kilia"
-            app:argType="string" />
+            app:argType="reference" />
         <action
             android:id="@+id/action_cutSceneKilia_to_battleNikhteribs"
             app:destination="@id/battleNikhteribs" />
@@ -436,7 +436,7 @@
         <argument
             android:name="params"
             android:defaultValue="@string/battle_with_nikhteribs"
-            app:argType="string" />
+            app:argType="reference" />
         <action
             android:id="@+id/action_battleNikhteribs_to_battleResultsNikhteribs"
             app:destination="@id/battleResultsNikhteribs" />
@@ -450,12 +450,12 @@
         tools:layout="@layout/fragment_battle_results">
         <argument
             android:name="@string/next_scene"
-            android:defaultValue="cutSceneAfterNikhteribs"
-            app:argType="string" />
+            android:defaultValue="@string/nav_id_cutSceneAfterNikhteribs"
+            app:argType="reference" />
         <argument
             android:name="@string/previous_scene"
-            android:defaultValue="heroScreenAfterOmikhli"
-            app:argType="string" />
+            android:defaultValue="@string/nav_id_heroScreenAfterOmikhli"
+            app:argType="reference" />
         <action
             android:id="@+id/action_battleResultsNikhteribs_to_cutSceneAfterNikhteribs"
             app:destination="@+id/cutSceneAfterNikhteribs" />
@@ -470,7 +470,7 @@
         <argument
             android:name="cutSceneInfo"
             android:defaultValue="@string/cut_scene_after_nikhteribs"
-            app:argType="string" />
+            app:argType="reference" />
         <action
             android:id="@+id/action_cutSceneAfterNikhteribs_to_heroScreenAfterNikhteribs"
             app:destination="@id/heroScreenAfterNikhteribs" />
@@ -484,8 +484,8 @@
         tools:layout="@layout/fragment_hero_screen">
         <argument
             android:name="@string/next_scene"
-            android:defaultValue="cutSceneKardia"
-            app:argType="string" />
+            android:defaultValue="@string/nav_id_cutSceneKardia"
+            app:argType="reference" />
         <action
             android:id="@+id/action_heroScreenAfterNikhteribs_to_cutSceneKardia"
             app:destination="@id/cutSceneKardia" />
@@ -503,7 +503,7 @@
         <argument
             android:name="cutSceneInfo"
             android:defaultValue="@string/cut_scene_kardia"
-            app:argType="string" />
+            app:argType="reference" />
         <action
             android:id="@+id/action_cutSceneKardia_to_battleDrunkards"
             app:destination="@id/battleDrunkards" />
@@ -518,7 +518,7 @@
         <argument
             android:name="params"
             android:defaultValue="@string/battle_with_drunkards"
-            app:argType="string" />
+            app:argType="reference" />
         <action
             android:id="@+id/action_battleDrunkards_to_battleResultsDrunkards"
             app:destination="@id/battleResultsDrunkards" />
@@ -532,12 +532,12 @@
         tools:layout="@layout/fragment_battle_results">
         <argument
             android:name="@string/next_scene"
-            android:defaultValue="cutSceneAfterDrunkards"
-            app:argType="string" />
+            android:defaultValue="@string/nav_id_cutSceneAfterDrunkards"
+            app:argType="reference" />
         <argument
             android:name="@string/previous_scene"
-            android:defaultValue="heroScreenAfterNikhteribs"
-            app:argType="string" />
+            android:defaultValue="@string/nav_id_heroScreenAfterNikhteribs"
+            app:argType="reference" />
         <action
             android:id="@+id/action_battleResultsDrunkards_to_cutSceneAfterDrunkards"
             app:destination="@id/cutSceneAfterDrunkards" />
@@ -552,7 +552,7 @@
         <argument
             android:name="cutSceneInfo"
             android:defaultValue="@string/cut_scene_after_drunkards"
-            app:argType="string" />
+            app:argType="reference" />
         <action
             android:id="@+id/action_cutSceneAfterDrunkards_to_heroScreenAfterDrunkards"
             app:destination="@id/heroScreenAfterDrunkards" />
@@ -566,8 +566,8 @@
         tools:layout="@layout/fragment_hero_screen">
         <argument
             android:name="@string/next_scene"
-            android:defaultValue="cutSceneLaimo"
-            app:argType="string" />
+            android:defaultValue="@string/nav_id_cutSceneLaimo"
+            app:argType="reference" />
         <action
             android:id="@+id/action_heroScreenAfterDrunkards_to_cutSceneLaimo"
             app:destination="@id/cutSceneLaimo" />
@@ -585,7 +585,7 @@
         <argument
             android:name="cutSceneInfo"
             android:defaultValue="@string/cut_scene_laimo"
-            app:argType="string" />
+            app:argType="reference" />
         <action
             android:id="@+id/action_cutSceneLaimo_to_battleKatofiPonu"
             app:destination="@id/battleKatofiPonu" />
@@ -600,7 +600,7 @@
         <argument
             android:name="params"
             android:defaultValue="@string/battle_with_katofi_ponu"
-            app:argType="string" />
+            app:argType="reference" />
         <action
             android:id="@+id/action_battleKatofiPonu_to_battleResultsKatofiPonu"
             app:destination="@id/battleResultsKatofiPonu" />
@@ -614,12 +614,12 @@
         tools:layout="@layout/fragment_battle_results">
         <argument
             android:name="@string/next_scene"
-            android:defaultValue="cutSceneAfterKatofiPonu"
-            app:argType="string" />
+            android:defaultValue="@string/nav_id_cutSceneAfterKatofiPonu"
+            app:argType="reference" />
         <argument
             android:name="@string/previous_scene"
-            android:defaultValue="heroScreenAfterDrunkards"
-            app:argType="string" />
+            android:defaultValue="@string/nav_id_heroScreenAfterDrunkards"
+            app:argType="reference" />
         <action
             android:id="@+id/action_battleResultsKatofiPonu_to_cutSceneAfterKatofiPonu"
             app:destination="@id/cutSceneAfterKatofiPonu" />
@@ -634,7 +634,7 @@
         <argument
             android:name="cutSceneInfo"
             android:defaultValue="@string/cut_scene_after_katofi_ponu"
-            app:argType="string" />
+            app:argType="reference" />
         <action
             android:id="@+id/action_cutSceneAfterKatofiPonu_to_heroScreenAfterKatofiPonu"
             app:destination="@id/heroScreenAfterKatofiPonu" />
@@ -648,8 +648,8 @@
         tools:layout="@layout/fragment_hero_screen">
         <argument
             android:name="@string/next_scene"
-            android:defaultValue="cutSceneEnkefalio"
-            app:argType="string" />
+            android:defaultValue="@string/nav_id_cutSceneEnkefalio"
+            app:argType="reference" />
         <action
             android:id="@+id/action_heroScreenAfterKatofiPonu_to_cutSceneEnkefalio"
             app:destination="@id/cutSceneEnkefalio" />
@@ -667,7 +667,7 @@
         <argument
             android:name="cutSceneInfo"
             android:defaultValue="@string/cut_scene_enkefalio"
-            app:argType="string" />
+            app:argType="reference" />
         <action
             android:id="@+id/action_cutSceneEnkefalio_to_battleEnkefalio"
             app:destination="@id/battleEnkefalio" />
@@ -682,7 +682,7 @@
         <argument
             android:name="params"
             android:defaultValue="@string/battle_in_enkefalio"
-            app:argType="string" />
+            app:argType="reference" />
         <action
             android:id="@+id/action_battleEnkefalio_to_battleResultsEnkefalio"
             app:destination="@id/battleResultsEnkefalio" />
@@ -696,12 +696,12 @@
         tools:layout="@layout/fragment_battle_results">
         <argument
             android:name="@string/next_scene"
-            android:defaultValue="cutSceneFinalAct"
-            app:argType="string" />
+            android:defaultValue="@string/nav_id_cutSceneFinalAct"
+            app:argType="reference" />
         <argument
             android:name="@string/previous_scene"
-            android:defaultValue="heroScreenAfterKatofiPonu"
-            app:argType="string" />
+            android:defaultValue="@string/nav_id_heroScreenAfterKatofiPonu"
+            app:argType="reference" />
         <action
             android:id="@+id/action_battleResultsEnkefalio_to_cutSceneFinalAct"
             app:destination="@id/cutSceneFinalAct" />
@@ -716,7 +716,7 @@
         <argument
             android:name="cutSceneInfo"
             android:defaultValue="@string/cut_scene_final_act"
-            app:argType="string" />
+            app:argType="reference" />
     </fragment>
 
 </navigation>

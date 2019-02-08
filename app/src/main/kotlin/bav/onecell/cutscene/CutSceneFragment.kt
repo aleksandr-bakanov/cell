@@ -116,7 +116,7 @@ class CutSceneFragment : Fragment(), CutScene.View {
     private fun parseArguments(arguments: Bundle?) {
         arguments?.let {
             try {
-                val info = JSONObject(it.getString(CUT_SCENE_INFO))
+                val info = JSONObject(getString(it.getInt(CUT_SCENE_INFO)))
                 defaultBackground = resourceProvider.getDrawableIdentifier(info.optString(BACKGROUND))
                 defaultLeftCharacter = resourceProvider.getDrawableIdentifier(info.optString(LEFT))
                 defaultRightCharacter = resourceProvider.getDrawableIdentifier(info.optString(RIGHT))

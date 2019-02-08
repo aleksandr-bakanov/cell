@@ -27,8 +27,8 @@ class BattleCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
 
     companion object {
         private const val TAG = "BattleCanvasView"
-        const val MIN_SCALE = 0.01f
-        const val MAX_SCALE = 50.0f
+        const val MIN_SCALE = 0.001f
+        const val MAX_SCALE = 100.0f
     }
 
     lateinit var presenter: Battle.Presenter
@@ -106,6 +106,11 @@ class BattleCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
             }
             ret
         }
+    }
+
+    override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
+        super.onSizeChanged(w, h, oldw, oldh)
+        scaleFactor = layout.size.x.toFloat()
     }
 
     override fun onDraw(canvas: Canvas?) {

@@ -74,8 +74,8 @@ class BattleResultsFragment: androidx.fragment.app.Fragment(), BattleResults.Vie
 
     private fun initializeButtons(arguments: Bundle?) {
         arguments?.let {
-            val nextScene = resourceProvider.getIdIdentifier(it.getString(Consts.NEXT_SCENE))
-            val prevScene = resourceProvider.getIdIdentifier(it.getString(PREVIOUS_SCENE))
+            val nextScene = resourceProvider.getIdIdentifier(getString(it.getInt(Consts.NEXT_SCENE)))
+            val prevScene = resourceProvider.getIdIdentifier(getString(it.getInt(PREVIOUS_SCENE)))
             val isBattleWon = it.getBoolean(IS_BATTLE_WON)
             buttonToHeroesScreen.visibility = if (isBattleWon) View.VISIBLE else View.INVISIBLE
             buttonTryAgain.visibility = if (!isBattleWon) View.VISIBLE else View.INVISIBLE

@@ -127,7 +127,7 @@ class BattleFragment : Fragment(), Battle.View {
                         })
 
         arguments?.let {
-            val info = JSONObject(it.getString(EXTRA_PARAMS).orEmpty())
+            val info = JSONObject(getString(it.getInt(EXTRA_PARAMS)))
             val battleParams = info.getString(BATTLE_PARAMS)
             nextScene = resourceProvider.getIdIdentifier(info.getString(NEXT_SCENE))
             reward = info.optString(Consts.BATTLE_REWARD)

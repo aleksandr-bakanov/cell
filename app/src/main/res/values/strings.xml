@@ -87,6 +87,30 @@
     <!-- Navigation graph constants -->
     <string name="next_scene" translatable="false">next_scene</string>
     <string name="previous_scene" translatable="false">previous_scene</string>
+    <string name="nav_id_main_fragment" translatable="false">mainFragment</string>
+    <string name="nav_id_heroScreen" translatable="false">heroScreen</string>
+    <string name="nav_id_cutSceneAfterGopniks" translatable="false">cutSceneAfterGopniks</string>
+    <string name="nav_id_cutSceneBeforeSkilos" translatable="false">cutSceneBeforeSkilos</string>
+    <string name="nav_id_cutSceneAfterSkilos" translatable="false">cutSceneAfterSkilos</string>
+    <string name="nav_id_cutSceneGonato" translatable="false">cutSceneGonato</string>
+    <string name="nav_id_cutSceneAfterBelos" translatable="false">cutSceneAfterBelos</string>
+    <string name="nav_id_cutSceneAnalafro" translatable="false">cutSceneAnalafro</string>
+    <string name="nav_id_cutSceneAfterOmikhli" translatable="false">cutSceneAfterOmikhli</string>
+    <string name="nav_id_cutSceneKilia" translatable="false">cutSceneKilia</string>
+    <string name="nav_id_cutSceneAfterNikhteribs" translatable="false">cutSceneAfterNikhteribs</string>
+    <string name="nav_id_cutSceneKardia" translatable="false">cutSceneKardia</string>
+    <string name="nav_id_cutSceneAfterDrunkards" translatable="false">cutSceneAfterDrunkards</string>
+    <string name="nav_id_cutSceneLaimo" translatable="false">cutSceneLaimo</string>
+    <string name="nav_id_cutSceneAfterKatofiPonu" translatable="false">cutSceneAfterKatofiPonu</string>
+    <string name="nav_id_cutSceneEnkefalio" translatable="false">cutSceneEnkefalio</string>
+    <string name="nav_id_cutSceneFinalAct" translatable="false">cutSceneFinalAct</string>
+    <string name="nav_id_heroScreenAfterGopniks" translatable="false">heroScreenAfterGopniks</string>
+    <string name="nav_id_heroScreenAfterSkilos" translatable="false">heroScreenAfterSkilos</string>
+    <string name="nav_id_heroScreenAfterBelos" translatable="false">heroScreenAfterBelos</string>
+    <string name="nav_id_heroScreenAfterOmikhli" translatable="false">heroScreenAfterOmikhli</string>
+    <string name="nav_id_heroScreenAfterNikhteribs" translatable="false">heroScreenAfterNikhteribs</string>
+    <string name="nav_id_heroScreenAfterDrunkards" translatable="false">heroScreenAfterDrunkards</string>
+    <string name="nav_id_heroScreenAfterKatofiPonu" translatable="false">heroScreenAfterKatofiPonu</string>
 
     <!-- Cut scenes -->
     <!--
