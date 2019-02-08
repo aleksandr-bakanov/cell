@@ -30,6 +30,11 @@ open class CanvasView(context: Context, attributeSet: AttributeSet) : View(conte
     }
 
     var backgroundFieldRadius: Int = 3
+        set(value) {
+            field = value
+            initializeLayoutBasedOnBackgroudFieldRadius(value, min(width, height))
+            modifyScaleFactor(layout.size.x.toFloat())
+        }
 
     lateinit var hexMath: HexMath
     lateinit var drawUtils: DrawUtils
@@ -72,6 +77,8 @@ open class CanvasView(context: Context, attributeSet: AttributeSet) : View(conte
         }
     }
 
+    protected open fun modifyScaleFactor(factor: Float) {}
+
     protected fun onTouchListener(view: View?, event: MotionEvent?): Boolean {
         try {
             if (event?.action == MotionEvent.ACTION_DOWN) {
@@ -108,7 +115,11 @@ open class CanvasView(context: Context, attributeSet: AttributeSet) : View(conte
 
     private fun initializeLayout(width: Int, height: Int) {
         val canvasSize = min(width, height)
-        val hexesOnField = backgroundFieldRadius * 2 + 1
+        initializeLayoutBasedOnBackgroudFieldRadius(backgroundFieldRadius, canvasSize)
+    }
+
+    private fun initializeLayoutBasedOnBackgroudFieldRadius(radius: Int, canvasSize: Int) {
+        val hexesOnField = radius * 2 + 1
         val hexSize = (canvasSize / hexesOnField) / 2
         layout.size = Point(hexSize.toDouble(), hexSize.toDouble())
         layout.origin = Point(width.toDouble() / 2.0,

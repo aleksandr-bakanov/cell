@@ -108,6 +108,10 @@ class BattleCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
         }
     }
 
+    override fun modifyScaleFactor(factor: Float) {
+        scaleFactor = factor
+    }
+
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
         super.onSizeChanged(w, h, oldw, oldh)
         scaleFactor = layout.size.x.toFloat()

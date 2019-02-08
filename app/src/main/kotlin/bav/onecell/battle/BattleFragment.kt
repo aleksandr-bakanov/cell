@@ -121,6 +121,9 @@ class BattleFragment : Fragment(), Battle.View {
                             battleCanvasView.isFog = battleInfo.isFog
                             isFog = battleInfo.isFog
                             isBattleWon = battleInfo.winnerGroupId == Consts.HERO_GROUP_ID
+                            if (battleInfo.snapshots.size > 0) {
+                                battleCanvasView.backgroundFieldRadius = battleInfo.snapshots[0].cells.asSequence().map { it.size() }.sum()
+                            }
                             battleCanvasView.invalidate()
                             drawFrame(currentTimestamp)
                             reportBattleEnd(battleInfo)
@@ -133,7 +136,7 @@ class BattleFragment : Fragment(), Battle.View {
             reward = info.optString(Consts.BATTLE_REWARD)
             presenter.initialize(battleParams)
         }
-        battleCanvasView.backgroundFieldRadius = 10
+        battleCanvasView.backgroundFieldRadius = 50
     }
 
     override fun onPause() {
