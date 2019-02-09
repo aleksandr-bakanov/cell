@@ -26,7 +26,7 @@ import kotlin.math.max
 import kotlin.math.min
 import kotlin.math.sin
 
-class DrawUtils(private val hexMath: HexMath, context: Context) {
+class DrawUtils(private val hexMath: HexMath, private val context: Context) {
 
     companion object {
         private const val POWER_TEXT_SIZE = 64f
@@ -128,7 +128,11 @@ class DrawUtils(private val hexMath: HexMath, context: Context) {
         powerTextPaint.textAlign = Paint.Align.CENTER
 
         groundPaint.style = Paint.Style.FILL
-        val groundBitmap = BitmapFactory.decodeResource(context.resources, R.drawable.seamless_ground_sand_dirt_crack_texture_2)
+        setGroundShader(R.drawable.seamless_ground_sand_dirt_crack_texture_2)
+    }
+
+    fun setGroundShader(groundResourceId: Int) {
+        val groundBitmap = BitmapFactory.decodeResource(context.resources, groundResourceId)
         val groundShader = BitmapShader(groundBitmap, Shader.TileMode.REPEAT, Shader.TileMode.REPEAT)
         groundPaint.shader = groundShader
     }

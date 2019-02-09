@@ -868,6 +868,7 @@
                     '5': {q:-3, r:5, s:-2}
                 }
             },
+            ground_resource: 'grassnew_diffuse_512',
             reward: {
                 '0': {ATTACK:4},
                 'gameStateChanges': {
@@ -891,6 +892,7 @@
                     '10': {q:7, r:0, s:-7}
                 }
             },
+            ground_resource: 'seamless_ground_sand_dirt_crack_texture_2',
             reward: {
                 '0': {LIFE:5, ATTACK:2},
                 'gameStateChanges': {
@@ -910,6 +912,7 @@
                     '11': {q:-10, r:19, s:-9}
                 }
             },
+            ground_resource: 'sandyrocks2c_512',
             reward: {
                 '0': {LIFE:2, ATTACK:3},
                 'gameStateChanges': {
@@ -929,6 +932,7 @@
                     '12': {q:24, r:-15, s:-9}
                 }
             },
+            ground_resource: 'greenleather_diffuse_512',
             reward: {
                 '0': {LIFE:2, ATTACK:3, ENERGY:2},
                 'gameStateChanges': { 'energy_hexes_available': true }
@@ -942,6 +946,7 @@
                 cellIndexes: [0,1,13,14,15,16,17,18,19,20,21,22,23,24,25,25],
                 isFog: true
             },
+            ground_resource: 'crackeddirt_512',
             reward: {
                 '0': {LIFE:2, ATTACK:3, ENERGY:2},
                 '1': {LIFE:2, ATTACK:3, ENERGY:2},
@@ -960,6 +965,7 @@
                     '1': {q:24, r:-15, s:-9}
                 }
             },
+            ground_resource: 'pinkychipped_diffuse',
             reward: {
                 '0': {LIFE:3, ATTACK:3, ENERGY:2, DEATH_RAY:1},
                 '1': {LIFE:3, ATTACK:3, ENERGY:2, DEATH_RAY:1},
@@ -975,6 +981,7 @@
                 cellIndexes: [0,1,2,31,32,33,34,35,36,37,38],
                 isFog: false
             },
+            ground_resource: 'spintered_tiled_wood_512',
             reward: {
                 '0': {LIFE:2, ATTACK:3, ENERGY:2, OMNI_BULLET:1},
                 '1': {LIFE:2, ATTACK:3, ENERGY:2, OMNI_BULLET:1},
@@ -990,6 +997,7 @@
                 cellIndexes: [0,1,2,39,40,41,42,43,44],
                 isFog: false
             },
+            ground_resource: 'pea_gravel_512',
             reward: {
                 '0': {LIFE:2, ATTACK:3, ENERGY:2},
                 '1': {LIFE:2, ATTACK:3, ENERGY:2},
@@ -1591,7 +1599,7 @@
             "{
                 hexBucket: {0:100,1:100,2:100,3:100,4:50},
                 direction: 'N',
-                hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":-1,"second":1},{"q":-1,"r":1,"s":0,"type":"LIFE"}],[{"first":1,"second":-1},{"q":1,"r":-1,"s":0,"type":"LIFE"}],[{"first":-2,"second":1},{"q":-2,"r":1,"s":1,"type":"ENERGY"}],[{"first":2,"second":-1},{"q":2,"r":-1,"s":-1,"type":"ENERGY"}],[{"first":-2,"second":0},{"q":-2,"r":0,"s":2,"type":"LIFE"}],[{"first":2,"second":0},{"q":2,"r":0,"s":-2,"type":"LIFE"}],[{"first":-2,"second":-1},{"q":-2,"r":-1,"s":3,"type":"LIFE"}],[{"first":2,"second":1},{"q":2,"r":1,"s":-3,"type":"LIFE"}],[{"first":-1,"second":-2},{"q":-1,"r":-2,"s":3,"type":"ENERGY"}],[{"first":1,"second":2},{"q":1,"r":2,"s":-3,"type":"ENERGY"}],[{"first":0,"second":-3},{"q":0,"r":-3,"s":3,"type":"LIFE"}],[{"first":1,"second":-3},{"q":1,"r":-3,"s":2,"type":"LIFE"}],[{"first":0,"second":3},{"q":0,"r":3,"s":-3,"type":"LIFE"}],[{"first":-1,"second":3},{"q":-1,"r":3,"s":-2,"type":"LIFE"}],[{"first":2,"second":-3},{"q":2,"r":-3,"s":1,"type":"OMNI_BULLET"}],[{"first":-2,"second":3},{"q":-2,"r":3,"s":-1,"type":"OMNI_BULLET"}],[{"first":0,"second":-4},{"q":0,"r":-4,"s":4,"type":"ATTACK"}],[{"first":-1,"second":-3},{"q":-1,"r":-3,"s":4,"type":"ATTACK"}],[{"first":-2,"second":-2},{"q":-2,"r":-2,"s":4,"type":"ATTACK"}],[{"first":-3,"second":-1},{"q":-3,"r":-1,"s":4,"type":"ATTACK"}],[{"first":-3,"second":0},{"q":-3,"r":0,"s":3,"type":"ATTACK"}],[{"first":-3,"second":1},{"q":-3,"r":1,"s":2,"type":"ATTACK"}],[{"first":-3,"second":2},{"q":-3,"r":2,"s":1,"type":"ATTACK"}],[{"first":-1,"second":4},{"q":-1,"r":4,"s":-3,"type":"ATTACK"}],[{"first":0,"second":4},{"q":0,"r":4,"s":-4,"type":"ATTACK"}],[{"first":1,"second":3},{"q":1,"r":3,"s":-4,"type":"ATTACK"}],[{"first":2,"second":2},{"q":2,"r":2,"s":-4,"type":"ATTACK"}],[{"first":3,"second":1},{"q":3,"r":1,"s":-4,"type":"ATTACK"}],[{"first":3,"second":0},{"q":3,"r":0,"s":-3,"type":"ATTACK"}],[{"first":3,"second":-1},{"q":3,"r":-1,"s":-2,"type":"ATTACK"}],[{"first":1,"second":-4},{"q":1,"r":-4,"s":3,"type":"ATTACK"}],[{"first":2,"second":-4},{"q":2,"r":-4,"s":2,"type":"ATTACK"}],[{"first":-1,"second":-1},{"q":-1,"r":-1,"s":2,"type":"OMNI_BULLET"}],[{"first":0,"second":2},{"q":0,"r":2,"s":-2,"type":"OMNI_BULLET"}],
+                hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":-1,"second":1},{"q":-1,"r":1,"s":0,"type":"LIFE"}],[{"first":1,"second":-1},{"q":1,"r":-1,"s":0,"type":"LIFE"}],[{"first":-2,"second":1},{"q":-2,"r":1,"s":1,"type":"ENERGY"}],[{"first":2,"second":-1},{"q":2,"r":-1,"s":-1,"type":"ENERGY"}],[{"first":-2,"second":0},{"q":-2,"r":0,"s":2,"type":"LIFE"}],[{"first":2,"second":0},{"q":2,"r":0,"s":-2,"type":"LIFE"}],[{"first":-2,"second":-1},{"q":-2,"r":-1,"s":3,"type":"LIFE"}],[{"first":2,"second":1},{"q":2,"r":1,"s":-3,"type":"LIFE"}],[{"first":-1,"second":-2},{"q":-1,"r":-2,"s":3,"type":"ENERGY"}],[{"first":1,"second":2},{"q":1,"r":2,"s":-3,"type":"ENERGY"}],[{"first":0,"second":-3},{"q":0,"r":-3,"s":3,"type":"LIFE"}],[{"first":1,"second":-3},{"q":1,"r":-3,"s":2,"type":"LIFE"}],[{"first":0,"second":3},{"q":0,"r":3,"s":-3,"type":"LIFE"}],[{"first":-1,"second":3},{"q":-1,"r":3,"s":-2,"type":"LIFE"}],[{"first":2,"second":-3},{"q":2,"r":-3,"s":1,"type":"OMNI_BULLET"}],[{"first":-2,"second":3},{"q":-2,"r":3,"s":-1,"type":"OMNI_BULLET"}],[{"first":0,"second":-4},{"q":0,"r":-4,"s":4,"type":"ATTACK"}],[{"first":-1,"second":-3},{"q":-1,"r":-3,"s":4,"type":"ATTACK"}],[{"first":-2,"second":-2},{"q":-2,"r":-2,"s":4,"type":"ATTACK"}],[{"first":-3,"second":-1},{"q":-3,"r":-1,"s":4,"type":"ATTACK"}],[{"first":-3,"second":0},{"q":-3,"r":0,"s":3,"type":"ATTACK"}],[{"first":-3,"second":1},{"q":-3,"r":1,"s":2,"type":"ATTACK"}],[{"first":-3,"second":2},{"q":-3,"r":2,"s":1,"type":"ATTACK"}],[{"first":-1,"second":4},{"q":-1,"r":4,"s":-3,"type":"ATTACK"}],[{"first":0,"second":4},{"q":0,"r":4,"s":-4,"type":"ATTACK"}],[{"first":1,"second":3},{"q":1,"r":3,"s":-4,"type":"ATTACK"}],[{"first":2,"second":2},{"q":2,"r":2,"s":-4,"type":"ATTACK"}],[{"first":3,"second":1},{"q":3,"r":1,"s":-4,"type":"ATTACK"}],[{"first":3,"second":0},{"q":3,"r":0,"s":-3,"type":"ATTACK"}],[{"first":3,"second":-1},{"q":3,"r":-1,"s":-2,"type":"ATTACK"}],[{"first":1,"second":-4},{"q":1,"r":-4,"s":3,"type":"ATTACK"}],[{"first":2,"second":-4},{"q":2,"r":-4,"s":2,"type":"ATTACK"}],[{"first":-1,"second":-1},{"q":-1,"r":-1,"s":2,"type":"OMNI_BULLET"}],[{"first":0,"second":2},{"q":0,"r":2,"s":-2,"type":"OMNI_BULLET"}]],
                 groupId: 8,
                 id: 44,
                 name: 'character_name_mage',

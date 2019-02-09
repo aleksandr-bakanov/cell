@@ -7,6 +7,7 @@ class Consts {
         const val NO_NEXT_SCENE = "no_next_scene"
         const val BATTLE_PARAMS = "battleParams"
         const val BATTLE_REWARD = "reward"
+        const val BATTLE_GROUND_RESOURCE = "ground_resource"
         const val HERO_GROUP_ID = 0
         const val GAME_STATE_CHANGES = "gameStateChanges"
 

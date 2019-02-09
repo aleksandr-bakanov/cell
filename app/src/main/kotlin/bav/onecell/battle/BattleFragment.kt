@@ -14,6 +14,7 @@ import bav.onecell.R
 import bav.onecell.battle.results.BattleResultsFragment
 import bav.onecell.common.Common
 import bav.onecell.common.Consts
+import bav.onecell.common.Consts.Companion.BATTLE_GROUND_RESOURCE
 import bav.onecell.common.Consts.Companion.BATTLE_PARAMS
 import bav.onecell.common.Consts.Companion.NEXT_SCENE
 import bav.onecell.common.extensions.visible
@@ -132,6 +133,8 @@ class BattleFragment : Fragment(), Battle.View {
         arguments?.let {
             val info = JSONObject(getString(it.getInt(EXTRA_PARAMS)))
             val battleParams = info.getString(BATTLE_PARAMS)
+            val battleGroundResource = resourceProvider.getDrawableIdentifier(info.getString(BATTLE_GROUND_RESOURCE))
+            drawUtils.setGroundShader(battleGroundResource)
             nextScene = resourceProvider.getIdIdentifier(info.getString(NEXT_SCENE))
             reward = info.optString(Consts.BATTLE_REWARD)
             presenter.initialize(battleParams)
