@@ -2,7 +2,7 @@ package bav.onecell.model.hexes
 
 import com.google.gson.Gson
 
-data class Hex(var q: Int = 0, var r: Int = 0, var s: Int = 0) {
+data class Hex(var q /*X*/: Int = 0, var r /*Z*/: Int = 0, var s /*Y*/: Int = 0) {
 
     companion object {
         fun fromJson(json: String): Hex {
