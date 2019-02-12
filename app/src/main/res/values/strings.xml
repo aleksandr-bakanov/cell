@@ -204,7 +204,7 @@
     <string name="cs_introduction_26">\u0020</string>
     <string name="cs_introduction_27">\u0020</string>
     <string name="cs_introduction_28">Hey Kitty, where are you going? What are you hiding there?</string>
-    <string name="cs_introduction_29">Baska, Buckwheat, Crutch, I did not expect to meet you here!</string>
+    <string name="cs_introduction_29">Bashka, Buckwheat, Crutch, I did not expect to meet you here!</string>
     <string name="cs_introduction_30">Anyway I have no time to chat with you, let me go...</string>
     <string name="cs_introduction_31">Look, Kitty is rushing into battle, take him, boys!</string>
     <string name="cs_introduction_32">Battle rules</string>
@@ -264,7 +264,7 @@
     <string name="cs_after_gopniks_8">You have discovered a new type of hexes - attacking (red).</string>
     <string name="cs_after_gopniks_9">Attacking hexes do not have their own power.</string>
     <string name="cs_after_gopniks_10">They draw it from the hexes around them.</string>
-    <string name="cs_after_gopniks_11">Each adjacent vital hex adds an attacking force equals to 1.</string>
+    <string name="cs_after_gopniks_11">Each adjacent vital hex adds 1 to the force of the attacking hex.</string>
     <string name="cs_after_gopniks_12">Strengthen your cell and go on.</string>
 
     <!--
@@ -1266,7 +1266,7 @@
             "{
                 hexBucket: {0:100,1:100,2:100,3:100},
                 direction: 'N',
-                hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":1,"second":-1},{"q":1,"r":-1,"s":0,"type":"LIFE"}],[{"first":1,"second":0},{"q":1,"r":0,"s":-1,"type":"ATTACK"}],[{"first":0,"second":1},{"q":0,"r":1,"s":-1,"type":"ENERGY"}]],
+                hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":-1,"second":0},{"q":-1,"r":0,"s":1,"type":"ENERGY"}],[{"first":0,"second":-1},{"q":0,"r":-1,"s":1,"type":"ATTACK"}],[{"first":-1,"second":1},{"q":-1,"r":1,"s":0,"type":"ATTACK"}]],
                 groupId: 5,
                 id: 14,
                 name: 'character_name_nihterib_2',
@@ -1278,7 +1278,7 @@
             "{
                 hexBucket: {0:100,1:100,2:100,3:100},
                 direction: 'N',
-                hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":0,"second":1},{"q":0,"r":1,"s":-1,"type":"LIFE"}],[{"first":0,"second":2},{"q":0,"r":2,"s":-2,"type":"LIFE"}],[{"first":-1,"second":1},{"q":-1,"r":1,"s":0,"type":"ATTACK"}],[{"first":1,"second":1},{"q":1,"r":1,"s":-2,"type":"ATTACK"}]],
+                hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":-1,"second":1},{"q":-1,"r":1,"s":0,"type":"ATTACK"}],[{"first":0,"second":1},{"q":0,"r":1,"s":-1,"type":"ENERGY"}],[{"first":1,"second":0},{"q":1,"r":0,"s":-1,"type":"ATTACK"}]],
                 groupId: 5,
                 id: 15,
                 name: 'character_name_nihterib_3',
@@ -1314,7 +1314,7 @@
             "{
                 hexBucket: {0:100,1:100,2:100,3:100},
                 direction: 'N',
-                hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":0,"second":-1},{"q":0,"r":-1,"s":1,"type":"ATTACK"}],[{"first":1,"second":-1},{"q":1,"r":-1,"s":0,"type":"ENERGY"}],[{"first":1,"second":0},{"q":1,"r":0,"s":-1,"type":"ATTACK"}],[{"first":0,"second":1},{"q":0,"r":1,"s":-1,"type":"ATTACK"}]],
+                hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":0,"second":-1},{"q":0,"r":-1,"s":1,"type":"ATTACK"}],[{"first":1,"second":-1},{"q":1,"r":-1,"s":0,"type":"ENERGY"}],[{"first":0,"second":1},{"q":0,"r":1,"s":-1,"type":"ATTACK"}]],
                 groupId: 5,
                 id: 18,
                 name: 'character_name_nihterib_6',
@@ -1326,7 +1326,7 @@
             "{
                 hexBucket: {0:100,1:100,2:100,3:100},
                 direction: 'N',
-                hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":0,"second":-1},{"q":0,"r":-1,"s":1,"type":"ATTACK"}],[{"first":-1,"second":0},{"q":-1,"r":0,"s":1,"type":"ATTACK"}],[{"first":-1,"second":1},{"q":-1,"r":1,"s":0,"type":"ATTACK"}],[{"first":0,"second":1},{"q":0,"r":1,"s":-1,"type":"ATTACK"}],[{"first":1,"second":0},{"q":1,"r":0,"s":-1,"type":"ATTACK"}],[{"first":1,"second":-1},{"q":1,"r":-1,"s":0,"type":"ATTACK"}]],
+                hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":1,"second":-1},{"q":1,"r":-1,"s":0,"type":"ATTACK"}],[{"first":0,"second":-1},{"q":0,"r":-1,"s":1,"type":"ENERGY"}]],
                 groupId: 5,
                 id: 19,
                 name: 'character_name_nihterib_7',
@@ -1338,7 +1338,7 @@
             "{
                 hexBucket: {0:100,1:100,2:100,3:100},
                 direction: 'N',
-                hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":0,"second":-1},{"q":0,"r":-1,"s":1,"type":"ATTACK"}],[{"first":1,"second":-1},{"q":1,"r":-1,"s":0,"type":"ENERGY"}],[{"first":1,"second":-2},{"q":1,"r":-2,"s":1,"type":"ATTACK"}]],
+                hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":0,"second":-1},{"q":0,"r":-1,"s":1,"type":"ATTACK"}],[{"first":1,"second":-1},{"q":1,"r":-1,"s":0,"type":"ENERGY"}]],
                 groupId: 5,
                 id: 20,
                 name: 'character_name_nihterib_8',
@@ -1350,7 +1350,7 @@
             "{
                 hexBucket: {0:100,1:100,2:100,3:100},
                 direction: 'N',
-                hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":0,"second":-1},{"q":0,"r":-1,"s":1,"type":"ATTACK"}],[{"first":-1,"second":0},{"q":-1,"r":0,"s":1,"type":"ENERGY"}],[{"first":1,"second":0},{"q":1,"r":0,"s":-1,"type":"LIFE"}],[{"first":2,"second":0},{"q":2,"r":0,"s":-2,"type":"ENERGY"}],[{"first":2,"second":-1},{"q":2,"r":-1,"s":-1,"type":"ATTACK"}],[{"first":0,"second":1},{"q":0,"r":1,"s":-1,"type":"ATTACK"}]],
+                hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":0,"second":-1},{"q":0,"r":-1,"s":1,"type":"ATTACK"}],[{"first":1,"second":0},{"q":1,"r":0,"s":-1,"type":"LIFE"}],[{"first":2,"second":-1},{"q":2,"r":-1,"s":-1,"type":"ATTACK"}],[{"first":0,"second":1},{"q":0,"r":1,"s":-1,"type":"ATTACK"}]],
                 groupId: 5,
                 id: 21,
                 name: 'character_name_nihterib_9',
@@ -1362,7 +1362,7 @@
             "{
                 hexBucket: {0:100,1:100,2:100,3:100},
                 direction: 'N',
-                hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":0,"second":-1},{"q":0,"r":-1,"s":1,"type":"ATTACK"}],[{"first":0,"second":1},{"q":0,"r":1,"s":-1,"type":"ENERGY"}],[{"first":0,"second":2},{"q":0,"r":2,"s":-2,"type":"ATTACK"}],[{"first":-1,"second":1},{"q":-1,"r":1,"s":0,"type":"ATTACK"}],[{"first":1,"second":0},{"q":1,"r":0,"s":-1,"type":"ATTACK"}]],
+                hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":0,"second":-1},{"q":0,"r":-1,"s":1,"type":"ATTACK"}],[{"first":0,"second":1},{"q":0,"r":1,"s":-1,"type":"ENERGY"}],[{"first":0,"second":2},{"q":0,"r":2,"s":-2,"type":"ATTACK"}]],
                 groupId: 5,
                 id: 22,
                 name: 'character_name_nihterib_10',
@@ -1374,7 +1374,7 @@
             "{
                 hexBucket: {0:100,1:100,2:100,3:100},
                 direction: 'N',
-                hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":0,"second":-1},{"q":0,"r":-1,"s":1,"type":"ATTACK"}],[{"first":-1,"second":1},{"q":-1,"r":1,"s":0,"type":"LIFE"}],[{"first":1,"second":0},{"q":1,"r":0,"s":-1,"type":"LIFE"}],[{"first":0,"second":1},{"q":0,"r":1,"s":-1,"type":"ATTACK"}]],
+                hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":0,"second":-1},{"q":0,"r":-1,"s":1,"type":"ATTACK"}],[{"first":-1,"second":1},{"q":-1,"r":1,"s":0,"type":"ENERGY"}]],
                 groupId: 5,
                 id: 23,
                 name: 'character_name_nihterib_11',
@@ -1386,7 +1386,7 @@
             "{
                 hexBucket: {0:100,1:100,2:100,3:100},
                 direction: 'N',
-                hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":0,"second":-1},{"q":0,"r":-1,"s":1,"type":"ATTACK"}],[{"first":-1,"second":1},{"q":-1,"r":1,"s":0,"type":"ENERGY"}],[{"first":-2,"second":2},{"q":-2,"r":2,"s":0,"type":"ATTACK"}],[{"first":-1,"second":2},{"q":-1,"r":2,"s":-1,"type":"ATTACK"}],[{"first":-2,"second":1},{"q":-2,"r":1,"s":1,"type":"ATTACK"}]],
+                hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":-1,"second":1},{"q":-1,"r":1,"s":0,"type":"ENERGY"}],[{"first":-1,"second":2},{"q":-1,"r":2,"s":-1,"type":"ATTACK"}],[{"first":-2,"second":1},{"q":-2,"r":1,"s":1,"type":"ATTACK"}]],
                 groupId: 5,
                 id: 24,
                 name: 'character_name_nihterib_12',
@@ -1398,7 +1398,7 @@
             "{
                 hexBucket: {0:100,1:100,2:100,3:100},
                 direction: 'N',
-                hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":0,"second":-1},{"q":0,"r":-1,"s":1,"type":"ATTACK"}],[{"first":1,"second":0},{"q":1,"r":0,"s":-1,"type":"ENERGY"}],[{"first":1,"second":-1},{"q":1,"r":-1,"s":0,"type":"ATTACK"}],[{"first":2,"second":-1},{"q":2,"r":-1,"s":-1,"type":"ATTACK"}],[{"first":2,"second":0},{"q":2,"r":0,"s":-2,"type":"ATTACK"}],[{"first":0,"second":1},{"q":0,"r":1,"s":-1,"type":"ATTACK"}],[{"first":1,"second":1},{"q":1,"r":1,"s":-2,"type":"ATTACK"}]],
+                hexes: [[{"first":0,"second":0},{"q":0,"r":0,"s":0,"type":"LIFE"}],[{"first":0,"second":-1},{"q":0,"r":-1,"s":1,"type":"ATTACK"}],[{"first":1,"second":0},{"q":1,"r":0,"s":-1,"type":"ENERGY"}],[{"first":0,"second":1},{"q":0,"r":1,"s":-1,"type":"ATTACK"}]],
                 groupId: 5,
                 id: 25,
                 name: 'character_name_nihterib_13',
