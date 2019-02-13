@@ -76,6 +76,7 @@ dependencies {
     implementation "androidx.core:core-ktx:1.0.1"
 
     implementation "com.android.support:multidex:1.0.3"
+    implementation 'com.google.firebase:firebase-core:16.0.1'
 
     // Tests
     testImplementation 'junit:junit:4.12'
@@ -128,3 +129,5 @@ task jacocoTestReport(type: JacocoReport, dependsOn: "testDebugUnitTest") {
     ])
     executionData = files("$buildDir/jacoco/testDebugUnitTest.exec")
 }
+
+apply plugin: 'com.google.gms.google-services'
