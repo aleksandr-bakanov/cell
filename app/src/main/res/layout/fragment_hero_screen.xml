@@ -165,120 +165,117 @@
         app:layout_constraintStart_toStartOf="@id/guideline_hero_screen_avatars_end"
         app:srcCompat="@drawable/ic_account_balance_black_24dp" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/buttonTransformLifeToAttackHex"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/hex_transform_button_width"
+        android:layout_height="@dimen/hex_transform_button_height"
         android:background="@drawable/button_main_menu_background"
-        android:padding="@dimen/button_padding"
-        android:textColor="@color/buttonMainMenu"
-        android:text="@string/button_transform_life_to_attack_hex_title"
+        android:padding="@dimen/hex_transform_button_padding"
+        android:scaleType="fitCenter"
         android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@id/buttonTransformLifeToEnergyHex"
         app:layout_constraintStart_toStartOf="@id/guideline_hero_screen_avatars_end"
         app:layout_constraintTop_toTopOf="@id/guideline_hero_screen_cellname_bottom"
-        app:layout_constraintEnd_toStartOf="@id/buttonTransformAttackToLifeHex"/>
+        app:layout_constraintEnd_toStartOf="@id/buttonTransformAttackToLifeHex"
+        app:srcCompat="@drawable/ic_trade_life_to_attack" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/buttonTransformLifeToEnergyHex"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/hex_transform_button_width"
+        android:layout_height="@dimen/hex_transform_button_height"
         android:background="@drawable/button_main_menu_background"
-        android:padding="@dimen/button_padding"
-        android:textColor="@color/buttonMainMenu"
-        android:text="@string/button_transform_life_to_energy_hex_title"
+        android:padding="@dimen/hex_transform_button_padding"
+        android:scaleType="fitCenter"
         android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@id/buttonTransformLifeToDeathRayHex"
         app:layout_constraintStart_toStartOf="@id/guideline_hero_screen_avatars_end"
         app:layout_constraintTop_toBottomOf="@id/buttonTransformLifeToAttackHex"
-        app:layout_constraintEnd_toStartOf="@id/buttonTransformEnergyToLifeHex"/>
+        app:layout_constraintEnd_toStartOf="@id/buttonTransformEnergyToLifeHex"
+        app:srcCompat="@drawable/ic_trade_life_to_energy" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/buttonTransformLifeToDeathRayHex"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/hex_transform_button_width"
+        android:layout_height="@dimen/hex_transform_button_height"
         android:background="@drawable/button_main_menu_background"
-        android:padding="@dimen/button_padding"
-        android:textColor="@color/buttonMainMenu"
-        android:text="@string/button_transform_life_to_death_ray_hex_title"
+        android:padding="@dimen/hex_transform_button_padding"
+        android:scaleType="fitCenter"
         android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@id/buttonTransformLifeToOmniBulletHex"
         app:layout_constraintStart_toStartOf="@id/guideline_hero_screen_avatars_end"
         app:layout_constraintTop_toBottomOf="@id/buttonTransformLifeToEnergyHex"
-        app:layout_constraintEnd_toStartOf="@id/buttonTransformDeathRayToLifeHex"/>
+        app:layout_constraintEnd_toStartOf="@id/buttonTransformDeathRayToLifeHex"
+        app:srcCompat="@drawable/ic_trade_life_to_death_ray" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/buttonTransformLifeToOmniBulletHex"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/hex_transform_button_width"
+        android:layout_height="@dimen/hex_transform_button_height"
         android:background="@drawable/button_main_menu_background"
-        android:padding="@dimen/button_padding"
-        android:textColor="@color/buttonMainMenu"
-        android:text="@string/button_transform_life_to_omni_bullet_hex_title"
+        android:padding="@dimen/hex_transform_button_padding"
+        android:scaleType="fitCenter"
         android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@id/buttonTransformHexes"
         app:layout_constraintEnd_toStartOf="@id/buttonTransformOmniBulletToLifeHex"
         app:layout_constraintStart_toStartOf="@id/guideline_hero_screen_avatars_end"
-        app:layout_constraintTop_toBottomOf="@id/buttonTransformLifeToDeathRayHex" />
+        app:layout_constraintTop_toBottomOf="@id/buttonTransformLifeToDeathRayHex"
+        app:srcCompat="@drawable/ic_trade_life_to_omni_bullet" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/buttonTransformAttackToLifeHex"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/hex_transform_button_width"
+        android:layout_height="@dimen/hex_transform_button_height"
         android:background="@drawable/button_main_menu_background"
-        android:padding="@dimen/button_padding"
-        android:textColor="@color/buttonMainMenu"
-        android:text="@string/button_transform_attack_to_life_hex_title"
+        android:padding="@dimen/hex_transform_button_padding"
+        android:scaleType="fitCenter"
         android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@id/buttonTransformEnergyToLifeHex"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/buttonTransformLifeToAttackHex"
-        app:layout_constraintTop_toTopOf="@id/guideline_hero_screen_cellname_bottom" />
+        app:layout_constraintTop_toTopOf="@id/guideline_hero_screen_cellname_bottom"
+        app:srcCompat="@drawable/ic_trade_attack_to_life" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/buttonTransformEnergyToLifeHex"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/hex_transform_button_width"
+        android:layout_height="@dimen/hex_transform_button_height"
         android:background="@drawable/button_main_menu_background"
-        android:padding="@dimen/button_padding"
-        android:textColor="@color/buttonMainMenu"
-        android:text="@string/button_transform_energy_to_life_hex_title"
+        android:padding="@dimen/hex_transform_button_padding"
+        android:scaleType="fitCenter"
         android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@id/buttonTransformDeathRayToLifeHex"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/buttonTransformAttackToLifeHex"
         app:layout_constraintStart_toEndOf="@+id/buttonTransformLifeToEnergyHex"
-        />
+        app:srcCompat="@drawable/ic_trade_energy_to_life" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/buttonTransformDeathRayToLifeHex"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/hex_transform_button_width"
+        android:layout_height="@dimen/hex_transform_button_height"
         android:background="@drawable/button_main_menu_background"
-        android:padding="@dimen/button_padding"
-        android:textColor="@color/buttonMainMenu"
-        android:text="@string/button_transform_death_ray_to_life_hex_title"
+        android:padding="@dimen/hex_transform_button_padding"
+        android:scaleType="fitCenter"
         android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@id/buttonTransformOmniBulletToLifeHex"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/buttonTransformEnergyToLifeHex"
         app:layout_constraintStart_toEndOf="@+id/buttonTransformLifeToDeathRayHex"
-        />
+        app:srcCompat="@drawable/ic_trade_death_ray_to_life" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/buttonTransformOmniBulletToLifeHex"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/hex_transform_button_width"
+        android:layout_height="@dimen/hex_transform_button_height"
         android:background="@drawable/button_main_menu_background"
-        android:padding="@dimen/button_padding"
-        android:textColor="@color/buttonMainMenu"
-        android:text="@string/button_transform_omni_bullet_to_life_hex_title"
+        android:padding="@dimen/hex_transform_button_padding"
+        android:scaleType="fitCenter"
         android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@id/buttonTransformHexes"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/buttonTransformDeathRayToLifeHex"
         app:layout_constraintStart_toEndOf="@+id/buttonTransformLifeToOmniBulletHex"
-        />
+        app:srcCompat="@drawable/ic_trade_omni_bullet_to_life" />
 
     <!-- Cell logic edition -->
     <androidx.recyclerview.widget.RecyclerView

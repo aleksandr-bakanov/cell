@@ -4,6 +4,10 @@
 
     <dimen name="button_padding">16dp</dimen>
 
+    <dimen name="hex_transform_button_width">150dp</dimen>
+    <dimen name="hex_transform_button_height">64dp</dimen>
+    <dimen name="hex_transform_button_padding">4dp</dimen>
+
     <dimen name="hero_screen_avatar_size">52dp</dimen>
     <dimen name="hero_screen_avatar_margin">4dp</dimen>
     <dimen name="hero_screen_avatar_list_width">56dp</dimen> <!-- size + margin -->
