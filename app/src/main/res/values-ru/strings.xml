@@ -115,6 +115,7 @@
     <string name="cs_before_skilos_3">Рррррррр!</string>
     <string name="cs_before_skilos_4">Скилосы?! Кого только не встретишь вдали от поселений.</string>
     <string name="cs_before_skilos_5">Рррррррррррррррр!!!</string>
+    <string name="cs_before_skilos_6">\u0020</string>
 
     <!-- Cut scene after skiloses -->
     <string name="cs_after_skilos_0">Черт, ну и потрепали же меня проклятые скилосы!</string>

@@ -282,7 +282,8 @@
                 '2': { text: 'cs_before_skilos_2', left: 'ic_character_kittaro_normal_speak' },
                 '3': { text: 'cs_before_skilos_3', left: 'ic_character_kittaro_normal', right: 'ic_character_skilos_speak' },
                 '4': { text: 'cs_before_skilos_4', left: 'ic_character_kittaro_normal_speak', right: 'ic_character_skilos_speak' },
-                '5': { text: 'cs_before_skilos_5', left: 'ic_character_kittaro_normal', right: 'ic_character_skilos_speak_agressive' }
+                '5': { text: 'cs_before_skilos_5', left: 'ic_character_kittaro_normal', right: 'ic_character_skilos_speak_agressive' },
+                '6': { text: 'cs_before_skilos_6', background: 'ic_cs_before_skilos_6' }
             },
             next_scene: 'action_cutSceneBeforeSkilos_to_battleSkilos'
         }"
@@ -293,6 +294,7 @@
     <string name="cs_before_skilos_3">Rrrrrrrr!</string>
     <string name="cs_before_skilos_4">Skiloses?! I wonder who else can be found far from the settlements.</string>
     <string name="cs_before_skilos_5">Rrrrrrrrrrrrrrrr!!!</string>
+    <string name="cs_before_skilos_6">\u0020</string>
 
     <!--
       - Cut scene after encounter with skiloses.
