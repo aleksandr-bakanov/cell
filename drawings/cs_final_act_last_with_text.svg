@@ -15,7 +15,7 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.92.3 (2405546, 2018-03-11)"
-   sodipodi:docname="cs_final_act_9.svg">
+   sodipodi:docname="cs_final_act_last_with_text.svg">
   <defs
      id="defs4" />
   <sodipodi:namedview
@@ -26,7 +26,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.4596194"
-     inkscape:cx="941.96711"
+     inkscape:cx="561.2173"
      inkscape:cy="421.80101"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
@@ -17538,7 +17538,7 @@
     </g>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:192px;line-height:125%;font-family:'DejaVu Sans Mono';-inkscape-font-specification:'DejaVu Sans Mono Bold';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:192px;line-height:125%;font-family:'DejaVu Sans Mono';-inkscape-font-specification:'DejaVu Sans Mono Bold';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;"
        x="962.15625"
        y="504.41129"
        id="text3042"><tspan
@@ -17546,6 +17546,6 @@
          id="tspan3040"
          x="962.15625"
          y="504.41129"
-         style="-inkscape-font-specification:'Candara Bold';font-family:Candara;font-weight:bold;font-style:normal;font-stretch:normal;font-variant:normal">ТЫ МЕРТВ, АХИЛЛ</tspan></text>
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Candara;-inkscape-font-specification:'Candara Bold';fill:#ffffff;">Αχίλλειος πτέρνα</tspan></text>
   </g>
 </svg>

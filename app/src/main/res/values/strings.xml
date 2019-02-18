@@ -15,35 +15,17 @@
     <string name="text_warning_message">New game will erase any progress done so far.\nAre you sure?</string>
 
     <!-- Heroes view -->
-    <string name="text_cell_name" translatable="false">Name</string>
-    <string name="text_next_scene" translatable="false">Go</string>
+    <string name="text_cell_name">Name</string>
+    <string name="text_next_scene">Go</string>
     <string name="text_history_stub" translatable="false">\u0020</string>
-    <string name="button_transform_life_to_energy_hex_title" translatable="false">5L -> 1E</string>
-    <string name="button_transform_life_to_attack_hex_title" translatable="false">3L -> 1A</string>
-    <string name="button_transform_life_to_death_ray_hex_title" translatable="false">10L -> 1D</string>
-    <string name="button_transform_life_to_omni_bullet_hex_title" translatable="false">15L -> 1O</string>
-    <string name="button_transform_energy_to_life_hex_title" translatable="false">1E -> 5L</string>
-    <string name="button_transform_attack_to_life_hex_title" translatable="false">1A -> 3L</string>
-    <string name="button_transform_death_ray_to_life_hex_title" translatable="false">1D -> 10L</string>
-    <string name="button_transform_omni_bullet_to_life_hex_title" translatable="false">1O -> 15L</string>
-
-    <!-- Editor view -->
-    <string name="radio_button_life_cell_title" translatable="false">Life</string>
-    <string name="radio_button_energy_cell_title" translatable="false">Energy</string>
-    <string name="radio_button_attack_cell_title" translatable="false">Attack</string>
-    <string name="radio_button_remove_cell_title" translatable="false">Remove</string>
 
     <!-- Battle view -->
-    <string name="button_finish_battle_title" translatable="false">View results</string>
+    <string name="button_finish_battle_title">View results</string>
 
     <!-- Battle results view -->
-    <string name="reward_title" translatable="false">Reward:</string>
-    <string name="button_to_heroes_screen" translatable="false">To heroes screen</string>
-    <string name="button_try_again" translatable="false">Try again</string>
-
-    <!-- Condition editor view -->
-    <string name="button_ok" translatable="false">Save</string>
-    <string name="button_cancel" translatable="false">Cancel</string>
+    <string name="reward_title">Reward:</string>
+    <string name="button_to_heroes_screen">To heroes screen</string>
+    <string name="button_try_again">Try again</string>
 
     <!-- Rules editor view -->
     <string name="button_add_new_rule_title">Add rule</string>
@@ -79,10 +61,10 @@
     <string name="image_description_cut_scene_background" translatable="false">Cut scene background</string>
     <string name="image_description_cut_scene_left_character" translatable="false">Left character</string>
     <string name="image_description_cut_scene_right_character" translatable="false">Right character</string>
-    <string name="button_previous_frame_title" translatable="false">prev</string>
+    <string name="button_previous_frame_title" translatable="false">&lt;&lt;</string>
     <string name="button_next_frame_title" translatable="false">next</string>
-    <string name="button_yes_title" translatable="false">yes</string>
-    <string name="button_no_title" translatable="false">no</string>
+    <string name="button_yes_title">yes</string>
+    <string name="button_no_title">no</string>
 
     <!-- Navigation graph constants -->
     <string name="next_scene" translatable="false">next_scene</string>
