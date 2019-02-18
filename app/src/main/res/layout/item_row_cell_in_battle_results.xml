@@ -12,7 +12,7 @@
         android:layout_marginTop="@dimen/battle_result_avatars_in_group_margin"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="@id/deadOrAlive"
+        app:layout_constraintEnd_toEndOf="@id/attackHexReward"
         app:layout_constraintBottom_toTopOf="@id/preview"
         android:textAlignment="center"
         android:textSize="@dimen/battle_result_text_size" />

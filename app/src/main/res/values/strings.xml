@@ -465,7 +465,7 @@
                 '11': { text: 'cs_analafro_11', left: 'ic_character_kittaro_normal', right: 'ic_character_omikhli_speak' },
                 '12': { text: 'cs_analafro_12', left: 'ic_character_kittaro_normal' },
                 '13': { text: 'cs_analafro_13', left: 'ic_character_kittaro_normal' },
-                '14': { text: 'cs_analafro_14', backgroun: 'ic_cs_analafro_14' }
+                '14': { text: 'cs_analafro_14', background: 'ic_cs_analafro_14' }
             },
             next_scene: 'action_cutSceneAnalafro_to_battleOmikhli'
         }"
