@@ -165,6 +165,7 @@
     <string name="cs_gonato_20">Вот и славно, славно, порадовал старика, спасибо тебе!</string>
     <string name="cs_gonato_21">Что ж, дело твое, мы не в обиде... удачи тебе в твоем путешествии!</string>
     <string name="cs_gonato_22">Береги себя!</string>
+    <string name="cs_gonato_23">\u0020</string>
 
     <!-- Cut scene after Belos -->
     <string name="cs_after_belos_0">Ну и зверюга, чуть не сожрал меня!</string>

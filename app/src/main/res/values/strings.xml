@@ -385,9 +385,10 @@
                 '17': { text: 'cs_gonato_17', left: 'ic_character_kittaro_normal_speak', right: 'ic_character_gonato_old_man' },
                 '18': { text: 'cs_gonato_18', left: 'ic_character_kittaro_normal', right: 'ic_character_gonato_old_man_speak' },
                 '19': { text: 'cs_gonato_19', left: 'ic_character_kittaro_normal', right: 'ic_character_gonato_old_man_speak', decisionField: 'help_gonato', yesNextFrame: 20, noNextFrame: 21 },
-                '20': { text: 'cs_gonato_20', left: 'ic_character_kittaro_normal', right: 'ic_character_gonato_old_man_speak', nextFrame: 22 },
+                '20': { text: 'cs_gonato_20', left: 'ic_character_kittaro_normal', right: 'ic_character_gonato_old_man_speak', nextFrame: 23 },
                 '21': { text: 'cs_gonato_21', left: 'ic_character_kittaro_normal', right: 'ic_character_gonato_old_man_speak' },
-                '22': { text: 'cs_gonato_22', left: 'ic_character_kittaro_normal', right: 'ic_character_gonato_old_man_speak' }
+                '22': { text: 'cs_gonato_22', left: 'ic_character_kittaro_normal', right: 'ic_character_gonato_old_man_speak', finalFrame: true },
+                '23': { text: 'cs_gonato_23', background: 'ic_cs_gonato_23', finalFrame: true }
             },
             next_scene: 'action_cutSceneGonato_to_battleBelos',
             yes_next_scene: 'action_cutSceneGonato_to_battleBelos',
@@ -417,6 +418,7 @@
     <string name="cs_gonato_20">That\'s nice, nice, pleased the old man, thank you!</string>
     <string name="cs_gonato_21">Well, your business, we are not offended... good luck to you on your journey!</string>
     <string name="cs_gonato_22">Take care of yourself!</string>
+    <string name="cs_gonato_23">\u0020</string>
 
     <!--
       - Cut scene after Belos

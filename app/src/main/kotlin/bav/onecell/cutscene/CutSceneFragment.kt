@@ -50,6 +50,7 @@ class CutSceneFragment : Fragment(), CutScene.View {
     private var currentFrameIndex: Int = 0
     private var decisionMade: String = ""
     private var isDecisionFrame = false
+    private var isFinalFrame = false
     private var cutSceneId: String = ""
 
     private var animationTimer: Disposable? = null
@@ -133,7 +134,8 @@ class CutSceneFragment : Fragment(), CutScene.View {
                                           decisionField = data.optString(DECISION_FIELD),
                                           yesNextFrame = data.optInt(YES_NEXT_FRAME, DEFAULT_NEXT_FRAME),
                                           noNextFrame = data.optInt(NO_NEXT_FRAME, DEFAULT_NEXT_FRAME),
-                                          showPrevFrameButton = data.optBoolean(SHOW_PREV_FRAME_BUTTON, false))
+                                          showPrevFrameButton = data.optBoolean(SHOW_PREV_FRAME_BUTTON, false),
+                                          isFinalFrame = data.optBoolean(FINAL_FRAME, false))
                 }
                 info.optJSONObject(GAME_STATE_CHANGES)?.let { gameStateChanges ->
                     // Changes should contain booleans
@@ -157,6 +159,7 @@ class CutSceneFragment : Fragment(), CutScene.View {
             buttonYes.visible = it.decisionField.isNotEmpty()
             buttonNo.visible = it.decisionField.isNotEmpty()
             isDecisionFrame = it.decisionField.isNotEmpty()
+            isFinalFrame = it.isFinalFrame
 
             buttonPreviousFrame.visibility = if (it.showPrevFrameButton) View.VISIBLE else View.GONE
 
@@ -204,7 +207,7 @@ class CutSceneFragment : Fragment(), CutScene.View {
     private fun showNextFrame() {
         if (isDecisionFrame) return
 
-        if (currentFrameIndex == frames.size - 1) {
+        if (currentFrameIndex == frames.size - 1 || isFinalFrame) {
             currentFrameIndex = 0
             val toScene = takeNextScene()
             gameState.setCutSceneShown(cutSceneId)
@@ -252,6 +255,7 @@ class CutSceneFragment : Fragment(), CutScene.View {
         const val YES_NEXT_FRAME = "yesNextFrame"
         const val NO_NEXT_FRAME = "noNextFrame"
         const val SHOW_PREV_FRAME_BUTTON = "showPrevFrameButton"
+        const val FINAL_FRAME = "finalFrame"
 
         const val DEFAULT_NEXT_FRAME = -1
 
@@ -273,5 +277,6 @@ class CutSceneFragment : Fragment(), CutScene.View {
                                  val decisionField: String = "",
                                  val yesNextFrame: Int = DEFAULT_NEXT_FRAME,
                                  val noNextFrame: Int = DEFAULT_NEXT_FRAME,
-                                 val showPrevFrameButton: Boolean = false)
+                                 val showPrevFrameButton: Boolean = false,
+                                 val isFinalFrame: Boolean = false)
 }
