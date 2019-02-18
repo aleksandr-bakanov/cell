@@ -401,7 +401,7 @@
     <string name="cs_gonato_3">To the capital, I need...</string>
     <string name="cs_gonato_4">To the capital?! That\'s far away... And where did you come from?</string>
     <string name="cs_gonato_5">From Fterna, this is...</string>
-    <string name="cs_gonato_6">Fterna, you say?! I have a brother-in-law from Fterna, owed me three sheep</string>
+    <string name="cs_gonato_6">Fterna, you say?! I have a brother-in-law from Fterna, he owed me three sheep.</string>
     <string name="cs_gonato_7">If you meet him, you tell him</string>
     <string name="cs_gonato_8">Elder of Gonato does not forget his sheep, you\'ll tell him.</string>
     <string name="cs_gonato_9">Uh... well..</string>
@@ -482,7 +482,8 @@
                 '10': { text: 'cs_analafro_10', left: 'ic_character_kittaro_normal_speak', right: 'ic_character_omikhli' },
                 '11': { text: 'cs_analafro_11', left: 'ic_character_kittaro_normal', right: 'ic_character_omikhli_speak' },
                 '12': { text: 'cs_analafro_12', left: 'ic_character_kittaro_normal' },
-                '13': { text: 'cs_analafro_13', left: 'ic_character_kittaro_normal' }
+                '13': { text: 'cs_analafro_13', left: 'ic_character_kittaro_normal' },
+                '14': { text: 'cs_analafro_14', backgroun: 'ic_cs_analafro_14' }
             },
             next_scene: 'action_cutSceneAnalafro_to_battleOmikhli'
         }"
@@ -501,6 +502,7 @@
     <string name="cs_analafro_11">This will not happen, no one has yet passed through my lands without paying for it!</string>
     <string name="cs_analafro_12">........ hss-s ........</string>
     <string name="cs_analafro_13">................</string>
+    <string name="cs_analafro_14">\u0020</string>
 
     <!--
       - Cut scene after Omikhli
@@ -531,7 +533,7 @@
     <string name="cs_after_omikhli_3">Okay, time to heal and move on</string>
     <string name="cs_after_omikhli_4">You discovered a new type of hexes - energy (yellow)</string>
     <string name="cs_after_omikhli_5">They have the power of 1, but most importantly, give power to the attacking hexes.</string>
-    <string name="cs_after_omikhli_6">+2 each adjacent, and +1 attacking, located at a distance of 2.</string>
+    <string name="cs_after_omikhli_6">+2 each adjacent, and +1 each attacking located at distance of 2.</string>
     <string name="cs_after_omikhli_7">Vital hexes can not coexist with two or more energy ones.</string>
     <string name="cs_after_omikhli_8">Energy hexes can be used for linking life ones.</string>
 
@@ -559,7 +561,8 @@
                 '11': { text: 'cs_kilia_11', left: 'ic_character_kittaro_normal', right: 'ic_character_zoi' },
                 '12': { text: 'cs_kilia_12', left: 'ic_character_kittaro_normal', right: 'ic_character_zoi_speak' },
                 '13': { text: 'cs_kilia_13', background: 'ic_cs_kilia_13' },
-                '14': { text: 'cs_kilia_14', background: 'ic_cs_kilia_14' }
+                '14': { text: 'cs_kilia_14', background: 'ic_cs_kilia_14' },
+                '15': { text: 'cs_kilia_15', background: 'ic_cs_kilia_15' }
             },
             next_scene: 'action_cutSceneKilia_to_battleNikhteribs',
             gameStateChanges: { 'zoi_available': true }
@@ -580,6 +583,7 @@
     <string name="cs_kilia_12">It is dark in the caves, take this torch. It is time.</string>
     <string name="cs_kilia_13">Damn, it\'s really dark here, what\'s that squeak?</string>
     <string name="cs_kilia_14">Oh, they\'ve always lived here, usually they are not very happy about guests...</string>
+    <string name="cs_kilia_15">\u0020</string>
 
     <!--
       - Cut scene after nikhteribs
@@ -640,7 +644,8 @@
                 '7': { text: 'cs_kardia_7', left: 'ic_character_kittaro_normal_speak', right: 'ic_character_drunkards' },
                 '8': { text: 'cs_kardia_8', left: 'ic_character_kittaro_normal', right: 'ic_character_drunkards_angry' },
                 '9': { text: 'cs_kardia_9', left: 'ic_character_kittaro_normal', right: 'ic_character_zoi_speak' },
-                '10': { text: 'cs_kardia_10', left: 'ic_character_kittaro_normal', right: 'ic_character_drunkards_angry' }
+                '10': { text: 'cs_kardia_10', left: 'ic_character_kittaro_normal', right: 'ic_character_drunkards_angry' },
+                '11': { text: 'cs_kardia_11', background: 'ic_cs_kardia_11' }
             },
             next_scene: 'action_cutSceneKardia_to_battleDrunkards'
         }"
@@ -651,11 +656,12 @@
     <string name="cs_kardia_3">Why?</string>
     <string name="cs_kardia_4">Local do not like strangers, especially those like us.</string>
     <string name="cs_kardia_5">What\'s wrong with us?</string>
-    <string name="cs_kardia_6">Uh, salagi, where did you come from?</string>
+    <string name="cs_kardia_6">Hey, salagi, where did you come from?</string>
     <string name="cs_kardia_7">So that\'s what you meant.</string>
     <string name="cs_kardia_8">From you provincials all misfortunes come!</string>
     <string name="cs_kardia_9">There\'re just drunkards, let\'s go Kittaro.</string>
     <string name="cs_kardia_10">Oh no, you won\'t go anywhere until you pay the royal fee!</string>
+    <string name="cs_kardia_11">\u0020</string>
 
     <!--
       - Cut scene after drunkards
@@ -746,7 +752,8 @@
                 '4': { text: 'cs_laimo_4', left: 'ic_character_kittaro_normal_speak', right: 'ic_character_katofi_ponu' },
                 '5': { text: 'cs_laimo_5', left: 'ic_character_kittaro_normal', right: 'ic_character_katofi_ponu_speak' },
                 '6': { text: 'cs_laimo_6', left: 'ic_character_kittaro_normal_speak', right: 'ic_character_katofi_ponu' },
-                '7': { text: 'cs_laimo_7', left: 'ic_character_kittaro_normal', right: 'ic_character_katofi_ponu_speak' }
+                '7': { text: 'cs_laimo_7', left: 'ic_character_kittaro_normal', right: 'ic_character_katofi_ponu_speak' },
+                '8': { text: 'cs_laimo_8', background: 'ic_cs_laimo_8' }
             },
             next_scene: 'action_cutSceneLaimo_to_battleKatofiPonu'
         }"
@@ -759,6 +766,7 @@
     <string name="cs_laimo_5">Royal Guard Katofi Ponu.</string>
     <string name="cs_laimo_6">Ah, well, I just need the king, can you guide me?</string>
     <string name="cs_laimo_7">Rather, we are holding you back!</string>
+    <string name="cs_laimo_8">\u0020</string>
 
     <!--
       - Cut scene after Katofi Ponu
@@ -808,7 +816,8 @@
                 '4': { text: 'cs_enkefalio_4', left: 'ic_character_kittaro_normal_speak', right: 'ic_character_zoi' },
                 '5': { text: 'cs_enkefalio_5', left: 'ic_character_kittaro_normal', right: 'ic_character_zoi_speak' },
                 '6': { text: 'cs_enkefalio_6', left: 'ic_character_kittaro_normal', right: 'ic_character_zoi_speak' },
-                '7': { text: 'cs_enkefalio_7', left: 'ic_character_kittaro_normal', right: 'ic_character_mage_speak' }
+                '7': { text: 'cs_enkefalio_7', left: 'ic_character_kittaro_normal', right: 'ic_character_mage_speak' },
+                '8': { text: 'cs_enkefalio_8', background: 'ic_cs_enkefalio_8' }
             },
             next_scene: 'action_cutSceneEnkefalio_to_battleEnkefalio'
         }"
@@ -821,6 +830,7 @@
     <string name="cs_enkefalio_5">Yes, like him, only worse.</string>
     <string name="cs_enkefalio_6">Much worse...</string>
     <string name="cs_enkefalio_7">I told you to get out! Guard, kill these insolent!</string>
+    <string name="cs_enkefalio_8">\u0020</string>
 
     <!--
       - Cut scene final act

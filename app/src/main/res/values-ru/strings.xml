@@ -196,6 +196,7 @@
     <string name="cs_analafro_11">Этого не случится, еще никто не проходил сквозь мои земли, не заплатив за это!</string>
     <string name="cs_analafro_12">........хсс-с........</string>
     <string name="cs_analafro_13">................</string>
+    <string name="cs_analafro_14">\u0020</string>
 
     <!-- Cut scene after Omikhli -->
     <string name="cs_after_omikhli_0">Туман рассеивается</string>
@@ -224,6 +225,7 @@
     <string name="cs_kilia_12">В пещерах темно, возьми этот светоч. Нам пора.</string>
     <string name="cs_kilia_13">Черт, здесь и правдо темно, что это за писк?</string>
     <string name="cs_kilia_14">О, они всегда здесь жили, обычно они не очень рады гостям...</string>
+    <string name="cs_kilia_15">\u0020</string>
 
     <!-- Cut scene after nikhteribs -->
     <string name="cs_after_nikhteribs_0">Откуда их там так много?</string>
@@ -251,6 +253,7 @@
     <string name="cs_kardia_8">От вас провинциалов одни беды!</string>
     <string name="cs_kardia_9">Это просто пьянь, идем Киттаро.</string>
     <string name="cs_kardia_10">Ну уж нет, никуда вы не пойдете, пока на заплатите королевскую пошлину!</string>
+    <string name="cs_kardia_11">\u0020</string>
 
     <!-- Cut scene after drunkards -->
     <string name="cs_after_drunkards_0">Господа, если вы не бросите пить, то очень скоро умрете.</string>
@@ -291,6 +294,7 @@
     <string name="cs_laimo_5">Королевская гвардия Катофи Пону.</string>
     <string name="cs_laimo_6">А, ну так мне как раз к королю надо, может вы проводите меня?</string>
     <string name="cs_laimo_7">Скорее мы проводим тебя взашей!</string>
+    <string name="cs_laimo_8">\u0020</string>
 
     <!-- Cut scene after Katofi Ponu -->
     <string name="cs_after_katofi_ponu_0">Что это было, чем они в нас стреляли?</string>
@@ -311,6 +315,7 @@
     <string name="cs_enkefalio_5">Да, как он, только хуже.</string>
     <string name="cs_enkefalio_6">Гораздо хуже...</string>
     <string name="cs_enkefalio_7">Я же велел вам убираться! Стража, убейте этих наглецов!</string>
+    <string name="cs_enkefalio_8">\u0020</string>
 
     <!-- Cut scene final act -->
     <string name="cs_final_act_0">Тронный зал, заключительный акт</string>
