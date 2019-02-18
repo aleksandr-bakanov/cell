@@ -939,7 +939,7 @@
     <string name="battle_with_nikhteribs" translatable="false">
         "{
             battleParams: {
-                cellIndexes: [0,1,13,14,15,16,17,18,19,20,21,22,23,24,25,25],
+                cellIndexes: [0,1,13,14,15,16,17,18,19,20,21,22,23,24,25],
                 isFog: true
             },
             ground_resource: 'crackeddirt_512',

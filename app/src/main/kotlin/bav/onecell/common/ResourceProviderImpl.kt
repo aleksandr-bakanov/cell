@@ -97,6 +97,8 @@ class ResourceProviderImpl(private val context: Context): Common.ResourceProvide
             3, 4, 5 -> R.drawable.ic_avatar_gopnik_01
             6, 7, 8, 9, 10 -> R.drawable.ic_avatar_skilos_01
             11 -> R.drawable.ic_avatar_belos
+            12 -> R.drawable.ic_avatar_omikhli
+            13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25 -> R.drawable.ic_avatar_nikhterib
             else -> R.drawable.ic_avatar_kittaro
         }
     }
