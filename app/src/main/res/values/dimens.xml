@@ -32,6 +32,7 @@
 
     <dimen name="battle_result_avatar_size">52dp</dimen>
     <dimen name="battle_result_text_size">12sp</dimen>
+    <dimen name="battle_result_text_width">96dp</dimen>
     <dimen name="battle_result_group_margin">16dp</dimen>
     <dimen name="battle_result_avatars_in_group_margin">8dp</dimen>
     <dimen name="battle_result_reward_hex_size">32dp</dimen>

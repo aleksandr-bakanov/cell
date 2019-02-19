@@ -1037,14 +1037,14 @@
     <string name="character_name_kittaro">Kittaro</string>
     <string name="character_name_zoi">Zoi</string>
     <string name="character_name_aima">Aima</string>
-    <string name="character_name_gopnik_1">Gopnik #1</string>
-    <string name="character_name_gopnik_2">Gopnik #2</string>
-    <string name="character_name_gopnik_3">Gopnik #3</string>
-    <string name="character_name_skilos_1">Skilos #1</string>
-    <string name="character_name_skilos_2">Skilos #2</string>
-    <string name="character_name_skilos_3">Skilos #3</string>
-    <string name="character_name_skilos_4">Skilos #4</string>
-    <string name="character_name_skilos_5">Skilos #5</string>
+    <string name="character_name_gopnik_1">Bashka</string>
+    <string name="character_name_gopnik_2">Buckwheat</string>
+    <string name="character_name_gopnik_3">Crutch</string>
+    <string name="character_name_skilos_1">Grizzly</string>
+    <string name="character_name_skilos_2">Raven</string>
+    <string name="character_name_skilos_3">Enzo</string>
+    <string name="character_name_skilos_4">Elvis</string>
+    <string name="character_name_skilos_5">Kujo</string>
     <string name="character_name_belos">Belos</string>
     <string name="character_name_omikhli">Omikhli</string>
     <string name="character_name_nihterib_1">Nihterib #1</string>
@@ -1060,11 +1060,11 @@
     <string name="character_name_nihterib_11">Nihterib #11</string>
     <string name="character_name_nihterib_12">Nihterib #12</string>
     <string name="character_name_nihterib_13">Nihterib #13</string>
-    <string name="character_name_drunkard_1">Drunkard #1</string>
-    <string name="character_name_drunkard_2">Drunkard #2</string>
-    <string name="character_name_drunkard_3">Drunkard #3</string>
-    <string name="character_name_drunkard_4">Drunkard #4</string>
-    <string name="character_name_drunkard_5">Drunkard #5</string>
+    <string name="character_name_drunkard_1">Valera Barrel</string>
+    <string name="character_name_drunkard_2">Stas Lovelace</string>
+    <string name="character_name_drunkard_3">Vitek Laser</string>
+    <string name="character_name_drunkard_4">Fedor Chapiteau</string>
+    <string name="character_name_drunkard_5">Zhorik Mazhorik</string>
     <string name="character_name_guardsman_1">Guardsman #1</string>
     <string name="character_name_guardsman_2">Guardsman #2</string>
     <string name="character_name_guardsman_3">Guardsman #3</string>
@@ -1078,7 +1078,7 @@
     <string name="character_name_guardsman_11">Guardsman #11</string>
     <string name="character_name_guardsman_12">Guardsman #12</string>
     <string name="character_name_guardsman_13">Guardsman #13</string>
-    <string name="character_name_mage">Mage</string>
+    <string name="character_name_mage">The Mage</string>
 
     <!--
       - Initial cell descriptions
