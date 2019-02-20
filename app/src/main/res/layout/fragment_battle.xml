@@ -30,6 +30,8 @@
         android:text="@string/button_finish_battle_title"
         android:visibility="invisible"
         android:padding="@dimen/button_padding"
+        android:minHeight="0dp"
+        android:minWidth="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

@@ -3,7 +3,7 @@
     <dimen name="text_margin">16dp</dimen>
 
     <dimen name="button_padding">16dp</dimen>
-    <dimen name="button_button_next_scene_padding">4dp</dimen>
+    <dimen name="button_next_scene_padding">16dp</dimen>
 
     <dimen name="hex_transform_button_width">150dp</dimen>
     <dimen name="hex_transform_button_height">64dp</dimen>

@@ -82,7 +82,9 @@
         android:textColor="@android:color/black"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="@dimen/button_button_next_scene_padding"
+        android:minHeight="0dp"
+        android:minWidth="0dp"
+        android:padding="@dimen/button_next_scene_padding"
         android:text="@string/text_next_scene"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -96,7 +98,7 @@
         android:textAlignment="textEnd"
         android:textSize="36sp"
         android:textColor="@android:color/black"
-        android:padding="@dimen/button_button_next_scene_padding"
+        android:padding="@dimen/button_next_scene_padding"
         app:layout_constraintEnd_toStartOf="@id/buttonNextScene"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="@id/guideline_hero_screen_cellname_bottom"/>

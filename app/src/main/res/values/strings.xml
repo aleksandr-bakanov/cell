@@ -16,7 +16,7 @@
 
     <!-- Heroes view -->
     <string name="text_cell_name">Name</string>
-    <string name="text_next_scene">Go</string>
+    <string name="text_next_scene">&gt;&gt;</string>
     <string name="text_history_stub" translatable="false">\u0020</string>
 
     <!-- Battle view -->
