@@ -48,4 +48,10 @@ class CommonModule {
     fun provideGameState(@Named("app_context") context: Context): Common.GameState {
         return GameStateImpl(context)
     }
+
+    @Provides
+    @Singleton
+    fun provideAnalytics(@Named("app_context") context: Context): Common.Analytics {
+        return AnalyticsImpl(context)
+    }
 }

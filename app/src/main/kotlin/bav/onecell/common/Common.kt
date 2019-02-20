@@ -1,5 +1,6 @@
 package bav.onecell.common
 
+import android.app.Activity
 import android.graphics.drawable.Drawable
 import bav.onecell.model.cell.logic.Action
 import bav.onecell.model.cell.logic.Condition
@@ -67,5 +68,9 @@ interface Common {
         enum class Decision {
             NOT_TAKEN, YES, NO
         }
+    }
+
+    interface Analytics {
+        fun setCurrentScreen(activity: Activity, screenName: String?, screenClassOverride: String?)
     }
 }

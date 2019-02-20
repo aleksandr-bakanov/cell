@@ -45,6 +45,7 @@ class BattleFragment : Fragment(), Battle.View {
     @Inject lateinit var drawUtils: DrawUtils
     @Inject lateinit var resourceProvider: Common.ResourceProvider
     @Inject lateinit var gameState: Common.GameState
+    @Inject lateinit var analytics: Common.Analytics
 
     private val disposables = CompositeDisposable()
     private var nextScene: Int = 0
@@ -140,6 +141,11 @@ class BattleFragment : Fragment(), Battle.View {
             presenter.initialize(battleParams)
         }
         battleCanvasView.backgroundFieldRadius = 50
+    }
+
+    override fun onResume() {
+        super.onResume()
+        analytics.setCurrentScreen(requireActivity(), SCREEN_NAME, this::class.qualifiedName)
     }
 
     override fun onPause() {
@@ -308,6 +314,7 @@ class BattleFragment : Fragment(), Battle.View {
 
     companion object {
         private const val TAG = "BattleFragment"
+        private const val SCREEN_NAME = "Battle screen"
         const val EXTRA_PARAMS = "params"
         private const val TIMESTAMP_STEP: Long = 100
         private const val TIMESTAMP_ANIMATION_STEP: Long = 20 // 16 for ~60 fps; 25 for 40 fps; 20 for 50 fps

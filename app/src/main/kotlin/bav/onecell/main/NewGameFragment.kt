@@ -19,6 +19,7 @@ class NewGameFragment : Fragment(), NewGame.View {
 
     @Inject lateinit var gameState: Common.GameState
     @Inject lateinit var cellRepo: RepositoryContract.CellRepo
+    @Inject lateinit var analytics: Common.Analytics
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_new_game, container, false)
@@ -28,6 +29,11 @@ class NewGameFragment : Fragment(), NewGame.View {
         super.onActivityCreated(savedInstanceState)
         inject()
         initiateButtons()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        analytics.setCurrentScreen(requireActivity(), SCREEN_NAME, this::class.qualifiedName)
     }
 
     private fun initiateButtons() {
@@ -67,5 +73,9 @@ class NewGameFragment : Fragment(), NewGame.View {
         (requireActivity().application as OneCellApplication).appComponent
                 .plus(MainModule())
                 .inject(this)
+    }
+
+    companion object {
+        private const val SCREEN_NAME = "New game warning"
     }
 }

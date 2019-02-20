@@ -22,6 +22,7 @@ class MainFragment : Fragment(), Main.View {
 
     @Inject lateinit var presenter: Main.Presenter
     @Inject lateinit var gameState: Common.GameState
+    @Inject lateinit var analytics: Common.Analytics
 
     private val disposables = CompositeDisposable()
     private var lastNavDestination: Int = 0
@@ -62,6 +63,11 @@ class MainFragment : Fragment(), Main.View {
         setDebugDecisions()
     }
 
+    override fun onResume() {
+        super.onResume()
+        analytics.setCurrentScreen(requireActivity(), SCREEN_NAME, this::class.qualifiedName)
+    }
+
     override fun onDestroyView() {
         disposables.dispose()
         super.onDestroyView()
@@ -86,6 +92,7 @@ class MainFragment : Fragment(), Main.View {
 
     companion object {
         private const val TAG = "MainFragment"
+        private const val SCREEN_NAME = "Main menu"
         @JvmStatic
         fun newInstance() = MainFragment()
     }

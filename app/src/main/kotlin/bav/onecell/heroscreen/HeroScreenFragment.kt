@@ -73,6 +73,7 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
     @Inject lateinit var drawUtils: DrawUtils
     @Inject lateinit var resourceProvider: Common.ResourceProvider
     @Inject lateinit var gameState: Common.GameState
+    @Inject lateinit var analytics: Common.Analytics
 
     private val disposables = CompositeDisposable()
     private var isCellLogicViewsShown = false
@@ -134,6 +135,11 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
     override fun onPause() {
         gameState.setLastNavDestinationId(findNavController().currentDestination?.id ?: 0)
         super.onPause()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        analytics.setCurrentScreen(requireActivity(), SCREEN_NAME, this::class.qualifiedName)
     }
 
     override fun onDestroyView() {
@@ -521,6 +527,7 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
 
     companion object {
         private const val TAG = "HeroScreenFragment"
+        private const val SCREEN_NAME = "Heroes screen"
 
         private var lastCellsCount = 1
 

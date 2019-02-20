@@ -25,6 +25,7 @@ class BattleResultsFragment: androidx.fragment.app.Fragment(), BattleResults.Vie
     @Inject lateinit var drawUtils: DrawUtils
     @Inject lateinit var resourceProvider: Common.ResourceProvider
     @Inject lateinit var gameState: Common.GameState
+    @Inject lateinit var analytics: Common.Analytics
 
     //region Lifecycle methods
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -40,6 +41,11 @@ class BattleResultsFragment: androidx.fragment.app.Fragment(), BattleResults.Vie
 
         recyclerViewBattleResults.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(context, LinearLayout.HORIZONTAL, false)
         recyclerViewBattleResults.adapter = BattleResultsRecyclerViewAdapter(presenter, drawUtils, resourceProvider)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        analytics.setCurrentScreen(requireActivity(), SCREEN_NAME, this::class.qualifiedName)
     }
 
     override fun onPause() {
@@ -95,6 +101,7 @@ class BattleResultsFragment: androidx.fragment.app.Fragment(), BattleResults.Vie
 
     companion object {
         private const val TAG = "BattleResultsFragment"
+        private const val SCREEN_NAME = "Battle results"
 
         const val DEALT_DAMAGE = "dealt_damage"
         const val DEAD_OR_ALIVE = "dead_or_alive"

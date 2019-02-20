@@ -38,6 +38,7 @@ class CutSceneFragment : Fragment(), CutScene.View {
     @Inject lateinit var presenter: CutScene.Presenter
     @Inject lateinit var resourceProvider: Common.ResourceProvider
     @Inject lateinit var gameState: Common.GameState
+    @Inject lateinit var analytics: Common.Analytics
     private val disposables = CompositeDisposable()
 
     private var defaultBackground: Int = 0
@@ -84,6 +85,7 @@ class CutSceneFragment : Fragment(), CutScene.View {
 
     override fun onResume() {
         super.onResume()
+        analytics.setCurrentScreen(requireActivity(), "$SCREEN_NAME $cutSceneId", this::class.qualifiedName)
         currentFrameIndex = gameState.getCurrentFrame()
         showFrame(currentFrameIndex)
     }
@@ -241,6 +243,7 @@ class CutSceneFragment : Fragment(), CutScene.View {
 
     companion object {
         private const val TAG = "CutSceneFragment"
+        private const val SCREEN_NAME = "Cut scene"
 
         const val CUT_SCENE_INFO = "cutSceneInfo"
         const val CUT_SCENE_ID = "id"
