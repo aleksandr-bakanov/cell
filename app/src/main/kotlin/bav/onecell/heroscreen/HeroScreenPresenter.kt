@@ -301,7 +301,7 @@ class HeroScreenPresenter(
         cell?.let { c ->
             c.updateOutlineHexes()
             return when (type) {
-                Hex.Type.REMOVE -> c.data.hexes.values.filter { hex -> !gameRules.isAllowedToRemoveHexFromCell(c, hex) }
+                Hex.Type.REMOVE -> mutableSetOf() /*c.data.hexes.values.filter { hex -> !gameRules.isAllowedToRemoveHexFromCell(c, hex) }*/
                 else -> c.getOutlineHexes().filter { hex -> gameRules.isAllowedToAddHexIntoCell(c, hex.withType(type)) }
             }
 
