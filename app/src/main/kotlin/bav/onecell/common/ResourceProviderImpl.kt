@@ -79,22 +79,7 @@ class ResourceProviderImpl(private val context: Context): Common.ResourceProvide
     }
 
     override fun getAvatarDrawable(index: Int): Drawable? {
-        return when (index) {
-            0 -> ContextCompat.getDrawable(context, R.drawable.ic_avatar_kittaro)
-            1 -> ContextCompat.getDrawable(context, R.drawable.ic_avatar_zoi)
-            2 -> ContextCompat.getDrawable(context, R.drawable.ic_avatar_aima)
-            3, 4, 5 -> ContextCompat.getDrawable(context, R.drawable.ic_avatar_gopnik_01)
-            6, 7, 8, 9, 10 -> ContextCompat.getDrawable(context, R.drawable.ic_avatar_skilos_01)
-            11 -> ContextCompat.getDrawable(context, R.drawable.ic_avatar_belos)
-            12 -> ContextCompat.getDrawable(context, R.drawable.ic_avatar_omikhli)
-            13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25 -> ContextCompat.getDrawable(context, R.drawable.ic_avatar_nikhterib)
-            26 -> ContextCompat.getDrawable(context, R.drawable.ic_avatar_drunkard_01)
-            27 -> ContextCompat.getDrawable(context, R.drawable.ic_avatar_drunkard_02)
-            28 -> ContextCompat.getDrawable(context, R.drawable.ic_avatar_drunkard_03)
-            29 -> ContextCompat.getDrawable(context, R.drawable.ic_avatar_drunkard_04)
-            30 -> ContextCompat.getDrawable(context, R.drawable.ic_avatar_drunkard_05)
-            else -> null
-        }
+        return ContextCompat.getDrawable(context, getAvatarDrawableId(index))
     }
 
     override fun getAvatarDrawableId(index: Int): Int {
@@ -112,6 +97,8 @@ class ResourceProviderImpl(private val context: Context): Common.ResourceProvide
             28 -> R.drawable.ic_avatar_drunkard_03
             29 -> R.drawable.ic_avatar_drunkard_04
             30 -> R.drawable.ic_avatar_drunkard_05
+            31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43 -> R.drawable.ic_avatar_katofi_ponu_01
+            44 -> R.drawable.ic_avatar_mage
             else -> R.drawable.ic_avatar_kittaro
         }
     }
