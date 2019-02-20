@@ -85,6 +85,14 @@ class ResourceProviderImpl(private val context: Context): Common.ResourceProvide
             2 -> ContextCompat.getDrawable(context, R.drawable.ic_avatar_aima)
             3, 4, 5 -> ContextCompat.getDrawable(context, R.drawable.ic_avatar_gopnik_01)
             6, 7, 8, 9, 10 -> ContextCompat.getDrawable(context, R.drawable.ic_avatar_skilos_01)
+            11 -> ContextCompat.getDrawable(context, R.drawable.ic_avatar_belos)
+            12 -> ContextCompat.getDrawable(context, R.drawable.ic_avatar_omikhli)
+            13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25 -> ContextCompat.getDrawable(context, R.drawable.ic_avatar_nikhterib)
+            26 -> ContextCompat.getDrawable(context, R.drawable.ic_avatar_drunkard_01)
+            27 -> ContextCompat.getDrawable(context, R.drawable.ic_avatar_drunkard_02)
+            28 -> ContextCompat.getDrawable(context, R.drawable.ic_avatar_drunkard_03)
+            29 -> ContextCompat.getDrawable(context, R.drawable.ic_avatar_drunkard_04)
+            30 -> ContextCompat.getDrawable(context, R.drawable.ic_avatar_drunkard_05)
             else -> null
         }
     }
@@ -99,6 +107,11 @@ class ResourceProviderImpl(private val context: Context): Common.ResourceProvide
             11 -> R.drawable.ic_avatar_belos
             12 -> R.drawable.ic_avatar_omikhli
             13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25 -> R.drawable.ic_avatar_nikhterib
+            26 -> R.drawable.ic_avatar_drunkard_01
+            27 -> R.drawable.ic_avatar_drunkard_02
+            28 -> R.drawable.ic_avatar_drunkard_03
+            29 -> R.drawable.ic_avatar_drunkard_04
+            30 -> R.drawable.ic_avatar_drunkard_05
             else -> R.drawable.ic_avatar_kittaro
         }
     }

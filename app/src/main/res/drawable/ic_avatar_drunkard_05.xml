@@ -1,0 +1,76 @@
+<!--
+  ~ Copyright (c) 2019 Disney ABC Television Group
+  ~
+  ~ cell
+  ~ ic_avatar_drunkard_05.xml
+  ~
+  ~ Author: Aleksandr Bakanov <aleksandr_bakanov@epam.com>
+  ~ Date:   February 19, 2019
+  -->
+
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="128dp"
+    android:height="128dp"
+    android:viewportWidth="128"
+    android:viewportHeight="128">
+  <path
+      android:pathData="M28.59,0.77L99.611,0.77A27.619,27.619 0,0 1,127.23 28.389L127.23,99.41A27.619,27.619 0,0 1,99.611 127.029L28.59,127.029A27.619,27.619 0,0 1,0.971 99.41L0.971,28.389A27.619,27.619 0,0 1,28.59 0.77z"
+      android:strokeAlpha="1"
+      android:strokeLineJoin="miter"
+      android:strokeWidth="2"
+      android:fillColor="#901605"
+      android:strokeColor="#000000"
+      android:fillType="nonZero"
+      android:fillAlpha="1"
+      android:strokeLineCap="round"/>
+  <path
+      android:pathData="M109.096,87.73L64.162,113.674L64.162,127.029L99.611,127.029C114.912,127.029 127.23,114.711 127.23,99.41L127.23,98.201L109.096,87.73z"
+      android:strokeAlpha="1"
+      android:strokeLineJoin="miter"
+      android:strokeWidth="2"
+      android:fillColor="#aeb5cc"
+      android:strokeColor="#000000"
+      android:fillType="nonZero"
+      android:fillAlpha="1"
+      android:strokeLineCap="round"/>
+  <path
+      android:pathData="M18.939,87.732L0.971,98.105L0.971,99.41C0.971,114.711 13.289,127.029 28.59,127.029L63.875,127.029L63.875,113.674L18.939,87.732z"
+      android:strokeAlpha="1"
+      android:strokeLineJoin="miter"
+      android:strokeWidth="2"
+      android:fillColor="#55567e"
+      android:strokeColor="#000000"
+      android:fillType="nonZero"
+      android:fillAlpha="1"
+      android:strokeLineCap="round"/>
+  <path
+      android:pathData="M109.466,88.022 L64.162,114.178 18.858,88.022L18.858,35.709L64.162,9.553 109.466,35.709Z"
+      android:strokeAlpha="1"
+      android:strokeLineJoin="miter"
+      android:strokeWidth="2.1254189"
+      android:fillColor="#59798c"
+      android:strokeColor="#000000"
+      android:fillType="nonZero"
+      android:fillAlpha="1"
+      android:strokeLineCap="round"/>
+  <path
+      android:pathData="M53.658,32.004 L31.064,37.647 64.162,53.981 97.261,37.647 74.666,32.004 64.162,37.187Z"
+      android:strokeAlpha="1"
+      android:strokeLineJoin="miter"
+      android:strokeWidth="2.1254189"
+      android:fillColor="#1f241c"
+      android:strokeColor="#000000"
+      android:fillType="nonZero"
+      android:fillAlpha="1"
+      android:strokeLineCap="round"/>
+  <path
+      android:pathData="M64.162,84.604 L45.557,98.52 66.617,94.923 83.59,96.874Z"
+      android:strokeAlpha="1"
+      android:strokeLineJoin="miter"
+      android:strokeWidth="2.1254189"
+      android:fillColor="#642300"
+      android:strokeColor="#000000"
+      android:fillType="nonZero"
+      android:fillAlpha="1"
+      android:strokeLineCap="round"/>
+</vector>
