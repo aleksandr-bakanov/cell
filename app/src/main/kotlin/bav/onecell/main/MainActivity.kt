@@ -40,7 +40,6 @@ class MainActivity : FragmentActivity(), Main.NavigationInfoProvider {
     override fun onResume() {
         super.onResume()
         hideSystemUi()
-        verifyStoragePermissions()
     }
 
     override fun onDestroy() {
@@ -84,13 +83,6 @@ class MainActivity : FragmentActivity(), Main.NavigationInfoProvider {
             View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or
             View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or
             View.SYSTEM_UI_FLAG_FULLSCREEN
-    }
-
-    private fun verifyStoragePermissions() {
-        val permission = ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-        if (permission != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, PERMISSIONS_STORAGE, REQUEST_EXTERNAL_STORAGE)
-        }
     }
     //endregion
 }
