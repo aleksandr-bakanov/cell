@@ -1,0 +1,35 @@
+<!--
+  ~ Copyright (c) 2019 Disney ABC Television Group
+  ~
+  ~ cell
+  ~ ic_button_play.xml
+  ~
+  ~ Author: Aleksandr Bakanov <aleksandr_bakanov@epam.com>
+  ~ Date:   February 21, 2019
+  -->
+
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="128dp"
+    android:height="128dp"
+    android:viewportWidth="128"
+    android:viewportHeight="128">
+  <path
+      android:pathData="m101.52,63.999 l-75.038,43.323 0,-86.646z"
+      android:strokeAlpha="1"
+      android:strokeLineJoin="round"
+      android:strokeWidth="12"
+      android:fillColor="#ffffff"
+      android:strokeColor="#00000000"
+      android:fillAlpha="1"
+      android:strokeLineCap="round"/>
+  <path
+      android:pathData="m26.591,16.064a4.615,4.615 45,0 0,-4.724 4.613l0,86.645a4.615,4.615 45,0 0,6.922 3.997l75.038,-43.324a4.615,4.615 135,0 0,0 -7.993L28.788,16.68a4.615,4.615 135,0 0,-2.198 -0.616zM31.096,28.668 L92.29,64 31.096,99.331z"
+      android:strokeAlpha="1"
+      android:strokeLineJoin="round"
+      android:strokeWidth="12"
+      android:fillColor="#000000"
+      android:strokeColor="#00000000"
+      android:fillType="nonZero"
+      android:fillAlpha="1"
+      android:strokeLineCap="round"/>
+</vector>

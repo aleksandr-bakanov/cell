@@ -1,0 +1,54 @@
+<!--
+  ~ Copyright (c) 2019 Disney ABC Television Group
+  ~
+  ~ cell
+  ~ ic_button_previous.xml
+  ~
+  ~ Author: Aleksandr Bakanov <aleksandr_bakanov@epam.com>
+  ~ Date:   February 21, 2019
+  -->
+
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="128dp"
+    android:height="128dp"
+    android:viewportWidth="128"
+    android:viewportHeight="128">
+  <path
+      android:pathData="M28.509,19.163l-18.141,0l-0,89.674l18.141,0z"
+      android:strokeAlpha="1"
+      android:strokeLineJoin="round"
+      android:strokeWidth="9"
+      android:fillColor="#ffffff"
+      android:strokeColor="#00000000"
+      android:fillAlpha="1"
+      android:strokeLineCap="round"/>
+  <path
+      android:pathData="m43.101,64 l75.237,43.438 -0,-86.876z"
+      android:strokeAlpha="1"
+      android:strokeLineJoin="round"
+      android:strokeWidth="9"
+      android:fillColor="#ffffff"
+      android:strokeColor="#00000000"
+      android:fillAlpha="1"
+      android:strokeLineCap="round"/>
+  <path
+      android:pathData="m28.51,14.663a4.5,4.5 0,0 1,4.5 4.5v89.674a4.5,4.5 0,0 1,-4.5 4.5L10.367,113.337a4.5,4.5 0,0 1,-4.5 -4.5v-89.674a4.5,4.5 0,0 1,4.5 -4.5zM24.01,23.663h-9.143v80.674h9.143z"
+      android:strokeAlpha="1"
+      android:strokeLineJoin="round"
+      android:strokeWidth="9"
+      android:fillColor="#000000"
+      android:strokeColor="#00000000"
+      android:fillType="nonZero"
+      android:fillAlpha="1"
+      android:strokeLineCap="round"/>
+  <path
+      android:pathData="m118.232,16.064a4.5,4.5 0,0 1,4.605 4.498v86.877a4.5,4.5 0,0 1,-6.75 3.897L40.852,67.898a4.5,4.5 0,0 1,0 -7.795l75.236,-43.438a4.5,4.5 0,0 1,2.145 -0.602zM113.838,28.357 L52.102,64.001 113.838,99.644z"
+      android:strokeAlpha="1"
+      android:strokeLineJoin="round"
+      android:strokeWidth="9"
+      android:fillColor="#000000"
+      android:strokeColor="#00000000"
+      android:fillType="nonZero"
+      android:fillAlpha="1"
+      android:strokeLineCap="round"/>
+</vector>

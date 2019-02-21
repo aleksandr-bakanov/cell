@@ -18,7 +18,7 @@
         android:padding="0dp"
         android:scaleType="fitCenter"
         android:background="@android:color/transparent"
-        app:srcCompat="@drawable/ic_skip_previous_black_24dp"
+        app:srcCompat="@drawable/ic_button_previous"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
@@ -42,7 +42,7 @@
         android:padding="0dp"
         android:scaleType="fitCenter"
         android:background="@android:color/transparent"
-        app:srcCompat="@drawable/ic_skip_next_black_24dp"
+        app:srcCompat="@drawable/ic_button_next"
         app:layout_constraintStart_toEndOf="@id/buttonPlay"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
@@ -53,7 +53,7 @@
         android:padding="0dp"
         android:scaleType="fitCenter"
         android:background="@android:color/transparent"
-        app:srcCompat="@drawable/ic_play_arrow_black_24dp"
+        app:srcCompat="@drawable/ic_button_play"
         app:layout_constraintStart_toEndOf="@id/buttonPreviousStep"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
@@ -65,7 +65,7 @@
         android:scaleType="fitCenter"
         android:background="@android:color/transparent"
         android:visibility="gone"
-        app:srcCompat="@drawable/ic_pause_black_24dp"
+        app:srcCompat="@drawable/ic_button_pause"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@id/buttonPreviousStep"/>
 

@@ -47,7 +47,7 @@
         android:fontFamily="@font/bromine"
         android:padding="@dimen/cut_scene_text_padding"
         android:textAlignment="textStart"
-        android:textSize="24sp"
+        android:textSize="20sp"
         android:text="@string/text_history_stub"
         android:maxLines="3"
         android:scrollbars="vertical"
@@ -64,6 +64,8 @@
         android:padding="@dimen/button_padding"
         android:text="@string/button_previous_frame_title"
         android:visibility="gone"
+        android:minHeight="0dp"
+        android:minWidth="0dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

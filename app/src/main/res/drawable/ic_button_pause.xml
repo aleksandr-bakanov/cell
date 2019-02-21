@@ -1,0 +1,54 @@
+<!--
+  ~ Copyright (c) 2019 Disney ABC Television Group
+  ~
+  ~ cell
+  ~ ic_button_pause.xml
+  ~
+  ~ Author: Aleksandr Bakanov <aleksandr_bakanov@epam.com>
+  ~ Date:   February 21, 2019
+  -->
+
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="128dp"
+    android:height="128dp"
+    android:viewportWidth="128"
+    android:viewportHeight="128">
+  <path
+      android:pathData="M21.797,21.303l32.971,0l0,85.394l-32.971,0z"
+      android:strokeAlpha="1"
+      android:strokeLineJoin="round"
+      android:strokeWidth="12"
+      android:fillColor="#ffffff"
+      android:strokeColor="#00000000"
+      android:fillAlpha="1"
+      android:strokeLineCap="round"/>
+  <path
+      android:pathData="M73.232,21.303l32.971,0l0,85.394l-32.971,0z"
+      android:strokeAlpha="1"
+      android:strokeLineJoin="round"
+      android:strokeWidth="12"
+      android:fillColor="#ffffff"
+      android:strokeColor="#00000000"
+      android:fillAlpha="1"
+      android:strokeLineCap="round"/>
+  <path
+      android:pathData="m21.798,16.062a5.241,5.241 45,0 0,-5.24 5.24l0,85.395a5.241,5.241 135,0 0,5.24 5.24l32.97,0a5.241,5.241 135,0 0,5.24 -5.24l0,-85.395a5.241,5.241 45,0 0,-5.24 -5.24zM27.038,26.543L49.528,26.543L49.528,101.457L27.038,101.457Z"
+      android:strokeAlpha="1"
+      android:strokeLineJoin="round"
+      android:strokeWidth="12"
+      android:fillColor="#000000"
+      android:strokeColor="#00000000"
+      android:fillType="nonZero"
+      android:fillAlpha="1"
+      android:strokeLineCap="round"/>
+  <path
+      android:pathData="m73.232,16.062a5.241,5.241 45,0 0,-5.24 5.24l0,85.395a5.241,5.241 135,0 0,5.24 5.24l32.97,0a5.241,5.241 135,0 0,5.24 -5.24l0,-85.395a5.241,5.241 45,0 0,-5.24 -5.24zM78.472,26.543L100.962,26.543L100.962,101.457L78.472,101.457Z"
+      android:strokeAlpha="1"
+      android:strokeLineJoin="round"
+      android:strokeWidth="12"
+      android:fillColor="#000000"
+      android:strokeColor="#00000000"
+      android:fillType="nonZero"
+      android:fillAlpha="1"
+      android:strokeLineCap="round"/>
+</vector>

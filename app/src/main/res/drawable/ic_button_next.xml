@@ -1,0 +1,54 @@
+<!--
+  ~ Copyright (c) 2019 Disney ABC Television Group
+  ~
+  ~ cell
+  ~ ic_button_next.xml
+  ~
+  ~ Author: Aleksandr Bakanov <aleksandr_bakanov@epam.com>
+  ~ Date:   February 21, 2019
+  -->
+
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="128dp"
+    android:height="128dp"
+    android:viewportWidth="128"
+    android:viewportHeight="128">
+  <path
+      android:pathData="M100.196,19.163h18.141v89.674h-18.141z"
+      android:strokeAlpha="1"
+      android:strokeLineJoin="round"
+      android:strokeWidth="9"
+      android:fillColor="#ffffff"
+      android:strokeColor="#00000000"
+      android:fillAlpha="1"
+      android:strokeLineCap="round"/>
+  <path
+      android:pathData="M85.604,64 L10.367,107.438l0,-86.876z"
+      android:strokeAlpha="1"
+      android:strokeLineJoin="round"
+      android:strokeWidth="9"
+      android:fillColor="#ffffff"
+      android:strokeColor="#00000000"
+      android:fillAlpha="1"
+      android:strokeLineCap="round"/>
+  <path
+      android:pathData="m100.195,14.663a4.5,4.5 0,0 0,-4.5 4.5v89.674a4.5,4.5 0,0 0,4.5 4.5h18.143a4.5,4.5 0,0 0,4.5 -4.5v-89.674a4.5,4.5 0,0 0,-4.5 -4.5zM104.695,23.663h9.143v80.674h-9.143z"
+      android:strokeAlpha="1"
+      android:strokeLineJoin="round"
+      android:strokeWidth="9"
+      android:fillColor="#000000"
+      android:strokeColor="#00000000"
+      android:fillType="nonZero"
+      android:fillAlpha="1"
+      android:strokeLineCap="round"/>
+  <path
+      android:pathData="m10.473,16.064a4.5,4.5 0,0 0,-4.605 4.498v86.877a4.5,4.5 0,0 0,6.75 3.897l75.236,-43.438a4.5,4.5 0,0 0,0 -7.795l-75.236,-43.438a4.5,4.5 0,0 0,-2.145 -0.602zM14.867,28.357 L76.604,64.001 14.867,99.644z"
+      android:strokeAlpha="1"
+      android:strokeLineJoin="round"
+      android:strokeWidth="9"
+      android:fillColor="#000000"
+      android:strokeColor="#00000000"
+      android:fillType="nonZero"
+      android:fillAlpha="1"
+      android:strokeLineCap="round"/>
+</vector>

@@ -321,7 +321,7 @@
     <string name="cs_after_skilos_4">So that it responds to the situation in battle.</string>
     <string name="cs_after_skilos_5">Let\'s deal with it. So,</string>
     <string name="cs_after_skilos_6">There are rules, conditions and actions.</string>
-    <string name="cs_after_skilos_7">One rule contains many conditions and one action.</string>
+    <string name="cs_after_skilos_7">One rule may contain many conditions and one action.</string>
     <string name="cs_after_skilos_8">If all conditions contained in the rule are fulfilled the action will be performed.</string>
     <string name="cs_after_skilos_9">The cell contains a set of rules.</string>
     <string name="cs_after_skilos_10">Each turn the cell goes through its rules one by one.</string>
@@ -383,14 +383,14 @@
     <string name="cs_gonato_3">To the capital, I need...</string>
     <string name="cs_gonato_4">To the capital?! That\'s far away... And where did you come from?</string>
     <string name="cs_gonato_5">From Fterna, this is...</string>
-    <string name="cs_gonato_6">Fterna, you say?! I have a brother-in-law from Fterna, he owed me three sheep.</string>
+    <string name="cs_gonato_6">Fterna, you say?! I have a brother-in-law in Fterna, he owed me three sheep.</string>
     <string name="cs_gonato_7">If you meet him, you tell him</string>
     <string name="cs_gonato_8">Elder of Gonato does not forget his sheep, you\'ll tell him.</string>
     <string name="cs_gonato_9">Uh... well..</string>
     <string name="cs_gonato_10">Since we are talking about sheep, will you help us?</string>
     <string name="cs_gonato_11">You look quite belligerent, not like our peasants.</string>
     <string name="cs_gonato_12">What\'s the matter?</string>
-    <string name="cs_gonato_13">For a long time nothing bad happens to us, but the trouble.</string>
+    <string name="cs_gonato_13">For a long time nothing bad happens to us, but the trouble came.</string>
     <string name="cs_gonato_14">Belos came to us, to steal sheep.</string>
     <string name="cs_gonato_15">We would deal with him, but we\'re too busy,</string>
     <string name="cs_gonato_16">and he is so terrible, ours are all afraid of him!</string>
