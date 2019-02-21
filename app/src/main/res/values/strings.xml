@@ -152,7 +152,11 @@
                 '44': { text: 'cs_introduction_44', background: 'ic_cs_introduction_44', showPrevFrameButton: true },
                 '45': { text: 'cs_introduction_45', background: 'ic_cs_introduction_45', showPrevFrameButton: true },
                 '46': { text: 'cs_introduction_46', background: 'ic_cs_introduction_45', showPrevFrameButton: true },
-                '47': { text: 'cs_introduction_47', background: 'ic_cs_introduction_47' }
+                '47': { text: 'cs_introduction_47', background: 'ic_cs_introduction_47', showPrevFrameButton: true },
+                '48': { text: 'cs_introduction_48', background: 'ic_cs_introduction_48', showPrevFrameButton: true },
+                '49': { text: 'cs_introduction_49', background: 'ic_cs_introduction_49', showPrevFrameButton: true },
+                '50': { text: 'cs_introduction_50', background: 'ic_cs_introduction_50', showPrevFrameButton: true },
+                '51': { text: 'cs_introduction_51', background: 'ic_cs_introduction_51' }
             },
             next_scene: 'action_cutSceneIntroduction_to_battleGopniks'
         }"
@@ -204,7 +208,11 @@
     <string name="cs_introduction_44">A cell dies if it has no vital hexes left.</string>
     <string name="cs_introduction_45">Also the cell dies if the connection of the vital hexes is broken.</string>
     <string name="cs_introduction_46">The fight ends when only cells belonging to the same group remain alive.</string>
-    <string name="cs_introduction_47">\u0020</string>
+    <string name="cs_introduction_47">In the battle you can only watch how the cells fight.</string>
+    <string name="cs_introduction_48">Use appropriate buttons and seek bar to watch the fight.</string>
+    <string name="cs_introduction_49">Friendly cells are outlined by blue color, enemies - by red.</string>
+    <string name="cs_introduction_50">Battlefield can be moved, zoomed in and out.</string>
+    <string name="cs_introduction_51">\u0020</string>
 
     <!--
       - Cut scene after gopniks contains description of the hero screen interface. At this moment only Kittaro

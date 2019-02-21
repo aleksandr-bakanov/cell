@@ -107,7 +107,11 @@
     <string name="cs_introduction_44">Клетка погибает если у нее не осталось жизненных ячеек.</string>
     <string name="cs_introduction_45">Также клетка погибает если связь жизненных ячеек разорвана.</string>
     <string name="cs_introduction_46">Бой завершается, когда в живых остаются только клетки принадлежащие одной группе.</string>
-    <string name="cs_introduction_47">\u0020</string>
+    <string name="cs_introduction_47">В бою ты можешь только наблюдать за тем как сражаются клетки.</string>
+    <string name="cs_introduction_48">Используй соответствующие кнопки и ползунок чтобы промотать бой.</string>
+    <string name="cs_introduction_49">Союзники обведены синим, противники - красным цветом.</string>
+    <string name="cs_introduction_50">Поле боя можно двигать, приближать и отдалять.</string>
+    <string name="cs_introduction_51">\u0020</string>
 
     <!-- Cut scene after gopniks -->
     <string name="cs_after_gopniks_0">Ну что хватит с вас?</string>
