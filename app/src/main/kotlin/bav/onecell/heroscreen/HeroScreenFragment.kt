@@ -5,7 +5,6 @@ import android.animation.AnimatorListenerAdapter
 import android.animation.ValueAnimator
 import android.content.ClipData
 import android.content.ClipDescription
-import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,7 +15,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import androidx.appcompat.widget.PopupMenu
-import androidx.core.view.GravityCompat
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -101,12 +99,16 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
         recyclerViewRulesList.layoutManager = LinearLayoutManager(context)
         val rulesAdapter = RulesRecyclerViewAdapter(presenter, resourceProvider)
         recyclerViewRulesList.adapter = rulesAdapter
-        val itemTouchHelperCallback = RulesRecyclerViewAdapter.SimpleItemTouchHelperCallback(rulesAdapter)
-        val touchHelper = ItemTouchHelper(itemTouchHelperCallback)
-        touchHelper.attachToRecyclerView(recyclerViewRulesList)
+        val ruleTouchHelperCallback = RulesRecyclerViewAdapter.SimpleItemTouchHelperCallback(rulesAdapter)
+        val ruleTouchHelper = ItemTouchHelper(ruleTouchHelperCallback)
+        ruleTouchHelper.attachToRecyclerView(recyclerViewRulesList)
 
         recyclerViewConditionsList.layoutManager = LinearLayoutManager(context)
-        recyclerViewConditionsList.adapter = ConditionsRecyclerViewAdapter(presenter, resourceProvider)
+        val conditionsAdapter = ConditionsRecyclerViewAdapter(presenter, resourceProvider)
+        recyclerViewConditionsList.adapter = conditionsAdapter
+        val conditionTouchHelperCallback = ConditionsRecyclerViewAdapter.SimpleItemTouchHelperCallback(conditionsAdapter)
+        val conditionTouchHelper = ItemTouchHelper(conditionTouchHelperCallback)
+        conditionTouchHelper.attachToRecyclerView(recyclerViewConditionsList)
 
         /*cellName.setOnClickListener {
             textHeroHistory.visible = !textHeroHistory.visible

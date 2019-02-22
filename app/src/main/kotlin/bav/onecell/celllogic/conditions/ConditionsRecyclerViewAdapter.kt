@@ -7,18 +7,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.PopupMenu
+import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.RecyclerView
 import bav.onecell.R
 import bav.onecell.common.Common
 import bav.onecell.heroscreen.HeroScreen
 import kotlinx.android.synthetic.main.item_row_rule_condition.view.buttonExpectedValue
 import kotlinx.android.synthetic.main.item_row_rule_condition.view.buttonFieldToCheck
 import kotlinx.android.synthetic.main.item_row_rule_condition.view.buttonOperation
-import kotlinx.android.synthetic.main.item_row_rule_condition.view.buttonRemoveCondition
 import kotlinx.android.synthetic.main.item_row_rule_condition.view.conditionRow
 
 class ConditionsRecyclerViewAdapter(
         private val presenter: HeroScreen.Presenter,
-        private val resourceProvider: Common.ResourceProvider) : androidx.recyclerview.widget.RecyclerView.Adapter<ConditionsRecyclerViewAdapter.ViewHolder>() {
+        private val resourceProvider: Common.ResourceProvider) : androidx.recyclerview.widget.RecyclerView.Adapter<ConditionsRecyclerViewAdapter.ViewHolder>(), ItemTouchHelperAdapter {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(viewType, parent, false)
@@ -50,14 +51,15 @@ class ConditionsRecyclerViewAdapter(
         else ContextCompat.getColor(context, R.color.heroScreenUnselectedConditionBackgroundColor)
     }
 
+    override fun onItemDismiss(position: Int) {
+        presenter.removeCondition(position)
+    }
+
     class ViewHolder(val view: View, private val presenter: HeroScreen.Presenter, viewType: Int) :
             androidx.recyclerview.widget.RecyclerView.ViewHolder(view) {
         init {
             when (viewType) {
                 R.layout.item_row_rule_condition -> {
-                    view.buttonRemoveCondition.setOnClickListener {
-                        presenter.removeCondition(adapterPosition)
-                    }
                     view.buttonFieldToCheck.setOnClickListener {
                         presenter.chooseFieldToCheck(adapterPosition)
                         showPopupMenu(it, R.menu.condition_field_to_check)
@@ -107,4 +109,26 @@ class ConditionsRecyclerViewAdapter(
             true
         }
     }
+
+    class SimpleItemTouchHelperCallback(private val adapter: ItemTouchHelperAdapter): ItemTouchHelper.Callback() {
+
+        override fun getMovementFlags(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder): Int {
+            val swipeFlags = ItemTouchHelper.START or ItemTouchHelper.END
+            return makeMovementFlags(0, swipeFlags)
+        }
+
+        override fun isItemViewSwipeEnabled(): Boolean = true
+
+        override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean {
+            return false
+        }
+
+        override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+            adapter.onItemDismiss(viewHolder.adapterPosition)
+        }
+    }
+}
+
+interface ItemTouchHelperAdapter {
+    fun onItemDismiss(position: Int)
 }
