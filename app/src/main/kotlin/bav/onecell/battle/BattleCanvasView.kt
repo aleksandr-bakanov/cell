@@ -32,7 +32,6 @@ class BattleCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
     }
 
     lateinit var presenter: Battle.Presenter
-    var ring = listOf<Hex>()
     private val ringPaint = Paint()
     private val corpseLifePaint = Paint()
     private val corpseEnergyPaint = Paint()
@@ -154,14 +153,6 @@ class BattleCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
 
                 //drawCoordinates(canvas)
             }
-        }
-    }
-
-    private fun drawRing(canvas: Canvas?) {
-        ring.forEach {
-            val path: Path = getHexPath(it)
-            path.fillType = Path.FillType.EVEN_ODD
-            canvas?.drawPath(path, ringPaint)
         }
     }
 
