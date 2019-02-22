@@ -125,7 +125,7 @@ class BattleCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
                 val snapshot = it[currentSnapshotIndex]
                 // Draw fog
                 if (isFog) {
-                    canvas?.drawColor(Color.DKGRAY)
+                    canvas?.drawColor(Color.BLACK)
                     canvas?.clipPath(observableAreaToPath(getObservableArea(snapshot.cells)))
                 } else {
                     canvas?.clipRect(0f, 0f, width.toFloat(), height.toFloat())

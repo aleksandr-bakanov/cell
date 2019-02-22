@@ -128,7 +128,7 @@ class DrawUtils(private val hexMath: HexMath, private val context: Context) {
         powerTextPaint.textAlign = Paint.Align.CENTER
 
         groundPaint.style = Paint.Style.FILL
-        setGroundShader(R.drawable.seamless_ground_sand_dirt_crack_texture_2)
+        setGroundShader(R.drawable.battle_background_skilos)
     }
 
     fun setGroundShader(groundResourceId: Int) {
