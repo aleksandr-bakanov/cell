@@ -1,5 +1,6 @@
 package bav.onecell.battle
 
+import android.graphics.Path
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -21,6 +22,7 @@ import bav.onecell.common.extensions.visible
 import bav.onecell.common.view.DrawUtils
 import bav.onecell.model.BattleInfo
 import bav.onecell.model.hexes.HexMath
+import bav.onecell.model.hexes.Point
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -325,4 +327,38 @@ class BattleFragment : Fragment(), Battle.View {
             return fragment
         }
     }
+
+    /**
+     * Состояние поля боя в определенный момент времени. Хексы всех клеток сгруппированы по типу.
+     * Также как обводки.
+     */
+    class FrameGraphics(
+            // Living cells
+            // Each six points represent one hex
+            val lifeHexes: List<Point>? = null,
+            val attackHexes: List<Point>? = null,
+            val energyHexes: List<Point>? = null,
+            val deathRayHexes: List<Point>? = null,
+            val omniBulletHexes: List<Point>? = null,
+
+            // Corpses
+            val corpseLifeHexes: List<Point>? = null,
+            val corpseAttackHexes: List<Point>? = null,
+            val corpseEnergyHexes: List<Point>? = null,
+            val corpseDeathRayHexes: List<Point>? = null,
+            val corpseOmniBulletHexes: List<Point>? = null,
+
+            // Outlines
+            val friendsOutline: List<Point>? = null,
+            val enemiesOutline: List<Point>? = null,
+
+            // Death rays
+            val deathRays: List<Point>? = null,
+
+            // Bullets
+            val bullets: List<Point>? = null,
+
+            // Fog
+            val fieldOfView: Path? = null
+    )
 }

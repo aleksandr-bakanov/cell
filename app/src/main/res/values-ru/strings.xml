@@ -302,8 +302,8 @@
     <string name="cs_after_drunkards_23">Если духа вовремя не остановить, он вам всю свою жизнь расскажет, уж поверьте.</string>
     <string name="cs_after_drunkards_24">Киттаро возьми эти артефакты - это Актины, у меня их как раз три, Айма объяснит как ими пользоваться.</string>
     <string name="cs_after_drunkards_25">Актины - это хексы, которые можно ставить в любое место клетки.</string>
-    <string name="cs_after_drunkards_26">Если два актина из дружественных клеток сближаются на расстояние 10 или меньше,</string>
-    <string name="cs_after_drunkards_27">между ними возникает луч, поражающий врагов на 5 единиц.</string>
+    <string name="cs_after_drunkards_26">Если два актина из дружественных клеток сближаются на расстояние 50 или меньше,</string>
+    <string name="cs_after_drunkards_27">между ними возникает луч, поражающий врагов на 10 единиц.</string>
 
     <!-- Cut scene Laimo -->
     <string name="cs_laimo_0">Лаймо, поселок близ столицы</string>
