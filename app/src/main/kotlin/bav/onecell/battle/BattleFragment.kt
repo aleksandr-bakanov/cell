@@ -21,6 +21,7 @@ import bav.onecell.common.Consts.Companion.NEXT_SCENE
 import bav.onecell.common.extensions.visible
 import bav.onecell.common.view.DrawUtils
 import bav.onecell.model.BattleInfo
+import bav.onecell.model.battle.FrameGraphics
 import bav.onecell.model.hexes.HexMath
 import bav.onecell.model.hexes.Point
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -48,6 +49,7 @@ class BattleFragment : Fragment(), Battle.View {
     @Inject lateinit var resourceProvider: Common.ResourceProvider
     @Inject lateinit var gameState: Common.GameState
     @Inject lateinit var analytics: Common.Analytics
+    @Inject lateinit var framesFactory: Battle.FramesFactory
 
     private val disposables = CompositeDisposable()
     private var nextScene: Int = 0
@@ -57,6 +59,7 @@ class BattleFragment : Fragment(), Battle.View {
     private var animationTimer: Disposable? = null
     private var isBattleWon = false
     private var isFog = false
+    private var frames: Map<Long, FrameGraphics>? = null
 
     private val seekBarListener = object : SeekBar.OnSeekBarChangeListener {
         override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
@@ -119,7 +122,8 @@ class BattleFragment : Fragment(), Battle.View {
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe { battleInfo ->
-                            battleDuration = battleInfo.snapshots.sumBy { it.duration() }.toLong()
+                            Log.d(TAG, "Get battle info")
+                            /*battleDuration = battleInfo.snapshots.sumBy { it.duration() }.toLong()
                             seekBar.max = (battleDuration / TIMESTAMP_ANIMATION_STEP).toInt() + 1
                             battleCanvasView.snapshots = battleInfo.snapshots
                             battleCanvasView.isFog = battleInfo.isFog
@@ -129,8 +133,25 @@ class BattleFragment : Fragment(), Battle.View {
                                 battleCanvasView.backgroundFieldRadius = battleInfo.snapshots[0].cells.asSequence().map { it.size() }.sum()
                             }
                             battleCanvasView.invalidate()
-                            drawFrame(currentTimestamp)
+                            drawFrame(currentTimestamp)*/
                             reportBattleEnd(battleInfo)
+
+                            if (battleInfo.snapshots.size > 0) {
+                                battleCanvasView.backgroundFieldRadius = battleInfo.snapshots[0].cells.asSequence().map { it.size() }.sum()
+                            }
+
+                            disposables.add(framesFactory.framesProvider()
+                                                    .subscribeOn(Schedulers.io())
+                                                    .observeOn(AndroidSchedulers.mainThread())
+                                                    .subscribe {
+                                                        frames = it
+                                                        battleCanvasView.frames = it
+                                                        seekBar.max = frames?.size ?: 0
+                                                        battleDuration = frames?.keys?.max() ?: 0
+                                                        Log.d(TAG, "Get frames: battle duration = $battleDuration; seekBar.max = ${seekBar.max}")
+                                                        setTimestampAndDrawFrame(0)
+                                                    })
+                            framesFactory.generateFrames(battleInfo)
                         })
 
         arguments?.let {
@@ -213,50 +234,8 @@ class BattleFragment : Fragment(), Battle.View {
         buttonPlay.visibility = View.VISIBLE
     }
 
-    data class FrameState(val snapshotIndex: Int, /*val actionFraction: Float,*/ val movingFraction: Float,
-                          val deathRayFraction: Float, val hexRemovalFraction: Float)
-
-    private fun getFrameState(timestamp: Long): FrameState {
-        var acc = 0
-        var snapshotIndex = -1
-        battleCanvasView.snapshots?.let {
-            for (i in 0 until it.size) {
-                snapshotIndex++
-                val snapshot = it[i]
-                if (acc + snapshot.duration() > timestamp) break
-                acc += snapshot.duration()
-            }
-        }
-
-        val snapshot = battleCanvasView.snapshots?.get(snapshotIndex)!!
-
-        /*val actionTime = timestamp - acc
-        val actionFraction = animationTimeFraction(actionTime, snapshot.actionsDuration())
-        acc += snapshot.actionsDuration()*/
-
-        val movingTime = timestamp - acc
-        val movingFraction = animationTimeFraction(movingTime, snapshot.movementDuration())
-        acc += snapshot.movementDuration()
-
-        val deathRayTime = timestamp - acc
-        val deathRayFraction = animationTimeFraction(deathRayTime, snapshot.deathRaysDuration())
-        acc += snapshot.deathRaysDuration()
-
-        val hexRemovalTime = timestamp - acc
-        val hexRemovalFraction = animationTimeFraction(hexRemovalTime, snapshot.hexRemovalDuration())
-
-        return FrameState(snapshotIndex, /*actionFraction,*/ movingFraction, deathRayFraction, hexRemovalFraction)
-    }
-
-    private fun animationTimeFraction(time: Long, animationDuration: Int): Float {
-        return if (animationDuration == 0) 0f
-               else if (time < 0) 0f
-               else if (time > animationDuration) 1f
-               else time.toFloat() / animationDuration.toFloat()
-    }
-
     private fun drawFrame(timestamp: Long) {
-        val frameState = getFrameState(timestamp)
+        /*val frameState = getFrameState(timestamp)
 
         battleCanvasView.currentSnapshotIndex = frameState.snapshotIndex
         battleCanvasView.snapshots?.get(frameState.snapshotIndex)?.let { snapshot ->
@@ -270,7 +249,7 @@ class BattleFragment : Fragment(), Battle.View {
                             Action.Act.CHANGE_DIRECTION -> {
                                 val angle = cell.getRotationAngle(action.value)
                                 cell.animationData.rotation = if (angle == 0f) 0f else {
-                                    cell.getRotationAngle(action.value) * /*frameState.actionFraction*/ frameState.movingFraction
+                                    cell.getRotationAngle(action.value) * *//*frameState.actionFraction*//* frameState.movingFraction
                                 }
                             }
                         }
@@ -301,9 +280,9 @@ class BattleFragment : Fragment(), Battle.View {
                     cell.animationData.fadeFraction = frameState.hexRemovalFraction
                 }
             }
-        }
+        }*/
 
-        battleCanvasView.invalidate()
+        battleCanvasView.drawFrame(timestamp)
     }
     //endregion
 
@@ -327,38 +306,4 @@ class BattleFragment : Fragment(), Battle.View {
             return fragment
         }
     }
-
-    /**
-     * Состояние поля боя в определенный момент времени. Хексы всех клеток сгруппированы по типу.
-     * Также как обводки.
-     */
-    class FrameGraphics(
-            // Living cells
-            // Each six points represent one hex
-            val lifeHexes: List<Point>? = null,
-            val attackHexes: List<Point>? = null,
-            val energyHexes: List<Point>? = null,
-            val deathRayHexes: List<Point>? = null,
-            val omniBulletHexes: List<Point>? = null,
-
-            // Corpses
-            val corpseLifeHexes: List<Point>? = null,
-            val corpseAttackHexes: List<Point>? = null,
-            val corpseEnergyHexes: List<Point>? = null,
-            val corpseDeathRayHexes: List<Point>? = null,
-            val corpseOmniBulletHexes: List<Point>? = null,
-
-            // Outlines
-            val friendsOutline: List<Point>? = null,
-            val enemiesOutline: List<Point>? = null,
-
-            // Death rays
-            val deathRays: List<Point>? = null,
-
-            // Bullets
-            val bullets: List<Point>? = null,
-
-            // Fog
-            val fieldOfView: Path? = null
-    )
 }

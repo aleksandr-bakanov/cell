@@ -23,7 +23,6 @@ class CellRepository(
 
     override fun restoreCellRepository() {
         GlobalScope.launch {
-            Log.d(TAG, "restoreCellRepository: CoroutineScope = $this")
             val cellsFromStorage = async { storage.restoreCellRepository() }.await()
             cells.clear()
             for (cell in cellsFromStorage) {

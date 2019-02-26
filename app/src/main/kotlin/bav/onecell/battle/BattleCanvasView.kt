@@ -15,6 +15,7 @@ import bav.onecell.R
 import bav.onecell.common.Consts
 import bav.onecell.common.view.CanvasView
 import bav.onecell.model.BattleFieldSnapshot
+import bav.onecell.model.battle.FrameGraphics
 import bav.onecell.model.cell.Cell
 import bav.onecell.model.hexes.Hex
 import bav.onecell.model.hexes.Layout
@@ -45,6 +46,9 @@ class BattleCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
     var deathRayFraction: Float = 0f
     private val scaleGestureDetector = ScaleGestureDetector(context, ScaleListener(this))
     var scaleFactor: Float = 1f
+    var frames: Map<Long, FrameGraphics>? = null
+    var currentFrameGraphics: FrameGraphics? = null
+    var transformedHexPath: Path = Path()
 
     init {
         ringPaint.style = Paint.Style.FILL
@@ -87,6 +91,7 @@ class BattleCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
                         lastTouchX = curX
                         lastTouchY = curY
                         layout.origin = Point(layout.origin.x + dx, layout.origin.y + dy)
+                        updateLayoutMatrix()
                         ret = true
                         invalidate()
                     } else if (it.action == MotionEvent.ACTION_UP) {
@@ -116,10 +121,17 @@ class BattleCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
         scaleFactor = layout.size.x.toFloat()
     }
 
+    fun drawFrame(timestamp: Long) {
+        frames?.get(timestamp)?.let { frameGraphics ->
+            currentFrameGraphics = frameGraphics
+            invalidate()
+        }
+    }
+
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
 
-        snapshots?.let {
+        /*snapshots?.let {
             if (currentSnapshotIndex >= 0 && currentSnapshotIndex < it.size) {
                 val snapshot = it[currentSnapshotIndex]
                 // Draw fog
@@ -145,15 +157,127 @@ class BattleCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
                 snapshot.bullets.forEach { bullet -> drawUtils.drawBullet(canvas, bullet, layout = layout) }
 
                 // Layout center
-                /*canvas?.drawCircle(layout.origin.x.toFloat(), layout.origin.y.toFloat(), 5f, ringPaint)
+                *//*canvas?.drawCircle(layout.origin.x.toFloat(), layout.origin.y.toFloat(), 5f, ringPaint)
                 canvas?.let { c ->
                     c.drawLine((width / 2 - 50).toFloat(), (height / 2).toFloat(), (width / 2 + 50).toFloat(), (height / 2).toFloat(), drawUtils.strokePaint)
                     c.drawLine((width / 2).toFloat(), (height / 2 - 50).toFloat(), (width / 2).toFloat(), (height / 2 + 50).toFloat(), drawUtils.strokePaint)
-                }*/
+                }*//*
 
                 //drawCoordinates(canvas)
             }
+        }*/
+
+
+        currentFrameGraphics?.let { graphics ->
+            // Background
+            canvas?.drawRect(0f, 0f, width.toFloat(), height.toFloat(), drawUtils.groundPaint)
+            // Outlines
+            graphics.enemiesOutline?.let { points ->
+                for (i in 0 until points.size step 2) {
+                    canvas?.drawLine((points[i].x * layout.size.x + layout.origin.x).toFloat(),
+                                     (points[i].y * layout.size.y + layout.origin.y).toFloat(),
+                                     (points[i + 1].x * layout.size.x + layout.origin.x).toFloat(),
+                                     (points[i + 1].y * layout.size.y + layout.origin.y).toFloat(),
+                                     drawUtils.groupAffiliationEnemyPaint)
+                }
+            }
+            graphics.friendsOutline?.let { points ->
+                for (i in 0 until points.size step 2) {
+                    canvas?.drawLine((points[i].x * layout.size.x + layout.origin.x).toFloat(),
+                                     (points[i].y * layout.size.y + layout.origin.y).toFloat(),
+                                     (points[i + 1].x * layout.size.x + layout.origin.x).toFloat(),
+                                     (points[i + 1].y * layout.size.y + layout.origin.y).toFloat(),
+                                     drawUtils.groupAffiliationFriendPaint)
+                }
+            }
+
+            // Corpses
+            graphics.corpseLifeHexes?.let { paths ->
+                for (path in paths) {
+                    path.transform(layoutMatrix, transformedHexPath)
+                    canvas?.drawPath(transformedHexPath, corpseLifePaint)
+                }
+            }
+            graphics.corpseAttackHexes?.let { paths ->
+                for (path in paths) {
+                    path.transform(layoutMatrix, transformedHexPath)
+                    canvas?.drawPath(transformedHexPath, corpseAttackPaint)
+                }
+            }
+            graphics.corpseEnergyHexes?.let { paths ->
+                for (path in paths) {
+                    path.transform(layoutMatrix, transformedHexPath)
+                    canvas?.drawPath(transformedHexPath, corpseEnergyPaint)
+                }
+            }
+            graphics.corpseDeathRayHexes?.let { paths ->
+                for (path in paths) {
+                    path.transform(layoutMatrix, transformedHexPath)
+                    canvas?.drawPath(transformedHexPath, corpseDeathRayHexPaint)
+                }
+            }
+            graphics.corpseOmniBulletHexes?.let { paths ->
+                for (path in paths) {
+                    path.transform(layoutMatrix, transformedHexPath)
+                    canvas?.drawPath(transformedHexPath, corpseOmniBulletHexPaint)
+                }
+            }
+
+            // Living cells
+            graphics.lifeHexes?.let { paths ->
+                for (path in paths) {
+                    path.transform(layoutMatrix, transformedHexPath)
+                    canvas?.drawPath(transformedHexPath, drawUtils.lifePaint)
+                }
+            }
+            graphics.attackHexes?.let { paths ->
+                for (path in paths) {
+                    path.transform(layoutMatrix, transformedHexPath)
+                    canvas?.drawPath(transformedHexPath, drawUtils.attackPaint)
+                }
+            }
+            graphics.energyHexes?.let { paths ->
+                for (path in paths) {
+                    path.transform(layoutMatrix, transformedHexPath)
+                    canvas?.drawPath(transformedHexPath, drawUtils.energyPaint)
+                }
+            }
+            graphics.deathRayHexes?.let { paths ->
+                for (path in paths) {
+                    path.transform(layoutMatrix, transformedHexPath)
+                    canvas?.drawPath(transformedHexPath, drawUtils.deathRayHexPaint)
+                }
+            }
+            graphics.omniBulletHexes?.let { paths ->
+                for (path in paths) {
+                    path.transform(layoutMatrix, transformedHexPath)
+                    canvas?.drawPath(transformedHexPath, drawUtils.omniBulletHexPaint)
+                }
+            }
+
+            // More outlines!
+            graphics.enemiesOutline?.let { points ->
+                for (i in 0 until points.size step 2) {
+                    canvas?.drawLine((points[i].x * layout.size.x + layout.origin.x).toFloat(),
+                                     (points[i].y * layout.size.y + layout.origin.y).toFloat(),
+                                     (points[i + 1].x * layout.size.x + layout.origin.x).toFloat(),
+                                     (points[i + 1].y * layout.size.y + layout.origin.y).toFloat(),
+                                     drawUtils.cellOutlinePaint)
+                }
+            }
+            graphics.friendsOutline?.let { points ->
+                for (i in 0 until points.size step 2) {
+                    canvas?.drawLine((points[i].x * layout.size.x + layout.origin.x).toFloat(),
+                                     (points[i].y * layout.size.y + layout.origin.y).toFloat(),
+                                     (points[i + 1].x * layout.size.x + layout.origin.x).toFloat(),
+                                     (points[i + 1].y * layout.size.y + layout.origin.y).toFloat(),
+                                     drawUtils.cellOutlinePaint)
+                }
+            }
         }
+
+
+
     }
 
     private fun getObservableArea(cells: List<Cell>): Set<Hex> {
@@ -204,6 +328,7 @@ class BattleCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
             layoutY += view.height / 2
             view.layout.origin.x = layoutX
             view.layout.origin.y = layoutY
+            view.updateLayoutMatrix()
 
             view.invalidate()
             return true

@@ -29,27 +29,28 @@ import kotlin.math.sin
 class DrawUtils(private val hexMath: HexMath, private val context: Context) {
 
     companion object {
+        private const val TAG = "BattleGraphics"
         private const val POWER_TEXT_SIZE = 64f
     }
 
-    private val gridPaint = Paint()
-    private val lifePaint = Paint(Paint.ANTI_ALIAS_FLAG)
-    private val energyPaint = Paint(Paint.ANTI_ALIAS_FLAG)
-    private val attackPaint = Paint(Paint.ANTI_ALIAS_FLAG)
-    private val deathRayHexPaint = Paint(Paint.ANTI_ALIAS_FLAG)
-    private val omniBulletHexPaint = Paint(Paint.ANTI_ALIAS_FLAG)
+    val gridPaint = Paint()
+    val lifePaint = Paint(Paint.ANTI_ALIAS_FLAG)
+    val energyPaint = Paint(Paint.ANTI_ALIAS_FLAG)
+    val attackPaint = Paint(Paint.ANTI_ALIAS_FLAG)
+    val deathRayHexPaint = Paint(Paint.ANTI_ALIAS_FLAG)
+    val omniBulletHexPaint = Paint(Paint.ANTI_ALIAS_FLAG)
     val strokePaint = Paint()
     val groundPaint = Paint(Paint.ANTI_ALIAS_FLAG)
-    private val cellOutlinePaint = Paint(Paint.ANTI_ALIAS_FLAG)
-    private val groupAffiliationFriendPaint = Paint(Paint.ANTI_ALIAS_FLAG)
-    private val groupAffiliationEnemyPaint = Paint(Paint.ANTI_ALIAS_FLAG)
+    val cellOutlinePaint = Paint(Paint.ANTI_ALIAS_FLAG)
+    val groupAffiliationFriendPaint = Paint(Paint.ANTI_ALIAS_FLAG)
+    val groupAffiliationEnemyPaint = Paint(Paint.ANTI_ALIAS_FLAG)
     private val powerTextPaint = Paint()
     private val powerLifeTextPaint = Paint()
     private val powerEnergyTextPaint = Paint()
     private val powerAttackTextPaint = Paint()
     private val powerDeathRayTextPaint = Paint()
     private val powerOmniBulletTextPaint = Paint()
-    private val deathRayPaint = Paint(Paint.ANTI_ALIAS_FLAG)
+    val deathRayPaint = Paint(Paint.ANTI_ALIAS_FLAG)
 
     init {
         gridPaint.style = Paint.Style.STROKE
@@ -149,6 +150,69 @@ class DrawUtils(private val hexMath: HexMath, private val context: Context) {
         return layout
     }
 
+    class CellGraphicalPoints(
+            var lifeHexes: MutableList<Path>? = null,
+            var attackHexes: MutableList<Path>? = null,
+            var energyHexes: MutableList<Path>? = null,
+            var deathRayHexes: MutableList<Path>? = null,
+            var omniBulletHexes: MutableList<Path>? = null,
+            var outline: MutableList<Point>? = null
+    )
+
+    fun getCellGraphicalRepresentation(cell: Cell): CellGraphicalPoints? {
+        if (cell.data.hexes.isEmpty()) return null
+        
+        val graphicalPoints = CellGraphicalPoints()
+        
+        val outline = getCellOutline(cell, Layout.UNIT)
+        graphicalPoints.outline = mutableListOf()
+        for (pair in outline) {
+            graphicalPoints.outline?.add(pair.first)
+            graphicalPoints.outline?.add(pair.second)
+        }
+
+        val originPoint = hexMath.hexToPixel(Layout.UNIT, cell.data.origin)
+        var pathsList: MutableList<Path>?
+        for (hex in cell.data.hexes.values) {
+            pathsList = when (hex.type) {
+                Hex.Type.LIFE -> {
+                    if (graphicalPoints.lifeHexes == null) graphicalPoints.lifeHexes = mutableListOf()
+                    graphicalPoints.lifeHexes
+                }
+                Hex.Type.ENERGY -> {
+                    if (graphicalPoints.energyHexes == null) graphicalPoints.energyHexes = mutableListOf()
+                    graphicalPoints.energyHexes
+                }
+                Hex.Type.ATTACK -> {
+                    if (graphicalPoints.attackHexes == null) graphicalPoints.attackHexes = mutableListOf()
+                    graphicalPoints.attackHexes
+                }
+                Hex.Type.DEATH_RAY -> {
+                    if (graphicalPoints.deathRayHexes == null) graphicalPoints.deathRayHexes = mutableListOf()
+                    graphicalPoints.deathRayHexes
+                }
+                Hex.Type.OMNI_BULLET -> {
+                    if (graphicalPoints.omniBulletHexes == null) graphicalPoints.omniBulletHexes = mutableListOf()
+                    graphicalPoints.omniBulletHexes
+                }
+                else -> null
+            }
+
+            var fadeScale = 1.0f
+            cell.animationData.hexHashesToRemove?.let { hexHashesToRemove ->
+                if (hexHashesToRemove.contains(hex.mapKey)) {
+                    fadeScale = 1.0f - cell.animationData.fadeFraction
+                }
+            }
+
+            val points = getHexPath(Layout.UNIT, hexMath.add(hex, cell.data.origin), originPoint,
+                                                   cell.animationData.rotation, cell.animationData.moveDirection,
+                                                   cell.animationData.movingFraction, scale = fadeScale)
+            pathsList?.add(points)
+        }
+        return graphicalPoints
+    }
+
     fun drawCell(canvas: Canvas?, cell: Cell?, lPaint: Paint = lifePaint, ePaint: Paint = energyPaint,
                  aPaint: Paint = attackPaint, dPaint: Paint = deathRayHexPaint, oPaint: Paint = omniBulletHexPaint,
                  layout: Layout = Layout.DUMMY, drawAffiliation: Boolean = false, gPaint: Paint = groundPaint) {
@@ -235,6 +299,14 @@ class DrawUtils(private val hexMath: HexMath, private val context: Context) {
         path.lineTo(hexCorners[0].x.toFloat(), hexCorners[0].y.toFloat())
 
         return path
+    }
+
+    private fun getHexPoints(layout: Layout, hex: Hex, rotateAround: Point? = null, rotation: Float = 0f,
+                             movingDirection: Int = 0, movingFraction: Float = 0f, scale: Float = 1f): List<Point> {
+        val hexCorners: List<Point> = hexMath.poligonCorners(layout, hex, scale)
+        rotateAround?.let { rotatePoints(hexCorners, it, rotation) }
+        if (movingFraction > 0f) offsetPoints(hexCorners, movingDirection, movingFraction, layout)
+        return hexCorners
     }
 
     private fun rotatePoints(points: List<Point>, origin: Point, angle: Float) {

@@ -44,6 +44,7 @@ open class CanvasView(context: Context, attributeSet: AttributeSet) : View(conte
     protected var touchMoved = false
 
     protected var layout = Layout(Orientation.LAYOUT_POINTY, Point(Layout.DUMMY.size.x, Layout.DUMMY.size.y), Point())
+    protected var layoutMatrix = Matrix()
 
     private val gridPaint = Paint()
     private val coordinateTextPaint = Paint()
@@ -125,6 +126,13 @@ open class CanvasView(context: Context, attributeSet: AttributeSet) : View(conte
         layout.origin = Point(width.toDouble() / 2.0,
                               height.toDouble() / 2.0)
         coordinateTextVerticalOffset = (layout.size.x / 10).toFloat()
+
+        updateLayoutMatrix()
+    }
+
+    protected fun updateLayoutMatrix() {
+        layoutMatrix.setTranslate(layout.origin.x.toFloat(), layout.origin.y.toFloat())
+        layoutMatrix.preScale(layout.size.x.toFloat(), layout.size.y.toFloat())
     }
 
     protected fun drawBackgroundGrid(canvas: Canvas?) {
@@ -217,6 +225,7 @@ open class CanvasView(context: Context, attributeSet: AttributeSet) : View(conte
     open fun setLayoutSize(size: Double) {
         layout.size.x = size
         layout.size.y = size
+        updateLayoutMatrix()
     }
 
     fun pointToHex(x: Float, y: Float): Hex {

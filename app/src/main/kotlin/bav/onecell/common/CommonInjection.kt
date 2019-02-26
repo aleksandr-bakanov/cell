@@ -1,7 +1,9 @@
 package bav.onecell.common
 
 import android.content.Context
+import bav.onecell.battle.Battle
 import bav.onecell.battle.BattleEngine
+import bav.onecell.battle.BattleGraphics
 import bav.onecell.common.view.DrawUtils
 import bav.onecell.model.GameRules
 import bav.onecell.model.RepositoryContract
@@ -35,6 +37,12 @@ class CommonModule {
     @Singleton
     fun provideBattleEngine(hexMath: HexMath, gameRules: GameRules, cellRepository: RepositoryContract.CellRepo): BattleEngine {
         return BattleEngine(hexMath, gameRules, cellRepository)
+    }
+
+    @Provides
+    @Singleton
+    fun provideBattleGraphicsFactory(drawUtils: DrawUtils): Battle.FramesFactory {
+        return BattleGraphics(drawUtils)
     }
 
     @Provides
