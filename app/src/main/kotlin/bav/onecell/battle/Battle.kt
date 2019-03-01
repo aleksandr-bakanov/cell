@@ -3,6 +3,7 @@ package bav.onecell.battle
 import bav.onecell.model.BattleInfo
 import bav.onecell.model.battle.FrameGraphics
 import io.reactivex.Observable
+import kotlinx.coroutines.Job
 
 interface Battle {
 
@@ -32,6 +33,6 @@ interface Battle {
         /**
          * Generates frames from provided battle info. Will emit result via [framesProvider].
          */
-        fun generateFrames(battleInfo: BattleInfo)
+        fun generateFrames(battleInfo: BattleInfo): Job
     }
 }

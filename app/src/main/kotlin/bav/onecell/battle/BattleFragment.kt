@@ -40,6 +40,7 @@ import kotlinx.android.synthetic.main.fragment_battle.buttonPreviousStep
 import kotlinx.android.synthetic.main.fragment_battle.progressBar
 import kotlinx.android.synthetic.main.fragment_battle.seekBar
 import kotlinx.android.synthetic.main.fragment_battle.splashImage
+import kotlinx.coroutines.Job
 import org.json.JSONObject
 import java.util.concurrent.TimeUnit
 
@@ -62,6 +63,7 @@ class BattleFragment : Fragment(), Battle.View {
     private var isBattleWon = false
     private var isFog = false
     private var frames: Map<Long, FrameGraphics>? = null
+    private var frameGenerationJob: Job? = null
 
     private val seekBarListener = object : SeekBar.OnSeekBarChangeListener {
         override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
@@ -149,7 +151,7 @@ class BattleFragment : Fragment(), Battle.View {
 
                                                         reportBattleEnd(battleInfo)
                                                     })
-                            framesFactory.generateFrames(battleInfo)
+                            frameGenerationJob = framesFactory.generateFrames(battleInfo)
                         })
 
         arguments?.let {
@@ -177,6 +179,8 @@ class BattleFragment : Fragment(), Battle.View {
     override fun onDestroyView() {
         disposables.dispose()
         pauseAnimation()
+        frameGenerationJob?.cancel()
+        frameGenerationJob = null
         super.onDestroyView()
     }
     //endregion

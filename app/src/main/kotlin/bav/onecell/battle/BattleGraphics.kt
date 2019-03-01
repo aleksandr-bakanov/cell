@@ -15,6 +15,7 @@ import bav.onecell.model.hexes.Layout
 import io.reactivex.Observable
 import io.reactivex.subjects.PublishSubject
 import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
 class BattleGraphics(
@@ -36,8 +37,8 @@ class BattleGraphics(
         }
     }
 
-    override fun generateFrames(battleInfo: BattleInfo) {
-        GlobalScope.launch {
+    override fun generateFrames(battleInfo: BattleInfo): Job {
+        return GlobalScope.launch {
             val frames = mutableMapOf<Long, FrameGraphics>()
             val battleDuration = battleInfo.snapshots.sumBy { it.duration() }.toLong()
             val isFog = battleInfo.isFog
