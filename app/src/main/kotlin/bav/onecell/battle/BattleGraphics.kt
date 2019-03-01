@@ -39,6 +39,7 @@ class BattleGraphics(
             val battleDuration = battleInfo.snapshots.sumBy { it.duration() }.toLong()
             val isFog = battleInfo.isFog
             val isBattleWon = battleInfo.winnerGroupId == Consts.HERO_GROUP_ID
+            previous = 0
 
             for (timestamp in 0..battleDuration step TIME_BETWEEN_FRAMES_MS) {
                 checkProgress(timestamp, battleDuration)
