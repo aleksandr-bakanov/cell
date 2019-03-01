@@ -29,6 +29,7 @@ class FrameGraphics(
 
         // Death rays
         var deathRays: MutableList<Point>? = null,
+        var deathRaysAlpha: Int = 0,
 
         // Bullets
         var bullets: MutableList<Point>? = null,

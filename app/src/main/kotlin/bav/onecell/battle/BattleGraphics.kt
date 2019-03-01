@@ -7,13 +7,16 @@ import bav.onecell.model.BattleFieldSnapshot
 import bav.onecell.model.BattleInfo
 import bav.onecell.model.battle.FrameGraphics
 import bav.onecell.model.cell.logic.Action
-import bav.onecell.model.hexes.Point
+import bav.onecell.model.hexes.HexMath
+import bav.onecell.model.hexes.Layout
 import io.reactivex.Observable
 import io.reactivex.subjects.PublishSubject
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-class BattleGraphics(private val drawUtils: DrawUtils) : Battle.FramesFactory {
+class BattleGraphics(
+        private val drawUtils: DrawUtils,
+        private val hexMath: HexMath) : Battle.FramesFactory {
 
     private val framesProvider: PublishSubject<Map<Long, FrameGraphics>> = PublishSubject.create()
 
@@ -164,6 +167,18 @@ class BattleGraphics(private val drawUtils: DrawUtils) : Battle.FramesFactory {
                 }
 
                 // Death rays
+                if (snapshot.deathRays.isNotEmpty()) {
+                    frameGraphics.deathRays = mutableListOf()
+                    snapshot.deathRays.forEach { ray ->
+                        frameGraphics.deathRays?.add(hexMath.hexToPixel(Layout.UNIT, ray.first))
+                        frameGraphics.deathRays?.add(hexMath.hexToPixel(Layout.UNIT, ray.second))
+                    }
+                    frameGraphics.deathRaysAlpha = if (frameState.deathRayFraction < 0.5) {
+                        (frameState.deathRayFraction * 2f * 255f).toInt()
+                    } else {
+                        ((1f - frameState.deathRayFraction) * 2f * 255f).toInt()
+                    }
+                }
 
                 // Bullets
 

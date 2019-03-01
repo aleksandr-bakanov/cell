@@ -41,8 +41,8 @@ class CommonModule {
 
     @Provides
     @Singleton
-    fun provideBattleGraphicsFactory(drawUtils: DrawUtils): Battle.FramesFactory {
-        return BattleGraphics(drawUtils)
+    fun provideBattleGraphicsFactory(drawUtils: DrawUtils, hexMath: HexMath): Battle.FramesFactory {
+        return BattleGraphics(drawUtils, hexMath)
     }
 
     @Provides

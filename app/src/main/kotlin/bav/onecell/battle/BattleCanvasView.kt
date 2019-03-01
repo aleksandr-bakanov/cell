@@ -274,6 +274,18 @@ class BattleCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
                                      drawUtils.cellOutlinePaint)
                 }
             }
+
+            // Death rays
+            graphics.deathRays?.let { points ->
+                drawUtils.deathRayPaint.alpha = graphics.deathRaysAlpha
+                for (i in 0 until points.size step 2) {
+                    canvas?.drawLine((points[i].x * layout.size.x + layout.origin.x).toFloat(),
+                                     (points[i].y * layout.size.y + layout.origin.y).toFloat(),
+                                     (points[i + 1].x * layout.size.x + layout.origin.x).toFloat(),
+                                     (points[i + 1].y * layout.size.y + layout.origin.y).toFloat(),
+                                     drawUtils.deathRayPaint)
+                }
+            }
         }
 
 
