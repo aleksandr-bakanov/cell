@@ -86,9 +86,6 @@ class BattleGraphics(
                     bullet.movingFraction = frameState.movingFraction
                 }
 
-                // Death rays
-                // battleCanvasView.deathRayFraction = if (snapshot.deathRays.isNotEmpty()) frameState.deathRayFraction else 0f
-
                 // Hex removal
                 snapshot.cells.forEachIndexed { index, cell ->
                     if (index >= 0 && index < snapshot.hexesToRemove.size) {
@@ -102,66 +99,21 @@ class BattleGraphics(
                 val frameGraphics = FrameGraphics()
 
                 // Living cells
-                snapshot.cells.forEach { cell ->
-                    val cellGraphicalPoints = drawUtils.getCellGraphicalRepresentation(cell)
-                    cellGraphicalPoints?.let { cellPoints ->
-                        cellPoints.lifeHexes?.let {
-                            if (frameGraphics.lifeHexes == null) frameGraphics.lifeHexes = mutableListOf()
-                            frameGraphics.lifeHexes?.addAll(it)
-                        }
-                        cellPoints.attackHexes?.let {
-                            if (frameGraphics.attackHexes == null) frameGraphics.attackHexes = mutableListOf()
-                            frameGraphics.attackHexes?.addAll(it)
-                        }
-                        cellPoints.energyHexes?.let {
-                            if (frameGraphics.energyHexes == null) frameGraphics.energyHexes = mutableListOf()
-                            frameGraphics.energyHexes?.addAll(it)
-                        }
-                        cellPoints.deathRayHexes?.let {
-                            if (frameGraphics.deathRayHexes == null) frameGraphics.deathRayHexes = mutableListOf()
-                            frameGraphics.deathRayHexes?.addAll(it)
-                        }
-                        cellPoints.omniBulletHexes?.let {
-                            if (frameGraphics.omniBulletHexes == null) frameGraphics.omniBulletHexes = mutableListOf()
-                            frameGraphics.omniBulletHexes?.addAll(it)
-                        }
-                        cellPoints.outline?.let {
-                            val isCellFriendly = cell.data.groupId == Consts.MAIN_CHARACTERS_GROUP_ID
-                            if (isCellFriendly) {
-                                if (frameGraphics.friendsOutline == null) frameGraphics.friendsOutline = mutableListOf()
-                                frameGraphics.friendsOutline?.addAll(it)
-                            }
-                            else {
-                                if (frameGraphics.enemiesOutline == null) frameGraphics.enemiesOutline = mutableListOf()
-                                frameGraphics.enemiesOutline?.addAll(it)
-                            }
+                if (snapshot.cells.isNotEmpty()) {
+                    frameGraphics.livingCells = mutableListOf()
+                    snapshot.cells.forEach { cell ->
+                        drawUtils.getCellGraphicalRepresentation(cell)?.let {
+                            frameGraphics.livingCells?.add(it)
                         }
                     }
                 }
 
-                // Corpses cells
-                snapshot.corpses.forEach { corpse ->
-                    val cellGraphicalPoints = drawUtils.getCellGraphicalRepresentation(corpse)
-                    cellGraphicalPoints?.let { cellPoints ->
-                        cellPoints.lifeHexes?.let {
-                            if (frameGraphics.corpseLifeHexes == null) frameGraphics.corpseLifeHexes = mutableListOf()
-                            frameGraphics.corpseLifeHexes?.addAll(it)
-                        }
-                        cellPoints.attackHexes?.let {
-                            if (frameGraphics.corpseAttackHexes == null) frameGraphics.corpseAttackHexes = mutableListOf()
-                            frameGraphics.corpseAttackHexes?.addAll(it)
-                        }
-                        cellPoints.energyHexes?.let {
-                            if (frameGraphics.corpseEnergyHexes == null) frameGraphics.corpseEnergyHexes = mutableListOf()
-                            frameGraphics.corpseEnergyHexes?.addAll(it)
-                        }
-                        cellPoints.deathRayHexes?.let {
-                            if (frameGraphics.corpseDeathRayHexes == null) frameGraphics.corpseDeathRayHexes = mutableListOf()
-                            frameGraphics.corpseDeathRayHexes?.addAll(it)
-                        }
-                        cellPoints.omniBulletHexes?.let {
-                            if (frameGraphics.corpseOmniBulletHexes == null) frameGraphics.corpseOmniBulletHexes = mutableListOf()
-                            frameGraphics.corpseOmniBulletHexes?.addAll(it)
+                // Corpse cells
+                if (snapshot.corpses.isNotEmpty()) {
+                    frameGraphics.corpses = mutableListOf()
+                    snapshot.corpses.forEach { corpse ->
+                        drawUtils.getCellGraphicalRepresentation(corpse)?.let {
+                            frameGraphics.corpses?.add(it)
                         }
                     }
                 }
@@ -181,6 +133,12 @@ class BattleGraphics(
                 }
 
                 // Bullets
+                if (snapshot.bullets.isNotEmpty()) {
+                    frameGraphics.bullets = mutableListOf()
+                    snapshot.bullets.forEach { bullet ->
+                        frameGraphics.bullets?.add(drawUtils.getBulletPath(bullet, Layout.UNIT))
+                    }
+                }
 
                 // Field of view
 

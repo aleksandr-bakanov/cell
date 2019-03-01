@@ -1,6 +1,7 @@
 package bav.onecell.model.battle
 
 import android.graphics.Path
+import bav.onecell.common.view.DrawUtils
 import bav.onecell.model.hexes.Point
 
 /**
@@ -9,30 +10,17 @@ import bav.onecell.model.hexes.Point
  */
 class FrameGraphics(
         // Living cells
-        // Each six points represent one hex
-        var lifeHexes: MutableList<Path>? = null,
-        var attackHexes: MutableList<Path>? = null,
-        var energyHexes: MutableList<Path>? = null,
-        var deathRayHexes: MutableList<Path>? = null,
-        var omniBulletHexes: MutableList<Path>? = null,
+        var livingCells: MutableList<DrawUtils.CellGraphicalPoints>? = null,
 
         // Corpses
-        var corpseLifeHexes: MutableList<Path>? = null,
-        var corpseAttackHexes: MutableList<Path>? = null,
-        var corpseEnergyHexes: MutableList<Path>? = null,
-        var corpseDeathRayHexes: MutableList<Path>? = null,
-        var corpseOmniBulletHexes: MutableList<Path>? = null,
-
-        // Outlines
-        var friendsOutline: MutableList<Point>? = null,
-        var enemiesOutline: MutableList<Point>? = null,
+        var corpses: MutableList<DrawUtils.CellGraphicalPoints>? = null,
 
         // Death rays
         var deathRays: MutableList<Point>? = null,
         var deathRaysAlpha: Int = 0,
 
         // Bullets
-        var bullets: MutableList<Point>? = null,
+        var bullets: MutableList<Path>? = null,
 
         // Fog
         var fieldOfView: Path? = null

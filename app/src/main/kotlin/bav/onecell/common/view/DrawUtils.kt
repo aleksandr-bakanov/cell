@@ -5,11 +5,11 @@ import android.graphics.BitmapFactory
 import android.graphics.BitmapShader
 import android.graphics.Canvas
 import android.graphics.Color
+import android.graphics.Matrix
 import android.graphics.Paint
 import android.graphics.Path
 import android.graphics.Shader
 import android.graphics.Typeface
-import android.util.Log
 import androidx.core.content.ContextCompat
 import bav.onecell.R
 import bav.onecell.common.Consts
@@ -156,7 +156,8 @@ class DrawUtils(private val hexMath: HexMath, private val context: Context) {
             var energyHexes: MutableList<Path>? = null,
             var deathRayHexes: MutableList<Path>? = null,
             var omniBulletHexes: MutableList<Path>? = null,
-            var outline: MutableList<Point>? = null
+            var outline: MutableList<Point>? = null,
+            var isFriendly: Boolean = false
     )
 
     fun getCellGraphicalRepresentation(cell: Cell): CellGraphicalPoints? {
@@ -210,7 +211,70 @@ class DrawUtils(private val hexMath: HexMath, private val context: Context) {
                                                    cell.animationData.movingFraction, scale = fadeScale)
             pathsList?.add(points)
         }
+        graphicalPoints.isFriendly = cell.data.groupId == Consts.MAIN_CHARACTERS_GROUP_ID
         return graphicalPoints
+    }
+
+    private val transformedHexPath: Path = Path()
+    fun drawCellGraphicalRepresentation(canvas: Canvas?, graphics: CellGraphicalPoints, layout: Layout,
+                                        layoutMatrix: Matrix,
+                                        lPaint: Paint = lifePaint, ePaint: Paint = energyPaint,
+                                        aPaint: Paint = attackPaint, dPaint: Paint = deathRayHexPaint,
+                                        oPaint: Paint = omniBulletHexPaint) {
+        // Group affiliation outline
+        graphics.outline?.let { points ->
+            for (i in 0 until points.size step 2) {
+                canvas?.drawLine((points[i].x * layout.size.x + layout.origin.x).toFloat(),
+                                 (points[i].y * layout.size.y + layout.origin.y).toFloat(),
+                                 (points[i + 1].x * layout.size.x + layout.origin.x).toFloat(),
+                                 (points[i + 1].y * layout.size.y + layout.origin.y).toFloat(),
+                                 if (graphics.isFriendly)
+                                     groupAffiliationFriendPaint else groupAffiliationEnemyPaint)
+            }
+        }
+
+        // Hexes
+        graphics.lifeHexes?.let { paths ->
+            for (path in paths) {
+                path.transform(layoutMatrix, transformedHexPath)
+                canvas?.drawPath(transformedHexPath, lPaint)
+            }
+        }
+        graphics.attackHexes?.let { paths ->
+            for (path in paths) {
+                path.transform(layoutMatrix, transformedHexPath)
+                canvas?.drawPath(transformedHexPath, aPaint)
+            }
+        }
+        graphics.energyHexes?.let { paths ->
+            for (path in paths) {
+                path.transform(layoutMatrix, transformedHexPath)
+                canvas?.drawPath(transformedHexPath, ePaint)
+            }
+        }
+        graphics.deathRayHexes?.let { paths ->
+            for (path in paths) {
+                path.transform(layoutMatrix, transformedHexPath)
+                canvas?.drawPath(transformedHexPath, dPaint)
+            }
+        }
+        graphics.omniBulletHexes?.let { paths ->
+            for (path in paths) {
+                path.transform(layoutMatrix, transformedHexPath)
+                canvas?.drawPath(transformedHexPath, oPaint)
+            }
+        }
+
+        // Outline
+        graphics.outline?.let { points ->
+            for (i in 0 until points.size step 2) {
+                canvas?.drawLine((points[i].x * layout.size.x + layout.origin.x).toFloat(),
+                                 (points[i].y * layout.size.y + layout.origin.y).toFloat(),
+                                 (points[i + 1].x * layout.size.x + layout.origin.x).toFloat(),
+                                 (points[i + 1].y * layout.size.y + layout.origin.y).toFloat(),
+                                 cellOutlinePaint)
+            }
+        }
     }
 
     fun drawCell(canvas: Canvas?, cell: Cell?, lPaint: Paint = lifePaint, ePaint: Paint = energyPaint,
@@ -281,6 +345,11 @@ class DrawUtils(private val hexMath: HexMath, private val context: Context) {
         path.fillType = Path.FillType.EVEN_ODD
         canvas?.drawPath(path, paint)
         canvas?.drawPath(path, outlinePaint)
+    }
+
+    fun getBulletPath(bullet: Bullet, layout: Layout = Layout.DUMMY): Path {
+        return getHexPath(layout, bullet.origin, movingDirection = bullet.direction,
+                           movingFraction = bullet.movingFraction, scale = 0.5f)
     }
 
     private fun getHexPath(layout: Layout, hex: Hex, rotateAround: Point? = null, rotation: Float = 0f,

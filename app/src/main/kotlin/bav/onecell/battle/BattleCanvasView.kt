@@ -131,147 +131,25 @@ class BattleCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
 
-        /*snapshots?.let {
-            if (currentSnapshotIndex >= 0 && currentSnapshotIndex < it.size) {
-                val snapshot = it[currentSnapshotIndex]
-                // Draw fog
-                if (isFog) {
-                    canvas?.drawColor(Color.BLACK)
-                    canvas?.clipPath(observableAreaToPath(getObservableArea(snapshot.cells)))
-                } else {
-                    canvas?.clipRect(0f, 0f, width.toFloat(), height.toFloat())
-                }
-                canvas?.drawRect(0f, 0f, width.toFloat(), height.toFloat(), drawUtils.groundPaint)
-
-                //drawBackgroundGrid(canvas)
-
-                snapshot.corpses.forEach { corpse ->
-                    drawUtils.drawCell(canvas, corpse, corpseLifePaint, corpseEnergyPaint,
-                                       corpseAttackPaint, corpseDeathRayHexPaint, corpseOmniBulletHexPaint, layout)
-                }
-                snapshot.cells.forEach { cell ->
-                    drawUtils.drawCell(canvas, cell, layout = layout, drawAffiliation = true)
-                }
-                drawUtils.drawDeathRays(canvas, snapshot.deathRays, deathRayFraction, layout)
-
-                snapshot.bullets.forEach { bullet -> drawUtils.drawBullet(canvas, bullet, layout = layout) }
-
-                // Layout center
-                *//*canvas?.drawCircle(layout.origin.x.toFloat(), layout.origin.y.toFloat(), 5f, ringPaint)
-                canvas?.let { c ->
-                    c.drawLine((width / 2 - 50).toFloat(), (height / 2).toFloat(), (width / 2 + 50).toFloat(), (height / 2).toFloat(), drawUtils.strokePaint)
-                    c.drawLine((width / 2).toFloat(), (height / 2 - 50).toFloat(), (width / 2).toFloat(), (height / 2 + 50).toFloat(), drawUtils.strokePaint)
-                }*//*
-
-                //drawCoordinates(canvas)
-            }
-        }*/
-
-
         currentFrameGraphics?.let { graphics ->
             // Background
             canvas?.drawRect(0f, 0f, width.toFloat(), height.toFloat(), drawUtils.groundPaint)
-            // Outlines
-            graphics.enemiesOutline?.let { points ->
-                for (i in 0 until points.size step 2) {
-                    canvas?.drawLine((points[i].x * layout.size.x + layout.origin.x).toFloat(),
-                                     (points[i].y * layout.size.y + layout.origin.y).toFloat(),
-                                     (points[i + 1].x * layout.size.x + layout.origin.x).toFloat(),
-                                     (points[i + 1].y * layout.size.y + layout.origin.y).toFloat(),
-                                     drawUtils.groupAffiliationEnemyPaint)
-                }
-            }
-            graphics.friendsOutline?.let { points ->
-                for (i in 0 until points.size step 2) {
-                    canvas?.drawLine((points[i].x * layout.size.x + layout.origin.x).toFloat(),
-                                     (points[i].y * layout.size.y + layout.origin.y).toFloat(),
-                                     (points[i + 1].x * layout.size.x + layout.origin.x).toFloat(),
-                                     (points[i + 1].y * layout.size.y + layout.origin.y).toFloat(),
-                                     drawUtils.groupAffiliationFriendPaint)
-                }
-            }
 
             // Corpses
-            graphics.corpseLifeHexes?.let { paths ->
-                for (path in paths) {
-                    path.transform(layoutMatrix, transformedHexPath)
-                    canvas?.drawPath(transformedHexPath, corpseLifePaint)
-                }
-            }
-            graphics.corpseAttackHexes?.let { paths ->
-                for (path in paths) {
-                    path.transform(layoutMatrix, transformedHexPath)
-                    canvas?.drawPath(transformedHexPath, corpseAttackPaint)
-                }
-            }
-            graphics.corpseEnergyHexes?.let { paths ->
-                for (path in paths) {
-                    path.transform(layoutMatrix, transformedHexPath)
-                    canvas?.drawPath(transformedHexPath, corpseEnergyPaint)
-                }
-            }
-            graphics.corpseDeathRayHexes?.let { paths ->
-                for (path in paths) {
-                    path.transform(layoutMatrix, transformedHexPath)
-                    canvas?.drawPath(transformedHexPath, corpseDeathRayHexPaint)
-                }
-            }
-            graphics.corpseOmniBulletHexes?.let { paths ->
-                for (path in paths) {
-                    path.transform(layoutMatrix, transformedHexPath)
-                    canvas?.drawPath(transformedHexPath, corpseOmniBulletHexPaint)
+            if (!graphics.corpses.isNullOrEmpty()) {
+                for (corpse in graphics.corpses!!) {
+                    drawUtils.drawCellGraphicalRepresentation(canvas, corpse, layout, layoutMatrix,
+                                                              corpseLifePaint, corpseEnergyPaint, corpseAttackPaint,
+                                                              corpseDeathRayHexPaint, corpseOmniBulletHexPaint)
                 }
             }
 
             // Living cells
-            graphics.lifeHexes?.let { paths ->
-                for (path in paths) {
-                    path.transform(layoutMatrix, transformedHexPath)
-                    canvas?.drawPath(transformedHexPath, drawUtils.lifePaint)
-                }
-            }
-            graphics.attackHexes?.let { paths ->
-                for (path in paths) {
-                    path.transform(layoutMatrix, transformedHexPath)
-                    canvas?.drawPath(transformedHexPath, drawUtils.attackPaint)
-                }
-            }
-            graphics.energyHexes?.let { paths ->
-                for (path in paths) {
-                    path.transform(layoutMatrix, transformedHexPath)
-                    canvas?.drawPath(transformedHexPath, drawUtils.energyPaint)
-                }
-            }
-            graphics.deathRayHexes?.let { paths ->
-                for (path in paths) {
-                    path.transform(layoutMatrix, transformedHexPath)
-                    canvas?.drawPath(transformedHexPath, drawUtils.deathRayHexPaint)
-                }
-            }
-            graphics.omniBulletHexes?.let { paths ->
-                for (path in paths) {
-                    path.transform(layoutMatrix, transformedHexPath)
-                    canvas?.drawPath(transformedHexPath, drawUtils.omniBulletHexPaint)
-                }
-            }
-
-            // More outlines!
-            graphics.enemiesOutline?.let { points ->
-                for (i in 0 until points.size step 2) {
-                    canvas?.drawLine((points[i].x * layout.size.x + layout.origin.x).toFloat(),
-                                     (points[i].y * layout.size.y + layout.origin.y).toFloat(),
-                                     (points[i + 1].x * layout.size.x + layout.origin.x).toFloat(),
-                                     (points[i + 1].y * layout.size.y + layout.origin.y).toFloat(),
-                                     drawUtils.cellOutlinePaint)
-                }
-            }
-            graphics.friendsOutline?.let { points ->
-                for (i in 0 until points.size step 2) {
-                    canvas?.drawLine((points[i].x * layout.size.x + layout.origin.x).toFloat(),
-                                     (points[i].y * layout.size.y + layout.origin.y).toFloat(),
-                                     (points[i + 1].x * layout.size.x + layout.origin.x).toFloat(),
-                                     (points[i + 1].y * layout.size.y + layout.origin.y).toFloat(),
-                                     drawUtils.cellOutlinePaint)
+            if (!graphics.livingCells.isNullOrEmpty()) {
+                for (cell in graphics.livingCells!!) {
+                    drawUtils.drawCellGraphicalRepresentation(canvas, cell, layout, layoutMatrix,
+                                                              drawUtils.lifePaint, drawUtils.energyPaint, drawUtils.attackPaint,
+                                                              drawUtils.deathRayHexPaint, drawUtils.omniBulletHexPaint)
                 }
             }
 
@@ -286,9 +164,16 @@ class BattleCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
                                      drawUtils.deathRayPaint)
                 }
             }
+
+            // Bullets
+            graphics.bullets?.let { paths ->
+                for (path in paths) {
+                    path.transform(layoutMatrix, transformedHexPath)
+                    canvas?.drawPath(transformedHexPath, drawUtils.omniBulletHexPaint)
+                    canvas?.drawPath(transformedHexPath, drawUtils.cellOutlinePaint)
+                }
+            }
         }
-
-
 
     }
 
