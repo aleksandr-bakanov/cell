@@ -7,7 +7,6 @@ import android.graphics.Paint
 import android.graphics.Path
 import androidx.core.content.ContextCompat
 import android.util.AttributeSet
-import android.util.Log
 import android.view.MotionEvent
 import android.view.ScaleGestureDetector
 import android.view.View
@@ -18,7 +17,6 @@ import bav.onecell.model.BattleFieldSnapshot
 import bav.onecell.model.battle.FrameGraphics
 import bav.onecell.model.cell.Cell
 import bav.onecell.model.hexes.Hex
-import bav.onecell.model.hexes.Layout
 import bav.onecell.model.hexes.Point
 import java.lang.IllegalArgumentException
 import kotlin.math.max
@@ -48,7 +46,7 @@ class BattleCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
     var scaleFactor: Float = 1f
     var frames: Map<Long, FrameGraphics>? = null
     var currentFrameGraphics: FrameGraphics? = null
-    var transformedHexPath: Path = Path()
+    var transformedPath: Path = Path()
 
     init {
         ringPaint.style = Paint.Style.FILL
@@ -132,6 +130,15 @@ class BattleCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
         super.onDraw(canvas)
 
         currentFrameGraphics?.let { graphics ->
+            // Draw fog
+            if (graphics.fieldOfView != null) {
+                canvas?.drawColor(Color.BLACK)
+                graphics.fieldOfView?.transform(layoutMatrix, transformedPath)
+                canvas?.clipPath(transformedPath)
+            } else {
+                canvas?.clipRect(0f, 0f, width.toFloat(), height.toFloat())
+            }
+
             // Background
             canvas?.drawRect(0f, 0f, width.toFloat(), height.toFloat(), drawUtils.groundPaint)
 
@@ -140,7 +147,7 @@ class BattleCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
                 for (corpse in graphics.corpses!!) {
                     drawUtils.drawCellGraphicalRepresentation(canvas, corpse, layout, layoutMatrix,
                                                               corpseLifePaint, corpseEnergyPaint, corpseAttackPaint,
-                                                              corpseDeathRayHexPaint, corpseOmniBulletHexPaint)
+                                                              corpseDeathRayHexPaint, corpseOmniBulletHexPaint, true)
                 }
             }
 
@@ -149,7 +156,7 @@ class BattleCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
                 for (cell in graphics.livingCells!!) {
                     drawUtils.drawCellGraphicalRepresentation(canvas, cell, layout, layoutMatrix,
                                                               drawUtils.lifePaint, drawUtils.energyPaint, drawUtils.attackPaint,
-                                                              drawUtils.deathRayHexPaint, drawUtils.omniBulletHexPaint)
+                                                              drawUtils.deathRayHexPaint, drawUtils.omniBulletHexPaint, false)
                 }
             }
 
@@ -168,9 +175,9 @@ class BattleCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
             // Bullets
             graphics.bullets?.let { paths ->
                 for (path in paths) {
-                    path.transform(layoutMatrix, transformedHexPath)
-                    canvas?.drawPath(transformedHexPath, drawUtils.omniBulletHexPaint)
-                    canvas?.drawPath(transformedHexPath, drawUtils.cellOutlinePaint)
+                    path.transform(layoutMatrix, transformedPath)
+                    canvas?.drawPath(transformedPath, drawUtils.omniBulletHexPaint)
+                    canvas?.drawPath(transformedPath, drawUtils.cellOutlinePaint)
                 }
             }
         }

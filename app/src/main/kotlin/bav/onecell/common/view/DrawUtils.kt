@@ -220,16 +220,19 @@ class DrawUtils(private val hexMath: HexMath, private val context: Context) {
                                         layoutMatrix: Matrix,
                                         lPaint: Paint = lifePaint, ePaint: Paint = energyPaint,
                                         aPaint: Paint = attackPaint, dPaint: Paint = deathRayHexPaint,
-                                        oPaint: Paint = omniBulletHexPaint) {
+                                        oPaint: Paint = omniBulletHexPaint,
+                                        isCorpse: Boolean) {
         // Group affiliation outline
-        graphics.outline?.let { points ->
-            for (i in 0 until points.size step 2) {
-                canvas?.drawLine((points[i].x * layout.size.x + layout.origin.x).toFloat(),
-                                 (points[i].y * layout.size.y + layout.origin.y).toFloat(),
-                                 (points[i + 1].x * layout.size.x + layout.origin.x).toFloat(),
-                                 (points[i + 1].y * layout.size.y + layout.origin.y).toFloat(),
-                                 if (graphics.isFriendly)
-                                     groupAffiliationFriendPaint else groupAffiliationEnemyPaint)
+        if (!isCorpse) {
+            graphics.outline?.let { points ->
+                for (i in 0 until points.size step 2) {
+                    canvas?.drawLine((points[i].x * layout.size.x + layout.origin.x).toFloat(),
+                                     (points[i].y * layout.size.y + layout.origin.y).toFloat(),
+                                     (points[i + 1].x * layout.size.x + layout.origin.x).toFloat(),
+                                     (points[i + 1].y * layout.size.y + layout.origin.y).toFloat(),
+                                     if (graphics.isFriendly)
+                                         groupAffiliationFriendPaint else groupAffiliationEnemyPaint)
+                }
             }
         }
 
@@ -400,6 +403,12 @@ class DrawUtils(private val hexMath: HexMath, private val context: Context) {
             p.x += (offsetPoint.x - layout.origin.x) * fraction
             p.y += (offsetPoint.y - layout.origin.y) * fraction
         }
+    }
+
+    fun offsetPoint(point: Point, direction: Int, fraction: Float, layout: Layout) {
+        val offsetPoint = hexMath.hexToPixel(layout, hexMath.getHexByDirection(direction))
+        point.x += (offsetPoint.x - layout.origin.x) * fraction
+        point.y += (offsetPoint.y - layout.origin.y) * fraction
     }
 
     private fun drawOriginMarker(canvas: Canvas?, cell: Cell, layout: Layout) {

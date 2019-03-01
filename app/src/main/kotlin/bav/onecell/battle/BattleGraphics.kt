@@ -1,12 +1,15 @@
 package bav.onecell.battle
 
+import android.graphics.Path
 import android.util.Log
 import bav.onecell.common.Consts
 import bav.onecell.common.view.DrawUtils
 import bav.onecell.model.BattleFieldSnapshot
 import bav.onecell.model.BattleInfo
 import bav.onecell.model.battle.FrameGraphics
+import bav.onecell.model.cell.Cell
 import bav.onecell.model.cell.logic.Action
+import bav.onecell.model.hexes.Hex
 import bav.onecell.model.hexes.HexMath
 import bav.onecell.model.hexes.Layout
 import io.reactivex.Observable
@@ -135,6 +138,9 @@ class BattleGraphics(
                 }
 
                 // Field of view
+                if (isFog) {
+                    frameGraphics.fieldOfView = getObservableAreaPath(snapshot.cells)
+                }
 
                 // Save frame graphics
                 frames[timestamp] = frameGraphics
@@ -142,6 +148,34 @@ class BattleGraphics(
 
             framesProvider.onNext(frames)
         }
+    }
+
+    /// TODO: optimize area definition (in terms of allocated memory)
+    private fun getObservableAreaPath(cells: List<Cell>): Path {
+        // Get area observed by cells with group id = 0 only, i.e. main heroes
+        val path = Path()
+        cells.forEach { cell ->
+            if (cell.data.groupId == Consts.MAIN_CHARACTERS_GROUP_ID) {
+                val cellViewArea = mutableSetOf<Hex>()
+                cell.data.hexes.values.forEach { hex ->
+                    cellViewArea.add(hexMath.add(hex, cell.data.origin))
+                }
+                for (i in 0 until cell.data.viewDistance) {
+                    val nextLayer = mutableSetOf<Hex>()
+                    cellViewArea.forEach { hex ->
+                        nextLayer.addAll(hexMath.hexNeighbors(hex).subtract(cellViewArea))
+                    }
+                    cellViewArea.addAll(nextLayer)
+                }
+                cellViewArea.forEach { hex ->
+                    val origin = hexMath.hexToPixel(Layout.UNIT, hex)
+                    drawUtils.offsetPoint(origin, cell.animationData.moveDirection, cell.animationData.movingFraction, Layout.UNIT)
+                    path.addCircle(origin.x.toFloat(), origin.y.toFloat(), Layout.UNIT.size.x.toFloat(), Path.Direction.CW)
+                }
+            }
+        }
+        path.close()
+        return path
     }
 
     private fun getFrameState(snapshots: List<BattleFieldSnapshot>, timestamp: Long): FrameState {
