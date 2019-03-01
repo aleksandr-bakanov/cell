@@ -19,8 +19,19 @@ class BattleGraphics(
         private val hexMath: HexMath) : Battle.FramesFactory {
 
     private val framesProvider: PublishSubject<Map<Long, FrameGraphics>> = PublishSubject.create()
+    private val progressProvider: PublishSubject<Int> = PublishSubject.create()
 
     override fun framesProvider(): Observable<Map<Long, FrameGraphics>> = framesProvider
+    override fun progressProvider(): Observable<Int> = progressProvider
+
+    private var previous: Long = 0
+
+    private fun checkProgress(current: Long, total: Long) {
+        if ((current - previous).toFloat() / total.toFloat() > 0.01f) {
+            previous = current
+            progressProvider.onNext(((previous.toFloat() / total.toFloat()) * 100f).toInt())
+        }
+    }
 
     override fun generateFrames(battleInfo: BattleInfo) {
         GlobalScope.launch {
@@ -29,26 +40,8 @@ class BattleGraphics(
             val isFog = battleInfo.isFog
             val isBattleWon = battleInfo.winnerGroupId == Consts.HERO_GROUP_ID
 
-            var prev = 0.0
-            var curr = 0.0
-
             for (timestamp in 0..battleDuration step TIME_BETWEEN_FRAMES_MS) {
-
-                val part = timestamp.toDouble() / battleDuration.toDouble()
-                if (part >= 0.9) curr = 0.9
-                else if (part >= 0.8) curr = 0.8
-                else if (part >= 0.7) curr = 0.7
-                else if (part >= 0.6) curr = 0.6
-                else if (part >= 0.5) curr = 0.5
-                else if (part >= 0.4) curr = 0.4
-                else if (part >= 0.3) curr = 0.3
-                else if (part >= 0.2) curr = 0.2
-                else if (part >= 0.1) curr = 0.1
-
-                if (curr > prev) {
-                    prev = curr
-                    Log.d(TAG, "calculating graphics: ${prev * 100.0}%")
-                }
+                checkProgress(timestamp, battleDuration)
 
                 val frameState = getFrameState(battleInfo.snapshots, timestamp)
                 val snapshot = battleInfo.snapshots[frameState.snapshotIndex]

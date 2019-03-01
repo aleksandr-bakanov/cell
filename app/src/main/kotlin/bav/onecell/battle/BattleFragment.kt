@@ -37,7 +37,9 @@ import kotlinx.android.synthetic.main.fragment_battle.buttonNextStep
 import kotlinx.android.synthetic.main.fragment_battle.buttonPause
 import kotlinx.android.synthetic.main.fragment_battle.buttonPlay
 import kotlinx.android.synthetic.main.fragment_battle.buttonPreviousStep
+import kotlinx.android.synthetic.main.fragment_battle.progressBar
 import kotlinx.android.synthetic.main.fragment_battle.seekBar
+import kotlinx.android.synthetic.main.fragment_battle.splashImage
 import org.json.JSONObject
 import java.util.concurrent.TimeUnit
 
@@ -122,23 +124,16 @@ class BattleFragment : Fragment(), Battle.View {
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe { battleInfo ->
-                            Log.d(TAG, "Get battle info")
-                            /*battleDuration = battleInfo.snapshots.sumBy { it.duration() }.toLong()
-                            seekBar.max = (battleDuration / TIMESTAMP_ANIMATION_STEP).toInt() + 1
-                            battleCanvasView.snapshots = battleInfo.snapshots
-                            battleCanvasView.isFog = battleInfo.isFog
-                            isFog = battleInfo.isFog
-                            isBattleWon = battleInfo.winnerGroupId == Consts.HERO_GROUP_ID
                             if (battleInfo.snapshots.size > 0) {
                                 battleCanvasView.backgroundFieldRadius = battleInfo.snapshots[0].cells.asSequence().map { it.size() }.sum()
                             }
-                            battleCanvasView.invalidate()
-                            drawFrame(currentTimestamp)*/
-                            reportBattleEnd(battleInfo)
 
-                            if (battleInfo.snapshots.size > 0) {
-                                battleCanvasView.backgroundFieldRadius = battleInfo.snapshots[0].cells.asSequence().map { it.size() }.sum()
-                            }
+                            disposables.add(framesFactory.progressProvider()
+                                                    .subscribeOn(Schedulers.io())
+                                                    .observeOn(AndroidSchedulers.mainThread())
+                                                    .subscribe {
+                                                        progressBar.progress = it
+                                                    })
 
                             disposables.add(framesFactory.framesProvider()
                                                     .subscribeOn(Schedulers.io())
@@ -148,8 +143,11 @@ class BattleFragment : Fragment(), Battle.View {
                                                         battleCanvasView.frames = it
                                                         seekBar.max = frames?.size ?: 0
                                                         battleDuration = frames?.keys?.max() ?: 0
-                                                        Log.d(TAG, "Get frames: battle duration = $battleDuration; seekBar.max = ${seekBar.max}")
                                                         setTimestampAndDrawFrame(0)
+                                                        progressBar.visibility = View.INVISIBLE
+                                                        splashImage.visibility = View.INVISIBLE
+
+                                                        reportBattleEnd(battleInfo)
                                                     })
                             framesFactory.generateFrames(battleInfo)
                         })
@@ -235,53 +233,6 @@ class BattleFragment : Fragment(), Battle.View {
     }
 
     private fun drawFrame(timestamp: Long) {
-        /*val frameState = getFrameState(timestamp)
-
-        battleCanvasView.currentSnapshotIndex = frameState.snapshotIndex
-        battleCanvasView.snapshots?.get(frameState.snapshotIndex)?.let { snapshot ->
-            // Actions
-            snapshot.cells.forEachIndexed { index, cell ->
-                // Reset actions data
-                cell.animationData.rotation = 0f
-                if (index >= 0 && index < snapshot.cellsActions.size) {
-                    snapshot.cellsActions[index]?.let { action ->
-                        when (action.act) {
-                            Action.Act.CHANGE_DIRECTION -> {
-                                val angle = cell.getRotationAngle(action.value)
-                                cell.animationData.rotation = if (angle == 0f) 0f else {
-                                    cell.getRotationAngle(action.value) * *//*frameState.actionFraction*//* frameState.movingFraction
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-
-            // Moving
-            snapshot.cells.forEachIndexed { index, cell ->
-                if (index >= 0 && index < snapshot.movingDirections.size) {
-                    // Save move direction
-                    cell.animationData.moveDirection = snapshot.movingDirections[index]
-                    // Clear cell moving fraction
-                    cell.animationData.movingFraction = frameState.movingFraction
-                }
-            }
-            snapshot.bullets.forEach { bullet ->
-                bullet.movingFraction = frameState.movingFraction
-            }
-
-            // Death rays
-            battleCanvasView.deathRayFraction = if (snapshot.deathRays.isNotEmpty()) frameState.deathRayFraction else 0f
-
-            // Hex removal
-            snapshot.cells.forEachIndexed { index, cell ->
-                if (index >= 0 && index < snapshot.hexesToRemove.size) {
-                    cell.animationData.hexHashesToRemove = snapshot.hexesToRemove[index]
-                    cell.animationData.fadeFraction = frameState.hexRemovalFraction
-                }
-            }
-        }*/
-
         battleCanvasView.drawFrame(timestamp)
     }
     //endregion

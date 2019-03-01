@@ -27,6 +27,8 @@ interface Battle {
          */
         fun framesProvider(): Observable<Map<Long, FrameGraphics>>
 
+        fun progressProvider(): Observable<Int>
+
         /**
          * Generates frames from provided battle info. Will emit result via [framesProvider].
          */
