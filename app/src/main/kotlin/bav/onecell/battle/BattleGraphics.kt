@@ -17,6 +17,7 @@ import io.reactivex.subjects.PublishSubject
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.yield
 
 class BattleGraphics(
         private val drawUtils: DrawUtils,
@@ -46,6 +47,7 @@ class BattleGraphics(
             previous = 0
 
             for (timestamp in 0..battleDuration step TIME_BETWEEN_FRAMES_MS) {
+                yield()
                 checkProgress(timestamp, battleDuration)
 
                 val frameState = getFrameState(battleInfo.snapshots, timestamp)
