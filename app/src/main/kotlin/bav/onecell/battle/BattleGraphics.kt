@@ -141,7 +141,8 @@ class BattleGraphics(
                 }
 
                 // Field of view
-                if (isFog) {
+                // In case last frame and battle is won fog doesn't show
+                if (isFog && !(timestamp == battleDuration && isBattleWon)) {
                     frameGraphics.fieldOfView = getObservableAreaPath(snapshot.cells)
                 }
 

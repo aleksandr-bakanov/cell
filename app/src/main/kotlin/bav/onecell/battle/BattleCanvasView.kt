@@ -37,11 +37,8 @@ class BattleCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
     private val corpseAttackPaint = Paint()
     private val corpseDeathRayHexPaint = Paint()
     private val corpseOmniBulletHexPaint = Paint()
-    private val clipPath = Path()
-    var snapshots: List<BattleFieldSnapshot>? = null
     var currentSnapshotIndex: Int = 0
     var isFog: Boolean = false
-    var deathRayFraction: Float = 0f
     private val scaleGestureDetector = ScaleGestureDetector(context, ScaleListener(this))
     var scaleFactor: Float = 1f
     var frames: Map<Long, FrameGraphics>? = null
@@ -182,37 +179,6 @@ class BattleCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
                 }
             }
         }
-
-    }
-
-    private fun getObservableArea(cells: List<Cell>): Set<Hex> {
-        // Get area observed by cells with group id = 0 only, i.e. main heroes
-        val commonArea = mutableSetOf<Hex>()
-        cells.forEach { cell ->
-            if (cell.data.groupId == Consts.MAIN_CHARACTERS_GROUP_ID) {
-                val cellViewArea = mutableSetOf<Hex>()
-                cell.data.hexes.values.forEach { hex -> cellViewArea.add(hexMath.add(hex, cell.data.origin)) }
-                for (i in 0 until cell.data.viewDistance) {
-                    val nextLayer = mutableSetOf<Hex>()
-                    cellViewArea.forEach { hex ->
-                        nextLayer.addAll(hexMath.hexNeighbors(hex).subtract(cellViewArea))
-                    }
-                    cellViewArea.addAll(nextLayer)
-                }
-                commonArea.addAll(cellViewArea)
-            }
-        }
-        return commonArea
-    }
-
-    private fun observableAreaToPath(hexes: Collection<Hex>): Path {
-        clipPath.reset()
-        hexes.forEach { hex ->
-            val origin = hexMath.hexToPixel(layout, hex)
-            clipPath.addCircle(origin.x.toFloat(), origin.y.toFloat(), layout.size.x.toFloat(), Path.Direction.CW)
-        }
-        clipPath.close()
-        return clipPath
     }
 
     private class ScaleListener(private val view: BattleCanvasView): ScaleGestureDetector.SimpleOnScaleGestureListener() {
