@@ -132,7 +132,8 @@ class BattleCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
         currentFrameGraphics?.let { graphics ->
             // Draw fog
             if (graphics.fieldOfView != null) {
-                canvas?.drawColor(Color.BLACK)
+                canvas?.drawRect(0f, 0f, width.toFloat(), height.toFloat(), drawUtils.groundPaint)
+                canvas?.drawColor(0x77000000)
                 graphics.fieldOfView?.transform(layoutMatrix, transformedPath)
                 canvas?.clipPath(transformedPath)
             } else {
