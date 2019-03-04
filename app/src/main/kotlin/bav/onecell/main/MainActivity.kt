@@ -1,11 +1,7 @@
 package bav.onecell.main
 
-import android.Manifest
-import android.content.pm.PackageManager
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import androidx.core.app.ActivityCompat
 import androidx.fragment.app.FragmentActivity
 import androidx.navigation.findNavController
 import bav.onecell.OneCellApplication
@@ -24,9 +20,6 @@ class MainActivity : FragmentActivity(), Main.NavigationInfoProvider {
 
     companion object {
         private const val TAG = "MainActivity"
-
-        private const val REQUEST_EXTERNAL_STORAGE = 1
-        private val PERMISSIONS_STORAGE = arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE)
     }
 
     //region Lifecycle methods

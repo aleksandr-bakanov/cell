@@ -2,7 +2,6 @@ package bav.onecell.battle
 
 import android.content.Context
 import android.graphics.Canvas
-import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Path
 import androidx.core.content.ContextCompat
@@ -11,12 +10,8 @@ import android.view.MotionEvent
 import android.view.ScaleGestureDetector
 import android.view.View
 import bav.onecell.R
-import bav.onecell.common.Consts
 import bav.onecell.common.view.CanvasView
-import bav.onecell.model.BattleFieldSnapshot
 import bav.onecell.model.battle.FrameGraphics
-import bav.onecell.model.cell.Cell
-import bav.onecell.model.hexes.Hex
 import bav.onecell.model.hexes.Point
 import java.lang.IllegalArgumentException
 import kotlin.math.max

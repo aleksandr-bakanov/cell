@@ -1,8 +1,5 @@
 package bav.onecell.heroscreen
 
-import android.animation.Animator
-import android.animation.AnimatorListenerAdapter
-import android.animation.ValueAnimator
 import android.content.ClipData
 import android.content.ClipDescription
 import android.os.Bundle
@@ -61,7 +58,6 @@ import kotlinx.android.synthetic.main.view_hex_picker.view.buttonHex
 import kotlinx.android.synthetic.main.view_hex_picker.view.selection
 import kotlinx.android.synthetic.main.view_hex_picker.view.textViewHexCount
 import javax.inject.Inject
-import kotlin.math.PI
 import kotlinx.android.synthetic.main.fragment_hero_screen.newCharacterAvatar
 
 class HeroScreenFragment: Fragment(), HeroScreen.View {

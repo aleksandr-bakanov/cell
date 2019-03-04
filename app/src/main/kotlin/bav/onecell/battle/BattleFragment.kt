@@ -1,6 +1,5 @@
 package bav.onecell.battle
 
-import android.graphics.Path
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -18,17 +17,14 @@ import bav.onecell.common.Consts
 import bav.onecell.common.Consts.Companion.BATTLE_GROUND_RESOURCE
 import bav.onecell.common.Consts.Companion.BATTLE_PARAMS
 import bav.onecell.common.Consts.Companion.NEXT_SCENE
-import bav.onecell.common.extensions.visible
 import bav.onecell.common.view.DrawUtils
 import bav.onecell.model.BattleInfo
 import bav.onecell.model.battle.FrameGraphics
 import bav.onecell.model.hexes.HexMath
-import bav.onecell.model.hexes.Point
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
-import bav.onecell.model.cell.logic.Action
 import io.reactivex.Observable
 import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.fragment_battle.battleCanvasView
