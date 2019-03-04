@@ -26,18 +26,16 @@ class BattleCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
 
     companion object {
         private const val TAG = "BattleCanvasView"
-        const val MIN_SCALE = 0.001f
-        const val MAX_SCALE = 100.0f
+        const val MIN_SCALE = 4f
+        const val MAX_SCALE = 200.0f
     }
 
     lateinit var presenter: Battle.Presenter
-    private val ringPaint = Paint()
     private val corpseLifePaint = Paint()
     private val corpseEnergyPaint = Paint()
     private val corpseAttackPaint = Paint()
     private val corpseDeathRayHexPaint = Paint()
     private val corpseOmniBulletHexPaint = Paint()
-    var currentSnapshotIndex: Int = 0
     var isFog: Boolean = false
     private val scaleGestureDetector = ScaleGestureDetector(context, ScaleListener(this))
     var scaleFactor: Float = 1f
@@ -46,9 +44,6 @@ class BattleCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
     var transformedPath: Path = Path()
 
     init {
-        ringPaint.style = Paint.Style.FILL
-        ringPaint.color = ContextCompat.getColor(context, R.color.battleViewRing)
-
         corpseLifePaint.style = Paint.Style.FILL
         corpseLifePaint.color = ContextCompat.getColor(context, R.color.battleViewCorpseLife)
 

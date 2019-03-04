@@ -241,13 +241,6 @@ class BattleFragment : Fragment(), Battle.View {
     }
     //endregion
 
-    //region Overridden methods
-    override fun drawSnapshotInitialState(snapshotIndex: Int) {
-        battleCanvasView.currentSnapshotIndex = snapshotIndex
-        battleCanvasView.invalidate()
-    }
-    //endregion
-
     companion object {
         private const val TAG = "BattleFragment"
         private const val SCREEN_NAME = "Battle screen"

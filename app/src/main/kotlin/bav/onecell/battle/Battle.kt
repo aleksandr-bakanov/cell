@@ -8,7 +8,6 @@ import kotlinx.coroutines.Job
 interface Battle {
 
     interface View {
-        fun drawSnapshotInitialState(snapshotIndex: Int = 0)
     }
 
     interface Presenter {

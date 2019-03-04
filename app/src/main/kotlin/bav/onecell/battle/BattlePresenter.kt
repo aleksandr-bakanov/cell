@@ -17,7 +17,6 @@ class BattlePresenter(
     override fun battleResultsProvider(): PublishSubject<BattleInfo> = battleEngine.battleResultProvider
 
     override fun initialize(params: String) {
-        //view.drawSnapshotInitialState()
         battleEngine.initialize(InitialBattleParams.fromJson(params))
     }
     //endregion
