@@ -8,7 +8,6 @@ import android.graphics.Paint
 import android.graphics.Path
 import androidx.core.content.ContextCompat
 import android.util.AttributeSet
-import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import bav.onecell.R
@@ -168,14 +167,14 @@ open class CanvasView(context: Context, attributeSet: AttributeSet) : View(conte
     }
 
     private fun drawHexCornerIndexes(canvas: Canvas?, hex: Hex) {
-        val hexCorners: ArrayList<Point> = hexMath.poligonCorners(layout, hex)
+        val hexCorners = hexMath.polygonCorners(layout, hex)
         for (i in 0..(hexCorners.size - 1)) {
             canvas?.drawText(i.toString(), hexCorners[i].x.toFloat(), hexCorners[i].y.toFloat(), coordinateTextPaint)
         }
     }
 
     private fun drawCoordinatesOnHex(canvas: Canvas?, hex: Hex) {
-        val hexCorners: ArrayList<Point> = hexMath.poligonCorners(layout, hex)
+        val hexCorners = hexMath.polygonCorners(layout, hex)
         val center = Point(
                 hexCorners.sumByDouble { it.x } / hexCorners.size.toDouble(),
                 hexCorners.sumByDouble { it.y } / hexCorners.size.toDouble())
@@ -192,7 +191,7 @@ open class CanvasView(context: Context, attributeSet: AttributeSet) : View(conte
     }
 
     protected fun getHexPath(hex: Hex, layout: Layout = this.layout): Path {
-        val hexCorners: ArrayList<Point> = hexMath.poligonCorners(layout, hex)
+        val hexCorners = hexMath.polygonCorners(layout, hex)
         val path = Path()
         path.moveTo(hexCorners[0].x.toFloat(), hexCorners[0].y.toFloat())
         for (i in 1..(hexCorners.size - 1)) {
@@ -212,7 +211,7 @@ open class CanvasView(context: Context, attributeSet: AttributeSet) : View(conte
 
     private fun getPartialHexPath(hex: Hex, startCorner: Int, endCorner: Int,
                                     endInFirstCorner: Boolean = false): Path {
-        val hexCorners: ArrayList<Point> = hexMath.poligonCorners(layout, hex)
+        val hexCorners = hexMath.polygonCorners(layout, hex)
         val path = Path()
         path.moveTo(hexCorners[startCorner].x.toFloat(), hexCorners[startCorner].y.toFloat())
         for (i in (startCorner + 1)..endCorner) {

@@ -156,7 +156,7 @@ class DrawUtils(private val hexMath: HexMath, private val context: Context) {
             var energyHexes: MutableList<Path>? = null,
             var deathRayHexes: MutableList<Path>? = null,
             var omniBulletHexes: MutableList<Path>? = null,
-            var outline: MutableList<Point>? = null,
+            var outline: List<Point>? = null,
             var isFriendly: Boolean = false
     )
 
@@ -165,12 +165,7 @@ class DrawUtils(private val hexMath: HexMath, private val context: Context) {
         
         val graphicalPoints = CellGraphicalPoints()
         
-        val outline = getCellOutline(cell, Layout.UNIT)
-        graphicalPoints.outline = mutableListOf()
-        for (pair in outline) {
-            graphicalPoints.outline?.add(pair.first)
-            graphicalPoints.outline?.add(pair.second)
-        }
+        graphicalPoints.outline = getCellOutline(cell, Layout.UNIT)
 
         val originPoint = hexMath.hexToPixel(Layout.UNIT, cell.data.origin)
         var pathsList: MutableList<Path>?
@@ -357,7 +352,7 @@ class DrawUtils(private val hexMath: HexMath, private val context: Context) {
 
     private fun getHexPath(layout: Layout, hex: Hex, rotateAround: Point? = null, rotation: Float = 0f,
                            movingDirection: Int = 0, movingFraction: Float = 0f, scale: Float = 1f): Path {
-        val hexCorners: ArrayList<Point> = hexMath.poligonCorners(layout, hex, scale)
+        val hexCorners = hexMath.polygonCorners(layout, hex, scale)
 
         // Rotation and moving offset
         rotateAround?.let { rotatePoints(hexCorners, it, rotation) }
@@ -375,7 +370,7 @@ class DrawUtils(private val hexMath: HexMath, private val context: Context) {
 
     private fun getHexPoints(layout: Layout, hex: Hex, rotateAround: Point? = null, rotation: Float = 0f,
                              movingDirection: Int = 0, movingFraction: Float = 0f, scale: Float = 1f): List<Point> {
-        val hexCorners: List<Point> = hexMath.poligonCorners(layout, hex, scale)
+        val hexCorners: List<Point> = hexMath.polygonCorners(layout, hex, scale)
         rotateAround?.let { rotatePoints(hexCorners, it, rotation) }
         if (movingFraction > 0f) offsetPoints(hexCorners, movingDirection, movingFraction, layout)
         return hexCorners
@@ -397,8 +392,8 @@ class DrawUtils(private val hexMath: HexMath, private val context: Context) {
         }
     }
 
-    private fun offsetPoints(points: List<Point>, direction: Int, fraction: Float, layout: Layout) {
-        val offsetPoint = hexMath.hexToPixel(layout, hexMath.getHexByDirection(direction))
+    private fun offsetPoints(points: List<Point>, direction: Int, fraction: Float, layout: Layout, point: Point? = null) {
+        val offsetPoint = point ?: hexMath.hexToPixel(layout, hexMath.getHexByDirection(direction))
         points.forEach { p ->
             p.x += (offsetPoint.x - layout.origin.x) * fraction
             p.y += (offsetPoint.y - layout.origin.y) * fraction
@@ -448,45 +443,49 @@ class DrawUtils(private val hexMath: HexMath, private val context: Context) {
     }
 
     private fun drawCellOutline(canvas: Canvas?, cell: Cell, layout: Layout, paint: Paint = cellOutlinePaint,
-                                lines: List<Pair<Point, Point>>? = null) {
+                                lines: List<Point>? = null) {
         val outline = lines ?: getCellOutline(cell, layout)
-        outline.forEach {
-            canvas?.drawLine(it.first.x.toFloat(), it.first.y.toFloat(), it.second.x.toFloat(), it.second.y.toFloat(),
+        for (i in 0 until outline.size step 2) {
+            canvas?.drawLine(outline[i].x.toFloat(), outline[i].y.toFloat(),
+                             outline[i + 1].x.toFloat(), outline[i + 1].y.toFloat(),
                              paint)
         }
     }
 
-    private fun getCellOutline(cell: Cell, layout: Layout): List<Pair<Point, Point>> {
-        val lines = mutableListOf<Pair<Point, Point>>()
+    private fun getCellOutline(cell: Cell, layout: Layout): List<Point> {
+        val lines = mutableListOf<Point>()
+        val neighbor = Hex()
+        val offsetPoint = hexMath.hexToPixel(layout, hexMath.getHexByDirection(cell.animationData.moveDirection))
+        val cellOrigin = hexMath.hexToPixel(layout, cell.data.origin)
+        val hexInGlobal = Hex()
+        val hexCorners: MutableList<Point> = mutableListOf()
+        for (i in 0..5) hexCorners.add(Point())
+
         cell.data.hexes.values.forEach { hex ->
-            val hexInGlobal = hexMath.add(hex, cell.data.origin)
-            val hexCorners: ArrayList<Point> = hexMath.poligonCorners(layout, hexInGlobal)
+            hexMath.add(hex, cell.data.origin, hexInGlobal)
+            hexMath.polygonCorners(layout, hexInGlobal, hexCorners)
 
             // Rotate and offset
-            rotatePoints(hexCorners, hexMath.hexToPixel(layout, cell.data.origin), cell.animationData.rotation)
+            rotatePoints(hexCorners, cellOrigin, cell.animationData.rotation)
             if (cell.animationData.movingFraction > 0f)
-                offsetPoints(hexCorners, cell.animationData.moveDirection, cell.animationData.movingFraction, layout)
+                offsetPoints(hexCorners, cell.animationData.moveDirection, cell.animationData.movingFraction, layout, offsetPoint)
 
             for (direction in 0..5) {
-                val neighbor = hexMath.getHexNeighbor(hex, direction)
+                hexMath.getHexNeighbor(hex, direction, neighbor)
                 if (!cell.data.hexes.values.contains(neighbor)) {
-                    lines.add(getHexSideByNeighborDirection(hexCorners, direction))
+                    when (direction) {
+                        0 -> { lines.add(hexCorners[4]); lines.add(hexCorners[5]) }
+                        1 -> { lines.add(hexCorners[5]); lines.add(hexCorners[0]) }
+                        2 -> { lines.add(hexCorners[0]); lines.add(hexCorners[1]) }
+                        3 -> { lines.add(hexCorners[1]); lines.add(hexCorners[2]) }
+                        4 -> { lines.add(hexCorners[2]); lines.add(hexCorners[3]) }
+                        5 -> { lines.add(hexCorners[3]); lines.add(hexCorners[4]) }
+                        else -> { lines.add(hexCorners[0]); lines.add(hexCorners[0]) }
+                    }
                 }
             }
         }
         return lines
-    }
-
-    private fun getHexSideByNeighborDirection(corners: List<Point>, direction: Int): Pair<Point, Point> {
-        return when (direction) {
-            0 -> Pair(corners[4], corners[5])
-            1 -> Pair(corners[5], corners[0])
-            2 -> Pair(corners[0], corners[1])
-            3 -> Pair(corners[1], corners[2])
-            4 -> Pair(corners[2], corners[3])
-            5 -> Pair(corners[3], corners[4])
-            else -> Pair(corners[0], corners[0])
-        }
     }
 
     fun drawCellPower(canvas: Canvas?, cell: Cell, layout: Layout) {

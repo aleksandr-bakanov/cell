@@ -46,11 +46,13 @@ class BattleGraphics(
             val isBattleWon = battleInfo.winnerGroupId == Consts.HERO_GROUP_ID
             previous = 0
 
+            val frameState = FrameState()
+
             for (timestamp in 0..battleDuration step TIME_BETWEEN_FRAMES_MS) {
                 yield()
                 checkProgress(timestamp, battleDuration)
 
-                val frameState = getFrameState(battleInfo.snapshots, timestamp)
+                getFrameState(battleInfo.snapshots, timestamp, frameState)
                 val snapshot = battleInfo.snapshots[frameState.snapshotIndex]
 
                 //-------------------------------------------------------------
@@ -182,7 +184,7 @@ class BattleGraphics(
         return path
     }
 
-    private fun getFrameState(snapshots: List<BattleFieldSnapshot>, timestamp: Long): FrameState {
+    private fun getFrameState(snapshots: List<BattleFieldSnapshot>, timestamp: Long, /*out*/ state: FrameState) {
         var acc = 0
         var snapshotIndex = -1
 
@@ -210,7 +212,10 @@ class BattleGraphics(
         val hexRemovalTime = timestamp - acc
         val hexRemovalFraction = animationTimeFraction(hexRemovalTime, snapshot.hexRemovalDuration())
 
-        return FrameState(snapshotIndex, /*actionFraction,*/ movingFraction, deathRayFraction, hexRemovalFraction)
+        state.snapshotIndex = snapshotIndex
+        state.movingFraction = movingFraction
+        state.deathRayFraction = deathRayFraction
+        state.hexRemovalFraction = hexRemovalFraction
     }
 
     private fun animationTimeFraction(time: Long, animationDuration: Int): Float {
@@ -220,8 +225,8 @@ class BattleGraphics(
         else time.toFloat() / animationDuration.toFloat()
     }
 
-    private data class FrameState(val snapshotIndex: Int, /*val actionFraction: Float,*/ val movingFraction: Float,
-                          val deathRayFraction: Float, val hexRemovalFraction: Float)
+    private data class FrameState(var snapshotIndex: Int = 0, /*val actionFraction: Float,*/ var movingFraction: Float = 0f,
+                          var deathRayFraction: Float = 0f, var hexRemovalFraction: Float = 0f)
 
     companion object {
         private const val TAG = "BattleGraphics"

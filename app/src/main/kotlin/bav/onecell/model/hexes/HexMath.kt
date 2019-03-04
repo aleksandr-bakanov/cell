@@ -60,6 +60,18 @@ class HexMath {
         return add(hex, getHexByDirection(direction))
     }
 
+    fun getHexNeighbor(hex: Hex, direction: Int, out: Hex) {
+        out.r = hex.r + DIRECTIONS[direction].r
+        out.s = hex.s + DIRECTIONS[direction].s
+        out.q = hex.q + DIRECTIONS[direction].q
+    }
+
+    fun shiftHexToDirection(hex: Hex, direction: Int) {
+        hex.r += DIRECTIONS[direction].r
+        hex.s += DIRECTIONS[direction].s
+        hex.q += DIRECTIONS[direction].q
+    }
+
     //  5    0
     //    /\
     // 4 |  | 1
@@ -74,6 +86,12 @@ class HexMath {
 
     fun add(a: Hex, b: Hex): Hex {
         return Hex(a.q + b.q, a.r + b.r, a.s + b.s)
+    }
+
+    fun add(a: Hex, b: Hex, out: Hex) {
+        out.q = a.q + b.q
+        out.r = a.r + b.r
+        out.s = a.s + b.s
     }
 
     fun subtract(a: Hex, b: Hex): Hex {
@@ -109,7 +127,7 @@ class HexMath {
         return FractionalHex(q, r, -q - r)
     }
 
-    fun hexCornerOffset(layout: Layout, corner: Int): Point {
+    private fun hexCornerOffset(layout: Layout, corner: Int): Point {
         val size: Point = layout.size
         val angle: Double = 2.0 * PI * (layout.orientation.startAngle + corner) / 6.0
         return Point(size.x * cos(angle), size.y * sin(angle))
@@ -120,8 +138,8 @@ class HexMath {
     //  |  |
     // 2 \/ 0
     //   1
-    fun poligonCorners(layout: Layout, h: Hex, scale: Float = 1f): ArrayList<Point> {
-        val corners: ArrayList<Point> = arrayListOf()
+    fun polygonCorners(layout: Layout, h: Hex, scale: Float = 1f): MutableList<Point> {
+        val corners: MutableList<Point> = mutableListOf()
         val center: Point = hexToPixel(layout, h)
         for (i in 0..5) {
             val offset: Point = hexCornerOffset(layout, i)
@@ -130,6 +148,17 @@ class HexMath {
             corners.add(Point(center.x + offset.x, center.y + offset.y))
         }
         return corners
+    }
+
+    fun polygonCorners(layout: Layout, h: Hex, out: MutableList<Point>, scale: Float = 1f) {
+        val center: Point = hexToPixel(layout, h)
+        for (i in 0..5) {
+            val offset: Point = hexCornerOffset(layout, i)
+            offset.x *= scale
+            offset.y *= scale
+            out[i].x = center.x + offset.x
+            out[i].y = center.y + offset.y
+        }
     }
 
     fun round(h: FractionalHex): Hex {
