@@ -56,7 +56,6 @@ class BattleFragment : Fragment(), Battle.View {
     private var battleDuration: Long = 0
     private var currentTimestamp: Long = 0
     private var animationTimer: Disposable? = null
-    private var frames: Map<Long, FrameGraphics>? = null
     private var frameGenerationJob: Job? = null
 
     private val seekBarListener = object : SeekBar.OnSeekBarChangeListener {
@@ -125,10 +124,9 @@ class BattleFragment : Fragment(), Battle.View {
                                                     .subscribeOn(Schedulers.io())
                                                     .observeOn(AndroidSchedulers.mainThread())
                                                     .subscribe {
-                                                        frames = it
                                                         battleCanvasView.frames = it
-                                                        seekBar.max = frames?.size ?: 0
-                                                        battleDuration = frames?.keys?.max() ?: 0
+                                                        seekBar.max = it.size
+                                                        battleDuration = it.keys.max() ?: 0
                                                         setTimestampAndDrawFrame(0)
                                                         progressBar.visibility = View.INVISIBLE
                                                         splashImage.visibility = View.INVISIBLE
