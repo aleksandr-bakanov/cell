@@ -436,46 +436,6 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
         }
     }
 
-    private fun animateCellRotationLeft() {
-        ValueAnimator.ofFloat(0f, -PI.toFloat() / 3f).apply {
-            duration = 1000
-            addUpdateListener {
-                editorCanvasView.cell?.animationData?.rotation = it.animatedValue as Float
-                editorCanvasView.invalidate()
-            }
-            addListener(object: AnimatorListenerAdapter() {
-                override fun onAnimationEnd(animation: Animator?) {
-                    super.onAnimationEnd(animation)
-                    editorCanvasView.cell?.animationData?.rotation = 0f
-                    presenter.rotateCellLeft()
-                    editorCanvasView.tipHexes = presenter.getTipHexes(editorCanvasView.selectedCellType)
-                    editorCanvasView.invalidate()
-                }
-            })
-            start()
-        }
-    }
-
-    private fun animateCellRotationRight() {
-        ValueAnimator.ofFloat(0f, PI.toFloat() / 3f).apply {
-            duration = 1000
-            addUpdateListener {
-                editorCanvasView.cell?.animationData?.rotation = it.animatedValue as Float
-                editorCanvasView.invalidate()
-            }
-            addListener(object: AnimatorListenerAdapter() {
-                override fun onAnimationEnd(animation: Animator?) {
-                    super.onAnimationEnd(animation)
-                    editorCanvasView.cell?.animationData?.rotation = 0f
-                    presenter.rotateCellRight()
-                    editorCanvasView.tipHexes = presenter.getTipHexes(editorCanvasView.selectedCellType)
-                    editorCanvasView.invalidate()
-                }
-            })
-            start()
-        }
-    }
-
     private fun switchCellLogicEditorViews() {
         isCellLogicViewsShown = !isCellLogicViewsShown
 

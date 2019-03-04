@@ -36,7 +36,6 @@ class BattleCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
     private val corpseAttackPaint = Paint()
     private val corpseDeathRayHexPaint = Paint()
     private val corpseOmniBulletHexPaint = Paint()
-    var isFog: Boolean = false
     private val scaleGestureDetector = ScaleGestureDetector(context, ScaleListener(this))
     var scaleFactor: Float = 1f
     var frames: Map<Long, FrameGraphics>? = null

@@ -76,16 +76,14 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <!--Other buttons -->
-    <Button
+    <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/buttonNextScene"
-        android:background="@drawable/button_main_menu_background"
-        android:textColor="@android:color/black"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:minHeight="0dp"
-        android:minWidth="0dp"
-        android:padding="@dimen/button_next_scene_padding"
-        android:text="@string/text_next_scene"
+        android:layout_width="@dimen/hero_screen_avatar_size"
+        android:layout_height="@dimen/hero_screen_avatar_size"
+        android:padding="0dp"
+        android:scaleType="fitCenter"
+        android:background="@android:color/transparent"
+        app:srcCompat="@drawable/ic_button_next_scene"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -134,40 +132,38 @@
     <!-- Rotation buttons -->
     <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/buttonRotateCellLeft"
-        android:background="@drawable/button_main_menu_background"
-        android:textColor="@color/buttonMainMenu"
-        android:padding="8dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/hero_screen_rotation_button_horizontal_margin"
+        android:layout_width="@dimen/hero_screen_avatar_size"
+        android:layout_height="@dimen/hero_screen_avatar_size"
+        android:padding="0dp"
+        android:scaleType="fitCenter"
+        android:background="@android:color/transparent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/buttonTransformHexes"
-        app:srcCompat="@drawable/ic_rotate_left_black_24dp" />
+        app:srcCompat="@drawable/ic_button_rotate_left" />
 
     <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/buttonRotateCellRight"
-        android:background="@drawable/button_main_menu_background"
-        android:textColor="@color/buttonMainMenu"
-        android:padding="8dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/hero_screen_rotation_button_horizontal_margin"
+        android:layout_width="@dimen/hero_screen_avatar_size"
+        android:layout_height="@dimen/hero_screen_avatar_size"
+        android:padding="0dp"
+        android:scaleType="fitCenter"
+        android:background="@android:color/transparent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@id/buttonTransformHexes"
-        app:srcCompat="@drawable/ic_rotate_right_black_24dp" />
+        app:srcCompat="@drawable/ic_button_rotate_right" />
 
     <!-- Transform hexes button -->
     <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/buttonTransformHexes"
-        android:background="@drawable/button_main_menu_background"
-        android:textColor="@color/buttonMainMenu"
-        android:padding="8dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/hero_screen_avatar_size"
+        android:layout_height="@dimen/hero_screen_avatar_size"
+        android:padding="0dp"
+        android:scaleType="fitCenter"
+        android:background="@android:color/transparent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/guideline_hero_screen_avatars_end"
-        app:srcCompat="@drawable/ic_account_balance_black_24dp" />
+        app:srcCompat="@drawable/ic_button_hex_transform" />
 
     <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/buttonTransformLifeToAttackHex"

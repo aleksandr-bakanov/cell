@@ -1,0 +1,71 @@
+<!--
+  ~ Copyright (c) 2019 Disney ABC Television Group
+  ~
+  ~ cell
+  ~ ic_button_rotate_left.xml
+  ~
+  ~ Author: Aleksandr Bakanov <aleksandr_bakanov@epam.com>
+  ~ Date:   March 04, 2019
+  -->
+
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="128dp"
+    android:height="128dp"
+    android:viewportWidth="128"
+    android:viewportHeight="128">
+  <path
+      android:pathData="M33.382,43.371C39.882,36.859 48.875,32.842 58.803,32.842c19.855,0 35.95,16.095 35.95,35.95 0,19.855 -16.095,35.95 -35.95,35.95"
+      android:strokeAlpha="1"
+      android:strokeLineJoin="round"
+      android:strokeWidth="20"
+      android:fillColor="#00000000"
+      android:strokeColor="#000000"
+      android:fillAlpha="1"
+      android:strokeLineCap="round"/>
+  <path
+      android:pathData="M33.382,43.371 L38.735,23.395"
+      android:strokeAlpha="1"
+      android:strokeLineJoin="round"
+      android:strokeWidth="20"
+      android:fillColor="#00000000"
+      android:strokeColor="#000000"
+      android:strokeLineCap="round"/>
+  <path
+      android:pathData="m33.382,43.371 l15.374,5.353"
+      android:strokeAlpha="1"
+      android:strokeLineJoin="round"
+      android:strokeWidth="20"
+      android:fillColor="#00000000"
+      android:strokeColor="#000000"
+      android:strokeLineCap="round"/>
+  <path
+      android:pathData="m58.803,27.843c-11.276,0 -21.557,4.58 -28.959,11.996a5.001,5.001 0,1 0,7.078 7.064C42.519,41.296 50.224,37.843 58.803,37.843 75.955,37.843 89.752,51.639 89.752,68.792 89.752,85.944 75.955,99.741 58.803,99.741a5.001,5.001 0,1 0,0 10C81.359,109.741 99.752,91.349 99.752,68.792 99.752,46.235 81.359,27.843 58.803,27.843Z"
+      android:strokeAlpha="1"
+      android:strokeLineJoin="round"
+      android:strokeWidth="10"
+      android:fillColor="#ffffff"
+      android:strokeColor="#00000000"
+      android:fillType="nonZero"
+      android:fillAlpha="1"
+      android:strokeLineCap="round"/>
+  <path
+      android:pathData="m38.986,18.331a5.001,5.001 0,0 0,-5.082 3.77L28.553,42.077a5.001,5.001 0,1 0,9.658 2.588l5.354,-19.977a5.001,5.001 0,0 0,-4.578 -6.357z"
+      android:strokeAlpha="1"
+      android:strokeLineJoin="round"
+      android:strokeWidth="10"
+      android:fillColor="#ffffff"
+      android:strokeColor="#00000000"
+      android:fillType="nonZero"
+      android:fillAlpha="1"
+      android:strokeLineCap="round"/>
+  <path
+      android:pathData="m33.06,38.354a5.001,5.001 0,0 0,-1.322 9.738l15.375,5.354a5.001,5.001 0,1 0,3.287 -9.443l-15.375,-5.354A5.001,5.001 0,0 0,33.06 38.354Z"
+      android:strokeAlpha="1"
+      android:strokeLineJoin="round"
+      android:strokeWidth="10"
+      android:fillColor="#ffffff"
+      android:strokeColor="#00000000"
+      android:fillType="nonZero"
+      android:fillAlpha="1"
+      android:strokeLineCap="round"/>
+</vector>

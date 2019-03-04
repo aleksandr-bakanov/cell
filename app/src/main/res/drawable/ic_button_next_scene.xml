@@ -1,0 +1,56 @@
+<!--
+  ~ Copyright (c) 2019 Disney ABC Television Group
+  ~
+  ~ cell
+  ~ ic_button_next_scene.xml
+  ~
+  ~ Author: Aleksandr Bakanov <aleksandr_bakanov@epam.com>
+  ~ Date:   March 04, 2019
+  -->
+
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="128dp"
+    android:height="128dp"
+    android:viewportWidth="128"
+    android:viewportHeight="128">
+  <path
+      android:pathData="M68.214,13.046A15.002,15.002 0,0 0,57.765 38.804L67.956,48.996L23.896,48.996a15.002,15.002 0,1 0,0 30L104.167,78.996A15.002,15.002 0,0 0,114.775 53.388L78.978,17.591A15.002,15.002 0,0 0,68.214 13.046Z"
+      android:strokeAlpha="1"
+      android:strokeLineJoin="round"
+      android:strokeWidth="30"
+      android:fillColor="#000000"
+      android:strokeColor="#00000000"
+      android:fillType="nonZero"
+      android:fillAlpha="1"
+      android:strokeLineCap="round"/>
+  <path
+      android:pathData="M103.872,48.851A15.002,15.002 0,0 0,93.562 53.388L57.765,89.185a15.002,15.002 0,1 0,21.213 21.213L114.775,74.601a15.002,15.002 0,0 0,-10.902 -25.75z"
+      android:strokeAlpha="1"
+      android:strokeLineJoin="round"
+      android:strokeWidth="30"
+      android:fillColor="#000000"
+      android:strokeColor="#00000000"
+      android:fillType="nonZero"
+      android:fillAlpha="1"
+      android:strokeLineCap="round"/>
+  <path
+      android:pathData="m68.32,23.148a5.001,5.001 0,0 0,-3.484 8.586L92.097,58.996L23.896,58.996a5.001,5.001 0,1 0,0 10h80.271a5.001,5.001 0,0 0,3.535 -8.535L71.907,24.664a5.001,5.001 0,0 0,-3.588 -1.516z"
+      android:strokeAlpha="1"
+      android:strokeLineJoin="round"
+      android:strokeWidth="10"
+      android:fillColor="#ffffff"
+      android:strokeColor="#00000000"
+      android:fillType="nonZero"
+      android:fillAlpha="1"
+      android:strokeLineCap="round"/>
+  <path
+      android:pathData="m104.07,58.947a5.001,5.001 0,0 0,-3.437 1.514L64.835,96.255a5.001,5.001 0,1 0,7.072 7.072L107.702,67.531a5.001,5.001 0,0 0,-3.633 -8.584z"
+      android:strokeAlpha="1"
+      android:strokeLineJoin="round"
+      android:strokeWidth="10"
+      android:fillColor="#ffffff"
+      android:strokeColor="#00000000"
+      android:fillType="nonZero"
+      android:fillAlpha="1"
+      android:strokeLineCap="round"/>
+</vector>

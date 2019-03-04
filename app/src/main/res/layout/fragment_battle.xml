@@ -23,16 +23,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/buttonFinishBattle"
-        android:background="@drawable/button_main_menu_background"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/button_finish_battle_title"
-        android:visibility="invisible"
-        android:padding="@dimen/button_padding"
-        android:minHeight="0dp"
-        android:minWidth="0dp"
+        android:layout_width="@dimen/hero_screen_avatar_size"
+        android:layout_height="@dimen/hero_screen_avatar_size"
+        android:padding="0dp"
+        android:scaleType="fitCenter"
+        android:background="@android:color/transparent"
+        app:srcCompat="@drawable/ic_button_next_scene"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

@@ -60,8 +60,6 @@ class BattleFragment : Fragment(), Battle.View {
     private var battleDuration: Long = 0
     private var currentTimestamp: Long = 0
     private var animationTimer: Disposable? = null
-    private var isBattleWon = false
-    private var isFog = false
     private var frames: Map<Long, FrameGraphics>? = null
     private var frameGenerationJob: Job? = null
 
@@ -81,16 +79,6 @@ class BattleFragment : Fragment(), Battle.View {
             currentTimestamp = battleDuration
         }
         if (currentTimestamp < 0) currentTimestamp = 0
-
-        if (isFog && isBattleWon && currentTimestamp == battleDuration) {
-            battleCanvasView.isFog = false
-        }
-        if (isFog && isBattleWon && currentTimestamp != battleDuration) {
-            battleCanvasView.isFog = true
-        }
-        if (isFog && !isBattleWon) {
-            battleCanvasView.isFog = true
-        }
         drawFrame(currentTimestamp)
     }
 
