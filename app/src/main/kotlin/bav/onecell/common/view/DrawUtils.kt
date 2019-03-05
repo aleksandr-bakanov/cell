@@ -474,13 +474,13 @@ class DrawUtils(private val hexMath: HexMath, private val context: Context) {
                 hexMath.getHexNeighbor(hex, direction, neighbor)
                 if (!cell.data.hexes.values.contains(neighbor)) {
                     when (direction) {
-                        0 -> { lines.add(hexCorners[4]); lines.add(hexCorners[5]) }
-                        1 -> { lines.add(hexCorners[5]); lines.add(hexCorners[0]) }
-                        2 -> { lines.add(hexCorners[0]); lines.add(hexCorners[1]) }
-                        3 -> { lines.add(hexCorners[1]); lines.add(hexCorners[2]) }
-                        4 -> { lines.add(hexCorners[2]); lines.add(hexCorners[3]) }
-                        5 -> { lines.add(hexCorners[3]); lines.add(hexCorners[4]) }
-                        else -> { lines.add(hexCorners[0]); lines.add(hexCorners[0]) }
+                        0 -> { lines.add(hexCorners[4].copy()); lines.add(hexCorners[5].copy()) }
+                        1 -> { lines.add(hexCorners[5].copy()); lines.add(hexCorners[0].copy()) }
+                        2 -> { lines.add(hexCorners[0].copy()); lines.add(hexCorners[1].copy()) }
+                        3 -> { lines.add(hexCorners[1].copy()); lines.add(hexCorners[2].copy()) }
+                        4 -> { lines.add(hexCorners[2].copy()); lines.add(hexCorners[3].copy()) }
+                        5 -> { lines.add(hexCorners[3].copy()); lines.add(hexCorners[4].copy()) }
+                        else -> Unit
                     }
                 }
             }
