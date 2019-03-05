@@ -163,6 +163,7 @@ class BattleFragment : Fragment(), Battle.View {
         pauseAnimation()
         frameGenerationJob?.cancel()
         frameGenerationJob = null
+        battleCanvasView.frames = null
         super.onDestroyView()
     }
     //endregion
