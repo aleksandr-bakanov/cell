@@ -84,6 +84,12 @@ class HexMath {
                 getHexNeighbor(hex, 4), getHexNeighbor(hex, 5))
     }
 
+    fun hexNeighbors(hex: Hex, out: List<Hex> /* size == 6 */) {
+        for (i in 0..5) {
+            getHexNeighbor(hex, i, out[i])
+        }
+    }
+
     fun add(a: Hex, b: Hex): Hex {
         return Hex(a.q + b.q, a.r + b.r, a.s + b.s)
     }

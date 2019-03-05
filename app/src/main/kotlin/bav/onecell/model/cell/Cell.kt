@@ -41,8 +41,10 @@ class Cell(private val hexMath: HexMath,
     }
 
     private val outlineHexes: MutableSet<Hex> = mutableSetOf()
+    private val hexNeighborsPool: MutableList<Hex> = mutableListOf()
 
     init {
+        for (i in 0..5) hexNeighborsPool.add(Hex())
         updateOutlineHexes()
     }
 
@@ -112,9 +114,14 @@ class Cell(private val hexMath: HexMath,
     fun getOutlineHexes(): Collection<Hex> = outlineHexes
 
     fun updateOutlineHexes() {
+        /// TODO: optimize it even more, don't allocate/clear hexes in a hull each time
         outlineHexes.clear()
         data.hexes.forEach { entry ->
-            outlineHexes.addAll(hexMath.hexNeighbors(entry.value).subtract(data.hexes.values))
+            hexMath.hexNeighbors(entry.value, hexNeighborsPool)
+            for (neighbor in hexNeighborsPool) {
+                if (!data.hexes.values.contains(neighbor))
+                    outlineHexes.add(neighbor.copy())
+            }
         }
     }
 
