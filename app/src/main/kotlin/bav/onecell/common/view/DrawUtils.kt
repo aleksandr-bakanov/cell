@@ -175,8 +175,10 @@ class DrawUtils(private val hexMath: HexMath, private val context: Context) {
         graphicalPoints.outline = getCellOutline(cell, Layout.UNIT)
 
         val originPoint = hexMath.hexToPixel(Layout.UNIT, cell.data.origin)
+        val hexInGlobal = Hex()
         var pathsList: MutableList<Path>?
         for (hex in cell.data.hexes.values) {
+            hexMath.add(hex, cell.data.origin, hexInGlobal)
             pathsList = when (hex.type) {
                 Hex.Type.LIFE -> {
                     if (graphicalPoints.lifeHexes == null) graphicalPoints.lifeHexes = mutableListOf()
@@ -208,9 +210,9 @@ class DrawUtils(private val hexMath: HexMath, private val context: Context) {
                 }
             }
 
-            val points = getHexPath(Layout.UNIT, hexMath.add(hex, cell.data.origin), originPoint,
-                                                   cell.animationData.rotation, cell.animationData.moveDirection,
-                                                   cell.animationData.movingFraction, scale = fadeScale)
+            val points = getHexPath(Layout.UNIT, hexInGlobal, originPoint,
+                                    cell.animationData.rotation, cell.animationData.moveDirection,
+                                    cell.animationData.movingFraction, scale = fadeScale)
             pathsList?.add(points)
         }
         graphicalPoints.isFriendly = cell.data.groupId == Consts.MAIN_CHARACTERS_GROUP_ID
@@ -295,7 +297,9 @@ class DrawUtils(private val hexMath: HexMath, private val context: Context) {
 
             var paint: Paint
             val originPoint = hexMath.hexToPixel(layout, it.data.origin)
+            val hexInGlobal = Hex()
             for (hex in it.data.hexes.values) {
+                hexMath.add(hex, it.data.origin, hexInGlobal)
                 paint = when (hex.type) {
                     Hex.Type.LIFE -> lPaint
                     Hex.Type.ENERGY -> ePaint
@@ -312,12 +316,12 @@ class DrawUtils(private val hexMath: HexMath, private val context: Context) {
                     }
                 }
 
-                val path: Path = getHexPath(layout, hexMath.add(hex, it.data.origin), originPoint,
+                val path: Path = getHexPath(layout, hexInGlobal, originPoint,
                                             it.animationData.rotation, it.animationData.moveDirection,
                                             it.animationData.movingFraction, scale = fadeScale)
 
                 if (fadeScale != 1.0f) {
-                    val groundPath: Path = getHexPath(layout, hexMath.add(hex, it.data.origin), originPoint,
+                    val groundPath: Path = getHexPath(layout, hexInGlobal, originPoint,
                                                 it.animationData.rotation, it.animationData.moveDirection,
                                                 it.animationData.movingFraction)
                     groundPath.fillType = Path.FillType.EVEN_ODD
@@ -336,8 +340,10 @@ class DrawUtils(private val hexMath: HexMath, private val context: Context) {
 
     fun drawHexes(canvas: Canvas?, origin: Hex, hexes: Collection<Hex>?, paint: Paint, layout: Layout = Layout.DUMMY,
                   scale: Float = 1.0f) {
+        val hexInGlobal = Hex()
         hexes?.forEach { hex ->
-            val path: Path = getHexPath(layout, hexMath.add(hex, origin), scale = scale)
+            hexMath.add(hex, origin, hexInGlobal)
+            val path: Path = getHexPath(layout, hexInGlobal, scale = scale)
             path.fillType = Path.FillType.EVEN_ODD
             canvas?.drawPath(path, paint)
         }
@@ -496,7 +502,9 @@ class DrawUtils(private val hexMath: HexMath, private val context: Context) {
     }
 
     fun drawCellPower(canvas: Canvas?, cell: Cell, layout: Layout) {
+        val hexInGlobal = Hex()
         cell.data.hexes.values.forEach { hex ->
+            hexMath.add(cell.data.origin, hex, hexInGlobal)
             val paint = when (hex.type) {
                 Hex.Type.LIFE -> powerLifeTextPaint
                 Hex.Type.ENERGY -> powerEnergyTextPaint
@@ -506,7 +514,7 @@ class DrawUtils(private val hexMath: HexMath, private val context: Context) {
                 else -> powerTextPaint
             }
             paint.textSize = layout.size.x.toFloat()
-            drawHexPower(canvas, layout, cell, hexMath.add(cell.data.origin, hex), hex.power, paint)
+            drawHexPower(canvas, layout, cell, hexInGlobal, hex.power, paint)
         }
     }
 

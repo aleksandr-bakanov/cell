@@ -1,6 +1,5 @@
 package bav.onecell.battle
 
-import android.util.Log
 import bav.onecell.model.BattleFieldSnapshot
 import bav.onecell.model.BattleInfo
 import bav.onecell.model.GameRules
@@ -228,21 +227,23 @@ class BattleEngine(
         // Each cell will move to the nearest hex within all enemies.
         // Distance will be calculated between all hexes of cell and all enemy hexes.
         cells.forEachIndexed { i, cell ->
-            var ourHex: Hex = cell.data.origin
-            var nearestEnemyHex: Hex = cell.data.origin
+            val ourCandidate = Hex()
+            val enemyCandidate = Hex()
+            val ourHex = Hex()
+            val nearestEnemyHex = Hex()
             var minDistance = Int.MAX_VALUE
             // Search for nearest enemy hex
             cell.data.hexes.forEach { entry ->
-                val ourCandidate = hexMath.add(entry.value, cell.data.origin)
+                hexMath.add(entry.value, cell.data.origin, ourCandidate)
                 cells.forEachIndexed { j, enemy ->
                     if (j != i && cell.data.groupId != enemy.data.groupId) {
                         enemy.data.hexes.forEach {
-                            val enemyCandidate = hexMath.add(it.value, enemy.data.origin)
+                            hexMath.add(it.value, enemy.data.origin, enemyCandidate)
                             val distance = hexMath.distance(ourCandidate, enemyCandidate)
                             if (distance < minDistance) {
                                 minDistance = distance
-                                ourHex = ourCandidate
-                                nearestEnemyHex = enemyCandidate
+                                ourHex.copyCoordinates(ourCandidate)
+                                nearestEnemyHex.copyCoordinates(enemyCandidate)
                             }
                         }
                     }
@@ -266,10 +267,11 @@ class BattleEngine(
     private fun checkOmniBulletsCreation(cell: Cell) {
         cell.battleData.omniBulletTimeout--
         if (cell.battleData.omniBulletTimeout == 0) {
+            val omniHexInGlobal = Hex()
             cell.data.hexes.filter { it.value.type == Hex.Type.OMNI_BULLET }.forEach {
-                val originInGlobal = hexMath.add(cell.data.origin, it.value)
+                hexMath.add(cell.data.origin, it.value, omniHexInGlobal)
                 for (direction in 0..5) {
-                    bullets.add(Bullet(cell.data.groupId, direction, OMNI_BULLET_RANGE, originInGlobal.copy()))
+                    bullets.add(Bullet(cell.data.groupId, direction, OMNI_BULLET_RANGE, omniHexInGlobal.copy()))
                 }
             }
             cell.battleData.omniBulletTimeout = OMNI_BULLET_TIMEOUT

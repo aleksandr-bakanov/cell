@@ -43,6 +43,12 @@ data class Hex(var q /*X*/: Int = 0, var r /*Z*/: Int = 0, var s /*Y*/: Int = 0)
         return this
     }
 
+    fun copyCoordinates(h: Hex) {
+        q = h.q
+        r = h.r
+        s = h.s
+    }
+
     fun clone() = Hex(q, r, s).withType(type).withPower(power)
 
     fun toJson(): String {
