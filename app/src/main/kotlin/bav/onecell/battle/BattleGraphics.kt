@@ -157,13 +157,17 @@ class BattleGraphics(
     }
 
     /// TODO: optimize area definition (in terms of allocated memory)
+    private val observableAreaHexPool: MutableList<Hex> = mutableListOf()
+
     private fun getObservableAreaPath(cells: List<Cell>): Path {
+        var hexCount = 0
         // Get area observed by cells with group id = 0 only, i.e. main heroes
         val path = Path()
         cells.forEach { cell ->
             if (cell.data.groupId == Consts.MAIN_CHARACTERS_GROUP_ID) {
                 val cellViewArea = mutableSetOf<Hex>()
                 cell.data.hexes.values.forEach { hex ->
+                    /// TODO: continue here
                     cellViewArea.add(hexMath.add(hex, cell.data.origin))
                 }
                 for (i in 0 until cell.data.viewDistance) {
