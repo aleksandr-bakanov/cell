@@ -40,6 +40,7 @@
     <color name="battleEnemyOutline">#dd2c00</color>
     <color name="seek_bar_background">#39000000</color>
     <color name="seek_bar_progress">#d41313</color>
+    <color name="bulletOutline">#3F51B5</color>
 
     <!-- Hero screen view -->
     <color name="heroScreenSelectedRuleBackgroundColor">#f57f17</color>

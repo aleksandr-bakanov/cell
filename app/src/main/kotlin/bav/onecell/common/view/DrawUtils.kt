@@ -42,6 +42,7 @@ class DrawUtils(private val hexMath: HexMath, private val context: Context) {
     val strokePaint = Paint()
     val groundPaint = Paint(Paint.ANTI_ALIAS_FLAG)
     val cellOutlinePaint = Paint(Paint.ANTI_ALIAS_FLAG)
+    val bulletOutlinePaint = Paint(Paint.ANTI_ALIAS_FLAG)
     val groupAffiliationFriendPaint = Paint(Paint.ANTI_ALIAS_FLAG)
     val groupAffiliationEnemyPaint = Paint(Paint.ANTI_ALIAS_FLAG)
     private val powerTextPaint = Paint()
@@ -85,6 +86,12 @@ class DrawUtils(private val hexMath: HexMath, private val context: Context) {
         cellOutlinePaint.strokeWidth = 5.0f
         cellOutlinePaint.strokeJoin = Paint.Join.ROUND
         cellOutlinePaint.strokeCap = Paint.Cap.ROUND
+
+        bulletOutlinePaint.style = Paint.Style.STROKE
+        bulletOutlinePaint.color = ContextCompat.getColor(context, R.color.bulletOutline)
+        bulletOutlinePaint.strokeWidth = 5.0f
+        bulletOutlinePaint.strokeJoin = Paint.Join.ROUND
+        bulletOutlinePaint.strokeCap = Paint.Cap.ROUND
 
         groupAffiliationFriendPaint.style = Paint.Style.STROKE
         groupAffiliationFriendPaint.color = ContextCompat.getColor(context, R.color.battleFriendOutline)

@@ -269,7 +269,7 @@ class BattleEngine(
             cell.data.hexes.filter { it.value.type == Hex.Type.OMNI_BULLET }.forEach {
                 val originInGlobal = hexMath.add(cell.data.origin, it.value)
                 for (direction in 0..5) {
-                    bullets.add(Bullet(cell.data.groupId, direction, OMNI_BULLET_RANGE, originInGlobal))
+                    bullets.add(Bullet(cell.data.groupId, direction, OMNI_BULLET_RANGE, originInGlobal.copy()))
                 }
             }
             cell.battleData.omniBulletTimeout = OMNI_BULLET_TIMEOUT
@@ -330,7 +330,7 @@ class BattleEngine(
                 indexesOfBulletsToRemove.add(index)
             }
             else {
-                bullet.origin = hexMath.getHexNeighbor(bullet.origin, bullet.direction)
+                hexMath.shiftHexToDirection(bullet.origin, bullet.direction)
             }
         }
         indexesOfBulletsToRemove.sortDescending()
@@ -381,8 +381,6 @@ class BattleEngine(
                 groupOfBullets.forEach { bullet ->
                     val bulletInEnemyLocal = hexMath.subtract(bullet.origin, enemy.data.origin)
                     enemy.data.hexes[bulletInEnemyLocal.mapKey]?.let {
-                        // Hash codes may be the same but hexes may not.
-                        // Compare Hex(1, -1, 0)(930) and Hex(0, 31, -31)(also 930).
                         if (it == bulletInEnemyLocal) {
                             it.power -= OMNI_BULLET_DAMAGE
                             bullet.timeToLive = 0

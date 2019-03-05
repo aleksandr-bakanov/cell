@@ -164,7 +164,7 @@ class BattleCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
                 for (path in paths) {
                     path.transform(layoutMatrix, transformedPath)
                     canvas?.drawPath(transformedPath, drawUtils.omniBulletHexPaint)
-                    canvas?.drawPath(transformedPath, drawUtils.cellOutlinePaint)
+                    canvas?.drawPath(transformedPath, drawUtils.bulletOutlinePaint)
                 }
             }
         }
