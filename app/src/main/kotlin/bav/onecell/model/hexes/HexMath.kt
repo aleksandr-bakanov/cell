@@ -123,6 +123,14 @@ class HexMath {
         return Point(x + layout.origin.x, y + layout.origin.y)
     }
 
+    fun hexToPixel(layout: Layout, h: Hex, p: Point) {
+        val m: Orientation = layout.orientation
+        val x: Double = (m.f0 * h.q + m.f1 * h.r) * layout.size.x
+        val y: Double = (m.f2 * h.q + m.f3 * h.r) * layout.size.y
+        p.x = x + layout.origin.x
+        p.y = y + layout.origin.y
+    }
+
     fun pixelToHex(layout: Layout, p: Point): FractionalHex {
         val m: Orientation = layout.orientation
         val pt = Point(

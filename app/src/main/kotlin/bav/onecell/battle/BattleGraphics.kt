@@ -1,7 +1,6 @@
 package bav.onecell.battle
 
 import android.graphics.Path
-import android.util.Log
 import bav.onecell.common.Consts
 import bav.onecell.common.view.DrawUtils
 import bav.onecell.model.BattleFieldSnapshot
@@ -12,6 +11,7 @@ import bav.onecell.model.cell.logic.Action
 import bav.onecell.model.hexes.Hex
 import bav.onecell.model.hexes.HexMath
 import bav.onecell.model.hexes.Layout
+import bav.onecell.model.hexes.Point
 import io.reactivex.Observable
 import io.reactivex.subjects.PublishSubject
 import kotlinx.coroutines.GlobalScope
@@ -23,6 +23,9 @@ class BattleGraphics(
         private val drawUtils: DrawUtils,
         private val hexMath: HexMath) : Battle.FramesFactory {
 
+    private val observableAreaHexPool: MutableList<Hex> = mutableListOf()
+    private val observableAreaNeighborsPool: MutableList<Hex> = mutableListOf()
+
     private val framesProvider: PublishSubject<Map<Long, FrameGraphics>> = PublishSubject.create()
     private val progressProvider: PublishSubject<Int> = PublishSubject.create()
 
@@ -30,6 +33,10 @@ class BattleGraphics(
     override fun progressProvider(): Observable<Int> = progressProvider
 
     private var previous: Long = 0
+
+    init {
+        for (i in 0..5) observableAreaNeighborsPool.add(Hex())
+    }
 
     private fun checkProgress(current: Long, total: Long) {
         if ((current - previous).toFloat() / total.toFloat() > 0.01f) {
@@ -157,28 +164,52 @@ class BattleGraphics(
     }
 
     /// TODO: optimize area definition (in terms of allocated memory)
-    private val observableAreaHexPool: MutableList<Hex> = mutableListOf()
-
     private fun getObservableAreaPath(cells: List<Cell>): Path {
-        var hexCount = 0
+        // Count of hexes in current observable area
+        var currentPoolIndex = 0
+        // Indices of layer's start and end in pool
+        var indexOfCellStart = 0
+        var indexOfLayerStart = 0
+        var indexOfLayerEnd = 0
+        var currentLayerEnd = 0
         // Get area observed by cells with group id = 0 only, i.e. main heroes
+        val origin = Point()
+        val vHex = Hex()
         val path = Path()
         cells.forEach { cell ->
             if (cell.data.groupId == Consts.MAIN_CHARACTERS_GROUP_ID) {
-                val cellViewArea = mutableSetOf<Hex>()
+
+                indexOfCellStart = currentPoolIndex
+
+                // Hexes of cell
+                indexOfLayerStart = currentPoolIndex
                 cell.data.hexes.values.forEach { hex ->
-                    /// TODO: continue here
-                    cellViewArea.add(hexMath.add(hex, cell.data.origin))
+                    addToObservableAreaPool(currentPoolIndex, hex, hexMath.ZERO_HEX)
+                    currentPoolIndex++
                 }
-                for (i in 0 until cell.data.viewDistance) {
-                    val nextLayer = mutableSetOf<Hex>()
-                    cellViewArea.forEach { hex ->
-                        nextLayer.addAll(hexMath.hexNeighbors(hex).subtract(cellViewArea))
+                indexOfLayerEnd = currentPoolIndex
+
+                // Layers of view field
+                for (layerNumber in 0 until cell.data.viewDistance) {
+                    currentLayerEnd = indexOfLayerEnd
+                    for (i in indexOfLayerStart until currentLayerEnd) {
+                        val hex = observableAreaHexPool[i]
+                        hexMath.hexNeighbors(hex, observableAreaNeighborsPool)
+                        neighborsLoop@ for (nIndex in 0..5) {
+                            for (aIndex in indexOfCellStart until currentPoolIndex) {
+                                if (observableAreaHexPool[aIndex] == observableAreaNeighborsPool[nIndex]) continue@neighborsLoop
+                            }
+                            addToObservableAreaPool(currentPoolIndex, observableAreaNeighborsPool[nIndex], hexMath.ZERO_HEX)
+                            currentPoolIndex++
+                            indexOfLayerEnd++
+                        }
                     }
-                    cellViewArea.addAll(nextLayer)
+                    indexOfLayerStart = currentLayerEnd
                 }
-                cellViewArea.forEach { hex ->
-                    val origin = hexMath.hexToPixel(Layout.UNIT, hex)
+
+                for (vIndex in indexOfCellStart until currentPoolIndex) {
+                    hexMath.add(cell.data.origin, observableAreaHexPool[vIndex], vHex)
+                    hexMath.hexToPixel(Layout.UNIT, vHex, origin)
                     drawUtils.offsetPoint(origin, cell.animationData.moveDirection, cell.animationData.movingFraction, Layout.UNIT)
                     path.addCircle(origin.x.toFloat(), origin.y.toFloat(), Layout.UNIT.size.x.toFloat(), Path.Direction.CW)
                 }
@@ -186,6 +217,15 @@ class BattleGraphics(
         }
         path.close()
         return path
+    }
+
+    private fun addToObservableAreaPool(currentPoolIndex: Int, hex: Hex, origin: Hex) {
+        if (observableAreaHexPool.size <= currentPoolIndex) {
+            observableAreaHexPool.add(hexMath.add(hex, origin))
+        }
+        else {
+            hexMath.add(hex, origin, observableAreaHexPool[currentPoolIndex])
+        }
     }
 
     private fun getFrameState(snapshots: List<BattleFieldSnapshot>, timestamp: Long, /*out*/ state: FrameState) {
