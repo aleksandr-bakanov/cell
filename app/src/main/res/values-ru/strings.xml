@@ -10,8 +10,8 @@
     <string name="button_continue_game_title">Продолжить</string>
 
     <!-- New game view -->
-    <string name="button_confirm_title">Согласен</string>
-    <string name="button_deny_title">Назад</string>
+    <string name="button_confirm_title">Да</string>
+    <string name="button_deny_title">Нет</string>
     <string name="text_warning_message">Новая игра сбросит весь достигнутый прогресс. Вы уверены?</string>
 
     <!-- Rules editor view -->
@@ -23,11 +23,7 @@
     <string name="button_no_title">Нет</string>
 
     <!-- Heroes view -->
-    <string name="text_cell_name">Имя</string>
-    <string name="text_next_scene">&gt;&gt;</string>
-
-    <!-- Battle view -->
-    <string name="button_finish_battle_title">&gt;&gt;</string>
+    <string name="text_cell_name">\u0020</string>
 
     <!-- Battle results view -->
     <string name="reward_title">Награда</string>

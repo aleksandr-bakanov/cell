@@ -15,12 +15,8 @@
     <string name="text_warning_message">New game will erase any progress done so far.\nAre you sure?</string>
 
     <!-- Heroes view -->
-    <string name="text_cell_name">Name</string>
-    <string name="text_next_scene">&gt;&gt;</string>
+    <string name="text_cell_name">\u0020</string>
     <string name="text_history_stub" translatable="false">\u0020</string>
-
-    <!-- Battle view -->
-    <string name="button_finish_battle_title">&gt;&gt;</string>
 
     <!-- Battle results view -->
     <string name="reward_title">Reward:</string>
