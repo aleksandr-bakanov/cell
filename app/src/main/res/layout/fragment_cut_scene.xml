@@ -19,23 +19,23 @@
     <ImageView
         android:id="@+id/leftCharacter"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
         android:contentDescription="@string/image_description_cut_scene_left_character"
-        app:layout_constraintTop_toTopOf="@id/textFieldGuideline"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/leftCharacterGuideline"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/textView"
         app:srcCompat="@drawable/ic_character_kittaro_normal" />
 
     <ImageView
         android:id="@+id/rightCharacter"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
         android:contentDescription="@string/image_description_cut_scene_right_character"
-        app:layout_constraintTop_toTopOf="@id/textFieldGuideline"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@id/textView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/rightCharacterGuideline"
         app:srcCompat="@drawable/ic_character_kittaro_normal" />
 
     <TextView
