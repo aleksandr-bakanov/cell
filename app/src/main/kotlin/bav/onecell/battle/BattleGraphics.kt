@@ -174,10 +174,12 @@ class BattleGraphics(
         var currentLayerEnd = 0
         // Get area observed by cells with group id = 0 only, i.e. main heroes
         val origin = Point()
+        val cellOrigin = Point()
         val vHex = Hex()
         val path = Path()
         cells.forEach { cell ->
             if (cell.data.groupId == Consts.MAIN_CHARACTERS_GROUP_ID) {
+                hexMath.hexToPixel(Layout.UNIT, cell.data.origin, cellOrigin)
 
                 indexOfCellStart = currentPoolIndex
 
@@ -210,6 +212,7 @@ class BattleGraphics(
                 for (vIndex in indexOfCellStart until currentPoolIndex) {
                     hexMath.add(cell.data.origin, observableAreaHexPool[vIndex], vHex)
                     hexMath.hexToPixel(Layout.UNIT, vHex, origin)
+                    drawUtils.rotatePoint(origin, cellOrigin, cell.animationData.rotation)
                     drawUtils.offsetPoint(origin, cell.animationData.moveDirection, cell.animationData.movingFraction, Layout.UNIT)
                     path.addCircle(origin.x.toFloat(), origin.y.toFloat(), Layout.UNIT.size.x.toFloat(), Path.Direction.CW)
                 }

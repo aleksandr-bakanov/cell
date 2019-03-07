@@ -145,18 +145,6 @@ class DrawUtils(private val hexMath: HexMath, private val context: Context) {
         groundPaint.shader = groundShader
     }
 
-    fun provideLayout(canvas: Canvas?, cellSize: Int): Layout {
-        val layout = Layout(Orientation.LAYOUT_POINTY, Point(), Point())
-        canvas?.let {
-            val canvasSize = min(it.width, it.height)
-            val hexSize = (canvasSize / max(cellSize, 1)) / 2
-            layout.size = Point(hexSize.toDouble(), hexSize.toDouble())
-            layout.origin = Point(it.width.toDouble() / 2.0,
-                                  it.height.toDouble() / 2.0)
-        }
-        return layout
-    }
-
     class CellGraphicalPoints(
             var lifeHexes: MutableList<Path>? = null,
             var attackHexes: MutableList<Path>? = null,
@@ -349,15 +337,6 @@ class DrawUtils(private val hexMath: HexMath, private val context: Context) {
         }
     }
 
-    fun drawBullet(canvas: Canvas?, bullet: Bullet, paint: Paint = omniBulletHexPaint, outlinePaint: Paint = cellOutlinePaint,
-                   layout: Layout = Layout.DUMMY) {
-        val path: Path = getHexPath(layout, bullet.origin, movingDirection = bullet.direction,
-                                    movingFraction = bullet.movingFraction, scale = 0.5f)
-        path.fillType = Path.FillType.EVEN_ODD
-        canvas?.drawPath(path, paint)
-        canvas?.drawPath(path, outlinePaint)
-    }
-
     fun getBulletPath(bullet: Bullet, layout: Layout = Layout.DUMMY): Path {
         return getHexPath(layout, bullet.origin, movingDirection = bullet.direction,
                            movingFraction = bullet.movingFraction, scale = 0.5f)
@@ -379,14 +358,6 @@ class DrawUtils(private val hexMath: HexMath, private val context: Context) {
         path.lineTo(hexCorners[0].x.toFloat(), hexCorners[0].y.toFloat())
 
         return path
-    }
-
-    private fun getHexPoints(layout: Layout, hex: Hex, rotateAround: Point? = null, rotation: Float = 0f,
-                             movingDirection: Int = 0, movingFraction: Float = 0f, scale: Float = 1f): List<Point> {
-        val hexCorners: List<Point> = hexMath.polygonCorners(layout, hex, scale)
-        rotateAround?.let { rotatePoints(hexCorners, it, rotation) }
-        if (movingFraction > 0f) offsetPoints(hexCorners, movingDirection, movingFraction, layout)
-        return hexCorners
     }
 
     private fun rotatePoints(points: List<Point>, origin: Point, angle: Float) {
@@ -417,6 +388,20 @@ class DrawUtils(private val hexMath: HexMath, private val context: Context) {
         val offsetPoint = hexMath.hexToPixel(layout, hexMath.getHexByDirection(direction))
         point.x += (offsetPoint.x - layout.origin.x) * fraction
         point.y += (offsetPoint.y - layout.origin.y) * fraction
+    }
+
+    fun rotatePoint(point: Point, origin: Point, angle: Float) {
+        val s = sin(angle)
+        val c = cos(angle)
+        // Translate point back to origin
+        point.x -= origin.x
+        point.y -= origin.y
+        // Rotate point
+        val newX = point.x * c - point.y * s
+        val newY = point.x * s + point.y * c
+        // Translate point back
+        point.x = newX + origin.x
+        point.y = newY + origin.y
     }
 
     private fun drawOriginMarker(canvas: Canvas?, cell: Cell, layout: Layout) {
@@ -525,19 +510,5 @@ class DrawUtils(private val hexMath: HexMath, private val context: Context) {
         offsetPoints(listOfOrigin, cell.animationData.moveDirection, cell.animationData.movingFraction, layout)
         canvas?.drawText(power.toString(), origin.x.toFloat(), origin.y.toFloat() + (layout.size.x / 3).toFloat(),
                          paint)
-    }
-
-    fun drawDeathRays(canvas: Canvas?, rays: Collection<Pair<Hex, Hex>>, fraction: Float, layout: Layout) {
-        rays.forEach { ray ->
-            val start = hexMath.hexToPixel(layout, ray.first)
-            val end = hexMath.hexToPixel(layout, ray.second)
-            val alpha = if (fraction < 0.5) {
-                (fraction * 2f * 255f).toInt()
-            } else {
-                ((1f - fraction) * 2f * 255f).toInt()
-            }
-            deathRayPaint.alpha = alpha
-            canvas?.drawLine(start.x.toFloat(), start.y.toFloat(), end.x.toFloat(), end.y.toFloat(), deathRayPaint)
-        }
     }
 }
