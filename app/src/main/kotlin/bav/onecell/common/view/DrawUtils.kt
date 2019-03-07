@@ -488,6 +488,8 @@ class DrawUtils(private val hexMath: HexMath, private val context: Context) {
 
     fun drawCellPower(canvas: Canvas?, cell: Cell, layout: Layout) {
         val hexInGlobal = Hex()
+        val vPoint = Point()
+        val cellOrigin = hexMath.hexToPixel(layout, cell.data.origin)
         cell.data.hexes.values.forEach { hex ->
             hexMath.add(cell.data.origin, hex, hexInGlobal)
             val paint = when (hex.type) {
@@ -499,16 +501,15 @@ class DrawUtils(private val hexMath: HexMath, private val context: Context) {
                 else -> powerTextPaint
             }
             paint.textSize = layout.size.x.toFloat()
-            drawHexPower(canvas, layout, cell, hexInGlobal, hex.power, paint)
+            drawHexPower(canvas, layout, cell, hexInGlobal, hex.power, paint, vPoint, cellOrigin)
         }
     }
 
-    private fun drawHexPower(canvas: Canvas?, layout: Layout, cell: Cell, hex: Hex, power: Int, paint: Paint) {
-        val origin = hexMath.hexToPixel(layout, hex)
-        val listOfOrigin = listOf(origin)
-        rotatePoints(listOfOrigin, hexMath.hexToPixel(layout, cell.data.origin), cell.animationData.rotation)
-        offsetPoints(listOfOrigin, cell.animationData.moveDirection, cell.animationData.movingFraction, layout)
-        canvas?.drawText(power.toString(), origin.x.toFloat(), origin.y.toFloat() + (layout.size.x / 3).toFloat(),
+    private fun drawHexPower(canvas: Canvas?, layout: Layout, cell: Cell, hex: Hex, power: Int, paint: Paint, point: Point, cellOrigin: Point) {
+        hexMath.hexToPixel(layout, hex, point)
+        rotatePoint(point, cellOrigin, cell.animationData.rotation)
+        offsetPoint(point, cell.animationData.moveDirection, cell.animationData.movingFraction, layout)
+        canvas?.drawText(power.toString(), point.x.toFloat(), point.y.toFloat() + (layout.size.x / 3).toFloat(),
                          paint)
     }
 }

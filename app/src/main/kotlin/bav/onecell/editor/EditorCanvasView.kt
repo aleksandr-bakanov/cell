@@ -10,6 +10,7 @@ import android.view.MotionEvent
 import android.view.View
 import bav.onecell.R
 import bav.onecell.common.view.CanvasView
+import bav.onecell.common.view.DrawUtils
 import bav.onecell.model.cell.Cell
 import bav.onecell.model.hexes.Hex
 import bav.onecell.model.hexes.Point
@@ -31,6 +32,8 @@ class EditorCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
     private val tipPaintEnergy = Paint()
     private val tipPaintDeathRay = Paint()
     private val tipPaintOmniBullet = Paint()
+
+    private val cellGraphics: DrawUtils.CellGraphicalPoints = DrawUtils.CellGraphicalPoints()
 
     init {
         for (p in arrayListOf(tipPaintLife, tipPaintAttack, tipPaintEnergy, tipPaintDeathRay, tipPaintOmniBullet)) {
