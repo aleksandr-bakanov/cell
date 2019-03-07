@@ -14,7 +14,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_cs_introduction_0" />
+        app:srcCompat="@drawable/cs_introduction_0" />
 
     <TextView
         android:id="@+id/textWarning"

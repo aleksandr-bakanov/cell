@@ -14,8 +14,11 @@
    viewBox="0 0 1920 1080"
    id="svg2"
    version="1.1"
-   inkscape:version="0.92.3 (2405546, 2018-03-11)"
-   sodipodi:docname="cs_final_act_9.svg">
+   inkscape:version="0.92.1 r15371"
+   sodipodi:docname="cs_final_act_9.svg"
+   inkscape:export-filename="C:\Users\Aleksandr_Bakanov\Documents\GITREPOS\cell\drawings\cs_final_act_9.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96">
   <defs
      id="defs4" />
   <sodipodi:namedview
@@ -26,14 +29,14 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.4596194"
-     inkscape:cx="561.2173"
+     inkscape:cx="180.46749"
      inkscape:cy="421.80101"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
      units="px"
      inkscape:window-width="1858"
-     inkscape:window-height="1057"
+     inkscape:window-height="1177"
      inkscape:window-x="54"
      inkscape:window-y="-8"
      inkscape:window-maximized="1" />
@@ -45,7 +48,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>

@@ -20,7 +20,7 @@
 
     <!-- Battle results view -->
     <string name="reward_title">Reward:</string>
-    <string name="button_to_heroes_screen">To heroes screen</string>
+    <string name="button_to_heroes_screen">Go</string>
     <string name="button_try_again">Try again</string>
 
     <!-- Rules editor view -->
@@ -97,62 +97,62 @@
     <string name="cut_scene_introduction" translatable="false">
         "{
             id: 'cut_scene_introduction',
-            background: 'ic_cs_introduction_0',
+            background: 'cs_introduction_0',
             left: 'ic_character_empty',
             right: 'ic_character_empty',
             frames: {
-                '0': { text: 'cs_introduction_0', background: 'ic_cs_introduction_0' },
-                '1': { text: 'cs_introduction_1', background: 'ic_cs_introduction_1' },
-                '2': { text: 'cs_introduction_2', background: 'ic_cs_introduction_2' },
-                '3': { text: 'cs_introduction_3', background: 'ic_cs_introduction_3' },
-                '4': { text: 'cs_introduction_4', background: 'ic_cs_introduction_4' },
-                '5': { text: 'cs_introduction_5', background: 'ic_cs_introduction_4' },
-                '6': { text: 'cs_introduction_6', background: 'ic_cs_introduction_4' },
-                '7': { text: 'cs_introduction_7', background: 'ic_cs_introduction_7' },
-                '8': { text: 'cs_introduction_8', background: 'ic_cs_introduction_8' },
-                '9': { text: 'cs_introduction_9', background: 'ic_cs_introduction_9' },
-                '10': { text: 'cs_introduction_10', background: 'ic_cs_introduction_10' },
-                '11': { text: 'cs_introduction_11', background: 'ic_cs_introduction_11' },
-                '12': { text: 'cs_introduction_12', background: 'ic_cs_introduction_12' },
-                '13': { text: 'cs_introduction_13', background: 'ic_cs_introduction_12', left: 'ic_character_old_man_scream', right: 'ic_character_kittaro_sleep' },
-                '14': { text: 'cs_introduction_14', background: 'ic_cs_introduction_12', left: 'ic_character_old_man_scream_out_loud', right: 'ic_character_kittaro_awaken' },
-                '15': { text: 'cs_introduction_15', background: 'ic_cs_introduction_12', left: 'ic_character_old_man_scream', right: 'ic_character_kittaro_awaken' },
-                '16': { text: 'cs_introduction_16', background: 'ic_cs_introduction_12', left: 'ic_character_old_man_scream_out_loud', right: 'ic_character_kittaro_awaken' },
-                '17': { text: 'cs_introduction_17', background: 'ic_cs_introduction_12', left: 'ic_character_old_man_scream', right: 'ic_character_kittaro_sleep' },
-                '18': { text: 'cs_introduction_18', background: 'ic_cs_introduction_12', left: 'ic_character_old_man_scream_out_loud', right: 'ic_character_kittaro_awaken' },
-                '19': { text: 'cs_introduction_19', background: 'ic_cs_introduction_12', left: 'ic_character_old_man_scream', right: 'ic_character_kittaro_unhappy' },
-                '20': { text: 'cs_introduction_20', background: 'ic_cs_introduction_20' },
-                '21': { text: 'cs_introduction_21', background: 'ic_cs_introduction_21' },
-                '22': { text: 'cs_introduction_22', background: 'ic_cs_introduction_22' },
-                '23': { text: 'cs_introduction_23', background: 'ic_cs_introduction_23' },
-                '24': { text: 'cs_introduction_24', background: 'ic_cs_introduction_24' },
-                '25': { text: 'cs_introduction_25', background: 'ic_cs_introduction_25' },
-                '26': { text: 'cs_introduction_26', background: 'ic_cs_introduction_26' },
-                '27': { text: 'cs_introduction_27', background: 'ic_cs_introduction_27' },
-                '28': { text: 'cs_introduction_28', background: 'ic_cs_introduction_27', left: 'ic_character_kittaro_awaken', right: 'ic_character_bashka' },
-                '29': { text: 'cs_introduction_29', background: 'ic_cs_introduction_27', left: 'ic_character_kittaro_normal', right: 'ic_character_bashka_grechka_kostyl' },
-                '30': { text: 'cs_introduction_30', background: 'ic_cs_introduction_27', left: 'ic_character_kittaro_normal_speak', right: 'ic_character_bashka_grechka_kostyl' },
-                '31': { text: 'cs_introduction_31', background: 'ic_cs_introduction_27', left: 'ic_character_kittaro_awaken', right: 'ic_character_bashka_grechka_kostyl_angry' },
-                '32': { text: 'cs_introduction_32', background: 'ic_cs_introduction_32' },
-                '33': { text: 'cs_introduction_33', background: 'ic_cs_introduction_33', showPrevFrameButton: true },
-                '34': { text: 'cs_introduction_34', background: 'ic_cs_introduction_34', showPrevFrameButton: true },
-                '35': { text: 'cs_introduction_35', background: 'ic_cs_introduction_35', showPrevFrameButton: true },
-                '36': { text: 'cs_introduction_36', background: 'ic_cs_introduction_36', showPrevFrameButton: true },
-                '37': { text: 'cs_introduction_37', background: 'ic_cs_introduction_37', showPrevFrameButton: true },
-                '38': { text: 'cs_introduction_38', background: 'ic_cs_introduction_38', showPrevFrameButton: true },
-                '39': { text: 'cs_introduction_39', background: 'ic_cs_introduction_39', showPrevFrameButton: true },
-                '40': { text: 'cs_introduction_40', background: 'ic_cs_introduction_40', showPrevFrameButton: true },
-                '41': { text: 'cs_introduction_41', background: 'ic_cs_introduction_40', showPrevFrameButton: true },
-                '42': { text: 'cs_introduction_42', background: 'ic_cs_introduction_40', showPrevFrameButton: true },
-                '43': { text: 'cs_introduction_43', background: 'ic_cs_introduction_40', showPrevFrameButton: true },
-                '44': { text: 'cs_introduction_44', background: 'ic_cs_introduction_44', showPrevFrameButton: true },
-                '45': { text: 'cs_introduction_45', background: 'ic_cs_introduction_45', showPrevFrameButton: true },
-                '46': { text: 'cs_introduction_46', background: 'ic_cs_introduction_45', showPrevFrameButton: true },
-                '47': { text: 'cs_introduction_47', background: 'ic_cs_introduction_47', showPrevFrameButton: true },
-                '48': { text: 'cs_introduction_48', background: 'ic_cs_introduction_48', showPrevFrameButton: true },
-                '49': { text: 'cs_introduction_49', background: 'ic_cs_introduction_49', showPrevFrameButton: true },
-                '50': { text: 'cs_introduction_50', background: 'ic_cs_introduction_50', showPrevFrameButton: true },
-                '51': { text: 'cs_introduction_51', background: 'ic_cs_introduction_51' }
+                '0': { text: 'cs_introduction_0', background: 'cs_introduction_0' },
+                '1': { text: 'cs_introduction_1', background: 'cs_introduction_1' },
+                '2': { text: 'cs_introduction_2', background: 'cs_introduction_2' },
+                '3': { text: 'cs_introduction_3', background: 'cs_introduction_3' },
+                '4': { text: 'cs_introduction_4', background: 'cs_introduction_4' },
+                '5': { text: 'cs_introduction_5', background: 'cs_introduction_4' },
+                '6': { text: 'cs_introduction_6', background: 'cs_introduction_4' },
+                '7': { text: 'cs_introduction_7', background: 'cs_introduction_7' },
+                '8': { text: 'cs_introduction_8', background: 'cs_introduction_8' },
+                '9': { text: 'cs_introduction_9', background: 'cs_introduction_9' },
+                '10': { text: 'cs_introduction_10', background: 'cs_introduction_10' },
+                '11': { text: 'cs_introduction_11', background: 'cs_introduction_11' },
+                '12': { text: 'cs_introduction_12', background: 'cs_introduction_12' },
+                '13': { text: 'cs_introduction_13', background: 'cs_introduction_12', left: 'ic_character_old_man_scream', right: 'ic_character_kittaro_sleep' },
+                '14': { text: 'cs_introduction_14', background: 'cs_introduction_12', left: 'ic_character_old_man_scream_out_loud', right: 'ic_character_kittaro_awaken' },
+                '15': { text: 'cs_introduction_15', background: 'cs_introduction_12', left: 'ic_character_old_man_scream', right: 'ic_character_kittaro_awaken' },
+                '16': { text: 'cs_introduction_16', background: 'cs_introduction_12', left: 'ic_character_old_man_scream_out_loud', right: 'ic_character_kittaro_awaken' },
+                '17': { text: 'cs_introduction_17', background: 'cs_introduction_12', left: 'ic_character_old_man_scream', right: 'ic_character_kittaro_sleep' },
+                '18': { text: 'cs_introduction_18', background: 'cs_introduction_12', left: 'ic_character_old_man_scream_out_loud', right: 'ic_character_kittaro_awaken' },
+                '19': { text: 'cs_introduction_19', background: 'cs_introduction_12', left: 'ic_character_old_man_scream', right: 'ic_character_kittaro_unhappy' },
+                '20': { text: 'cs_introduction_20', background: 'cs_introduction_20' },
+                '21': { text: 'cs_introduction_21', background: 'cs_introduction_21' },
+                '22': { text: 'cs_introduction_22', background: 'cs_introduction_22' },
+                '23': { text: 'cs_introduction_23', background: 'cs_introduction_23' },
+                '24': { text: 'cs_introduction_24', background: 'cs_introduction_24' },
+                '25': { text: 'cs_introduction_25', background: 'cs_introduction_25' },
+                '26': { text: 'cs_introduction_26', background: 'cs_introduction_26' },
+                '27': { text: 'cs_introduction_27', background: 'cs_introduction_27' },
+                '28': { text: 'cs_introduction_28', background: 'cs_introduction_27', left: 'ic_character_kittaro_awaken', right: 'ic_character_bashka' },
+                '29': { text: 'cs_introduction_29', background: 'cs_introduction_27', left: 'ic_character_kittaro_normal', right: 'ic_character_bashka_grechka_kostyl' },
+                '30': { text: 'cs_introduction_30', background: 'cs_introduction_27', left: 'ic_character_kittaro_normal_speak', right: 'ic_character_bashka_grechka_kostyl' },
+                '31': { text: 'cs_introduction_31', background: 'cs_introduction_27', left: 'ic_character_kittaro_awaken', right: 'ic_character_bashka_grechka_kostyl_angry' },
+                '32': { text: 'cs_introduction_32', background: 'cs_introduction_32' },
+                '33': { text: 'cs_introduction_33', background: 'cs_introduction_33', showPrevFrameButton: true },
+                '34': { text: 'cs_introduction_34', background: 'cs_introduction_34', showPrevFrameButton: true },
+                '35': { text: 'cs_introduction_35', background: 'cs_introduction_35', showPrevFrameButton: true },
+                '36': { text: 'cs_introduction_36', background: 'cs_introduction_36', showPrevFrameButton: true },
+                '37': { text: 'cs_introduction_37', background: 'cs_introduction_37', showPrevFrameButton: true },
+                '38': { text: 'cs_introduction_38', background: 'cs_introduction_38', showPrevFrameButton: true },
+                '39': { text: 'cs_introduction_39', background: 'cs_introduction_39', showPrevFrameButton: true },
+                '40': { text: 'cs_introduction_40', background: 'cs_introduction_40', showPrevFrameButton: true },
+                '41': { text: 'cs_introduction_41', background: 'cs_introduction_40', showPrevFrameButton: true },
+                '42': { text: 'cs_introduction_42', background: 'cs_introduction_40', showPrevFrameButton: true },
+                '43': { text: 'cs_introduction_43', background: 'cs_introduction_40', showPrevFrameButton: true },
+                '44': { text: 'cs_introduction_44', background: 'cs_introduction_44', showPrevFrameButton: true },
+                '45': { text: 'cs_introduction_45', background: 'cs_introduction_45', showPrevFrameButton: true },
+                '46': { text: 'cs_introduction_46', background: 'cs_introduction_45', showPrevFrameButton: true },
+                '47': { text: 'cs_introduction_47', background: 'cs_introduction_47', showPrevFrameButton: true },
+                '48': { text: 'cs_introduction_48', background: 'cs_introduction_48', showPrevFrameButton: true },
+                '49': { text: 'cs_introduction_49', background: 'cs_introduction_49', showPrevFrameButton: true },
+                '50': { text: 'cs_introduction_50', background: 'cs_introduction_50', showPrevFrameButton: true },
+                '51': { text: 'cs_introduction_51', background: 'cs_introduction_51' }
             },
             next_scene: 'action_cutSceneIntroduction_to_battleGopniks'
         }"
@@ -218,7 +218,7 @@
     <string name="cut_scene_after_gopniks" translatable="false">
         "{
             id: 'cut_scene_after_gopniks',
-            background: 'ic_cs_after_gopniks_0',
+            background: 'cs_after_gopniks_0',
             left: 'ic_character_empty',
             right: 'ic_character_empty',
             frames: {
@@ -226,15 +226,15 @@
                 '1': { text: 'cs_after_gopniks_1', left: 'ic_character_kittaro_normal', right: 'ic_character_bashka_grechka_kostyl_beaten_speak' },
                 '2': { text: 'cs_after_gopniks_2', left: 'ic_character_kittaro_normal', right: 'ic_character_bashka_grechka_kostyl_beaten_speak' },
                 '3': { text: 'cs_after_gopniks_3', left: 'ic_character_kittaro_normal', right: 'ic_character_bashka_grechka_kostyl_beaten_speak' },
-                '4': { text: 'cs_after_gopniks_4', background: 'ic_cs_after_gopniks_4' },
-                '5': { text: 'cs_after_gopniks_5', background: 'ic_cs_after_gopniks_5', showPrevFrameButton: true },
-                '6': { text: 'cs_after_gopniks_6', background: 'ic_cs_after_gopniks_6', showPrevFrameButton: true },
-                '7': { text: 'cs_after_gopniks_7', background: 'ic_cs_after_gopniks_6', showPrevFrameButton: true },
-                '8': { text: 'cs_after_gopniks_8', background: 'ic_cs_after_gopniks_8', showPrevFrameButton: true },
-                '9': { text: 'cs_after_gopniks_9', background: 'ic_cs_after_gopniks_9', showPrevFrameButton: true },
-                '10': { text: 'cs_after_gopniks_10', background: 'ic_cs_after_gopniks_9', showPrevFrameButton: true },
-                '11': { text: 'cs_after_gopniks_11', background: 'ic_cs_after_gopniks_11', showPrevFrameButton: true },
-                '12': { text: 'cs_after_gopniks_12', background: 'ic_cs_after_gopniks_11', showPrevFrameButton: true }
+                '4': { text: 'cs_after_gopniks_4', background: 'cs_after_gopniks_4' },
+                '5': { text: 'cs_after_gopniks_5', background: 'cs_after_gopniks_5', showPrevFrameButton: true },
+                '6': { text: 'cs_after_gopniks_6', background: 'cs_after_gopniks_6', showPrevFrameButton: true },
+                '7': { text: 'cs_after_gopniks_7', background: 'cs_after_gopniks_6', showPrevFrameButton: true },
+                '8': { text: 'cs_after_gopniks_8', background: 'cs_after_gopniks_8', showPrevFrameButton: true },
+                '9': { text: 'cs_after_gopniks_9', background: 'cs_after_gopniks_9', showPrevFrameButton: true },
+                '10': { text: 'cs_after_gopniks_10', background: 'cs_after_gopniks_9', showPrevFrameButton: true },
+                '11': { text: 'cs_after_gopniks_11', background: 'cs_after_gopniks_11', showPrevFrameButton: true },
+                '12': { text: 'cs_after_gopniks_12', background: 'cs_after_gopniks_11', showPrevFrameButton: true }
             },
             next_scene: 'action_cutSceneAfterGopniks_to_heroScreenAfterGopniks'
         }"
@@ -259,7 +259,7 @@
     <string name="cut_scene_before_skilos" translatable="false">
         "{
             id: 'cut_scene_before_skilos',
-            background: 'ic_cs_before_skilos_0',
+            background: 'cs_before_skilos_0',
             left: 'ic_character_empty',
             right: 'ic_character_empty',
             frames: {
@@ -269,7 +269,7 @@
                 '3': { text: 'cs_before_skilos_3', left: 'ic_character_kittaro_normal', right: 'ic_character_skilos_speak' },
                 '4': { text: 'cs_before_skilos_4', left: 'ic_character_kittaro_normal_speak', right: 'ic_character_skilos_speak' },
                 '5': { text: 'cs_before_skilos_5', left: 'ic_character_kittaro_normal', right: 'ic_character_skilos_speak_agressive' },
-                '6': { text: 'cs_before_skilos_6', background: 'ic_cs_before_skilos_6' }
+                '6': { text: 'cs_before_skilos_6', background: 'cs_before_skilos_6' }
             },
             next_scene: 'action_cutSceneBeforeSkilos_to_battleSkilos'
         }"
@@ -288,32 +288,32 @@
     <string name="cut_scene_after_skilos" translatable="false">
         "{
             id: 'cut_scene_after_skilos',
-            background: 'ic_cs_introduction_0',
+            background: 'cs_after_skilos_0',
             left: 'ic_character_empty',
             right: 'ic_character_empty',
             frames: {
-                '0': { text: 'cs_after_skilos_0', background: 'ic_cs_after_skilos_0', left: 'ic_character_kittaro_normal_speak' },
-                '1': { text: 'cs_after_skilos_1', background: 'ic_cs_after_skilos_0', left: 'ic_character_kittaro_normal_speak' },
-                '2': { text: 'cs_after_skilos_2', background: 'ic_cs_after_skilos_0', left: 'ic_character_kittaro_normal_speak' },
-                '3': { text: 'cs_after_skilos_3', background: 'ic_cs_after_skilos_3' },
-                '4': { text: 'cs_after_skilos_4', background: 'ic_cs_after_skilos_4', showPrevFrameButton: true },
-                '5': { text: 'cs_after_skilos_5', background: 'ic_cs_after_skilos_4', showPrevFrameButton: true },
-                '6': { text: 'cs_after_skilos_6', background: 'ic_cs_after_skilos_6', showPrevFrameButton: true },
-                '7': { text: 'cs_after_skilos_7', background: 'ic_cs_after_skilos_7', showPrevFrameButton: true },
-                '8': { text: 'cs_after_skilos_8', background: 'ic_cs_after_skilos_8', showPrevFrameButton: true },
-                '9': { text: 'cs_after_skilos_9', background: 'ic_cs_after_skilos_9', showPrevFrameButton: true },
-                '10': { text: 'cs_after_skilos_10', background: 'ic_cs_after_skilos_10', showPrevFrameButton: true },
-                '11': { text: 'cs_after_skilos_11', background: 'ic_cs_after_skilos_11', showPrevFrameButton: true },
-                '12': { text: 'cs_after_skilos_12', background: 'ic_cs_after_skilos_11', showPrevFrameButton: true },
-                '13': { text: 'cs_after_skilos_13', background: 'ic_cs_after_skilos_13', showPrevFrameButton: true },
-                '14': { text: 'cs_after_skilos_14', background: 'ic_cs_after_skilos_14', showPrevFrameButton: true },
-                '15': { text: 'cs_after_skilos_15', background: 'ic_cs_after_skilos_15', showPrevFrameButton: true },
-                '16': { text: 'cs_after_skilos_16', background: 'ic_cs_after_skilos_16', showPrevFrameButton: true },
-                '17': { text: 'cs_after_skilos_17', background: 'ic_cs_after_skilos_17', showPrevFrameButton: true },
-                '18': { text: 'cs_after_skilos_18', background: 'ic_cs_after_skilos_18', showPrevFrameButton: true },
-                '19': { text: 'cs_after_skilos_19', background: 'ic_cs_after_skilos_16', showPrevFrameButton: true },
-                '20': { text: 'cs_after_skilos_20', background: 'ic_cs_after_skilos_20', showPrevFrameButton: true },
-                '21': { text: 'cs_after_skilos_21', background: 'ic_cs_after_skilos_20', showPrevFrameButton: true }
+                '0': { text: 'cs_after_skilos_0', background: 'cs_after_skilos_0', left: 'ic_character_kittaro_normal_speak' },
+                '1': { text: 'cs_after_skilos_1', background: 'cs_after_skilos_0', left: 'ic_character_kittaro_normal_speak' },
+                '2': { text: 'cs_after_skilos_2', background: 'cs_after_skilos_0', left: 'ic_character_kittaro_normal_speak' },
+                '3': { text: 'cs_after_skilos_3', background: 'cs_after_skilos_3' },
+                '4': { text: 'cs_after_skilos_4', background: 'cs_after_skilos_4', showPrevFrameButton: true },
+                '5': { text: 'cs_after_skilos_5', background: 'cs_after_skilos_4', showPrevFrameButton: true },
+                '6': { text: 'cs_after_skilos_6', background: 'cs_after_skilos_6', showPrevFrameButton: true },
+                '7': { text: 'cs_after_skilos_7', background: 'cs_after_skilos_7', showPrevFrameButton: true },
+                '8': { text: 'cs_after_skilos_8', background: 'cs_after_skilos_8', showPrevFrameButton: true },
+                '9': { text: 'cs_after_skilos_9', background: 'cs_after_skilos_9', showPrevFrameButton: true },
+                '10': { text: 'cs_after_skilos_10', background: 'cs_after_skilos_10', showPrevFrameButton: true },
+                '11': { text: 'cs_after_skilos_11', background: 'cs_after_skilos_11', showPrevFrameButton: true },
+                '12': { text: 'cs_after_skilos_12', background: 'cs_after_skilos_11', showPrevFrameButton: true },
+                '13': { text: 'cs_after_skilos_13', background: 'cs_after_skilos_13', showPrevFrameButton: true },
+                '14': { text: 'cs_after_skilos_14', background: 'cs_after_skilos_14', showPrevFrameButton: true },
+                '15': { text: 'cs_after_skilos_15', background: 'cs_after_skilos_15', showPrevFrameButton: true },
+                '16': { text: 'cs_after_skilos_16', background: 'cs_after_skilos_16', showPrevFrameButton: true },
+                '17': { text: 'cs_after_skilos_17', background: 'cs_after_skilos_17', showPrevFrameButton: true },
+                '18': { text: 'cs_after_skilos_18', background: 'cs_after_skilos_18', showPrevFrameButton: true },
+                '19': { text: 'cs_after_skilos_19', background: 'cs_after_skilos_16', showPrevFrameButton: true },
+                '20': { text: 'cs_after_skilos_20', background: 'cs_after_skilos_20', showPrevFrameButton: true },
+                '21': { text: 'cs_after_skilos_21', background: 'cs_after_skilos_20', showPrevFrameButton: true }
             },
             next_scene: 'action_cutSceneAfterSkilos_to_heroScreenAfterSkilos'
         }"
@@ -347,7 +347,7 @@
     <string name="cut_scene_gonato" translatable="false">
         "{
             id: 'cut_scene_gonato',
-            background: 'ic_cs_gonato_0',
+            background: 'cs_gonato_0',
             left: 'ic_character_empty',
             right: 'ic_character_empty',
             frames: {
@@ -374,7 +374,7 @@
                 '20': { text: 'cs_gonato_20', left: 'ic_character_kittaro_normal', right: 'ic_character_gonato_old_man_speak', nextFrame: 23 },
                 '21': { text: 'cs_gonato_21', left: 'ic_character_kittaro_normal', right: 'ic_character_gonato_old_man_speak' },
                 '22': { text: 'cs_gonato_22', left: 'ic_character_kittaro_normal', right: 'ic_character_gonato_old_man_speak', finalFrame: true },
-                '23': { text: 'cs_gonato_23', background: 'ic_cs_gonato_23', finalFrame: true }
+                '23': { text: 'cs_gonato_23', background: 'cs_gonato_23', finalFrame: true }
             },
             next_scene: 'action_cutSceneGonato_to_battleBelos',
             yes_next_scene: 'action_cutSceneGonato_to_battleBelos',
@@ -412,7 +412,7 @@
     <string name="cut_scene_after_belos" translatable="false">
         "{
             id: 'cut_scene_after_belos',
-            background: 'ic_cs_after_belos_0',
+            background: 'cs_after_belos_0',
             left: 'ic_character_empty',
             right: 'ic_character_empty',
             frames: {
@@ -451,7 +451,7 @@
     <string name="cut_scene_analafro" translatable="false">
         "{
             id: 'cut_scene_analafro',
-            background: 'ic_cs_analafro_0',
+            background: 'cs_analafro_0',
             left: 'ic_character_empty',
             right: 'ic_character_empty',
             frames: {
@@ -469,7 +469,7 @@
                 '11': { text: 'cs_analafro_11', left: 'ic_character_kittaro_normal', right: 'ic_character_omikhli_speak' },
                 '12': { text: 'cs_analafro_12', left: 'ic_character_kittaro_normal' },
                 '13': { text: 'cs_analafro_13', left: 'ic_character_kittaro_normal' },
-                '14': { text: 'cs_analafro_14', background: 'ic_cs_analafro_14' }
+                '14': { text: 'cs_analafro_14', background: 'cs_analafro_14' }
             },
             next_scene: 'action_cutSceneAnalafro_to_battleOmikhli'
         }"
@@ -496,7 +496,7 @@
     <string name="cut_scene_after_omikhli" translatable="false">
         "{
             id: 'cut_scene_after_omikhli',
-            background: 'ic_cs_after_omikhli_0',
+            background: 'cs_after_omikhli_0',
             left: 'ic_character_empty',
             right: 'ic_character_empty',
             frames: {
@@ -504,11 +504,11 @@
                 '1': { text: 'cs_after_omikhli_1', left: 'ic_character_kittaro_normal_speak' },
                 '2': { text: 'cs_after_omikhli_2', left: 'ic_character_kittaro_normal_speak' },
                 '3': { text: 'cs_after_omikhli_3', left: 'ic_character_kittaro_normal_speak' },
-                '4': { text: 'cs_after_omikhli_4', background: 'ic_cs_after_omikhli_4' },
-                '5': { text: 'cs_after_omikhli_5', background: 'ic_cs_after_omikhli_5', showPrevFrameButton: true },
-                '6': { text: 'cs_after_omikhli_6', background: 'ic_cs_after_omikhli_6', showPrevFrameButton: true },
-                '7': { text: 'cs_after_omikhli_7', background: 'ic_cs_after_omikhli_7', showPrevFrameButton: true },
-                '8': { text: 'cs_after_omikhli_8', background: 'ic_cs_after_omikhli_8', showPrevFrameButton: true }
+                '4': { text: 'cs_after_omikhli_4', background: 'cs_after_omikhli_4' },
+                '5': { text: 'cs_after_omikhli_5', background: 'cs_after_omikhli_5', showPrevFrameButton: true },
+                '6': { text: 'cs_after_omikhli_6', background: 'cs_after_omikhli_6', showPrevFrameButton: true },
+                '7': { text: 'cs_after_omikhli_7', background: 'cs_after_omikhli_7', showPrevFrameButton: true },
+                '8': { text: 'cs_after_omikhli_8', background: 'cs_after_omikhli_8', showPrevFrameButton: true }
             },
             next_scene: 'action_cutSceneAfterOmikhli_to_heroScreenAfterOmikhli'
         }"
@@ -529,7 +529,7 @@
     <string name="cut_scene_kilia" translatable="false">
         "{
             id: 'cut_scene_kilia',
-            background: 'ic_cs_kilia_0',
+            background: 'cs_kilia_0',
             left: 'ic_character_empty',
             right: 'ic_character_empty',
             frames: {
@@ -546,9 +546,9 @@
                 '10': { text: 'cs_kilia_10', left: 'ic_character_kittaro_normal_speak', right: 'ic_character_zoi' },
                 '11': { text: 'cs_kilia_11', left: 'ic_character_kittaro_normal', right: 'ic_character_zoi' },
                 '12': { text: 'cs_kilia_12', left: 'ic_character_kittaro_normal', right: 'ic_character_zoi_speak' },
-                '13': { text: 'cs_kilia_13', background: 'ic_cs_kilia_13' },
-                '14': { text: 'cs_kilia_14', background: 'ic_cs_kilia_14' },
-                '15': { text: 'cs_kilia_15', background: 'ic_cs_kilia_15' }
+                '13': { text: 'cs_kilia_13', background: 'cs_kilia_13' },
+                '14': { text: 'cs_kilia_14', background: 'cs_kilia_14' },
+                '15': { text: 'cs_kilia_15', background: 'cs_kilia_15' }
             },
             next_scene: 'action_cutSceneKilia_to_battleNikhteribs',
             gameStateChanges: { 'zoi_available': true }
@@ -577,7 +577,7 @@
     <string name="cut_scene_after_nikhteribs" translatable="false">
         "{
             id: 'cut_scene_after_nikhteribs',
-            background: 'ic_cs_after_nikhteribs_0',
+            background: 'cs_after_nikhteribs_0',
             left: 'ic_character_empty',
             right: 'ic_character_empty',
             frames: {
@@ -616,7 +616,7 @@
     <string name="cut_scene_kardia" translatable="false">
         "{
             id: 'cut_scene_kardia',
-            background: 'ic_cs_kardia_0',
+            background: 'cs_kardia_0',
             left: 'ic_character_empty',
             right: 'ic_character_empty',
             frames: {
@@ -631,7 +631,7 @@
                 '8': { text: 'cs_kardia_8', left: 'ic_character_kittaro_normal', right: 'ic_character_drunkards_angry' },
                 '9': { text: 'cs_kardia_9', left: 'ic_character_kittaro_normal', right: 'ic_character_zoi_speak' },
                 '10': { text: 'cs_kardia_10', left: 'ic_character_kittaro_normal', right: 'ic_character_drunkards_angry' },
-                '11': { text: 'cs_kardia_11', background: 'ic_cs_kardia_11' }
+                '11': { text: 'cs_kardia_11', background: 'cs_kardia_11' }
             },
             next_scene: 'action_cutSceneKardia_to_battleDrunkards'
         }"
@@ -655,7 +655,7 @@
     <string name="cut_scene_after_drunkards" translatable="false">
         "{
             id: 'cut_scene_after_drunkards',
-            background: 'ic_cs_kardia_0',
+            background: 'cs_kardia_0',
             left: 'ic_character_empty',
             right: 'ic_character_empty',
             frames: {
@@ -684,9 +684,9 @@
                 '22': { text: 'cs_after_drunkards_22', left: 'ic_character_zoi', right: 'ic_character_palmos_speak' },
                 '23': { text: 'cs_after_drunkards_23', left: 'ic_character_kittaro_normal', right: 'ic_character_palmos_speak' },
                 '24': { text: 'cs_after_drunkards_24', left: 'ic_character_kittaro_normal', right: 'ic_character_palmos_speak' },
-                '25': { text: 'cs_after_drunkards_25', background: 'ic_cs_after_drunkards_25' },
-                '26': { text: 'cs_after_drunkards_26', background: 'ic_cs_after_drunkards_26' },
-                '27': { text: 'cs_after_drunkards_27', background: 'ic_cs_after_drunkards_27' }
+                '25': { text: 'cs_after_drunkards_25', background: 'cs_after_drunkards_25' },
+                '26': { text: 'cs_after_drunkards_26', background: 'cs_after_drunkards_26' },
+                '27': { text: 'cs_after_drunkards_27', background: 'cs_after_drunkards_27' }
             },
             next_scene: 'action_cutSceneAfterDrunkards_to_heroScreenAfterDrunkards',
             gameStateChanges: { 'aima_available': true }
@@ -727,7 +727,7 @@
     <string name="cut_scene_laimo" translatable="false">
         "{
             id: 'cut_scene_laimo',
-            background: 'ic_cs_laimo_0',
+            background: 'cs_laimo_0',
             left: 'ic_character_empty',
             right: 'ic_character_empty',
             frames: {
@@ -739,7 +739,7 @@
                 '5': { text: 'cs_laimo_5', left: 'ic_character_kittaro_normal', right: 'ic_character_katofi_ponu_speak' },
                 '6': { text: 'cs_laimo_6', left: 'ic_character_kittaro_normal_speak', right: 'ic_character_katofi_ponu' },
                 '7': { text: 'cs_laimo_7', left: 'ic_character_kittaro_normal', right: 'ic_character_katofi_ponu_speak' },
-                '8': { text: 'cs_laimo_8', background: 'ic_cs_laimo_8' }
+                '8': { text: 'cs_laimo_8', background: 'cs_laimo_8' }
             },
             next_scene: 'action_cutSceneLaimo_to_battleKatofiPonu'
         }"
@@ -760,7 +760,7 @@
     <string name="cut_scene_after_katofi_ponu" translatable="false">
         "{
             id: 'cut_scene_after_katofi_ponu',
-            background: 'ic_cs_laimo_0',
+            background: 'cs_laimo_0',
             left: 'ic_character_empty',
             right: 'ic_character_empty',
             frames: {
@@ -791,7 +791,7 @@
     <string name="cut_scene_enkefalio" translatable="false">
         "{
             id: 'cut_scene_enkefalio',
-            background: 'ic_cs_enkefalio_0',
+            background: 'cs_enkefalio_0',
             left: 'ic_character_empty',
             right: 'ic_character_empty',
             frames: {
@@ -803,7 +803,7 @@
                 '5': { text: 'cs_enkefalio_5', left: 'ic_character_kittaro_normal', right: 'ic_character_zoi_speak' },
                 '6': { text: 'cs_enkefalio_6', left: 'ic_character_kittaro_normal', right: 'ic_character_zoi_speak' },
                 '7': { text: 'cs_enkefalio_7', left: 'ic_character_kittaro_normal', right: 'ic_character_mage_speak' },
-                '8': { text: 'cs_enkefalio_8', background: 'ic_cs_enkefalio_8' }
+                '8': { text: 'cs_enkefalio_8', background: 'cs_enkefalio_8' }
             },
             next_scene: 'action_cutSceneEnkefalio_to_battleEnkefalio'
         }"
@@ -824,7 +824,7 @@
     <string name="cut_scene_final_act" translatable="false">
         "{
             id: 'cut_scene_final_act',
-            background: 'ic_cs_final_act_0',
+            background: 'cs_final_act_0',
             left: 'ic_character_empty',
             right: 'ic_character_empty',
             frames: {
@@ -837,7 +837,7 @@
                 '6': { text: 'cs_final_act_6', left: 'ic_character_kittaro_normal', right: 'ic_character_king_speak' },
                 '7': { text: 'cs_final_act_7', left: 'ic_character_kittaro_normal', right: 'ic_character_chronicler_speak' },
                 '8': { text: 'cs_final_act_8', left: 'ic_character_kittaro_normal', right: 'ic_character_king_speak' },
-                '9': { text: 'cs_final_act_9', background: 'ic_cs_final_act_9', left: 'ic_character_chronicler_speak' }
+                '9': { text: 'cs_final_act_9', background: 'cs_final_act_9', left: 'ic_character_chronicler_speak' }
             },
             next_scene: 'mainFragment'
         }"

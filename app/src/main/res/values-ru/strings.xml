@@ -27,7 +27,7 @@
 
     <!-- Battle results view -->
     <string name="reward_title">Награда</string>
-    <string name="button_to_heroes_screen">Экран героев</string>
+    <string name="button_to_heroes_screen">Далее</string>
     <string name="button_try_again">Попытаться снова</string>
 
     <!-- Rules descriptions -->
