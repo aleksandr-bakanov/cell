@@ -13,6 +13,7 @@ import bav.onecell.model.cell.logic.BattleFieldState
 import bav.onecell.model.hexes.Hex
 import bav.onecell.model.hexes.HexMath
 import bav.onecell.model.hexes.Layout
+import bav.onecell.model.hexes.Point
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
@@ -221,6 +222,8 @@ class BattleEngine(
         }
     }
 
+    private val origin: Point = Point()
+    private val nearestEnemyHexPoint: Point = Point()
     private fun calculateBattleState() {
         battleState.clear()
 
@@ -251,13 +254,13 @@ class BattleEngine(
             }
             // Find direction to move
             // Origin point
-            val op = hexMath.hexToPixel(Layout.DUMMY, ourHex)
+            hexMath.hexToPixel(Layout.DUMMY, ourHex, origin)
             // Nearest enemy hex point
-            val nehp = hexMath.hexToPixel(Layout.DUMMY, nearestEnemyHex)
+            hexMath.hexToPixel(Layout.DUMMY, nearestEnemyHex, nearestEnemyHexPoint)
             // Distance to the enemy hex
             battleState.distances.add(hexMath.distance(ourHex, nearestEnemyHex))
             // Angle direction to enemy hex
-            val angle = atan2(nehp.y.toFloat() - op.y.toFloat(), nehp.x.toFloat() - op.x.toFloat())
+            val angle = atan2(nearestEnemyHexPoint.y.toFloat() - origin.y.toFloat(), nearestEnemyHexPoint.x.toFloat() - origin.x.toFloat())
             battleState.rads.add(angle)
             // Determine direction based on angle
             battleState.directions.add(hexMath.radToNeighborDirection(angle))

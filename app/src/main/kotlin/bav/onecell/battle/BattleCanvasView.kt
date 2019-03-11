@@ -74,7 +74,8 @@ class BattleCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
                         val dy = curY - lastTouchY
                         lastTouchX = curX
                         lastTouchY = curY
-                        layout.origin = Point(layout.origin.x + dx, layout.origin.y + dy)
+                        layout.origin.x += dx
+                        layout.origin.y += dy
                         updateLayoutMatrix()
                         ret = true
                         invalidate()
