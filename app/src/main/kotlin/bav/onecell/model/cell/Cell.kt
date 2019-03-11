@@ -55,16 +55,16 @@ class Cell(private val hexMath: HexMath,
     fun size(): Int = data.hexes.values.map { maxOf(maxOf(abs(it.q), abs(it.r)), abs(it.s)) }.max()?.let { it + 1 } ?: 0
 
     fun addHex(hex: Hex) {
-        data.hexes[hex.mapKey] = hex
+        data.hexes[Pair(hex.q, hex.r)] = hex.clone()
         updateOutlineHexes()
     }
 
     fun removeHex(hex: Hex) {
-        data.hexes.remove(hex.mapKey)
+        data.hexes.remove(Pair(hex.q, hex.r))
         updateOutlineHexes()
     }
 
-    fun contains(hex: Hex): Boolean = data.hexes.containsKey(hex.mapKey)
+    fun contains(hex: Hex): Boolean = data.hexes.containsKey(Pair(hex.q, hex.r))
 
     fun evaluateCellHexesPower() {
         data.hexes.values.forEach { hex ->

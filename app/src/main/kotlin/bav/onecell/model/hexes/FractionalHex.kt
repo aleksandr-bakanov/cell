@@ -1,3 +1,3 @@
 package bav.onecell.model.hexes
 
-data class FractionalHex(val q: Double, val r: Double, val s: Double)
+data class FractionalHex(var q: Double, var r: Double, var s: Double)

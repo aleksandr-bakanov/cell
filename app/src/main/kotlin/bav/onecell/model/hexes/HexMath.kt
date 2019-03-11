@@ -131,14 +131,14 @@ class HexMath {
         p.y = y + layout.origin.y
     }
 
-    fun pixelToHex(layout: Layout, p: Point): FractionalHex {
-        val m: Orientation = layout.orientation
-        val pt = Point(
-                (p.x - layout.origin.x) / layout.size.x,
-                (p.y - layout.origin.y) / layout.size.y)
-        val q: Double = m.b0 * pt.x + m.b1 * pt.y
-        val r: Double = m.b2 * pt.x + m.b3 * pt.y
-        return FractionalHex(q, r, -q - r)
+    fun pixelToHex(layout: Layout, x: Double, y: Double, out: FractionalHex) {
+        val ptx = (x - layout.origin.x) / layout.size.x
+        val pty = (y - layout.origin.y) / layout.size.y
+        val q: Double = layout.orientation.b0 * ptx + layout.orientation.b1 * pty
+        val r: Double = layout.orientation.b2 * ptx + layout.orientation.b3 * pty
+        out.q = q
+        out.r = r
+        out.s = -q - r
     }
 
     private fun hexCornerOffset(layout: Layout, corner: Int): Point {
@@ -190,6 +190,25 @@ class HexMath {
             s = -q - r
         }
         return Hex(q, r, s)
+    }
+
+    fun round(h: FractionalHex, out: Hex) {
+        var q: Int = h.q.roundToInt()
+        var r: Int = h.r.roundToInt()
+        var s: Int = h.s.roundToInt()
+        val qDiff: Double = abs(q - h.q)
+        val rDiff: Double = abs(r - h.r)
+        val sDiff: Double = abs(s - h.s)
+        if (qDiff > rDiff && qDiff > sDiff) {
+            q = -r - s
+        } else if (rDiff > sDiff) {
+            r = -q - s
+        } else {
+            s = -q - r
+        }
+        out.q = q
+        out.r = r
+        out.s = s
     }
 
     fun lerp(a: Double, b: Double, t: Double): Double {

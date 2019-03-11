@@ -78,8 +78,13 @@ dependencies {
     implementation "androidx.core:core-ktx:1.0.1"
 
     implementation "com.android.support:multidex:1.0.3"
+
+    // Firebase
     implementation 'com.google.firebase:firebase-core:16.0.7'
     implementation 'com.crashlytics.sdk.android:crashlytics:2.9.9'
+
+    // Stormpot
+    implementation 'com.github.chrisvest:stormpot:2.4.1'
 
     // Tests
     testImplementation 'junit:junit:4.12'

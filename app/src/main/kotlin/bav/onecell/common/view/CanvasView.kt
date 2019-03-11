@@ -12,6 +12,7 @@ import android.view.MotionEvent
 import android.view.View
 import bav.onecell.R
 import bav.onecell.model.cell.Cell
+import bav.onecell.model.hexes.FractionalHex
 import bav.onecell.model.hexes.Hex
 import bav.onecell.model.hexes.HexMath
 import bav.onecell.model.hexes.Layout
@@ -227,9 +228,9 @@ open class CanvasView(context: Context, attributeSet: AttributeSet) : View(conte
         updateLayoutMatrix()
     }
 
-    fun pointToHex(x: Float, y: Float): Hex {
-        val point = Point(x.toDouble(), y.toDouble())
-        val fHex = hexMath.pixelToHex(layout, point)
-        return hexMath.round(fHex)
+    private val fHex = FractionalHex(0.0, 0.0, 0.0)
+    fun pointToHex(x: Float, y: Float, out: Hex) {
+        hexMath.pixelToHex(layout, x.toDouble(), y.toDouble(), fHex)
+        hexMath.round(fHex, out)
     }
 }

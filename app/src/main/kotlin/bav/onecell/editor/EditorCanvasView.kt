@@ -25,6 +25,7 @@ class EditorCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
     lateinit var presenter: Editor.Presenter
     var selectedCellType: Hex.Type = Hex.Type.LIFE
     var tipHexes: Collection<Hex>? = null
+    val tappedHex: Hex = Hex()
 
     private val tipPaint = Paint()
     private val tipPaintLife = Paint()
@@ -56,12 +57,15 @@ class EditorCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
             super.onTouchListener(view, event)
             if (event?.action == MotionEvent.ACTION_UP) {
                 if (!touchMoved) {
-                    val hex = pointToHex(event.x, event.y)
+                    pointToHex(event.x, event.y, tappedHex)
+                    Log.d(TAG, "tappedHex = $tappedHex")
                     if (selectedCellType == Hex.Type.REMOVE) {
-                        presenter.removeHexFromCell(hex)
+                        Log.d(TAG, "remove tappedHex = $tappedHex")
+                        presenter.removeHexFromCell(tappedHex)
                     } else {
-                        hex.type = selectedCellType
-                        presenter.addHexToCell(hex)
+                        tappedHex.type = selectedCellType
+                        Log.d(TAG, "   add tappedHex = $tappedHex")
+                        presenter.addHexToCell(tappedHex)
                     }
                     invalidate()
                 }

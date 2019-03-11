@@ -379,6 +379,7 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
         editorCanvasView.invalidate()
     }
 
+    private val draggedHex = Hex()
     private val mDragListen = View.OnDragListener { v, event ->
         // Handles each of the expected events
         when (event.action) {
@@ -396,13 +397,13 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
                 // Gets the item containing the dragged data
                 val item: ClipData.Item = event.clipData.getItemAt(0)
 
-                val hex = editorCanvasView.pointToHex(event.x, event.y)
+                editorCanvasView.pointToHex(event.x, event.y, draggedHex)
                 val typeOrdinal = item.text.toString().toInt()
                 if (typeOrdinal == Hex.Type.REMOVE.ordinal) {
-                    presenter.removeHexFromCell(hex)
+                    presenter.removeHexFromCell(draggedHex)
                 } else {
-                    hex.type = Hex.Type.values()[typeOrdinal]
-                    presenter.addHexToCell(hex)
+                    draggedHex.type = Hex.Type.values()[typeOrdinal]
+                    presenter.addHexToCell(draggedHex)
                 }
                 v.invalidate()
 
