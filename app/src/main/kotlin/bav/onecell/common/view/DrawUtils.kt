@@ -319,8 +319,6 @@ class DrawUtils(private val hexMath: HexMath, private val context: Context) {
                 path.fillType = Path.FillType.EVEN_ODD
                 canvas?.drawPath(path, paint)
             }
-            // Draw origin marker
-            drawOriginMarker(canvas, it, layout)
             // Draw outline
             drawCellOutline(canvas, it, layout, cellOutlinePaint, outline)
         }
@@ -402,42 +400,6 @@ class DrawUtils(private val hexMath: HexMath, private val context: Context) {
         // Translate point back
         point.x = newX + origin.x
         point.y = newY + origin.y
-    }
-
-    private fun drawOriginMarker(canvas: Canvas?, cell: Cell, layout: Layout) {
-        // Origin point
-        val o = hexMath.hexToPixel(layout, cell.data.origin)
-        offsetPoints(listOf(o), cell.animationData.moveDirection, cell.animationData.movingFraction, layout)
-
-        val angle = (-PI / 2) + (PI / 3) * cell.data.direction.ordinal
-        // tail point
-        var tp = Point(-layout.size.x * 2 / 3, 0.0)
-        // head point
-        var hp = Point(layout.size.x * 2 / 3, 0.0)
-        // left point
-        var lp = Point(layout.size.x / 3, -layout.size.x / 3)
-        // right point
-        var rp = Point(layout.size.x / 3, layout.size.x / 3)
-        
-        val s = sin(angle)
-        val c = cos(angle)
-
-        // Rotate arrow points
-        tp = Point(tp.x * c - tp.y * s, tp.x * s + tp.y * c)
-        hp = Point(hp.x * c - hp.y * s, hp.x * s + hp.y * c)
-        lp = Point(lp.x * c - lp.y * s, lp.x * s + lp.y * c)
-        rp = Point(rp.x * c - rp.y * s, rp.x * s + rp.y * c)
-        
-        val oxf = o.x.toFloat()
-        val oyf = o.y.toFloat()
-
-        // Draw lines
-        canvas?.drawLine(tp.x.toFloat() + oxf, tp.y.toFloat() + oyf,
-                         hp.x.toFloat() + oxf, hp.y.toFloat() + oyf, strokePaint)
-        canvas?.drawLine(lp.x.toFloat() + oxf, lp.y.toFloat() + oyf,
-                         hp.x.toFloat() + oxf, hp.y.toFloat() + oyf, strokePaint)
-        canvas?.drawLine(rp.x.toFloat() + oxf, rp.y.toFloat() + oyf,
-                         hp.x.toFloat() + oxf, hp.y.toFloat() + oyf, strokePaint)
     }
 
     private fun drawCellOutline(canvas: Canvas?, cell: Cell, layout: Layout, paint: Paint = cellOutlinePaint,
