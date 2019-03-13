@@ -276,14 +276,15 @@ class DrawUtils(private val hexMath: HexMath, private val context: Context) {
         }
     }
 
+    private val hexPath = Path()
+    private val hexInGlobal = Hex()
     fun drawHexes(canvas: Canvas?, origin: Hex, hexes: Collection<Hex>?, paint: Paint, layout: Layout = Layout.DUMMY,
                   scale: Float = 1.0f) {
-        val hexInGlobal = Hex()
         hexes?.forEach { hex ->
             hexMath.add(hex, origin, hexInGlobal)
-            val path: Path = getHexPath(layout, hexInGlobal, scale = scale)
-            path.fillType = Path.FillType.EVEN_ODD
-            canvas?.drawPath(path, paint)
+            getHexPath(layout, hexInGlobal, hexPath, scale = scale)
+            hexPath.fillType = Path.FillType.EVEN_ODD
+            canvas?.drawPath(hexPath, paint)
         }
     }
 
@@ -308,6 +309,22 @@ class DrawUtils(private val hexMath: HexMath, private val context: Context) {
         path.lineTo(hexCorners[0].x.toFloat(), hexCorners[0].y.toFloat())
 
         return path
+    }
+
+    private fun getHexPath(layout: Layout, hex: Hex, out: Path, rotateAround: Point? = null, rotation: Float = 0f,
+                           movingDirection: Int = 0, movingFraction: Float = 0f, scale: Float = 1f) {
+        hexMath.polygonCorners(layout, hex, hexCorners, scale)
+
+        // Rotation and moving offset
+        rotateAround?.let { rotatePoints(hexCorners, it, rotation) }
+        if (movingFraction > 0f) offsetPoints(hexCorners, movingDirection, movingFraction, layout)
+
+        out.reset()
+        out.moveTo(hexCorners[0].x.toFloat(), hexCorners[0].y.toFloat())
+        for (i in 1..(hexCorners.size - 1)) {
+            out.lineTo(hexCorners[i].x.toFloat(), hexCorners[i].y.toFloat())
+        }
+        out.lineTo(hexCorners[0].x.toFloat(), hexCorners[0].y.toFloat())
     }
 
     private fun rotatePoints(points: List<Point>, origin: Point, angle: Float) {
