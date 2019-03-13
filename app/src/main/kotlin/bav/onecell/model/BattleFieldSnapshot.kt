@@ -49,7 +49,7 @@ data class BattleFieldSnapshot(
 
     companion object {
         /**
-         * These constants should be multiple of [BattleGraphics.TIME_BETWEEN_FRAMES_MS]
+         * These constants should be multiple of [bav.onecell.battle.BattleGraphics.TIME_BETWEEN_FRAMES_MS]
          */
         const val CELL_MOVING_DURATION_MS: Int = 500
         const val HEX_FADING_DURATION_MS: Int = 500

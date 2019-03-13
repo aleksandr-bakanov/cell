@@ -12,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 import bav.onecell.OneCellApplication
 import bav.onecell.R
 import bav.onecell.battle.results.BattleResultsFragment
+import bav.onecell.battle.BattleGraphics.Companion.TIME_BETWEEN_FRAMES_MS
 import bav.onecell.common.Common
 import bav.onecell.common.Consts
 import bav.onecell.common.Consts.Companion.BATTLE_GROUND_RESOURCE
@@ -19,7 +20,6 @@ import bav.onecell.common.Consts.Companion.BATTLE_PARAMS
 import bav.onecell.common.Consts.Companion.NEXT_SCENE
 import bav.onecell.common.view.DrawUtils
 import bav.onecell.model.BattleInfo
-import bav.onecell.model.battle.FrameGraphics
 import bav.onecell.model.hexes.HexMath
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -61,7 +61,7 @@ class BattleFragment : Fragment(), Battle.View {
     private val seekBarListener = object : SeekBar.OnSeekBarChangeListener {
         override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
             if (fromUser) {
-                setTimestampAndDrawFrame(TIMESTAMP_ANIMATION_STEP * progress)
+                setTimestampAndDrawFrame(TIME_BETWEEN_FRAMES_MS * progress)
             }
         }
         override fun onStartTrackingTouch(seekBar: SeekBar?) {}
@@ -176,7 +176,7 @@ class BattleFragment : Fragment(), Battle.View {
     }
 
     private fun setSeekBarProgress(timestamp: Long) {
-        seekBar.progress = (timestamp / TIMESTAMP_ANIMATION_STEP).toInt()
+        seekBar.progress = (timestamp / TIME_BETWEEN_FRAMES_MS).toInt()
     }
 
     private fun reportBattleEnd(battleInfo: BattleInfo) {
@@ -198,11 +198,11 @@ class BattleFragment : Fragment(), Battle.View {
     }
 
     private fun startAnimation() {
-        animationTimer = Observable.interval(0L, TIMESTAMP_ANIMATION_STEP, TimeUnit.MILLISECONDS)
+        animationTimer = Observable.interval(0L, TIME_BETWEEN_FRAMES_MS, TimeUnit.MILLISECONDS)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe {
-                    currentTimestamp += TIMESTAMP_ANIMATION_STEP
+                    currentTimestamp += TIME_BETWEEN_FRAMES_MS
                     setTimestampAndDrawFrame(currentTimestamp)
                     setSeekBarProgress(currentTimestamp)
                     if (currentTimestamp >= battleDuration) {
@@ -229,7 +229,6 @@ class BattleFragment : Fragment(), Battle.View {
         private const val SCREEN_NAME = "Battle screen"
         const val EXTRA_PARAMS = "params"
         private const val TIMESTAMP_STEP: Long = 100
-        private const val TIMESTAMP_ANIMATION_STEP: Long = 20 // 16 for ~60 fps; 25 for 40 fps; 20 for 50 fps
 
         fun newInstance(bundle: Bundle?): BattleFragment {
             val fragment = BattleFragment()

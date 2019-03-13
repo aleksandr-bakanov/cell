@@ -166,6 +166,7 @@ class BattleGraphics(
     /// TODO: optimize area definition (in terms of allocated memory)
     private val origin: Point = Point()
     private val cellOrigin = Point()
+    private val vHex = Hex()
     private fun getObservableAreaPath(cells: List<Cell>): Path {
         // Count of hexes in current observable area
         var currentPoolIndex = 0
@@ -175,7 +176,6 @@ class BattleGraphics(
         var indexOfLayerEnd = 0
         var currentLayerEnd = 0
         // Get area observed by cells with group id = 0 only, i.e. main heroes
-        val vHex = Hex()
         val path = Path()
         cells.forEach { cell ->
             if (cell.data.groupId == Consts.MAIN_CHARACTERS_GROUP_ID) {

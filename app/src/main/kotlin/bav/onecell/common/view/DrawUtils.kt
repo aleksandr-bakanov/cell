@@ -372,22 +372,13 @@ class DrawUtils(private val hexMath: HexMath, private val context: Context) {
         point.y = newY + origin.y
     }
 
-    private fun drawCellOutline(canvas: Canvas?, cell: Cell, layout: Layout, paint: Paint = cellOutlinePaint,
-                                lines: List<Point>? = null) {
-        val outline = lines ?: getCellOutline(cell, layout)
-        for (i in 0 until outline.size step 2) {
-            canvas?.drawLine(outline[i].x.toFloat(), outline[i].y.toFloat(),
-                             outline[i + 1].x.toFloat(), outline[i + 1].y.toFloat(),
-                             paint)
-        }
-    }
-
+    private val neighbor = Hex()
+    private val cellOrigin = Point()
     private fun getCellOutline(cell: Cell, layout: Layout): List<Point> {
         val lines = mutableListOf<Point>()
-        val neighbor = Hex()
-        val offsetPoint = hexMath.hexToPixel(layout, hexMath.getHexByDirection(cell.animationData.moveDirection))
-        val cellOrigin = hexMath.hexToPixel(layout, cell.data.origin)
-        val hexInGlobal = Hex()
+
+        hexMath.hexToPixel(layout, hexMath.getHexByDirection(cell.animationData.moveDirection), offsetPoint)
+        hexMath.hexToPixel(layout, cell.data.origin, cellOrigin)
 
         cell.data.hexes.values.forEach { hex ->
             hexMath.add(hex, cell.data.origin, hexInGlobal)
@@ -416,10 +407,9 @@ class DrawUtils(private val hexMath: HexMath, private val context: Context) {
         return lines
     }
 
+    private val vPoint = Point()
     fun drawCellPower(canvas: Canvas?, cell: Cell, layout: Layout) {
-        val hexInGlobal = Hex()
-        val vPoint = Point()
-        val cellOrigin = hexMath.hexToPixel(layout, cell.data.origin)
+        hexMath.hexToPixel(layout, cell.data.origin, cellOrigin)
         cell.data.hexes.values.forEach { hex ->
             hexMath.add(cell.data.origin, hex, hexInGlobal)
             val paint = when (hex.type) {
