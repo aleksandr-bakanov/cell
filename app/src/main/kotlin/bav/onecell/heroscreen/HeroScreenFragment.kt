@@ -112,7 +112,9 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
 
         disposables.addAll(
                 presenter.getCellProvider().subscribe {
+                    it.evaluateCellHexesPower()
                     editorCanvasView.cell = it
+                    updateCellRepresentation()
                     highlightTips(editorCanvasView.selectedCellType)
                     setNextSceneButtonVisibility(it.data.hexes.isNotEmpty())
                 },
@@ -150,6 +152,10 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
     override fun highlightTips(type: Hex.Type) {
         editorCanvasView.tipHexes = presenter.getTipHexes(type)
         editorCanvasView.invalidate()
+    }
+
+    override fun updateCellRepresentation() {
+        editorCanvasView.updateCellRepresentation()
     }
     //endregion
 
@@ -375,8 +381,7 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
 
     private fun highlightEditorTips(type: Hex.Type) {
         editorCanvasView.selectedCellType = type
-        editorCanvasView.tipHexes = presenter.getTipHexes(type)
-        editorCanvasView.invalidate()
+        highlightTips(type)
     }
 
     private val draggedHex = Hex()
@@ -418,6 +423,7 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
     }
 
     private fun onCellRotateButtonClicked(view: View) {
+        /// TODO: reuse tipHexes instead of recreate them
         editorCanvasView.tipHexes = null
         when (view.id) {
             R.id.buttonRotateCellLeft -> {

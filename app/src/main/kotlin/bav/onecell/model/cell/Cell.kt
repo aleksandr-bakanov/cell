@@ -5,11 +5,8 @@ import bav.onecell.model.cell.logic.Action
 import bav.onecell.model.cell.logic.BattleFieldState
 import bav.onecell.model.hexes.Hex
 import bav.onecell.model.hexes.HexMath
-import io.reactivex.Observable
-import io.reactivex.subjects.BehaviorSubject
 import kotlin.math.PI
 import kotlin.math.abs
-import kotlin.math.max
 
 // TODO: add cell visibility radius - cell may observe battlefield within limited radius from cell's center
 class Cell(private val hexMath: HexMath,

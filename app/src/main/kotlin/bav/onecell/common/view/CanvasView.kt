@@ -96,6 +96,7 @@ open class CanvasView(context: Context, attributeSet: AttributeSet) : View(conte
                     lastTouchY = curY
                     layout.origin.x += dx
                     layout.origin.y += dy
+                    updateLayoutMatrix()
                     invalidate()
                 }
             }

@@ -8,6 +8,7 @@ interface Editor {
 
     interface View {
         fun highlightTips(type: Hex.Type)
+        fun updateCellRepresentation()
     }
 
     interface Presenter {

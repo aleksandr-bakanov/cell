@@ -25,7 +25,9 @@ class EditorCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
     lateinit var presenter: Editor.Presenter
     var selectedCellType: Hex.Type = Hex.Type.LIFE
     var tipHexes: Collection<Hex>? = null
-    val tappedHex: Hex = Hex()
+    private val tappedHex: Hex = Hex()
+
+    private var cellRepresentation: DrawUtils.CellGraphicalPoints? = null
 
     private val tipPaint = Paint()
     private val tipPaintLife = Paint()
@@ -33,8 +35,6 @@ class EditorCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
     private val tipPaintEnergy = Paint()
     private val tipPaintDeathRay = Paint()
     private val tipPaintOmniBullet = Paint()
-
-    private val cellGraphics: DrawUtils.CellGraphicalPoints = DrawUtils.CellGraphicalPoints()
 
     init {
         for (p in arrayListOf(tipPaintLife, tipPaintAttack, tipPaintEnergy, tipPaintDeathRay, tipPaintOmniBullet)) {
@@ -58,13 +58,10 @@ class EditorCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
             if (event?.action == MotionEvent.ACTION_UP) {
                 if (!touchMoved) {
                     pointToHex(event.x, event.y, tappedHex)
-                    Log.d(TAG, "tappedHex = $tappedHex")
                     if (selectedCellType == Hex.Type.REMOVE) {
-                        Log.d(TAG, "remove tappedHex = $tappedHex")
                         presenter.removeHexFromCell(tappedHex)
                     } else {
                         tappedHex.type = selectedCellType
-                        Log.d(TAG, "   add tappedHex = $tappedHex")
                         presenter.addHexToCell(tappedHex)
                     }
                     invalidate()
@@ -78,21 +75,30 @@ class EditorCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
         cell?.let {
-            it.evaluateCellHexesPower()
+            //it.evaluateCellHexesPower()
 
             //canvas?.drawRect(0f, 0f, width.toFloat(), height.toFloat(), drawUtils.groundPaint)
             //drawBackgroundGrid(canvas)
 
             if (selectedCellType == Hex.Type.REMOVE) {
-                drawUtils.drawCell(canvas, it, layout = layout)
+                //drawUtils.drawCell(canvas, it, layout = layout)
+                cellRepresentation?.let { graphics ->
+                    drawUtils.drawCellGraphicalRepresentation(canvas, graphics, layout, layoutMatrix, isCorpse = false)
+                }
                 drawUtils.drawHexes(canvas, it.data.origin, tipHexes, getTipPaint(selectedCellType), layout)
             }
             else {
                 drawUtils.drawHexes(canvas, it.data.origin, tipHexes, getTipPaint(selectedCellType), layout, scale = 0.7f)
-                drawUtils.drawCell(canvas, it, layout = layout)
+                cellRepresentation?.let { graphics ->
+                    drawUtils.drawCellGraphicalRepresentation(canvas, graphics, layout, layoutMatrix, isCorpse = false)
+                }
             }
             drawUtils.drawCellPower(canvas, it, layout)
         }
+    }
+
+    fun updateCellRepresentation() {
+        cell?.let { cellRepresentation = drawUtils.getCellGraphicalRepresentation(it) }
     }
 
     private fun getTipPaint(type: Hex.Type): Paint = when (type) {

@@ -53,7 +53,11 @@ class DrawUtils(private val hexMath: HexMath, private val context: Context) {
     private val powerOmniBulletTextPaint = Paint()
     val deathRayPaint = Paint(Paint.ANTI_ALIAS_FLAG)
 
+    private val hexCorners: MutableList<Point> = mutableListOf()
+
     init {
+        for (i in 0..5) hexCorners.add(Point())
+
         gridPaint.style = Paint.Style.STROKE
         gridPaint.color = ContextCompat.getColor(context, R.color.cellEditorGrid)
         gridPaint.strokeWidth = 1.0f
@@ -272,58 +276,6 @@ class DrawUtils(private val hexMath: HexMath, private val context: Context) {
         }
     }
 
-    fun drawCell(canvas: Canvas?, cell: Cell?, lPaint: Paint = lifePaint, ePaint: Paint = energyPaint,
-                 aPaint: Paint = attackPaint, dPaint: Paint = deathRayHexPaint, oPaint: Paint = omniBulletHexPaint,
-                 layout: Layout = Layout.DUMMY, drawAffiliation: Boolean = false, gPaint: Paint = groundPaint) {
-        cell?.let {
-            val outline = getCellOutline(cell, layout)
-            // Draw depiction of group
-            if (drawAffiliation) {
-                val groupAffiliationPaint = if (it.data.groupId == Consts.MAIN_CHARACTERS_GROUP_ID) groupAffiliationFriendPaint else groupAffiliationEnemyPaint
-                drawCellOutline(canvas, it, layout, groupAffiliationPaint, outline)
-            }
-
-            var paint: Paint
-            val originPoint = hexMath.hexToPixel(layout, it.data.origin)
-            val hexInGlobal = Hex()
-            for (hex in it.data.hexes.values) {
-                hexMath.add(hex, it.data.origin, hexInGlobal)
-                paint = when (hex.type) {
-                    Hex.Type.LIFE -> lPaint
-                    Hex.Type.ENERGY -> ePaint
-                    Hex.Type.ATTACK -> aPaint
-                    Hex.Type.DEATH_RAY -> dPaint
-                    Hex.Type.OMNI_BULLET -> oPaint
-                    else -> gridPaint
-                }
-
-                var fadeScale = 1.0f
-                it.animationData.hexHashesToRemove?.let { hexHashesToRemove ->
-                    if (hexHashesToRemove.contains(hex.mapKey)) {
-                        fadeScale = 1.0f - it.animationData.fadeFraction
-                    }
-                }
-
-                val path: Path = getHexPath(layout, hexInGlobal, originPoint,
-                                            it.animationData.rotation, it.animationData.moveDirection,
-                                            it.animationData.movingFraction, scale = fadeScale)
-
-                if (fadeScale != 1.0f) {
-                    val groundPath: Path = getHexPath(layout, hexInGlobal, originPoint,
-                                                it.animationData.rotation, it.animationData.moveDirection,
-                                                it.animationData.movingFraction)
-                    groundPath.fillType = Path.FillType.EVEN_ODD
-                    canvas?.drawPath(groundPath, gPaint)
-                }
-
-                path.fillType = Path.FillType.EVEN_ODD
-                canvas?.drawPath(path, paint)
-            }
-            // Draw outline
-            drawCellOutline(canvas, it, layout, cellOutlinePaint, outline)
-        }
-    }
-
     fun drawHexes(canvas: Canvas?, origin: Hex, hexes: Collection<Hex>?, paint: Paint, layout: Layout = Layout.DUMMY,
                   scale: Float = 1.0f) {
         val hexInGlobal = Hex()
@@ -342,7 +294,7 @@ class DrawUtils(private val hexMath: HexMath, private val context: Context) {
 
     private fun getHexPath(layout: Layout, hex: Hex, rotateAround: Point? = null, rotation: Float = 0f,
                            movingDirection: Int = 0, movingFraction: Float = 0f, scale: Float = 1f): Path {
-        val hexCorners = hexMath.polygonCorners(layout, hex, scale)
+        hexMath.polygonCorners(layout, hex, hexCorners, scale)
 
         // Rotation and moving offset
         rotateAround?.let { rotatePoints(hexCorners, it, rotation) }
@@ -382,8 +334,9 @@ class DrawUtils(private val hexMath: HexMath, private val context: Context) {
         }
     }
 
+    val offsetPoint = Point()
     fun offsetPoint(point: Point, direction: Int, fraction: Float, layout: Layout) {
-        val offsetPoint = hexMath.hexToPixel(layout, hexMath.getHexByDirection(direction))
+        hexMath.hexToPixel(layout, hexMath.getHexByDirection(direction), offsetPoint)
         point.x += (offsetPoint.x - layout.origin.x) * fraction
         point.y += (offsetPoint.y - layout.origin.y) * fraction
     }
@@ -418,8 +371,6 @@ class DrawUtils(private val hexMath: HexMath, private val context: Context) {
         val offsetPoint = hexMath.hexToPixel(layout, hexMath.getHexByDirection(cell.animationData.moveDirection))
         val cellOrigin = hexMath.hexToPixel(layout, cell.data.origin)
         val hexInGlobal = Hex()
-        val hexCorners: MutableList<Point> = mutableListOf()
-        for (i in 0..5) hexCorners.add(Point())
 
         cell.data.hexes.values.forEach { hex ->
             hexMath.add(hex, cell.data.origin, hexInGlobal)

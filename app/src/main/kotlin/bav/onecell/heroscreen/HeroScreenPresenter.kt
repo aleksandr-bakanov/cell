@@ -261,6 +261,7 @@ class HeroScreenPresenter(
                 decreaseHexesInBucket(hex.type)
                 it.addHex(hex)
                 it.evaluateCellHexesPower()
+                view.updateCellRepresentation()
                 view.highlightTips(hex.type)
                 view.setNextSceneButtonVisibility(it.data.hexes.isNotEmpty())
             }
@@ -274,6 +275,7 @@ class HeroScreenPresenter(
                 increaseHexesInBucket(hexType)
                 it.removeHex(hex)
                 it.evaluateCellHexesPower()
+                view.updateCellRepresentation()
                 view.highlightTips(Hex.Type.REMOVE)
                 view.setNextSceneButtonVisibility(it.data.hexes.isNotEmpty())
             }
@@ -283,6 +285,7 @@ class HeroScreenPresenter(
     override fun rotateCellLeft() {
         cell?.let {
             it.rotateLeft()
+            view.updateCellRepresentation()
             it.evaluateCellHexesPower()
         }
     }
@@ -290,6 +293,7 @@ class HeroScreenPresenter(
     override fun rotateCellRight() {
         cell?.let {
             it.rotateRight()
+            view.updateCellRepresentation()
             it.evaluateCellHexesPower()
         }
     }
