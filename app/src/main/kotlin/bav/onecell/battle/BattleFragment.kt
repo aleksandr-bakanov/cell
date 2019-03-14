@@ -189,20 +189,23 @@ class BattleFragment : Fragment(), Battle.View {
         seekBar.progress = (timestamp / TIME_BETWEEN_FRAMES_MS).toInt()
     }
 
+    private val reportBundle = Bundle()
     private fun reportBattleEnd(battleInfo: BattleInfo) {
+        val dealtDamage: Map<Int, Int> = battleInfo.damageDealtByCells
+        val deadOrAliveCells: Map<Int, Boolean> = battleInfo.deadOrAliveCells
+        reportBundle.clear()
+        reportBundle.putIntArray(BattleResultsFragment.CELL_INDEXES, dealtDamage.keys.toIntArray())
+        reportBundle.putIntArray(BattleResultsFragment.DEALT_DAMAGE, dealtDamage.values.toIntArray())
+        val doa = arrayListOf<Boolean>()
+        dealtDamage.keys.forEach { doa.add(deadOrAliveCells[it] ?: false) }
+        reportBundle.putBooleanArray(BattleResultsFragment.DEAD_OR_ALIVE, doa.toBooleanArray())
+        reportBundle.putBoolean(BattleResultsFragment.IS_BATTLE_WON, battleInfo.winnerGroupId == Consts.HERO_GROUP_ID)
+        reportBundle.putString(Consts.BATTLE_REWARD, reward)
+
+        battleInfo.clear()
+
         buttonFinishBattle.setOnClickListener { view ->
-            // TODO: clear animations before leaving the screen
-            val dealtDamage: Map<Int, Int> = battleInfo.damageDealtByCells
-            val deadOrAliveCells: Map<Int, Boolean> = battleInfo.deadOrAliveCells
-            val bundle = Bundle()
-            bundle.putIntArray(BattleResultsFragment.CELL_INDEXES, dealtDamage.keys.toIntArray())
-            bundle.putIntArray(BattleResultsFragment.DEALT_DAMAGE, dealtDamage.values.toIntArray())
-            val doa = arrayListOf<Boolean>()
-            dealtDamage.keys.forEach { doa.add(deadOrAliveCells[it] ?: false) }
-            bundle.putBooleanArray(BattleResultsFragment.DEAD_OR_ALIVE, doa.toBooleanArray())
-            bundle.putBoolean(BattleResultsFragment.IS_BATTLE_WON, battleInfo.winnerGroupId == Consts.HERO_GROUP_ID)
-            bundle.putString(Consts.BATTLE_REWARD, reward)
-            view.findNavController().navigate(nextScene, bundle)
+            view.findNavController().navigate(nextScene, reportBundle)
         }
         buttonFinishBattle.visibility = View.VISIBLE
     }

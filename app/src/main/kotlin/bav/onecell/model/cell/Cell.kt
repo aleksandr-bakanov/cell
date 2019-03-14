@@ -45,6 +45,10 @@ class Cell(private val hexMath: HexMath,
         updateOutlineHexes()
     }
 
+    fun clear() {
+        data.clear()
+    }
+
     fun hasHexesInBucket(type: Hex.Type): Boolean = (data.hexBucket[type.ordinal] ?: 0) > 0
 
     fun clone(): Cell = Cell(hexMath, data.clone(), battleData.clone())

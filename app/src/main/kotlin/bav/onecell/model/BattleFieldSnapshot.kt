@@ -22,6 +22,20 @@ data class BattleFieldSnapshot(
         // Bullets
         val bullets: MutableList<Bullet> = mutableListOf()) {
 
+    fun clear() {
+        cells.forEach { it.clear() }
+        corpses.forEach { it.clear() }
+        hexesToRemove.forEach { it.clear() }
+
+        cells.clear()
+        corpses.clear()
+        cellsActions.clear()
+        movingDirections.clear()
+        hexesToRemove.clear()
+        deathRays.clear()
+        bullets.clear()
+    }
+
     fun duration(): Int = /*actionsDuration() + */movementDuration() + deathRaysDuration() + hexRemovalDuration()
 
     fun movementDuration(): Int = if (movingDirections.isNotEmpty()) CELL_MOVING_DURATION_MS else 0

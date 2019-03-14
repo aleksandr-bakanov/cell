@@ -123,7 +123,7 @@ class BattleEngine(
     }
 
     //region Private methods
-    private fun getDeadOrAliveCells(snapshot: BattleFieldSnapshot): Map<Int, Boolean> {
+    private fun getDeadOrAliveCells(snapshot: BattleFieldSnapshot): MutableMap<Int, Boolean> {
         val deadOrAliveCells = mutableMapOf<Int, Boolean>()
         for (cell in snapshot.cells) deadOrAliveCells[cell.data.id.toInt()] = cell.battleData.isAlive
         for (corpse in snapshot.corpses) deadOrAliveCells[corpse.data.id.toInt()] = corpse.battleData.isAlive

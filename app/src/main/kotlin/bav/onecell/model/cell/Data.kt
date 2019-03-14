@@ -45,6 +45,12 @@ data class Data(
                              Hex.Type.ENERGY.ordinal to 5, Hex.Type.DEATH_RAY.ordinal to 5,
                              Hex.Type.OMNI_BULLET.ordinal to 5)) {
 
+    fun clear() {
+        hexes.clear()
+        rules.clear()
+        hexBucket.clear()
+    }
+
     companion object {
         private val pairIntAdapter = object : TypeAdapter<Pair<Int, Int>>(),
                                               InstanceCreator<Pair<Int, Int>>,
