@@ -73,8 +73,4 @@ interface Common {
     interface Analytics {
         fun setCurrentScreen(activity: Activity, screenName: String?, screenClassOverride: String?)
     }
-
-    interface Pools {
-        fun initialize()
-    }
 }
