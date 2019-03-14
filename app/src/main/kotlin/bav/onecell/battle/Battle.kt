@@ -25,7 +25,7 @@ interface Battle {
         /**
          * Returns map of frames with keys representing time in milliseconds from battle start.
          */
-        fun framesProvider(): Observable<Map<Long, FrameGraphics>>
+        fun framesProvider(): Observable<MutableMap<Long, FrameGraphics>>
 
         fun progressProvider(): Observable<Int>
 

@@ -26,10 +26,10 @@ class BattleGraphics(
     private val observableAreaHexPool: MutableList<Hex> = mutableListOf()
     private val observableAreaNeighborsPool: MutableList<Hex> = mutableListOf()
 
-    private val framesProvider: PublishSubject<Map<Long, FrameGraphics>> = PublishSubject.create()
+    private val framesProvider: PublishSubject<MutableMap<Long, FrameGraphics>> = PublishSubject.create()
     private val progressProvider: PublishSubject<Int> = PublishSubject.create()
 
-    override fun framesProvider(): Observable<Map<Long, FrameGraphics>> = framesProvider
+    override fun framesProvider(): Observable<MutableMap<Long, FrameGraphics>> = framesProvider
     override fun progressProvider(): Observable<Int> = progressProvider
 
     private var previous: Long = 0

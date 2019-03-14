@@ -163,12 +163,22 @@ class BattleFragment : Fragment(), Battle.View {
         pauseAnimation()
         frameGenerationJob?.cancel()
         frameGenerationJob = null
-        battleCanvasView.frames = null
+        clearBattleFrames()
+        Log.d(TAG, "onDestroyView")
         super.onDestroyView()
     }
     //endregion
 
     //region Private methods
+    private fun clearBattleFrames() {
+        battleCanvasView.frames?.let { frames ->
+            frames.values.forEach { it.clear() }
+            frames.clear()
+        }
+        battleCanvasView.frames = null
+        System.gc()
+    }
+
     private fun inject() {
         (requireActivity().application as OneCellApplication).appComponent
                 .plus(BattleModule(this))

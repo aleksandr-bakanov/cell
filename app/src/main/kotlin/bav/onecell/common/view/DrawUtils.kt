@@ -155,9 +155,31 @@ class DrawUtils(private val hexMath: HexMath, private val context: Context) {
             var energyHexes: MutableList<Path>? = null,
             var deathRayHexes: MutableList<Path>? = null,
             var omniBulletHexes: MutableList<Path>? = null,
-            var outline: List<Point>? = null,
-            var isFriendly: Boolean = false
-    )
+            var outline: MutableList<Point>? = null,
+            var isFriendly: Boolean = false) {
+
+        fun clear() {
+            lifeHexes?.forEach { it.reset() }
+            attackHexes?.forEach { it.reset() }
+            energyHexes?.forEach { it.reset() }
+            deathRayHexes?.forEach { it.reset() }
+            omniBulletHexes?.forEach { it.reset() }
+            
+            lifeHexes?.clear()
+            attackHexes?.clear()
+            energyHexes?.clear()
+            deathRayHexes?.clear()
+            omniBulletHexes?.clear()
+            outline?.clear()
+
+            lifeHexes = null
+            attackHexes = null
+            energyHexes = null
+            deathRayHexes = null
+            omniBulletHexes = null
+            outline = null
+        }
+    }
 
     fun getCellGraphicalRepresentation(cell: Cell): CellGraphicalPoints? {
         if (cell.data.hexes.isEmpty()) return null
@@ -374,7 +396,7 @@ class DrawUtils(private val hexMath: HexMath, private val context: Context) {
 
     private val neighbor = Hex()
     private val cellOrigin = Point()
-    private fun getCellOutline(cell: Cell, layout: Layout): List<Point> {
+    private fun getCellOutline(cell: Cell, layout: Layout): MutableList<Point> {
         val lines = mutableListOf<Point>()
 
         hexMath.hexToPixel(layout, hexMath.getHexByDirection(cell.animationData.moveDirection), offsetPoint)

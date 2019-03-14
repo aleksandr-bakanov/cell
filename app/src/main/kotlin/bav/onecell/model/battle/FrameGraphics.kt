@@ -5,8 +5,7 @@ import bav.onecell.common.view.DrawUtils
 import bav.onecell.model.hexes.Point
 
 /**
- * Состояние поля боя в определенный момент времени. Хексы всех клеток сгруппированы по типу.
- * Также как обводки.
+ * Состояние поля боя в определенный момент времени.
  */
 class FrameGraphics(
         // Living cells
@@ -23,5 +22,23 @@ class FrameGraphics(
         var bullets: MutableList<Path>? = null,
 
         // Fog
-        var fieldOfView: Path? = null
-)
+        var fieldOfView: Path? = null) {
+
+    fun clear() {
+        livingCells?.forEach { it.clear() }
+        corpses?.forEach { it.clear() }
+        bullets?.forEach { it.reset() }
+        fieldOfView?.reset()
+
+        livingCells?.clear()
+        corpses?.clear()
+        deathRays?.clear()
+        bullets?.clear()
+
+        livingCells = null
+        corpses = null
+        deathRays = null
+        bullets = null
+        fieldOfView = null
+    }
+}

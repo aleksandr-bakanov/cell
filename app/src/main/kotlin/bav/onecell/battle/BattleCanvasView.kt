@@ -33,7 +33,7 @@ class BattleCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
     private val corpseOmniBulletHexPaint = Paint()
     private val scaleGestureDetector = ScaleGestureDetector(context, ScaleListener(this))
     var scaleFactor: Float = 1f
-    var frames: Map<Long, FrameGraphics>? = null
+    var frames: MutableMap<Long, FrameGraphics>? = null
     var currentFrameGraphics: FrameGraphics? = null
     var transformedPath: Path = Path()
 
