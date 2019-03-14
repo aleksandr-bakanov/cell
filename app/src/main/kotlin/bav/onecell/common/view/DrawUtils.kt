@@ -1,6 +1,7 @@
 package bav.onecell.common.view
 
 import android.content.Context
+import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.BitmapShader
 import android.graphics.Canvas
@@ -143,9 +144,12 @@ class DrawUtils(private val hexMath: HexMath, private val context: Context) {
         setGroundShader(R.drawable.battle_background_skilos)
     }
 
+    private var groundBitmap: Bitmap? = null
+    private var groundShader: BitmapShader? = null
     fun setGroundShader(groundResourceId: Int) {
-        val groundBitmap = BitmapFactory.decodeResource(context.resources, groundResourceId)
-        val groundShader = BitmapShader(groundBitmap, Shader.TileMode.REPEAT, Shader.TileMode.REPEAT)
+        groundBitmap?.let { if (!it.isRecycled) it.recycle() }
+        groundBitmap = BitmapFactory.decodeResource(context.resources, groundResourceId)
+        groundShader = BitmapShader(groundBitmap!!, Shader.TileMode.REPEAT, Shader.TileMode.REPEAT)
         groundPaint.shader = groundShader
     }
 
