@@ -128,7 +128,7 @@ class BattleFragment : Fragment(), Battle.View {
                                                         seekBar.max = it.size
                                                         battleDuration = it.keys.max() ?: 0
                                                         setTimestampAndDrawFrame(0)
-                                                        progressBar.visibility = View.INVISIBLE
+                                                        progressBar.progress = progressBar.max
                                                         splashImage.visibility = View.INVISIBLE
 
                                                         reportBattleEnd(battleInfo)

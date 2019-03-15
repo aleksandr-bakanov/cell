@@ -68,16 +68,30 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@id/buttonPreviousStep"/>
 
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:progress="0"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:progressDrawable="@drawable/battle_view_progress_bar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="@id/buttonNextStep"
+        app:layout_constraintStart_toEndOf="@id/buttonNextStep"
+        app:layout_constraintEnd_toStartOf="@id/buttonFinishBattle" />
+
     <SeekBar
         android:id="@+id/seekBar"
         style="@style/Widget.AppCompat.SeekBar.Discrete"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:background="@android:color/transparent"
-        android:layout_margin="8dp"
         android:progressDrawable="@drawable/battle_view_seek_bar"
         android:thumb="@drawable/battle_view_seek_thumb"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="@id/buttonNextStep"
         app:layout_constraintStart_toEndOf="@id/buttonNextStep"
         app:layout_constraintEnd_toStartOf="@id/buttonFinishBattle"/>
 
@@ -86,6 +100,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
+        android:visibility="gone"
         app:srcCompat="@drawable/battle_background_loading" />
 
     <androidx.constraintlayout.widget.Guideline
@@ -101,17 +116,5 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.75" />
-
-    <ProgressBar
-        android:id="@+id/progressBar"
-        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:progress="0"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@id/guideline2"
-        app:layout_constraintStart_toStartOf="@id/guideline"
-        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
