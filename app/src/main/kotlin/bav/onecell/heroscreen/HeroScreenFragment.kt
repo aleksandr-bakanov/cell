@@ -12,6 +12,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import androidx.appcompat.widget.PopupMenu
+import androidx.core.content.ContextCompat
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -444,6 +445,12 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
 
         val cellLogicVisibility = isCellLogicViewsShown
         val editorVisibility = !isCellLogicViewsShown
+
+        buttonSwitchScreen.setImageDrawable(
+                ContextCompat.getDrawable(requireContext(),
+                                          if (!isCellLogicViewsShown) R.drawable.ic_button_brain
+                                          else R.drawable.ic_button_editor)
+        )
 
         /// TODO: energy hex is available not from the beginning
         for (view in arrayListOf<View>(radioButtonLifeHex, radioButtonAttackHex, radioButtonEnergyHex,
