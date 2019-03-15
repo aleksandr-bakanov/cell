@@ -19,5 +19,9 @@ class BattlePresenter(
     override fun initialize(params: String) {
         battleEngine.initialize(InitialBattleParams.fromJson(params))
     }
+
+    override fun stopBattleEvaluation() {
+        battleEngine.stopEvaluation()
+    }
     //endregion
 }

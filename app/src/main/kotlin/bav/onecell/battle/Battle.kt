@@ -19,6 +19,8 @@ interface Battle {
         fun initialize(params: String)
 
         fun battleResultsProvider(): Observable<BattleInfo>
+
+        fun stopBattleEvaluation()
     }
 
     interface FramesFactory {

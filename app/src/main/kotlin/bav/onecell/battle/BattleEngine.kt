@@ -19,7 +19,9 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.PublishSubject
 import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.yield
 import java.util.LinkedList
 import java.util.Queue
 import kotlin.math.PI
@@ -51,6 +53,7 @@ class BattleEngine(
     private val damageDealtByCells: MutableMap<Int, Int> = mutableMapOf()
     private var cellRepositoryDisposable: Disposable? = null
     private var isFog: Boolean = false
+    private var battleEvaluationJob: Job? = null
 
     //region Partial round steps
     private val battleRoundSteps: Queue<() -> Unit> = LinkedList<() -> Unit>()
@@ -103,6 +106,11 @@ class BattleEngine(
                 }
     }
 
+    fun stopEvaluation() {
+        battleEvaluationJob?.cancel()
+        battleEvaluationJob = null
+    }
+
     private fun startCalculation(params: InitialBattleParams) {
         val cellIndexes = params.cellIndexes
         // Make copy of cells
@@ -151,8 +159,9 @@ class BattleEngine(
     }
 
     private fun evaluateBattle() {
-        GlobalScope.launch {
+        battleEvaluationJob = GlobalScope.launch {
             while (!isBattleOver()) {
+                yield()
                 doFullStep()
             }
             val winnerGroupId =

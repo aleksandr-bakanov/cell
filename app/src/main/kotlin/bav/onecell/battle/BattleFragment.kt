@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SeekBar
+import android.util.Log
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import bav.onecell.OneCellApplication
@@ -33,9 +34,13 @@ import kotlinx.android.synthetic.main.fragment_battle.buttonNextStep
 import kotlinx.android.synthetic.main.fragment_battle.buttonPause
 import kotlinx.android.synthetic.main.fragment_battle.buttonPlay
 import kotlinx.android.synthetic.main.fragment_battle.buttonPreviousStep
+import kotlinx.android.synthetic.main.fragment_battle.calculationTextView
 import kotlinx.android.synthetic.main.fragment_battle.progressBar
 import kotlinx.android.synthetic.main.fragment_battle.seekBar
+import kotlinx.android.synthetic.main.fragment_battle.splashImage
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 import org.json.JSONObject
 import java.util.concurrent.TimeUnit
 
@@ -154,14 +159,16 @@ class BattleFragment : Fragment(), Battle.View {
                                                             frames[it.first] = it.second!!
                                                             if (frames.size == 1) {
                                                                 setTimestampAndDrawFrame(0)
+                                                                splashImage.visibility = View.GONE
+                                                                calculationTextView.visibility = View.GONE
                                                             }
                                                         }
                                                         else {
                                                             progressBar.progress = progressBar.max
-                                                            reportBattleEnd(battleInfo)
                                                         }
                                                     })
                             frameGenerationJob = framesFactory.generateFrames(battleInfo)
+                            reportBattleEnd(battleInfo)
                         })
 
         arguments?.let {
@@ -187,20 +194,28 @@ class BattleFragment : Fragment(), Battle.View {
     }
 
     override fun onDestroyView() {
-        frameGenerationJob?.cancel()
-        frameGenerationJob = null
+        GlobalScope.launch { cancelFrameGenerationJob() }
+        Log.d(TAG, "onDestroyView")
         pauseAnimation()
         disposables.dispose()
-        clearBattleFrames()
+        presenter.stopBattleEvaluation()
         super.onDestroyView()
     }
     //endregion
 
     //region Private methods
+    private suspend fun cancelFrameGenerationJob() {
+        frameGenerationJob?.cancel()
+        frameGenerationJob?.join()
+        frameGenerationJob = null
+        battleInfo?.clear()
+        battleInfo = null
+        clearBattleFrames()
+    }
+
     private fun clearBattleFrames() {
         frames.values.forEach { it.clear() }
         frames.clear()
-        battleCanvasView.frames = null
         System.gc()
     }
 
@@ -215,6 +230,7 @@ class BattleFragment : Fragment(), Battle.View {
     }
 
     private val reportBundle = Bundle()
+    private var battleInfo: BattleInfo? = null
     private fun reportBattleEnd(battleInfo: BattleInfo) {
         val dealtDamage: Map<Int, Int> = battleInfo.damageDealtByCells
         val deadOrAliveCells: Map<Int, Boolean> = battleInfo.deadOrAliveCells
@@ -227,7 +243,7 @@ class BattleFragment : Fragment(), Battle.View {
         reportBundle.putBoolean(BattleResultsFragment.IS_BATTLE_WON, battleInfo.winnerGroupId == Consts.HERO_GROUP_ID)
         reportBundle.putString(Consts.BATTLE_REWARD, reward)
 
-        battleInfo.clear()
+        this.battleInfo = battleInfo
 
         buttonFinishBattle.setOnClickListener { view ->
             view.findNavController().navigate(nextScene, reportBundle)
@@ -254,7 +270,7 @@ class BattleFragment : Fragment(), Battle.View {
     }
 
     private fun pauseAnimation() {
-        animationTimer?.let { if (!it.isDisposed) it.dispose() }
+        animationTimer?.dispose()
         buttonPause.visibility = View.INVISIBLE
         buttonPlay.visibility = View.VISIBLE
     }

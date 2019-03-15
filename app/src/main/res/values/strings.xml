@@ -18,6 +18,9 @@
     <string name="text_cell_name">\u0020</string>
     <string name="text_history_stub" translatable="false">\u0020</string>
 
+    <!-- Battle view -->
+    <string name="text_calculation">Evaluating battle…</string>
+
     <!-- Battle results view -->
     <string name="reward_title">Reward:</string>
     <string name="button_to_heroes_screen">Go</string>

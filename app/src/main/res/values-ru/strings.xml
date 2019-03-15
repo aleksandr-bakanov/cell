@@ -25,6 +25,9 @@
     <!-- Heroes view -->
     <string name="text_cell_name">\u0020</string>
 
+    <!-- Battle view -->
+    <string name="text_calculation">Просчитываем бой…</string>
+
     <!-- Battle results view -->
     <string name="reward_title">Награда</string>
     <string name="button_to_heroes_screen">Далее</string>
@@ -103,7 +106,7 @@
     <string name="cs_introduction_44">Клетка погибает если у нее не осталось жизненных ячеек.</string>
     <string name="cs_introduction_45">Также клетка погибает если связь жизненных ячеек разорвана.</string>
     <string name="cs_introduction_46">Бой завершается, когда в живых остаются только клетки принадлежащие одной группе.</string>
-    <string name="cs_introduction_47">В бою ты можешь только наблюдать за тем как сражаются клетки.</string>
+    <string name="cs_introduction_47">В бою можно только наблюдать за тем как сражаются клетки.</string>
     <string name="cs_introduction_48">Используй соответствующие кнопки и ползунок чтобы промотать бой.</string>
     <string name="cs_introduction_49">Союзники обведены синим, противники - красным цветом.</string>
     <string name="cs_introduction_50">Поле боя можно двигать, приближать и отдалять.</string>
@@ -118,7 +121,7 @@
     <string name="cs_after_gopniks_5">Полученные ячейки можно добавить в свою клетку, усилив её.</string>
     <string name="cs_after_gopniks_6">Клетку можно перестраивать как угодно, добавляя и удаляя из нее ячейки.</string>
     <string name="cs_after_gopniks_7">Главное не нарушать связанность жизненных ячеек.</string>
-    <string name="cs_after_gopniks_8">Ты открыл новый тип ячейки - атакующую (красную).</string>
+    <string name="cs_after_gopniks_8">Открыт новый тип ячеек - атакующая (красная).</string>
     <string name="cs_after_gopniks_9">Атакующие ячейки не обладают собственной силой.</string>
     <string name="cs_after_gopniks_10">Они черпают её из окружающих их ячеек.</string>
     <string name="cs_after_gopniks_11">Каждая соседняя жизненная ячейка добавляет единицу силы атакующей.</string>
@@ -206,7 +209,7 @@
     <string name="cs_analafro_5">........хсс-с........</string>
     <string name="cs_analafro_6">Кто здесь?</string>
     <string name="cs_analafro_7">Ты спрашиваешь кто здесь, даже не зная где ты находишься?</string>
-    <string name="cs_analafro_8">Что ж, позволь представится</string>
+    <string name="cs_analafro_8">Что ж, позволь представиться</string>
     <string name="cs_analafro_9">Я – великий демон Омихли, а ты кто такой и что ты делаешь в моих владениях?</string>
     <string name="cs_analafro_10">Я Киттаро и мне надо как можно скорей добраться до столицы.</string>
     <string name="cs_analafro_11">Этого не случится, еще никто не проходил сквозь мои земли, не заплатив за это!</string>
@@ -219,7 +222,7 @@
     <string name="cs_after_omikhli_1">Ага вон и пещеры, так все это время я был так близко!</string>
     <string name="cs_after_omikhli_2">Чертов демон, запутать меня хотел</string>
     <string name="cs_after_omikhli_3">Ладно, время подлечится и идти дальше</string>
-    <string name="cs_after_omikhli_4">Ты открыл новый тип ячеек - энергетические (желтые)</string>
+    <string name="cs_after_omikhli_4">Открыт новый тип ячеек - энергетические (желтые)</string>
     <string name="cs_after_omikhli_5">Они обладают силой 1, но что самое главное, дают силу атакующим ячейкам.</string>
     <string name="cs_after_omikhli_6">+2 каждой соседней, и +1 атакующим, находящимся на расстоянии 2.</string>
     <string name="cs_after_omikhli_7">Жизненные ячейки не могут соседствовать с двумя и более энергетическими.</string>
@@ -316,7 +319,7 @@
     <string name="cs_after_katofi_ponu_0">Что это было, чем они в нас стреляли?</string>
     <string name="cs_after_katofi_ponu_1">Это петалюбы активированные с помощью магии.</string>
     <string name="cs_after_katofi_ponu_2">Не знала что они довели исследования до опытных образцов...</string>
-    <string name="cs_after_katofi_ponu_3">Ты знаешь как ими управлять.</string>
+    <string name="cs_after_katofi_ponu_3">Ты знаешь как ими управлять?</string>
     <string name="cs_after_katofi_ponu_4">Да, это просто, так же как и Актинами.</string>
     <string name="cs_after_katofi_ponu_5">Просто повесь их куда-нибудь, а работать они будут сами.</string>
     <string name="cs_after_katofi_ponu_6">Звучит и впрямь просто.</string>
