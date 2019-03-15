@@ -26,10 +26,10 @@ class BattleGraphics(
     private val observableAreaHexPool: MutableList<Hex> = mutableListOf()
     private val observableAreaNeighborsPool: MutableList<Hex> = mutableListOf()
 
-    private val framesProvider: PublishSubject<MutableMap<Long, FrameGraphics>> = PublishSubject.create()
+    private val framesProvider: PublishSubject<Pair<Long, FrameGraphics?>> = PublishSubject.create()
     private val progressProvider: PublishSubject<Int> = PublishSubject.create()
 
-    override fun framesProvider(): Observable<MutableMap<Long, FrameGraphics>> = framesProvider
+    override fun framesProvider(): Observable<Pair<Long, FrameGraphics?>> = framesProvider
     override fun progressProvider(): Observable<Int> = progressProvider
 
     private var previous: Long = 0
@@ -47,7 +47,6 @@ class BattleGraphics(
 
     override fun generateFrames(battleInfo: BattleInfo): Job {
         return GlobalScope.launch {
-            val frames = mutableMapOf<Long, FrameGraphics>()
             val battleDuration = battleInfo.snapshots.sumBy { it.duration() }.toLong()
             val isFog = battleInfo.isFog
             val isBattleWon = battleInfo.winnerGroupId == Consts.HERO_GROUP_ID
@@ -156,10 +155,10 @@ class BattleGraphics(
                 }
 
                 // Save frame graphics
-                frames[timestamp] = frameGraphics
+                framesProvider.onNext(Pair(timestamp, frameGraphics))
             }
 
-            framesProvider.onNext(frames)
+            framesProvider.onNext(Pair(0, null))
         }
     }
 

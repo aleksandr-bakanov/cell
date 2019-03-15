@@ -271,7 +271,7 @@ class HeroScreenPresenter(
     override fun removeHexFromCell(hex: Hex) {
         cell?.let {
             if (gameRules.isAllowedToRemoveHexFromCell(it, hex)) {
-                val hexType = it.data.hexes[hex.mapKey]?.type ?: Hex.Type.REMOVE
+                val hexType = it.data.hexes[Pair(hex.q, hex.r)]?.type ?: Hex.Type.REMOVE
                 increaseHexesInBucket(hexType)
                 it.removeHex(hex)
                 it.evaluateCellHexesPower()

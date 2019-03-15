@@ -23,9 +23,9 @@ interface Battle {
 
     interface FramesFactory {
         /**
-         * Returns map of frames with keys representing time in milliseconds from battle start.
+         * Returns pairs keys representing time in milliseconds from battle start and values representing frames.
          */
-        fun framesProvider(): Observable<MutableMap<Long, FrameGraphics>>
+        fun framesProvider(): Observable<Pair<Long, FrameGraphics?>>
 
         fun progressProvider(): Observable<Int>
 

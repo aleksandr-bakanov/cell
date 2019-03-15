@@ -20,6 +20,7 @@ import bav.onecell.common.Consts.Companion.BATTLE_PARAMS
 import bav.onecell.common.Consts.Companion.NEXT_SCENE
 import bav.onecell.common.view.DrawUtils
 import bav.onecell.model.BattleInfo
+import bav.onecell.model.battle.FrameGraphics
 import bav.onecell.model.hexes.HexMath
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -57,6 +58,7 @@ class BattleFragment : Fragment(), Battle.View {
     private var currentTimestamp: Long = 0
     private var animationTimer: Disposable? = null
     private var frameGenerationJob: Job? = null
+    private val frames: MutableMap<Long, FrameGraphics> = mutableMapOf()
 
     private val seekBarListener = object : SeekBar.OnSeekBarChangeListener {
         override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
@@ -102,6 +104,7 @@ class BattleFragment : Fragment(), Battle.View {
 
         battleCanvasView.inject(hexMath, drawUtils)
         battleCanvasView.presenter = presenter
+        battleCanvasView.frames = frames
 
         seekBar.max = 0
         disposables.addAll(
@@ -112,6 +115,9 @@ class BattleFragment : Fragment(), Battle.View {
                             if (battleInfo.snapshots.size > 0) {
                                 battleCanvasView.backgroundFieldRadius = battleInfo.snapshots[0].cells.asSequence().map { it.size() }.sum()
                             }
+
+                            battleDuration = battleInfo.snapshots.sumBy { it.duration() }.toLong()
+                            seekBar.max = (0..battleDuration step TIME_BETWEEN_FRAMES_MS).count()
 
                             disposables.add(framesFactory.progressProvider()
                                                     .subscribeOn(Schedulers.io())
@@ -124,14 +130,16 @@ class BattleFragment : Fragment(), Battle.View {
                                                     .subscribeOn(Schedulers.io())
                                                     .observeOn(AndroidSchedulers.mainThread())
                                                     .subscribe {
-                                                        battleCanvasView.frames = it
-                                                        seekBar.max = it.size
-                                                        battleDuration = it.keys.max() ?: 0
-                                                        setTimestampAndDrawFrame(0)
-                                                        progressBar.progress = progressBar.max
-                                                        splashImage.visibility = View.INVISIBLE
-
-                                                        reportBattleEnd(battleInfo)
+                                                        if (it.second != null) {
+                                                            frames[it.first] = it.second!!
+                                                            if (frames.size == 1) {
+                                                                setTimestampAndDrawFrame(0)
+                                                            }
+                                                        }
+                                                        else {
+                                                            progressBar.progress = progressBar.max
+                                                            reportBattleEnd(battleInfo)
+                                                        }
                                                     })
                             frameGenerationJob = framesFactory.generateFrames(battleInfo)
                         })
@@ -159,22 +167,19 @@ class BattleFragment : Fragment(), Battle.View {
     }
 
     override fun onDestroyView() {
-        disposables.dispose()
-        pauseAnimation()
         frameGenerationJob?.cancel()
         frameGenerationJob = null
+        pauseAnimation()
+        disposables.dispose()
         clearBattleFrames()
-        Log.d(TAG, "onDestroyView")
         super.onDestroyView()
     }
     //endregion
 
     //region Private methods
     private fun clearBattleFrames() {
-        battleCanvasView.frames?.let { frames ->
-            frames.values.forEach { it.clear() }
-            frames.clear()
-        }
+        frames.values.forEach { it.clear() }
+        frames.clear()
         battleCanvasView.frames = null
         System.gc()
     }
@@ -233,7 +238,7 @@ class BattleFragment : Fragment(), Battle.View {
     }
 
     private fun drawFrame(timestamp: Long) {
-        battleCanvasView.drawFrame(timestamp)
+        if (frames.containsKey(timestamp)) battleCanvasView.drawFrame(timestamp)
     }
     //endregion
 
