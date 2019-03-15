@@ -105,10 +105,13 @@
         android:id="@+id/editorCanvasView"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginBottom="4dp"
+        android:layout_marginEnd="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/guideline_hero_screen_avatars_end"
-        app:layout_constraintTop_toBottomOf="@id/cellName" />
+        app:layout_constraintTop_toBottomOf="@id/guideline_hero_screen_cellname_bottom" />
 
     <TextView
         android:id="@+id/textHeroHistory"
