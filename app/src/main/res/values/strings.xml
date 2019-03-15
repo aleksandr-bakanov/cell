@@ -200,10 +200,10 @@
     <string name="cs_introduction_37">Now only vital (green) hexes are available to you.</string>
     <string name="cs_introduction_38">Each vital hex has a power equal to two.</string>
     <string name="cs_introduction_39">Every turn, the cells approach the nearest enemy by one hex.</string>
-    <string name="cs_introduction_40">When cells collide the strength of neighboring enemy hexes compares.</string>
-    <string name="cs_introduction_41">The weaker hex dies and is removed from the cell.</string>
+    <string name="cs_introduction_40">When cells collide the strength of neighboring enemy hexes are compared.</string>
+    <string name="cs_introduction_41">The weaker hex dies and gets removed from the cell.</string>
     <string name="cs_introduction_42">The power corresponding to the strength of the dead hex is subtracted from the more powerful hex.</string>
-    <string name="cs_introduction_43">If the hex forces are equal, both die.</string>
+    <string name="cs_introduction_43">If the strength of the hexes are equal, both die.</string>
     <string name="cs_introduction_44">A cell dies if it has no vital hexes left.</string>
     <string name="cs_introduction_45">Also the cell dies if the connection of the vital hexes is broken.</string>
     <string name="cs_introduction_46">The fight ends when only cells belonging to the same group remain alive.</string>
