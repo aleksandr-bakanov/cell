@@ -137,7 +137,8 @@ class CutSceneFragment : Fragment(), CutScene.View {
                                           yesNextFrame = data.optInt(YES_NEXT_FRAME, DEFAULT_NEXT_FRAME),
                                           noNextFrame = data.optInt(NO_NEXT_FRAME, DEFAULT_NEXT_FRAME),
                                           showPrevFrameButton = data.optBoolean(SHOW_PREV_FRAME_BUTTON, false),
-                                          isFinalFrame = data.optBoolean(FINAL_FRAME, false))
+                                          isFinalFrame = data.optBoolean(FINAL_FRAME, false),
+                                          textColor = resourceProvider.getColor(data.optString(COLOR)))
                 }
                 info.optJSONObject(GAME_STATE_CHANGES)?.let { gameStateChanges ->
                     // Changes should contain booleans
@@ -156,6 +157,8 @@ class CutSceneFragment : Fragment(), CutScene.View {
             background.setImageDrawable(ContextCompat.getDrawable(requireContext(), getBackground(it.background)))
             leftCharacter.setImageDrawable(ContextCompat.getDrawable(requireContext(), getLeftCharacter(it.left)))
             rightCharacter.setImageDrawable(ContextCompat.getDrawable(requireContext(), getRightCharacter(it.right)))
+
+            textView.setTextColor(it.textColor)
 
             // TODO: don't give a choice if decision has been taken already
             buttonYes.visible = it.decisionField.isNotEmpty()
@@ -253,6 +256,7 @@ class CutSceneFragment : Fragment(), CutScene.View {
         const val TEXT = "text"
         const val FRAMES = "frames"
         const val NEXT_FRAME = "nextFrame"
+        const val COLOR = "color"
 
         const val DECISION_FIELD = "decisionField"
         const val YES_NEXT_FRAME = "yesNextFrame"
@@ -281,5 +285,6 @@ class CutSceneFragment : Fragment(), CutScene.View {
                                  val yesNextFrame: Int = DEFAULT_NEXT_FRAME,
                                  val noNextFrame: Int = DEFAULT_NEXT_FRAME,
                                  val showPrevFrameButton: Boolean = false,
-                                 val isFinalFrame: Boolean = false)
+                                 val isFinalFrame: Boolean = false,
+                                 val textColor: Int = 0)
 }

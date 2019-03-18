@@ -32,6 +32,10 @@ interface Common {
 
         fun getString(id: Int): String?
         fun getString(name: String?): String?
+
+        fun getColorIdentifier(name: String?): Int?
+        fun getColor(id: Int?): Int
+        fun getColor(name: String?): Int
     }
 
     interface GameState {

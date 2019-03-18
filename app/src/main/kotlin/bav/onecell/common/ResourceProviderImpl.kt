@@ -1,6 +1,7 @@
 package bav.onecell.common
 
 import android.content.Context
+import android.graphics.Color
 import android.graphics.drawable.Drawable
 import androidx.core.content.ContextCompat
 import bav.onecell.R
@@ -103,9 +104,9 @@ class ResourceProviderImpl(private val context: Context): Common.ResourceProvide
         }
     }
 
-    override fun getDrawableIdentifier(name: String?): Int = context.resources.getIdentifier(name, "drawable", "bav.onecell")
-    override fun getIdIdentifier(name: String?): Int = context.resources.getIdentifier(name, "id", "bav.onecell")
-    override fun getStringIdentifier(name: String?): Int = context.resources.getIdentifier(name, "string", "bav.onecell")
+    override fun getDrawableIdentifier(name: String?): Int = context.resources.getIdentifier(name, DRAWABLE, APP_PACKAGE)
+    override fun getIdIdentifier(name: String?): Int = context.resources.getIdentifier(name, ID, APP_PACKAGE)
+    override fun getStringIdentifier(name: String?): Int = context.resources.getIdentifier(name, STRING, APP_PACKAGE)
 
     override fun getDrawable(id: Int): Drawable? = ContextCompat.getDrawable(context, id)
     override fun getString(id: Int): String? = context.resources.getString(id)
@@ -113,8 +114,17 @@ class ResourceProviderImpl(private val context: Context): Common.ResourceProvide
     override fun getString(name: String?): String? = getString(getStringIdentifier(name))
     override fun getDrawable(name: String?): Drawable? = getDrawable(getDrawableIdentifier(name))
 
+    override fun getColorIdentifier(name: String?): Int? = context.resources.getIdentifier(name, COLOR, APP_PACKAGE)
+    override fun getColor(id: Int?): Int = id?.let { ContextCompat.getColor(context, it) } ?: Color.WHITE
+    override fun getColor(name: String?): Int = if (name.isNullOrEmpty()) Color.WHITE else getColor(getColorIdentifier(name))
+
     companion object {
         private const val EMPTY_STRING = ""
         private const val TRANSPARENT_HEX = R.drawable.ic_semi_transparent_hex
+        private const val APP_PACKAGE = "bav.onecell"
+        private const val DRAWABLE = "drawable"
+        private const val ID = "id"
+        private const val STRING = "string"
+        private const val COLOR = "color"
     }
 }
