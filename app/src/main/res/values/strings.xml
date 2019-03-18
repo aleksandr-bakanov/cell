@@ -873,7 +873,8 @@
                 '8': { text: 'cs_final_act_8', left: 'ic_character_kittaro_normal', right: 'ic_character_king_speak', color: 'king' },
                 '9': { text: 'cs_final_act_9', background: 'cs_final_act_9', left: 'ic_character_chronicler_speak', color: 'chronicler' }
             },
-            next_scene: 'mainFragment'
+            next_scene: 'mainFragment',
+            gameStateChanges: { 'game_over': true, 'all_characters_available': true }
         }"
     </string>
     <string name="cs_final_act_0">Throne Room, final act</string>

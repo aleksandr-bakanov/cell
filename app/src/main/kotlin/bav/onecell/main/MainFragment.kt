@@ -36,14 +36,23 @@ class MainFragment : Fragment(), Main.View {
         super.onActivityCreated(savedInstanceState)
         inject()
 
-        buttonGoToBattle.setOnClickListener { view ->
-            view.findNavController().navigate(R.id.action_mainFragment_to_cellsForBattleFragment)
+        if (gameState.isDecisionPositive(Common.GameState.GAME_OVER)) {
+            buttonGoToBattle.setOnClickListener { view ->
+                view.findNavController().navigate(R.id.action_mainFragment_to_cellsForBattleFragment)
+            }
+            buttonGoToBattle.visibility = View.VISIBLE
+            buttonHeroScreen.setOnClickListener { view ->
+                view.findNavController().navigate(R.id.action_mainFragment_to_heroScreen)
+            }
+            buttonHeroScreen.visibility = View.VISIBLE
         }
+        else {
+            buttonGoToBattle.visibility = View.GONE
+            buttonHeroScreen.visibility = View.GONE
+        }
+
         buttonNewGame.setOnClickListener { view ->
             view.findNavController().navigate(R.id.action_mainFragment_to_newGameFragment)
-        }
-        buttonHeroScreen.setOnClickListener { view ->
-            view.findNavController().navigate(R.id.action_mainFragment_to_heroScreen)
         }
         buttonExitGame.setOnClickListener { requireActivity().finish() }
         buttonContinueGame.setOnClickListener {
@@ -60,7 +69,7 @@ class MainFragment : Fragment(), Main.View {
             })
         }
 
-        setDebugDecisions()
+        //setDebugDecisions()
     }
 
     override fun onResume() {
@@ -88,6 +97,7 @@ class MainFragment : Fragment(), Main.View {
         gameState.setDecision(Common.GameState.HEX_TRANSFORMATION_AVAILABLE, true)
         gameState.setDecision(Common.GameState.ZOI_AVAILABLE, true)
         gameState.setDecision(Common.GameState.ALL_CHARACTERS_AVAILABLE, true)
+        gameState.setDecision(Common.GameState.GAME_OVER, true)
     }
 
     companion object {

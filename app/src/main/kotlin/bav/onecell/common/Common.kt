@@ -68,6 +68,7 @@ interface Common {
             const val ZOI_AVAILABLE = "zoi_available"
             const val AIMA_AVAILABLE = "aima_available"
             const val ALL_CHARACTERS_AVAILABLE = "all_characters_available"
+            const val GAME_OVER = "game_over"
             const val HELP_GONATO = "help_gonato"
         }
 
