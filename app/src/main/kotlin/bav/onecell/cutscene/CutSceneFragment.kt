@@ -159,6 +159,7 @@ class CutSceneFragment : Fragment(), CutScene.View {
             leftCharacter.setImageDrawable(ContextCompat.getDrawable(requireContext(), getLeftCharacter(it.left)))
             rightCharacter.setImageDrawable(ContextCompat.getDrawable(requireContext(), getRightCharacter(it.right)))
 
+            textView.text = ""
             textView.setTextColor(it.textColor)
 
             // TODO: don't give a choice if decision has been taken already
