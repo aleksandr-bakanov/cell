@@ -282,13 +282,13 @@
     <string name="cs_after_nikhteribs_5">Ты хотел сказать к бывшей столице?</string>
     <string name="cs_after_nikhteribs_6">В смысле?</string>
     <string name="cs_after_nikhteribs_7">О... я не ожидал, что вести распространяются настолько медленно.</string>
-    <string name="cs_after_nikhteribs_8">Видишь ли, столицу недавно перенесли из Кардьи.</string>
+    <string name="cs_after_nikhteribs_8">Видишь ли, столицу недавно перенесли из Кардии.</string>
     <string name="cs_after_nikhteribs_9">Так значит королевский замок теперь еще дальше?</string>
     <string name="cs_after_nikhteribs_10">Боюсь что так.</string>
     <string name="cs_after_nikhteribs_11">Тогда тем более надо поторапливаться. Вперед!</string>
 
     <!-- Cut scene Kardia -->
-    <string name="cs_kardia_0">Бывшая столица Кардья.</string>
+    <string name="cs_kardia_0">Бывшая столица Кардия.</string>
     <string name="cs_kardia_1">Ух-ты, ты только глянь на эти дома!</string>
     <string name="cs_kardia_2">Нам лучше здесь не задерживаться.</string>
     <string name="cs_kardia_3">Почему?</string>
@@ -323,13 +323,15 @@
     <string name="cs_after_drunkards_18">Киттаро, познакомься, моя ученица Айма.</string>
     <string name="cs_after_drunkards_19">Тебе, Зои, её представлять нет смысла.</string>
     <string name="cs_after_drunkards_20">Нет. Так как я дух, я почти вездесущ, а это значит что мне известно многое и я знаю многих.</string>
-    <string name="cs_after_drunkards_21">Я помню её ещё девочкой, в те времена по моим пещерах ещё можно было безбоязненно гулять и собирать петалюбы...</string>
-    <string name="cs_after_drunkards_22">Ладно, ладно, знаем мы историю.</string>
-    <string name="cs_after_drunkards_23">Если духа вовремя не остановить, он вам всю свою жизнь расскажет, уж поверьте.</string>
-    <string name="cs_after_drunkards_24">Киттаро возьми эти артефакты - это Актины, у меня их как раз три, Айма объяснит как ими пользоваться.</string>
-    <string name="cs_after_drunkards_25">Актины - это хексы, которые можно ставить в любое место клетки.</string>
-    <string name="cs_after_drunkards_26">Если два актина из дружественных клеток сближаются на расстояние 50 или меньше,</string>
-    <string name="cs_after_drunkards_27">между ними возникает луч, поражающий врагов на 10 единиц.</string>
+    <string name="cs_after_drunkards_21">Я помню её ещё девочкой</string>
+    <string name="cs_after_drunkards_22">В те времена по моим пещерам ещё можно было безбоязненно гулять и собирать петалюбы...</string>
+    <string name="cs_after_drunkards_23">Ладно, ладно, знаем мы историю.</string>
+    <string name="cs_after_drunkards_24">Если духа вовремя не остановить, он вам всю свою жизнь расскажет, уж поверьте.</string>
+    <string name="cs_after_drunkards_25">Киттаро возьми эти артефакты - это Актины, у меня их как раз три,</string>
+    <string name="cs_after_drunkards_26">Айма объяснит как ими пользоваться.</string>
+    <string name="cs_after_drunkards_27">Актины - это хексы, которые можно ставить в любое место клетки.</string>
+    <string name="cs_after_drunkards_28">Если два актина из дружественных клеток сближаются на расстояние 50 или меньше,</string>
+    <string name="cs_after_drunkards_29">между ними возникает луч, поражающий врагов на 10 единиц.</string>
 
     <!-- Cut scene Laimo -->
     <string name="cs_laimo_0">Лаймо, поселок близ столицы</string>

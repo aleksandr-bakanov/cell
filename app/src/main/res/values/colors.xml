@@ -52,19 +52,19 @@
 
     <!-- Cut scene view -->
     <color name="cutSceneTextFieldShadow">#000000</color>
-    <color name="cutSceneTextFieldBackground">#5a000000</color>
-    <color name="kittaro">#eaff91</color>
-    <color name="oldMan">#ffd791</color>
-    <color name="gopnik">#c6cfc1</color>
-    <color name="skilos">#ffbd91</color>
-    <color name="gonatoOldMan">#ffd791</color>
+    <color name="cutSceneTextFieldBackground">#80000000</color>
+    <color name="kittaro">#CBFF00</color>
+    <color name="oldMan">#FFB332</color>
+    <color name="gopnik">#B7C48D</color>
+    <color name="skilos">#FC9456</color>
+    <color name="gonatoOldMan">#F1AB41</color>
     <color name="omikhli">#d9a1ef</color>
     <color name="zoi">#9191ff</color>
-    <color name="drunkard">#cfc8c1</color>
+    <color name="drunkard">#FF734E</color>
     <color name="palmos">#fffc91</color>
-    <color name="aima">#ffbd91</color>
+    <color name="aima">#FFAF47</color>
     <color name="katofiPonu">#91beff</color>
-    <color name="mage">#ff9193</color>
-    <color name="king">#fffb91</color>
-    <color name="chronicler">#d9d1b7</color>
+    <color name="mage">#FF3438</color>
+    <color name="king">#FDF864</color>
+    <color name="chronicler">#FCF4D7</color>
 </resources>
