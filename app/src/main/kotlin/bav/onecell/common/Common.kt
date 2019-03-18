@@ -55,6 +55,8 @@ interface Common {
 
         fun setCutSceneShown(cutSceneId: String)
         fun isCutSceneAlreadyShown(cutSceneId: String): Boolean
+        fun setIgnoreCutSceneShownStatus(status: Boolean)
+        fun getIgnoreCutSceneShownStatus(): Boolean
 
         companion object {
             const val BATTLE_LOGIC_AVAILABLE = "battle_logic_available"

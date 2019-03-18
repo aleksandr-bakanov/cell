@@ -2,7 +2,7 @@
     <string name="app_name">Kittaro\'s message</string>
 
     <!-- Main view -->
-    <string name="button_go_to_battle_title">Battle</string>
+    <string name="button_go_to_battle_title">Scenes</string>
     <string name="button_new_game_title">New game</string>
     <string name="button_hero_screen_title">Heroes</string>
     <string name="button_exit_game_title">Exit game</string>
@@ -17,6 +17,33 @@
     <!-- Heroes view -->
     <string name="text_cell_name">\u0020</string>
     <string name="text_history_stub" translatable="false">\u0020</string>
+
+    <!-- Scenes View -->
+    <string name="scene_gopnik_battle">Battle with gopniks</string>
+    <string name="scene_skilos_battle">Battle with skiloses</string>
+    <string name="scene_belos_battle">Battle with Belos</string>
+    <string name="scene_omikhli_battle">Battle with Omikhli</string>
+    <string name="scene_nihterib_battle">Battle with nihteribs</string>
+    <string name="scene_drunkards_battle">Battle with drunkards</string>
+    <string name="scene_katofi_ponu_battle">Battle with Katofi Ponu</string>
+    <string name="scene_mage_battle">Battle with Mage</string>
+
+    <string name="scene_introduction">Introduction</string>
+    <string name="scene_after_gopniks">After gopniks</string>
+    <string name="scene_before_skilos">Before skiloses</string>
+    <string name="scene_after_skilos">After skiloses</string>
+    <string name="scene_gonato">Gonato village</string>
+    <string name="scene_after_belos">After Belos</string>
+    <string name="scene_analafro">Analafro</string>
+    <string name="scene_after_omikhli">After Omikhli</string>
+    <string name="scene_kilia">Kilia</string>
+    <string name="scene_after_nihteribs">After nihteribs</string>
+    <string name="scene_kardia">Kardia</string>
+    <string name="scene_after_drunkards">After drunkards</string>
+    <string name="scene_laimo">Laimo</string>
+    <string name="scene_after_katofi_ponu">After Katofi Ponu</string>
+    <string name="scene_enkefalio">Enkefalio</string>
+    <string name="scene_final_act">Final act</string>
 
     <!-- Battle view -->
     <string name="text_calculation">Evaluating battle…</string>
@@ -643,7 +670,7 @@
     <string name="cs_kardia_1">Wow, you just look at these houses!</string>
     <string name="cs_kardia_2">We\'d better not stay here.</string>
     <string name="cs_kardia_3">Why?</string>
-    <string name="cs_kardia_4">Local do not like strangers, especially those like us.</string>
+    <string name="cs_kardia_4">Locals do not like strangers, especially those like us.</string>
     <string name="cs_kardia_5">What\'s wrong with us?</string>
     <string name="cs_kardia_6">Hey, salagi, where did you come from?</string>
     <string name="cs_kardia_7">So that\'s what you meant.</string>
@@ -847,10 +874,10 @@
     </string>
     <string name="cs_final_act_0">Throne Room, final act</string>
     <string name="cs_final_act_1">Who are you and what do you need?</string>
-    <string name="cs_final_act_2">Your Majesty, my name is Kittaro, I come from the village of Fterna, the province of Podi.</string>
+    <string name="cs_final_act_2">Your Majesty, my name is Kittaro, I\'ve come from the village of Fterna, the province of Podi.</string>
     <string name="cs_final_act_3">Our elder asked me to deliver this message to you.</string>
     <string name="cs_final_act_4">Let my chronicler read it.</string>
-    <string name="cs_final_act_5">It can not be...</string>
+    <string name="cs_final_act_5">It cannot be...</string>
     <string name="cs_final_act_6">What is there? Come on, I have no time for this!</string>
     <string name="cs_final_act_7">Your Majesty...</string>
     <string name="cs_final_act_8">Come on!</string>

@@ -78,7 +78,7 @@ class CutSceneFragment : Fragment(), CutScene.View {
 
     override fun onStart() {
         super.onStart()
-        if (gameState.isCutSceneAlreadyShown(cutSceneId)) {
+        if (!gameState.getIgnoreCutSceneShownStatus() && gameState.isCutSceneAlreadyShown(cutSceneId)) {
             findNavController().navigate(takeNextScene())
         }
     }
@@ -153,6 +153,7 @@ class CutSceneFragment : Fragment(), CutScene.View {
     }
 
     private fun showFrame(index: Int) {
+        Log.d(TAG, "showFrame($index)")
         frames[index]?.let {
             background.setImageDrawable(ContextCompat.getDrawable(requireContext(), getBackground(it.background)))
             leftCharacter.setImageDrawable(ContextCompat.getDrawable(requireContext(), getLeftCharacter(it.left)))

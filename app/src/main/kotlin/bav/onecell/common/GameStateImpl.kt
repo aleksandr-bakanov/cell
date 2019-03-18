@@ -8,9 +8,11 @@ class GameStateImpl(private val context: Context,
                     private val preferences: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)): Common.GameState {
 
     private var skipSaveLastNavDestination = false
+    private var isIgnoreCutSceneShownStatus = false
 
     override fun dropGameState() {
         preferences.edit().clear().apply()
+        isIgnoreCutSceneShownStatus = false
     }
 
     override fun getLastNavDestinationId(): Int = preferences.getInt(LAST_NAV_DESTINATION_ID, 0)
@@ -51,6 +53,11 @@ class GameStateImpl(private val context: Context,
 
     override fun setCutSceneShown(cutSceneId: String) = preferences.edit().putBoolean(cutSceneId, true).apply()
     override fun isCutSceneAlreadyShown(cutSceneId: String): Boolean = preferences.getBoolean(cutSceneId, false)
+
+    override fun setIgnoreCutSceneShownStatus(status: Boolean) {
+        isIgnoreCutSceneShownStatus = status
+    }
+    override fun getIgnoreCutSceneShownStatus(): Boolean = isIgnoreCutSceneShownStatus
 
     companion object {
         private const val FIRST_TIME_APP_LAUNCH = "first_time_app_launch"

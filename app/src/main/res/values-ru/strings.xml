@@ -3,7 +3,7 @@
     <string name="app_name">Послание Киттаро</string>
 
     <!-- Main view -->
-    <string name="button_go_to_battle_title">Бой</string>
+    <string name="button_go_to_battle_title">Сцены</string>
     <string name="button_new_game_title">Новая игра</string>
     <string name="button_hero_screen_title">Герои</string>
     <string name="button_exit_game_title">Выход</string>
@@ -24,6 +24,33 @@
 
     <!-- Heroes view -->
     <string name="text_cell_name">\u0020</string>
+
+    <!-- Scenes View -->
+    <string name="scene_gopnik_battle">Бой с гопниками</string>
+    <string name="scene_skilos_battle">Бой со скилосами</string>
+    <string name="scene_belos_battle">Бой с Белосом</string>
+    <string name="scene_omikhli_battle">Бой с Омихли</string>
+    <string name="scene_nihterib_battle">Бой с нихтерибами</string>
+    <string name="scene_drunkards_battle">Бой с пьяницами</string>
+    <string name="scene_katofi_ponu_battle">Бой с Катофи Пону</string>
+    <string name="scene_mage_battle">Бой с магом</string>
+
+    <string name="scene_introduction">Вступление</string>
+    <string name="scene_after_gopniks">После гопников</string>
+    <string name="scene_before_skilos">До скилосов</string>
+    <string name="scene_after_skilos">После скилосов</string>
+    <string name="scene_gonato">Деревня Гонато</string>
+    <string name="scene_after_belos">После Белоса</string>
+    <string name="scene_analafro">Аналафро</string>
+    <string name="scene_after_omikhli">После Омихли</string>
+    <string name="scene_kilia">Килия</string>
+    <string name="scene_after_nihteribs">После нихтерибов</string>
+    <string name="scene_kardia">Кардия</string>
+    <string name="scene_after_drunkards">После пьяниц</string>
+    <string name="scene_laimo">Лаймо</string>
+    <string name="scene_after_katofi_ponu">После Катофи Пону</string>
+    <string name="scene_enkefalio">Энкефальо</string>
+    <string name="scene_final_act">Заключительный акт</string>
 
     <!-- Battle view -->
     <string name="text_calculation">Просчитываем бой…</string>

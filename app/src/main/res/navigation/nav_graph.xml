@@ -18,7 +18,7 @@
             app:destination="@id/newGameFragment" />
         <action
             android:id="@+id/action_mainFragment_to_cellsForBattleFragment"
-            app:destination="@id/cellsForBattleFragment" />
+            app:destination="@id/scenesFragment" />
     </fragment>
     <fragment
         android:id="@+id/newGameFragment"
@@ -52,14 +52,10 @@
             app:destination="@id/battleResultsFragment" />
     </fragment>
     <fragment
-        android:id="@+id/cellsForBattleFragment"
-        android:name="bav.onecell.cellslist.cellselection.CellsForBattleFragment"
-        android:label="Cells for battle choose"
-        tools:layout="@layout/fragment_choose_cells_for_battle">
-        <action
-            android:id="@+id/action_cellsForBattleFragment_to_battleFragment"
-            app:destination="@id/battleFragment" />
-    </fragment>
+        android:id="@+id/scenesFragment"
+        android:name="bav.onecell.cellslist.cellselection.ScenesFragment"
+        android:label="Scenes choose screen"
+        tools:layout="@layout/fragment_scenes"></fragment>
     <fragment
         android:id="@+id/battleResultsFragment"
         android:name="bav.onecell.battle.results.BattleResultsFragment"

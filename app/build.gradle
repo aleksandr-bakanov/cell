@@ -83,8 +83,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-core:16.0.7'
     implementation 'com.crashlytics.sdk.android:crashlytics:2.9.9'
 
-    // Stormpot
-    implementation 'com.github.chrisvest:stormpot:2.4.1'
+    // Flow layout
+    implementation 'com.nex3z:flow-layout:1.2.4'
 
     // Tests
     testImplementation 'junit:junit:4.12'

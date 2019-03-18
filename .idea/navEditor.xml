@@ -384,27 +384,6 @@
                       </LayoutPositions>
                     </value>
                   </entry>
-                  <entry key="cellsForBattleFragment">
-                    <value>
-                      <LayoutPositions>
-                        <option name="myPosition">
-                          <Point>
-                            <option name="x" value="-77" />
-                            <option name="y" value="-656" />
-                          </Point>
-                        </option>
-                        <option name="myPositions">
-                          <map>
-                            <entry key="action_cellsForBattleFragment_to_battleFragment">
-                              <value>
-                                <LayoutPositions />
-                              </value>
-                            </entry>
-                          </map>
-                        </option>
-                      </LayoutPositions>
-                    </value>
-                  </entry>
                   <entry key="cutSceneAfterBelos">
                     <value>
                       <LayoutPositions>
@@ -948,6 +927,18 @@
                               </value>
                             </entry>
                           </map>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="scenesFragment">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="-77" />
+                            <option name="y" value="-656" />
+                          </Point>
                         </option>
                       </LayoutPositions>
                     </value>

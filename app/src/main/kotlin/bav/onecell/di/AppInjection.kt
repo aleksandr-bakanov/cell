@@ -5,8 +5,8 @@ import bav.onecell.battle.BattleModule
 import bav.onecell.battle.BattleSubcomponent
 import bav.onecell.battle.results.BattleResultsModule
 import bav.onecell.battle.results.BattleResultsSubcomponent
-import bav.onecell.cellslist.CellsListModule
-import bav.onecell.cellslist.CellsListSubcomponent
+import bav.onecell.cellslist.ScenesModule
+import bav.onecell.cellslist.ScenesSubcomponent
 import bav.onecell.common.CommonModule
 import bav.onecell.common.storage.StorageModule
 import bav.onecell.cutscene.CutSceneModule
@@ -27,10 +27,10 @@ import javax.inject.Singleton
 interface AppComponent {
     fun plus(mainModule: MainModule): MainSubcomponent
     fun plus(battleModule: BattleModule): BattleSubcomponent
-    fun plus(cellsListModule: CellsListModule): CellsListSubcomponent
     fun plus(cutSceneModule: CutSceneModule): CutSceneSubcomponent
     fun plus(battleResultsModule: BattleResultsModule): BattleResultsSubcomponent
     fun plus(heroScreenModule: HeroScreenModule): HeroScreenSubcomponent
+    fun plus(scenesModule: ScenesModule): ScenesSubcomponent
 }
 
 @Module
