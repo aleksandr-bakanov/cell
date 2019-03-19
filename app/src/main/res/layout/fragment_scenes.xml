@@ -4,10 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.nex3z.flowlayout.FlowLayout
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+    <com.nex3z.flowlayout.FlowLayout xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_margin="4dp"
         app:flChildSpacing="auto"
         app:flChildSpacingForLastRow="align"
         app:flRowSpacing="8dp">
@@ -16,144 +16,192 @@
             android:id="@+id/buttonStartIntroduction"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/button_main_menu_background"
+            android:padding="@dimen/button_padding"
             android:text="@string/scene_introduction" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/buttonStartBattleWithGopniks"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/button_main_menu_background"
+            android:padding="@dimen/button_padding"
             android:text="@string/scene_gopnik_battle" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/buttonStartAfterGopniks"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/button_main_menu_background"
+            android:padding="@dimen/button_padding"
             android:text="@string/scene_after_gopniks" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/buttonStartBeforeSkilos"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/button_main_menu_background"
+            android:padding="@dimen/button_padding"
             android:text="@string/scene_before_skilos" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/buttonStartBattleWithSkilos"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/button_main_menu_background"
+            android:padding="@dimen/button_padding"
             android:text="@string/scene_skilos_battle" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/buttonStartAfterSkilos"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/button_main_menu_background"
+            android:padding="@dimen/button_padding"
             android:text="@string/scene_after_skilos" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/buttonStartGonato"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/button_main_menu_background"
+            android:padding="@dimen/button_padding"
             android:text="@string/scene_gonato" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/buttonStartBattleWithBelos"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/button_main_menu_background"
+            android:padding="@dimen/button_padding"
             android:text="@string/scene_belos_battle" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/buttonStartAfterBelos"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/button_main_menu_background"
+            android:padding="@dimen/button_padding"
             android:text="@string/scene_after_belos" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/buttonStartAnalafro"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/button_main_menu_background"
+            android:padding="@dimen/button_padding"
             android:text="@string/scene_analafro" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/buttonStartBattleWithOmikhli"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/button_main_menu_background"
+            android:padding="@dimen/button_padding"
             android:text="@string/scene_omikhli_battle" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/buttonStartAfterOmikhli"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/button_main_menu_background"
+            android:padding="@dimen/button_padding"
             android:text="@string/scene_after_omikhli" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/buttonStartKilia"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/button_main_menu_background"
+            android:padding="@dimen/button_padding"
             android:text="@string/scene_kilia" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/buttonStartBattleWithNikhteribs"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/button_main_menu_background"
+            android:padding="@dimen/button_padding"
             android:text="@string/scene_nihterib_battle" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/buttonStartAfterNihteribs"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/button_main_menu_background"
+            android:padding="@dimen/button_padding"
             android:text="@string/scene_after_nihteribs" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/buttonStartKardia"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/button_main_menu_background"
+            android:padding="@dimen/button_padding"
             android:text="@string/scene_kardia" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/buttonStartBattleWithDrunkards"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/button_main_menu_background"
+            android:padding="@dimen/button_padding"
             android:text="@string/scene_drunkards_battle" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/buttonStartAfterDrunkards"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/button_main_menu_background"
+            android:padding="@dimen/button_padding"
             android:text="@string/scene_after_drunkards" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/buttonStartLaimo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/button_main_menu_background"
+            android:padding="@dimen/button_padding"
             android:text="@string/scene_laimo" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/buttonStartBattleWithKatofiPonu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/button_main_menu_background"
+            android:padding="@dimen/button_padding"
             android:text="@string/scene_katofi_ponu_battle" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/buttonStartAfterKatofiPonu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/button_main_menu_background"
+            android:padding="@dimen/button_padding"
             android:text="@string/scene_after_katofi_ponu" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/buttonStartEnkefalio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/button_main_menu_background"
+            android:padding="@dimen/button_padding"
             android:text="@string/scene_enkefalio" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/buttonStartBattleWithMage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/button_main_menu_background"
+            android:padding="@dimen/button_padding"
             android:text="@string/scene_mage_battle" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/buttonStartFinalAct"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/button_main_menu_background"
+            android:padding="@dimen/button_padding"
             android:text="@string/scene_final_act" />
 
     </com.nex3z.flowlayout.FlowLayout>
