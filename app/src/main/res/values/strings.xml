@@ -877,14 +877,14 @@
                 '12': { text: 'cs_final_act_9', background: 'cs_final_act_12' },
                 '13': { text: 'cs_final_act_9', background: 'cs_final_act_13' },
                 '14': { text: 'cs_final_act_9', background: 'cs_final_act_14' },
-                '15': { text: 'cs_final_act_9', background: 'cs_introduction_12' }
+                '15': { text: 'cs_final_act_9', background: 'cs_introduction_12', animation: ['cs_introduction_12', 'cs_introduction_12_1'] }
             },
             next_scene: 'mainFragment',
             gameStateChanges: { 'game_over': true, 'all_characters_available': true }
         }"
     </string>
-    <string name="cs_final_act_0">Throne Room, final act</string>
-    <string name="cs_final_act_1">Who are you and what do you need?</string>
+    <string name="cs_final_act_0">Throne room, final act</string>
+    <string name="cs_final_act_1">Who are you and what do you want?</string>
     <string name="cs_final_act_2">Your Majesty, my name is Kittaro, I\'ve come from the village of Fterna, the province of Podi.</string>
     <string name="cs_final_act_3">Our elder asked me to deliver this message to you.</string>
     <string name="cs_final_act_4">Let my chronicler read it.</string>

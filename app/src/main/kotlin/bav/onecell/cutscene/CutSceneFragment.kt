@@ -58,6 +58,10 @@ class CutSceneFragment : Fragment(), CutScene.View {
     private var currentFrameTextIndex: Int = 0
     private var currentFrameText: String? = null
 
+    private var animationDisposable: Disposable? = null
+    private var animationFrames: List<Int>? = null
+    private var currentAnimationFrame: Int = 0
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_cut_scene, container, false)
@@ -94,6 +98,7 @@ class CutSceneFragment : Fragment(), CutScene.View {
         gameState.setCurrentFrame(currentFrameIndex)
         gameState.setLastNavDestinationId(findNavController().currentDestination?.id ?: 0)
         stopTextTimer()
+        stopAnimationTimer()
         super.onPause()
     }
 
@@ -104,6 +109,11 @@ class CutSceneFragment : Fragment(), CutScene.View {
 
     private fun stopTextTimer() {
         animationTimer?.let { if (!it.isDisposed) it.dispose() }
+    }
+
+    private fun stopAnimationTimer() {
+        animationDisposable?.let { if (!it.isDisposed) it.dispose() }
+        animationDisposable = null
     }
 
     private fun inject() {
@@ -130,7 +140,7 @@ class CutSceneFragment : Fragment(), CutScene.View {
                 val framesMap = info.getJSONObject(FRAMES)
                 for (i in framesMap.keys()) {
                     val data = framesMap.getJSONObject(i)
-                    frames[i.toInt()] = FrameData(text = data.optString(TEXT), background = data.optString(BACKGROUND),
+                    val frameData = FrameData(text = data.optString(TEXT), background = data.optString(BACKGROUND),
                                           left = data.optString(LEFT), right = data.optString(RIGHT),
                                           nextFrame = data.optInt(NEXT_FRAME, DEFAULT_NEXT_FRAME),
                                           decisionField = data.optString(DECISION_FIELD),
@@ -139,6 +149,13 @@ class CutSceneFragment : Fragment(), CutScene.View {
                                           showPrevFrameButton = data.optBoolean(SHOW_PREV_FRAME_BUTTON, false),
                                           isFinalFrame = data.optBoolean(FINAL_FRAME, false),
                                           textColor = resourceProvider.getColor(data.optString(COLOR)))
+                    data.optJSONArray(ANIMATION)?.let { animation ->
+                        frameData.animation = mutableListOf()
+                        for (k in 0 until animation.length()) {
+                            frameData.animation?.add(resourceProvider.getDrawableIdentifier(animation.getString(k)))
+                        }
+                    }
+                    frames[i.toInt()] = frameData
                 }
                 info.optJSONObject(GAME_STATE_CHANGES)?.let { gameStateChanges ->
                     // Changes should contain booleans
@@ -154,12 +171,26 @@ class CutSceneFragment : Fragment(), CutScene.View {
 
     private fun showFrame(index: Int) {
         frames[index]?.let {
-            background.setImageDrawable(ContextCompat.getDrawable(requireContext(), getBackground(it.background)))
+            stopAnimationTimer()
+            it.animation?.let { animation ->
+                animationFrames = animation
+                currentAnimationFrame = 0
+                animationDisposable = Observable.interval(0L, ANIMATION_FRAME_STEP, TimeUnit.MILLISECONDS)
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe {
+                            if (currentAnimationFrame == animationFrames?.size) {
+                                currentAnimationFrame = 0
+                            }
+                            animationFrames?.let { anims ->
+                                background.setImageDrawable(ContextCompat.getDrawable(requireContext(), anims[currentAnimationFrame]))
+                            }
+                            currentAnimationFrame++
+                        }
+            } ?: background.setImageDrawable(ContextCompat.getDrawable(requireContext(), getBackground(it.background)))
+
             leftCharacter.setImageDrawable(ContextCompat.getDrawable(requireContext(), getLeftCharacter(it.left)))
             rightCharacter.setImageDrawable(ContextCompat.getDrawable(requireContext(), getRightCharacter(it.right)))
-
-            textView.text = ""
-            textView.setTextColor(it.textColor)
 
             // TODO: don't give a choice if decision has been taken already
             buttonYes.visible = it.decisionField.isNotEmpty()
@@ -169,6 +200,8 @@ class CutSceneFragment : Fragment(), CutScene.View {
 
             buttonPreviousFrame.visibility = if (it.showPrevFrameButton) View.VISIBLE else View.GONE
 
+            textView.text = ""
+            textView.setTextColor(it.textColor)
             currentFrameText = resourceProvider.getString(it.text)
             currentFrameTextIndex = 0
             stopTextTimer()
@@ -258,6 +291,7 @@ class CutSceneFragment : Fragment(), CutScene.View {
         const val FRAMES = "frames"
         const val NEXT_FRAME = "nextFrame"
         const val COLOR = "color"
+        const val ANIMATION = "animation"
 
         const val DECISION_FIELD = "decisionField"
         const val YES_NEXT_FRAME = "yesNextFrame"
@@ -268,6 +302,7 @@ class CutSceneFragment : Fragment(), CutScene.View {
         const val DEFAULT_NEXT_FRAME = -1
 
         private const val TEXT_ANIMATION_STEP: Long = 30L
+        private const val ANIMATION_FRAME_STEP: Long = 750L
 
         @JvmStatic
         fun newInstance(bundle: Bundle?): CutSceneFragment {
@@ -287,5 +322,6 @@ class CutSceneFragment : Fragment(), CutScene.View {
                                  val noNextFrame: Int = DEFAULT_NEXT_FRAME,
                                  val showPrevFrameButton: Boolean = false,
                                  val isFinalFrame: Boolean = false,
-                                 val textColor: Int = 0)
+                                 val textColor: Int = 0,
+                                 var animation: MutableList<Int>? = null)
 }
