@@ -2,7 +2,7 @@
     <string name="app_name">Kittaro\'s message</string>
 
     <!-- Main view -->
-    <string name="button_go_to_battle_title">Scenes</string>
+    <string name="button_go_to_scenes_title">Scenes</string>
     <string name="button_new_game_title">New game</string>
     <string name="button_hero_screen_title">Heroes</string>
     <string name="button_exit_game_title">Exit game</string>
@@ -871,7 +871,13 @@
                 '6': { text: 'cs_final_act_6', left: 'ic_character_kittaro_normal', right: 'ic_character_king_speak', color: 'king' },
                 '7': { text: 'cs_final_act_7', left: 'ic_character_kittaro_normal', right: 'ic_character_chronicler_speak', color: 'chronicler' },
                 '8': { text: 'cs_final_act_8', left: 'ic_character_kittaro_normal', right: 'ic_character_king_speak', color: 'king' },
-                '9': { text: 'cs_final_act_9', background: 'cs_final_act_9', left: 'ic_character_chronicler_speak', color: 'chronicler' }
+                '9': { text: 'cs_final_act_9', background: 'cs_final_act_9', left: 'ic_character_chronicler_speak', color: 'chronicler' },
+                '10': { text: 'cs_final_act_9', background: 'cs_final_act_10' },
+                '11': { text: 'cs_final_act_9', background: 'cs_final_act_11' },
+                '12': { text: 'cs_final_act_9', background: 'cs_final_act_12' },
+                '13': { text: 'cs_final_act_9', background: 'cs_final_act_13' },
+                '14': { text: 'cs_final_act_9', background: 'cs_final_act_14' },
+                '15': { text: 'cs_final_act_9', background: 'cs_introduction_12' }
             },
             next_scene: 'mainFragment',
             gameStateChanges: { 'game_over': true, 'all_characters_available': true }
@@ -883,7 +889,7 @@
     <string name="cs_final_act_3">Our elder asked me to deliver this message to you.</string>
     <string name="cs_final_act_4">Let my chronicler read it.</string>
     <string name="cs_final_act_5">It cannot be...</string>
-    <string name="cs_final_act_6">What is there? Come on, I have no time for this!</string>
+    <string name="cs_final_act_6">What\'s in there? Come on, I have no time for this!</string>
     <string name="cs_final_act_7">Your Majesty...</string>
     <string name="cs_final_act_8">Come on!</string>
     <string name="cs_final_act_9">\u0020</string>

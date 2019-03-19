@@ -3,7 +3,7 @@
     <string name="app_name">Послание Киттаро</string>
 
     <!-- Main view -->
-    <string name="button_go_to_battle_title">Сцены</string>
+    <string name="button_go_to_scenes_title">Сцены</string>
     <string name="button_new_game_title">Новая игра</string>
     <string name="button_hero_screen_title">Герои</string>
     <string name="button_exit_game_title">Выход</string>

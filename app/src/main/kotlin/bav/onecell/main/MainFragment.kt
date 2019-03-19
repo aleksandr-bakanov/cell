@@ -13,7 +13,7 @@ import bav.onecell.common.extensions.visible
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_main.buttonContinueGame
 import kotlinx.android.synthetic.main.fragment_main.buttonExitGame
-import kotlinx.android.synthetic.main.fragment_main.buttonGoToBattle
+import kotlinx.android.synthetic.main.fragment_main.buttonGoToScenes
 import kotlinx.android.synthetic.main.fragment_main.buttonHeroScreen
 import kotlinx.android.synthetic.main.fragment_main.buttonNewGame
 import javax.inject.Inject
@@ -36,18 +36,20 @@ class MainFragment : Fragment(), Main.View {
         super.onActivityCreated(savedInstanceState)
         inject()
 
+        setDebugDecisions()
+
         if (gameState.isDecisionPositive(Common.GameState.GAME_OVER)) {
-            buttonGoToBattle.setOnClickListener { view ->
+            buttonGoToScenes.setOnClickListener { view ->
                 view.findNavController().navigate(R.id.action_mainFragment_to_cellsForBattleFragment)
             }
-            buttonGoToBattle.visibility = View.VISIBLE
+            buttonGoToScenes.visibility = View.VISIBLE
             buttonHeroScreen.setOnClickListener { view ->
                 view.findNavController().navigate(R.id.action_mainFragment_to_heroScreen)
             }
             buttonHeroScreen.visibility = View.VISIBLE
         }
         else {
-            buttonGoToBattle.visibility = View.GONE
+            buttonGoToScenes.visibility = View.GONE
             buttonHeroScreen.visibility = View.GONE
         }
 
@@ -68,8 +70,6 @@ class MainFragment : Fragment(), Main.View {
                 buttonContinueGame.visible = lastNavDestination != 0
             })
         }
-
-        //setDebugDecisions()
     }
 
     override fun onResume() {
