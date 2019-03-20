@@ -2,7 +2,8 @@ package bav.onecell.main
 
 import android.os.Bundle
 import android.view.View
-import androidx.fragment.app.FragmentActivity
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import bav.onecell.OneCellApplication
 import bav.onecell.R
@@ -12,7 +13,7 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.subjects.BehaviorSubject
 import javax.inject.Inject
 
-class MainActivity : FragmentActivity(), Main.NavigationInfoProvider {
+class MainActivity : AppCompatActivity(), Main.NavigationInfoProvider {
 
     @Inject lateinit var gameState: Common.GameState
     private val disposables: CompositeDisposable = CompositeDisposable()
@@ -24,6 +25,7 @@ class MainActivity : FragmentActivity(), Main.NavigationInfoProvider {
 
     //region Lifecycle methods
     override fun onCreate(savedInstanceState: Bundle?) {
+        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
         super.onCreate(savedInstanceState)
         inject()
         setContentView(R.layout.activity_main)
