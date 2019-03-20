@@ -24,6 +24,7 @@
 
     <!-- Heroes view -->
     <string name="text_cell_name">\u0020</string>
+    <string name="empty_cell_toast_text">Некоторые клетки пусты, не надо так</string>
 
     <!-- Scenes View -->
     <string name="scene_gopnik_battle">Бой с гопниками</string>

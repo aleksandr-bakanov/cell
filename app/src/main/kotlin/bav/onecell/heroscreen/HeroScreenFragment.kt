@@ -11,6 +11,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
+import android.widget.Toast
 import androidx.appcompat.widget.PopupMenu
 import androidx.core.content.ContextCompat
 import androidx.navigation.findNavController
@@ -212,8 +213,13 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
 
     private fun initiateButtons() {
         buttonNextScene.setOnClickListener { view ->
-            view.findNavController().navigate(nextScene)
-            presenter.openMainMenu()
+            if (!presenter.isThereAnyEmptyCell()) {
+                view.findNavController().navigate(nextScene)
+                presenter.openMainMenu()
+            }
+            else {
+                Toast.makeText(context, R.string.empty_cell_toast_text, Toast.LENGTH_SHORT).show()
+            }
         }
 
         initiateHexesButtons()

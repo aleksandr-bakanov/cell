@@ -331,6 +331,13 @@ class HeroScreenPresenter(
         else 1
     }
 
+    override fun isThereAnyEmptyCell(): Boolean {
+        for (i in 0 until cellRepository.cellsCount()) {
+            cellRepository.getCell(i)?.let { if (it.data.hexes.isEmpty()) return true }
+        }
+        return false
+    }
+
     override fun transformLifeHexToAttack() {
         transformHexes(Hex.Type.LIFE, Hex.Type.ATTACK, Hex.TransformPrice.LIFE_TO_ATTACK.value, 1)
     }

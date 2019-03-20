@@ -18,6 +18,7 @@ interface HeroScreen {
         override fun initialize(cellIndex: Int)
         fun openMainMenu()
         fun getCellCount(): Int
+        fun isThereAnyEmptyCell(): Boolean
 
         fun transformLifeHexToAttack()
         fun transformLifeHexToEnergy()
