@@ -40,11 +40,11 @@ class MainFragment : Fragment(), Main.View {
 
         if (gameState.isDecisionPositive(Common.GameState.GAME_OVER)) {
             buttonGoToScenes.setOnClickListener { view ->
-                view.findNavController().navigate(R.id.action_mainFragment_to_cellsForBattleFragment)
+                view.findNavController().navigate(R.id.scenesFragment)
             }
             buttonGoToScenes.visibility = View.VISIBLE
             buttonHeroScreen.setOnClickListener { view ->
-                view.findNavController().navigate(R.id.action_mainFragment_to_heroScreen)
+                view.findNavController().navigate(R.id.heroScreen)
             }
             buttonHeroScreen.visibility = View.VISIBLE
         }
@@ -54,7 +54,7 @@ class MainFragment : Fragment(), Main.View {
         }
 
         buttonNewGame.setOnClickListener { view ->
-            view.findNavController().navigate(R.id.action_mainFragment_to_newGameFragment)
+            view.findNavController().navigate(R.id.newGameFragment)
         }
         buttonExitGame.setOnClickListener { requireActivity().finish() }
         buttonContinueGame.setOnClickListener {
