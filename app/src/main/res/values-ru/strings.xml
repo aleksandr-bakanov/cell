@@ -87,7 +87,7 @@
     <string name="utf_icon_digit_nine">Девять</string>
 
     <!-- Introduction scene -->
-    <string name="cs_introduction_0">Поселок Фтерна, отдаленная провинция</string>
+    <string name="cs_introduction_0">Поселок Фтерна, отдаленная провинция.</string>
     <string name="cs_introduction_1">Наш поселок жил мирно многие поколения. Всего было вдоволь, мы не жаловались.</string>
     <string name="cs_introduction_2">Бывало к нам забредали артисты, которые веселили нас.</string>
     <string name="cs_introduction_3">А бывало - разбойники, которые грабили нас.</string>
@@ -135,7 +135,7 @@
     <string name="cs_introduction_45">Также клетка погибает если связь жизненных ячеек разорвана.</string>
     <string name="cs_introduction_46">Бой завершается, когда в живых остаются только клетки принадлежащие одной группе.</string>
     <string name="cs_introduction_47">В бою можно только наблюдать за тем как сражаются клетки.</string>
-    <string name="cs_introduction_48">Используй соответствующие кнопки и ползунок чтобы промотать бой.</string>
+    <string name="cs_introduction_48">Используй соответствующие кнопки и ползунок чтобы просмотреть бой.</string>
     <string name="cs_introduction_49">Союзники обведены синим, противники - красным цветом.</string>
     <string name="cs_introduction_50">Поле боя можно двигать, приближать и отдалять.</string>
     <string name="cs_introduction_51">\u0020</string>
@@ -147,16 +147,16 @@
     <string name="cs_after_gopniks_3">Маслина-а-а-а-а-а-а!</string>
     <string name="cs_after_gopniks_4">За победу в бою ты получаешь награду - ячейки и, иногда, способности.</string>
     <string name="cs_after_gopniks_5">Полученные ячейки можно добавить в свою клетку, усилив её.</string>
-    <string name="cs_after_gopniks_6">Клетку можно перестраивать как угодно, добавляя и удаляя из нее ячейки.</string>
+    <string name="cs_after_gopniks_6">Клетку можно перестраивать как угодно, добавляя и удаляя ячейки.</string>
     <string name="cs_after_gopniks_7">Главное не нарушать связанность жизненных ячеек.</string>
-    <string name="cs_after_gopniks_8">Открыт новый тип ячеек - атакующая (красная).</string>
+    <string name="cs_after_gopniks_8">Открыт новый тип ячейки - атакующая (красная).</string>
     <string name="cs_after_gopniks_9">Атакующие ячейки не обладают собственной силой.</string>
     <string name="cs_after_gopniks_10">Они черпают её из окружающих их ячеек.</string>
     <string name="cs_after_gopniks_11">Каждая соседняя жизненная ячейка добавляет единицу силы атакующей.</string>
     <string name="cs_after_gopniks_12">Усиль клетку и отправляйся дальше.</string>
 
     <!-- Cut scene before encounter with skiloses -->
-    <string name="cs_before_skilos_0">Вдали от дома</string>
+    <string name="cs_before_skilos_0">Вдали от дома.</string>
     <string name="cs_before_skilos_1">Так далеко от дома я ещё не забирался...</string>
     <string name="cs_before_skilos_2">Что это за запах?</string>
     <string name="cs_before_skilos_3">Рррррррр!</string>
@@ -177,7 +177,7 @@
     <string name="cs_after_skilos_9">Клетка содержит набор правил.</string>
     <string name="cs_after_skilos_10">Каждый ход клетка перебирает свои правила по-порядку.</string>
     <string name="cs_after_skilos_11">Если для какого-нибудь правила выполняются ВСЕ условия,</string>
-    <string name="cs_after_skilos_12">то клетка исполняет действие, описанное в данном правиле и перебор заканчивается.</string>
+    <string name="cs_after_skilos_12">то клетка исполняет действие, описанное в данном правиле, и перебор заканчивается.</string>
     <string name="cs_after_skilos_13">Если ни одно из правил не удовлетворило условиям на поле боя, то ничего не происходит.</string>
     <string name="cs_after_skilos_14">Приоритет правил можно изменять перетаскивая их. Перебор идет сверху вниз.</string>
     <string name="cs_after_skilos_15">Удалять правила и условия можно смахивая их влево или вправо.</string>
@@ -189,16 +189,16 @@
     <string name="cs_after_skilos_21">Попробуй создать набор правил, при котором твоя клетка всегда будет направлена на ближайшего врага.</string>
 
     <!-- Cut scene Gonato village -->
-    <string name="cs_gonato_0">Поселок Гонато, не столь отдаленная провинция</string>
-    <string name="cs_gonato_1">Пожалуй здесь можно отдохнуть</string>
+    <string name="cs_gonato_0">Поселок Гонато, не столь отдаленная провинция.</string>
+    <string name="cs_gonato_1">Пожалуй здесь можно отдохнуть.</string>
     <string name="cs_gonato_2">Приветствую тебя, путник, куда путь держишь?</string>
     <string name="cs_gonato_3">В столицу, мне надо...</string>
     <string name="cs_gonato_4">В столицу?! Далековато... А сам-то откуда?</string>
     <string name="cs_gonato_5">Из Фтерны, это...</string>
-    <string name="cs_gonato_6">Фтерна, говоришь?! У меня свояк из Фтерны, задолжал мне три овцы</string>
+    <string name="cs_gonato_6">Фтерна, говоришь?! У меня свояк из Фтерны, задолжал мне три овцы.</string>
     <string name="cs_gonato_7">Ты если его встретишь так и скажи ему, мол,</string>
     <string name="cs_gonato_8">Старейшина Гонато овец своих не забывает, так ему и передай.</string>
-    <string name="cs_gonato_9">Эээ... хорошо..</string>
+    <string name="cs_gonato_9">Эээ... хорошо...</string>
     <string name="cs_gonato_10">Раз уж мы заговорили об овцах, ты не поможешь нам?</string>
     <string name="cs_gonato_11">Выглядишь ты вполне воинственно, не то что наши крестьяне.</string>
     <string name="cs_gonato_12">А в чем дело?</string>
@@ -217,13 +217,13 @@
     <!-- Cut scene after Belos -->
     <string name="cs_after_belos_0">Ну и зверюга, чуть не сожрал меня!</string>
     <string name="cs_after_belos_1">Надо рассказать старейшине что дело сделано.</string>
-    <string name="cs_after_belos_2">О, ты вернулся.</string>
+    <string name="cs_after_belos_2">О привет, ты вернулся.</string>
     <string name="cs_after_belos_3">И с хорошими новостями! Белос вас больше не побеспокоит.</string>
     <string name="cs_after_belos_4">Вот радость! Эй, народ, напасть ушла!</string>
     <string name="cs_after_belos_5">Ну парень, молодец! Вот что, я тебя с пустыми руками не отпущу.</string>
     <string name="cs_after_belos_6">А лучший дар – это знания. У меня от бабки осталась книга одна.</string>
     <string name="cs_after_belos_7">Сам-то я ни бум-бум в этой писанине, а вот бабка говорила,</string>
-    <string name="cs_after_belos_8">что по этой книге можно выучится превращать одни хексы в другие.</string>
+    <string name="cs_after_belos_8">что по этой книге можно выучиться превращать одни хексы в другие.</string>
     <string name="cs_after_belos_9">Держи, тебе это уж точно пригодится больше чем мне.</string>
     <string name="cs_after_belos_10">Теперь ты можешь превращать одни хексы в другие и обратно.</string>
     <string name="cs_after_belos_11">Проверь новую кнопку на экране героя.</string>
@@ -231,13 +231,13 @@
     <!-- Cut scene Analafro -->
     <string name="cs_analafro_0">Холмы Аналафро</string>
     <string name="cs_analafro_1">Да уж, с погодой не везет, третий день висит этот проклятый туман.</string>
-    <string name="cs_analafro_2">И с каждым днем он все гуще и гуще</string>
+    <string name="cs_analafro_2">И с каждым днем он все гуще и гуще.</string>
     <string name="cs_analafro_3">Ох не к добру это...</string>
     <string name="cs_analafro_4">................</string>
     <string name="cs_analafro_5">........ хсс-с-с-с ........</string>
     <string name="cs_analafro_6">Кто здесь?</string>
     <string name="cs_analafro_7">Ты спрашиваешь кто здесь, даже не зная где ты находишься?</string>
-    <string name="cs_analafro_8">Что ж, позволь представиться</string>
+    <string name="cs_analafro_8">Что ж, позволь представиться.</string>
     <string name="cs_analafro_9">Я – великий демон Омихли, а ты кто такой и что ты делаешь в моих владениях?</string>
     <string name="cs_analafro_10">Я Киттаро и мне надо как можно скорей добраться до столицы.</string>
     <string name="cs_analafro_11">Этого не случится, еще никто не проходил сквозь мои земли, не заплатив за это!</string>
@@ -248,8 +248,8 @@
     <!-- Cut scene after Omikhli -->
     <string name="cs_after_omikhli_0">Туман рассеивается</string>
     <string name="cs_after_omikhli_1">Ага вон и пещеры, так все это время я был так близко!</string>
-    <string name="cs_after_omikhli_2">Чертов демон, запутать меня хотел</string>
-    <string name="cs_after_omikhli_3">Ладно, время подлечится и идти дальше</string>
+    <string name="cs_after_omikhli_2">Чертов демон, запутать меня хотел.</string>
+    <string name="cs_after_omikhli_3">Ладно, время подлечится и идти дальше.</string>
     <string name="cs_after_omikhli_4">Открыт новый тип ячеек - энергетические (желтые)</string>
     <string name="cs_after_omikhli_5">Они обладают силой 1, но что самое главное, дают силу атакующим ячейкам.</string>
     <string name="cs_after_omikhli_6">+2 каждой соседней, и +1 атакующим, находящимся на расстоянии 2.</string>
@@ -261,7 +261,7 @@
     <string name="cs_kilia_1">А вот и ты...</string>
     <string name="cs_kilia_2">Эй, ты что очередной демон?</string>
     <string name="cs_kilia_3">Отнюдь, отнюдь. Я Зои, а это мое обиталище.</string>
-    <string name="cs_kilia_4">А похож на демона</string>
+    <string name="cs_kilia_4">А похож на демона.</string>
     <string name="cs_kilia_5">Да нас, духов, часто с ними путают.</string>
     <string name="cs_kilia_6">Что ты здесь делаешь?</string>
     <string name="cs_kilia_7">Собираюсь отправится с тобой в свое последнее путешествие.</string>
@@ -304,7 +304,7 @@
 
     <!-- Cut scene after drunkards -->
     <string name="cs_after_drunkards_0">Господа, если вы не бросите пить, то очень скоро умрете.</string>
-    <string name="cs_after_drunkards_1">Запомните, слово "ром" и слово "смерть" для вас означают одно и тоже.</string>
+    <string name="cs_after_drunkards_1">Запомните, слово \"ром\" и слово \"смерть\" для вас означают одно и тоже.</string>
     <string name="cs_after_drunkards_2">Киттаро, Зои! Вам надо спешить, напряжение в городе нарастает.</string>
     <string name="cs_after_drunkards_3">Да откуда все знают, что мне куда-то надо?</string>
     <string name="cs_after_drunkards_4">Пара магических трюков, только и всего.</string>
@@ -324,7 +324,7 @@
     <string name="cs_after_drunkards_18">Киттаро, познакомься, моя ученица Айма.</string>
     <string name="cs_after_drunkards_19">Тебе, Зои, её представлять нет смысла.</string>
     <string name="cs_after_drunkards_20">Нет. Так как я дух, я почти вездесущ, а это значит что мне известно многое и я знаю многих.</string>
-    <string name="cs_after_drunkards_21">Я помню её ещё девочкой</string>
+    <string name="cs_after_drunkards_21">Я помню её ещё девочкой.</string>
     <string name="cs_after_drunkards_22">В те времена по моим пещерам ещё можно было безбоязненно гулять и собирать петалюбы...</string>
     <string name="cs_after_drunkards_23">Ладно, ладно, знаем мы историю.</string>
     <string name="cs_after_drunkards_24">Если духа вовремя не остановить, он вам всю свою жизнь расскажет, уж поверьте.</string>
@@ -356,7 +356,7 @@
     <string name="cs_after_katofi_ponu_7">Ну вперед, мы почти у цели!</string>
 
     <!-- Cut scene Enkefalio -->
-    <string name="cs_enkefalio_0">Ворота замка Энкефальо – столицы империи</string>
+    <string name="cs_enkefalio_0">Ворота замка Энкефальо – столицы империи.</string>
     <string name="cs_enkefalio_1">А вот и замок, наконец-то...</string>
     <string name="cs_enkefalio_2">Ох не нравятся мне те ребята у ворот.</string>
     <string name="cs_enkefalio_3">Это придворный маг и элитные гвардейцы.</string>
@@ -367,7 +367,7 @@
     <string name="cs_enkefalio_8">\u0020</string>
 
     <!-- Cut scene final act -->
-    <string name="cs_final_act_0">Тронный зал, заключительный акт</string>
+    <string name="cs_final_act_0">Тронный зал, заключительный акт.</string>
     <string name="cs_final_act_1">Кто вы и что вам нужно?</string>
     <string name="cs_final_act_2">Ваше Величество, меня зовут Киттаро, я прибыл из деревни Фтерна, провинции Поди.</string>
     <string name="cs_final_act_3">Наш старейшина просил доставить вам это послание.</string>
