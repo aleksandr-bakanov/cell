@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.9.0-beta] - 2019-03-21
+### Changed
+- A lot of things. Interface, story and battle representation. Many fixes.
+
+
 ## [0.0.1] - 2019-01-01
 ### Added
 - Main game features.
