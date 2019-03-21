@@ -85,7 +85,6 @@
 
     <SeekBar
         android:id="@+id/seekBar"
-        style="@style/Widget.AppCompat.SeekBar.Discrete"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@android:color/transparent"
