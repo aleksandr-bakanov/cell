@@ -23,7 +23,6 @@
     <string name="button_no_title">Нет</string>
 
     <!-- Heroes view -->
-    <string name="text_cell_name">\u0020</string>
     <string name="empty_cell_toast_text">Некоторые клетки пусты, не надо так</string>
 
     <!-- Scenes View -->
@@ -94,12 +93,6 @@
     <string name="cs_introduction_4">Но поселок всегда выживал, несмотря ни на что.</string>
     <string name="cs_introduction_5">Так было долгое время.</string>
     <string name="cs_introduction_6">До прошлой ночи…</string>
-    <string name="cs_introduction_7">\u0020</string>
-    <string name="cs_introduction_8">\u0020</string>
-    <string name="cs_introduction_9">\u0020</string>
-    <string name="cs_introduction_10">\u0020</string>
-    <string name="cs_introduction_11">\u0020</string>
-    <string name="cs_introduction_12">\u0020</string>
     <string name="cs_introduction_13">Проснись, Киттаро!</string>
     <string name="cs_introduction_14">Проснись же!</string>
     <string name="cs_introduction_15">Киттаро, собирайся, ты должен срочно доставить это сообщение во дворец!</string>
@@ -107,14 +100,6 @@
     <string name="cs_introduction_17">Дед, отстань, ты бредишь…</string>
     <string name="cs_introduction_18">Нет времени! Собирайся я сказал!</string>
     <string name="cs_introduction_19">Что за пророчество? Какого черта… ладно-ладно, иду…</string>
-    <string name="cs_introduction_20">\u0020</string>
-    <string name="cs_introduction_21">\u0020</string>
-    <string name="cs_introduction_22">\u0020</string>
-    <string name="cs_introduction_23">\u0020</string>
-    <string name="cs_introduction_24">\u0020</string>
-    <string name="cs_introduction_25">\u0020</string>
-    <string name="cs_introduction_26">\u0020</string>
-    <string name="cs_introduction_27">\u0020</string>
     <string name="cs_introduction_28">Эй, Китти, куда это ты намылился? Что это ты там такое прячешь?</string>
     <string name="cs_introduction_29">Башка, Гречка, Костыль, не ожидал вас здесь встретить!</string>
     <string name="cs_introduction_30">Некогда мне с вами болтать, пропустите…</string>
@@ -138,7 +123,6 @@
     <string name="cs_introduction_48">Используй соответствующие кнопки и ползунок чтобы просмотреть бой.</string>
     <string name="cs_introduction_49">Союзники обведены синим, противники - красным цветом.</string>
     <string name="cs_introduction_50">Поле боя можно двигать, приближать и отдалять.</string>
-    <string name="cs_introduction_51">\u0020</string>
 
     <!-- Cut scene after gopniks -->
     <string name="cs_after_gopniks_0">Ну что хватит с вас?</string>
@@ -162,7 +146,6 @@
     <string name="cs_before_skilos_3">Рррррррр!</string>
     <string name="cs_before_skilos_4">Скилосы?! Кого только не встретишь вдали от поселений.</string>
     <string name="cs_before_skilos_5">Рррррррррррррррр!!!</string>
-    <string name="cs_before_skilos_6">\u0020</string>
 
     <!-- Cut scene after skiloses -->
     <string name="cs_after_skilos_0">Черт, ну и потрепали же меня проклятые скилосы!</string>
@@ -212,7 +195,6 @@
     <string name="cs_gonato_20">Вот и славно, славно, порадовал старика, спасибо тебе!</string>
     <string name="cs_gonato_21">Что ж, дело твое, мы не в обиде... удачи тебе в твоем путешествии!</string>
     <string name="cs_gonato_22">Береги себя!</string>
-    <string name="cs_gonato_23">\u0020</string>
 
     <!-- Cut scene after Belos -->
     <string name="cs_after_belos_0">Ну и зверюга, чуть не сожрал меня!</string>
@@ -243,7 +225,6 @@
     <string name="cs_analafro_11">Этого не случится, еще никто не проходил сквозь мои земли, не заплатив за это!</string>
     <string name="cs_analafro_12">........ хсс-с-с-с ........</string>
     <string name="cs_analafro_13">................</string>
-    <string name="cs_analafro_14">\u0020</string>
 
     <!-- Cut scene after Omikhli -->
     <string name="cs_after_omikhli_0">Туман рассеивается</string>
@@ -272,7 +253,6 @@
     <string name="cs_kilia_12">В пещерах темно, возьми этот светоч. Нам пора.</string>
     <string name="cs_kilia_13">Черт, здесь и правдо темно, что это за писк?</string>
     <string name="cs_kilia_14">О, они всегда здесь жили, обычно они не очень рады гостям...</string>
-    <string name="cs_kilia_15">\u0020</string>
 
     <!-- Cut scene after nikhteribs -->
     <string name="cs_after_nikhteribs_0">Откуда их там так много?</string>
@@ -300,7 +280,6 @@
     <string name="cs_kardia_8">От вас провинциалов одни беды!</string>
     <string name="cs_kardia_9">Это просто пьянь, идем Киттаро.</string>
     <string name="cs_kardia_10">Ну уж нет, никуда вы не пойдете, пока на заплатите королевскую пошлину!</string>
-    <string name="cs_kardia_11">\u0020</string>
 
     <!-- Cut scene after drunkards -->
     <string name="cs_after_drunkards_0">Господа, если вы не бросите пить, то очень скоро умрете.</string>
@@ -343,7 +322,6 @@
     <string name="cs_laimo_5">Королевская гвардия Катофи Пону.</string>
     <string name="cs_laimo_6">А, ну так мне как раз к королю надо, может вы проводите меня?</string>
     <string name="cs_laimo_7">Скорее мы проводим тебя взашей!</string>
-    <string name="cs_laimo_8">\u0020</string>
 
     <!-- Cut scene after Katofi Ponu -->
     <string name="cs_after_katofi_ponu_0">Что это было, чем они в нас стреляли?</string>
@@ -364,7 +342,6 @@
     <string name="cs_enkefalio_5">Да, как он, только хуже.</string>
     <string name="cs_enkefalio_6">Гораздо хуже...</string>
     <string name="cs_enkefalio_7">Я же велел вам убираться! Стража, убейте этих наглецов!</string>
-    <string name="cs_enkefalio_8">\u0020</string>
 
     <!-- Cut scene final act -->
     <string name="cs_final_act_0">Тронный зал, заключительный акт.</string>
@@ -376,7 +353,6 @@
     <string name="cs_final_act_6">Что там? Живее, у меня нет на это времени!</string>
     <string name="cs_final_act_7">Ваше Величество...</string>
     <string name="cs_final_act_8">Ну же!</string>
-    <string name="cs_final_act_9">\u0020</string>
     <string name="cs_final_act_image_message">Воды Стикса не спасли тебя, ты умираешь, Ахилл...</string>
 
     <!-- Character names -->

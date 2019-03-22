@@ -36,7 +36,7 @@ class MainFragment : Fragment(), Main.View {
         super.onActivityCreated(savedInstanceState)
         inject()
 
-        //setDebugDecisions()
+        setDebugDecisions()
 
         if (gameState.isDecisionPositive(Common.GameState.GAME_OVER)) {
             buttonGoToScenes.setOnClickListener { view ->

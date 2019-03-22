@@ -15,7 +15,7 @@
     <string name="text_warning_message">New game will erase any progress done so far.\nAre you sure?</string>
 
     <!-- Heroes view -->
-    <string name="text_cell_name">\u0020</string>
+    <string name="text_cell_name" translatable="false">\u0020</string>
     <string name="text_history_stub" translatable="false">\u0020</string>
     <string name="empty_cell_toast_text">There should be no empty cells</string>
 
@@ -122,6 +122,7 @@
     <string name="nav_id_heroScreenAfterKatofiPonu" translatable="false">heroScreenAfterKatofiPonu</string>
 
     <!-- Cut scenes -->
+    <string name="cs_empty_text" translatable="false">\u0020</string>
     <!--
       - Introduction cut scene contains introduction history, gopniks encounter and description of battle screen
       -->
@@ -139,12 +140,12 @@
                 '4': { text: 'cs_introduction_4', background: 'cs_introduction_4' },
                 '5': { text: 'cs_introduction_5', background: 'cs_introduction_4' },
                 '6': { text: 'cs_introduction_6', background: 'cs_introduction_4' },
-                '7': { text: 'cs_introduction_7', background: 'cs_introduction_7' },
-                '8': { text: 'cs_introduction_8', background: 'cs_introduction_8' },
-                '9': { text: 'cs_introduction_9', background: 'cs_introduction_9' },
-                '10': { text: 'cs_introduction_10', background: 'cs_introduction_10' },
-                '11': { text: 'cs_introduction_11', background: 'cs_introduction_11' },
-                '12': { text: 'cs_introduction_12', background: 'cs_introduction_12' },
+                '7': { text: 'cs_empty_text', background: 'cs_introduction_7' },
+                '8': { text: 'cs_empty_text', background: 'cs_introduction_8' },
+                '9': { text: 'cs_empty_text', background: 'cs_introduction_9' },
+                '10': { text: 'cs_empty_text', background: 'cs_introduction_10' },
+                '11': { text: 'cs_empty_text', background: 'cs_introduction_11' },
+                '12': { text: 'cs_empty_text', background: 'cs_introduction_12' },
                 '13': { text: 'cs_introduction_13', background: 'cs_introduction_12', left: 'ic_character_old_man_scream', right: 'ic_character_kittaro_sleep', color: 'oldMan' },
                 '14': { text: 'cs_introduction_14', background: 'cs_introduction_12', left: 'ic_character_old_man_scream_out_loud', right: 'ic_character_kittaro_awaken', color: 'oldMan' },
                 '15': { text: 'cs_introduction_15', background: 'cs_introduction_12', left: 'ic_character_old_man_scream', right: 'ic_character_kittaro_awaken', color: 'oldMan' },
@@ -152,14 +153,14 @@
                 '17': { text: 'cs_introduction_17', background: 'cs_introduction_12', left: 'ic_character_old_man_scream', right: 'ic_character_kittaro_sleep', color: 'kittaro' },
                 '18': { text: 'cs_introduction_18', background: 'cs_introduction_12', left: 'ic_character_old_man_scream_out_loud', right: 'ic_character_kittaro_awaken', color: 'oldMan' },
                 '19': { text: 'cs_introduction_19', background: 'cs_introduction_12', left: 'ic_character_old_man', right: 'ic_character_kittaro_normal_speak', color: 'kittaro' },
-                '20': { text: 'cs_introduction_20', background: 'cs_introduction_20' },
-                '21': { text: 'cs_introduction_21', background: 'cs_introduction_21' },
-                '22': { text: 'cs_introduction_22', background: 'cs_introduction_22' },
-                '23': { text: 'cs_introduction_23', background: 'cs_introduction_23' },
-                '24': { text: 'cs_introduction_24', background: 'cs_introduction_24' },
-                '25': { text: 'cs_introduction_25', background: 'cs_introduction_25' },
-                '26': { text: 'cs_introduction_26', background: 'cs_introduction_26' },
-                '27': { text: 'cs_introduction_27', background: 'cs_introduction_27' },
+                '20': { text: 'cs_empty_text', background: 'cs_introduction_20' },
+                '21': { text: 'cs_empty_text', background: 'cs_introduction_21' },
+                '22': { text: 'cs_empty_text', background: 'cs_introduction_22' },
+                '23': { text: 'cs_empty_text', background: 'cs_introduction_23' },
+                '24': { text: 'cs_empty_text', background: 'cs_introduction_24' },
+                '25': { text: 'cs_empty_text', background: 'cs_introduction_25' },
+                '26': { text: 'cs_empty_text', background: 'cs_introduction_26' },
+                '27': { text: 'cs_empty_text', background: 'cs_introduction_27' },
                 '28': { text: 'cs_introduction_28', background: 'cs_introduction_27', left: 'ic_character_kittaro_awaken', right: 'ic_character_bashka', color: 'gopnik' },
                 '29': { text: 'cs_introduction_29', background: 'cs_introduction_27', left: 'ic_character_kittaro_normal', right: 'ic_character_bashka_grechka_kostyl', color: 'kittaro' },
                 '30': { text: 'cs_introduction_30', background: 'cs_introduction_27', left: 'ic_character_kittaro_normal_speak', right: 'ic_character_bashka_grechka_kostyl', color: 'kittaro' },
@@ -183,7 +184,7 @@
                 '48': { text: 'cs_introduction_48', background: 'cs_introduction_48', showPrevFrameButton: true },
                 '49': { text: 'cs_introduction_49', background: 'cs_introduction_49', showPrevFrameButton: true },
                 '50': { text: 'cs_introduction_50', background: 'cs_introduction_50', showPrevFrameButton: true },
-                '51': { text: 'cs_introduction_51', background: 'cs_introduction_51' }
+                '51': { text: 'cs_empty_text', background: 'cs_introduction_51' }
             },
             next_scene: 'action_cutSceneIntroduction_to_battleGopniks'
         }"
@@ -195,12 +196,6 @@
     <string name="cs_introduction_4">But the village has always survived, no matter what.</string>
     <string name="cs_introduction_5">For a long time.</string>
     <string name="cs_introduction_6">Until last night...</string>
-    <string name="cs_introduction_7">\u0020</string>
-    <string name="cs_introduction_8">\u0020</string>
-    <string name="cs_introduction_9">\u0020</string>
-    <string name="cs_introduction_10">\u0020</string>
-    <string name="cs_introduction_11">\u0020</string>
-    <string name="cs_introduction_12">\u0020</string>
     <string name="cs_introduction_13">Wake up, Kittaro!</string>
     <string name="cs_introduction_14">Wake up now!</string>
     <string name="cs_introduction_15">Kittaro, get ready, you must urgently deliver this message to the palace!</string>
@@ -208,14 +203,6 @@
     <string name="cs_introduction_17">Grandpa, leave me alone, you\'re raving...</string>
     <string name="cs_introduction_18">There is no time! Get ready I said!</string>
     <string name="cs_introduction_19">What kind of prophecy? What the hell... okay, okay, I\'m coming...</string>
-    <string name="cs_introduction_20">\u0020</string>
-    <string name="cs_introduction_21">\u0020</string>
-    <string name="cs_introduction_22">\u0020</string>
-    <string name="cs_introduction_23">\u0020</string>
-    <string name="cs_introduction_24">\u0020</string>
-    <string name="cs_introduction_25">\u0020</string>
-    <string name="cs_introduction_26">\u0020</string>
-    <string name="cs_introduction_27">\u0020</string>
     <string name="cs_introduction_28">Hey Kitty, where are you going? What are you hiding in your pockets?</string>
     <string name="cs_introduction_29">Bashka, Buckwheat, Crutch, I didn\'t expect to meet you here!</string>
     <string name="cs_introduction_30">Anyway I have no time to chat with you, let me go...</string>
@@ -239,7 +226,6 @@
     <string name="cs_introduction_48">Use appropriate buttons and seek bar to watch the battle.</string>
     <string name="cs_introduction_49">Friendly cells are outlined by blue color, enemies - by red.</string>
     <string name="cs_introduction_50">Battlefield can be moved, zoomed in and out.</string>
-    <string name="cs_introduction_51">\u0020</string>
 
     <!--
       - Cut scene after gopniks contains description of the hero screen interface. At this moment only Kittaro
@@ -300,7 +286,7 @@
                 '3': { text: 'cs_before_skilos_3', left: 'ic_character_kittaro_normal', right: 'ic_character_skilos_speak', color: 'skilos' },
                 '4': { text: 'cs_before_skilos_4', left: 'ic_character_kittaro_normal_speak', right: 'ic_character_skilos_speak', color: 'kittaro' },
                 '5': { text: 'cs_before_skilos_5', left: 'ic_character_kittaro_normal', right: 'ic_character_skilos_speak_agressive', color: 'skilos' },
-                '6': { text: 'cs_before_skilos_6', background: 'cs_before_skilos_6' }
+                '6': { text: 'cs_empty_text', background: 'cs_before_skilos_6' }
             },
             next_scene: 'action_cutSceneBeforeSkilos_to_battleSkilos'
         }"
@@ -311,7 +297,6 @@
     <string name="cs_before_skilos_3">Rrrrrrrr!</string>
     <string name="cs_before_skilos_4">Skiloses?! I wonder who else can be found so far from the settlements.</string>
     <string name="cs_before_skilos_5">Rrrrrrrrrrrrrrrr!!!</string>
-    <string name="cs_before_skilos_6">\u0020</string>
 
     <!--
       - Cut scene after encounter with skiloses.
@@ -405,7 +390,7 @@
                 '20': { text: 'cs_gonato_20', left: 'ic_character_kittaro_normal', right: 'ic_character_gonato_old_man_speak', nextFrame: 23, color: 'gonatoOldMan' },
                 '21': { text: 'cs_gonato_21', left: 'ic_character_kittaro_normal', right: 'ic_character_gonato_old_man_speak', color: 'gonatoOldMan' },
                 '22': { text: 'cs_gonato_22', left: 'ic_character_kittaro_normal', right: 'ic_character_gonato_old_man_speak', finalFrame: true, color: 'gonatoOldMan' },
-                '23': { text: 'cs_gonato_23', background: 'cs_gonato_23', finalFrame: true }
+                '23': { text: 'cs_empty_text', background: 'cs_gonato_23', finalFrame: true }
             },
             next_scene: 'action_cutSceneGonato_to_battleBelos',
             yes_next_scene: 'action_cutSceneGonato_to_battleBelos',
@@ -435,7 +420,6 @@
     <string name="cs_gonato_20">That\'s nice, nice, you\'ve pleased the old man, thank you!</string>
     <string name="cs_gonato_21">Well, up to you, we are not offended... good luck to you in your journey!</string>
     <string name="cs_gonato_22">Take care of yourself!</string>
-    <string name="cs_gonato_23">\u0020</string>
 
     <!--
       - Cut scene after Belos
@@ -500,7 +484,7 @@
                 '11': { text: 'cs_analafro_11', left: 'ic_character_kittaro_normal', right: 'ic_character_omikhli_speak', color: 'omikhli' },
                 '12': { text: 'cs_analafro_12', left: 'ic_character_kittaro_normal', color: 'omikhli' },
                 '13': { text: 'cs_analafro_13', left: 'ic_character_kittaro_normal', color: 'omikhli' },
-                '14': { text: 'cs_analafro_14', background: 'cs_analafro_14' }
+                '14': { text: 'cs_empty_text', background: 'cs_analafro_14' }
             },
             next_scene: 'action_cutSceneAnalafro_to_battleOmikhli'
         }"
@@ -519,7 +503,6 @@
     <string name="cs_analafro_11">This will not happen, no one has yet passed through my lands without paying for it!</string>
     <string name="cs_analafro_12">........ hss-s-s-s ........</string>
     <string name="cs_analafro_13">................</string>
-    <string name="cs_analafro_14">\u0020</string>
 
     <!--
       - Cut scene after Omikhli
@@ -579,7 +562,7 @@
                 '12': { text: 'cs_kilia_12', left: 'ic_character_kittaro_normal', right: 'ic_character_zoi_speak', color: 'zoi' },
                 '13': { text: 'cs_kilia_13', background: 'cs_kilia_13', color: 'kittaro' },
                 '14': { text: 'cs_kilia_14', background: 'cs_kilia_14', color: 'zoi' },
-                '15': { text: 'cs_kilia_15', background: 'cs_kilia_15' }
+                '15': { text: 'cs_empty_text', background: 'cs_kilia_15' }
             },
             next_scene: 'action_cutSceneKilia_to_battleNikhteribs',
             gameStateChanges: { 'zoi_available': true }
@@ -600,7 +583,6 @@
     <string name="cs_kilia_12">It is dark in caves, take this torch. It is time.</string>
     <string name="cs_kilia_13">Damn, it\'s really dark in here, what\'s that squeak?</string>
     <string name="cs_kilia_14">Oh, they\'ve always lived here, usually they are not very happy about guests...</string>
-    <string name="cs_kilia_15">\u0020</string>
 
     <!--
       - Cut scene after nikhteribs
@@ -662,7 +644,7 @@
                 '8': { text: 'cs_kardia_8', left: 'ic_character_kittaro_normal', right: 'ic_character_drunkards_angry', color: 'drunkard' },
                 '9': { text: 'cs_kardia_9', left: 'ic_character_kittaro_normal', right: 'ic_character_zoi_speak', color: 'zoi' },
                 '10': { text: 'cs_kardia_10', left: 'ic_character_kittaro_normal', right: 'ic_character_drunkards_angry', color: 'drunkard' },
-                '11': { text: 'cs_kardia_11', background: 'cs_kardia_11' }
+                '11': { text: 'cs_empty_text', background: 'cs_kardia_11' }
             },
             next_scene: 'action_cutSceneKardia_to_battleDrunkards'
         }"
@@ -678,7 +660,6 @@
     <string name="cs_kardia_8">From you provincials all misfortunes come!</string>
     <string name="cs_kardia_9">They are just drunkards, let\'s go Kittaro.</string>
     <string name="cs_kardia_10">Oh no, you won\'t go anywhere until you pay the royal fee!</string>
-    <string name="cs_kardia_11">\u0020</string>
 
     <!--
       - Cut scene after drunkards
@@ -774,7 +755,7 @@
                 '5': { text: 'cs_laimo_5', left: 'ic_character_kittaro_normal', right: 'ic_character_katofi_ponu_speak', color: 'katofiPonu' },
                 '6': { text: 'cs_laimo_6', left: 'ic_character_kittaro_normal_speak', right: 'ic_character_katofi_ponu', color: 'kittaro' },
                 '7': { text: 'cs_laimo_7', left: 'ic_character_kittaro_normal', right: 'ic_character_katofi_ponu_speak', color: 'katofiPonu' },
-                '8': { text: 'cs_laimo_8', background: 'cs_laimo_8' }
+                '8': { text: 'cs_empty_text', background: 'cs_laimo_8' }
             },
             next_scene: 'action_cutSceneLaimo_to_battleKatofiPonu'
         }"
@@ -787,7 +768,6 @@
     <string name="cs_laimo_5">Royal Guard Katofi Ponu.</string>
     <string name="cs_laimo_6">Ah, well, I just need the king, can you guide me?</string>
     <string name="cs_laimo_7">Rather, we\'ll guide you back where you belong!</string>
-    <string name="cs_laimo_8">\u0020</string>
 
     <!--
       - Cut scene after Katofi Ponu
@@ -838,7 +818,7 @@
                 '5': { text: 'cs_enkefalio_5', left: 'ic_character_kittaro_normal', right: 'ic_character_zoi_speak', color: 'zoi' },
                 '6': { text: 'cs_enkefalio_6', left: 'ic_character_kittaro_normal', right: 'ic_character_zoi_speak', color: 'zoi' },
                 '7': { text: 'cs_enkefalio_7', left: 'ic_character_kittaro_normal', right: 'ic_character_mage_speak', color: 'mage' },
-                '8': { text: 'cs_enkefalio_8', background: 'cs_enkefalio_8' }
+                '8': { text: 'cs_empty_text', background: 'cs_enkefalio_8' }
             },
             next_scene: 'action_cutSceneEnkefalio_to_battleEnkefalio'
         }"
@@ -851,7 +831,6 @@
     <string name="cs_enkefalio_5">Yes, like him, only worse.</string>
     <string name="cs_enkefalio_6">Much worse...</string>
     <string name="cs_enkefalio_7">I told you to get out! Guards, kill these insolent rednecks!</string>
-    <string name="cs_enkefalio_8">\u0020</string>
 
     <!--
       - Cut scene final act
@@ -872,13 +851,13 @@
                 '6': { text: 'cs_final_act_6', left: 'ic_character_kittaro_normal', right: 'ic_character_king_speak', color: 'king' },
                 '7': { text: 'cs_final_act_7', left: 'ic_character_kittaro_normal', right: 'ic_character_chronicler_speak', color: 'chronicler' },
                 '8': { text: 'cs_final_act_8', left: 'ic_character_kittaro_normal', right: 'ic_character_king_speak', color: 'king' },
-                '9': { text: 'cs_final_act_9', background: 'cs_final_act_9', left: 'ic_character_chronicler_speak', color: 'chronicler' },
-                '10': { text: 'cs_final_act_9', background: 'cs_final_act_10' },
-                '11': { text: 'cs_final_act_9', background: 'cs_final_act_11' },
-                '12': { text: 'cs_final_act_9', background: 'cs_final_act_12' },
-                '13': { text: 'cs_final_act_9', background: 'cs_final_act_13' },
-                '14': { text: 'cs_final_act_9', background: 'cs_final_act_14' },
-                '15': { text: 'cs_final_act_9', background: 'cs_introduction_12', animation: ['cs_introduction_12', 'cs_introduction_12_1'] }
+                '9': { text: 'cs_empty_text', background: 'cs_final_act_9', left: 'ic_character_chronicler_speak', color: 'chronicler' },
+                '10': { text: 'cs_empty_text', background: 'cs_final_act_10' },
+                '11': { text: 'cs_empty_text', background: 'cs_final_act_11' },
+                '12': { text: 'cs_empty_text', background: 'cs_final_act_12' },
+                '13': { text: 'cs_empty_text', background: 'cs_final_act_13' },
+                '14': { text: 'cs_empty_text', background: 'cs_final_act_14' },
+                '15': { text: 'cs_empty_text', background: 'cs_introduction_12', animation: ['cs_introduction_12', 'cs_introduction_12_1'] }
             },
             next_scene: 'mainFragment',
             gameStateChanges: { 'game_over': true, 'all_characters_available': true }
@@ -893,7 +872,6 @@
     <string name="cs_final_act_6">What\'s in there? Come on, I have no time for this!</string>
     <string name="cs_final_act_7">Your Majesty...</string>
     <string name="cs_final_act_8">Come on!</string>
-    <string name="cs_final_act_9">\u0020</string>
     <string name="cs_final_act_image_message">Water of Styx did not save you, you\'re dying Achilles...</string>
 
     <!--
