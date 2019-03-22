@@ -377,6 +377,7 @@
     <string name="cs_final_act_7">Ваше Величество...</string>
     <string name="cs_final_act_8">Ну же!</string>
     <string name="cs_final_act_9">\u0020</string>
+    <string name="cs_final_act_image_message">Воды Стикса не спасли тебя, ты умираешь, Ахилл...</string>
 
     <!-- Character names -->
     <string name="character_name_kittaro">Киттаро</string>
