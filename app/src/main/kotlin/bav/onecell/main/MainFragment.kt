@@ -21,7 +21,6 @@ import javax.inject.Inject
 class MainFragment : Fragment(), Main.View {
 
     @Inject lateinit var presenter: Main.Presenter
-    @Inject lateinit var gameState: Common.GameState
     @Inject lateinit var analytics: Common.Analytics
 
     private val disposables = CompositeDisposable()
@@ -36,9 +35,9 @@ class MainFragment : Fragment(), Main.View {
         super.onActivityCreated(savedInstanceState)
         inject()
 
-        setDebugDecisions()
+        presenter.setDebugDecisions()
 
-        if (gameState.isDecisionPositive(Common.GameState.GAME_OVER)) {
+        if (presenter.isGameFinished()) {
             buttonGoToScenes.setOnClickListener { view ->
                 view.findNavController().navigate(R.id.scenesFragment)
             }
@@ -61,7 +60,7 @@ class MainFragment : Fragment(), Main.View {
             if (lastNavDestination != 0) it.findNavController().navigate(lastNavDestination)
         }
 
-        lastNavDestination = gameState.getLastNavDestinationId()
+        lastNavDestination = presenter.getLastNavDestinationId()
         buttonContinueGame.visible = lastNavDestination != 0
 
         (requireActivity() as? Main.NavigationInfoProvider)?.let {
@@ -86,18 +85,6 @@ class MainFragment : Fragment(), Main.View {
         (requireActivity().application as OneCellApplication).appComponent
                 .plus(MainModule())
                 .inject(this)
-    }
-
-    private fun setDebugDecisions() {
-        gameState.setDecision(Common.GameState.BATTLE_LOGIC_AVAILABLE, true)
-        gameState.setDecision(Common.GameState.ATTACK_HEXES_AVAILABLE, true)
-        gameState.setDecision(Common.GameState.ENERGY_HEXES_AVAILABLE, true)
-        gameState.setDecision(Common.GameState.DEATH_RAY_HEXES_AVAILABLE, true)
-        gameState.setDecision(Common.GameState.OMNI_BULLET_HEXES_AVAILABLE, true)
-        gameState.setDecision(Common.GameState.HEX_TRANSFORMATION_AVAILABLE, true)
-        gameState.setDecision(Common.GameState.ZOI_AVAILABLE, true)
-        gameState.setDecision(Common.GameState.ALL_CHARACTERS_AVAILABLE, true)
-        gameState.setDecision(Common.GameState.GAME_OVER, true)
     }
 
     companion object {

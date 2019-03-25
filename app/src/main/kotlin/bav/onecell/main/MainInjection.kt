@@ -1,7 +1,7 @@
 package bav.onecell.main
 
+import bav.onecell.common.Common
 import bav.onecell.di.scopes.ActivityScope
-import bav.onecell.model.RepositoryContract
 import dagger.Module
 import dagger.Provides
 import dagger.Subcomponent
@@ -18,7 +18,7 @@ interface MainSubcomponent {
 class MainModule {
     @Provides
     @ActivityScope
-    fun provideMainPresenter(cellRepo: RepositoryContract.CellRepo): Main.Presenter {
-        return MainPresenter(cellRepo)
+    fun provideMainPresenter(gameState: Common.GameState, analytics: Common.Analytics): Main.Presenter {
+        return MainPresenter(gameState, analytics)
     }
 }

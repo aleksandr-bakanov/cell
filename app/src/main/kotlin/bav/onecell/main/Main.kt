@@ -9,7 +9,9 @@ interface Main {
     }
 
     interface Presenter {
-
+        fun setDebugDecisions()
+        fun isGameFinished(): Boolean
+        fun getLastNavDestinationId(): Int
     }
 
     interface NavigationInfoProvider {
