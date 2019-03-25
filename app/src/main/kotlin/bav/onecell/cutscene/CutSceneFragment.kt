@@ -303,13 +303,6 @@ class CutSceneFragment : Fragment(), CutScene.View {
 
         private const val TEXT_ANIMATION_STEP: Long = 30L
         private const val ANIMATION_FRAME_STEP: Long = 750L
-
-        @JvmStatic
-        fun newInstance(bundle: Bundle?): CutSceneFragment {
-            val fragment = CutSceneFragment()
-            fragment.arguments = bundle
-            return fragment
-        }
     }
 
     private data class FrameData(val text: String,

@@ -108,11 +108,5 @@ class BattleResultsFragment: androidx.fragment.app.Fragment(), BattleResults.Vie
         const val CELL_INDEXES = "cell_indexes"
         const val IS_BATTLE_WON = "is_battle_won"
         private const val PREVIOUS_SCENE = "previous_scene"
-
-        fun newInstance(bundle: Bundle?): BattleResultsFragment {
-            val fragment = BattleResultsFragment()
-            fragment.arguments = bundle
-            return fragment
-        }
     }
 }

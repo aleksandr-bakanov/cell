@@ -103,7 +103,5 @@ class MainFragment : Fragment(), Main.View {
     companion object {
         private const val TAG = "MainFragment"
         private const val SCREEN_NAME = "Main menu"
-        @JvmStatic
-        fun newInstance() = MainFragment()
     }
 }

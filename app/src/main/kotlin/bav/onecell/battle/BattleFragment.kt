@@ -285,11 +285,5 @@ class BattleFragment : Fragment(), Battle.View {
         private const val SCREEN_NAME = "Battle screen"
         const val EXTRA_PARAMS = "params"
         private const val TIMESTAMP_STEP: Long = 100
-
-        fun newInstance(bundle: Bundle?): BattleFragment {
-            val fragment = BattleFragment()
-            fragment.arguments = bundle
-            return fragment
-        }
     }
 }

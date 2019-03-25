@@ -508,12 +508,5 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
         private const val SCREEN_NAME = "Heroes screen"
 
         private var lastCellsCount = 1
-
-        @JvmStatic
-        fun newInstance(bundle: Bundle?): HeroScreenFragment {
-            val fragment = HeroScreenFragment()
-            fragment.arguments = bundle
-            return fragment
-        }
     }
 }
