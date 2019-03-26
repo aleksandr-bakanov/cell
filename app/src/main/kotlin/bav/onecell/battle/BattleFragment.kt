@@ -64,6 +64,8 @@ class BattleFragment : Fragment(), Battle.View {
     private val frames: MutableMap<Long, FrameGraphics> = mutableMapOf()
     private var lastSeekBarPosition: Int = 0
 
+    private var battleInfo: BattleInfo? = null
+
     private val seekBarListener = object : SeekBar.OnSeekBarChangeListener {
         override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
             if (fromUser) {
@@ -91,11 +93,8 @@ class BattleFragment : Fragment(), Battle.View {
         if (newTimestamp > battleDuration) newTimestamp = battleDuration
         if (newTimestamp < 0) newTimestamp = 0
 
-        if (frames.containsKey(newTimestamp)) {
-            currentTimestamp = newTimestamp
-            return true
-        }
-        else return false
+        currentTimestamp = newTimestamp
+        return true
     }
 
     private fun clickOnStepButton(newTimestamp: Long) {
@@ -137,6 +136,9 @@ class BattleFragment : Fragment(), Battle.View {
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe { battleInfo ->
+                            this.battleInfo = battleInfo
+                            battleCanvasView.battleInfo = battleInfo
+
                             if (battleInfo.snapshots.size > 0) {
                                 battleCanvasView.backgroundFieldRadius = battleInfo.snapshots[0].cells.asSequence().map { it.size() }.sum()
                             }
@@ -144,14 +146,14 @@ class BattleFragment : Fragment(), Battle.View {
                             battleDuration = battleInfo.snapshots.sumBy { it.duration() }.toLong()
                             seekBar.max = (0..battleDuration step TIME_BETWEEN_FRAMES_MS).count()
 
-                            disposables.add(framesFactory.progressProvider()
+                            /*disposables.add(framesFactory.progressProvider()
                                                     .subscribeOn(Schedulers.io())
                                                     .observeOn(AndroidSchedulers.mainThread())
                                                     .subscribe {
                                                         progressBar.progress = it
-                                                    })
+                                                    })*/
 
-                            disposables.add(framesFactory.framesProvider()
+                            /*disposables.add(framesFactory.framesProvider()
                                                     .subscribeOn(Schedulers.io())
                                                     .observeOn(AndroidSchedulers.mainThread())
                                                     .subscribe {
@@ -167,8 +169,12 @@ class BattleFragment : Fragment(), Battle.View {
                                                             progressBar.progress = progressBar.max
                                                         }
                                                     })
-                            frameGenerationJob = framesFactory.generateFrames(battleInfo)
+                            frameGenerationJob = framesFactory.generateFrames(battleInfo)*/
                             reportBattleEnd(battleInfo)
+
+                            setTimestampAndDrawFrame(0)
+                            splashImage.visibility = View.GONE
+                            calculationTextView.visibility = View.GONE
                         })
 
         arguments?.let {
@@ -230,7 +236,6 @@ class BattleFragment : Fragment(), Battle.View {
     }
 
     private val reportBundle = Bundle()
-    private var battleInfo: BattleInfo? = null
     private fun reportBattleEnd(battleInfo: BattleInfo) {
         val dealtDamage: Map<Int, Int> = battleInfo.damageDealtByCells
         val deadOrAliveCells: Map<Int, Boolean> = battleInfo.deadOrAliveCells

@@ -62,4 +62,10 @@ class CommonModule {
     fun provideAnalytics(@Named("app_context") context: Context): Common.Analytics {
         return AnalyticsImpl(context)
     }
+
+    @Provides
+    @Singleton
+    fun provideObjectPool(): Common.ObjectPool {
+        return ObjectPoolImpl()
+    }
 }

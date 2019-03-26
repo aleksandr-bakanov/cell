@@ -11,6 +11,7 @@ import android.view.ScaleGestureDetector
 import android.view.View
 import bav.onecell.R
 import bav.onecell.common.view.CanvasView
+import bav.onecell.model.BattleInfo
 import bav.onecell.model.battle.FrameGraphics
 import bav.onecell.model.hexes.Point
 import java.lang.IllegalArgumentException
@@ -36,6 +37,8 @@ class BattleCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
     var frames: MutableMap<Long, FrameGraphics>? = null
     var currentFrameGraphics: FrameGraphics? = null
     var transformedPath: Path = Path()
+
+    var battleInfo: BattleInfo? = null
 
     init {
         corpseLifePaint.style = Paint.Style.FILL

@@ -2,6 +2,7 @@ package bav.onecell.common
 
 import android.app.Activity
 import android.graphics.drawable.Drawable
+import bav.onecell.model.battle.FrameGraphics
 import bav.onecell.model.cell.logic.Action
 import bav.onecell.model.cell.logic.Condition
 
@@ -79,5 +80,9 @@ interface Common {
 
     interface Analytics {
         fun setCurrentScreen(activity: Activity, screenName: String?, screenClassOverride: String?)
+    }
+
+    interface ObjectPool {
+        fun getFrameGraphics(): FrameGraphics
     }
 }
