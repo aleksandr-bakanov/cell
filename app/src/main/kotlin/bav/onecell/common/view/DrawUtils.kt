@@ -19,12 +19,8 @@ import bav.onecell.model.cell.Cell
 import bav.onecell.model.hexes.Hex
 import bav.onecell.model.hexes.HexMath
 import bav.onecell.model.hexes.Layout
-import bav.onecell.model.hexes.Orientation
 import bav.onecell.model.hexes.Point
-import kotlin.math.PI
 import kotlin.math.cos
-import kotlin.math.max
-import kotlin.math.min
 import kotlin.math.sin
 
 class DrawUtils(private val hexMath: HexMath, private val context: Context) {
@@ -154,34 +150,80 @@ class DrawUtils(private val hexMath: HexMath, private val context: Context) {
     }
 
     class CellGraphicalPoints(
-            var lifeHexes: MutableList<Path>? = null,
-            var attackHexes: MutableList<Path>? = null,
-            var energyHexes: MutableList<Path>? = null,
-            var deathRayHexes: MutableList<Path>? = null,
-            var omniBulletHexes: MutableList<Path>? = null,
-            var outline: MutableList<Point>? = null,
+            var lifeHexes: MutableList<Path> = mutableListOf(),
+            var lifeHexesIndex: Int = 0,
+
+            var attackHexes: MutableList<Path> = mutableListOf(),
+            var attackHexesIndex: Int = 0,
+
+            var energyHexes: MutableList<Path> = mutableListOf(),
+            var energyHexesIndex: Int = 0,
+
+            var deathRayHexes: MutableList<Path> = mutableListOf(),
+            var deathRayHexesIndex: Int = 0,
+
+            var omniBulletHexes: MutableList<Path> = mutableListOf(),
+            var omniBulletHexesIndex: Int = 0,
+
+            var outline: MutableList<Point> = mutableListOf(),
+            var outlineIndex: Int = 0,
+
             var isFriendly: Boolean = false) {
 
-        fun clear() {
-            lifeHexes?.forEach { it.reset() }
-            attackHexes?.forEach { it.reset() }
-            energyHexes?.forEach { it.reset() }
-            deathRayHexes?.forEach { it.reset() }
-            omniBulletHexes?.forEach { it.reset() }
-            
-            lifeHexes?.clear()
-            attackHexes?.clear()
-            energyHexes?.clear()
-            deathRayHexes?.clear()
-            omniBulletHexes?.clear()
-            outline?.clear()
+        fun getOutlinePoint(): Point {
+            if (outline.size == outlineIndex) outline.add(Point())
+            val p = outline[outlineIndex]
+            outlineIndex++
+            return p
+        }
 
-            lifeHexes = null
-            attackHexes = null
-            energyHexes = null
-            deathRayHexes = null
-            omniBulletHexes = null
-            outline = null
+        fun getLifeHexPath(): Path {
+            if (lifeHexes.size == lifeHexesIndex) lifeHexes.add(Path())
+            val p = lifeHexes[lifeHexesIndex]
+            lifeHexesIndex++
+            p.reset()
+            return p
+        }
+        
+        fun getAttackHexPath(): Path {
+            if (attackHexes.size == attackHexesIndex) attackHexes.add(Path())
+            val p = attackHexes[attackHexesIndex]
+            attackHexesIndex++
+            p.reset()
+            return p
+        }
+
+        fun getEnergyHexPath(): Path {
+            if (energyHexes.size == energyHexesIndex) energyHexes.add(Path())
+            val p = energyHexes[energyHexesIndex]
+            energyHexesIndex++
+            p.reset()
+            return p
+        }
+        
+        fun getDeathRayHexPath(): Path {
+            if (deathRayHexes.size == deathRayHexesIndex) deathRayHexes.add(Path())
+            val p = deathRayHexes[deathRayHexesIndex]
+            deathRayHexesIndex++
+            p.reset()
+            return p
+        }
+        
+        fun getOmniBulletHexPath(): Path {
+            if (omniBulletHexes.size == omniBulletHexesIndex) omniBulletHexes.add(Path())
+            val p = omniBulletHexes[omniBulletHexesIndex]
+            omniBulletHexesIndex++
+            p.reset()
+            return p
+        }
+
+        fun reset() {
+            lifeHexesIndex = 0
+            attackHexesIndex = 0
+            energyHexesIndex = 0
+            deathRayHexesIndex = 0
+            omniBulletHexesIndex = 0
+            outlineIndex = 0
         }
     }
 
@@ -235,6 +277,38 @@ class DrawUtils(private val hexMath: HexMath, private val context: Context) {
         }
         graphicalPoints.isFriendly = cell.data.groupId == Consts.MAIN_CHARACTERS_GROUP_ID
         return graphicalPoints
+    }
+
+    fun getCellGraphicalRepresentation(cell: Cell, out: CellGraphicalPoints) {
+        out.reset()
+        if (cell.data.hexes.isEmpty()) return
+
+        getCellOutline(cell, Layout.UNIT, out)
+
+        hexMath.hexToPixel(Layout.UNIT, cell.data.origin, cellOrigin)
+        for (hex in cell.data.hexes.values) {
+            hexMath.add(hex, cell.data.origin, hexInGlobal)
+            val path = when (hex.type) {
+                Hex.Type.LIFE -> out.getLifeHexPath()
+                Hex.Type.ENERGY -> out.getEnergyHexPath()
+                Hex.Type.ATTACK -> out.getAttackHexPath()
+                Hex.Type.DEATH_RAY -> out.getDeathRayHexPath()
+                Hex.Type.OMNI_BULLET -> out.getOmniBulletHexPath()
+                else -> null
+            }
+
+            var fadeScale = 1.0f
+            cell.animationData.hexHashesToRemove?.let { hexHashesToRemove ->
+                if (hexHashesToRemove.contains(hex.mapKey)) {
+                    fadeScale = 1.0f - cell.animationData.fadeFraction
+                }
+            }
+
+            getHexPath(Layout.UNIT, hexInGlobal, path!!, cellOrigin,
+                       cell.animationData.rotation, cell.animationData.moveDirection,
+                       cell.animationData.movingFraction, scale = fadeScale)
+        }
+        out.isFriendly = cell.data.groupId == Consts.MAIN_CHARACTERS_GROUP_ID
     }
 
     private val transformedHexPath: Path = Path()
@@ -317,6 +391,11 @@ class DrawUtils(private val hexMath: HexMath, private val context: Context) {
     fun getBulletPath(bullet: Bullet, layout: Layout = Layout.DUMMY): Path {
         return getHexPath(layout, bullet.origin, movingDirection = bullet.direction,
                            movingFraction = bullet.movingFraction, scale = 0.5f)
+    }
+
+    fun getBulletPath(bullet: Bullet, out: Path, layout: Layout = Layout.DUMMY) {
+        getHexPath(layout, bullet.origin, out, movingDirection = bullet.direction,
+                          movingFraction = bullet.movingFraction, scale = 0.5f)
     }
 
     private fun getHexPath(layout: Layout, hex: Hex, rotateAround: Point? = null, rotation: Float = 0f,
@@ -431,6 +510,36 @@ class DrawUtils(private val hexMath: HexMath, private val context: Context) {
             }
         }
         return lines
+    }
+
+    private fun getCellOutline(cell: Cell, layout: Layout, out: CellGraphicalPoints) {
+        hexMath.hexToPixel(layout, hexMath.getHexByDirection(cell.animationData.moveDirection), offsetPoint)
+        hexMath.hexToPixel(layout, cell.data.origin, cellOrigin)
+
+        cell.data.hexes.values.forEach { hex ->
+            hexMath.add(hex, cell.data.origin, hexInGlobal)
+            hexMath.polygonCorners(layout, hexInGlobal, hexCorners)
+
+            // Rotate and offset
+            rotatePoints(hexCorners, cellOrigin, cell.animationData.rotation)
+            if (cell.animationData.movingFraction > 0f)
+                offsetPoints(hexCorners, cell.animationData.moveDirection, cell.animationData.movingFraction, layout, offsetPoint)
+
+            for (direction in 0..5) {
+                hexMath.getHexNeighbor(hex, direction, neighbor)
+                if (!cell.data.hexes.values.contains(neighbor)) {
+                    when (direction) {
+                        0 -> { out.getOutlinePoint().copy(hexCorners[4]); out.getOutlinePoint().copy(hexCorners[5]) }
+                        1 -> { out.getOutlinePoint().copy(hexCorners[5]); out.getOutlinePoint().copy(hexCorners[0]) }
+                        2 -> { out.getOutlinePoint().copy(hexCorners[0]); out.getOutlinePoint().copy(hexCorners[1]) }
+                        3 -> { out.getOutlinePoint().copy(hexCorners[1]); out.getOutlinePoint().copy(hexCorners[2]) }
+                        4 -> { out.getOutlinePoint().copy(hexCorners[2]); out.getOutlinePoint().copy(hexCorners[3]) }
+                        5 -> { out.getOutlinePoint().copy(hexCorners[3]); out.getOutlinePoint().copy(hexCorners[4]) }
+                        else -> Unit
+                    }
+                }
+            }
+        }
     }
 
     private val vPoint = Point()

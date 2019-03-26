@@ -52,7 +52,8 @@ class BattleFragment : Fragment(), Battle.View {
     @Inject lateinit var resourceProvider: Common.ResourceProvider
     @Inject lateinit var gameState: Common.GameState
     @Inject lateinit var analytics: Common.Analytics
-    @Inject lateinit var framesFactory: Battle.FramesFactory
+    @Inject lateinit var objectPool: Common.ObjectPool
+    @Inject lateinit var battleGraphics: Battle.FramesFactory
 
     private val disposables = CompositeDisposable()
     private var nextScene: Int = 0
@@ -60,8 +61,6 @@ class BattleFragment : Fragment(), Battle.View {
     private var battleDuration: Long = 0
     private var currentTimestamp: Long = 0
     private var animationTimer: Disposable? = null
-    private var frameGenerationJob: Job? = null
-    private val frames: MutableMap<Long, FrameGraphics> = mutableMapOf()
     private var lastSeekBarPosition: Int = 0
 
     private var battleInfo: BattleInfo? = null
@@ -127,8 +126,10 @@ class BattleFragment : Fragment(), Battle.View {
         seekBar.setOnSeekBarChangeListener(seekBarListener)
 
         battleCanvasView.inject(hexMath, drawUtils)
+        /// TODO: move to inject()
         battleCanvasView.presenter = presenter
-        battleCanvasView.frames = frames
+        battleCanvasView.objectPool = objectPool
+        battleCanvasView.battleGraphics = battleGraphics
 
         seekBar.max = 0
         disposables.addAll(
@@ -146,30 +147,6 @@ class BattleFragment : Fragment(), Battle.View {
                             battleDuration = battleInfo.snapshots.sumBy { it.duration() }.toLong()
                             seekBar.max = (0..battleDuration step TIME_BETWEEN_FRAMES_MS).count()
 
-                            /*disposables.add(framesFactory.progressProvider()
-                                                    .subscribeOn(Schedulers.io())
-                                                    .observeOn(AndroidSchedulers.mainThread())
-                                                    .subscribe {
-                                                        progressBar.progress = it
-                                                    })*/
-
-                            /*disposables.add(framesFactory.framesProvider()
-                                                    .subscribeOn(Schedulers.io())
-                                                    .observeOn(AndroidSchedulers.mainThread())
-                                                    .subscribe {
-                                                        if (it.second != null) {
-                                                            frames[it.first] = it.second!!
-                                                            if (frames.size == 1) {
-                                                                setTimestampAndDrawFrame(0)
-                                                                splashImage.visibility = View.GONE
-                                                                calculationTextView.visibility = View.GONE
-                                                            }
-                                                        }
-                                                        else {
-                                                            progressBar.progress = progressBar.max
-                                                        }
-                                                    })
-                            frameGenerationJob = framesFactory.generateFrames(battleInfo)*/
                             reportBattleEnd(battleInfo)
 
                             setTimestampAndDrawFrame(0)
@@ -200,8 +177,6 @@ class BattleFragment : Fragment(), Battle.View {
     }
 
     override fun onDestroyView() {
-        GlobalScope.launch { cancelFrameGenerationJob() }
-        Log.d(TAG, "onDestroyView")
         pauseAnimation()
         disposables.dispose()
         presenter.stopBattleEvaluation()
@@ -210,21 +185,6 @@ class BattleFragment : Fragment(), Battle.View {
     //endregion
 
     //region Private methods
-    private suspend fun cancelFrameGenerationJob() {
-        frameGenerationJob?.cancel()
-        frameGenerationJob?.join()
-        frameGenerationJob = null
-        battleInfo?.clear()
-        battleInfo = null
-        clearBattleFrames()
-    }
-
-    private fun clearBattleFrames() {
-        frames.values.forEach { it.clear() }
-        frames.clear()
-        System.gc()
-    }
-
     private fun inject() {
         (requireActivity().application as OneCellApplication).appComponent
                 .plus(BattleModule(this))
@@ -247,8 +207,6 @@ class BattleFragment : Fragment(), Battle.View {
         reportBundle.putBooleanArray(BattleResultsFragment.DEAD_OR_ALIVE, doa.toBooleanArray())
         reportBundle.putBoolean(BattleResultsFragment.IS_BATTLE_WON, battleInfo.winnerGroupId == Consts.HERO_GROUP_ID)
         reportBundle.putString(Consts.BATTLE_REWARD, reward)
-
-        this.battleInfo = battleInfo
 
         buttonFinishBattle.setOnClickListener { view ->
             view.findNavController().navigate(nextScene, reportBundle)
@@ -281,7 +239,7 @@ class BattleFragment : Fragment(), Battle.View {
     }
 
     private fun drawFrame(timestamp: Long) {
-        if (frames.containsKey(timestamp)) battleCanvasView.drawFrame(timestamp)
+        battleCanvasView.drawFrame(timestamp)
     }
     //endregion
 

@@ -45,6 +45,93 @@ class BattleGraphics(
         }
     }
 
+    private val frameState: FrameState = FrameState()
+    override fun generateFrameGraphics(battleInfo: BattleInfo, timestamp: Long, out: FrameGraphics) {
+        out.reset()
+        getFrameState(battleInfo.snapshots, timestamp, frameState)
+        val snapshot = battleInfo.snapshots[frameState.snapshotIndex]
+
+        //-------------------------------------------------------------
+        // Cells data correction
+        // Actions
+        snapshot.cells.forEachIndexed { index, cell ->
+            // Reset actions data
+            cell.animationData.rotation = 0f
+            if (index >= 0 && index < snapshot.cellsActions.size) {
+                snapshot.cellsActions[index]?.let { action ->
+                    when (action.act) {
+                        Action.Act.CHANGE_DIRECTION -> {
+                            val angle = cell.getRotationAngle(action.value)
+                            cell.animationData.rotation = if (angle == 0f) 0f else {
+                                angle * /*frameState.actionFraction*/ frameState.movingFraction
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        // Moving
+        snapshot.cells.forEachIndexed { index, cell ->
+            if (index >= 0 && index < snapshot.movingDirections.size) {
+                // Save move direction
+                cell.animationData.moveDirection = snapshot.movingDirections[index]
+                // Clear cell moving fraction
+                cell.animationData.movingFraction = frameState.movingFraction
+            }
+        }
+        snapshot.bullets.forEach { bullet ->
+            bullet.movingFraction = frameState.movingFraction
+        }
+
+        // Hex removal
+        snapshot.cells.forEachIndexed { index, cell ->
+            if (index >= 0 && index < snapshot.hexesToRemove.size) {
+                cell.animationData.hexHashesToRemove = snapshot.hexesToRemove[index]
+                cell.animationData.fadeFraction = frameState.hexRemovalFraction
+            }
+        }
+
+        //-------------------------------------------------------------
+        // Generating points
+        // Living cells
+        if (snapshot.cells.isNotEmpty()) {
+            snapshot.cells.forEach { cell -> drawUtils.getCellGraphicalRepresentation(cell, out.getLivingCell()) }
+        }
+
+        // Corpse cells
+        if (snapshot.corpses.isNotEmpty()) {
+            snapshot.corpses.forEach { corpse -> drawUtils.getCellGraphicalRepresentation(corpse, out.getCorpse()) }
+        }
+
+        // Death rays
+        if (snapshot.deathRays.isNotEmpty()) {
+            snapshot.deathRays.forEach { ray ->
+                hexMath.hexToPixel(Layout.UNIT, ray.first, out.getDeathRayPoint())
+                hexMath.hexToPixel(Layout.UNIT, ray.second, out.getDeathRayPoint())
+            }
+            out.deathRaysAlpha = if (frameState.deathRayFraction < 0.5) {
+                (frameState.deathRayFraction * 2f * 255f).toInt()
+            } else {
+                ((1f - frameState.deathRayFraction) * 2f * 255f).toInt()
+            }
+        }
+
+        // Bullets
+        if (snapshot.bullets.isNotEmpty()) {
+            snapshot.bullets.forEach { bullet -> drawUtils.getBulletPath(bullet, out.getBullet(), Layout.UNIT) }
+        }
+
+        // Field of view
+        val battleDuration = battleInfo.snapshots.sumBy { it.duration() }.toLong()
+        val isFog = battleInfo.isFog
+        val isBattleWon = battleInfo.winnerGroupId == Consts.HERO_GROUP_ID
+        // In case last frame and battle is won fog doesn't show
+        if (isFog && !(timestamp == battleDuration && isBattleWon)) {
+            getObservableAreaPath(snapshot.cells, out.fieldOfView)
+        }
+    }
+
     override fun generateFrames(battleInfo: BattleInfo): Job {
         return GlobalScope.launch {
             val battleDuration = battleInfo.snapshots.sumBy { it.duration() }.toLong()
@@ -219,6 +306,60 @@ class BattleGraphics(
         }
         path.close()
         return path
+    }
+
+    private fun getObservableAreaPath(cells: List<Cell>, out: Path) {
+        out.reset()
+        // Count of hexes in current observable area
+        var currentPoolIndex = 0
+        // Indices of layer's start and end in pool
+        var indexOfCellStart = 0
+        var indexOfLayerStart = 0
+        var indexOfLayerEnd = 0
+        var currentLayerEnd = 0
+        // Get area observed by cells with group id = 0 only, i.e. main heroes
+        cells.forEach { cell ->
+            if (cell.data.groupId == Consts.MAIN_CHARACTERS_GROUP_ID) {
+                hexMath.hexToPixel(Layout.UNIT, cell.data.origin, cellOrigin)
+
+                indexOfCellStart = currentPoolIndex
+
+                // Hexes of cell
+                indexOfLayerStart = currentPoolIndex
+                cell.data.hexes.values.forEach { hex ->
+                    addToObservableAreaPool(currentPoolIndex, hex, hexMath.ZERO_HEX)
+                    currentPoolIndex++
+                }
+                indexOfLayerEnd = currentPoolIndex
+
+                // Layers of view field
+                for (layerNumber in 0 until cell.data.viewDistance) {
+                    currentLayerEnd = indexOfLayerEnd
+                    for (i in indexOfLayerStart until currentLayerEnd) {
+                        val hex = observableAreaHexPool[i]
+                        hexMath.hexNeighbors(hex, observableAreaNeighborsPool)
+                        neighborsLoop@ for (nIndex in 0..5) {
+                            for (aIndex in indexOfCellStart until currentPoolIndex) {
+                                if (observableAreaHexPool[aIndex] == observableAreaNeighborsPool[nIndex]) continue@neighborsLoop
+                            }
+                            addToObservableAreaPool(currentPoolIndex, observableAreaNeighborsPool[nIndex], hexMath.ZERO_HEX)
+                            currentPoolIndex++
+                            indexOfLayerEnd++
+                        }
+                    }
+                    indexOfLayerStart = currentLayerEnd
+                }
+
+                for (vIndex in indexOfCellStart until currentPoolIndex) {
+                    hexMath.add(cell.data.origin, observableAreaHexPool[vIndex], vHex)
+                    hexMath.hexToPixel(Layout.UNIT, vHex, origin)
+                    drawUtils.rotatePoint(origin, cellOrigin, cell.animationData.rotation)
+                    drawUtils.offsetPoint(origin, cell.animationData.moveDirection, cell.animationData.movingFraction, Layout.UNIT)
+                    out.addCircle(origin.x.toFloat(), origin.y.toFloat(), Layout.UNIT.size.x.toFloat(), Path.Direction.CW)
+                }
+            }
+        }
+        out.close()
     }
 
     private fun addToObservableAreaPool(currentPoolIndex: Int, hex: Hex, origin: Hex) {

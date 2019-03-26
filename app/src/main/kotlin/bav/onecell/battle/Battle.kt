@@ -35,5 +35,7 @@ interface Battle {
          * Generates frames from provided battle info. Will emit result via [framesProvider].
          */
         fun generateFrames(battleInfo: BattleInfo): Job
+
+        fun generateFrameGraphics(battleInfo: BattleInfo, timestamp: Long, out: FrameGraphics)
     }
 }

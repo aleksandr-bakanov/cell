@@ -233,6 +233,7 @@ class Cell(private val hexMath: HexMath,
         return action
     }
 
+    /// TODO: optimize?
     fun getRotationAngle(direction: Int): Float {
         val newDirection = Cell.Direction.fromInt(direction)
 

@@ -9,6 +9,6 @@ class AnalyticsImpl(context: Context): Common.Analytics {
     private val firebaseAnalytics: FirebaseAnalytics = FirebaseAnalytics.getInstance(context)
 
     override fun setCurrentScreen(activity: Activity, screenName: String?, screenClassOverride: String?) {
-        firebaseAnalytics.setCurrentScreen(activity, screenName, screenClassOverride)
+        //firebaseAnalytics.setCurrentScreen(activity, screenName, screenClassOverride)
     }
 }

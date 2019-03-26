@@ -9,36 +9,58 @@ import bav.onecell.model.hexes.Point
  */
 class FrameGraphics(
         // Living cells
-        var livingCells: MutableList<DrawUtils.CellGraphicalPoints>? = null,
+        var livingCells: MutableList<DrawUtils.CellGraphicalPoints> = mutableListOf(),
+        var livingCellsIndex: Int = 0,
 
         // Corpses
-        var corpses: MutableList<DrawUtils.CellGraphicalPoints>? = null,
+        var corpses: MutableList<DrawUtils.CellGraphicalPoints> = mutableListOf(),
+        var corpsesIndex: Int = 0,
 
         // Death rays
-        var deathRays: MutableList<Point>? = null,
+        var deathRays: MutableList<Point> = mutableListOf(),
+        var deathRaysIndex: Int = 0,
         var deathRaysAlpha: Int = 0,
 
         // Bullets
-        var bullets: MutableList<Path>? = null,
+        var bullets: MutableList<Path> = mutableListOf(),
+        var bulletsIndex: Int = 0,
 
         // Fog
-        var fieldOfView: Path? = null) {
+        var fieldOfView: Path = Path()) {
 
-    fun clear() {
-        livingCells?.forEach { it.clear() }
-        corpses?.forEach { it.clear() }
-        bullets?.forEach { it.reset() }
-        fieldOfView?.reset()
+    fun getLivingCell(): DrawUtils.CellGraphicalPoints {
+        if (livingCells.size == livingCellsIndex) livingCells.add(DrawUtils.CellGraphicalPoints())
+        val ret = livingCells[livingCellsIndex]
+        livingCellsIndex++
+        return ret
+    }
 
-        livingCells?.clear()
-        corpses?.clear()
-        deathRays?.clear()
-        bullets?.clear()
+    fun getCorpse(): DrawUtils.CellGraphicalPoints {
+        if (corpses.size == corpsesIndex) corpses.add(DrawUtils.CellGraphicalPoints())
+        val ret = corpses[corpsesIndex]
+        corpsesIndex++
+        return ret
+    }
 
-        livingCells = null
-        corpses = null
-        deathRays = null
-        bullets = null
-        fieldOfView = null
+    fun getDeathRayPoint(): Point {
+        if (deathRays.size == deathRaysIndex) deathRays.add(Point())
+        val ret = deathRays[deathRaysIndex]
+        deathRaysIndex++
+        return ret
+    }
+
+    fun getBullet(): Path {
+        if (bullets.size == bulletsIndex) bullets.add(Path())
+        val ret = bullets[bulletsIndex]
+        bulletsIndex++
+        return ret
+    }
+
+    fun reset() {
+        livingCellsIndex = 0
+        corpsesIndex = 0
+        deathRaysIndex = 0
+        bulletsIndex = 0
+        fieldOfView.reset()
     }
 }

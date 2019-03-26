@@ -10,6 +10,7 @@ import android.view.MotionEvent
 import android.view.ScaleGestureDetector
 import android.view.View
 import bav.onecell.R
+import bav.onecell.common.Common
 import bav.onecell.common.view.CanvasView
 import bav.onecell.model.BattleInfo
 import bav.onecell.model.battle.FrameGraphics
@@ -34,11 +35,12 @@ class BattleCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
     private val corpseOmniBulletHexPaint = Paint()
     private val scaleGestureDetector = ScaleGestureDetector(context, ScaleListener(this))
     var scaleFactor: Float = 1f
-    var frames: MutableMap<Long, FrameGraphics>? = null
     var currentFrameGraphics: FrameGraphics? = null
     var transformedPath: Path = Path()
 
     var battleInfo: BattleInfo? = null
+    lateinit var objectPool: Common.ObjectPool
+    lateinit var battleGraphics: Battle.FramesFactory
 
     init {
         corpseLifePaint.style = Paint.Style.FILL
@@ -110,21 +112,20 @@ class BattleCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
     }
 
     fun drawFrame(timestamp: Long) {
-        frames?.get(timestamp)?.let { frameGraphics ->
-            currentFrameGraphics = frameGraphics
-            invalidate()
-        }
+        currentFrameGraphics = objectPool.getFrameGraphics()
+        battleGraphics.generateFrameGraphics(battleInfo!!, timestamp, currentFrameGraphics!!)
+        invalidate()
     }
 
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
 
-        currentFrameGraphics?.let { graphics ->
+        currentFrameGraphics?.let {
             // Draw fog
-            if (graphics.fieldOfView != null) {
+            if (!it.fieldOfView.isEmpty) {
                 canvas?.drawRect(0f, 0f, width.toFloat(), height.toFloat(), drawUtils.groundPaint)
                 canvas?.drawColor(0x77000000)
-                graphics.fieldOfView?.transform(layoutMatrix, transformedPath)
+                it.fieldOfView.transform(layoutMatrix, transformedPath)
                 canvas?.clipPath(transformedPath)
             } else {
                 canvas?.clipRect(0f, 0f, width.toFloat(), height.toFloat())
@@ -134,39 +135,39 @@ class BattleCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
             canvas?.drawRect(0f, 0f, width.toFloat(), height.toFloat(), drawUtils.groundPaint)
 
             // Corpses
-            if (!graphics.corpses.isNullOrEmpty()) {
-                for (corpse in graphics.corpses!!) {
-                    drawUtils.drawCellGraphicalRepresentation(canvas, corpse, layout, layoutMatrix,
+            if (it.corpsesIndex > 0) {
+                for (i in 0 until it.corpsesIndex) {
+                    drawUtils.drawCellGraphicalRepresentation(canvas, it.corpses[i], layout, layoutMatrix,
                                                               corpseLifePaint, corpseEnergyPaint, corpseAttackPaint,
                                                               corpseDeathRayHexPaint, corpseOmniBulletHexPaint, true)
                 }
             }
 
             // Living cells
-            if (!graphics.livingCells.isNullOrEmpty()) {
-                for (cell in graphics.livingCells!!) {
-                    drawUtils.drawCellGraphicalRepresentation(canvas, cell, layout, layoutMatrix,
+            if (it.livingCellsIndex > 0) {
+                for (i in 0 until it.livingCellsIndex) {
+                    drawUtils.drawCellGraphicalRepresentation(canvas, it.livingCells[i], layout, layoutMatrix,
                                                               drawUtils.lifePaint, drawUtils.energyPaint, drawUtils.attackPaint,
                                                               drawUtils.deathRayHexPaint, drawUtils.omniBulletHexPaint, false)
                 }
             }
 
             // Death rays
-            graphics.deathRays?.let { points ->
-                drawUtils.deathRayPaint.alpha = graphics.deathRaysAlpha
-                for (i in 0 until points.size step 2) {
-                    canvas?.drawLine((points[i].x * layout.size.x + layout.origin.x).toFloat(),
-                                     (points[i].y * layout.size.y + layout.origin.y).toFloat(),
-                                     (points[i + 1].x * layout.size.x + layout.origin.x).toFloat(),
-                                     (points[i + 1].y * layout.size.y + layout.origin.y).toFloat(),
+            if (it.deathRaysIndex > 0) {
+                drawUtils.deathRayPaint.alpha = it.deathRaysAlpha
+                for (i in 0 until it.deathRaysIndex step 2) {
+                    canvas?.drawLine((it.deathRays[i].x * layout.size.x + layout.origin.x).toFloat(),
+                                     (it.deathRays[i].y * layout.size.y + layout.origin.y).toFloat(),
+                                     (it.deathRays[i + 1].x * layout.size.x + layout.origin.x).toFloat(),
+                                     (it.deathRays[i + 1].y * layout.size.y + layout.origin.y).toFloat(),
                                      drawUtils.deathRayPaint)
                 }
             }
 
             // Bullets
-            graphics.bullets?.let { paths ->
-                for (path in paths) {
-                    path.transform(layoutMatrix, transformedPath)
+            if (it.bulletsIndex > 0) {
+                for (i in 0 until it.bulletsIndex) {
+                    it.bullets[i].transform(layoutMatrix, transformedPath)
                     canvas?.drawPath(transformedPath, drawUtils.omniBulletHexPaint)
                     canvas?.drawPath(transformedPath, drawUtils.bulletOutlinePaint)
                 }
