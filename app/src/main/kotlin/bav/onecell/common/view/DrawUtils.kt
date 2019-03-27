@@ -320,59 +320,45 @@ class DrawUtils(private val hexMath: HexMath, private val context: Context) {
                                         isCorpse: Boolean) {
         // Group affiliation outline
         if (!isCorpse) {
-            graphics.outline?.let { points ->
-                for (i in 0 until points.size step 2) {
-                    canvas?.drawLine((points[i].x * layout.size.x + layout.origin.x).toFloat(),
-                                     (points[i].y * layout.size.y + layout.origin.y).toFloat(),
-                                     (points[i + 1].x * layout.size.x + layout.origin.x).toFloat(),
-                                     (points[i + 1].y * layout.size.y + layout.origin.y).toFloat(),
-                                     if (graphics.isFriendly)
-                                         groupAffiliationFriendPaint else groupAffiliationEnemyPaint)
-                }
+            for (i in 0 until graphics.outlineIndex step 2) {
+                canvas?.drawLine((graphics.outline[i].x * layout.size.x + layout.origin.x).toFloat(),
+                                 (graphics.outline[i].y * layout.size.y + layout.origin.y).toFloat(),
+                                 (graphics.outline[i + 1].x * layout.size.x + layout.origin.x).toFloat(),
+                                 (graphics.outline[i + 1].y * layout.size.y + layout.origin.y).toFloat(),
+                                 if (graphics.isFriendly)
+                                     groupAffiliationFriendPaint else groupAffiliationEnemyPaint)
             }
         }
 
         // Hexes
-        graphics.lifeHexes?.let { paths ->
-            for (path in paths) {
-                path.transform(layoutMatrix, transformedHexPath)
-                canvas?.drawPath(transformedHexPath, lPaint)
-            }
+        for (i in 0 until graphics.lifeHexesIndex) {
+            graphics.lifeHexes[i].transform(layoutMatrix, transformedHexPath)
+            canvas?.drawPath(transformedHexPath, lPaint)
         }
-        graphics.attackHexes?.let { paths ->
-            for (path in paths) {
-                path.transform(layoutMatrix, transformedHexPath)
-                canvas?.drawPath(transformedHexPath, aPaint)
-            }
+        for (i in 0 until graphics.attackHexesIndex) {
+            graphics.attackHexes[i].transform(layoutMatrix, transformedHexPath)
+            canvas?.drawPath(transformedHexPath, aPaint)
         }
-        graphics.energyHexes?.let { paths ->
-            for (path in paths) {
-                path.transform(layoutMatrix, transformedHexPath)
-                canvas?.drawPath(transformedHexPath, ePaint)
-            }
+        for (i in 0 until graphics.energyHexesIndex) {
+            graphics.energyHexes[i].transform(layoutMatrix, transformedHexPath)
+            canvas?.drawPath(transformedHexPath, ePaint)
         }
-        graphics.deathRayHexes?.let { paths ->
-            for (path in paths) {
-                path.transform(layoutMatrix, transformedHexPath)
-                canvas?.drawPath(transformedHexPath, dPaint)
-            }
+        for (i in 0 until graphics.deathRayHexesIndex) {
+            graphics.deathRayHexes[i].transform(layoutMatrix, transformedHexPath)
+            canvas?.drawPath(transformedHexPath, dPaint)
         }
-        graphics.omniBulletHexes?.let { paths ->
-            for (path in paths) {
-                path.transform(layoutMatrix, transformedHexPath)
-                canvas?.drawPath(transformedHexPath, oPaint)
-            }
+        for (i in 0 until graphics.omniBulletHexesIndex) {
+            graphics.omniBulletHexes[i].transform(layoutMatrix, transformedHexPath)
+            canvas?.drawPath(transformedHexPath, oPaint)
         }
 
         // Outline
-        graphics.outline?.let { points ->
-            for (i in 0 until points.size step 2) {
-                canvas?.drawLine((points[i].x * layout.size.x + layout.origin.x).toFloat(),
-                                 (points[i].y * layout.size.y + layout.origin.y).toFloat(),
-                                 (points[i + 1].x * layout.size.x + layout.origin.x).toFloat(),
-                                 (points[i + 1].y * layout.size.y + layout.origin.y).toFloat(),
-                                 cellOutlinePaint)
-            }
+        for (i in 0 until graphics.outlineIndex step 2) {
+            canvas?.drawLine((graphics.outline[i].x * layout.size.x + layout.origin.x).toFloat(),
+                             (graphics.outline[i].y * layout.size.y + layout.origin.y).toFloat(),
+                             (graphics.outline[i + 1].x * layout.size.x + layout.origin.x).toFloat(),
+                             (graphics.outline[i + 1].y * layout.size.y + layout.origin.y).toFloat(),
+                             cellOutlinePaint)
         }
     }
 
