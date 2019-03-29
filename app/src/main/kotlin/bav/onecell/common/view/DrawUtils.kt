@@ -434,15 +434,15 @@ class DrawUtils(private val hexMath: HexMath, private val context: Context) {
         }
     }
 
+    private val offsetPoint = Point()
     private fun offsetPoints(points: List<Point>, direction: Int, fraction: Float, layout: Layout, point: Point? = null) {
-        val offsetPoint = point ?: hexMath.hexToPixel(layout, hexMath.getHexByDirection(direction))
+        point?.let { offsetPoint.copy(it) } ?: hexMath.hexToPixel(layout, hexMath.getHexByDirection(direction), offsetPoint)
         points.forEach { p ->
             p.x += (offsetPoint.x - layout.origin.x) * fraction
             p.y += (offsetPoint.y - layout.origin.y) * fraction
         }
     }
 
-    val offsetPoint = Point()
     fun offsetPoint(point: Point, direction: Int, fraction: Float, layout: Layout) {
         hexMath.hexToPixel(layout, hexMath.getHexByDirection(direction), offsetPoint)
         point.x += (offsetPoint.x - layout.origin.x) * fraction
