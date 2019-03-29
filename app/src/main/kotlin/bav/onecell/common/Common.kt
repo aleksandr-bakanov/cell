@@ -2,6 +2,7 @@ package bav.onecell.common
 
 import android.app.Activity
 import android.graphics.drawable.Drawable
+import bav.onecell.common.view.DrawUtils
 import bav.onecell.model.battle.FrameGraphics
 import bav.onecell.model.cell.logic.Action
 import bav.onecell.model.cell.logic.Condition
@@ -84,5 +85,6 @@ interface Common {
 
     interface ObjectPool {
         fun getFrameGraphics(): FrameGraphics
+        fun getCellGraphicalRepresentation(): DrawUtils.CellGraphicalPoints
     }
 }

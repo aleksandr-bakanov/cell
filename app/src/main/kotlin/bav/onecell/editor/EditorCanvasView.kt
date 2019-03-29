@@ -9,6 +9,7 @@ import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import bav.onecell.R
+import bav.onecell.common.Common
 import bav.onecell.common.view.CanvasView
 import bav.onecell.common.view.DrawUtils
 import bav.onecell.model.cell.Cell
@@ -28,6 +29,7 @@ class EditorCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
     private val tappedHex: Hex = Hex()
 
     private var cellRepresentation: DrawUtils.CellGraphicalPoints? = null
+    lateinit var objectPool: Common.ObjectPool
 
     private val tipPaint = Paint()
     private val tipPaintLife = Paint()
@@ -98,7 +100,10 @@ class EditorCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
     }
 
     fun updateCellRepresentation() {
-        cell?.let { cellRepresentation = drawUtils.getCellGraphicalRepresentation(it) }
+        cell?.let {
+            cellRepresentation = objectPool.getCellGraphicalRepresentation()
+            drawUtils.getCellGraphicalRepresentation(it, cellRepresentation!!)
+        }
     }
 
     private fun getTipPaint(type: Hex.Type): Paint = when (type) {

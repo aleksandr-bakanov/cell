@@ -227,58 +227,6 @@ class DrawUtils(private val hexMath: HexMath, private val context: Context) {
         }
     }
 
-    fun getCellGraphicalRepresentation(cell: Cell): CellGraphicalPoints? {
-        if (cell.data.hexes.isEmpty()) return null
-        
-        val graphicalPoints = CellGraphicalPoints()
-        
-        graphicalPoints.outline = getCellOutline(cell, Layout.UNIT)
-
-        val originPoint = hexMath.hexToPixel(Layout.UNIT, cell.data.origin)
-        val hexInGlobal = Hex()
-        var pathsList: MutableList<Path>?
-        for (hex in cell.data.hexes.values) {
-            hexMath.add(hex, cell.data.origin, hexInGlobal)
-            pathsList = when (hex.type) {
-                Hex.Type.LIFE -> {
-                    if (graphicalPoints.lifeHexes == null) graphicalPoints.lifeHexes = mutableListOf()
-                    graphicalPoints.lifeHexes
-                }
-                Hex.Type.ENERGY -> {
-                    if (graphicalPoints.energyHexes == null) graphicalPoints.energyHexes = mutableListOf()
-                    graphicalPoints.energyHexes
-                }
-                Hex.Type.ATTACK -> {
-                    if (graphicalPoints.attackHexes == null) graphicalPoints.attackHexes = mutableListOf()
-                    graphicalPoints.attackHexes
-                }
-                Hex.Type.DEATH_RAY -> {
-                    if (graphicalPoints.deathRayHexes == null) graphicalPoints.deathRayHexes = mutableListOf()
-                    graphicalPoints.deathRayHexes
-                }
-                Hex.Type.OMNI_BULLET -> {
-                    if (graphicalPoints.omniBulletHexes == null) graphicalPoints.omniBulletHexes = mutableListOf()
-                    graphicalPoints.omniBulletHexes
-                }
-                else -> null
-            }
-
-            var fadeScale = 1.0f
-            cell.animationData.hexHashesToRemove?.let { hexHashesToRemove ->
-                if (hexHashesToRemove.contains(hex.mapKey)) {
-                    fadeScale = 1.0f - cell.animationData.fadeFraction
-                }
-            }
-
-            val points = getHexPath(Layout.UNIT, hexInGlobal, originPoint,
-                                    cell.animationData.rotation, cell.animationData.moveDirection,
-                                    cell.animationData.movingFraction, scale = fadeScale)
-            pathsList?.add(points)
-        }
-        graphicalPoints.isFriendly = cell.data.groupId == Consts.MAIN_CHARACTERS_GROUP_ID
-        return graphicalPoints
-    }
-
     fun getCellGraphicalRepresentation(cell: Cell, out: CellGraphicalPoints) {
         out.reset()
         if (cell.data.hexes.isEmpty()) return
@@ -374,32 +322,9 @@ class DrawUtils(private val hexMath: HexMath, private val context: Context) {
         }
     }
 
-    fun getBulletPath(bullet: Bullet, layout: Layout = Layout.DUMMY): Path {
-        return getHexPath(layout, bullet.origin, movingDirection = bullet.direction,
-                           movingFraction = bullet.movingFraction, scale = 0.5f)
-    }
-
     fun getBulletPath(bullet: Bullet, out: Path, layout: Layout = Layout.DUMMY) {
         getHexPath(layout, bullet.origin, out, movingDirection = bullet.direction,
                           movingFraction = bullet.movingFraction, scale = 0.5f)
-    }
-
-    private fun getHexPath(layout: Layout, hex: Hex, rotateAround: Point? = null, rotation: Float = 0f,
-                           movingDirection: Int = 0, movingFraction: Float = 0f, scale: Float = 1f): Path {
-        hexMath.polygonCorners(layout, hex, hexCorners, scale)
-
-        // Rotation and moving offset
-        rotateAround?.let { rotatePoints(hexCorners, it, rotation) }
-        if (movingFraction > 0f) offsetPoints(hexCorners, movingDirection, movingFraction, layout)
-
-        val path = Path()
-        path.moveTo(hexCorners[0].x.toFloat(), hexCorners[0].y.toFloat())
-        for (i in 1..(hexCorners.size - 1)) {
-            path.lineTo(hexCorners[i].x.toFloat(), hexCorners[i].y.toFloat())
-        }
-        path.lineTo(hexCorners[0].x.toFloat(), hexCorners[0].y.toFloat())
-
-        return path
     }
 
     private fun getHexPath(layout: Layout, hex: Hex, out: Path, rotateAround: Point? = null, rotation: Float = 0f,
@@ -465,39 +390,6 @@ class DrawUtils(private val hexMath: HexMath, private val context: Context) {
 
     private val neighbor = Hex()
     private val cellOrigin = Point()
-    private fun getCellOutline(cell: Cell, layout: Layout): MutableList<Point> {
-        val lines = mutableListOf<Point>()
-
-        hexMath.hexToPixel(layout, hexMath.getHexByDirection(cell.animationData.moveDirection), offsetPoint)
-        hexMath.hexToPixel(layout, cell.data.origin, cellOrigin)
-
-        cell.data.hexes.values.forEach { hex ->
-            hexMath.add(hex, cell.data.origin, hexInGlobal)
-            hexMath.polygonCorners(layout, hexInGlobal, hexCorners)
-
-            // Rotate and offset
-            rotatePoints(hexCorners, cellOrigin, cell.animationData.rotation)
-            if (cell.animationData.movingFraction > 0f)
-                offsetPoints(hexCorners, cell.animationData.moveDirection, cell.animationData.movingFraction, layout, offsetPoint)
-
-            for (direction in 0..5) {
-                hexMath.getHexNeighbor(hex, direction, neighbor)
-                if (!cell.data.hexes.values.contains(neighbor)) {
-                    when (direction) {
-                        0 -> { lines.add(hexCorners[4].copy()); lines.add(hexCorners[5].copy()) }
-                        1 -> { lines.add(hexCorners[5].copy()); lines.add(hexCorners[0].copy()) }
-                        2 -> { lines.add(hexCorners[0].copy()); lines.add(hexCorners[1].copy()) }
-                        3 -> { lines.add(hexCorners[1].copy()); lines.add(hexCorners[2].copy()) }
-                        4 -> { lines.add(hexCorners[2].copy()); lines.add(hexCorners[3].copy()) }
-                        5 -> { lines.add(hexCorners[3].copy()); lines.add(hexCorners[4].copy()) }
-                        else -> Unit
-                    }
-                }
-            }
-        }
-        return lines
-    }
-
     private fun getCellOutline(cell: Cell, layout: Layout, out: CellGraphicalPoints) {
         hexMath.hexToPixel(layout, hexMath.getHexByDirection(cell.animationData.moveDirection), offsetPoint)
         hexMath.hexToPixel(layout, cell.data.origin, cellOrigin)

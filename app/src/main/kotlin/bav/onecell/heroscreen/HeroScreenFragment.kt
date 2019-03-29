@@ -70,6 +70,7 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
     @Inject lateinit var resourceProvider: Common.ResourceProvider
     @Inject lateinit var gameState: Common.GameState
     @Inject lateinit var analytics: Common.Analytics
+    @Inject lateinit var objectPool: Common.ObjectPool
 
     private val disposables = CompositeDisposable()
     private var isCellLogicViewsShown = false
@@ -347,6 +348,7 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
         editorCanvasView.inject(hexMath, drawUtils)
         editorCanvasView.presenter = presenter
         editorCanvasView.setOnDragListener(mDragListen)
+        editorCanvasView.objectPool = objectPool
     }
 
     private fun getHexTypeBasedOnHexButtonId(id: Int): Hex.Type = when (id) {
