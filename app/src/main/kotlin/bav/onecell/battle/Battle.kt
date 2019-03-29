@@ -24,18 +24,6 @@ interface Battle {
     }
 
     interface FramesFactory {
-        /**
-         * Returns pairs keys representing time in milliseconds from battle start and values representing frames.
-         */
-        fun framesProvider(): Observable<Pair<Long, FrameGraphics?>>
-
-        fun progressProvider(): Observable<Int>
-
-        /**
-         * Generates frames from provided battle info. Will emit result via [framesProvider].
-         */
-        fun generateFrames(battleInfo: BattleInfo): Job
-
         fun generateFrameGraphics(battleInfo: BattleInfo, timestamp: Long, out: FrameGraphics)
     }
 }

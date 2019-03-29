@@ -1,5 +1,6 @@
 package bav.onecell.battle
 
+import android.util.Log
 import bav.onecell.model.BattleFieldSnapshot
 import bav.onecell.model.BattleInfo
 import bav.onecell.model.GameRules
