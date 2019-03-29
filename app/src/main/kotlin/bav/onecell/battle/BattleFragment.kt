@@ -215,8 +215,7 @@ class BattleFragment : Fragment(), Battle.View {
     }
 
     private fun startAnimation() {
-        animationTimer = Observable.interval(0L, TIME_BETWEEN_FRAMES_MS, TimeUnit.MILLISECONDS)
-                .subscribeOn(Schedulers.io())
+        animationTimer = Observable.interval(0L, TIME_BETWEEN_FRAMES_MS, TimeUnit.MILLISECONDS, AndroidSchedulers.mainThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe {
                     if (setCurrentTimestamp(currentTimestamp + TIME_BETWEEN_FRAMES_MS)) {

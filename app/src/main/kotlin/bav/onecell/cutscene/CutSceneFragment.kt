@@ -175,8 +175,7 @@ class CutSceneFragment : Fragment(), CutScene.View {
             it.animation?.let { animation ->
                 animationFrames = animation
                 currentAnimationFrame = 0
-                animationDisposable = Observable.interval(0L, ANIMATION_FRAME_STEP, TimeUnit.MILLISECONDS)
-                        .subscribeOn(Schedulers.io())
+                animationDisposable = Observable.interval(0L, ANIMATION_FRAME_STEP, TimeUnit.MILLISECONDS, AndroidSchedulers.mainThread())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe {
                             if (currentAnimationFrame == animationFrames?.size) {
@@ -210,8 +209,7 @@ class CutSceneFragment : Fragment(), CutScene.View {
             }
             else {
                 textView.visibility = View.VISIBLE
-                animationTimer = Observable.interval(0L, TEXT_ANIMATION_STEP, TimeUnit.MILLISECONDS)
-                        .subscribeOn(Schedulers.io())
+                animationTimer = Observable.interval(0L, TEXT_ANIMATION_STEP, TimeUnit.MILLISECONDS, AndroidSchedulers.mainThread())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe {
                             currentFrameText?.let { text ->
