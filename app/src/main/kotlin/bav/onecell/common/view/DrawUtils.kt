@@ -346,25 +346,33 @@ class DrawUtils(private val hexMath: HexMath, private val context: Context) {
     private fun rotatePoints(points: List<Point>, origin: Point, angle: Float) {
         val s = sin(angle)
         val c = cos(angle)
-        points.forEach { p ->
+        val size = points.size
+        var i = 0
+        var newX: Double
+        var newY: Double
+        while (i < size) {
             // Translate point back to origin
-            p.x -= origin.x
-            p.y -= origin.y
+            points[i].x -= origin.x
+            points[i].y -= origin.y
             // Rotate point
-            val newX = p.x * c - p.y * s
-            val newY = p.x * s + p.y * c
+            newX = points[i].x * c - points[i].y * s
+            newY = points[i].x * s + points[i].y * c
             // Translate point back
-            p.x = newX + origin.x
-            p.y = newY + origin.y
+            points[i].x = newX + origin.x
+            points[i].y = newY + origin.y
+            i++
         }
     }
 
     private val offsetPoint = Point()
     private fun offsetPoints(points: List<Point>, direction: Int, fraction: Float, layout: Layout, point: Point? = null) {
         point?.let { offsetPoint.copy(it) } ?: hexMath.hexToPixel(layout, hexMath.getHexByDirection(direction), offsetPoint)
-        points.forEach { p ->
-            p.x += (offsetPoint.x - layout.origin.x) * fraction
-            p.y += (offsetPoint.y - layout.origin.y) * fraction
+        val size = points.size
+        var i = 0
+        while (i < size) {
+            points[i].x += (offsetPoint.x - layout.origin.x) * fraction
+            points[i].y += (offsetPoint.y - layout.origin.y) * fraction
+            i++
         }
     }
 

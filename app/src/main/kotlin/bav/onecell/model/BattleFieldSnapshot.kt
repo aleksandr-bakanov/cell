@@ -39,8 +39,17 @@ data class BattleFieldSnapshot(
     fun duration(): Int = /*actionsDuration() + */movementDuration() + deathRaysDuration() + hexRemovalDuration()
 
     fun movementDuration(): Int = if (movingDirections.isNotEmpty()) CELL_MOVING_DURATION_MS else 0
-    fun hexRemovalDuration(): Int = if (hexesToRemove.sumBy { it.size } > 0) HEX_FADING_DURATION_MS else 0
     fun deathRaysDuration(): Int = if (deathRays.isNotEmpty()) DEATH_RAY_DURATION_MS else 0
+    fun hexRemovalDuration(): Int {
+        var sum = 0
+        val size = hexesToRemove.size
+        var i = 0
+        while (i < size) {
+            sum += hexesToRemove[i].size
+            i++
+        }
+        return if (sum > 0) HEX_FADING_DURATION_MS else 0
+    }
     fun actionsDuration(): Int {
         var duration = 0
         loop@ for (i in 0 until cellsActions.size) {
