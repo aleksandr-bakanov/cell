@@ -21,6 +21,7 @@ import kotlinx.android.synthetic.main.fragment_main.buttonSendReport
 import javax.inject.Inject
 import android.content.Intent
 import android.net.Uri
+import bav.onecell.BuildConfig
 
 
 class MainFragment : Fragment(), Main.View {
@@ -40,7 +41,9 @@ class MainFragment : Fragment(), Main.View {
         super.onActivityCreated(savedInstanceState)
         inject()
 
-        presenter.setDebugDecisions()
+        if (BuildConfig.DEBUG) {
+            presenter.setDebugDecisions()
+        }
 
         if (presenter.isGameFinished()) {
             buttonGoToScenes.setOnClickListener { view ->
@@ -64,7 +67,7 @@ class MainFragment : Fragment(), Main.View {
         buttonContinueGame.setOnClickListener {
             if (lastNavDestination != 0) it.findNavController().navigate(lastNavDestination)
         }
-        buttonSendReport.setOnClickListener { view ->
+        buttonSendReport.setOnClickListener {
             presenter.sendBugReport()
         }
 
