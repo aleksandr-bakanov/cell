@@ -6,6 +6,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.9.1] - 2019-04-01
+### Fixed
+- Memory consumption within a battle
+### Added
+- Diverse drawable by DPI
+- Send report functionality
+
 ## [0.9.0-beta] - 2019-03-21
 ### Changed
 - A lot of things. Interface, story and battle representation. Many fixes.

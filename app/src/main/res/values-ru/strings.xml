@@ -7,6 +7,7 @@
     <string name="button_new_game_title">Новая игра</string>
     <string name="button_hero_screen_title">Герои</string>
     <string name="button_exit_game_title">Выход</string>
+    <string name="button_send_report_title">Сообщить о баге</string>
     <string name="button_continue_game_title">Продолжить</string>
 
     <!-- New game view -->

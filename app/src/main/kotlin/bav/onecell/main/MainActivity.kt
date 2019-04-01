@@ -1,9 +1,12 @@
 package bav.onecell.main
 
+import android.Manifest
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import androidx.navigation.findNavController
 import bav.onecell.OneCellApplication
 import bav.onecell.R
@@ -21,6 +24,9 @@ class MainActivity : AppCompatActivity(), Main.NavigationInfoProvider {
 
     companion object {
         private const val TAG = "MainActivity"
+
+        private const val REQUEST_EXTERNAL_STORAGE = 1
+        private val PERMISSIONS_STORAGE = arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE)
     }
 
     //region Lifecycle methods
@@ -35,6 +41,7 @@ class MainActivity : AppCompatActivity(), Main.NavigationInfoProvider {
     override fun onResume() {
         super.onResume()
         hideSystemUi()
+        verifyStoragePermissions()
     }
 
     override fun onDestroy() {
@@ -66,7 +73,7 @@ class MainActivity : AppCompatActivity(), Main.NavigationInfoProvider {
     //region Private methods
     private fun inject() {
         (application as OneCellApplication).appComponent
-                .plus(MainModule())
+                .plus(MainModule(null))
                 .inject(this)
     }
 
@@ -78,6 +85,13 @@ class MainActivity : AppCompatActivity(), Main.NavigationInfoProvider {
             View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or
             View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or
             View.SYSTEM_UI_FLAG_FULLSCREEN
+    }
+
+    private fun verifyStoragePermissions() {
+        val permission = ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+        if (permission != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, PERMISSIONS_STORAGE, REQUEST_EXTERNAL_STORAGE)
+        }
     }
     //endregion
 }

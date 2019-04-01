@@ -6,6 +6,7 @@
     <string name="button_new_game_title">New game</string>
     <string name="button_hero_screen_title">Heroes</string>
     <string name="button_exit_game_title">Exit game</string>
+    <string name="button_send_report_title">Send report</string>
     <string name="button_continue_game_title">Continue</string>
     <string name="image_description_main_menu_background" translatable="false">Main menu background</string>
 

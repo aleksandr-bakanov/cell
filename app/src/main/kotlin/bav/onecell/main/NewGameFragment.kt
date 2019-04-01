@@ -71,7 +71,7 @@ class NewGameFragment : Fragment(), NewGame.View {
 
     private fun inject() {
         (requireActivity().application as OneCellApplication).appComponent
-                .plus(MainModule())
+                .plus(MainModule(null))
                 .inject(this)
     }
 

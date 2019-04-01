@@ -89,9 +89,24 @@
         android:fontFamily="@font/bromine"
         android:layout_margin="2dp"
         android:text="@string/button_exit_game_title"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/buttonSendReport"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/buttonHeroScreen" />
+
+    <Button
+        android:id="@+id/buttonSendReport"
+        android:background="@drawable/button_main_menu_background"
+        android:textColor="@color/buttonMainMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/button_padding"
+        android:fontFamily="@font/bromine"
+        android:layout_margin="2dp"
+        android:text="@string/button_send_report_title"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/buttonExitGame" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

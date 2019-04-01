@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.navigation.findNavController
 import bav.onecell.OneCellApplication
 import bav.onecell.R
@@ -16,7 +17,11 @@ import kotlinx.android.synthetic.main.fragment_main.buttonExitGame
 import kotlinx.android.synthetic.main.fragment_main.buttonGoToScenes
 import kotlinx.android.synthetic.main.fragment_main.buttonHeroScreen
 import kotlinx.android.synthetic.main.fragment_main.buttonNewGame
+import kotlinx.android.synthetic.main.fragment_main.buttonSendReport
 import javax.inject.Inject
+import android.content.Intent
+import android.net.Uri
+
 
 class MainFragment : Fragment(), Main.View {
 
@@ -59,6 +64,9 @@ class MainFragment : Fragment(), Main.View {
         buttonContinueGame.setOnClickListener {
             if (lastNavDestination != 0) it.findNavController().navigate(lastNavDestination)
         }
+        buttonSendReport.setOnClickListener { view ->
+            presenter.sendBugReport()
+        }
 
         lastNavDestination = presenter.getLastNavDestinationId()
         buttonContinueGame.visible = lastNavDestination != 0
@@ -81,9 +89,18 @@ class MainFragment : Fragment(), Main.View {
         super.onDestroyView()
     }
 
+    override fun informAboutBugReportFilePath(path: String, content: String) {
+        Toast.makeText(requireContext(), "Report saved to $path", Toast.LENGTH_LONG).show()
+        val data = "mailto:bakanov.aleksandr@gmail.com?subject=${Uri.encode("Kittaro's bug report")}&body=${Uri.encode(content)}"
+        val uri = Uri.parse(data)
+        val intent = Intent(Intent.ACTION_SENDTO)
+        intent.data = uri
+        startActivity(Intent.createChooser(intent, "Send report"))
+    }
+
     private fun inject() {
         (requireActivity().application as OneCellApplication).appComponent
-                .plus(MainModule())
+                .plus(MainModule(this))
                 .inject(this)
     }
 
