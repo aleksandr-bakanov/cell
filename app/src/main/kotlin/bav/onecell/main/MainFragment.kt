@@ -22,6 +22,7 @@ import javax.inject.Inject
 import android.content.Intent
 import android.net.Uri
 import bav.onecell.BuildConfig
+import com.crashlytics.android.Crashlytics
 
 
 class MainFragment : Fragment(), Main.View {
@@ -66,7 +67,12 @@ class MainFragment : Fragment(), Main.View {
         }
         buttonExitGame.setOnClickListener { requireActivity().finish() }
         buttonContinueGame.setOnClickListener {
-            if (lastNavDestination != 0) it.findNavController().navigate(lastNavDestination)
+            if (lastNavDestination != 0) {
+                val navController = it.findNavController()
+                val node = navController.graph.findNode(lastNavDestination)
+                Crashlytics.log("MainFragment::buttonContinueGame::onClick id = $lastNavDestination; node.label = ${node?.label}")
+                navController.navigate(lastNavDestination)
+            }
         }
         buttonSendReport.setOnClickListener {
             presenter.sendBugReport()

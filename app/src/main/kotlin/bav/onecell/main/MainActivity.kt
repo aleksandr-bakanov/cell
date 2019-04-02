@@ -8,6 +8,7 @@ import androidx.navigation.findNavController
 import bav.onecell.OneCellApplication
 import bav.onecell.R
 import bav.onecell.common.Common
+import com.crashlytics.android.Crashlytics
 import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.subjects.BehaviorSubject
@@ -48,6 +49,7 @@ class MainActivity : AppCompatActivity(), Main.NavigationInfoProvider {
         val navController = findNavController(R.id.nav_host_fragment)
         navController.currentDestination?.let {
             if (it.id != R.id.mainFragment) {
+                Crashlytics.log("MainActivity::onBackPressed label = ${it.label}; id = ${it.id}")
                 gameState.setLastNavDestinationId(it.id, true)
                 lastNavDestinationProvider.onNext(it.id)
                 navController.popBackStack(R.id.mainFragment, false)
