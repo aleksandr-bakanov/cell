@@ -24,6 +24,7 @@
     <color name="cellEditorOmniBullet">#2ad4ff</color>
     <color name="cellEditorAttack">#d41313</color>
     <color name="cellEditorStroke">#000000</color>
+    <color name="cellEditorCenterMarker">#000000</color>
 
     <!-- Battle view -->
     <color name="battleViewRing">#40b4d7</color>

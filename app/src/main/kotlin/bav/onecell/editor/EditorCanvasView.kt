@@ -20,6 +20,7 @@ class EditorCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
 
     companion object {
         private val TAG = "EditorCanvasView"
+        private const val CELL_CENTER_MARKER_SIZE = 24f
     }
 
     var cell: Cell? = null
@@ -37,11 +38,12 @@ class EditorCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
     private val tipPaintEnergy = Paint()
     private val tipPaintDeathRay = Paint()
     private val tipPaintOmniBullet = Paint()
+    private val cellCenterMarkerPaint = Paint()
 
     init {
         for (p in arrayListOf(tipPaintLife, tipPaintAttack, tipPaintEnergy, tipPaintDeathRay, tipPaintOmniBullet)) {
             p.style = Paint.Style.STROKE
-            p.strokeWidth = 10.0f
+            p.strokeWidth = 10f
             p.strokeCap = Paint.Cap.ROUND
             p.strokeJoin = Paint.Join.ROUND
         }
@@ -54,6 +56,11 @@ class EditorCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
         tipPaintEnergy.color = ContextCompat.getColor(context, R.color.cellEditorTipEnergy)
         tipPaintDeathRay.color = ContextCompat.getColor(context, R.color.cellEditorTipDeathRay)
         tipPaintOmniBullet.color = ContextCompat.getColor(context, R.color.cellEditorTipOmniBullet)
+
+        cellCenterMarkerPaint.style = Paint.Style.STROKE
+        cellCenterMarkerPaint.strokeWidth = 3f
+        cellCenterMarkerPaint.strokeCap = Paint.Cap.ROUND
+        cellCenterMarkerPaint.color = ContextCompat.getColor(context, R.color.cellEditorCenterMarker)
 
         setOnTouchListener { view: View?, event: MotionEvent? ->
             super.onTouchListener(view, event)
@@ -77,13 +84,7 @@ class EditorCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
         cell?.let {
-            //it.evaluateCellHexesPower()
-
-            //canvas?.drawRect(0f, 0f, width.toFloat(), height.toFloat(), drawUtils.groundPaint)
-            //drawBackgroundGrid(canvas)
-
             if (selectedCellType == Hex.Type.REMOVE) {
-                //drawUtils.drawCell(canvas, it, layout = layout)
                 cellRepresentation?.let { graphics ->
                     drawUtils.drawCellGraphicalRepresentation(canvas, graphics, layout, layoutMatrix, isCorpse = false)
                 }
@@ -97,12 +98,28 @@ class EditorCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
             }
             drawUtils.drawCellPower(canvas, it, layout)
         }
+        drawCellCenterMarker(canvas)
     }
 
     fun updateCellRepresentation() {
         cell?.let {
             cellRepresentation = objectPool.getCellGraphicalRepresentation()
             drawUtils.getCellGraphicalRepresentation(it, cellRepresentation!!)
+        }
+    }
+
+    private fun drawCellCenterMarker(canvas: Canvas?) {
+        canvas?.let {
+            // Horizontal
+            /*it.drawLine((layout.origin.x - CELL_CENTER_MARKER_SIZE).toFloat(), (layout.origin.y).toFloat(),
+                        (layout.origin.x + CELL_CENTER_MARKER_SIZE).toFloat(), (layout.origin.y).toFloat(),
+                        cellCenterMarkerPaint)
+            // Vertical
+            it.drawLine((layout.origin.x).toFloat(), (layout.origin.y - CELL_CENTER_MARKER_SIZE).toFloat(),
+                        (layout.origin.x).toFloat(), (layout.origin.y + CELL_CENTER_MARKER_SIZE).toFloat(),
+                        cellCenterMarkerPaint)*/
+            // Circle
+            it.drawCircle(layout.origin.x.toFloat(), layout.origin.y.toFloat(), CELL_CENTER_MARKER_SIZE, cellCenterMarkerPaint)
         }
     }
 
