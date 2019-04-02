@@ -92,8 +92,7 @@ class MainFragment : Fragment(), Main.View {
         super.onDestroyView()
     }
 
-    override fun informAboutBugReportFilePath(path: String, content: String) {
-        Toast.makeText(requireContext(), "Report saved to $path", Toast.LENGTH_LONG).show()
+    override fun sendBugReport(content: String) {
         val data = "mailto:bakanov.aleksandr@gmail.com?subject=${Uri.encode("Kittaro's bug report")}&body=${Uri.encode(content)}"
         val uri = Uri.parse(data)
         val intent = Intent(Intent.ACTION_SENDTO)

@@ -5,7 +5,7 @@ import io.reactivex.Observable
 interface Main {
 
     interface View {
-        fun informAboutBugReportFilePath(path: String, content: String)
+        fun sendBugReport(content: String)
     }
 
     interface Presenter {
