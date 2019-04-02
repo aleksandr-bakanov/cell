@@ -1,6 +1,7 @@
 package bav.onecell.battle
 
 import android.graphics.Path
+import android.util.Log
 import bav.onecell.common.Consts
 import bav.onecell.common.view.DrawUtils
 import bav.onecell.model.BattleFieldSnapshot
@@ -12,12 +13,6 @@ import bav.onecell.model.hexes.Hex
 import bav.onecell.model.hexes.HexMath
 import bav.onecell.model.hexes.Layout
 import bav.onecell.model.hexes.Point
-import io.reactivex.Observable
-import io.reactivex.subjects.PublishSubject
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.yield
 
 class BattleGraphics(
         private val drawUtils: DrawUtils,
@@ -112,8 +107,13 @@ class BattleGraphics(
         val isFog = battleInfo.isFog
         val isBattleWon = battleInfo.winnerGroupId == Consts.HERO_GROUP_ID
         // In case last frame and battle is won fog doesn't show
-        if (isFog && !(timestamp == battleDuration && isBattleWon)) {
-            getObservableAreaPath(snapshot.cells, out.fieldOfView)
+        if (isFog) {
+            if (timestamp != battleDuration) {
+                getObservableAreaPath(snapshot.cells, out.fieldOfView)
+            }
+            else if (!isBattleWon) {
+                out.fullFog = true
+            }
         }
     }
 

@@ -127,7 +127,13 @@ class BattleCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
                 canvas?.drawColor(0x77000000)
                 it.fieldOfView.transform(layoutMatrix, transformedPath)
                 canvas?.clipPath(transformedPath)
-            } else {
+            }
+            else if (it.fullFog) {
+                canvas?.drawRect(0f, 0f, width.toFloat(), height.toFloat(), drawUtils.groundPaint)
+                canvas?.drawColor(0x77000000)
+                canvas?.clipRect(0f, 0f, 1f, 1f)
+            }
+            else {
                 canvas?.clipRect(0f, 0f, width.toFloat(), height.toFloat())
             }
 

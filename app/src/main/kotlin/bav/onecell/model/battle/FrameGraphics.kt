@@ -26,7 +26,8 @@ class FrameGraphics(
         var bulletsIndex: Int = 0,
 
         // Fog
-        var fieldOfView: Path = Path()) {
+        var fieldOfView: Path = Path(),
+        var fullFog: Boolean = false) {
 
     fun getLivingCell(): DrawUtils.CellGraphicalPoints {
         if (livingCells.size == livingCellsIndex) livingCells.add(DrawUtils.CellGraphicalPoints())
@@ -62,5 +63,6 @@ class FrameGraphics(
         deathRaysIndex = 0
         bulletsIndex = 0
         fieldOfView.reset()
+        fullFog = false
     }
 }
