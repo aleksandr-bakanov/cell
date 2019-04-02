@@ -61,7 +61,8 @@ class MainFragment : Fragment(), Main.View {
         }
 
         buttonNewGame.setOnClickListener { view ->
-            view.findNavController().navigate(R.id.newGameFragment)
+            if (lastNavDestination != 0) view.findNavController().navigate(R.id.newGameFragment)
+            else view.findNavController().navigate(R.id.cutSceneIntroduction)
         }
         buttonExitGame.setOnClickListener { requireActivity().finish() }
         buttonContinueGame.setOnClickListener {
