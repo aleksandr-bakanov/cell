@@ -347,6 +347,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/ic_button_brain" />
 
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/buttonClearCell"
+        android:background="@android:color/transparent"
+        android:layout_width="@dimen/hero_screen_avatar_size"
+        android:layout_height="@dimen/hero_screen_avatar_size"
+        android:padding="0dp"
+        android:scaleType="fitCenter"
+        android:layout_margin="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@id/guideline_hero_screen_avatars_end"
+        app:srcCompat="@drawable/ic_button_clear_cell" />
+
     <!-- Guidelines -->
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_hero_screen_center_vertical"

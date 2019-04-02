@@ -60,5 +60,7 @@ interface Editor {
         fun getTipHexes(type: Hex.Type): Collection<Hex>
 
         fun getHexInBucketCount(type: Hex.Type): Int
+
+        fun clearCellHexes()
     }
 }

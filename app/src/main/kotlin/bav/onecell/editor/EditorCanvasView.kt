@@ -105,6 +105,7 @@ class EditorCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
         cell?.let {
             cellRepresentation = objectPool.getCellGraphicalRepresentation()
             drawUtils.getCellGraphicalRepresentation(it, cellRepresentation!!)
+            invalidate()
         }
     }
 

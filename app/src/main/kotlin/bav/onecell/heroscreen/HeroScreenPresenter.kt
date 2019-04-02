@@ -314,6 +314,19 @@ class HeroScreenPresenter(
     }
 
     override fun getHexInBucketCount(type: Hex.Type): Int = cell?.data?.hexBucket?.get(type.ordinal) ?: 0
+
+    override fun clearCellHexes() {
+        cell?.let {
+            for (hex in it.data.hexes.values) {
+                increaseHexesInBucket(hex.type)
+            }
+            it.data.hexes.clear()
+            it.updateOutlineHexes()
+            view.updateCellRepresentation()
+            view.highlightTips(Hex.Type.REMOVE)
+            view.setNextSceneButtonVisibility(false)
+        }
+    }
     //endregion
 
     //region HeroScreen.Presenter methods

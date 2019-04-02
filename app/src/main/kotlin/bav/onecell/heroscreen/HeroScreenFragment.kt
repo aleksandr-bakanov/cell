@@ -31,6 +31,7 @@ import bav.onecell.model.hexes.HexMath
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_hero_screen.buttonAddNewCondition
 import kotlinx.android.synthetic.main.fragment_hero_screen.buttonAddNewRule
+import kotlinx.android.synthetic.main.fragment_hero_screen.buttonClearCell
 import kotlinx.android.synthetic.main.fragment_hero_screen.buttonNextScene
 import kotlinx.android.synthetic.main.fragment_hero_screen.buttonRotateCellLeft
 import kotlinx.android.synthetic.main.fragment_hero_screen.buttonRotateCellRight
@@ -236,6 +237,7 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
                 showConditionCreationPopupMenu(it)
         }
         buttonAddNewRule.setOnClickListener { presenter.createNewRule() }
+        buttonClearCell.setOnClickListener { presenter.clearCellHexes() }
 
         initiateTransformHexesButtons()
     }
@@ -468,7 +470,8 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
                                        buttonTransformHexes, buttonTransformAttackToLifeHex, buttonTransformDeathRayToLifeHex,
                                        buttonTransformOmniBulletToLifeHex, buttonTransformLifeToOmniBulletHex,
                                        buttonTransformEnergyToLifeHex, buttonTransformLifeToAttackHex,
-                                       buttonTransformLifeToDeathRayHex, buttonTransformLifeToEnergyHex)) {
+                                       buttonTransformLifeToDeathRayHex, buttonTransformLifeToEnergyHex,
+                                       buttonClearCell)) {
             view.visible = editorVisibility
         }
 
