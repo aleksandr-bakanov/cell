@@ -5,7 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import android.util.Log
 import androidx.navigation.findNavController
 import bav.onecell.OneCellApplication
 import bav.onecell.R
@@ -73,10 +73,15 @@ class MainFragment : Fragment(), Main.View {
         buttonExitGame.setOnClickListener { requireActivity().finish() }
         buttonContinueGame.setOnClickListener {
             if (lastNavDestination != 0) {
-                val navController = it.findNavController()
-                val node = navController.graph.findNode(lastNavDestination)
-                Crashlytics.log("MainFragment::buttonContinueGame::onClick id = $lastNavDestination; node.label = ${node?.label}")
-                navController.navigate(lastNavDestination)
+                try {
+                    val navController = it.findNavController()
+                    val node = navController.graph.findNode(lastNavDestination)
+                    Crashlytics.log("MainFragment::buttonContinueGame::onClick id = $lastNavDestination; node.label = ${node?.label}")
+                    navController.navigate(lastNavDestination)
+                }
+                catch (e: IllegalArgumentException) {
+                    Log.e(TAG, e.toString())
+                }
             }
         }
         buttonSendReport.setOnClickListener {
