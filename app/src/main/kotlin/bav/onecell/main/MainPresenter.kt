@@ -20,9 +20,15 @@ class MainPresenter(
         gameState.setDecision(Common.GameState.ZOI_AVAILABLE, true)
         gameState.setDecision(Common.GameState.ALL_CHARACTERS_AVAILABLE, true)
         gameState.setDecision(Common.GameState.GAME_OVER, true)
+
+        Consts.SceneId.values().forEach {
+            gameState.setSceneAppeared(it.value)
+        }
     }
 
     override fun isGameFinished(): Boolean = gameState.isDecisionPositive(Common.GameState.GAME_OVER)
+
+    override fun showScenesButton(): Boolean = gameState.showScenesButton()
 
     override fun getLastNavDestinationId(): Int = gameState.getLastNavDestinationId()
 

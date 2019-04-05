@@ -60,6 +60,10 @@ interface Common {
         fun setIgnoreCutSceneShownStatus(status: Boolean)
         fun getIgnoreCutSceneShownStatus(): Boolean
 
+        fun setSceneAppeared(sceneId: String)
+        fun isSceneAppeared(sceneId: String): Boolean
+        fun showScenesButton(): Boolean
+
         companion object {
             const val BATTLE_LOGIC_AVAILABLE = "battle_logic_available"
             const val ATTACK_HEXES_AVAILABLE = "attack_hexes_available"

@@ -20,7 +20,6 @@ import bav.onecell.common.Consts.Companion.BATTLE_PARAMS
 import bav.onecell.common.Consts.Companion.NEXT_SCENE
 import bav.onecell.common.view.DrawUtils
 import bav.onecell.model.BattleInfo
-import bav.onecell.model.battle.FrameGraphics
 import bav.onecell.model.hexes.HexMath
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -35,12 +34,8 @@ import kotlinx.android.synthetic.main.fragment_battle.buttonPause
 import kotlinx.android.synthetic.main.fragment_battle.buttonPlay
 import kotlinx.android.synthetic.main.fragment_battle.buttonPreviousStep
 import kotlinx.android.synthetic.main.fragment_battle.calculationTextView
-import kotlinx.android.synthetic.main.fragment_battle.progressBar
 import kotlinx.android.synthetic.main.fragment_battle.seekBar
 import kotlinx.android.synthetic.main.fragment_battle.splashImage
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
 import org.json.JSONObject
 import java.util.concurrent.TimeUnit
 
@@ -158,9 +153,17 @@ class BattleFragment : Fragment(), Battle.View {
             val info = JSONObject(getString(it.getInt(EXTRA_PARAMS)))
             val battleParams = info.getString(BATTLE_PARAMS)
             val battleGroundResource = resourceProvider.getDrawableIdentifier(info.getString(BATTLE_GROUND_RESOURCE))
+            val sceneId = info.getString(Consts.SCENE_ID)
+
             drawUtils.setGroundShader(battleGroundResource)
             nextScene = resourceProvider.getIdIdentifier(info.getString(NEXT_SCENE))
-            reward = info.optString(Consts.BATTLE_REWARD)
+            if (!gameState.isSceneAppeared(sceneId)) {
+                reward = info.optString(Consts.BATTLE_REWARD)
+                gameState.setSceneAppeared(sceneId)
+            }
+            else {
+                reward = "{}"
+            }
             presenter.initialize(battleParams)
         }
         battleCanvasView.backgroundFieldRadius = 50

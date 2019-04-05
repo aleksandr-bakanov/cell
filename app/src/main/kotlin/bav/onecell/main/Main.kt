@@ -11,6 +11,7 @@ interface Main {
     interface Presenter {
         fun setDebugDecisions()
         fun isGameFinished(): Boolean
+        fun showScenesButton(): Boolean
         fun getLastNavDestinationId(): Int
         fun sendBugReport()
     }

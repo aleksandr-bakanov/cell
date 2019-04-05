@@ -20,7 +20,6 @@ import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
-import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_cut_scene.background
 import kotlinx.android.synthetic.main.fragment_cut_scene.buttonNo
 import kotlinx.android.synthetic.main.fragment_cut_scene.buttonPreviousFrame
@@ -54,7 +53,7 @@ class CutSceneFragment : Fragment(), CutScene.View {
     private var isFinalFrame = false
     private var cutSceneId: String = ""
 
-    private var animationTimer: Disposable? = null
+    private var textAnimationDisposable: Disposable? = null
     private var currentFrameTextIndex: Int = 0
     private var currentFrameText: String? = null
 
@@ -108,7 +107,7 @@ class CutSceneFragment : Fragment(), CutScene.View {
     }
 
     private fun stopTextTimer() {
-        animationTimer?.let { if (!it.isDisposed) it.dispose() }
+        textAnimationDisposable?.let { if (!it.isDisposed) it.dispose() }
     }
 
     private fun stopAnimationTimer() {
@@ -163,6 +162,7 @@ class CutSceneFragment : Fragment(), CutScene.View {
                         gameState.setDecision(decision, gameStateChanges.getBoolean(decision))
                     }
                 }
+                gameState.setSceneAppeared(cutSceneId)
             } catch (e: JSONException) {
                 Log.e(TAG, "wrong json: $e")
             }
@@ -209,7 +209,7 @@ class CutSceneFragment : Fragment(), CutScene.View {
             }
             else {
                 textView.visibility = View.VISIBLE
-                animationTimer = Observable.interval(0L, TEXT_ANIMATION_STEP, TimeUnit.MILLISECONDS, AndroidSchedulers.mainThread())
+                textAnimationDisposable = Observable.interval(0L, TEXT_ANIMATION_STEP, TimeUnit.MILLISECONDS, AndroidSchedulers.mainThread())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe {
                             currentFrameText?.let { text ->

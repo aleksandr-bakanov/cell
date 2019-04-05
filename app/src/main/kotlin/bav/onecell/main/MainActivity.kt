@@ -50,8 +50,10 @@ class MainActivity : AppCompatActivity(), Main.NavigationInfoProvider {
         navController.currentDestination?.let {
             if (it.id != R.id.mainFragment) {
                 Crashlytics.log("MainActivity::onBackPressed label = ${it.label}; id = ${it.id}")
-                gameState.setLastNavDestinationId(it.id, true)
-                lastNavDestinationProvider.onNext(it.id)
+                if (it.id != R.id.scenesFragment) {
+                    gameState.setLastNavDestinationId(it.id, true)
+                    lastNavDestinationProvider.onNext(it.id)
+                }
                 navController.popBackStack(R.id.mainFragment, false)
             }
         }

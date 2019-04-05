@@ -880,6 +880,7 @@
       -->
     <string name="battle_with_gopniks_params" translatable="false">
         "{
+            id: 'battle_gopniks',
             battleParams: {
                 cellIndexes: [0,3,4,5],
                 isFog: false,
@@ -902,6 +903,7 @@
     </string>
     <string name="battle_with_skilos_params" translatable="false">
         "{
+            id: 'battle_skilos',
             battleParams: {
                 cellIndexes: [0,6,7,8,9,10],
                 isFog: false,
@@ -926,6 +928,7 @@
     </string>
     <string name="battle_with_belos" translatable="false">
         "{
+            id: 'battle_belos',
             battleParams: {
                 cellIndexes: [0,11],
                 isFog: false,
@@ -946,6 +949,7 @@
     </string>
     <string name="battle_with_omikhli" translatable="false">
         "{
+            id: 'battle_omikhli',
             battleParams: {
                 cellIndexes: [0,12],
                 isFog: true,
@@ -964,6 +968,7 @@
     </string>
     <string name="battle_with_nikhteribs" translatable="false">
         "{
+            id: 'battle_nikhteribs',
             battleParams: {
                 cellIndexes: [0,1,13,14,15,16,17,18,19,20,21,22,23,24,25],
                 isFog: true
@@ -979,6 +984,7 @@
     </string>
     <string name="battle_with_drunkards" translatable="false">
         "{
+            id: 'battle_drunkards',
             battleParams: {
                 cellIndexes: [0,1,26,27,28,29,30],
                 isFog: false,
@@ -1004,6 +1010,7 @@
     </string>
     <string name="battle_with_katofi_ponu" translatable="false">
         "{
+            id: 'battle_katofi_ponu',
             battleParams: {
                 cellIndexes: [0,1,2,31,32,33,34,35,36,37,38],
                 isFog: false,
@@ -1033,6 +1040,7 @@
     </string>
     <string name="battle_in_enkefalio" translatable="false">
         "{
+            id: 'battle_enkefalio',
             battleParams: {
                 cellIndexes: [0,1,2,39,40,41,42,43,44],
                 isFog: false,

@@ -65,9 +65,17 @@ class GameStateImpl(private val context: Context,
     }
     override fun getIgnoreCutSceneShownStatus(): Boolean = isIgnoreCutSceneShownStatus
 
+    override fun setSceneAppeared(sceneId: String) {
+        preferences.edit().putBoolean("${sceneId}_appeared", true).putBoolean(SHOW_SCENES_BUTTON, true).apply()
+    }
+    override fun isSceneAppeared(sceneId: String): Boolean = preferences.getBoolean("${sceneId}_appeared", false)
+
+    override fun showScenesButton(): Boolean = preferences.getBoolean(SHOW_SCENES_BUTTON, false)
+
     companion object {
         private const val FIRST_TIME_APP_LAUNCH = "first_time_app_launch"
         private const val LAST_NAV_DESTINATION_ID = "last_nav_destination_id"
         private const val CURRENT_FRAME_INDEX = "current_frame_index"
+        private const val SHOW_SCENES_BUTTON = "show_scenes_button"
     }
 }

@@ -43,22 +43,27 @@ class MainFragment : Fragment(), Main.View {
         inject()
 
         if (BuildConfig.DEBUG) {
-            presenter.setDebugDecisions()
+            //presenter.setDebugDecisions()
         }
 
         if (presenter.isGameFinished()) {
-            buttonGoToScenes.setOnClickListener { view ->
-                view.findNavController().navigate(R.id.scenesFragment)
-            }
-            buttonGoToScenes.visibility = View.VISIBLE
             buttonHeroScreen.setOnClickListener { view ->
                 view.findNavController().navigate(R.id.heroScreen)
             }
             buttonHeroScreen.visibility = View.VISIBLE
         }
         else {
-            buttonGoToScenes.visibility = View.GONE
             buttonHeroScreen.visibility = View.GONE
+        }
+
+        if (presenter.showScenesButton()) {
+            buttonGoToScenes.setOnClickListener { view ->
+                view.findNavController().navigate(R.id.scenesFragment)
+            }
+            buttonGoToScenes.visibility = View.VISIBLE
+        }
+        else {
+            buttonGoToScenes.visibility = View.GONE
         }
 
         buttonNewGame.setOnClickListener { view ->
