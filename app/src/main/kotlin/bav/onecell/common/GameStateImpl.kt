@@ -66,11 +66,44 @@ class GameStateImpl(private val context: Context,
     override fun getIgnoreCutSceneShownStatus(): Boolean = isIgnoreCutSceneShownStatus
 
     override fun setSceneAppeared(sceneId: String) {
-        preferences.edit().putBoolean("${sceneId}_appeared", true).putBoolean(SHOW_SCENES_BUTTON, true).apply()
+        val editor = preferences.edit()
+        var i = 0
+        while (scenesOrder[i] != sceneId) {
+            editor.putBoolean("${scenesOrder[i]}_appeared", true)
+            i++
+        }
+        editor.putBoolean("${sceneId}_appeared", true).putBoolean(SHOW_SCENES_BUTTON, true).apply()
     }
     override fun isSceneAppeared(sceneId: String): Boolean = preferences.getBoolean("${sceneId}_appeared", false)
 
     override fun showScenesButton(): Boolean = preferences.getBoolean(SHOW_SCENES_BUTTON, false)
+
+    private val scenesOrder = arrayListOf(
+            Consts.SceneId.INTRODUCTION.value,
+            Consts.SceneId.BATTLE_GOPNIKS.value,
+            Consts.SceneId.AFTER_GOPNIKS.value,
+            Consts.SceneId.BEFORE_SKILOS.value,
+            Consts.SceneId.BATTLE_SKILOS.value,
+            Consts.SceneId.AFTER_SKILOS.value,
+            Consts.SceneId.GONATO.value,
+            Consts.SceneId.BATTLE_BELOS.value,
+            Consts.SceneId.AFTER_BELOS.value,
+            Consts.SceneId.ANALAFRO.value,
+            Consts.SceneId.BATTLE_OMIKHLI.value,
+            Consts.SceneId.AFTER_OMIKHLI.value,
+            Consts.SceneId.KILIA.value,
+            Consts.SceneId.BATTLE_NIKHTERIBS.value,
+            Consts.SceneId.AFTER_NIKHTERIBS.value,
+            Consts.SceneId.KARDIA.value,
+            Consts.SceneId.BATTLE_DRUNKARDS.value,
+            Consts.SceneId.AFTER_DRUNKARDS.value,
+            Consts.SceneId.LAIMO.value,
+            Consts.SceneId.BATTLE_KATOFI_PONU.value,
+            Consts.SceneId.AFTER_KATOFI_PONU.value,
+            Consts.SceneId.ENKEFALIO.value,
+            Consts.SceneId.BATTLE_ENKEFALIO.value,
+            Consts.SceneId.FINAL_ACT.value
+    )
 
     companion object {
         private const val FIRST_TIME_APP_LAUNCH = "first_time_app_launch"
