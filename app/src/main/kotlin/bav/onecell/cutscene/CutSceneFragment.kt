@@ -147,7 +147,8 @@ class CutSceneFragment : Fragment(), CutScene.View {
                                           noNextFrame = data.optInt(NO_NEXT_FRAME, DEFAULT_NEXT_FRAME),
                                           showPrevFrameButton = data.optBoolean(SHOW_PREV_FRAME_BUTTON, false),
                                           isFinalFrame = data.optBoolean(FINAL_FRAME, false),
-                                          textColor = resourceProvider.getColor(data.optString(COLOR)))
+                                          textColor = resourceProvider.getColor(data.optString(COLOR)),
+                                          animationStepMs = data.optLong(ANIMATION_STEP, ANIMATION_FRAME_STEP))
                     data.optJSONArray(ANIMATION)?.let { animation ->
                         frameData.animation = mutableListOf()
                         for (k in 0 until animation.length()) {
@@ -175,7 +176,7 @@ class CutSceneFragment : Fragment(), CutScene.View {
             it.animation?.let { animation ->
                 animationFrames = animation
                 currentAnimationFrame = 0
-                animationDisposable = Observable.interval(0L, ANIMATION_FRAME_STEP, TimeUnit.MILLISECONDS, AndroidSchedulers.mainThread())
+                animationDisposable = Observable.interval(0L, it.animationStepMs, TimeUnit.MILLISECONDS, AndroidSchedulers.mainThread())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe {
                             if (currentAnimationFrame == animationFrames?.size) {
@@ -290,6 +291,7 @@ class CutSceneFragment : Fragment(), CutScene.View {
         const val NEXT_FRAME = "nextFrame"
         const val COLOR = "color"
         const val ANIMATION = "animation"
+        const val ANIMATION_STEP = "animation_step"
 
         const val DECISION_FIELD = "decisionField"
         const val YES_NEXT_FRAME = "yesNextFrame"
@@ -314,5 +316,6 @@ class CutSceneFragment : Fragment(), CutScene.View {
                                  val showPrevFrameButton: Boolean = false,
                                  val isFinalFrame: Boolean = false,
                                  val textColor: Int = 0,
-                                 var animation: MutableList<Int>? = null)
+                                 var animation: MutableList<Int>? = null,
+                                 var animationStepMs: Long = ANIMATION_FRAME_STEP)
 }
