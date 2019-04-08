@@ -173,19 +173,26 @@
                 '36': { text: 'cs_introduction_36', background: 'cs_introduction_36', showPrevFrameButton: true },
                 '37': { text: 'cs_introduction_37', background: 'cs_introduction_37', showPrevFrameButton: true },
                 '38': { text: 'cs_introduction_38', background: 'cs_introduction_38', showPrevFrameButton: true },
-                '39': { text: 'cs_introduction_39', background: 'cs_introduction_39', showPrevFrameButton: true, animation: ['cs_introduction_39_1', 'cs_introduction_39_2', 'cs_introduction_39_3', 'cs_introduction_39_4'], animation_step: 500 },
-                '40': { text: 'cs_introduction_40', background: 'cs_introduction_40', showPrevFrameButton: true, animation: ['cs_introduction_40_1', 'cs_introduction_40_2'], animation_step: 500 },
-                '41': { text: 'cs_introduction_41', background: 'cs_introduction_40', showPrevFrameButton: true, animation: ['cs_introduction_41_1', 'cs_introduction_41_2', 'cs_introduction_41_3', 'cs_introduction_41_4', 'cs_introduction_41_5'], animation_step: 500 },
-                '42': { text: 'cs_introduction_42', background: 'cs_introduction_40', showPrevFrameButton: true, animation: ['cs_introduction_42_1', 'cs_introduction_42_2', 'cs_introduction_42_3', 'cs_introduction_42_4'], animation_step: 500 },
-                '43': { text: 'cs_introduction_43', background: 'cs_introduction_40', showPrevFrameButton: true, animation: ['cs_introduction_43_1', 'cs_introduction_43_2', 'cs_introduction_43_3', 'cs_introduction_43_4'], animation_step: 500 },
-                '44': { text: 'cs_introduction_44', background: 'cs_introduction_44', showPrevFrameButton: true, animation: ['cs_introduction_44_1', 'cs_introduction_44_2', 'cs_introduction_44_3', 'cs_introduction_44_4', 'cs_introduction_44_4'], animation_step: 500 },
-                '45': { text: 'cs_introduction_45', background: 'cs_introduction_45', showPrevFrameButton: true, animation: ['cs_introduction_45_1', 'cs_introduction_45_2', 'cs_introduction_45_3', 'cs_introduction_45_4', 'cs_introduction_45_4'], animation_step: 500 },
-                '46': { text: 'cs_introduction_46', background: 'cs_introduction_45', showPrevFrameButton: true },
+                '39': { text: 'cs_introduction_39', showPrevFrameButton: true, animation: ['cs_introduction_39_1', 'cs_introduction_39_2', 'cs_introduction_39_3', 'cs_introduction_39_4'], animation_step: 500 },
+                '40': { text: 'cs_introduction_40', showPrevFrameButton: true, animation: ['cs_introduction_40_1', 'cs_introduction_40_2'], animation_step: 500 },
+                '41': { text: 'cs_introduction_41', showPrevFrameButton: true, animation: ['cs_introduction_41_1', 'cs_introduction_41_2', 'cs_introduction_41_3', 'cs_introduction_41_4', 'cs_introduction_41_5'], animation_step: 500 },
+                '42': { text: 'cs_introduction_42', showPrevFrameButton: true, animation: ['cs_introduction_42_1', 'cs_introduction_42_2', 'cs_introduction_42_3', 'cs_introduction_42_4'], animation_step: 500 },
+                '43': { text: 'cs_introduction_43', showPrevFrameButton: true, animation: ['cs_introduction_43_1', 'cs_introduction_43_2', 'cs_introduction_43_3', 'cs_introduction_43_4'], animation_step: 500 },
+                '44': { text: 'cs_introduction_44', showPrevFrameButton: true, animation: ['cs_introduction_44_1', 'cs_introduction_44_2', 'cs_introduction_44_3', 'cs_introduction_44_2'], animation_step: 500 },
+                '45': { text: 'cs_introduction_45', background: 'cs_introduction_44_3', showPrevFrameButton: true },
+                '46': { text: 'cs_introduction_46', background: 'cs_introduction_46', showPrevFrameButton: true },
                 '47': { text: 'cs_introduction_47', background: 'cs_introduction_47', showPrevFrameButton: true },
                 '48': { text: 'cs_introduction_48', background: 'cs_introduction_48', showPrevFrameButton: true },
                 '49': { text: 'cs_introduction_49', background: 'cs_introduction_49', showPrevFrameButton: true },
-                '50': { text: 'cs_introduction_50', background: 'cs_introduction_50', showPrevFrameButton: true },
-                '51': { text: 'cs_empty_text', background: 'cs_introduction_51' }
+                '50': { text: 'cs_introduction_50', background: 'cs_introduction_49', showPrevFrameButton: true },
+                '51': { text: 'cs_introduction_51', showPrevFrameButton: true, animation: ['cs_introduction_51_1', 'cs_introduction_51_2', 'cs_introduction_51_3', 'cs_introduction_51_4', 'cs_introduction_51_4'], animation_step: 500 },
+                '52': { text: 'cs_introduction_52', showPrevFrameButton: true, animation: ['cs_introduction_52_1', 'cs_introduction_52_2', 'cs_introduction_52_3', 'cs_introduction_52_4', 'cs_introduction_52_4'], animation_step: 500 },
+                '53': { text: 'cs_introduction_53', background: 'cs_introduction_52_4', showPrevFrameButton: true },
+                '54': { text: 'cs_introduction_54', background: 'cs_introduction_54', showPrevFrameButton: true },
+                '55': { text: 'cs_introduction_55', background: 'cs_introduction_55', showPrevFrameButton: true },
+                '56': { text: 'cs_introduction_56', background: 'cs_introduction_56', showPrevFrameButton: true },
+                '57': { text: 'cs_introduction_57', background: 'cs_introduction_57', showPrevFrameButton: true },
+                '58': { text: 'cs_empty_text', background: 'cs_introduction_58' }
             },
             next_scene: 'action_cutSceneIntroduction_to_battleGopniks'
         }"
@@ -220,13 +227,20 @@
     <string name="cs_introduction_41">The weaker hex dies and gets removed from the cell.</string>
     <string name="cs_introduction_42">Value to the power of the died hex is subtracted from the more powerful hex.</string>
     <string name="cs_introduction_43">If the power of the hexes is equal, both die.</string>
-    <string name="cs_introduction_44">A cell dies if it has no vital hexes left.</string>
-    <string name="cs_introduction_45">Also the cell dies if connection of the vital hexes is broken.</string>
-    <string name="cs_introduction_46">Battle ends when only cells belonging to the same group remain alive.</string>
-    <string name="cs_introduction_47">In battle you can only watch how the cells fight.</string>
-    <string name="cs_introduction_48">Use appropriate buttons and seek bar to watch the battle.</string>
-    <string name="cs_introduction_49">Friendly cells are outlined by blue color, enemies - by red.</string>
-    <string name="cs_introduction_50">Battlefield can be moved, zoomed in and out.</string>
+    <string name="cs_introduction_44">While moving, cells may intersect each other.</string>
+    <string name="cs_introduction_45">In such case the weakest hexes within intersection are destroyed firstly.</string>
+    <string name="cs_introduction_46">The most powerful enemy hex and the most powerful friendly hex get chosen within all intersected ones.</string>
+    <string name="cs_introduction_47">These hexes destroy the weaker ones and then compare their powers.</string>
+    <string name="cs_introduction_48">There will be only one most powerful hex in intersection after this stage.</string>
+    <string name="cs_introduction_49">Or there will be none, in case of equal power of the two most powerful hexes.</string>
+    <string name="cs_introduction_50">After that normal rules of neighboring hexes interaction are applied.</string>
+    <string name="cs_introduction_51">A cell dies if it has no vital hexes left.</string>
+    <string name="cs_introduction_52">Also the cell dies if connection of the vital hexes is broken.</string>
+    <string name="cs_introduction_53">Battle ends when only cells belonging to the same group remain alive.</string>
+    <string name="cs_introduction_54">In battle you can only watch how the cells fight.</string>
+    <string name="cs_introduction_55">Use appropriate buttons and seek bar to watch the battle.</string>
+    <string name="cs_introduction_56">Friendly cells are outlined by blue color, enemies - by red.</string>
+    <string name="cs_introduction_57">Battlefield can be moved, zoomed in and out.</string>
 
     <!--
       - Cut scene after gopniks contains description of the hero screen interface. At this moment only Kittaro
@@ -858,7 +872,7 @@
                 '12': { text: 'cs_empty_text', background: 'cs_final_act_12' },
                 '13': { text: 'cs_empty_text', background: 'cs_final_act_13' },
                 '14': { text: 'cs_empty_text', background: 'cs_final_act_14' },
-                '15': { text: 'cs_empty_text', background: 'cs_introduction_12', animation: ['cs_introduction_12', 'cs_introduction_12_1'] }
+                '15': { text: 'cs_empty_text', animation: ['cs_introduction_12', 'cs_introduction_12_1'] }
             },
             next_scene: 'mainFragment',
             gameStateChanges: { 'game_over': true, 'all_characters_available': true }
