@@ -67,11 +67,11 @@ class GameStateImpl(private val context: Context,
 
     override fun setSceneAppeared(sceneId: String) {
         val editor = preferences.edit()
-        var i = 0
+        /*var i = 0
         while (scenesOrder[i] != sceneId) {
             editor.putBoolean("${scenesOrder[i]}_appeared", true)
             i++
-        }
+        }*/
         editor.putBoolean("${sceneId}_appeared", true).putBoolean(SHOW_SCENES_BUTTON, true).apply()
     }
     override fun isSceneAppeared(sceneId: String): Boolean = preferences.getBoolean("${sceneId}_appeared", false)

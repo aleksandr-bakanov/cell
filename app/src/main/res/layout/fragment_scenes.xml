@@ -17,7 +17,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/button_main_menu_background"
-            android:fontFamily="@font/bromine"
             android:padding="@dimen/button_padding"
             android:text="@string/scene_introduction" />
 
@@ -26,7 +25,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/button_main_menu_background"
-            android:fontFamily="@font/bromine"
             android:padding="@dimen/button_padding"
             android:text="@string/scene_gopnik_battle" />
 
@@ -35,7 +33,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/button_main_menu_background"
-            android:fontFamily="@font/bromine"
             android:padding="@dimen/button_padding"
             android:text="@string/scene_after_gopniks" />
 
@@ -44,7 +41,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/button_main_menu_background"
-            android:fontFamily="@font/bromine"
             android:padding="@dimen/button_padding"
             android:text="@string/scene_before_skilos" />
 
@@ -53,7 +49,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/button_main_menu_background"
-            android:fontFamily="@font/bromine"
             android:padding="@dimen/button_padding"
             android:text="@string/scene_skilos_battle" />
 
@@ -62,7 +57,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/button_main_menu_background"
-            android:fontFamily="@font/bromine"
             android:padding="@dimen/button_padding"
             android:text="@string/scene_after_skilos" />
 
@@ -71,7 +65,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/button_main_menu_background"
-            android:fontFamily="@font/bromine"
             android:padding="@dimen/button_padding"
             android:text="@string/scene_gonato" />
 
@@ -80,7 +73,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/button_main_menu_background"
-            android:fontFamily="@font/bromine"
             android:padding="@dimen/button_padding"
             android:text="@string/scene_belos_battle" />
 
@@ -89,7 +81,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/button_main_menu_background"
-            android:fontFamily="@font/bromine"
             android:padding="@dimen/button_padding"
             android:text="@string/scene_after_belos" />
 
@@ -98,7 +89,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/button_main_menu_background"
-            android:fontFamily="@font/bromine"
             android:padding="@dimen/button_padding"
             android:text="@string/scene_analafro" />
 
@@ -107,7 +97,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/button_main_menu_background"
-            android:fontFamily="@font/bromine"
             android:padding="@dimen/button_padding"
             android:text="@string/scene_omikhli_battle" />
 
@@ -116,7 +105,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/button_main_menu_background"
-            android:fontFamily="@font/bromine"
             android:padding="@dimen/button_padding"
             android:text="@string/scene_after_omikhli" />
 
@@ -125,7 +113,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/button_main_menu_background"
-            android:fontFamily="@font/bromine"
             android:padding="@dimen/button_padding"
             android:text="@string/scene_kilia" />
 
@@ -134,7 +121,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/button_main_menu_background"
-            android:fontFamily="@font/bromine"
             android:padding="@dimen/button_padding"
             android:text="@string/scene_nihterib_battle" />
 
@@ -143,7 +129,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/button_main_menu_background"
-            android:fontFamily="@font/bromine"
             android:padding="@dimen/button_padding"
             android:text="@string/scene_after_nihteribs" />
 
@@ -152,7 +137,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/button_main_menu_background"
-            android:fontFamily="@font/bromine"
             android:padding="@dimen/button_padding"
             android:text="@string/scene_kardia" />
 
@@ -161,7 +145,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/button_main_menu_background"
-            android:fontFamily="@font/bromine"
             android:padding="@dimen/button_padding"
             android:text="@string/scene_drunkards_battle" />
 
@@ -170,7 +153,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/button_main_menu_background"
-            android:fontFamily="@font/bromine"
             android:padding="@dimen/button_padding"
             android:text="@string/scene_after_drunkards" />
 
@@ -179,7 +161,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/button_main_menu_background"
-            android:fontFamily="@font/bromine"
             android:padding="@dimen/button_padding"
             android:text="@string/scene_laimo" />
 
@@ -188,7 +169,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/button_main_menu_background"
-            android:fontFamily="@font/bromine"
             android:padding="@dimen/button_padding"
             android:text="@string/scene_katofi_ponu_battle" />
 
@@ -197,7 +177,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/button_main_menu_background"
-            android:fontFamily="@font/bromine"
             android:padding="@dimen/button_padding"
             android:text="@string/scene_after_katofi_ponu" />
 
@@ -206,7 +185,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/button_main_menu_background"
-            android:fontFamily="@font/bromine"
             android:padding="@dimen/button_padding"
             android:text="@string/scene_enkefalio" />
 
@@ -215,7 +193,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/button_main_menu_background"
-            android:fontFamily="@font/bromine"
             android:padding="@dimen/button_padding"
             android:text="@string/scene_mage_battle" />
 
@@ -224,7 +201,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/button_main_menu_background"
-            android:fontFamily="@font/bromine"
             android:padding="@dimen/button_padding"
             android:text="@string/scene_final_act" />
 

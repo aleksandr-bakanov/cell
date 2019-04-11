@@ -20,7 +20,6 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/hero_screen_avatar_margin"
         android:clickable="false"
-        android:fontFamily="@font/bromine"
         android:longClickable="false"
         android:text="5"
         android:textAlignment="center"
