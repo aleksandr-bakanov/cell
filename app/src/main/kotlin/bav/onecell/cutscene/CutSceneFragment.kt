@@ -81,7 +81,7 @@ class CutSceneFragment : Fragment(), CutScene.View {
 
     override fun onStart() {
         super.onStart()
-        if (!gameState.getIgnoreCutSceneShownStatus() && gameState.isCutSceneAlreadyShown(cutSceneId)) {
+        if (!gameState.getAndDropIgnoreCutSceneShownStatus() && gameState.isCutSceneAlreadyShown(cutSceneId)) {
             findNavController().navigate(takeNextScene())
         }
     }

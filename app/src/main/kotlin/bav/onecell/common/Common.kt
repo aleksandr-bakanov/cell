@@ -58,7 +58,7 @@ interface Common {
         fun setCutSceneShown(cutSceneId: String)
         fun isCutSceneAlreadyShown(cutSceneId: String): Boolean
         fun setIgnoreCutSceneShownStatus(status: Boolean)
-        fun getIgnoreCutSceneShownStatus(): Boolean
+        fun getAndDropIgnoreCutSceneShownStatus(): Boolean
 
         fun setSceneAppeared(sceneId: String)
         fun isSceneAppeared(sceneId: String): Boolean

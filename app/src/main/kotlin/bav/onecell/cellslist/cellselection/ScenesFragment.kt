@@ -118,9 +118,15 @@ class ScenesFragment : Fragment() {
         buttonStartFinalAct.visibility = if (gameState.isSceneAppeared(Consts.SceneId.FINAL_ACT.value)) View.VISIBLE else View.GONE
     }
 
+    private val battleSceneIds = arrayListOf(R.id.battleGopniks, R.id.battleSkilos, R.id.battleBelos,
+                                             R.id.battleOmikhli, R.id.battleNikhteribs, R.id.battleDrunkards,
+                                             R.id.battleKatofiPonu, R.id.battleEnkefalio)
+
     private fun navigateTo(view: View, sceneId: Int) {
-        gameState.setCurrentFrame(0)
-        gameState.setIgnoreCutSceneShownStatus(true)
+        if (!battleSceneIds.contains(sceneId)) {
+            gameState.setCurrentFrame(0)
+            gameState.setIgnoreCutSceneShownStatus(true)
+        }
         view.findNavController().navigate(sceneId)
     }
 
