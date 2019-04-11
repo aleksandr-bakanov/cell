@@ -77,6 +77,12 @@ class GameStateImpl(private val context: Context,
 
     override fun showScenesButton(): Boolean = preferences.getBoolean(SHOW_SCENES_BUTTON, false)
 
+    override fun setBattleHasBeenWon(sceneId: String) {
+        preferences.edit().putBoolean("${sceneId}_won", true).apply()
+    }
+
+    override fun hasBattleBeenWon(sceneId: String): Boolean = preferences.getBoolean("${sceneId}_won", false)
+
     companion object {
         private const val FIRST_TIME_APP_LAUNCH = "first_time_app_launch"
         private const val LAST_NAV_DESTINATION_ID = "last_nav_destination_id"

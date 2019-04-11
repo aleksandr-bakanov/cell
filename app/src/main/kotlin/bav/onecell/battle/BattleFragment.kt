@@ -60,6 +60,8 @@ class BattleFragment : Fragment(), Battle.View {
 
     private var battleInfo: BattleInfo? = null
 
+    private var sceneId: String = ""
+
     private val seekBarListener = object : SeekBar.OnSeekBarChangeListener {
         override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
             if (fromUser) {
@@ -153,17 +155,12 @@ class BattleFragment : Fragment(), Battle.View {
             val info = JSONObject(getString(it.getInt(EXTRA_PARAMS)))
             val battleParams = info.getString(BATTLE_PARAMS)
             val battleGroundResource = resourceProvider.getDrawableIdentifier(info.getString(BATTLE_GROUND_RESOURCE))
-            val sceneId = info.getString(Consts.SCENE_ID)
+            sceneId = info.getString(Consts.SCENE_ID)
 
             drawUtils.setGroundShader(battleGroundResource)
             nextScene = resourceProvider.getIdIdentifier(info.getString(NEXT_SCENE))
-            if (!gameState.isSceneAppeared(sceneId)) {
-                reward = info.optString(Consts.BATTLE_REWARD)
-                gameState.setSceneAppeared(sceneId)
-            }
-            else {
-                reward = "{}"
-            }
+            reward = info.optString(Consts.BATTLE_REWARD)
+            gameState.setSceneAppeared(sceneId)
             presenter.initialize(battleParams)
         }
         battleCanvasView.backgroundFieldRadius = 50
@@ -210,6 +207,7 @@ class BattleFragment : Fragment(), Battle.View {
         reportBundle.putBooleanArray(BattleResultsFragment.DEAD_OR_ALIVE, doa.toBooleanArray())
         reportBundle.putBoolean(BattleResultsFragment.IS_BATTLE_WON, battleInfo.winnerGroupId == Consts.HERO_GROUP_ID)
         reportBundle.putString(Consts.BATTLE_REWARD, reward)
+        reportBundle.putString(Consts.SCENE_ID, sceneId)
 
         buttonFinishBattle.setOnClickListener { view ->
             view.findNavController().navigate(nextScene, reportBundle)

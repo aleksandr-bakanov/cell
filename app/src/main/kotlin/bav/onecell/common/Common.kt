@@ -64,6 +64,9 @@ interface Common {
         fun isSceneAppeared(sceneId: String): Boolean
         fun showScenesButton(): Boolean
 
+        fun hasBattleBeenWon(sceneId: String): Boolean
+        fun setBattleHasBeenWon(sceneId: String)
+
         companion object {
             const val BATTLE_LOGIC_AVAILABLE = "battle_logic_available"
             const val ATTACK_HEXES_AVAILABLE = "attack_hexes_available"

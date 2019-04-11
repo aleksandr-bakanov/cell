@@ -73,7 +73,12 @@ class BattleResultsFragment: androidx.fragment.app.Fragment(), BattleResults.Vie
                 doa[id] = deadOrAlive[i]
             }
             val isBattleWon = it.getBoolean(IS_BATTLE_WON)
-            val reward = if (isBattleWon) it.getString(Consts.BATTLE_REWARD, "") else "{}"
+            val sceneId = it.getString(Consts.SCENE_ID, "")
+            var reward = "{}"
+            if (!gameState.hasBattleBeenWon(sceneId) && isBattleWon) {
+                reward = it.getString(Consts.BATTLE_REWARD, "{}")
+                gameState.setBattleHasBeenWon(sceneId)
+            }
             presenter.initialize(dd, doa, reward)
         }
     }
