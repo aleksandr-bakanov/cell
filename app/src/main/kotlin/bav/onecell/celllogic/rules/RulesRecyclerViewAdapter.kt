@@ -5,20 +5,16 @@ import androidx.core.content.ContextCompat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import bav.onecell.R
 import bav.onecell.common.Common
+import bav.onecell.databinding.ItemRowRuleBinding
 import bav.onecell.heroscreen.HeroScreen
 import bav.onecell.model.cell.logic.Condition
-import kotlinx.android.synthetic.main.item_row_rule.view.buttonChooseRuleAction
-import kotlinx.android.synthetic.main.item_row_rule.view.conditions
-import kotlinx.android.synthetic.main.item_row_rule.view.ruleRow
-import kotlinx.android.synthetic.main.view_conditions_list.view.ruleConditionListItemExpectedValue
-import kotlinx.android.synthetic.main.view_conditions_list.view.ruleConditionListItemFieldToCheck
-import kotlinx.android.synthetic.main.view_conditions_list.view.ruleConditionListItemOperation
 
 class RulesRecyclerViewAdapter(
         private val presenter: HeroScreen.Presenter,
@@ -27,8 +23,8 @@ class RulesRecyclerViewAdapter(
       ItemTouchHelperAdapter {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(viewType, parent, false)
-        return ViewHolder(view, presenter, viewType)
+        val binding = ItemRowRuleBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return ViewHolder(binding, presenter, viewType)
     }
 
     override fun getItemViewType(position: Int): Int {
@@ -40,10 +36,10 @@ class RulesRecyclerViewAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         when (getItemViewType(position)) {
             R.layout.item_row_rule -> {
-                holder.view.ruleRow.setBackgroundColor(getRowBackgroundColor(holder.view.context, position))
+                holder.binding.ruleRow.setBackgroundColor(getRowBackgroundColor(holder.binding.root.context, position))
                 presenter.getRule(position)?.let {
-                    inflateConditions(holder.view.conditions, it.getConditions())
-                    holder.view.buttonChooseRuleAction.setImageResource(resourceProvider.getActionRepresentationId(it.action))
+                    inflateConditions(holder.binding.conditions, it.getConditions())
+                    holder.binding.buttonChooseRuleAction.setImageResource(resourceProvider.getActionRepresentationId(it.action))
                 }
             }
         }
@@ -54,9 +50,9 @@ class RulesRecyclerViewAdapter(
         val inflater = LayoutInflater.from(container.context)
         for (condition in conditions) {
             val layout = inflater.inflate(R.layout.view_conditions_list, null, false)
-            layout.ruleConditionListItemFieldToCheck.setImageResource(resourceProvider.getFieldToCheckRepresentationId(condition.fieldToCheck))
-            layout.ruleConditionListItemOperation.setImageResource(resourceProvider.getOperationRepresentationId(condition.operation))
-            layout.ruleConditionListItemExpectedValue.setImageResource(resourceProvider.getExpectedValueRepresentationId(condition.fieldToCheck, condition.expected))
+            layout.findViewById<AppCompatImageView>(R.id.ruleConditionListItemFieldToCheck).setImageResource(resourceProvider.getFieldToCheckRepresentationId(condition.fieldToCheck))
+            layout.findViewById<AppCompatImageView>(R.id.ruleConditionListItemOperation).setImageResource(resourceProvider.getOperationRepresentationId(condition.operation))
+            layout.findViewById<AppCompatImageView>(R.id.ruleConditionListItemExpectedValue).setImageResource(resourceProvider.getExpectedValueRepresentationId(condition.fieldToCheck, condition.expected))
             container.addView(layout)
         }
     }
@@ -86,14 +82,14 @@ class RulesRecyclerViewAdapter(
         notifyItemRemoved(position)
     }
 
-    class ViewHolder(val view: View, private val presenter: HeroScreen.Presenter, viewType: Int) : androidx.recyclerview.widget.RecyclerView.ViewHolder(view) {
+    class ViewHolder(val binding: ItemRowRuleBinding, private val presenter: HeroScreen.Presenter, viewType: Int) : androidx.recyclerview.widget.RecyclerView.ViewHolder(binding.root) {
         init {
             when (viewType) {
                 R.layout.item_row_rule -> {
-                    view.ruleRow.setOnClickListener { presenter.openConditionsList(adapterPosition) }
-                    view.buttonChooseRuleAction.setOnClickListener {
+                    binding.ruleRow.setOnClickListener { presenter.openConditionsList(adapterPosition) }
+                    binding.buttonChooseRuleAction.setOnClickListener {
                         presenter.openActionEditor(adapterPosition)
-                        showPopupMenu(view.context, view, R.menu.rules_actions)
+                        showPopupMenu(binding.root.context, binding.root, R.menu.rules_actions)
                     }
                 }
             }

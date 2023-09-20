@@ -441,7 +441,7 @@ class BattleEngine(
                     damageDealtByCells[cell.data.id.toInt()] = currentDamage + it.power
                     it.power -= maxDamageOfGroup
                             .filter { entry -> entry.key != cell.data.groupId }
-                            .maxBy { entry -> entry.value }?.value ?: 0
+                            .maxByOrNull { entry -> entry.value }?.value ?: 0
                 }
             }
         }

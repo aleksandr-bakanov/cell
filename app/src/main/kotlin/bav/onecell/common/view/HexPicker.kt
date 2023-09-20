@@ -15,6 +15,10 @@ class HexPicker(context: Context, attributeSet: AttributeSet): ConstraintLayout(
                 ?.inflate(R.layout.view_hex_picker, this)
     }
 
+    val buttonHex: AppCompatImageButton get() = findViewById(R.id.buttonHex)
+    val textViewHexCount: TextView get() = findViewById(R.id.textViewHexCount)
+    val selection: View get() = findViewById<View>(R.id.selection)
+
     fun setButtonClickListener(listener: (v: View) -> Unit) {
         val button = findViewById<AppCompatImageButton>(R.id.buttonHex)
         button.setOnClickListener { listener.invoke(this) }

@@ -120,7 +120,7 @@ class ResourceProviderImpl(private val context: Context): Common.ResourceProvide
 
     companion object {
         private const val EMPTY_STRING = ""
-        private const val TRANSPARENT_HEX = R.drawable.ic_semi_transparent_hex
+        private val TRANSPARENT_HEX = R.drawable.ic_semi_transparent_hex
         private const val APP_PACKAGE = "bav.onecell"
         private const val DRAWABLE = "drawable"
         private const val ID = "id"

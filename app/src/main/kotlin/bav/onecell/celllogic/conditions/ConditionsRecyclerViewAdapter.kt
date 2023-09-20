@@ -11,19 +11,16 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import bav.onecell.R
 import bav.onecell.common.Common
+import bav.onecell.databinding.ItemRowRuleConditionBinding
 import bav.onecell.heroscreen.HeroScreen
-import kotlinx.android.synthetic.main.item_row_rule_condition.view.buttonExpectedValue
-import kotlinx.android.synthetic.main.item_row_rule_condition.view.buttonFieldToCheck
-import kotlinx.android.synthetic.main.item_row_rule_condition.view.buttonOperation
-import kotlinx.android.synthetic.main.item_row_rule_condition.view.conditionRow
 
 class ConditionsRecyclerViewAdapter(
         private val presenter: HeroScreen.Presenter,
         private val resourceProvider: Common.ResourceProvider) : androidx.recyclerview.widget.RecyclerView.Adapter<ConditionsRecyclerViewAdapter.ViewHolder>(), ItemTouchHelperAdapter {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(viewType, parent, false)
-        return ViewHolder(view, presenter, viewType)
+        val binding = ItemRowRuleConditionBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return ViewHolder(binding, presenter, viewType)
     }
 
     override fun getItemViewType(position: Int): Int {
@@ -36,10 +33,10 @@ class ConditionsRecyclerViewAdapter(
         when (getItemViewType(position)) {
             R.layout.item_row_rule_condition -> {
                 presenter.getCondition(position)?.let {
-                    holder.view.conditionRow.setBackgroundColor(getRowBackgroundColor(holder.view.context, position))
-                    holder.view.buttonFieldToCheck.setImageResource(resourceProvider.getFieldToCheckRepresentationId(it.fieldToCheck))
-                    holder.view.buttonOperation.setImageResource(resourceProvider.getOperationRepresentationId(it.operation))
-                    holder.view.buttonExpectedValue.setImageResource(resourceProvider.getExpectedValueRepresentationId(it.fieldToCheck, it.expected))
+                    holder.binding.conditionRow.setBackgroundColor(getRowBackgroundColor(holder.binding.root.context, position))
+                    holder.binding.buttonFieldToCheck.setImageResource(resourceProvider.getFieldToCheckRepresentationId(it.fieldToCheck))
+                    holder.binding.buttonOperation.setImageResource(resourceProvider.getOperationRepresentationId(it.operation))
+                    holder.binding.buttonExpectedValue.setImageResource(resourceProvider.getExpectedValueRepresentationId(it.fieldToCheck, it.expected))
                 }
             }
         }
@@ -55,19 +52,19 @@ class ConditionsRecyclerViewAdapter(
         presenter.removeCondition(position)
     }
 
-    class ViewHolder(val view: View, private val presenter: HeroScreen.Presenter, viewType: Int) :
-            androidx.recyclerview.widget.RecyclerView.ViewHolder(view) {
+    class ViewHolder(val binding: ItemRowRuleConditionBinding, private val presenter: HeroScreen.Presenter, viewType: Int) :
+            androidx.recyclerview.widget.RecyclerView.ViewHolder(binding.root) {
         init {
             when (viewType) {
                 R.layout.item_row_rule_condition -> {
-                    view.buttonFieldToCheck.setOnClickListener {
+                    binding.buttonFieldToCheck.setOnClickListener {
                         presenter.chooseFieldToCheck(adapterPosition)
                         showPopupMenu(it, R.menu.condition_field_to_check)
                     }
-                    view.buttonOperation.setOnClickListener {
+                    binding.buttonOperation.setOnClickListener {
                         showPopupMenu(it, presenter.chooseOperation(adapterPosition))
                     }
-                    view.buttonExpectedValue.setOnClickListener {
+                    binding.buttonExpectedValue.setOnClickListener {
                         showPopupMenu(it, presenter.chooseExpectedValue(adapterPosition))
                     }
                 }

@@ -9,10 +9,9 @@ import androidx.navigation.findNavController
 import bav.onecell.OneCellApplication
 import bav.onecell.R
 import bav.onecell.common.Common
+import bav.onecell.databinding.FragmentNewGameBinding
 import bav.onecell.model.RepositoryContract
 import bav.onecell.model.cell.Data
-import kotlinx.android.synthetic.main.fragment_new_game.buttonConfirm
-import kotlinx.android.synthetic.main.fragment_new_game.buttonDeny
 import javax.inject.Inject
 
 class NewGameFragment : Fragment(), NewGame.View {
@@ -21,8 +20,12 @@ class NewGameFragment : Fragment(), NewGame.View {
     @Inject lateinit var cellRepo: RepositoryContract.CellRepo
     @Inject lateinit var analytics: Common.Analytics
 
+    private var _binding: FragmentNewGameBinding? = null
+    private val binding get() = _binding!!
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_new_game, container, false)
+        _binding = FragmentNewGameBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -36,11 +39,16 @@ class NewGameFragment : Fragment(), NewGame.View {
         analytics.setCurrentScreen(requireActivity(), SCREEN_NAME, this::class.qualifiedName)
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
     private fun initiateButtons() {
-        buttonDeny.setOnClickListener { view ->
+        binding.buttonDeny.setOnClickListener { view ->
             view.findNavController().popBackStack()
         }
-        buttonConfirm.setOnClickListener { view ->
+        binding.buttonConfirm.setOnClickListener { view ->
             resetGameState()
             view.findNavController().navigate(R.id.action_newGameFragment_to_cutSceneIntroduction)
         }

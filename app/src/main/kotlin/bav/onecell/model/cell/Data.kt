@@ -52,51 +52,6 @@ data class Data(
     }
 
     companion object {
-        private val pairIntAdapter = object : TypeAdapter<Pair<Int, Int>>(),
-                                              InstanceCreator<Pair<Int, Int>>,
-                                              JsonSerializer<Pair<Int, Int>>,
-                                              JsonDeserializer<Pair<Int, Int>> {
-            // TypeAdapter
-            override fun read(reader: JsonReader?): Pair<Int, Int>? {
-                if (reader?.peek() == JsonToken.NULL) {
-                    reader.nextNull()
-                    return null
-                }
-                return reader?.nextString()?.let { xy ->
-                    // Omit brackets in (x,y)
-                    val parts = xy.substring(1, xy.length - 1).split(",")
-                    Pair(parts[0].toInt(), parts[1].toInt())
-                }
-            }
-            override fun write(writer: JsonWriter?, value: Pair<Int, Int>?) {
-                if (value == null) {
-                    writer?.nullValue()
-                }
-                else {
-                    writer?.value("(${value.first},${value.second})")
-                }
-            }
-
-            // InstanceCreator
-            override fun createInstance(type: Type?): Pair<Int, Int> = Pair(0, 0)
-
-            // JsonSerializer
-            override fun serialize(src: Pair<Int, Int>?, typeOfSrc: Type?,
-                                   context: JsonSerializationContext?): JsonElement {
-                return JsonPrimitive("(${src?.first},${src?.second})")
-            }
-
-            // JsonDeserializer
-            override fun deserialize(json: JsonElement?, typeOfT: Type?,
-                                     context: JsonDeserializationContext?): Pair<Int, Int> {
-                return json?.asString.let { xy ->
-                    // Omit brackets in (x,y)
-                    val parts = xy?.substring(1, xy?.length - 1)?.split(",")
-                    Pair(parts?.get(0)?.toInt() ?: 0, parts?.get(1)?.toInt() ?: 0)
-                }
-            }
-        }
-
         fun fromJson(json: String): Data = GsonBuilder()
                 /// TODO: implement pretty output of pair of ints for Gson later
                 //.registerTypeAdapter(Converters.PAIR_OF_INT_TYPE, pairIntAdapter)

@@ -182,8 +182,8 @@ class BattleCanvasView(context: Context, attributeSet: AttributeSet) : CanvasVie
     }
 
     private class ScaleListener(private val view: BattleCanvasView): ScaleGestureDetector.SimpleOnScaleGestureListener() {
-        override fun onScale(detector: ScaleGestureDetector?): Boolean {
-            val factor = detector?.scaleFactor ?: 1f
+        override fun onScale(detector: ScaleGestureDetector): Boolean {
+            val factor = detector.scaleFactor ?: 1f
 
             view.scaleFactor *= factor
             view.scaleFactor = max(MIN_SCALE, min(view.scaleFactor, MAX_SCALE))

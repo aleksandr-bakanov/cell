@@ -7,15 +7,14 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.RecyclerView
 import bav.onecell.OneCellApplication
 import bav.onecell.R
 import bav.onecell.common.Common
 import bav.onecell.common.Consts
 import bav.onecell.common.view.DrawUtils
+import bav.onecell.databinding.FragmentBattleResultsBinding
 import bav.onecell.model.hexes.Hex
-import kotlinx.android.synthetic.main.fragment_battle_results.buttonToHeroesScreen
-import kotlinx.android.synthetic.main.fragment_battle_results.buttonTryAgain
-import kotlinx.android.synthetic.main.fragment_battle_results.recyclerViewBattleResults
 import org.json.JSONObject
 import javax.inject.Inject
 
@@ -27,9 +26,13 @@ class BattleResultsFragment: androidx.fragment.app.Fragment(), BattleResults.Vie
     @Inject lateinit var gameState: Common.GameState
     @Inject lateinit var analytics: Common.Analytics
 
+    var _binding: FragmentBattleResultsBinding? = null
+    val binding get() = _binding!!
+
     //region Lifecycle methods
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_battle_results, container, false)
+        _binding = FragmentBattleResultsBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -39,8 +42,8 @@ class BattleResultsFragment: androidx.fragment.app.Fragment(), BattleResults.Vie
         initializePresenter(arguments)
         initializeButtons(arguments)
 
-        recyclerViewBattleResults.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(context, LinearLayout.HORIZONTAL, false)
-        recyclerViewBattleResults.adapter = BattleResultsRecyclerViewAdapter(presenter, drawUtils, resourceProvider)
+        binding.recyclerViewBattleResults.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
+        binding.recyclerViewBattleResults.adapter = BattleResultsRecyclerViewAdapter(presenter, drawUtils, resourceProvider)
     }
 
     override fun onResume() {
@@ -51,6 +54,11 @@ class BattleResultsFragment: androidx.fragment.app.Fragment(), BattleResults.Vie
     override fun onPause() {
         gameState.setLastNavDestinationId(findNavController().currentDestination?.id ?: 0)
         super.onPause()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
     //endregion
 
@@ -64,8 +72,8 @@ class BattleResultsFragment: androidx.fragment.app.Fragment(), BattleResults.Vie
     private fun initializePresenter(arguments: Bundle?) {
         arguments?.let {
             val cellIndexes = it.getIntArray(CELL_INDEXES)
-            val dealtDamage = it.getIntArray(DEALT_DAMAGE)
-            val deadOrAlive = it.getBooleanArray(DEAD_OR_ALIVE)
+            val dealtDamage = it.getIntArray(DEALT_DAMAGE)!!
+            val deadOrAlive = it.getBooleanArray(DEAD_OR_ALIVE)!!
             val dd = mutableMapOf<Int, Int>()
             val doa = mutableMapOf<Int, Boolean>()
             cellIndexes?.forEachIndexed { i, id ->
@@ -88,15 +96,15 @@ class BattleResultsFragment: androidx.fragment.app.Fragment(), BattleResults.Vie
             val nextScene = resourceProvider.getIdIdentifier(getString(it.getInt(Consts.NEXT_SCENE)))
             val prevScene = resourceProvider.getIdIdentifier(getString(it.getInt(PREVIOUS_SCENE)))
             val isBattleWon = it.getBoolean(IS_BATTLE_WON)
-            buttonToHeroesScreen.visibility = if (isBattleWon) View.VISIBLE else View.INVISIBLE
-            buttonTryAgain.visibility = if (!isBattleWon) View.VISIBLE else View.INVISIBLE
+            binding.buttonToHeroesScreen.visibility = if (isBattleWon) View.VISIBLE else View.INVISIBLE
+            binding.buttonTryAgain.visibility = if (!isBattleWon) View.VISIBLE else View.INVISIBLE
             if (isBattleWon) {
-                buttonToHeroesScreen.setOnClickListener { view ->
+                binding.buttonToHeroesScreen.setOnClickListener { view ->
                     view.findNavController().navigate(nextScene)
                 }
             }
             else {
-                buttonTryAgain.setOnClickListener { view ->
+                binding.buttonTryAgain.setOnClickListener { view ->
                     view.findNavController().navigate(prevScene)
                 }
             }

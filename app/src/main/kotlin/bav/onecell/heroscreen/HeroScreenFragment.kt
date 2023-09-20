@@ -26,42 +26,11 @@ import bav.onecell.common.Consts
 import bav.onecell.common.extensions.visible
 import bav.onecell.common.view.DrawUtils
 import bav.onecell.common.view.HexPicker
+import bav.onecell.databinding.FragmentHeroScreenBinding
 import bav.onecell.model.hexes.Hex
 import bav.onecell.model.hexes.HexMath
 import io.reactivex.disposables.CompositeDisposable
-import kotlinx.android.synthetic.main.fragment_hero_screen.buttonAddNewCondition
-import kotlinx.android.synthetic.main.fragment_hero_screen.buttonAddNewRule
-import kotlinx.android.synthetic.main.fragment_hero_screen.buttonClearCell
-import kotlinx.android.synthetic.main.fragment_hero_screen.buttonNextScene
-import kotlinx.android.synthetic.main.fragment_hero_screen.buttonRotateCellLeft
-import kotlinx.android.synthetic.main.fragment_hero_screen.buttonRotateCellRight
-import kotlinx.android.synthetic.main.fragment_hero_screen.buttonSwitchScreen
-import kotlinx.android.synthetic.main.fragment_hero_screen.buttonTransformAttackToLifeHex
-import kotlinx.android.synthetic.main.fragment_hero_screen.buttonTransformDeathRayToLifeHex
-import kotlinx.android.synthetic.main.fragment_hero_screen.buttonTransformEnergyToLifeHex
-import kotlinx.android.synthetic.main.fragment_hero_screen.buttonTransformHexes
-import kotlinx.android.synthetic.main.fragment_hero_screen.buttonTransformLifeToAttackHex
-import kotlinx.android.synthetic.main.fragment_hero_screen.buttonTransformLifeToDeathRayHex
-import kotlinx.android.synthetic.main.fragment_hero_screen.buttonTransformLifeToEnergyHex
-import kotlinx.android.synthetic.main.fragment_hero_screen.buttonTransformLifeToOmniBulletHex
-import kotlinx.android.synthetic.main.fragment_hero_screen.buttonTransformOmniBulletToLifeHex
-import kotlinx.android.synthetic.main.fragment_hero_screen.cellName
-import kotlinx.android.synthetic.main.fragment_hero_screen.editorCanvasView
-import kotlinx.android.synthetic.main.fragment_hero_screen.radioButtonAttackHex
-import kotlinx.android.synthetic.main.fragment_hero_screen.radioButtonDeathRayHex
-import kotlinx.android.synthetic.main.fragment_hero_screen.radioButtonEnergyHex
-import kotlinx.android.synthetic.main.fragment_hero_screen.radioButtonLifeHex
-import kotlinx.android.synthetic.main.fragment_hero_screen.radioButtonOmniBulletHex
-import kotlinx.android.synthetic.main.fragment_hero_screen.radioButtonRemoveHex
-import kotlinx.android.synthetic.main.fragment_hero_screen.recyclerViewAvatars
-import kotlinx.android.synthetic.main.fragment_hero_screen.recyclerViewConditionsList
-import kotlinx.android.synthetic.main.fragment_hero_screen.recyclerViewRulesList
-import kotlinx.android.synthetic.main.fragment_hero_screen.textHeroHistory
-import kotlinx.android.synthetic.main.view_hex_picker.view.buttonHex
-import kotlinx.android.synthetic.main.view_hex_picker.view.selection
-import kotlinx.android.synthetic.main.view_hex_picker.view.textViewHexCount
 import javax.inject.Inject
-import kotlinx.android.synthetic.main.fragment_hero_screen.newCharacterAvatar
 
 class HeroScreenFragment: Fragment(), HeroScreen.View {
 
@@ -78,37 +47,41 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
     private var isHexesTransformShown = false
     private var nextScene: Int = 0
 
+    private var _binding: FragmentHeroScreenBinding? = null
+    private val binding get() = _binding!!
+
     //region Lifecycle methods
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_hero_screen, container, false)
+        _binding = FragmentHeroScreenBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         inject()
 
-        nextScene = resourceProvider.getIdIdentifier(getString(arguments!!.getInt(Consts.NEXT_SCENE)))
+        nextScene = resourceProvider.getIdIdentifier(getString(requireArguments().getInt(Consts.NEXT_SCENE)))
         initiateCanvasView()
         initiateButtons()
 
-        recyclerViewAvatars.layoutManager = LinearLayoutManager(context)
-        recyclerViewAvatars.addItemDecoration(HeroIconsRecyclerViewAdapter.VerticalSpaceItemDecoration())
-        recyclerViewAvatars.adapter = HeroIconsRecyclerViewAdapter(presenter, resourceProvider)
+        binding.recyclerViewAvatars.layoutManager = LinearLayoutManager(context)
+        binding.recyclerViewAvatars.addItemDecoration(HeroIconsRecyclerViewAdapter.VerticalSpaceItemDecoration())
+        binding.recyclerViewAvatars.adapter = HeroIconsRecyclerViewAdapter(presenter, resourceProvider)
         checkLastCellsCount()
 
-        recyclerViewRulesList.layoutManager = LinearLayoutManager(context)
+        binding.recyclerViewRulesList.layoutManager = LinearLayoutManager(context)
         val rulesAdapter = RulesRecyclerViewAdapter(presenter, resourceProvider)
-        recyclerViewRulesList.adapter = rulesAdapter
+        binding.recyclerViewRulesList.adapter = rulesAdapter
         val ruleTouchHelperCallback = RulesRecyclerViewAdapter.SimpleItemTouchHelperCallback(rulesAdapter)
         val ruleTouchHelper = ItemTouchHelper(ruleTouchHelperCallback)
-        ruleTouchHelper.attachToRecyclerView(recyclerViewRulesList)
+        ruleTouchHelper.attachToRecyclerView(binding.recyclerViewRulesList)
 
-        recyclerViewConditionsList.layoutManager = LinearLayoutManager(context)
+        binding.recyclerViewConditionsList.layoutManager = LinearLayoutManager(context)
         val conditionsAdapter = ConditionsRecyclerViewAdapter(presenter, resourceProvider)
-        recyclerViewConditionsList.adapter = conditionsAdapter
+        binding.recyclerViewConditionsList.adapter = conditionsAdapter
         val conditionTouchHelperCallback = ConditionsRecyclerViewAdapter.SimpleItemTouchHelperCallback(conditionsAdapter)
         val conditionTouchHelper = ItemTouchHelper(conditionTouchHelperCallback)
-        conditionTouchHelper.attachToRecyclerView(recyclerViewConditionsList)
+        conditionTouchHelper.attachToRecyclerView(binding.recyclerViewConditionsList)
 
         /*cellName.setOnClickListener {
             textHeroHistory.visible = !textHeroHistory.visible
@@ -117,20 +90,20 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
         disposables.addAll(
                 presenter.getCellProvider().subscribe {
                     it.evaluateCellHexesPower()
-                    editorCanvasView.cell = it
+                    binding.editorCanvasView.cell = it
                     updateCellRepresentation()
-                    highlightTips(editorCanvasView.selectedCellType)
+                    highlightTips(binding.editorCanvasView.selectedCellType)
                     setNextSceneButtonVisibility(it.data.hexes.isNotEmpty())
                 },
                 presenter.getBackgroundCellRadiusProvider().subscribe {
-                    editorCanvasView.backgroundFieldRadius = it
-                    editorCanvasView.invalidate()
+                    binding.editorCanvasView.backgroundFieldRadius = it
+                    binding.editorCanvasView.invalidate()
                 },
                 presenter.rulesUpdateNotifier().subscribe {
-                    recyclerViewRulesList.adapter?.notifyDataSetChanged()
+                    binding.recyclerViewRulesList.adapter?.notifyDataSetChanged()
                 },
                 presenter.conditionsUpdateNotifier().subscribe {
-                    recyclerViewConditionsList.adapter?.notifyDataSetChanged()
+                    binding.recyclerViewConditionsList.adapter?.notifyDataSetChanged()
                 }
         )
         presenter.initialize(Consts.KITTARO_INDEX)
@@ -149,43 +122,44 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
     override fun onDestroyView() {
         disposables.dispose()
         super.onDestroyView()
+        _binding = null
     }
     //endregion
 
     //region Editor.View methods
     override fun highlightTips(type: Hex.Type) {
-        editorCanvasView.tipHexes = presenter.getTipHexes(type)
-        editorCanvasView.invalidate()
+        binding.editorCanvasView.tipHexes = presenter.getTipHexes(type)
+        binding.editorCanvasView.invalidate()
     }
 
     override fun updateCellRepresentation() {
-        editorCanvasView.updateCellRepresentation()
+        binding.editorCanvasView.updateCellRepresentation()
     }
     //endregion
 
     //region HeroScreen.View methods
     override fun setCellName(name: String) {
-        cellName.text = name
+        binding.cellName.text = name
     }
 
     override fun updateAvatars() {
-        recyclerViewAvatars.adapter?.notifyDataSetChanged()
+        binding.recyclerViewAvatars.adapter?.notifyDataSetChanged()
     }
 
     override fun updateHexesInBucket(type: Hex.Type, count: Int) {
         val hexPicker = when (type) {
-            Hex.Type.LIFE -> radioButtonLifeHex
-            Hex.Type.ENERGY -> radioButtonEnergyHex
-            Hex.Type.ATTACK -> radioButtonAttackHex
-            Hex.Type.DEATH_RAY -> radioButtonDeathRayHex
-            Hex.Type.OMNI_BULLET -> radioButtonOmniBulletHex
-            else -> radioButtonRemoveHex
+            Hex.Type.LIFE -> binding.radioButtonLifeHex
+            Hex.Type.ENERGY -> binding.radioButtonEnergyHex
+            Hex.Type.ATTACK -> binding.radioButtonAttackHex
+            Hex.Type.DEATH_RAY -> binding.radioButtonDeathRayHex
+            Hex.Type.OMNI_BULLET -> binding.radioButtonOmniBulletHex
+            else -> binding.radioButtonRemoveHex
         }
         hexPicker.setHexCount(count)
     }
 
     override fun setNextSceneButtonVisibility(visible: Boolean) {
-        buttonNextScene.visibility = if (visible) View.VISIBLE else View.INVISIBLE
+        binding.buttonNextScene.visibility = if (visible) View.VISIBLE else View.INVISIBLE
     }
     //endregion
 
@@ -200,7 +174,7 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
         if (presenter.getCellCount() > lastCellsCount) {
             val newCharacterIndex = lastCellsCount
             lastCellsCount = presenter.getCellCount()
-            newCharacterAvatar.setImageResource(
+            binding.newCharacterAvatar.setImageResource(
                     when (newCharacterIndex) {
                         Consts.ZOI_INDEX -> R.drawable.ic_avatar_zoi
                         Consts.AIMA_INDEX -> R.drawable.ic_avatar_aima
@@ -208,13 +182,13 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
                     }
             )
             AnimationUtils.loadAnimation(context, R.anim.new_character_appears).also { newCharacterAppearsAnimation ->
-                newCharacterAvatar.startAnimation(newCharacterAppearsAnimation)
+                binding.newCharacterAvatar.startAnimation(newCharacterAppearsAnimation)
             }
         }
     }
 
     private fun initiateButtons() {
-        buttonNextScene.setOnClickListener { view ->
+        binding.buttonNextScene.setOnClickListener { view ->
             if (!presenter.isThereAnyEmptyCell()) {
                 view.findNavController().navigate(nextScene)
                 presenter.openMainMenu()
@@ -226,18 +200,18 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
 
         initiateHexesButtons()
 
-        buttonRotateCellLeft.setOnClickListener { onCellRotateButtonClicked(it) }
-        buttonRotateCellRight.setOnClickListener { onCellRotateButtonClicked(it) }
+        binding.buttonRotateCellLeft.setOnClickListener { onCellRotateButtonClicked(it) }
+        binding.buttonRotateCellRight.setOnClickListener { onCellRotateButtonClicked(it) }
 
-        buttonSwitchScreen.visible = gameState.isDecisionPositive(Common.GameState.BATTLE_LOGIC_AVAILABLE)
-        buttonSwitchScreen.setOnClickListener { switchCellLogicEditorViews() }
+        binding.buttonSwitchScreen.visible = gameState.isDecisionPositive(Common.GameState.BATTLE_LOGIC_AVAILABLE)
+        binding.buttonSwitchScreen.setOnClickListener { switchCellLogicEditorViews() }
 
-        buttonAddNewCondition.setOnClickListener {
+        binding.buttonAddNewCondition.setOnClickListener {
             if (presenter.createNewCondition())
                 showConditionCreationPopupMenu(it)
         }
-        buttonAddNewRule.setOnClickListener { presenter.createNewRule() }
-        buttonClearCell.setOnClickListener { presenter.clearCellHexes() }
+        binding.buttonAddNewRule.setOnClickListener { presenter.createNewRule() }
+        binding.buttonClearCell.setOnClickListener { presenter.clearCellHexes() }
 
         initiateTransformHexesButtons()
     }
@@ -280,77 +254,77 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
     }
 
     private fun initiateHexesButtons() {
-        for (view in arrayListOf<HexPicker>(radioButtonLifeHex, radioButtonAttackHex, radioButtonEnergyHex,
-                                            radioButtonDeathRayHex, radioButtonOmniBulletHex, radioButtonRemoveHex)) {
-            view.setButtonClickListener { onHexTypeButtonClicked(it) }
-            view.setButtonLongClickListener { onHexTypeButtonLongClicked(it) }
+        for (view in arrayListOf<HexPicker>(binding.radioButtonLifeHex, binding.radioButtonAttackHex, binding.radioButtonEnergyHex,
+                                            binding.radioButtonDeathRayHex, binding.radioButtonOmniBulletHex, binding.radioButtonRemoveHex)) {
+            view.setButtonClickListener { onHexTypeButtonClicked(it as HexPicker) }
+            view.setButtonLongClickListener { onHexTypeButtonLongClicked(it as HexPicker) }
             view.selection.visibility = View.INVISIBLE
         }
 
-        radioButtonLifeHex.buttonHex.setImageResource(R.drawable.ic_hex_life)
-        radioButtonAttackHex.buttonHex.setImageResource(R.drawable.ic_hex_attack)
-        radioButtonEnergyHex.buttonHex.setImageResource(R.drawable.ic_hex_energy)
-        radioButtonDeathRayHex.buttonHex.setImageResource(R.drawable.ic_hex_death_ray)
-        radioButtonOmniBulletHex.buttonHex.setImageResource(R.drawable.ic_hex_omni_bullet)
+        binding.radioButtonLifeHex.buttonHex.setImageResource(R.drawable.ic_hex_life)
+        binding.radioButtonAttackHex.buttonHex.setImageResource(R.drawable.ic_hex_attack)
+        binding.radioButtonEnergyHex.buttonHex.setImageResource(R.drawable.ic_hex_energy)
+        binding.radioButtonDeathRayHex.buttonHex.setImageResource(R.drawable.ic_hex_death_ray)
+        binding.radioButtonOmniBulletHex.buttonHex.setImageResource(R.drawable.ic_hex_omni_bullet)
 
-        radioButtonLifeHex.selection.visibility = View.VISIBLE
+        binding.radioButtonLifeHex.selection.visibility = View.VISIBLE
 
-        radioButtonRemoveHex.buttonHex.setImageResource(R.drawable.ic_remove_icon)
-        radioButtonRemoveHex.textViewHexCount.visible = false
+        binding.radioButtonRemoveHex.buttonHex.setImageResource(R.drawable.ic_remove_icon)
+        binding.radioButtonRemoveHex.textViewHexCount.visible = false
 
         setHexButtonsVisibilityBasedOnGameState()
     }
 
     private fun setHexButtonsVisibilityBasedOnGameState() {
-        radioButtonAttackHex.visible = gameState.isDecisionPositive(Common.GameState.ATTACK_HEXES_AVAILABLE)
-        radioButtonEnergyHex.visible = gameState.isDecisionPositive(Common.GameState.ENERGY_HEXES_AVAILABLE)
-        radioButtonDeathRayHex.visible = gameState.isDecisionPositive(Common.GameState.DEATH_RAY_HEXES_AVAILABLE)
-        radioButtonOmniBulletHex.visible = gameState.isDecisionPositive(Common.GameState.OMNI_BULLET_HEXES_AVAILABLE)
+        binding.radioButtonAttackHex.visible = gameState.isDecisionPositive(Common.GameState.ATTACK_HEXES_AVAILABLE)
+        binding.radioButtonEnergyHex.visible = gameState.isDecisionPositive(Common.GameState.ENERGY_HEXES_AVAILABLE)
+        binding.radioButtonDeathRayHex.visible = gameState.isDecisionPositive(Common.GameState.DEATH_RAY_HEXES_AVAILABLE)
+        binding.radioButtonOmniBulletHex.visible = gameState.isDecisionPositive(Common.GameState.OMNI_BULLET_HEXES_AVAILABLE)
     }
 
     private fun initiateTransformHexesButtons() {
-        buttonTransformHexes.setOnClickListener { switchHexesTransformViews() }
-        buttonTransformLifeToAttackHex.setOnClickListener { presenter.transformLifeHexToAttack() }
-        buttonTransformLifeToEnergyHex.setOnClickListener { presenter.transformLifeHexToEnergy() }
-        buttonTransformLifeToDeathRayHex.setOnClickListener { presenter.transformLifeHexToDeathRay() }
-        buttonTransformLifeToOmniBulletHex.setOnClickListener { presenter.transformLifeHexToOmniBullet() }
-        buttonTransformAttackToLifeHex.setOnClickListener { presenter.transformAttackHexToLife() }
-        buttonTransformEnergyToLifeHex.setOnClickListener { presenter.transformEnergyHexToLife() }
-        buttonTransformDeathRayToLifeHex.setOnClickListener { presenter.transformDeathRayHexToLife() }
-        buttonTransformOmniBulletToLifeHex.setOnClickListener { presenter.transformOmniBulletHexToLife() }
+        binding.buttonTransformHexes.setOnClickListener { switchHexesTransformViews() }
+        binding.buttonTransformLifeToAttackHex.setOnClickListener { presenter.transformLifeHexToAttack() }
+        binding.buttonTransformLifeToEnergyHex.setOnClickListener { presenter.transformLifeHexToEnergy() }
+        binding.buttonTransformLifeToDeathRayHex.setOnClickListener { presenter.transformLifeHexToDeathRay() }
+        binding.buttonTransformLifeToOmniBulletHex.setOnClickListener { presenter.transformLifeHexToOmniBullet() }
+        binding.buttonTransformAttackToLifeHex.setOnClickListener { presenter.transformAttackHexToLife() }
+        binding.buttonTransformEnergyToLifeHex.setOnClickListener { presenter.transformEnergyHexToLife() }
+        binding.buttonTransformDeathRayToLifeHex.setOnClickListener { presenter.transformDeathRayHexToLife() }
+        binding.buttonTransformOmniBulletToLifeHex.setOnClickListener { presenter.transformOmniBulletHexToLife() }
 
         setTransformHexesButtonsVisibilityBasedOnGameState()
     }
 
     private fun setTransformHexesButtonsVisibilityBasedOnGameState() {
-        buttonTransformHexes.visible = gameState.isDecisionPositive(Common.GameState.HEX_TRANSFORMATION_AVAILABLE)
-        val buttons = arrayListOf<View>(buttonTransformAttackToLifeHex, buttonTransformDeathRayToLifeHex,
-                                        buttonTransformEnergyToLifeHex, buttonTransformLifeToAttackHex,
-                                        buttonTransformLifeToDeathRayHex, buttonTransformLifeToEnergyHex,
-                                        buttonTransformOmniBulletToLifeHex, buttonTransformLifeToOmniBulletHex)
-        if (!buttonTransformHexes.visible) {
+        binding.buttonTransformHexes.visible = gameState.isDecisionPositive(Common.GameState.HEX_TRANSFORMATION_AVAILABLE)
+        val buttons = arrayListOf<View>(binding.buttonTransformAttackToLifeHex, binding.buttonTransformDeathRayToLifeHex,
+                                        binding.buttonTransformEnergyToLifeHex, binding.buttonTransformLifeToAttackHex,
+                                        binding.buttonTransformLifeToDeathRayHex, binding.buttonTransformLifeToEnergyHex,
+                                        binding.buttonTransformOmniBulletToLifeHex, binding.buttonTransformLifeToOmniBulletHex)
+        if (!binding.buttonTransformHexes.visible) {
             for (view in buttons) view.visible = false
         }
         else if (isHexesTransformShown) {
-            buttonTransformAttackToLifeHex.visible = gameState.isDecisionPositive(Common.GameState.ATTACK_HEXES_AVAILABLE)
-            buttonTransformLifeToAttackHex.visible = gameState.isDecisionPositive(Common.GameState.ATTACK_HEXES_AVAILABLE)
+            binding.buttonTransformAttackToLifeHex.visible = gameState.isDecisionPositive(Common.GameState.ATTACK_HEXES_AVAILABLE)
+            binding.buttonTransformLifeToAttackHex.visible = gameState.isDecisionPositive(Common.GameState.ATTACK_HEXES_AVAILABLE)
 
-            buttonTransformLifeToEnergyHex.visible = gameState.isDecisionPositive(Common.GameState.ENERGY_HEXES_AVAILABLE)
-            buttonTransformEnergyToLifeHex.visible = gameState.isDecisionPositive(Common.GameState.ENERGY_HEXES_AVAILABLE)
+            binding.buttonTransformLifeToEnergyHex.visible = gameState.isDecisionPositive(Common.GameState.ENERGY_HEXES_AVAILABLE)
+            binding.buttonTransformEnergyToLifeHex.visible = gameState.isDecisionPositive(Common.GameState.ENERGY_HEXES_AVAILABLE)
 
-            buttonTransformLifeToDeathRayHex.visible = gameState.isDecisionPositive(Common.GameState.DEATH_RAY_HEXES_AVAILABLE)
-            buttonTransformDeathRayToLifeHex.visible = gameState.isDecisionPositive(Common.GameState.DEATH_RAY_HEXES_AVAILABLE)
+            binding.buttonTransformLifeToDeathRayHex.visible = gameState.isDecisionPositive(Common.GameState.DEATH_RAY_HEXES_AVAILABLE)
+            binding.buttonTransformDeathRayToLifeHex.visible = gameState.isDecisionPositive(Common.GameState.DEATH_RAY_HEXES_AVAILABLE)
 
-            buttonTransformLifeToOmniBulletHex.visible = gameState.isDecisionPositive(Common.GameState.OMNI_BULLET_HEXES_AVAILABLE)
-            buttonTransformOmniBulletToLifeHex.visible = gameState.isDecisionPositive(Common.GameState.OMNI_BULLET_HEXES_AVAILABLE)
+            binding.buttonTransformLifeToOmniBulletHex.visible = gameState.isDecisionPositive(Common.GameState.OMNI_BULLET_HEXES_AVAILABLE)
+            binding.buttonTransformOmniBulletToLifeHex.visible = gameState.isDecisionPositive(Common.GameState.OMNI_BULLET_HEXES_AVAILABLE)
         }
     }
 
     private fun initiateCanvasView() {
-        editorCanvasView.inject(hexMath, drawUtils)
-        editorCanvasView.presenter = presenter
-        editorCanvasView.setOnDragListener(mDragListen)
-        editorCanvasView.objectPool = objectPool
+        binding.editorCanvasView.inject(hexMath, drawUtils)
+        binding.editorCanvasView.presenter = presenter
+        binding.editorCanvasView.setOnDragListener(mDragListen)
+        binding.editorCanvasView.objectPool = objectPool
     }
 
     private fun getHexTypeBasedOnHexButtonId(id: Int): Hex.Type = when (id) {
@@ -362,16 +336,17 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
         else -> Hex.Type.REMOVE
     }
 
-    private fun onHexTypeButtonClicked(view: View) {
-        for (picker in arrayListOf<HexPicker>(radioButtonLifeHex, radioButtonAttackHex, radioButtonEnergyHex,
-                                            radioButtonDeathRayHex, radioButtonOmniBulletHex, radioButtonRemoveHex)) {
+    private fun onHexTypeButtonClicked(view: HexPicker) {
+        for (picker in arrayListOf<HexPicker>(binding.radioButtonLifeHex, binding.radioButtonAttackHex, binding.radioButtonEnergyHex,
+                                              binding.radioButtonDeathRayHex, binding.radioButtonOmniBulletHex, binding.radioButtonRemoveHex)) {
             picker.selection.visibility = View.INVISIBLE
+
         }
         view.selection.visibility = View.VISIBLE
         highlightEditorTips(getHexTypeBasedOnHexButtonId(view.id))
     }
 
-    private fun onHexTypeButtonLongClicked(view: View) {
+    private fun onHexTypeButtonLongClicked(view: HexPicker) {
         val type = getHexTypeBasedOnHexButtonId(view.id)
         highlightEditorTips(type)
         val typeOrdinal = type.ordinal
@@ -391,7 +366,7 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
     }
 
     private fun highlightEditorTips(type: Hex.Type) {
-        editorCanvasView.selectedCellType = type
+        binding.editorCanvasView.selectedCellType = type
         highlightTips(type)
     }
 
@@ -413,7 +388,7 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
                 // Gets the item containing the dragged data
                 val item: ClipData.Item = event.clipData.getItemAt(0)
 
-                editorCanvasView.pointToHex(event.x, event.y, draggedHex)
+                binding.editorCanvasView.pointToHex(event.x, event.y, draggedHex)
                 val typeOrdinal = item.text.toString().toInt()
                 if (typeOrdinal == Hex.Type.REMOVE.ordinal) {
                     presenter.removeHexFromCell(draggedHex)
@@ -435,17 +410,17 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
 
     private fun onCellRotateButtonClicked(view: View) {
         /// TODO: reuse tipHexes instead of recreate them
-        editorCanvasView.tipHexes = null
+        binding.editorCanvasView.tipHexes = null
         when (view.id) {
             R.id.buttonRotateCellLeft -> {
                 presenter.rotateCellLeft()
-                editorCanvasView.tipHexes = presenter.getTipHexes(editorCanvasView.selectedCellType)
-                editorCanvasView.invalidate()
+                binding.editorCanvasView.tipHexes = presenter.getTipHexes(binding.editorCanvasView.selectedCellType)
+                binding.editorCanvasView.invalidate()
             }
             R.id.buttonRotateCellRight -> {
                 presenter.rotateCellRight()
-                editorCanvasView.tipHexes = presenter.getTipHexes(editorCanvasView.selectedCellType)
-                editorCanvasView.invalidate()
+                binding.editorCanvasView.tipHexes = presenter.getTipHexes(binding.editorCanvasView.selectedCellType)
+                binding.editorCanvasView.invalidate()
             }
         }
     }
@@ -456,29 +431,29 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
         val cellLogicVisibility = isCellLogicViewsShown
         val editorVisibility = !isCellLogicViewsShown
 
-        buttonSwitchScreen.setImageDrawable(
+        binding.buttonSwitchScreen.setImageDrawable(
                 ContextCompat.getDrawable(requireContext(),
                                           if (!isCellLogicViewsShown) R.drawable.ic_button_brain
                                           else R.drawable.ic_button_editor)
         )
 
         /// TODO: energy hex is available not from the beginning
-        for (view in arrayListOf<View>(radioButtonLifeHex, radioButtonAttackHex, radioButtonEnergyHex,
-                                       radioButtonRemoveHex, editorCanvasView,
-                                       buttonRotateCellLeft, buttonRotateCellRight, radioButtonDeathRayHex,
-                                       radioButtonOmniBulletHex,
-                                       buttonTransformHexes, buttonTransformAttackToLifeHex, buttonTransformDeathRayToLifeHex,
-                                       buttonTransformOmniBulletToLifeHex, buttonTransformLifeToOmniBulletHex,
-                                       buttonTransformEnergyToLifeHex, buttonTransformLifeToAttackHex,
-                                       buttonTransformLifeToDeathRayHex, buttonTransformLifeToEnergyHex,
-                                       buttonClearCell)) {
+        for (view in arrayListOf<View>(binding.radioButtonLifeHex, binding.radioButtonAttackHex, binding.radioButtonEnergyHex,
+                                       binding.radioButtonRemoveHex, binding.editorCanvasView,
+                                       binding.buttonRotateCellLeft, binding.buttonRotateCellRight, binding.radioButtonDeathRayHex,
+                                       binding.radioButtonOmniBulletHex,
+                                       binding.buttonTransformHexes, binding.buttonTransformAttackToLifeHex, binding.buttonTransformDeathRayToLifeHex,
+                                       binding.buttonTransformOmniBulletToLifeHex, binding.buttonTransformLifeToOmniBulletHex,
+                                       binding.buttonTransformEnergyToLifeHex, binding.buttonTransformLifeToAttackHex,
+                                       binding.buttonTransformLifeToDeathRayHex, binding.buttonTransformLifeToEnergyHex,
+                                       binding.buttonClearCell)) {
             view.visible = editorVisibility
         }
 
-        textHeroHistory.visible = !cellLogicVisibility and textHeroHistory.visible
+        binding.textHeroHistory.visible = !cellLogicVisibility and binding.textHeroHistory.visible
 
-        for (view in arrayListOf<View>(recyclerViewRulesList, recyclerViewConditionsList,
-                                       buttonAddNewRule, buttonAddNewCondition))
+        for (view in arrayListOf<View>(binding.recyclerViewRulesList, binding.recyclerViewConditionsList,
+                                       binding.buttonAddNewRule, binding.buttonAddNewCondition))
             view.visible = cellLogicVisibility
 
         if (editorVisibility) {
@@ -494,13 +469,13 @@ class HeroScreenFragment: Fragment(), HeroScreen.View {
     }
 
     private fun showHexesTransformOrEditorView() {
-        for (view in arrayListOf<View>(editorCanvasView, buttonRotateCellLeft, buttonRotateCellRight))
+        for (view in arrayListOf<View>(binding.editorCanvasView, binding.buttonRotateCellLeft, binding.buttonRotateCellRight))
             view.visible = !isHexesTransformShown
 
-        for (view in arrayListOf<View>(buttonTransformAttackToLifeHex, buttonTransformDeathRayToLifeHex,
-                                       buttonTransformEnergyToLifeHex, buttonTransformLifeToAttackHex,
-                                       buttonTransformLifeToDeathRayHex, buttonTransformLifeToEnergyHex,
-                                       buttonTransformOmniBulletToLifeHex, buttonTransformLifeToOmniBulletHex))
+        for (view in arrayListOf<View>(binding.buttonTransformAttackToLifeHex, binding.buttonTransformDeathRayToLifeHex,
+                                       binding.buttonTransformEnergyToLifeHex, binding.buttonTransformLifeToAttackHex,
+                                       binding.buttonTransformLifeToDeathRayHex, binding.buttonTransformLifeToEnergyHex,
+                                       binding.buttonTransformOmniBulletToLifeHex, binding.buttonTransformLifeToOmniBulletHex))
             view.visible = isHexesTransformShown
 
         if (isHexesTransformShown)

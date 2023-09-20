@@ -16,17 +16,11 @@ import bav.onecell.common.Common
 import bav.onecell.common.Consts
 import bav.onecell.common.Consts.Companion.GAME_STATE_CHANGES
 import bav.onecell.common.extensions.visible
+import bav.onecell.databinding.FragmentCutSceneBinding
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
-import kotlinx.android.synthetic.main.fragment_cut_scene.background
-import kotlinx.android.synthetic.main.fragment_cut_scene.buttonNo
-import kotlinx.android.synthetic.main.fragment_cut_scene.buttonPreviousFrame
-import kotlinx.android.synthetic.main.fragment_cut_scene.buttonYes
-import kotlinx.android.synthetic.main.fragment_cut_scene.leftCharacter
-import kotlinx.android.synthetic.main.fragment_cut_scene.rightCharacter
-import kotlinx.android.synthetic.main.fragment_cut_scene.textView
 import org.json.JSONException
 import org.json.JSONObject
 import java.util.concurrent.TimeUnit
@@ -39,6 +33,9 @@ class CutSceneFragment : Fragment(), CutScene.View {
     @Inject lateinit var gameState: Common.GameState
     @Inject lateinit var analytics: Common.Analytics
     private val disposables = CompositeDisposable()
+
+    private var _binding: FragmentCutSceneBinding? = null
+    private val binding get() = _binding!!
 
     private var defaultBackground: Int = 0
     private var defaultLeftCharacter: Int = 0
@@ -63,18 +60,19 @@ class CutSceneFragment : Fragment(), CutScene.View {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_cut_scene, container, false)
+        _binding = FragmentCutSceneBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         inject()
 
-        background.setOnClickListener { showNextFrame() }
-        buttonPreviousFrame.setOnClickListener { showPreviousFrame() }
-        buttonYes.setOnClickListener { makeDecision(true) }
-        buttonNo.setOnClickListener { makeDecision(false) }
-        textView.movementMethod = ScrollingMovementMethod()
+        binding.background.setOnClickListener { showNextFrame() }
+        binding.buttonPreviousFrame.setOnClickListener { showPreviousFrame() }
+        binding.buttonYes.setOnClickListener { makeDecision(true) }
+        binding.buttonNo.setOnClickListener { makeDecision(false) }
+        binding.textView.movementMethod = ScrollingMovementMethod()
 
         parseArguments(arguments)
     }
@@ -104,6 +102,7 @@ class CutSceneFragment : Fragment(), CutScene.View {
     override fun onDestroyView() {
         disposables.dispose()
         super.onDestroyView()
+        _binding = null
     }
 
     private fun stopTextTimer() {
@@ -183,39 +182,39 @@ class CutSceneFragment : Fragment(), CutScene.View {
                                 currentAnimationFrame = 0
                             }
                             animationFrames?.let { anims ->
-                                background.setImageDrawable(ContextCompat.getDrawable(requireContext(), anims[currentAnimationFrame]))
+                                binding.background.setImageDrawable(ContextCompat.getDrawable(requireContext(), anims[currentAnimationFrame]))
                             }
                             currentAnimationFrame++
                         }
-            } ?: background.setImageDrawable(ContextCompat.getDrawable(requireContext(), getBackground(it.background)))
+            } ?: binding.background.setImageDrawable(ContextCompat.getDrawable(requireContext(), getBackground(it.background)))
 
-            leftCharacter.setImageDrawable(ContextCompat.getDrawable(requireContext(), getLeftCharacter(it.left)))
-            rightCharacter.setImageDrawable(ContextCompat.getDrawable(requireContext(), getRightCharacter(it.right)))
+            binding.leftCharacter.setImageDrawable(ContextCompat.getDrawable(requireContext(), getLeftCharacter(it.left)))
+            binding.rightCharacter.setImageDrawable(ContextCompat.getDrawable(requireContext(), getRightCharacter(it.right)))
 
             // TODO: don't give a choice if decision has been taken already
-            buttonYes.visible = it.decisionField.isNotEmpty()
-            buttonNo.visible = it.decisionField.isNotEmpty()
+            binding.buttonYes.visible = it.decisionField.isNotEmpty()
+            binding.buttonNo.visible = it.decisionField.isNotEmpty()
             isDecisionFrame = it.decisionField.isNotEmpty()
             isFinalFrame = it.isFinalFrame
 
-            buttonPreviousFrame.visibility = if (it.showPrevFrameButton) View.VISIBLE else View.GONE
+            binding.buttonPreviousFrame.visibility = if (it.showPrevFrameButton) View.VISIBLE else View.GONE
 
-            textView.text = ""
-            textView.setTextColor(it.textColor)
+            binding.textView.text = ""
+            binding.textView.setTextColor(it.textColor)
             currentFrameText = resourceProvider.getString(it.text)
             currentFrameTextIndex = 0
             stopTextTimer()
             if (currentFrameText?.length == 1) {
-                textView.visibility = View.INVISIBLE
+                binding.textView.visibility = View.INVISIBLE
             }
             else {
-                textView.visibility = View.VISIBLE
+                binding.textView.visibility = View.VISIBLE
                 textAnimationDisposable = Observable.interval(0L, TEXT_ANIMATION_STEP, TimeUnit.MILLISECONDS, AndroidSchedulers.mainThread())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe {
                             currentFrameText?.let { text ->
                                 if (text.isNotEmpty()) {
-                                    textView.text = text.substring(0, currentFrameTextIndex + 1)
+                                    binding.textView.text = text.substring(0, currentFrameTextIndex + 1)
                                     if (currentFrameTextIndex < text.length - 1) currentFrameTextIndex++
                                     else stopTextTimer()
                                 } else {
@@ -224,8 +223,8 @@ class CutSceneFragment : Fragment(), CutScene.View {
                             }
                         }
                 currentFrameText?.let { frameText ->
-                    if (frameText.isBlank()) textView.setBackgroundColor(Color.TRANSPARENT)
-                    else textView.setBackgroundColor(
+                    if (frameText.isBlank()) binding.textView.setBackgroundColor(Color.TRANSPARENT)
+                    else binding.textView.setBackgroundColor(
                             ContextCompat.getColor(requireContext(), R.color.cutSceneTextFieldBackground))
                 }
             }

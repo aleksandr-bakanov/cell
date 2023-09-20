@@ -19,6 +19,7 @@ import bav.onecell.common.Consts.Companion.BATTLE_GROUND_RESOURCE
 import bav.onecell.common.Consts.Companion.BATTLE_PARAMS
 import bav.onecell.common.Consts.Companion.NEXT_SCENE
 import bav.onecell.common.view.DrawUtils
+import bav.onecell.databinding.FragmentBattleBinding
 import bav.onecell.model.BattleInfo
 import bav.onecell.model.hexes.HexMath
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -27,15 +28,6 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 import io.reactivex.Observable
 import io.reactivex.disposables.Disposable
-import kotlinx.android.synthetic.main.fragment_battle.battleCanvasView
-import kotlinx.android.synthetic.main.fragment_battle.buttonFinishBattle
-import kotlinx.android.synthetic.main.fragment_battle.buttonNextStep
-import kotlinx.android.synthetic.main.fragment_battle.buttonPause
-import kotlinx.android.synthetic.main.fragment_battle.buttonPlay
-import kotlinx.android.synthetic.main.fragment_battle.buttonPreviousStep
-import kotlinx.android.synthetic.main.fragment_battle.calculationTextView
-import kotlinx.android.synthetic.main.fragment_battle.seekBar
-import kotlinx.android.synthetic.main.fragment_battle.splashImage
 import org.json.JSONObject
 import java.util.concurrent.TimeUnit
 
@@ -49,6 +41,9 @@ class BattleFragment : Fragment(), Battle.View {
     @Inject lateinit var analytics: Common.Analytics
     @Inject lateinit var objectPool: Common.ObjectPool
     @Inject lateinit var battleGraphics: Battle.FramesFactory
+
+    private var _binding: FragmentBattleBinding? = null
+    private val binding get() = _binding!!
 
     private val disposables = CompositeDisposable()
     private var nextScene: Int = 0
@@ -97,58 +92,59 @@ class BattleFragment : Fragment(), Battle.View {
         if (setCurrentTimestamp(newTimestamp)) {
             drawFrame(currentTimestamp)
             setSeekBarProgress(currentTimestamp)
-            lastSeekBarPosition = seekBar.progress
+            lastSeekBarPosition = binding.seekBar.progress
         }
     }
 
     //region Lifecycle methods
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_battle, container, false)
+        _binding = FragmentBattleBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         inject()
 
-        buttonNextStep.setOnClickListener {
+        binding.buttonNextStep.setOnClickListener {
             clickOnStepButton(currentTimestamp + TIMESTAMP_STEP)
         }
-        buttonPreviousStep.setOnClickListener {
+        binding.buttonPreviousStep.setOnClickListener {
             clickOnStepButton(currentTimestamp - TIMESTAMP_STEP)
         }
 
-        buttonPlay.setOnClickListener { startAnimation() }
-        buttonPause.setOnClickListener { pauseAnimation() }
+        binding.buttonPlay.setOnClickListener { startAnimation() }
+        binding.buttonPause.setOnClickListener { pauseAnimation() }
 
-        seekBar.setOnSeekBarChangeListener(seekBarListener)
+        binding.seekBar.setOnSeekBarChangeListener(seekBarListener)
 
-        battleCanvasView.inject(hexMath, drawUtils)
+        binding.battleCanvasView.inject(hexMath, drawUtils)
         /// TODO: move to inject()
-        battleCanvasView.presenter = presenter
-        battleCanvasView.objectPool = objectPool
-        battleCanvasView.battleGraphics = battleGraphics
+        binding.battleCanvasView.presenter = presenter
+        binding.battleCanvasView.objectPool = objectPool
+        binding.battleCanvasView.battleGraphics = battleGraphics
 
-        seekBar.max = 0
+        binding.seekBar.max = 0
         disposables.addAll(
                 presenter.battleResultsProvider()
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe { battleInfo ->
                             this.battleInfo = battleInfo
-                            battleCanvasView.battleInfo = battleInfo
+                            binding.battleCanvasView.battleInfo = battleInfo
 
                             if (battleInfo.snapshots.size > 0) {
-                                battleCanvasView.backgroundFieldRadius = battleInfo.snapshots[0].cells.asSequence().map { it.size() }.sum()
+                                binding.battleCanvasView.backgroundFieldRadius = battleInfo.snapshots[0].cells.asSequence().map { it.size() }.sum()
                             }
 
                             battleDuration = battleInfo.snapshots.sumBy { it.duration() }.toLong()
-                            seekBar.max = (0..battleDuration step TIME_BETWEEN_FRAMES_MS).count()
+                            binding.seekBar.max = (0..battleDuration step TIME_BETWEEN_FRAMES_MS).count()
 
                             reportBattleEnd(battleInfo)
 
                             setTimestampAndDrawFrame(0)
-                            splashImage.visibility = View.GONE
-                            calculationTextView.visibility = View.GONE
+                            binding.splashImage.visibility = View.GONE
+                            binding.calculationTextView.visibility = View.GONE
                         })
 
         arguments?.let {
@@ -163,7 +159,7 @@ class BattleFragment : Fragment(), Battle.View {
             gameState.setSceneAppeared(sceneId)
             presenter.initialize(battleParams)
         }
-        battleCanvasView.backgroundFieldRadius = 50
+        binding.battleCanvasView.backgroundFieldRadius = 50
     }
 
     override fun onResume() {
@@ -181,6 +177,7 @@ class BattleFragment : Fragment(), Battle.View {
         disposables.dispose()
         presenter.stopBattleEvaluation()
         super.onDestroyView()
+        _binding = null
     }
     //endregion
 
@@ -192,7 +189,7 @@ class BattleFragment : Fragment(), Battle.View {
     }
 
     private fun setSeekBarProgress(timestamp: Long) {
-        seekBar.progress = (timestamp / TIME_BETWEEN_FRAMES_MS).toInt()
+        binding.seekBar.progress = (timestamp / TIME_BETWEEN_FRAMES_MS).toInt()
     }
 
     private val reportBundle = Bundle()
@@ -209,10 +206,10 @@ class BattleFragment : Fragment(), Battle.View {
         reportBundle.putString(Consts.BATTLE_REWARD, reward)
         reportBundle.putString(Consts.SCENE_ID, sceneId)
 
-        buttonFinishBattle.setOnClickListener { view ->
+        binding.buttonFinishBattle.setOnClickListener { view ->
             view.findNavController().navigate(nextScene, reportBundle)
         }
-        buttonFinishBattle.visibility = View.VISIBLE
+        binding.buttonFinishBattle.visibility = View.VISIBLE
     }
 
     private fun startAnimation() {
@@ -222,24 +219,24 @@ class BattleFragment : Fragment(), Battle.View {
                     if (setCurrentTimestamp(currentTimestamp + TIME_BETWEEN_FRAMES_MS)) {
                         drawFrame(currentTimestamp)
                         setSeekBarProgress(currentTimestamp)
-                        lastSeekBarPosition = seekBar.progress
+                        lastSeekBarPosition = binding.seekBar.progress
                         if (currentTimestamp >= battleDuration) {
                             pauseAnimation()
                         }
                     }
                 }
-        buttonPause.visibility = View.VISIBLE
-        buttonPlay.visibility = View.INVISIBLE
+        binding.buttonPause.visibility = View.VISIBLE
+        binding.buttonPlay.visibility = View.INVISIBLE
     }
 
     private fun pauseAnimation() {
         animationTimer?.dispose()
-        buttonPause.visibility = View.INVISIBLE
-        buttonPlay.visibility = View.VISIBLE
+        binding.buttonPause.visibility = View.INVISIBLE
+        binding.buttonPlay.visibility = View.VISIBLE
     }
 
     private fun drawFrame(timestamp: Long) {
-        battleCanvasView.drawFrame(timestamp)
+        binding.battleCanvasView.drawFrame(timestamp)
     }
     //endregion
 

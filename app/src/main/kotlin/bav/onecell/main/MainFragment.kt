@@ -12,17 +12,11 @@ import bav.onecell.R
 import bav.onecell.common.Common
 import bav.onecell.common.extensions.visible
 import io.reactivex.disposables.CompositeDisposable
-import kotlinx.android.synthetic.main.fragment_main.buttonContinueGame
-import kotlinx.android.synthetic.main.fragment_main.buttonExitGame
-import kotlinx.android.synthetic.main.fragment_main.buttonGoToScenes
-import kotlinx.android.synthetic.main.fragment_main.buttonHeroScreen
-import kotlinx.android.synthetic.main.fragment_main.buttonNewGame
-import kotlinx.android.synthetic.main.fragment_main.buttonSendReport
 import javax.inject.Inject
 import android.content.Intent
 import android.net.Uri
-import bav.onecell.BuildConfig
-import com.crashlytics.android.Crashlytics
+import bav.onecell.databinding.FragmentMainBinding
+//import com.crashlytics.android.Crashlytics
 
 
 class MainFragment : Fragment(), Main.View {
@@ -33,50 +27,54 @@ class MainFragment : Fragment(), Main.View {
     private val disposables = CompositeDisposable()
     private var lastNavDestination: Int = 0
 
+    private var _binding: FragmentMainBinding? = null
+    private val binding get() = _binding!!
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_main, container, false)
+        _binding = FragmentMainBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         inject()
 
-        if (BuildConfig.DEBUG) {
-            //presenter.setDebugDecisions()
-        }
+//        if (BuildConfig.DEBUG) {
+//            //presenter.setDebugDecisions()
+//        }
 
         if (presenter.isGameFinished()) {
-            buttonHeroScreen.setOnClickListener { view ->
+            binding.buttonHeroScreen.setOnClickListener { view ->
                 view.findNavController().navigate(R.id.heroScreen)
             }
-            buttonHeroScreen.visibility = View.VISIBLE
+            binding.buttonHeroScreen.visibility = View.VISIBLE
         }
         else {
-            buttonHeroScreen.visibility = View.GONE
+            binding.buttonHeroScreen.visibility = View.GONE
         }
 
         if (presenter.showScenesButton()) {
-            buttonGoToScenes.setOnClickListener { view ->
+            binding.buttonGoToScenes.setOnClickListener { view ->
                 view.findNavController().navigate(R.id.scenesFragment)
             }
-            buttonGoToScenes.visibility = View.VISIBLE
+            binding.buttonGoToScenes.visibility = View.VISIBLE
         }
         else {
-            buttonGoToScenes.visibility = View.GONE
+            binding.buttonGoToScenes.visibility = View.GONE
         }
 
-        buttonNewGame.setOnClickListener { view ->
+        binding.buttonNewGame.setOnClickListener { view ->
             if (lastNavDestination != 0) view.findNavController().navigate(R.id.newGameFragment)
             else view.findNavController().navigate(R.id.cutSceneIntroduction)
         }
-        buttonExitGame.setOnClickListener { requireActivity().finish() }
-        buttonContinueGame.setOnClickListener {
+        binding.buttonExitGame.setOnClickListener { requireActivity().finish() }
+        binding.buttonContinueGame.setOnClickListener {
             if (lastNavDestination != 0) {
                 try {
                     val navController = it.findNavController()
                     val node = navController.graph.findNode(lastNavDestination)
-                    Crashlytics.log("MainFragment::buttonContinueGame::onClick id = $lastNavDestination; node.label = ${node?.label}")
+//                    Crashlytics.log("MainFragment::buttonContinueGame::onClick id = $lastNavDestination; node.label = ${node?.label}")
                     navController.navigate(lastNavDestination)
                 }
                 catch (e: IllegalArgumentException) {
@@ -84,17 +82,17 @@ class MainFragment : Fragment(), Main.View {
                 }
             }
         }
-        buttonSendReport.setOnClickListener {
+        binding.buttonSendReport.setOnClickListener {
             presenter.sendBugReport()
         }
 
         lastNavDestination = presenter.getLastNavDestinationId()
-        buttonContinueGame.visible = lastNavDestination != 0
+        binding.buttonContinueGame.visible = lastNavDestination != 0
 
         (requireActivity() as? Main.NavigationInfoProvider)?.let {
             disposables.add(it.provideLastDestination().subscribe { destination ->
                 lastNavDestination = destination
-                buttonContinueGame.visible = lastNavDestination != 0
+                binding.buttonContinueGame.visible = lastNavDestination != 0
             })
         }
     }
@@ -107,6 +105,7 @@ class MainFragment : Fragment(), Main.View {
     override fun onDestroyView() {
         disposables.dispose()
         super.onDestroyView()
+        _binding = null
     }
 
     override fun sendBugReport(content: String) {

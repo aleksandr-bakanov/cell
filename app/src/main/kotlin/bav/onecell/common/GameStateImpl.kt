@@ -3,7 +3,7 @@ package bav.onecell.common
 import android.content.Context
 import android.content.SharedPreferences
 import android.preference.PreferenceManager
-import com.crashlytics.android.Crashlytics
+//import com.crashlytics.android.Crashlytics
 
 class GameStateImpl(private val context: Context,
                     private val preferences: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)): Common.GameState {
@@ -18,12 +18,12 @@ class GameStateImpl(private val context: Context,
 
     override fun getLastNavDestinationId(): Int {
         val id = preferences.getInt(LAST_NAV_DESTINATION_ID, 0)
-        Crashlytics.log("GameState::getLastNavDestinationId id = $id)")
+//        Crashlytics.log("GameState::getLastNavDestinationId id = $id)")
         return id
     }
     override fun setLastNavDestinationId(id: Int, skipNext: Boolean) {
         if (!skipSaveLastNavDestination) {
-            Crashlytics.log("GameState::setLastNavDestinationId(id = $id)")
+//            Crashlytics.log("GameState::setLastNavDestinationId(id = $id)")
             preferences.edit().putInt(LAST_NAV_DESTINATION_ID, id).apply()
         }
         else {
