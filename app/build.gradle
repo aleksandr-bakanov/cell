@@ -14,8 +14,8 @@ android {
         applicationId "bav.onecell"
         minSdkVersion 19
         targetSdkVersion 33
-        versionCode 8
-        versionName "0.9.7"
+        versionCode 9
+        versionName "0.9.8"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
         // To be able to use SVG starting from API level 7 (2.1)
